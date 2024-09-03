@@ -1,0 +1,61 @@
+# LaTeX auxiliary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.nav
+*.snm
+*.vrb
+
+# LaTeX intermediate files
+*.dvi
+*.xdv
+
+# LaTeX PDF files
+*.pdf
+
+# LaTeX preview files
+*.ps
+*.eps
+
+# Output directory (if you have one)
+out/
+build/
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.swp
+*~
+
+# TeXShop specific
+*.pdfsync
+*.synctex(busy)
+
+# BibTeX auxiliary files
+*.blg
+*.bbl
+
+# Auto-generated files
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
+*.acn
+*.acr
+*.alg

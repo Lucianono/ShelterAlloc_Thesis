@@ -7,8 +7,8 @@ Community = [
 ]
 
 Shelter = [
-    {"name": "ShelA", "capacity": 10000, "cost": 500},
-    {"name": "ShelB", "capacity": 10000, "cost": 500}
+    {"name": "ShelA", "capacity": 800, "cost": 1000},
+    {"name": "ShelB", "capacity": 800, "cost": 1000}
 ]
 
 weightDist = 0.5
@@ -41,35 +41,31 @@ def spawn():
             random.choice(Shelter) )
 
 # check if solution is feasible in capacity of shelter
+# constraint for capacity
 def checkCapacity(solution):
     ShelterCapacity = []
 
     for i in Shelter:
         ShelterCapacity.append(i["capacity"])
 
-    for i in len(Community):
-        ShelterCapacity[solution[i]] - Community[i]["population"]
+    for i in range(len(Community)):
+        shelter_index = next(index for index, s in enumerate(Shelter) if s["name"] == solution[i]["name"]  )
+        ShelterCapacity[shelter_index] -= Community[i]["population"]
 
+        if(ShelterCapacity[shelter_index] < 0):
+            return False
 
-    
-
-    Community[0]["population"]
-
-
-
-    solution[0]["capacity"] + solution[0]["capacity"] + solution[0]["capacity"]
-
-
+    return True
 
 #initial population
 solutions = []
 for s in range(20):
-    solutions.append (
-        (random.choice(Shelter),
-        random.choice(Shelter),
-        random.choice(Shelter))
 
-    )
+    solution = spawn()
+    while(not checkCapacity(solution)):
+        solution = spawn()
+
+    solutions.append(solution)
 
 #generations
 for i in range(100):
@@ -87,12 +83,19 @@ for i in range(100):
         offspringA = (mother[0],
                       father[1],
                       mother[2])
+        while(not checkCapacity(offspringA)):
+            offspringA = spawn()
+        rankedsolutions.append( (fitness(offspringA[0]["name"],offspringA[1]["name"],offspringA[2]["name"]),offspringA) )
+
+
         offspringB = (father[0],
                       mother[1],
                       father[2])
-        
-        rankedsolutions.append( (fitness(offspringA[0]["name"],offspringA[1]["name"],offspringA[2]["name"]),offspringA) )
+        while(not checkCapacity(offspringB)):
+            offspringB = spawn()
         rankedsolutions.append( (fitness(offspringB[0]["name"],offspringB[1]["name"],offspringB[2]["name"]),offspringB) )
+
+        
 
     # ranking population
     rankedsolutions.sort(key=lambda x: x[0])

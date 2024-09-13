@@ -3,7 +3,19 @@
 The primary objective of this study is to develop an efficient Decision Support System (DSS) for optimal shelter allocation in disaster situations, specifically designed for the municipality of Hagonoy. The specific goals of the study are to:
 
 \begin{enumerate}
-	\item Formulate a suitable model for shelter allocation in disaster situations.
-	\item Solve the model using genetic algorithm.
-	\item Develop a DSS integrating the formulated model and its solution.
+	\item \textbf{Model Formulation}: Formulate a suitable model, using the Bilevel No Transfer model derived from the General Single Level model (GEN) and Hierarchical model (HIER) for shelter allocation in disaster situations. The model should showcase the minimization of travel distance, and cost of the shelter construction or maintenance. Also, prove that the solution in the formulated model exists and is feasible.
+	
+	\item \textbf{Data Collection}: Gather data on Hagonoy, Bulacan to collect:
+	\begin{enumerate}
+		\item Location of each barangay
+		\item Population of each barangay 
+		\item Vulnerable population in case of disaster 
+		\item Location of candidate shelters
+		\item Capacity of candidate shelters 
+		\item Cost of maintaining or constructing of candidate shelters 
+		\item Distance from each barangay to each candidate shelters 
+	\end{enumerate}
+	
+	\item \textbf{System Development}: Develop a DSS integrating the formulated model, and solving the model using Genetic Algorithm. The system should produce an output containing the optimal shelter allocation of the municipality. The user of the system should also have access to modify the data.
+	
 \end{enumerate}

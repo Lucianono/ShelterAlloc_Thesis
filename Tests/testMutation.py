@@ -37,9 +37,13 @@ def fitness(solution):
 
     return weightDist * total_distance + weightCost * total_cost
 
+#spawn a new solution
+#used when killing or initial
 def spawn():
     return tuple(random.choice(Shelter)["name"] for _ in Community)
 
+# check if solution is feasible in capacity of shelter
+# constraint for capacity
 def checkCapacity(solution):
     ShelterCapacity = {s["name"]: s["capacity"] for s in Shelter}
 

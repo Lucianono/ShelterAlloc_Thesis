@@ -1,109 +1,137 @@
 import random
 
-#communities
 Community = [
-    {"name": "CommA", "population": 500, "distances_level1": {"Shel1A": 140, "Shel1B": 220}, "distances_level2": {"Shel2A": 1000, "Shel2B": 1800}},
-    {"name": "CommB", "population": 400, "distances_level1": {"Shel1A": 530, "Shel1B": 2100}, "distances_level2": {"Shel2A": 500, "Shel2B": 1200}},
-    {"name": "CommC", "population": 300, "distances_level1": {"Shel1A": 1210, "Shel1B": 420}, "distances_level2": {"Shel2A": 700, "Shel2B": 1100}},
-    {"name": "CommD", "population": 200, "distances_level1": {"Shel1A": 620, "Shel1B": 320}, "distances_level2": {"Shel2A": 400, "Shel2B": 800}}
-]
+    {"name": "CommA", "population": 500, "distances": {"ShelA": 140, "ShelB": 220}},
+    {"name": "CommB", "population": 400, "distances": {"ShelA": 530, "ShelB": 2100}},
+    {"name": "CommC", "population": 300, "distances": {"ShelA": 1210, "ShelB": 420}}
 
-#shelters
 Level1Shelter = [
-    {"name": "Shel1A", "capacity": 800, "cost": 1000},
-    {"name": "Shel1B", "capacity": 800, "cost": 1000}
+    {"name": "ShelA", "capacity": 800, "cost": 1000},
 ]
 
 Level2Shelter = [
-    {"name": "Shel2A", "capacity": 1200, "cost": 2000},
-    {"name": "Shel2B", "capacity": 1500, "cost": 2000}
+    {"name": "ShelB", "capacity": 800, "cost": 1000},
 ]
 
 weightDist = 0.5
 weightCost = 0.5
 
-#Assign to nearest level 1 shelter
-def assign_communities_to_level1():
-    ShelterCapacity = {shelter["name"]: shelter["capacity"] for shelter in Level1Shelter}
-    assignments = {}
-
-    for community in Community:
-        available_shelters = list(community["distances_level1"].keys())
-        available_shelters.sort(key=lambda x: community["distances_level1"][x])
-
-        
-        for shelter in available_shelters:
-            if ShelterCapacity[shelter] >= community["population"]:
-                assignments[community["name"]] = shelter
-                ShelterCapacity[shelter] -= community["population"]
-                break
-        else:
-            print(f"Warning: No available capacity for {community['name']} in level 1 shelters")
-
-    return assignments
-
-#Reassign to nearest level 2 shelter
-def assign_communities_to_level2():
-    ShelterCapacity = {shelter["name"]: shelter["capacity"] for shelter in Level2Shelter}
-    assignments = {}
-
-    for community in Community:
-        available_shelters = list(community["distances_level2"].keys())
-        available_shelters.sort(key=lambda x: community["distances_level2"][x])
-
-        
-        for shelter in available_shelters:
-            if ShelterCapacity[shelter] >= community["population"]:
-                assignments[community["name"]] = shelter
-                ShelterCapacity[shelter] -= community["population"]
-                break
-        else:
-            print(f"Warning: No available capacity for {community['name']} in level 2 shelters")
-
-    return assignments
-
-
-def calculate_fitness_level1(assignments):
+def fitness(allocation):
     total_distance = 0
     total_cost = 0
 
     for community in Community:
-        assigned_shelter = assignments.get(community["name"])
-        if assigned_shelter:
-            total_distance += community["distances_level1"][assigned_shelter]
-
-    for shelter in Level1Shelter:
-        total_cost += shelter["cost"]
+        shelter_name = allocation[community["name"]]
+        distance = community["distances"][shelter_name]
+        total_distance += distance
+        total_cost += 1000
 
     return weightDist * total_distance + weightCost * total_cost
 
-def calculate_fitness_level2(assignments):
-    total_distance = 0
-    total_cost = 0
+def spawn():
+    allocations = {}
+    for community in Community:
+        shelter = random.choice(Level1Shelter)["name"]
+        allocations[community["name"]] = shelter
+    return allocations
+
+def check_capacity(allocations):
+    shelter_capacities = {shelter["name"]: shelter["capacity"] for shelter in Level1Shelter}
 
     for community in Community:
-        assigned_shelter = assignments.get(community["name"])
-        if assigned_shelter:
-            total_distance += community["distances_level2"][assigned_shelter]
+        shelter_name = allocations.get(community["name"])
+        if shelter_name and community["population"] > shelter_capacities[shelter_name]:
+            return False
 
+    return True
+
+def mutate(allocations):
+    community_to_mutate = random.choice(list(allocations.keys()))
+    current_shelter = allocations[community_to_mutate]
+    
+    available_shelters = [shelter["name"] for shelter in Level1Shelter if shelter["name"] != current_shelter]
+
+    if available_shelters:
+        new_shelter = random.choice(available_shelters)
+        new_allocations = allocations.copy()
+        new_allocations[community_to_mutate] = new_shelter
+        
+        return new_allocations if check_capacity(new_allocations) else allocations
+
+    return allocations
+
+def generate_offspring(parent1, parent2):
+    offspring = {}
+    for community in Community:
+        shelters = {parent1[community["name"]], parent2[community["name"]]} 
+        
+        if shelters:
+            chosen_shelter = random.choice(list(shelters))
+        else:
+            chosen_shelter = random.choice([shelter["name"] for shelter in Level1Shelter]) 
+
+        while chosen_shelter not in [s["name"] for s in Level1Shelter]:
+            chosen_shelter = random.choice([shelter["name"] for shelter in Level1Shelter])
+
+        offspring[community["name"]] = chosen_shelter
+
+    return offspring if check_capacity(offspring) else parent1 
+
+def move_to_level2_shelters(allocations):
+    level1_population = {shelter["name"]: 0 for shelter in Level1Shelter}
+    
+    for community, shelter in allocations.items():
+        level1_population[shelter] += Community[next(i for i, comm in enumerate(Community) if comm["name"] == community)]["population"]
+
+    level2_allocations = {}
     for shelter in Level2Shelter:
-        total_cost += shelter["cost"]
+        capacity_remaining = shelter["capacity"]
+        for community, population in level1_population.items():
+            if population > 0 and capacity_remaining > 0:
+                move_amount = min(population, capacity_remaining)
+                level2_allocations[community] = shelter["name"]
+                level1_population[community] -= move_amount
+                capacity_remaining -= move_amount
 
-    return weightDist * total_distance + weightCost * total_cost
+    return level2_allocations
 
-# Run HIER model
-def hierarchical_location_allocation():
-    level1_assignments = assign_communities_to_level1()
-    fitness_level1 = calculate_fitness_level1(level1_assignments)
-    
-    print(f"Level 1 Assignments: {level1_assignments}")
-    print(f"Level 1 Total fitness (cost + distance): {fitness_level1}")
-    
-    level2_assignments = assign_communities_to_level2()
-    fitness_level2 = calculate_fitness_level2(level2_assignments)
-    
-    print(f"Level 2 Assignments: {level2_assignments}")
-    print(f"Level 2 Total fitness (cost + distance): {fitness_level2}")
+solutions = []
+num_generations = 100
+num_solutions = 20
 
-# Execute
-hierarchical_location_allocation()
+for _ in range(num_solutions):
+    solution = spawn()
+    while not check_capacity(solution):
+        solution = spawn()
+    solutions.append(solution)
+
+for generation in range(num_generations):
+    ranked_solutions = [(fitness(sol), sol) for sol in solutions]
+    ranked_solutions.sort(key=lambda x: x[0])
+
+    print(f"=== Gen {generation} best solution ===")
+    print(ranked_solutions[0])
+
+    new_population = []
+
+    new_population.extend([ranked_solutions[0][1], ranked_solutions[1][1]])
+
+    for i in range(2, len(ranked_solutions) - 1, 2):
+        mother = ranked_solutions[i][1]
+        father = ranked_solutions[i + 1][1]
+
+        offspring = generate_offspring(mother, father)
+        new_population.append(offspring)
+
+    mutated_population = []
+    for solution in new_population:
+        if random.random() < 0.1:
+            solution = mutate(solution)
+        mutated_population.append(solution)
+
+    solutions = mutated_population[:num_solutions]
+
+final_allocations = move_to_level2_shelters(solutions[0])
+print("\nFinal Allocations to Level 2 Shelters:")
+for comm, shelter in final_allocations.items():
+    print(f"{comm} moved to {shelter}")

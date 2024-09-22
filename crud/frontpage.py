@@ -35,6 +35,11 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.settings_1.clicked.connect(self.switch_to_settings_page)
         self.settings_2.clicked.connect(self.switch_to_settings_page) 
 
+        self.student_1.clicked.connect(self.students_context_menu)
+        self.teacher_1.clicked.connect(self.teachers_context_menu)
+        self.finance_1.clicked.connect(self.finances_context_menu)
+
+
     def switch_to_dashboard_page(self):
         self.stackedWidget.setCurrentIndex(0)  
     def switch_to_institution_page(self):
@@ -59,3 +64,61 @@ class MySideBar(QMainWindow, Ui_MainWindow):
         self.stackedWidget.setCurrentIndex(10)
     def switch_to_settings_page(self):
         self.stackedWidget.setCurrentIndex(11)
+
+    def students_context_menu(self):
+        self.show_custom_context_menu(self.student_1, ["Student Information", "Student Payments", "Student Transaction"])
+    def teachers_context_menu(self):
+        self.show_custom_context_menu(self.teacher_1, ["Teacher Information", "Teacher Salaries", "Teacher Transaction"])
+    def finances_context_menu(self):
+        self.show_custom_context_menu(self.finance_1, ["Budgets", "Expenses", "Business Overview"])
+        #style for the menu
+    def show_custom_context_menu(self, button, menu_items):
+        menu = QMenu(self)
+
+        menu.setStyleSheet("""
+                           QMenu{
+                           background-color: black;
+                           color: white;
+                           }
+                           QMenu:selected {
+                           background-color: white;
+                           color: #12B298
+                           }
+                           """)
+
+        for item_text in menu_items:
+            action = QAction(item_text, self)
+            action.triggered.connect(self.handle_menu_item_click)
+            menu.addAction(action)
+
+        menu.move(button.mapToGlobal(button.rect().topRight()))
+        menu.exec()
+    def handle_menu_item_click(self):
+        text = self.sender().text()
+
+        if text == "Student Information":
+            self.switch_to_studentInfo_page()
+        elif text == "Student Payments":
+            self.switch_to_studentPayments_page()
+        elif text == "Student Transaction":
+            self.switch_to_studentTransactions_page()
+
+    def handle_menu_item_click(self):
+        text = self.sender().text()
+
+        if text == "Teacher Information":
+            self.switch_to_teacherInfo_page()
+        elif text == "Teacher Salaries":
+            self.switch_to_teacherSalaries_page()
+        elif text == "Teacher Transaction":
+            self.switch_to_teacherTransaction_page()
+
+    def handle_menu_item_click(self):
+        text = self.sender().text()
+
+        if text == "Budget":
+            self.switch_to_budgetInfo_page()
+        elif text == "Expenses":
+            self.switch_to_expensesInfo_page()
+        elif text == "Business Overview":
+            self.switch_to_businessOverview_page()

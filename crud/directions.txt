@@ -1,0 +1,21 @@
+di pa tapos to, mahirap gawin since both qt designer and implementation gamit pyqt6 inaaral ko
+
+summary ng tools na inaral ko sa qt designer
+- layouts
+- spacers
+- buttons
+- stacked widgets
+- line edit
+- combo box
+- label
+- signals and slots
+- input widgets
+- item widgets (time-based)
+
+nasa pyside6 to since walang pang convert ng qrc file to py ang pyqt6
+time taken to make this 8hrs
+
+pyside6-uic index.ui > ui_index.py
+pyside6-rcc resources.qrc -o resources_rc.py
+
+change utf-16 to utf-8 via save encoding pag ni convert

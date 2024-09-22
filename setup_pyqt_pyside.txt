@@ -1,0 +1,15 @@
+Setting up PySide6, PyQt6 and Qt Designer
+
+Go to cmd admin type ff:
+pip install PySide6
+pip install PyQt6
+pip install PyQt6-tools
+
+Install Qt Designer with this link: https://build-system.fman.io/qt-designer-download
+
+to convert widget.ui to ui_widget.py
+pyuic6 widget.ui -o ui_widget.py
+pyside6-uic widget.ui > ui_widget.py
+
+to convert resources.qrc to resources_rc.py
+pyside6-rcc resources.qrc -o resources_rc.py

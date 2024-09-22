@@ -1,9 +1,0 @@
-open cmd-admin
-pip install PyQt6
-pip install pyqt6-tools
-
-to convert widget.ui to ui_widget.py
-pyuic6 widget.ui -o ui_widget.py
-
-edit ui in pyqt designer
-https://build-system.fman.io/qt-designer-download

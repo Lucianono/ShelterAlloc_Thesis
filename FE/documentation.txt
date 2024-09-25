@@ -1,0 +1,6 @@
+Finished:
+- drop downs (will ask for checking)
+- naming important buttons and such
+
+Fixing:
+- header frame of Resistance and Status

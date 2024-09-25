@@ -1,38 +1,33 @@
 import random
 import numpy as np
+import matplotlib.pyplot as plt
 
-# Community now includes area_per_member
+# List to store best fitness value from each generation
+best_fitness_per_generation = []
+
+# Updated Community Data
 Community = [
-    {"name": "CommA", "population": 41242, "area_per_member": 2, 
-     "distances": {"ShelA": 150, "ShelB": 250, "ShelC": 350, "ShelD": 300, "ShelE": 200, "ShelF": 400}},
-    
-    {"name": "CommB", "population": 12313, "area_per_member": 2.5, 
-     "distances": {"ShelA": 300, "ShelB": 1800, "ShelC": 400, "ShelD": 600, "ShelE": 220, "ShelF": 350}},
-    
-    {"name": "CommD", "population": 5123, "area_per_member": 2.5, 
-     "distances": {"ShelA": 500, "ShelB": 2000, "ShelC": 300, "ShelD": 400, "ShelE": 250, "ShelF": 350}},
-    
-    {"name": "CommE", "population": 2335, "area_per_member": 2.5, 
-     "distances": {"ShelA": 600, "ShelB": 1900, "ShelC": 300, "ShelD": 500, "ShelE": 150, "ShelF": 320}},
-    
-    {"name": "CommC", "population": 2145, "area_per_member": 1.8, 
-     "distances": {"ShelA": 1200, "ShelB": 450, "ShelC": 1100, "ShelD": 1300, "ShelE": 300, "ShelF": 500}}
+    {"name": "CommA", "population": 41242, "area_per_member": 1, "distances": {"ShelA": 150, "ShelB": 250, "ShelC": 350, "ShelD": 300, "ShelE": 200, "ShelF": 400}},
+    {"name": "CommB", "population": 12313, "area_per_member": 2, "distances": {"ShelA": 300, "ShelB": 1800, "ShelC": 400, "ShelD": 600, "ShelE": 220, "ShelF": 350}},
+    {"name": "CommD", "population": 5123, "area_per_member": 1, "distances": {"ShelA": 500, "ShelB": 2000, "ShelC": 300, "ShelD": 400, "ShelE": 250, "ShelF": 350}},
+    {"name": "CommE", "population": 2335, "area_per_member": 2, "distances": {"ShelA": 600, "ShelB": 1900, "ShelC": 300, "ShelD": 500, "ShelE": 150, "ShelF": 320}},
+    {"name": "CommC", "population": 2145, "area_per_member": 1, "distances": {"ShelA": 1200, "ShelB": 450, "ShelC": 1100, "ShelD": 1300, "ShelE": 300, "ShelF": 500}}
 ]
 
 
-# More shelters can be added here
+# Updated Shelter Data
 Level1Shelter = [
-    {"name": "ShelA", "capacity": 53225, "area": 2000000, "cost_per_person": 1000},
-    {"name": "ShelB", "capacity": 22323, "area": 1800000, "cost_per_person": 900},
-    {"name": "ShelE", "capacity": 5002, "area": 1000000, "cost_per_person": 100}, 
-    {"name": "ShelF", "capacity": 12442, "area": 500000, "cost_per_person": 50}, 
-
+    {"name": "ShelA", "capacity": 50000, "area": 1250000, "cost_per_unit": 10},
+    {"name": "ShelB", "capacity": 22000, "area": 1000000, "cost_per_unit": 20},
+    {"name": "ShelE", "capacity": 5000, "area": 400000, "cost_per_unit": 10}, 
+    {"name": "ShelF", "capacity": 12000, "area": 700000, "cost_per_unit": 20}, 
 ]
 
 Level2Shelter = [
-    {"name": "ShelC", "capacity": 800, "area": 2500, "cost_per_person": 1500},
-    {"name": "ShelD", "capacity": 700, "area": 2200, "cost_per_person": 1300}  
+    {"name": "ShelC", "capacity": 1200, "area": 25000, "cost_per_unit": 20},
+    {"name": "ShelD", "capacity": 1000, "area": 20000, "cost_per_unit": 10}  
 ]
+
 
 weightDist = 0.5
 weightCost = 0.5
@@ -47,7 +42,7 @@ def fitness(allocation):
         total_distance += distance
 
         shelter = next(s for s in Level1Shelter + Level2Shelter if s["name"] == shelter_name)
-        total_cost += shelter["cost_per_person"] * community["population"]
+        total_cost += shelter["cost_per_unit"] * shelter["area"]
 
     return weightDist * total_distance + weightCost * total_cost
 
@@ -145,8 +140,8 @@ def move_to_level2_shelters(allocations):
     return level2_allocations
 
 solutions = []
-num_generations = 100
-num_solutions = 20
+num_generations = 500
+num_solutions = 200
 mutation_rate = 0.5
 
 for _ in range(num_solutions):
@@ -175,13 +170,27 @@ for generation in range(num_generations):
             solution = mutate(solution)
         mutated_population.append((fitness(solution),solution))
 
-    solutions = mutated_population + ranked_solutions
-    solutions = sorted(solutions, key=lambda x: x[0])[:num_solutions] 
+    best_solutions = mutated_population + ranked_solutions
+    best_solutions = sorted(best_solutions, key=lambda x: x[0])[:num_solutions] 
 
     print(f"=== Gen {generation} best solution ===")
-    print(solutions[0])
+    print(best_solutions[0])
+
+    solutions = [sol[1] for sol in best_solutions]
+
+    # Store the best fitness of this generation
+    best_fitness_per_generation.append(ranked_solutions[0][0])
+
 
 final_allocations = move_to_level2_shelters(solutions[0])
 print("\nFinal Allocations to Level 2 Shelters:")
 for comm, shelter in final_allocations.items():
     print(f"{comm} moved to {shelter}")
+
+
+# Plot the fitness over generations
+plt.plot(best_fitness_per_generation)
+plt.xlabel('Generation')
+plt.ylabel('Best Fitness')
+plt.title('Best Fitness Over Generations')
+plt.show()

@@ -1,16 +1,32 @@
 import random
+import numpy as np
 
 # Community now includes area_per_member
 Community = [
-    {"name": "CommA", "population": 500, "area_per_member": 2, "distances": {"ShelA": 140, "ShelB": 220, "ShelC": 300, "ShelD": 250}},
-    {"name": "CommB", "population": 400, "area_per_member": 2.5, "distances": {"ShelA": 530, "ShelB": 2100, "ShelC": 450, "ShelD": 500}},
-    {"name": "CommC", "population": 300, "area_per_member": 1.8, "distances": {"ShelA": 1210, "ShelB": 420, "ShelC": 1100, "ShelD": 1200}}
+    {"name": "CommA", "population": 41242, "area_per_member": 2, 
+     "distances": {"ShelA": 150, "ShelB": 250, "ShelC": 350, "ShelD": 300, "ShelE": 200, "ShelF": 400}},
+    
+    {"name": "CommB", "population": 12313, "area_per_member": 2.5, 
+     "distances": {"ShelA": 300, "ShelB": 1800, "ShelC": 400, "ShelD": 600, "ShelE": 220, "ShelF": 350}},
+    
+    {"name": "CommD", "population": 5123, "area_per_member": 2.5, 
+     "distances": {"ShelA": 500, "ShelB": 2000, "ShelC": 300, "ShelD": 400, "ShelE": 250, "ShelF": 350}},
+    
+    {"name": "CommE", "population": 2335, "area_per_member": 2.5, 
+     "distances": {"ShelA": 600, "ShelB": 1900, "ShelC": 300, "ShelD": 500, "ShelE": 150, "ShelF": 320}},
+    
+    {"name": "CommC", "population": 2145, "area_per_member": 1.8, 
+     "distances": {"ShelA": 1200, "ShelB": 450, "ShelC": 1100, "ShelD": 1300, "ShelE": 300, "ShelF": 500}}
 ]
+
 
 # More shelters can be added here
 Level1Shelter = [
-    {"name": "ShelA", "capacity": 800, "area": 2000, "cost_per_person": 1000},
-    {"name": "ShelB", "capacity": 600, "area": 1800, "cost_per_person": 900}  
+    {"name": "ShelA", "capacity": 53225, "area": 2000000, "cost_per_person": 1000},
+    {"name": "ShelB", "capacity": 22323, "area": 1800000, "cost_per_person": 900},
+    {"name": "ShelE", "capacity": 5002, "area": 1000000, "cost_per_person": 100}, 
+    {"name": "ShelF", "capacity": 12442, "area": 500000, "cost_per_person": 50}, 
+
 ]
 
 Level2Shelter = [
@@ -94,6 +110,19 @@ def generate_offspring(parent1, parent2):
 
     return offspring if check_capacity(offspring) else parent1 
 
+def selectParent(solutions):
+    sum_fitness = sum(fitness for fitness, _ in solutions)
+    inv_proportions = [sum_fitness/ fitness for fitness, _ in solutions]
+    sum_inv_proportions = sum(inv_proportions)
+    probability = [inv_proportion / sum_inv_proportions for inv_proportion in inv_proportions]
+    solution_indices = np.arange(len(solutions))
+
+    selected_solution = np.random.choice(solution_indices, p=probability)
+
+    return solutions[selected_solution]
+
+
+
 def move_to_level2_shelters(allocations):
     # Initialize the level 1 population dictionary with only Level 1 shelters
     level1_population = {shelter["name"]: 0 for shelter in Level1Shelter}
@@ -118,6 +147,7 @@ def move_to_level2_shelters(allocations):
 solutions = []
 num_generations = 100
 num_solutions = 20
+mutation_rate = 0.5
 
 for _ in range(num_solutions):
     solution = spawn()
@@ -126,30 +156,30 @@ for _ in range(num_solutions):
     solutions.append(solution)
 
 for generation in range(num_generations):
+
     ranked_solutions = [(fitness(sol), sol) for sol in solutions]
     ranked_solutions.sort(key=lambda x: x[0])
 
-    print(f"=== Gen {generation} best solution ===")
-    print(ranked_solutions[0])
-
     new_population = []
 
-    new_population.extend([ranked_solutions[0][1], ranked_solutions[1][1]])
-
-    for i in range(2, len(ranked_solutions) - 1, 2):
-        mother = ranked_solutions[i][1]
-        father = ranked_solutions[i + 1][1]
+    for i in range(num_solutions):
+        mother = selectParent(ranked_solutions)[1]
+        father = selectParent(ranked_solutions)[1]
 
         offspring = generate_offspring(mother, father)
         new_population.append(offspring)
 
     mutated_population = []
     for solution in new_population:
-        if random.random() < 0.1:
+        if random.random() < mutation_rate:
             solution = mutate(solution)
-        mutated_population.append(solution)
+        mutated_population.append((fitness(solution),solution))
 
-    solutions = mutated_population[:num_solutions]
+    solutions = mutated_population + ranked_solutions
+    solutions = sorted(solutions, key=lambda x: x[0])[:num_solutions] 
+
+    print(f"=== Gen {generation} best solution ===")
+    print(solutions[0])
 
 final_allocations = move_to_level2_shelters(solutions[0])
 print("\nFinal Allocations to Level 2 Shelters:")

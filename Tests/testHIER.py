@@ -4,7 +4,7 @@ Community = [
     {"name": "CommA", "population": 500, "distances": {"ShelA": 140, "ShelB": 220}},
     {"name": "CommB", "population": 400, "distances": {"ShelA": 530, "ShelB": 2100}},
     {"name": "CommC", "population": 300, "distances": {"ShelA": 1210, "ShelB": 420}}
-
+]
 Level1Shelter = [
     {"name": "ShelA", "capacity": 800, "cost": 1000},
 ]

@@ -1,21 +1,22 @@
-# the official function for Bilevel No Transfer model
-
 import random
 import numpy as np
+import matplotlib.pyplot as plt
 
 # TEMPORARY DUMMY DATA
 # should be replaced with dynamic data from system
-area_per_individual = 1
+area_per_individual = 2
 max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 100
+num_generations = 500
 num_solutions = 100
-mutation_rate = 0.5
+mutation_rate = 0.9
 
 weight_dist = 0.5
 weight_cost = 0.5
+
+best_fitness_per_generation = []
 
 Community = [
     {"name": "Aya", "population": 6215, "maxdistance": 570, "distances": {
@@ -350,8 +351,30 @@ for generation in range(num_generations):
     # replace old population
     solutions = [sol[1] for sol in best_solutions]
 
+    best_fitness_per_generation.append(ranked_solutions[0][0])
+
 
 best_allocation = solutions[0]
 show_allocation_details_grouped(best_allocation)
 
+test_allocation = {
+    "Aya" : "Tagaytay Unida Church",
+    "Banga & San Guillermo" : "Tagaytay Unida Church",
+    "Calocan & Leynes" : "Tagaytay Unida Church",
+    "Poblacion Barangay 2,3,4,6,7,8" : "Tagaytay Unida Church",
+    "Poblacion Barangay 1" : "Brgy. San Jose BB Court",
+    "Poblacion Barangay 5" : "Brgy. San Jose BB Court",
+    "Quiling, Miranda, & Tumaway" : "Brgy. San Jose BB Court",
+    "Sampaloc" : "Brgy. San Jose BB Court",
+    "Tranca" : "Brgy. San Jose BB Court",
+    "Santa Maria, Balas, & Buco" : "Maugat Gymnasium"
+}
+# show_allocation_details_grouped(test_allocation)
+# print(str(fitness(test_allocation)))
 
+# Plot the fitness over generations
+plt.plot(best_fitness_per_generation)
+plt.xlabel('Generation')
+plt.ylabel('Best Fitness')
+plt.title('Best Fitness Over Generations')
+plt.show()

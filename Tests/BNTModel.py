@@ -95,7 +95,7 @@ def check_distance(allocation):
 
 # max shelters to be constructed/allocated constraint
 def check_max_shelters(allocation):
-     # Using a set since could detect uniqueness
+    # Using a set since could detect uniqueness
     used_shelters = set() 
     for community in Community:
         shelter_name = allocation[community["name"]]
@@ -107,6 +107,36 @@ def check_max_shelters(allocation):
         
     return True
 
+# count lvl 2 shelters opened 
+def count_lvl2_shelters(allocation):
+    shelter_areas_lvl1 = {shelter["name"]: shelter["area1"] for shelter in Shelters}
+    used_area = {shelter["name"]: 0 for shelter in Shelters}
+    
+    # Calculate the used area for each shelter based on the allocation
+    for community in Community:
+        shelter_name = allocation[community["name"]]
+        used_area[shelter_name] += community["population"] * area_per_individual
+    
+    # Count how many shelters have exceeded their level 1 area
+    lvl2_shelters = 0
+    for shelter in Shelters:
+        shelter_name = shelter["name"]
+        if used_area[shelter_name] > shelter_areas_lvl1[shelter_name]:
+            lvl2_shelters += 1
+    
+    return lvl2_shelters
+
+
+# max lvl2 shelters to be constructed/allocated constraint
+def check_max_lvl2_shelters(allocation):
+    return count_lvl2_shelters(allocation) <= max_lvl2_shelters
+
+# Check all constraints
+def checkConstraints(allocation):
+     return (check_capacity(allocation) and 
+            check_distance(allocation) and 
+            check_max_shelters(allocation) and 
+            check_max_lvl2_shelters(allocation))
 
 
 # mutation operator
@@ -122,7 +152,7 @@ def mutate(allocation):
         new_allocations = allocation.copy()
         new_allocations[community_to_mutate] = new_shelter
         
-        return new_allocations if check_capacity(new_allocations) else allocation
+        return new_allocations if checkConstraints(new_allocations) else allocation
 
     return allocation
 
@@ -143,7 +173,7 @@ def generate_offspring(parent1, parent2):
 
         offspring[community["name"]] = chosen_shelter
 
-    return offspring if check_capacity(offspring) else parent1 
+    return offspring if checkConstraints(offspring) else parent1 
 
 # selection operator
 # TYPE : Roulette Wheel Selection
@@ -166,10 +196,12 @@ def spawn():
         allocations[community["name"]] = shelter
     return allocations
 
+# =======================
+# START OF THE ALLGORITHM
 # initial population
 for _ in range(num_solutions):
     solution = spawn()
-    while not check_capacity(solution):
+    while not checkConstraints(solution):
         solution = spawn()
     fitnessVal = fitness(solution)
     solutions.append(solution)
@@ -208,5 +240,7 @@ for generation in range(num_generations):
     solutions = [sol[1] for sol in best_solutions]
 
 
-print("end")
+best_allocation = solutions[0]
+print("Opened Level 2 Shelters:" + str(count_lvl2_shelters(best_allocation)) )
+
 

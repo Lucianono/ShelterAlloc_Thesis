@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1620</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>1600</width>
+     <height>124</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">* {
+	background-color: #F5F5F5;
+}</string>
+   </property>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>1230</x>
+      <y>30</y>
+      <width>317</width>
+      <height>69</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>317</width>
+      <height>69</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	background-color: #14AE5C;
+	color: white;
+	border: none;
+	border-radius: 30px;	
+}</string>
+    </property>
+    <property name="text">
+     <string>Add Community</string>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>35</width>
+      <height>35</height>
+     </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QTableWidget" name="studentInfo_table">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>170</y>
+     <width>1372</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QHeaderView::section{
+	font-weight: bold;
+	background-color: black;
+	color: white;
+}
+
+QTableWidget{
+	alternate-background-color: #B0EDFB;
+	background-color: white;
+}</string>
+   </property>
+   <column>
+    <property name="text">
+     <string>Name</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>x Deg</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>y Deg</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Pop</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>VulPop</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>WorkPop</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Remarks</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Actions</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

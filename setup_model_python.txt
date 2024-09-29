@@ -1,0 +1,19 @@
+Python version
+3.12.5
+
+=Install Python=
+download it at https://www.python.org/downloads/
+install it
+make sure ADD TO PATH is checked
+
+=Install VS Code=
+download it at https://code.visualstudio.com/
+Install Python extension
+Install Python debugger extension
+
+=Python libraries=
+*for non prob randomizer
+pip install numpy
+*for graphs and plots
+pip install matplotlib
+pip install networkx

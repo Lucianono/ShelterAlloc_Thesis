@@ -1,6 +1,7 @@
 Finished:
 - drop downs (will ask for checking)
 - naming important buttons and such
+- log in ui finished, changed log in window size
 
 Fixing:
 - header frame of Resistance and Status

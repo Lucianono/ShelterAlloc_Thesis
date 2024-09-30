@@ -11,7 +11,7 @@ max_shelters = 10
 
 solutions = []
 num_generations = 100
-num_solutions = 100
+num_solutions = 20
 mutation_rate = 0.5
 
 weight_dist = 0.5
@@ -174,7 +174,7 @@ def show_allocation_details_grouped(allocation):
                   f"Used Area: {detail['area_used']}, "
                   f"Shelter Level: {detail['level']}")
 
-# capacity constraint
+# capacity constraint (2.25)
 def check_capacity(allocation):
     shelter_areas_lvl2 = {shelter["name"]: shelter["area2"] for shelter in Shelters}
     used_area = {shelter["name"]: 0 for shelter in Shelters}
@@ -191,7 +191,7 @@ def check_capacity(allocation):
 
     return True
 
-# maximum distance constraint
+# maximum distance constraint (2.24)
 def check_distance(allocation):
 
     for community in Community:
@@ -204,7 +204,7 @@ def check_distance(allocation):
         
     return True
 
-# max shelters to be constructed/allocated constraint
+# max shelters to be constructed/allocated constraint (2.27)
 def check_max_shelters(allocation):
     # Using a set since could detect uniqueness
     used_shelters = set() 
@@ -218,7 +218,7 @@ def check_max_shelters(allocation):
         
     return True
 
-# count lvl 2 shelters opened 
+# count lvl 2 shelters opened (2.26)
 def count_lvl2_shelters(allocation):
     shelter_areas_lvl1 = {shelter["name"]: shelter["area1"] for shelter in Shelters}
     used_area = {shelter["name"]: 0 for shelter in Shelters}
@@ -238,7 +238,7 @@ def count_lvl2_shelters(allocation):
     return lvl2_shelters
 
 
-# max lvl2 shelters to be constructed/allocated constraint
+# max lvl2 shelters to be constructed/allocated constraint (2.26)
 def check_max_lvl2_shelters(allocation):
     return count_lvl2_shelters(allocation) <= max_lvl2_shelters
 
@@ -308,7 +308,7 @@ def spawn():
     return allocations
 
 # =======================
-# START OF THE ALLGORITHM
+# START OF THE ALGORITHM
 # initial population
 for _ in range(num_solutions):
     solution = spawn()

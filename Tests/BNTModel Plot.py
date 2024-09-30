@@ -4,14 +4,14 @@ import matplotlib.pyplot as plt
 
 # TEMPORARY DUMMY DATA
 # should be replaced with dynamic data from system
-area_per_individual = 2
-max_lvl2_shelters = 10
-max_shelters = 10
+area_per_individual = 1
+max_lvl2_shelters = 1
+max_shelters = 5
 
 solutions = []
 num_generations = 500
 num_solutions = 100
-mutation_rate = 0.9
+mutation_rate = 0.1
 
 weight_dist = 0.5
 weight_cost = 0.5

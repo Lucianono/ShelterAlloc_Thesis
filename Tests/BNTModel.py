@@ -104,10 +104,10 @@ def fitness(allocation):
     total_cost = 0
 
     for community in Community:
-        # add distance
+        # add distance * population
         shelter_name = allocation[community["name"]]
         distance = community["distances"][shelter_name]
-        total_distance += distance
+        total_distance += distance * community["population"]
 
         # add to used_area based on population
         used_area[shelter_name] += community["population"] * area_per_individual

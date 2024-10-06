@@ -5,6 +5,7 @@ import numpy as np
 
 # TEMPORARY DUMMY DATA
 # should be replaced with dynamic data from system
+# simulation of area required per individual (meters squared), maximum no. of level 2 shelters
 area_per_individual = 1
 max_lvl2_shelters = 10
 max_shelters = 10
@@ -17,6 +18,7 @@ mutation_rate = 0.5
 weight_dist = 0.5
 weight_cost = 0.5
 
+# sample data of communities with barangay names along with population and distances from each shelter
 Community = [
     {"name": "Aya", "population": 6215, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 374.90, "City EC of Sto. Tomas": 197.28, "Suplang Covered Court": 151.16,
@@ -79,6 +81,7 @@ Community = [
         "San Fernando Brgy. Hall": 341.93}}
 ]
 
+# list of shelters with area1 and cost1 (area and cost as level 1 shelter), area 2 and cost2 (area and cost as level 2 shelter) 
 Shelters = [
     {"name": "Brgy. Asis-3 EC", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
     {"name": "City EC of Sto. Tomas", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},

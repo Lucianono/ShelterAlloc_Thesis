@@ -251,7 +251,7 @@ def checkConstraints(allocation):
 
 
 # mutation operator
-# TYPE : Swap Mutation
+# TYPE : Random Reset
 def mutate(allocation):
     community_to_mutate = random.choice(list(allocation.keys()))
     current_shelter = allocation[community_to_mutate]

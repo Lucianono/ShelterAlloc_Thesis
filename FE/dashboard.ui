@@ -6,1172 +6,1240 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1620</width>
-    <height>1080</height>
+    <width>1200</width>
+    <height>750</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1620</width>
-    <height>1080</height>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1200</width>
+    <height>800</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>1</x>
-      <y>-1</y>
-      <width>481</width>
-      <height>1071</height>
-     </rect>
+   <layout class="QHBoxLayout" name="horizontalLayout_17">
+    <property name="spacing">
+     <number>0</number>
     </property>
-    <widget class="QFrame" name="frame">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>-6</y>
-       <width>481</width>
-       <height>151</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QFrame {
-	background-color: #1C5739;
-	color: white;
-}</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <pointsize>25</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Shelter Location-</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="font">
-           <font>
-            <pointsize>25</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Allocation System</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QFrame" name="frame_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>170</y>
-       <width>418</width>
-       <height>441</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QFrame {
-	background-color: white;
-	border: none;
-	border-radius: 50px;
-}</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QPushButton" name="pushButton_10">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>30</y>
-        <width>241</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>31</height>
-       </size>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="SideBar" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="maximumSize">
        <size>
-        <width>16777215</width>
-        <height>31</height>
+        <width>350</width>
+        <height>16777215</height>
        </size>
       </property>
-      <property name="styleSheet">
-       <string notr="true">* {
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>120</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QFrame {
+	background-color: #1C5739;
+	color: white;
+}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <pointsize>25</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Shelter Location-Allocation System</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QScrollArea" name="scrollArea_2">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_9">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>348</width>
+            <height>648</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <widget class="QFrame" name="frame_2">
+             <property name="styleSheet">
+              <string notr="true">QFrame {
+	background-color: white;
+	border: none;
+	border-radius: 30;
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout">
+              <item>
+               <widget class="QPushButton" name="pushButton_10">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>31</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">* {
 	background-color: none;
 	border: none;
 }</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset resource="resources.qrc">
-        <normaloff>:/ICONS/460188026_1055722699516972_285361959784915845_n.png</normaloff>
-        <normalon>:/ICONS/460447071_1548715655852767_9098987943539175575_n.png</normalon>:/ICONS/460188026_1055722699516972_285361959784915845_n.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>250</width>
-        <height>250</height>
-       </size>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QFrame" name="frame_5">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>70</y>
-        <width>391</width>
-        <height>301</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>10</y>
-         <width>331</width>
-         <height>278</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="communities_dropdown">
-        <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="font">
-           <font>
-            <pointsize>15</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">* {
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resources.qrc">
+                  <normaloff>:/ICONS/460188026_1055722699516972_285361959784915845_n.png</normaloff>
+                  <normalon>:/ICONS/460447071_1548715655852767_9098987943539175575_n.png</normalon>:/ICONS/460188026_1055722699516972_285361959784915845_n.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>250</width>
+                  <height>250</height>
+                 </size>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_5">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_18">
+                 <item>
+                  <layout class="QVBoxLayout" name="communities_dropdown">
+                   <item>
+                    <widget class="QPushButton" name="pushButton">
+                     <property name="font">
+                      <font>
+                       <pointsize>15</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">
 	background-color: 	#14EA5C;
 	color: white;
 	padding: 5px;
 	border: none;
-	border-radius: 30px;
-}</string>
-          </property>
-          <property name="text">
-           <string>Add Community</string>
-          </property>
-          <property name="icon">
-           <iconset resource="resources.qrc">
-            <normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>35</width>
-            <height>35</height>
-           </size>
-          </property>
-          <property name="default">
-           <bool>false</bool>
-          </property>
-          <property name="flat">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_7">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-            <italic>true</italic>
-            <underline>true</underline>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"> * {
+	border-radius: 15;
+</string>
+                     </property>
+                     <property name="text">
+                      <string>Add Community</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="resources.qrc">
+                       <normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>35</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                     <property name="default">
+                      <bool>false</bool>
+                     </property>
+                     <property name="flat">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_7">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                       <italic>true</italic>
+                       <underline>true</underline>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"> * {
 color: #00B5FF;
 }</string>
-          </property>
-          <property name="text">
-           <string>Advanced Settings</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <item>
-             <widget class="QLabel" name="label_24">
-              <property name="minimumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
-              </property>
-              <property name="scaledContents">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_16">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Barangay A</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_5">
-            <property name="minimumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
+                     </property>
+                     <property name="text">
+                      <string>Advanced Settings</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_6">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_5">
+                       <item>
+                        <widget class="QLabel" name="label_24">
+                         <property name="minimumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="pixmap">
+                          <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_16">
+                         <property name="font">
+                          <font>
+                           <pointsize>12</pointsize>
+                           <weight>50</weight>
+                           <bold>false</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Barangay A</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_5">
+                       <property name="minimumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
 	background-color: none;
 	border: none;
 }</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_7">
-            <item>
-             <widget class="QLabel" name="label_21">
-              <property name="minimumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
-              </property>
-              <property name="scaledContents">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_4">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Barangay B</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_4">
-            <property name="minimumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="resources.qrc">
+                         <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_8">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_7">
+                       <item>
+                        <widget class="QLabel" name="label_21">
+                         <property name="minimumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="pixmap">
+                          <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_4">
+                         <property name="font">
+                          <font>
+                           <pointsize>12</pointsize>
+                           <weight>50</weight>
+                           <bold>false</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Barangay B</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_4">
+                       <property name="minimumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
 	background-color: none;
 	border: none;
 }</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_10">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
-            <item>
-             <widget class="QLabel" name="label_22">
-              <property name="minimumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
-              </property>
-              <property name="scaledContents">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_5">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Barangay A</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_6">
-            <property name="minimumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="resources.qrc">
+                         <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_10">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_9">
+                       <item>
+                        <widget class="QLabel" name="label_22">
+                         <property name="minimumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="pixmap">
+                          <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_5">
+                         <property name="font">
+                          <font>
+                           <pointsize>12</pointsize>
+                           <weight>50</weight>
+                           <bold>false</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Barangay C</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_6">
+                       <property name="minimumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
 	background-color: none;
 	border: none;
 }</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_12">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_11">
-            <item>
-             <widget class="QLabel" name="label_23">
-              <property name="minimumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
-              </property>
-              <property name="scaledContents">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_6">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Barangay B</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_7">
-            <property name="minimumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="resources.qrc">
+                         <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_12">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_11">
+                       <item>
+                        <widget class="QLabel" name="label_23">
+                         <property name="minimumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="pixmap">
+                          <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_6">
+                         <property name="font">
+                          <font>
+                           <pointsize>12</pointsize>
+                           <weight>50</weight>
+                           <bold>false</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Barangay D</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_7">
+                       <property name="minimumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
 	background-color: none;
 	border: none;
 }</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QFrame" name="frame_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>620</y>
-       <width>418</width>
-       <height>321</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QFrame {
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="resources.qrc">
+                         <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_3">
+             <property name="styleSheet">
+              <string notr="true">QFrame {
 	background-color: white;
 	border: none;
-	border-radius: 50px;
+	border-radius: 30px;
 }</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QPushButton" name="pushButton_11">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>201</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <item>
+               <widget class="QPushButton" name="pushButton_11">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
 	background-color: none;
 	border: none;
 }</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset resource="resources.qrc">
-        <normaloff>:/ICONS/Screenshot 2024-09-25 165940.png</normaloff>
-        <normalon>:/ICONS/Screenshot 2024-09-25 165940 (1).png</normalon>:/ICONS/Screenshot 2024-09-25 165940.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>200</width>
-        <height>200</height>
-       </size>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resources.qrc">
+                  <normaloff>:/ICONS/Screenshot 2024-09-25 165940.png</normaloff>
+                  <normalon>:/ICONS/Screenshot 2024-09-25 165940 (1).png</normalon>:/ICONS/Screenshot 2024-09-25 165940.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>200</width>
+                  <height>200</height>
+                 </size>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_6">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_4">
+                   <item>
+                    <widget class="QPushButton" name="pushButton_2">
+                     <property name="font">
+                      <font>
+                       <pointsize>15</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">* {
+	background-color: 	#FF3B30;
+	color: white;
+	padding: 5px;
+	border: none;
+	border-radius: 15;
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>Add Shelter</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="resources.qrc">
+                       <normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>35</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_8">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                       <italic>true</italic>
+                       <underline>true</underline>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"> * {
+color: #00B5FF;
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>Advanced Settings</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_14">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_13">
+                       <item>
+                        <widget class="QLabel" name="label_3">
+                         <property name="minimumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="pixmap">
+                          <pixmap resource="resources.qrc">:/ICONS/1891013_direction_gps_location_map_marker_icon.png</pixmap>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_9">
+                         <property name="font">
+                          <font>
+                           <pointsize>12</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Barangay A</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_8">
+                       <property name="minimumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
+	background-color: none;
+	border: none;
+}</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="resources.qrc">
+                         <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_16">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_15">
+                       <item>
+                        <widget class="QLabel" name="label_10">
+                         <property name="font">
+                          <font>
+                           <pointsize>12</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Barangay B</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_17">
+                         <property name="minimumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="pixmap">
+                          <pixmap resource="resources.qrc">:/ICONS/1891013_direction_gps_location_map_marker_icon.png</pixmap>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_9">
+                       <property name="minimumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
+	background-color: none;
+	border: none;
+}</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="resources.qrc">
+                         <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QFrame" name="frame_6">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>391</width>
-        <height>201</height>
-       </rect>
-      </property>
+    </item>
+    <item>
+     <widget class="QFrame" name="Main">
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>371</width>
-         <height>178</height>
-        </rect>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>0</number>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <widget class="QPushButton" name="pushButton_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: white;</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="frame_4">
+            <property name="styleSheet">
+             <string notr="true">* {
+	background-color: #1C5739;
+	color: white;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_19">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,1,1,1">
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="reports_btn">
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {
+	background-color: none;
+	border: none;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Reports</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="help_btn">
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {
+	background-color: none;
+	border: none;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Help</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="account_btn">
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {
+	background-color: none;
+	border: none;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Account</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="3,1,1">
+            <property name="spacing">
+             <number>20</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_11">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <widget class="QLabel" name="label_14">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Resistance</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="resistance_comboBox">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox {
+	border: 1px solid gray;
+	border-radius: 8px;
+	background-color: white;
+	selection-background-color: #2980B9;
+	height: 20px;
+}</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>ALL</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Flood</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Typhoon</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Earthquake</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QLabel" name="label_15">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Status</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="status_comboBox">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox {
+	border: 1px solid gray;
+	border-radius: 8px;
+	background-color: white;
+	selection-background-color: #2980B9;
+	height: 20px;
+}</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>ALL</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Built</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Partially Built</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Damaged</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Empty Lot</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_3" native="true">
+         <widget class="QWidget" name="MapWidget" native="true">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>-10</y>
+            <width>848</width>
+            <height>711</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="solve_btn">
+          <property name="geometry">
+           <rect>
+            <x>583</x>
+            <y>620</y>
+            <width>221</width>
+            <height>49</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="font">
            <font>
-            <pointsize>15</pointsize>
+            <pointsize>24</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
           <property name="styleSheet">
            <string notr="true">* {
-	background-color: 	#FF3B30;
-	color: white;
-	padding: 5px;
 	border: none;
-	border-radius: 30px;
+	border-radius: 10px;
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(28, 87, 57, 255), stop:1 rgba(61, 189, 124, 255));
+	color: white;
+	padding:10;
 }</string>
           </property>
           <property name="text">
-           <string>Add Shelter</string>
-          </property>
-          <property name="icon">
-           <iconset resource="resources.qrc">
-            <normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>35</width>
-            <height>35</height>
-           </size>
+           <string>GENERATE</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_8">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-            <italic>true</italic>
-            <underline>true</underline>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"> * {
-color: #00B5FF;
-}</string>
-          </property>
-          <property name="text">
-           <string>Advanced Settings</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_14">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_13">
-            <item>
-             <widget class="QLabel" name="label_3">
-              <property name="minimumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap resource="resources.qrc">:/ICONS/1891013_direction_gps_location_map_marker_icon.png</pixmap>
-              </property>
-              <property name="scaledContents">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_9">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Barangay A</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_8">
-            <property name="minimumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	background-color: none;
-	border: none;
-}</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_16">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_15">
-            <item>
-             <widget class="QLabel" name="label_17">
-              <property name="minimumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>31</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap resource="resources.qrc">:/ICONS/1891013_direction_gps_location_map_marker_icon.png</pixmap>
-              </property>
-              <property name="scaledContents">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_10">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Barangay B</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_9">
-            <property name="minimumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	background-color: none;
-	border: none;
-}</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>41</width>
-              <height>41</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="widget_2" native="true">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>-3</y>
-      <width>1141</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;</string>
-    </property>
-    <widget class="QFrame" name="frame_4">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>-6</y>
-       <width>1141</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">* {
-	background-color: #1C5739;
-	color: white;
-}</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>10</y>
-        <width>501</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="reports_btn">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	background-color: none;
-	border: none;
-}</string>
-         </property>
-         <property name="text">
-          <string>Reports</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="help_btn">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	background-color: none;
-	border: none;
-}</string>
-         </property>
-         <property name="text">
-          <string>Help</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="account_btn">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	background-color: none;
-	border: none;
-}</string>
-         </property>
-         <property name="text">
-          <string>Account</string>
-         </property>
         </widget>
        </item>
       </layout>
      </widget>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>610</x>
-       <y>50</y>
-       <width>501</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <property name="spacing">
-       <number>20</number>
-      </property>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QLabel" name="label_14">
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Resistance</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="resistance_comboBox">
-          <property name="minimumSize">
-           <size>
-            <width>150</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QComboBox {
-	border: 1px solid gray;
-	border-radius: 8px;
-	background-color: white;
-	selection-background-color: #2980B9;
-	height: 20px;
-}</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>ALL</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Flood</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Typhoon</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Earthquake</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Volcanic</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QLabel" name="label_15">
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Status</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="status_comboBox">
-          <property name="minimumSize">
-           <size>
-            <width>150</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QComboBox {
-	border: 1px solid gray;
-	border-radius: 8px;
-	background-color: white;
-	selection-background-color: #2980B9;
-	height: 20px;
-}</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>ALL</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Built</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Partially Built</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Damaged</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Empty Lot</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="widget_3" native="true">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>90</y>
-      <width>1121</width>
-      <height>981</height>
-     </rect>
-    </property>
-    <widget class="QPushButton" name="solve_btn">
-     <property name="geometry">
-      <rect>
-       <x>780</x>
-       <y>840</y>
-       <width>320</width>
-       <height>100</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>40</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">* {
-	border: none;
-	border-radius: 30px;
-	background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(28, 87, 57, 255), stop:1 rgba(61, 189, 124, 255));
-	color: white;
-}</string>
-     </property>
-     <property name="text">
-      <string>Solve</string>
-     </property>
-    </widget>
-    <widget class="QStackedWidget" name="stackedWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>0</y>
-       <width>462</width>
-       <height>971</height>
-      </rect>
-     </property>
-     <widget class="QWidget" name="page"/>
-     <widget class="QWidget" name="page_2"/>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources>

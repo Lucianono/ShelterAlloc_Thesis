@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>550</height>
+    <height>474</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -648,7 +648,7 @@ border-radius: 20px;
                  <x>0</x>
                  <y>0</y>
                  <width>359</width>
-                 <height>170</height>
+                 <height>142</height>
                 </rect>
                </property>
                <property name="font">
@@ -664,6 +664,9 @@ color:rgb(43, 43, 43);</string>
                <layout class="QVBoxLayout" name="verticalLayout_3">
                 <property name="spacing">
                  <number>0</number>
+                </property>
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetDefaultConstraint</enum>
                 </property>
                 <item>
                  <widget class="QLabel" name="label_5">
@@ -870,7 +873,7 @@ border-radius: 20px;
                  <x>0</x>
                  <y>0</y>
                  <width>359</width>
-                 <height>170</height>
+                 <height>129</height>
                 </rect>
                </property>
                <property name="font">
@@ -1155,7 +1158,7 @@ border-radius: 20px;
                  <x>0</x>
                  <y>0</y>
                  <width>359</width>
-                 <height>170</height>
+                 <height>124</height>
                 </rect>
                </property>
                <property name="font">

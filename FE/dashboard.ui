@@ -103,7 +103,7 @@
            <widget class="QLabel" name="label">
             <property name="font">
              <font>
-              <pointsize>25</pointsize>
+              <pointsize>20</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -132,12 +132,12 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>348</width>
-            <height>648</height>
+            <width>331</width>
+            <height>704</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
-           <item>
+           <item alignment="Qt::AlignTop">
             <widget class="QFrame" name="frame_2">
              <property name="styleSheet">
               <string notr="true">QFrame {
@@ -155,6 +155,9 @@
              <layout class="QVBoxLayout" name="verticalLayout">
               <item>
                <widget class="QPushButton" name="pushButton_10">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -190,10 +193,19 @@
                 <property name="checkable">
                  <bool>true</bool>
                 </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+                <property name="default">
+                 <bool>false</bool>
+                </property>
                </widget>
               </item>
               <item>
                <widget class="QFrame" name="frame_5">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -511,6 +523,88 @@ color: #00B5FF;
                     </layout>
                    </item>
                    <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_20">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_21">
+                       <item>
+                        <widget class="QLabel" name="label_25">
+                         <property name="minimumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="pixmap">
+                          <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_12">
+                         <property name="font">
+                          <font>
+                           <pointsize>12</pointsize>
+                           <weight>50</weight>
+                           <bold>false</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Barangay C</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_12">
+                       <property name="minimumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
+	background-color: none;
+	border: none;
+}</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="resources.qrc">
+                         <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
                     <layout class="QHBoxLayout" name="horizontalLayout_12">
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -592,6 +686,88 @@ color: #00B5FF;
                      </item>
                     </layout>
                    </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_22">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_23">
+                       <item>
+                        <widget class="QLabel" name="label_26">
+                         <property name="minimumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>31</width>
+                           <height>31</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="pixmap">
+                          <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_13">
+                         <property name="font">
+                          <font>
+                           <pointsize>12</pointsize>
+                           <weight>50</weight>
+                           <bold>false</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Barangay C</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_13">
+                       <property name="minimumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
+	background-color: none;
+	border: none;
+}</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="resources.qrc">
+                         <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>41</width>
+                         <height>41</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
                   </layout>
                  </item>
                 </layout>
@@ -600,7 +776,7 @@ color: #00B5FF;
              </layout>
             </widget>
            </item>
-           <item>
+           <item alignment="Qt::AlignTop">
             <widget class="QFrame" name="frame_3">
              <property name="styleSheet">
               <string notr="true">QFrame {
@@ -798,6 +974,31 @@ color: #00B5FF;
                    <item>
                     <layout class="QHBoxLayout" name="horizontalLayout_16">
                      <item>
+                      <widget class="QLabel" name="label_17">
+                       <property name="minimumSize">
+                        <size>
+                         <width>31</width>
+                         <height>31</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>31</width>
+                         <height>31</height>
+                        </size>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="pixmap">
+                        <pixmap resource="resources.qrc">:/ICONS/1891013_direction_gps_location_map_marker_icon.png</pixmap>
+                       </property>
+                       <property name="scaledContents">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_15">
                        <item>
                         <widget class="QLabel" name="label_10">
@@ -808,31 +1009,6 @@ color: #00B5FF;
                          </property>
                          <property name="text">
                           <string>Barangay B</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="label_17">
-                         <property name="minimumSize">
-                          <size>
-                           <width>31</width>
-                           <height>31</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>31</width>
-                           <height>31</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="pixmap">
-                          <pixmap resource="resources.qrc">:/ICONS/1891013_direction_gps_location_map_marker_icon.png</pixmap>
-                         </property>
-                         <property name="scaledContents">
-                          <bool>true</bool>
                          </property>
                         </widget>
                        </item>
@@ -1058,6 +1234,12 @@ color: #00B5FF;
             </property>
             <item>
              <widget class="QLabel" name="label_11">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -1192,7 +1374,7 @@ color: #00B5FF;
          <widget class="QWidget" name="MapWidget" native="true">
           <property name="geometry">
            <rect>
-            <x>0</x>
+            <x>-10</x>
             <y>-10</y>
             <width>848</width>
             <height>711</height>
@@ -1247,34 +1429,34 @@ color: #00B5FF;
  </resources>
  <connections>
   <connection>
-   <sender>pushButton_10</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>frame_5</receiver>
-   <slot>setHidden(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>810</x>
-     <y>391</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>411</x>
-     <y>422</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pushButton_11</sender>
    <signal>toggled(bool)</signal>
    <receiver>frame_6</receiver>
    <slot>setHidden(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1273</x>
-     <y>362</y>
+     <x>313</x>
+     <y>555</y>
     </hint>
     <hint type="destinationlabel">
-     <x>411</x>
-     <y>679</y>
+     <x>313</x>
+     <y>772</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_10</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>frame_5</receiver>
+   <slot>setHidden(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>313</x>
+     <y>134</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>313</x>
+     <y>524</y>
     </hint>
    </hints>
   </connection>

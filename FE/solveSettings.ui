@@ -14,6 +14,121 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QFrame" name="frame_2">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">qproperty-alignment: AlignRight;</string>
+          </property>
+          <property name="text">
+           <string>Model</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <underline>true</underline>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: none;
+background: none;
+text-decoration: underline;
+color:rgb(0, 0, 255);
+text-align: right;</string>
+          </property>
+          <property name="text">
+           <string>Advanced Settings</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>400</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <item>
+         <property name="text">
+          <string>Single-level with Workplace Distance Inclusion (WORK)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Bilevel No Transfer (BNT)</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(28, 87, 57, 255), stop:1 rgba(61, 189, 124, 255));
+color:rgb(255, 255, 255);
+border:none;
+padding:8px 80px;
+border-radius:8;
+margin-left:40px;</string>
+        </property>
+        <property name="text">
+         <string>SOLVE</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QFrame" name="frame">
      <property name="enabled">
@@ -623,13 +738,25 @@ padding:0;</string>
               </layout>
              </widget>
             </item>
-            <item>
+            <item alignment="Qt::AlignTop">
              <widget class="QScrollArea" name="scrollArea">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>160</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>160</height>
+               </size>
               </property>
               <property name="styleSheet">
                <string notr="true">QScrollArea{
@@ -642,13 +769,16 @@ border-radius: 20px;
               <property name="widgetResizable">
                <bool>true</bool>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignHCenter|Qt::AlignTop</set>
+              </property>
               <widget class="QWidget" name="scrollAreaWidgetContents_2">
                <property name="geometry">
                 <rect>
                  <x>0</x>
                  <y>0</y>
                  <width>359</width>
-                 <height>142</height>
+                 <height>148</height>
                 </rect>
                </property>
                <property name="font">
@@ -669,24 +799,6 @@ color:rgb(43, 43, 43);</string>
                  <enum>QLayout::SetDefaultConstraint</enum>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_5">
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>10</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Shelter A</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QLabel" name="label_2">
                   <property name="maximumSize">
                    <size>
@@ -701,6 +813,24 @@ color:rgb(43, 43, 43);</string>
                   </property>
                   <property name="text">
                    <string>Shelter B</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_5">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Shelter A</string>
                   </property>
                  </widget>
                 </item>
@@ -1317,126 +1447,11 @@ color:rgb(43, 43, 43);</string>
      </layout>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QFrame" name="frame_2">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">qproperty-alignment: AlignRight;</string>
-          </property>
-          <property name="text">
-           <string>Model</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="font">
-           <font>
-            <pointsize>8</pointsize>
-            <underline>true</underline>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: none;
-background: none;
-text-decoration: underline;
-color:rgb(0, 0, 255);
-text-align: right;</string>
-          </property>
-          <property name="text">
-           <string>Advanced Settings</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBox_2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>400</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <item>
-         <property name="text">
-          <string>Single-level with Workplace Distance Inclusion (WORK)</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bilevel No Transfer (BNT)</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="font">
-         <font>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(28, 87, 57, 255), stop:1 rgba(61, 189, 124, 255));
-color:rgb(255, 255, 255);
-border:none;
-padding:8px 80px;
-border-radius:8;
-margin-left:40px;</string>
-        </property>
-        <property name="text">
-         <string>SOLVE</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
   </layout>
  </widget>
  <resources>
   <include location="resources.qrc"/>
-  <include location="C:/Program Files (x86)/Qt Designer/resources.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>855</width>
     <height>474</height>
    </rect>
   </property>
@@ -14,121 +14,6 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
-    <widget class="QFrame" name="frame_2">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">qproperty-alignment: AlignRight;</string>
-          </property>
-          <property name="text">
-           <string>Model</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="font">
-           <font>
-            <pointsize>8</pointsize>
-            <underline>true</underline>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: none;
-background: none;
-text-decoration: underline;
-color:rgb(0, 0, 255);
-text-align: right;</string>
-          </property>
-          <property name="text">
-           <string>Advanced Settings</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBox_2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>400</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <item>
-         <property name="text">
-          <string>Single-level with Workplace Distance Inclusion (WORK)</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bilevel No Transfer (BNT)</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="font">
-         <font>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(28, 87, 57, 255), stop:1 rgba(61, 189, 124, 255));
-color:rgb(255, 255, 255);
-border:none;
-padding:8px 80px;
-border-radius:8;
-margin-left:40px;</string>
-        </property>
-        <property name="text">
-         <string>SOLVE</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item row="0" column="0">
     <widget class="QFrame" name="frame">
      <property name="enabled">
@@ -279,38 +164,40 @@ padding:0;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="label_15">
-                 <property name="enabled">
-                  <bool>true</bool>
+                <spacer name="horizontalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
                  </property>
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="minimumSize">
+                 <property name="sizeHint" stdset="0">
                   <size>
-                   <width>0</width>
-                   <height>0</height>
+                   <width>40</width>
+                   <height>20</height>
                   </size>
                  </property>
-                 <property name="maximumSize">
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_4">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	background-color: none;
+	border: none;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="resources.qrc">
+                   <normaloff>:/ICONS/9022659_duotone_note_pencil.png</normaloff>:/ICONS/9022659_duotone_note_pencil.png</iconset>
+                 </property>
+                 <property name="iconSize">
                   <size>
                    <width>30</width>
                    <height>30</height>
                   </size>
                  </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="textFormat">
-                  <enum>Qt::RichText</enum>
-                 </property>
-                 <property name="pixmap">
-                  <pixmap resource="resources.qrc">:/ICONS/9022659_duotone_note_pencil.png</pixmap>
-                 </property>
-                 <property name="scaledContents">
+                 <property name="checkable">
                   <bool>true</bool>
                  </property>
                 </widget>
@@ -348,8 +235,8 @@ border-radius: 20px;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>342</width>
-                 <height>188</height>
+                 <width>364</width>
+                 <height>239</height>
                 </rect>
                </property>
                <property name="font">
@@ -717,38 +604,41 @@ padding:0;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="label_7">
-                 <property name="enabled">
-                  <bool>true</bool>
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
                  </property>
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="minimumSize">
+                 <property name="sizeHint" stdset="0">
                   <size>
-                   <width>0</width>
-                   <height>0</height>
+                   <width>40</width>
+                   <height>20</height>
                   </size>
                  </property>
-                 <property name="maximumSize">
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_3">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	background-color: none;
+	border: none;
+	align: right;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="resources.qrc">
+                   <normaloff>:/ICONS/9022659_duotone_note_pencil.png</normaloff>:/ICONS/9022659_duotone_note_pencil.png</iconset>
+                 </property>
+                 <property name="iconSize">
                   <size>
                    <width>30</width>
                    <height>30</height>
                   </size>
                  </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="textFormat">
-                  <enum>Qt::RichText</enum>
-                 </property>
-                 <property name="pixmap">
-                  <pixmap resource="resources.qrc">:/ICONS/9022659_duotone_note_pencil.png</pixmap>
-                 </property>
-                 <property name="scaledContents">
+                 <property name="checkable">
                   <bool>true</bool>
                  </property>
                 </widget>
@@ -795,7 +685,7 @@ border-radius: 20px;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>359</width>
+                 <width>384</width>
                  <height>148</height>
                 </rect>
                </property>
@@ -1026,8 +916,8 @@ border-radius: 20px;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>359</width>
-                 <height>129</height>
+                 <width>364</width>
+                 <height>131</height>
                 </rect>
                </property>
                <property name="font">
@@ -1311,8 +1201,8 @@ border-radius: 20px;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>359</width>
-                 <height>124</height>
+                 <width>363</width>
+                 <height>131</height>
                 </rect>
                </property>
                <property name="font">
@@ -1466,6 +1356,121 @@ color:rgb(43, 43, 43);</string>
           </widget>
          </item>
         </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QFrame" name="frame_2">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">qproperty-alignment: AlignRight;</string>
+          </property>
+          <property name="text">
+           <string>Model</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <underline>true</underline>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: none;
+background: none;
+text-decoration: underline;
+color:rgb(0, 0, 255);
+text-align: right;</string>
+          </property>
+          <property name="text">
+           <string>Advanced Settings</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>400</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <item>
+         <property name="text">
+          <string>Single-level with Workplace Distance Inclusion (WORK)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Bilevel No Transfer (BNT)</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(28, 87, 57, 255), stop:1 rgba(61, 189, 124, 255));
+color:rgb(255, 255, 255);
+border:none;
+padding:8px 80px;
+border-radius:8;
+margin-left:40px;</string>
+        </property>
+        <property name="text">
+         <string>SOLVE</string>
+        </property>
        </widget>
       </item>
      </layout>

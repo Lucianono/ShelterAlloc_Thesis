@@ -373,13 +373,16 @@ color: #00B5FF;
                           </property>
                           <property name="icon">
                            <iconset resource="resources.qrc">
-                            <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                            <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
                            <size>
                             <width>41</width>
                             <height>41</height>
                            </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>true</bool>
                           </property>
                          </widget>
                         </item>
@@ -455,7 +458,7 @@ color: #00B5FF;
                           </property>
                           <property name="icon">
                            <iconset resource="resources.qrc">
-                            <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                            <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
                            <size>
@@ -537,7 +540,7 @@ color: #00B5FF;
                           </property>
                           <property name="icon">
                            <iconset resource="resources.qrc">
-                            <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                            <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
                            <size>
@@ -619,7 +622,7 @@ color: #00B5FF;
                           </property>
                           <property name="icon">
                            <iconset resource="resources.qrc">
-                            <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                            <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
                            <size>
@@ -701,7 +704,7 @@ color: #00B5FF;
                           </property>
                           <property name="icon">
                            <iconset resource="resources.qrc">
-                            <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                            <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
                            <size>
@@ -783,7 +786,7 @@ color: #00B5FF;
                           </property>
                           <property name="icon">
                            <iconset resource="resources.qrc">
-                            <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                            <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
                            <size>
@@ -857,6 +860,9 @@ color: #00B5FF;
                    </property>
                    <property name="checkable">
                     <bool>true</bool>
+                   </property>
+                   <property name="checked">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -994,7 +1000,7 @@ color: #00B5FF;
                           </property>
                           <property name="icon">
                            <iconset resource="resources.qrc">
-                            <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                            <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
                            <size>
@@ -1074,7 +1080,7 @@ color: #00B5FF;
                           </property>
                           <property name="icon">
                            <iconset resource="resources.qrc">
-                            <normaloff>:/ICONS/9021999_duotone_right_arrow.png</normaloff>:/ICONS/9021999_duotone_right_arrow.png</iconset>
+                            <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
                            <size>
@@ -1408,53 +1414,433 @@ color: #00B5FF;
         </widget>
        </item>
        <item>
-        <widget class="QWidget" name="widget_3" native="true">
-         <widget class="QWidget" name="MapWidget" native="true">
-          <property name="geometry">
-           <rect>
-            <x>-10</x>
-            <y>-10</y>
-            <width>848</width>
-            <height>711</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="solve_btn">
-          <property name="geometry">
-           <rect>
-            <x>583</x>
-            <y>620</y>
-            <width>221</width>
-            <height>49</height>
-           </rect>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>24</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">* {
+        <layout class="QHBoxLayout" name="horizontalLayout_27" stretch="0,4">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QScrollArea" name="scrollArea">
+           <property name="styleSheet">
+            <string notr="true">QPlainTextEdit{
+border: 1px solid rgb(209, 209, 209);
+background-color: white;
+border-radius: 7;
+padding:2;
+max-height:30;
+max-width:200;
+}
+QLabel {
+    font-size: 12px;
+    font-family: &quot;Ms Shell Dlg 2&quot;;
+    color: #000;
+    font-weight: bold;
+    text-decoration: underline;
+}
+QScrollArea{
+	border: 1px solid rgb(209, 209, 209);
+}</string>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>405</width>
+              <height>694</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_11">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>5</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item alignment="Qt::AlignTop">
+              <widget class="QWidget" name="widget_4" native="true">
+               <layout class="QVBoxLayout" name="verticalLayout_12">
+                <property name="leftMargin">
+                 <number>12</number>
+                </property>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_28">
+                  <item>
+                   <widget class="QPushButton" name="pushButton_14">
+                    <property name="minimumSize">
+                     <size>
+                      <width>30</width>
+                      <height>41</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>41</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton{
+	background-color: none;
+	border: none;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="resources.qrc">
+                      <normaloff>:/ICONS/462547553_520698087383761_137860076397263527_n.png</normaloff>:/ICONS/462547553_520698087383761_137860076397263527_n.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>41</width>
+                      <height>41</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_18">
+                    <property name="font">
+                     <font>
+                      <family>Ms Shell Dlg 2</family>
+                      <pointsize>-1</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                      <underline>false</underline>
+                      <strikeout>false</strikeout>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLabel {
+    font-size: 20px;
+    font-family: &quot;Ms Shell Dlg 2&quot;;
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>Barangay A</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkBox_15">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>40</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QCheckBox::indicator {
+     width: 40px;
+     height: 40px;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>41</width>
+                      <height>41</height>
+                     </size>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_16">
+                    <property name="minimumSize">
+                     <size>
+                      <width>41</width>
+                      <height>41</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>41</width>
+                      <height>41</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton{
+	background-color: none;
+	border: none;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="resources.qrc">
+                      <normaloff>:/ICONS/9022869_duotone_trash.png</normaloff>:/ICONS/9022869_duotone_trash.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>41</width>
+                      <height>41</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QGridLayout" name="gridLayout">
+                  <property name="verticalSpacing">
+                   <number>12</number>
+                  </property>
+                  <item row="1" column="1">
+                   <spacer name="horizontalSpacer_2">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_20">
+                    <property name="text">
+                     <string>yDegrees</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_27">
+                    <property name="text">
+                     <string>Population</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <spacer name="horizontalSpacer_4">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_28">
+                    <property name="text">
+                     <string>VulnerablePop</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <spacer name="horizontalSpacer_3">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="4" column="2">
+                   <widget class="QPlainTextEdit" name="plainTextEdit_5"/>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_29">
+                    <property name="text">
+                     <string>WorkingPop</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <spacer name="horizontalSpacer_5">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QPlainTextEdit" name="plainTextEdit_4"/>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_19">
+                    <property name="font">
+                     <font>
+                      <family>Ms Shell Dlg 2</family>
+                      <pointsize>-1</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                      <underline>true</underline>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>xDegrees</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="0" column="2" alignment="Qt::AlignHCenter">
+                   <widget class="QPlainTextEdit" name="plainTextEdit">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>206</width>
+                      <height>36</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="2">
+                   <widget class="QPlainTextEdit" name="plainTextEdit_6"/>
+                  </item>
+                  <item row="5" column="1">
+                   <spacer name="horizontalSpacer_6">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_30">
+                    <property name="text">
+                     <string>Remarks</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget_3" native="true">
+           <widget class="QWidget" name="MapWidget" native="true">
+            <property name="geometry">
+             <rect>
+              <x>-10</x>
+              <y>-10</y>
+              <width>848</width>
+              <height>711</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="solve_btn">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>620</y>
+              <width>221</width>
+              <height>49</height>
+             </rect>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>24</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">* {
 	border: none;
 	border-radius: 10px;
 	background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(28, 87, 57, 255), stop:1 rgba(61, 189, 124, 255));
 	color: white;
 	padding:10;
 }</string>
-          </property>
-          <property name="text">
-           <string>GENERATE</string>
-          </property>
-         </widget>
-        </widget>
+            </property>
+            <property name="text">
+             <string>GENERATE</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -1495,6 +1881,22 @@ color: #00B5FF;
     <hint type="destinationlabel">
      <x>313</x>
      <y>524</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>scrollArea</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>287</x>
+     <y>256</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>353</x>
+     <y>406</y>
     </hint>
    </hints>
   </connection>

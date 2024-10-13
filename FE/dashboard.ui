@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1200</width>
-    <height>750</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -131,7 +131,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-56</y>
+            <y>-6</y>
             <width>331</width>
             <height>718</height>
            </rect>
@@ -252,12 +252,21 @@
                          </font>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">
-	background-color: 	#14EA5C;
-	color: white;
-	padding: 5px;
-	border: none;
-	border-radius: 15;
+                         <string notr="true">QPushButton {
+    background-color: #14AE5C;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 15px;
+}
+
+QPushButton:hover {
+    background-color: #12c753;
+}
+
+QPushButton:pressed {
+    background-color: #10a84c;
+}
 </string>
                         </property>
                         <property name="text">
@@ -325,7 +334,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -410,7 +419,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -492,7 +501,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -574,7 +583,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -656,7 +665,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -738,7 +747,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap resource="resources.qrc">:/ICONS/2190994_direction_gps_green_location_map_icon.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -887,13 +896,22 @@ color: #00B5FF;
                          </font>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">* {
-	background-color: 	#FF3B30;
-	color: white;
-	padding: 5px;
-	border: none;
-	border-radius: 15;
-}</string>
+                         <string notr="true">QPushButton {
+    background-color: #0e4c87;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 15px;
+}
+
+QPushButton:hover {
+    background-color: #295987;
+}
+
+QPushButton:pressed {
+    background-color: #0e4c87;
+}
+</string>
                         </property>
                         <property name="text">
                          <string>Add Shelter</string>
@@ -954,7 +972,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap resource="resources.qrc">:/ICONS/1891013_direction_gps_location_map_marker_icon.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128 (1).png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -1032,7 +1050,7 @@ color: #00B5FF;
                            <string/>
                           </property>
                           <property name="pixmap">
-                           <pixmap resource="resources.qrc">:/ICONS/1891013_direction_gps_location_map_marker_icon.png</pixmap>
+                           <pixmap resource="resources.qrc">:/ICONS/pin-5-128 (1).png</pixmap>
                           </property>
                           <property name="scaledContents">
                            <bool>true</bool>
@@ -1426,7 +1444,7 @@ color: #00B5FF;
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>700</height>
+             <height>800</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -1435,7 +1453,8 @@ border: 1px solid rgb(209, 209, 209);
 background-color: white;
 border-radius: 7;
 padding:2;
-max-height:30;
+max-height:25;
+min-height:10;
 max-width:200;
 }
 QComboBox{
@@ -1443,8 +1462,8 @@ border: 1px solid rgb(209, 209, 209);
 background-color: white;
 border-radius: 7;
 padding:2;
-max-height:30;
-min-height:30;
+max-height:25;
+min-height:10;
 max-width:200;
 }
 QLabel {
@@ -1776,7 +1795,7 @@ QStackedWidget{
                     <property name="maximumSize">
                      <size>
                       <width>206</width>
-                      <height>36</height>
+                      <height>31</height>
                      </size>
                     </property>
                    </widget>
@@ -1821,7 +1840,7 @@ QStackedWidget{
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>700</height>
+              <height>800</height>
              </size>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1851,7 +1870,7 @@ QStackedWidget{
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>700</height>
+                 <height>750</height>
                 </size>
                </property>
                <property name="styleSheet">
@@ -1865,8 +1884,8 @@ QStackedWidget{
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>356</width>
-                  <height>781</height>
+                  <width>371</width>
+                  <height>750</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -2153,7 +2172,7 @@ QStackedWidget{
                      <property name="maximumSize">
                       <size>
                        <width>204</width>
-                       <height>34</height>
+                       <height>29</height>
                       </size>
                      </property>
                     </widget>
@@ -2629,7 +2648,7 @@ QStackedWidget{
                      <property name="minimumSize">
                       <size>
                        <width>150</width>
-                       <height>34</height>
+                       <height>14</height>
                       </size>
                      </property>
                      <property name="styleSheet">
@@ -2708,6 +2727,9 @@ QStackedWidget{
 	background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(28, 87, 57, 255), stop:1 rgba(61, 189, 124, 255));
 	color: white;
 	padding:10;
+}
+QPushButton:hover {
+    background-color: rgba(61, 189, 124, 255);
 }</string>
             </property>
             <property name="text">
@@ -2736,11 +2758,11 @@ QStackedWidget{
    <hints>
     <hint type="sourcelabel">
      <x>313</x>
-     <y>592</y>
+     <y>536</y>
     </hint>
     <hint type="destinationlabel">
      <x>313</x>
-     <y>772</y>
+     <y>730</y>
     </hint>
    </hints>
   </connection>
@@ -2752,11 +2774,43 @@ QStackedWidget{
    <hints>
     <hint type="sourcelabel">
      <x>313</x>
-     <y>134</y>
+     <y>78</y>
     </hint>
     <hint type="destinationlabel">
      <x>313</x>
-     <y>524</y>
+     <y>468</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_15</sender>
+   <signal>clicked()</signal>
+   <receiver>stackedWidget</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>383</x>
+     <y>81</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>352</x>
+     <y>90</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_14</sender>
+   <signal>clicked()</signal>
+   <receiver>stackedWidget</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>384</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>352</x>
+     <y>106</y>
     </hint>
    </hints>
   </connection>

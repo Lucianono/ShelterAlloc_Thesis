@@ -98,7 +98,7 @@ background-color: white;
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
-    background-color: #14EA5C;
+    background-color: #1C5739;
     color: white;
     padding: 5px;
     border: none;
@@ -106,11 +106,11 @@ background-color: white;
 }
 
 QPushButton:hover {
-    background-color: #12c753;
+    background-color: #25754c;
 }
 
 QPushButton:pressed {
-    background-color: #10a84c;
+    background-color: #1C5739;
 }
 </string>
         </property>
@@ -351,7 +351,7 @@ QPushButton:pressed {
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
-    background-color: #14EA5C;
+    background-color: #1C5739;
     color: white;
     padding: 5px;
     border: none;
@@ -359,11 +359,11 @@ QPushButton:pressed {
 }
 
 QPushButton:hover {
-    background-color: #12c753;
+    background-color: #25754c;
 }
 
 QPushButton:pressed {
-    background-color: #10a84c;
+    background-color: #1C5739;
 }
 </string>
         </property>

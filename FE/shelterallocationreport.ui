@@ -151,12 +151,23 @@ background-color: white;
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color: darkgreen;         
-    color: white;                        
-    border: none;                        
-    border-radius: 10px;                                    
-    font-size: 16px;                     
-}</string>
+    background-color: #1C5739;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 15px;
+	font-size:16px;
+	font-weight:bold;
+}
+
+QPushButton:hover {
+    background-color: #25754c;
+}
+
+QPushButton:pressed {
+    background-color: #1C5739;
+}
+</string>
     </property>
     <property name="text">
      <string>CREATE XLSX</string>

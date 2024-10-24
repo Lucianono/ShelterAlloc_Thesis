@@ -5,3 +5,7 @@ task - 10-24-24
 - added main.py
 - added window titles on entityManagement.ui - EntityManagementCommunities
 - added window titles on entityManagementShelter.ui - entityManagementShelter
+- convert entityManagement.ui to ui_entityManagement.py
+- convert entityManagementShelter.ui to ui_entityManagementShelter.py
+- added index.py where all bullshit of buttons, open of new dialog, and such will be handled
+- convert dashboard.ui to ui_dashboard.py

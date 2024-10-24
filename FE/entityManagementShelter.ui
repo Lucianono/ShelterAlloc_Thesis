@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>EntityManagementShelter</class>
+ <class>entityManagementShelter</class>
  <widget class="QDialog" name="entityManagementShelter">
   <property name="geometry">
    <rect>
@@ -29,7 +29,7 @@ background-color: white;
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="ms_back_btn">
         <property name="styleSheet">
          <string notr="true">QPushButton{
 	background-color: none;
@@ -82,7 +82,7 @@ background-color: white;
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="ms_add_shelter_btn">
         <property name="minimumSize">
          <size>
           <width>281</width>
@@ -151,7 +151,7 @@ QPushButton:pressed {
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QTableWidget" name="studentInfo_table">
+       <widget class="QTableWidget" name="shelterInfo_table">
         <property name="styleSheet">
          <string notr="true">QHeaderView::section {
     font-weight: bold;
@@ -285,7 +285,7 @@ QTableWidget::item:selected {
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="ms_cancel_btn">
         <property name="minimumSize">
          <size>
           <width>161</width>
@@ -329,7 +329,7 @@ QPushButton:pressed {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="ms_save_changes_btn">
         <property name="minimumSize">
          <size>
           <width>161</width>

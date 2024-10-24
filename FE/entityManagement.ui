@@ -29,7 +29,10 @@ background-color: white;
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="mc_back_btn">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
 	background-color: none;
@@ -82,7 +85,7 @@ background-color: white;
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="mc_add_community_btn">
         <property name="minimumSize">
          <size>
           <width>281</width>
@@ -95,6 +98,9 @@ background-color: white;
           <weight>75</weight>
           <bold>true</bold>
          </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
@@ -151,7 +157,7 @@ QPushButton:pressed {
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QTableWidget" name="studentInfo_table">
+       <widget class="QTableWidget" name="communityInfo_table">
         <property name="styleSheet">
          <string notr="true">QHeaderView::section {
     font-weight: bold;
@@ -285,7 +291,7 @@ QTableWidget::item:selected {
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="mc_cancel_changes_btn">
         <property name="minimumSize">
          <size>
           <width>161</width>
@@ -304,6 +310,9 @@ QTableWidget::item:selected {
           <weight>75</weight>
           <bold>true</bold>
          </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
@@ -329,7 +338,7 @@ QPushButton:pressed {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="mc_save_changes_btn">
         <property name="minimumSize">
          <size>
           <width>161</width>
@@ -348,6 +357,9 @@ QPushButton:pressed {
           <weight>75</weight>
           <bold>true</bold>
          </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {

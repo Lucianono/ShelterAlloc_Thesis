@@ -1,7 +1,7 @@
-Finished:
-- drop downs (will ask for checking)
-- naming important buttons and such
-- log in ui finished, changed log in window size
+- start entityman and entitymanshelter backend 10-24-24
 
-Fixing:
-- header frame of Resistance and Status
+task - 10-24-24
+- convert resources.qrc to .py
+- added main.py
+- added window titles on entityManagement.ui - EntityManagementCommunities
+- added window titles on entityManagementShelter.ui - entityManagementShelter

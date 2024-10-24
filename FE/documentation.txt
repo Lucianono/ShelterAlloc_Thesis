@@ -9,3 +9,4 @@ task - 10-24-24
 - convert entityManagementShelter.ui to ui_entityManagementShelter.py
 - added index.py where all bullshit of buttons, open of new dialog, and such will be handled
 - convert dashboard.ui to ui_dashboard.py
+- advanced settings btn now working

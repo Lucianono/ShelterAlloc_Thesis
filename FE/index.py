@@ -1,6 +1,7 @@
-from PySide6.QtWidgets import QMainWindow, QMenu, QDialog
+from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidget, QFileDialog
 from PySide6.QtGui import QAction
 from ui_dashboard import Ui_MainWindow
+import pandas as pd
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):

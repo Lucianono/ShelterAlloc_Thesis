@@ -5,6 +5,7 @@ pip install PySide6
 pip install PyQt6
 pip install PyQt6-tools
 pip install pandas
+pip install openpyxl xlrd (to read .xlsx and .xls files)
 
 Install Qt Designer with this link: https://build-system.fman.io/qt-designer-download
 
@@ -31,3 +32,4 @@ task - 10-24-24
 task - 10-25-24
 - back btn function finished
 - changes in entmanshel.ui and entmanshel.py
+- import now working

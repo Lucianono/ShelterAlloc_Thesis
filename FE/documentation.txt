@@ -35,3 +35,4 @@ task - 10-25-24
 - import now working
 - AYM DYING AND DISTRACTED
 - updated UI of entman and entmanshel
+- added checkbox and delete btn

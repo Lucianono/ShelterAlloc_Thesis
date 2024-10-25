@@ -23,6 +23,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         addEMC_dialog = Ui_EntityManagementCommunities()
         addEMC_dialog.setupUi(dialog)
         
+        addEMC_dialog.mc_back_btn.clicked.connect(dialog.close)
+        addEMC_dialog.mc_cancel_changes_btn.clicked.connect(dialog.close)
         result = dialog.exec()
 
         if result == QDialog.Accepted:
@@ -36,6 +38,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         addEMS_dialog = Ui_entityManagementShelter()
         addEMS_dialog.setupUi(dialog)
         
+        addEMS_dialog.ms_back_btn.clicked.connect(dialog.close)
+        addEMS_dialog.ms_cancel_btn.clicked.connect(dialog.close)
         result = dialog.exec()
 
         if result == QDialog.Accepted:

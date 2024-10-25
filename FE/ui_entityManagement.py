@@ -74,6 +74,7 @@ class Ui_EntityManagementCommunities(object):
         font1.setPointSize(15)
         font1.setBold(True)
         self.mc_import_btn.setFont(font1)
+        self.mc_import_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mc_import_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #FF3B30;\n"
 "    color: white;\n"

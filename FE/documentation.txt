@@ -33,3 +33,5 @@ task - 10-25-24
 - back btn function finished
 - changes in entmanshel.ui and entmanshel.py
 - import now working
+- AYM DYING AND DISTRACTED
+- updated UI of entman and entmanshel

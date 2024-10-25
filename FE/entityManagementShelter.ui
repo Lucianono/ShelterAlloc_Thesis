@@ -85,6 +85,59 @@ background-color: white;
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="ms_import_btn">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>191</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>191</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color: #FF3B30;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 15px;
+}
+
+QPushButton:hover {
+    background-color: #FF5A4D;
+}
+
+QPushButton:pressed {
+    background-color: #E63946;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Import XLXS</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="ms_add_shelter_btn">
         <property name="minimumSize">
          <size>

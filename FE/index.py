@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QPushButton
+from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QPushButton, QMessageBox
 from PySide6.QtGui import QAction, QColor, QIcon, QCursor
 from PySide6.QtCore import Qt
 from ui_dashboard import Ui_MainWindow
@@ -9,22 +9,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("Dashboard")
-
         self.advanced_settings_com.clicked.connect(self.open_entitymanagement_dialog)
         self.advanced_settings_shel.clicked.connect(self.open_entitymanagement_shelter_dialog)
 
-        self.show()
-
         self.menu = QMenu(self)
+        self.show()
 
     def open_entitymanagement_dialog(self):
         from ui_entityManagement import Ui_EntityManagementCommunities
 
-        # Create a QDialog and set up the UI
         dialog = QDialog(self)
         addEMC_dialog = Ui_EntityManagementCommunities()
         addEMC_dialog.setupUi(dialog)
-
         addEMC_dialog.mc_back_btn.clicked.connect(dialog.close)
         addEMC_dialog.mc_cancel_changes_btn.clicked.connect(dialog.close)
         addEMC_dialog.mc_import_btn.clicked.connect(lambda: self.import_excel_data(addEMC_dialog.communityInfo_table, dialog))
@@ -88,7 +84,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     item.setForeground(QColor(0, 0, 0))
                     table_widget.setItem(row_position, col_idx, item)
 
-                # Add delete button in the last column
                 delete_btn_widget = QWidget()
                 delete_btn_widget.setCursor(QCursor(Qt.PointingHandCursor))
                 layout_btn = QHBoxLayout(delete_btn_widget)
@@ -102,6 +97,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             # Resize columns to fit their contents
             table_widget.resizeColumnsToContents()
-    
+
+    def setup_delete_button(self, button, table_widget, row_position):
+        button.clicked.connect(lambda: self.delete_row(table_widget, row_position))
+
     def delete_row(self, table_widget, row_position):
-        table_widget.removeRow(row_position)
+        del_msg_box = QMessageBox()
+        del_msg_box.setIcon(QMessageBox.Warning)
+        del_msg_box.setText("Are you sure you want to delete this row?")
+        del_msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        del_msg_box.setDefaultButton(QMessageBox.No)
+        del_msg_box.setWindowTitle("Delete Confirmation")
+        response = del_msg_box.exec()
+
+        if response == QMessageBox.Yes:
+            table_widget.removeRow(row_position)

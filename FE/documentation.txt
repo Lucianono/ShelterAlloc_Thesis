@@ -36,3 +36,6 @@ task - 10-25-24
 - AYM DYING AND DISTRACTED
 - updated UI of entman and entmanshel
 - added checkbox and delete btn
+
+task - 10-27-24
+- delete confirmation qmessage

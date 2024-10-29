@@ -45,3 +45,8 @@ task - 10-29-24
 
 to do:
 - light mode and dark mode option
+- import issues, remove Nan dapat blank lang yon
+- user ability to add new row sa entity entityManagement
+- add community
+- multi select deletion gamit checkbox
+- save changes problems

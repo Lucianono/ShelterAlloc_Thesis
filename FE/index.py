@@ -134,7 +134,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
 
-
     def setup_delete_button(self, button, table_widget):
         button.clicked.connect(lambda: self.delete_rows(table_widget))
 
@@ -167,7 +166,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             QMessageBox.information(self, "Info", "No rows selected for deletion.")
 
     def delete_row(self, table_widget, row_position):
-        # If you still want a method for deleting a single row directly via button:
         del_msg_box = QMessageBox()
         del_msg_box.setIcon(QMessageBox.Warning)
         del_msg_box.setText("Are you sure you want to delete this row?")

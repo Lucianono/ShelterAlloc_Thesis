@@ -42,10 +42,10 @@ task - 10-27-24
 
 task - 10-29-24
 - added save changes to a new excel file, keeping the files while software is open not yet working
+- import issues, remove NaN RESOLVED
 
 to do:
 - light mode and dark mode option
-- import issues, remove Nan dapat blank lang yon
 - user ability to add new row sa entity entityManagement
 - add community
 - multi select deletion gamit checkbox

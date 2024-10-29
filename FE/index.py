@@ -52,7 +52,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Excel File", "", "Excel Files (*.xls *.xlsx);;All Files (*)", options=options)
 
         if file_path:
-            data = pd.read_excel(file_path)
+            data = pd.read_excel(file_path).fillna("") #replace NaN with empty string
             
             table_widget.setColumnCount(len(data.columns) + 2)
             table_widget.setHorizontalHeaderLabels(['Select'] + list(data.columns) + ['Delete'])
@@ -149,3 +149,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if response == QMessageBox.Yes:
             table_widget.removeRow(row_position)
+
+    def delete_selected_rows(self, table_widget):
+        rows_to_delete = []
+
+        for row in range (table_widget.rowCount()):
+            check_box_widget = table_widget.cellWidget(row, 0)
+            if check_box_widget is not None:
+                checkbox = check_box_widget.findChild(QCheckBox)
+                if check_box_widget.isChecked():
+                    rows_to_delete.append(row)
+        
+        for row in sorted(rows_to_delete, reverse=True):
+            table_widget.removeRow(row)

@@ -41,7 +41,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         addEMS_dialog.ms_back_btn.clicked.connect(dialog.close)
         addEMS_dialog.ms_cancel_btn.clicked.connect(dialog.close)
         addEMS_dialog.ms_import_btn.clicked.connect(lambda: self.import_excel_data(addEMS_dialog.shelterInfo_table, dialog))
-        addEMS_dialog.ms_save_btn.clicked.connect(lambda: self.save_to_excel(addEMS_dialog.shelterInfo_table))
+        addEMS_dialog.ms_save_changes_btn.clicked.connect(lambda: self.save_to_excel(addEMS_dialog.shelterInfo_table))
         result = dialog.exec()
 
         if result == QDialog.Accepted:
@@ -135,10 +135,39 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
 
 
-    def setup_delete_button(self, button, table_widget, row_position):
-        button.clicked.connect(lambda: self.delete_row(table_widget, row_position))
+    def setup_delete_button(self, button, table_widget):
+        button.clicked.connect(lambda: self.delete_rows(table_widget))
+
+    def delete_selected_rows(self, table_widget):
+        rows_to_delete = []
+        
+        # Gather rows that have checked checkboxes
+        for row in range(table_widget.rowCount()):
+            check_box_widget = table_widget.cellWidget(row, 0)
+            if check_box_widget is not None:
+                checkbox = check_box_widget.findChild(QCheckBox)
+                if checkbox.isChecked():  # Check the state of the checkbox
+                    rows_to_delete.append(row)
+        
+        if rows_to_delete:
+            # Confirmation dialog before deleting
+            del_msg_box = QMessageBox()
+            del_msg_box.setIcon(QMessageBox.Warning)
+            del_msg_box.setText("Are you sure you want to delete the selected rows?")
+            del_msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            del_msg_box.setDefaultButton(QMessageBox.No)
+            del_msg_box.setWindowTitle("Delete Confirmation")
+            response = del_msg_box.exec()
+
+            if response == QMessageBox.Yes:
+                # Remove rows in reverse order to avoid index shifting issues
+                for row in sorted(rows_to_delete, reverse=True):
+                    table_widget.removeRow(row)
+        else:
+            QMessageBox.information(self, "Info", "No rows selected for deletion.")
 
     def delete_row(self, table_widget, row_position):
+        # If you still want a method for deleting a single row directly via button:
         del_msg_box = QMessageBox()
         del_msg_box.setIcon(QMessageBox.Warning)
         del_msg_box.setText("Are you sure you want to delete this row?")
@@ -149,16 +178,3 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if response == QMessageBox.Yes:
             table_widget.removeRow(row_position)
-
-    def delete_selected_rows(self, table_widget):
-        rows_to_delete = []
-
-        for row in range (table_widget.rowCount()):
-            check_box_widget = table_widget.cellWidget(row, 0)
-            if check_box_widget is not None:
-                checkbox = check_box_widget.findChild(QCheckBox)
-                if check_box_widget.isChecked():
-                    rows_to_delete.append(row)
-        
-        for row in sorted(rows_to_delete, reverse=True):
-            table_widget.removeRow(row)

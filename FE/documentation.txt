@@ -44,10 +44,9 @@ task - 10-29-24
 - added save changes to a new excel file, keeping the files while software is open not yet working
 - import issues, remove NaN RESOLVED
 - added multi-row deletion function, NOT WORKING HAS issues
+- user ability to add new row sa entity entityManagement, UNSTABLE
 
 
 to do:
 - light mode and dark mode option
-- user ability to add new row sa entity entityManagement
-- add community
 - save changes problems

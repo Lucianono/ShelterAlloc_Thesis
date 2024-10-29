@@ -9,6 +9,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("Dashboard")
+        #buttons on the bashboard
         self.advanced_settings_com.clicked.connect(self.open_entitymanagement_dialog)
         self.advanced_settings_shel.clicked.connect(self.open_entitymanagement_shelter_dialog)
 
@@ -21,10 +22,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         dialog = QDialog(self)
         addEMC_dialog = Ui_EntityManagementCommunities()
         addEMC_dialog.setupUi(dialog)
+        #buttons showing on the entyman-dialog
         addEMC_dialog.mc_back_btn.clicked.connect(dialog.close)
         addEMC_dialog.mc_cancel_changes_btn.clicked.connect(dialog.close)
         addEMC_dialog.mc_import_btn.clicked.connect(lambda: self.import_excel_data(addEMC_dialog.communityInfo_table, dialog))
         addEMC_dialog.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(addEMC_dialog.communityInfo_table))
+        addEMC_dialog.mc_add_community_btn.clicked.connect(lambda: self.add_row(addEMC_dialog.communityInfo_table, dialog))
 
         result = dialog.exec()
 
@@ -37,7 +40,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         dialog = QDialog(self)
         addEMS_dialog = Ui_entityManagementShelter()
         addEMS_dialog.setupUi(dialog)
-        
+        #buttons showing on the entymanshel-dialog
         addEMS_dialog.ms_back_btn.clicked.connect(dialog.close)
         addEMS_dialog.ms_cancel_btn.clicked.connect(dialog.close)
         addEMS_dialog.ms_import_btn.clicked.connect(lambda: self.import_excel_data(addEMS_dialog.shelterInfo_table, dialog))
@@ -176,3 +179,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if response == QMessageBox.Yes:
             table_widget.removeRow(row_position)
+
+    def add_row(self, table_widget, dialog):
+        row_position = table_widget.rowCount()
+        table_widget.insertRow(row_position)
+
+        check_box_widget = QWidget()
+        layout_check = QHBoxLayout(check_box_widget)
+        layout_check.setAlignment(Qt.AlignCenter)
+        checkbox = QCheckBox()
+        layout_check.addWidget(checkbox)
+        layout_check.setContentsMargins(0, 0, 0, 0)
+        table_widget.setCellWidget(row_position, 0, check_box_widget)
+
+        # Add empty cells in each column (except the last column if it's for delete buttons)
+        for col in range(1, table_widget.columnCount() - 1):
+            item = QTableWidgetItem("")  # Empty item for user input
+            table_widget.setItem(row_position, col, item)
+
+        delete_btn_widget = QWidget()
+        delete_btn_widget.setCursor(QCursor(Qt.PointingHandCursor))
+        layout_btn = QHBoxLayout(delete_btn_widget)
+        layout_btn.setAlignment(Qt.AlignCenter)
+        delete_btn = QPushButton()
+        delete_btn.setIcon(QIcon("ICONS/9022869_duotone_trash.png"))
+        delete_btn.clicked.connect(lambda _, r=row_position: self.delete_row(table_widget, r))
+        layout_btn.addWidget(delete_btn)
+        layout_btn.setContentsMargins(0, 0, 0, 0)
+        table_widget.setCellWidget(row_position, table_widget.columnCount() - 1, delete_btn_widget)

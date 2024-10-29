@@ -39,3 +39,9 @@ task - 10-25-24
 
 task - 10-27-24
 - delete confirmation qmessage
+
+task - 10-29-24
+- added save changes to a new excel file, keeping the files while software is open not yet working
+
+to do:
+- light mode and dark mode option

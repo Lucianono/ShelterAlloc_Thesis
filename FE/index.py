@@ -24,6 +24,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         addEMC_dialog.mc_back_btn.clicked.connect(dialog.close)
         addEMC_dialog.mc_cancel_changes_btn.clicked.connect(dialog.close)
         addEMC_dialog.mc_import_btn.clicked.connect(lambda: self.import_excel_data(addEMC_dialog.communityInfo_table, dialog))
+        addEMC_dialog.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(addEMC_dialog.communityInfo_table))
 
         result = dialog.exec()
 
@@ -40,6 +41,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         addEMS_dialog.ms_back_btn.clicked.connect(dialog.close)
         addEMS_dialog.ms_cancel_btn.clicked.connect(dialog.close)
         addEMS_dialog.ms_import_btn.clicked.connect(lambda: self.import_excel_data(addEMS_dialog.shelterInfo_table, dialog))
+        addEMS_dialog.ms_save_btn.clicked.connect(lambda: self.save_to_excel(addEMS_dialog.shelterInfo_table))
         result = dialog.exec()
 
         if result == QDialog.Accepted:
@@ -97,6 +99,41 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             # Resize columns to fit their contents
             table_widget.resizeColumnsToContents()
+    
+    def save_to_excel(self, table_widget):
+        data = []
+        row_count = table_widget.rowCount()
+        column_count = table_widget.columnCount()
+
+        # Collect headers, ignoring the first and last columns for checkboxes and delete buttons
+        headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, column_count - 1)]
+
+        # Collect each row's data, ignoring the first and last columns
+        for row in range(row_count):
+            row_data = []
+            for col in range(1, column_count - 1):
+                item = table_widget.item(row, col)
+                row_data.append(item.text() if item is not None else "")
+            data.append(row_data)
+
+        dataframe = pd.DataFrame(data, columns=headers)  #DataFrame conversion
+
+        # Prompt user to select a file location to save the Excel file
+        file_dialog = QFileDialog(self)
+        file_dialog.setAcceptMode(QFileDialog.AcceptSave)
+        file_dialog.setNameFilters(["Excel Files (*.xlsx)"])
+        file_dialog.setDefaultSuffix("xlsx")
+
+        if file_dialog.exec() == QFileDialog.Accepted:
+            file_path = file_dialog.selectedFiles()[0]
+
+            try:
+                # Save the DataFrame to Excel
+                dataframe.to_excel(file_path, index=False)
+                QMessageBox.information(self, "Success", f"File saved successfully as {file_path}")
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
+
 
     def setup_delete_button(self, button, table_widget, row_position):
         button.clicked.connect(lambda: self.delete_row(table_widget, row_position))

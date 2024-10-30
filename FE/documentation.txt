@@ -55,9 +55,9 @@ task - 10-30-24
 
 to do:
 - light mode and dark mode option
-- save changes problems
-- multi-row deletion issues, not sure how to fix it
-- save changes fixed minor issues
+- connect pag save sa main window communities
+- shelter part for the other buttons not yet working
 
 issues:
 - naka fix kung saan ma ssave yung document
+- multi-row deleteion issues

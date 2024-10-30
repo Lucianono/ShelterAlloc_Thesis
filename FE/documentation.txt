@@ -60,4 +60,3 @@ to do:
 
 issues:
 - naka fix kung saan ma ssave yung document
-- pag ni load yung previous data nawawala na yung checkbox and delete button

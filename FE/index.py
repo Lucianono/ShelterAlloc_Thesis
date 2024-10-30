@@ -152,13 +152,40 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     row_position = table_widget.rowCount()
                     table_widget.insertRow(row_position)
 
+                    # Add checkbox in the first column
+                    check_box_widget = QWidget()
+                    check_box_widget.setCursor(QCursor(Qt.PointingHandCursor))
+                    layout_check = QHBoxLayout(check_box_widget)
+                    layout_check.setAlignment(Qt.AlignCenter)
+                    checkbox = QCheckBox()
+                    layout_check.addWidget(checkbox)
+                    checkbox.setStyleSheet("""
+                        background-color: #C0C0C0;
+                        color: black;
+                                        """)
+                    layout_check.setContentsMargins(0, 0, 0, 0)
+                    table_widget.setCellWidget(row_position, 0, check_box_widget)
+
                     # Populate each column except for Select and Delete buttons
                     for col_idx, value in enumerate(row_data, start=1):
                         item = QTableWidgetItem(str(value))
                         table_widget.setItem(row_position, col_idx, item)
 
-                    # Add additional elements (checkbox, delete button, etc.) for each row if needed
+                    delete_btn_widget = QWidget()
+                    delete_btn_widget.setCursor(QCursor(Qt.PointingHandCursor))
+                    layout_btn = QHBoxLayout(delete_btn_widget)
+                    layout_btn.setAlignment(Qt.AlignCenter)
+                    delete_btn = QPushButton()
+                    delete_btn.setIcon(QIcon("ICONS/9022869_duotone_trash.png"))
+                    delete_btn.clicked.connect(partial(self.delete_row, table_widget, row_position))
+                    layout_btn.addWidget(delete_btn)
+                    layout_btn.setContentsMargins(0, 0, 0, 0)
+                    table_widget.setCellWidget(row_position, table_widget.columnCount() - 1, delete_btn_widget)
 
+                    # Resize columns to fit their contents
+                    table_widget.resizeColumnsToContents()
+
+                    # Add additional elements (checkbox, delete button, etc.) for each row if needed
                 QMessageBox.information(self, "Load", "Data loaded successfully.")
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")

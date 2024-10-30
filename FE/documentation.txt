@@ -57,6 +57,7 @@ to do:
 - light mode and dark mode option
 - save changes problems
 - multi-row deletion issues, not sure how to fix it
+- save changes fixed minor issues
 
 issues:
 - naka fix kung saan ma ssave yung document

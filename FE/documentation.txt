@@ -49,9 +49,15 @@ task - 10-29-24
 task - 10-30-24
 - fixing table_widget issues with add new row for entity management, when typing text is white, when entered text is black
 - bobo yung issue sa taas, NAKA DARK MODE PALA KO HAYOP
+- fixed issue with not being able to delete first and last row
+- still fixing issues with saving the file, fixed on putting the file on documents, nag lload kaagad yung previous data na nilagay
 
 
 to do:
 - light mode and dark mode option
 - save changes problems
-- can't delete first and last row
+- multi-row deletion issues, not sure how to fix it
+
+issues:
+- naka fix kung saan ma ssave yung document
+- pag ni load yung previous data nawawala na yung checkbox and delete button

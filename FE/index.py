@@ -63,6 +63,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # Clear any existing rows
             table_widget.setRowCount(0)
 
+            table_widget.setStyleSheet("QTableWidgetItem { color: black; }")
+
             # Populate the table with data
             for row_idx, row_data in data.iterrows():
                 row_position = table_widget.rowCount()
@@ -102,7 +104,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             # Resize columns to fit their contents
             table_widget.resizeColumnsToContents()
-    
     def save_to_excel(self, table_widget):
         data = []
         row_count = table_widget.rowCount()
@@ -189,6 +190,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         layout_check.setAlignment(Qt.AlignCenter)
         checkbox = QCheckBox()
         layout_check.addWidget(checkbox)
+        checkbox.setStyleSheet("""
+                background-color: #C0C0C0;
+                color: black;
+                               """)
         layout_check.setContentsMargins(0, 0, 0, 0)
         table_widget.setCellWidget(row_position, 0, check_box_widget)
 

@@ -227,8 +227,13 @@ QTableWidget {
 }
 
 QTableWidget::item {
-	background-color: white;
+	background-color: transparent;
+	color: black;
     padding: 5px;
+}
+
+QTableWidget::item::selected {
+	color: transparent;
 }
 
 QPushButton {

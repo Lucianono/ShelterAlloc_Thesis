@@ -46,7 +46,12 @@ task - 10-29-24
 - added multi-row deletion function, NOT WORKING HAS issues
 - user ability to add new row sa entity entityManagement, UNSTABLE
 
+task - 10-30-24
+- fixing table_widget issues with add new row for entity management, when typing text is white, when entered text is black
+- bobo yung issue sa taas, NAKA DARK MODE PALA KO HAYOP
+
 
 to do:
 - light mode and dark mode option
 - save changes problems
+- can't delete first and last row

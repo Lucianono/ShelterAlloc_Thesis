@@ -52,12 +52,15 @@ task - 10-30-24
 - fixed issue with not being able to delete first and last row
 - still fixing issues with saving the file, fixed on putting the file on documents, nag lload kaagad yung previous data na nilagay
 
+task - 11-01-24
+- refactored code for readability
+- issue with naka fix kung saan ma ssave yung document, FIXED
+- add shelter btn now working
+
 
 to do:
 - light mode and dark mode option
 - connect pag save sa main window communities
-- shelter part for the other buttons not yet working
 
 issues:
-- naka fix kung saan ma ssave yung document
 - multi-row deleteion issues

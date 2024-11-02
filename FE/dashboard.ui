@@ -1941,8 +1941,8 @@ QStackedWidget{
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>371</width>
-                  <height>750</height>
+                  <width>277</width>
+                  <height>733</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -2754,6 +2754,16 @@ QStackedWidget{
               <height>711</height>
              </rect>
             </property>
+            <widget class="QWidget" name="webEngineView" native="true">
+             <property name="geometry">
+              <rect>
+               <x>-361</x>
+               <y>9</y>
+               <width>841</width>
+               <height>751</height>
+              </rect>
+             </property>
+            </widget>
            </widget>
            <widget class="QPushButton" name="solve_btn">
             <property name="geometry">

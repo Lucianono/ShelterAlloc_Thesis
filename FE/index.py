@@ -1,16 +1,24 @@
-from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QPushButton, QMessageBox
+from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication
 from PySide6.QtGui import QAction, QColor, QIcon, QCursor
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QUrl
+from PySide6.QtWebEngineWidgets import QWebEngineView
 from functools import partial
 from ui_dashboard import Ui_MainWindow
+from folium.plugins import MousePosition
 import pandas as pd
 import os
+import sys
+import folium
+import io
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("Dashboard")
+
+        map_path = self.create_map()
+        self.webEngineView.setUrl(QUrl.fromLocalFile(map_path))
 
         self.file_path = None
         self.advanced_settings_com.clicked.connect(self.open_entitymanagement_dialog)
@@ -148,3 +156,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 delete_btn = delete_btn_widget.findChild(QPushButton)
                 delete_btn.clicked.disconnect()
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
+
+    def create_map(self):
+        map_path = os.path.join(os.getcwd(), "map.html")
+
+        if os.path.exists(map_path):
+            print(f"Map already exists at: {map_path}")
+        else:
+            m = folium.Map(location=[14.7919, 120.7350], zoom_start=13).add_child(
+                folium.ClickForMarker("Julius Ian Dino")
+            )
+            m.save(map_path)
+            print(f"New map created and saved at: {map_path}")
+
+        return map_path

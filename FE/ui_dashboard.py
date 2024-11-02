@@ -15,6 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QGridLayout, QHBoxLayout, QLabel, QMainWindow,
     QPlainTextEdit, QPushButton, QScrollArea, QSizePolicy,
@@ -1006,7 +1007,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 371, 750))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 277, 733))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.horizontalLayout_29 = QHBoxLayout()
@@ -1380,6 +1381,9 @@ class Ui_MainWindow(object):
         self.MapWidget = QWidget(self.widget_3)
         self.MapWidget.setObjectName(u"MapWidget")
         self.MapWidget.setGeometry(QRect(-10, -10, 848, 711))
+        self.webEngineView = QWebEngineView(self.MapWidget)
+        self.webEngineView.setObjectName(u"webEngineView")
+        self.webEngineView.setGeometry(QRect(-361, 9, 841, 751))
         self.solve_btn = QPushButton(self.widget_3)
         self.solve_btn.setObjectName(u"solve_btn")
         self.solve_btn.setGeometry(QRect(30, 620, 221, 49))

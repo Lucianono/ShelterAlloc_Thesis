@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidgetItem, QFi
 from PySide6.QtGui import QAction, QColor, QIcon, QCursor
 from PySide6.QtCore import Qt, QUrl
 from PySide6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWebEngineCore import QWebEngineSettings
 from functools import partial
 from ui_dashboard import Ui_MainWindow
 from folium.plugins import MousePosition
@@ -26,6 +27,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.menu = QMenu(self)
         self.show()
+
+        self.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
+        self.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
     def open_entitymanagement_dialog(self):
         from ui_entityManagement import Ui_EntityManagementCommunities

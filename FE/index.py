@@ -121,6 +121,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         check_box_widget = QWidget()
         layout = QHBoxLayout(check_box_widget)
         layout.setAlignment(Qt.AlignCenter)
+        check_box_widget.setLayout(layout)
         checkbox = QCheckBox()
         layout.addWidget(checkbox)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -128,13 +129,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def add_delete_button(self, table_widget, row_position):
         delete_btn_widget = QWidget()
+        delete_btn_widget.setCursor(QCursor(Qt.PointingHandCursor))
         layout = QHBoxLayout(delete_btn_widget)
         layout.setAlignment(Qt.AlignCenter)
         delete_btn = QPushButton()
         delete_btn.setIcon(QIcon("ICONS/9022869_duotone_trash.png"))
+        delete_btn.setFixedSize(20, 20)
         delete_btn.clicked.connect(partial(self.delete_row, table_widget, row_position))
         layout.addWidget(delete_btn)
         layout.setContentsMargins(0, 0, 0, 0)
+        delete_btn_widget.setLayout(layout)
         table_widget.setCellWidget(row_position, table_widget.columnCount() - 1, delete_btn_widget)
 
     def delete_row(self, table_widget, row_position):

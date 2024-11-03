@@ -35,15 +35,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         from ui_entityManagement import Ui_EntityManagementCommunities
 
         dialog = QDialog(self)
+        file_name = "commData.xlsx"
         addEMC_dialog = Ui_EntityManagementCommunities()
         addEMC_dialog.setupUi(dialog)
 
-        self.load_from_excel(addEMC_dialog.communityInfo_table)
+        self.load_from_excel(addEMC_dialog.communityInfo_table, file_name)
 
         addEMC_dialog.mc_back_btn.clicked.connect(dialog.close)
         addEMC_dialog.mc_cancel_changes_btn.clicked.connect(dialog.close)
         addEMC_dialog.mc_import_btn.clicked.connect(lambda: self.import_excel_data(addEMC_dialog.communityInfo_table))
-        addEMC_dialog.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(addEMC_dialog.communityInfo_table))
+        addEMC_dialog.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(addEMC_dialog.communityInfo_table, dialog))
         addEMC_dialog.mc_add_community_btn.clicked.connect(lambda: self.add_row(addEMC_dialog.communityInfo_table))
 
         dialog.exec()
@@ -72,10 +73,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if list(data.columns) != required_headers:
                 QMessageBox.critical(self, "Error", "The imported Excel file does not have the correct headers.")
                 return
+            
+            try:
+                self.validate_imported_data(data)
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to display file: {e}")
+                return
 
             self.populate_table(table_widget, data)
+            
 
-    def save_to_excel(self, table_widget):
+    def save_to_excel(self, table_widget, dialog):
         data = []
         headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
         
@@ -85,11 +93,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if data:
             dataframe = pd.DataFrame(data, columns=headers)
-            file_path, _ = QFileDialog.getSaveFileName(self, "Save Excel File", "", "Excel Files (*.xlsx)")
+            # validate table first
+            try:
+                self.validate_imported_data(dataframe)
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to display file: {e}")
+                return
+            # save the table here 
+            file_path = os.path.join(os.getcwd(), "commData.xlsx")
             if file_path:
                 try:
                     dataframe.to_excel(file_path, index=False)
                     QMessageBox.information(self, "Success", f"File saved successfully as {file_path}")
+                    dialog.close()
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
             else:
@@ -97,13 +113,48 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             QMessageBox.warning(self, "Warning", "No data to save.")
 
-    def load_from_excel(self, table_widget):
-        if self.file_path and os.path.exists(self.file_path):
+    def load_from_excel(self, table_widget, file_name):
+        if file_name and os.path.exists( os.path.join(os.getcwd(), file_name) ):
             try:
-                data = pd.read_excel(self.file_path).fillna("")
+                data = pd.read_excel( os.path.join(os.getcwd(), file_name) ).fillna("")
                 self.populate_table(table_widget, data)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
+
+    def validate_imported_data(self, data):
+        # Define expected data types for each column
+        expected_types = {
+            'Name': str,
+            'xDegrees': float,
+            'yDegrees': float,
+            'Population': int,
+            'VulPop': int,
+            'WorkPop': int,
+            'Remarks': str
+        }
+        
+        for column, expected_type in expected_types.items():
+            if column not in data.columns:
+                raise ValueError(f"Missing expected column: {column}")
+
+            for idx, value in enumerate(data[column]):
+                if pd.isnull(value):
+                    continue  # Skip NaN values
+                
+                # Check if the value is of the expected type
+                if expected_type == str:
+                    if not isinstance(value, str):
+                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a string.")
+                elif expected_type == float:
+                    try:
+                        float(value)  # Try converting to float
+                    except ValueError:
+                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a float.")
+                elif expected_type == int:
+                    try:
+                        int(value)  # Try converting to int
+                    except ValueError:
+                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected an integer.")
 
     def populate_table(self, table_widget, data):
         table_widget.setRowCount(0)

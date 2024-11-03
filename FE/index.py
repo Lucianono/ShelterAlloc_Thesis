@@ -36,15 +36,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         dialog = QDialog(self)
         file_name = "commData.xlsx"
+        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'VulPop', 'WorkPop', 'Remarks']
+        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 800, 'Sample remarks']], columns=required_headers)
         addEMC_dialog = Ui_EntityManagementCommunities()
         addEMC_dialog.setupUi(dialog)
 
-        self.load_from_excel(addEMC_dialog.communityInfo_table, file_name)
+        expected_types = {
+            'Name': str,
+            'xDegrees': float,
+            'yDegrees': float,
+            'Population': int,
+            'VulPop': int,
+            'WorkPop': int,
+            'Remarks': str
+        }
+
+        self.load_from_excel(addEMC_dialog.communityInfo_table, file_name, dummy_data)
 
         addEMC_dialog.mc_back_btn.clicked.connect(dialog.close)
         addEMC_dialog.mc_cancel_changes_btn.clicked.connect(dialog.close)
-        addEMC_dialog.mc_import_btn.clicked.connect(lambda: self.import_excel_data(addEMC_dialog.communityInfo_table))
-        addEMC_dialog.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(addEMC_dialog.communityInfo_table, dialog))
+        addEMC_dialog.mc_import_btn.clicked.connect(lambda: self.import_excel_data(addEMC_dialog.communityInfo_table,required_headers ,expected_types))
+        addEMC_dialog.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(addEMC_dialog.communityInfo_table, file_name, dialog ,expected_types))
         addEMC_dialog.mc_add_community_btn.clicked.connect(lambda: self.add_row(addEMC_dialog.communityInfo_table))
 
         dialog.exec()
@@ -53,29 +65,51 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         from ui_entityManagementShelter import Ui_entityManagementShelter
 
         dialog = QDialog(self)
+        file_name = "shelData.xlsx"
+        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Area1', 'Cost1', 'Area2', 'Cost2', 'ResToFlood', 'ResToTyphoon', 'ResToEarthquake', 'Status', 'Remarks']
+        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 500, 1000, 300, 1500, True, False, True, 'Built', 'Sample remarks']], columns=required_headers)
         addEMS_dialog = Ui_entityManagementShelter()
         addEMS_dialog.setupUi(dialog)
 
+        expected_types = {
+            'Name': str,
+            'xDegrees': float,
+            'yDegrees': float,
+            'Area1': float,
+            'Cost1': float,
+            'Area2': float,
+            'Cost2': float,
+            'ResToFlood': bool,
+            'ResToTyphoon': bool,
+            'ResToEarthquake': bool,
+            'Status': str,
+            'Remarks': str
+        }
+
+
+        self.load_from_excel(addEMS_dialog.shelterInfo_table, file_name, dummy_data)
+
         addEMS_dialog.ms_back_btn.clicked.connect(dialog.close)
         addEMS_dialog.ms_cancel_btn.clicked.connect(dialog.close)
-        addEMS_dialog.ms_import_btn.clicked.connect(lambda: self.import_excel_data(addEMS_dialog.shelterInfo_table))
-        addEMS_dialog.ms_save_changes_btn.clicked.connect(lambda: self.save_to_excel(addEMS_dialog.shelterInfo_table))
+        addEMS_dialog.ms_import_btn.clicked.connect(lambda: self.import_excel_data(addEMS_dialog.shelterInfo_table,required_headers, expected_types))
+        addEMS_dialog.ms_save_changes_btn.clicked.connect(lambda: self.save_to_excel(addEMS_dialog.shelterInfo_table, file_name, dialog, expected_types))
         addEMS_dialog.ms_add_shelter_btn.clicked.connect(lambda: self.add_row(addEMS_dialog.shelterInfo_table))
 
         dialog.exec()
 
-    def import_excel_data(self, table_widget):
+    def import_excel_data(self, table_widget, required_headers, expected_types):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Excel File", "", "Excel Files (*.xls *.xlsx)")
         if file_path:
             data = pd.read_excel(file_path).fillna("")
-            required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'VulPop', 'WorkPop', 'Remarks']
             
             if list(data.columns) != required_headers:
                 QMessageBox.critical(self, "Error", "The imported Excel file does not have the correct headers.")
                 return
             
+            print(list(data.columns) )
+            
             try:
-                self.validate_imported_data(data)
+                self.validate_imported_data(data, expected_types)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to display file: {e}")
                 return
@@ -83,7 +117,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.populate_table(table_widget, data)
             
 
-    def save_to_excel(self, table_widget, dialog):
+    def save_to_excel(self, table_widget, file_name, dialog, expected_types):
         data = []
         headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
         
@@ -95,12 +129,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             dataframe = pd.DataFrame(data, columns=headers)
             # validate table first
             try:
-                self.validate_imported_data(dataframe)
+                self.validate_imported_data(dataframe, expected_types)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to display file: {e}")
                 return
             # save the table here 
-            file_path = os.path.join(os.getcwd(), "commData.xlsx")
+            file_path = os.path.join(os.getcwd(), file_name)
             if file_path:
                 try:
                     dataframe.to_excel(file_path, index=False)
@@ -113,25 +147,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             QMessageBox.warning(self, "Warning", "No data to save.")
 
-    def load_from_excel(self, table_widget, file_name):
+    def load_from_excel(self, table_widget, file_name, dummy_data):
         if file_name and os.path.exists( os.path.join(os.getcwd(), file_name) ):
             try:
                 data = pd.read_excel( os.path.join(os.getcwd(), file_name) ).fillna("")
                 self.populate_table(table_widget, data)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
+        else:
+            self.populate_table(table_widget, dummy_data)
 
-    def validate_imported_data(self, data):
-        # Define expected data types for each column
-        expected_types = {
-            'Name': str,
-            'xDegrees': float,
-            'yDegrees': float,
-            'Population': int,
-            'VulPop': int,
-            'WorkPop': int,
-            'Remarks': str
-        }
+    def validate_imported_data(self, data, expected_types):
         
         for column, expected_type in expected_types.items():
             if column not in data.columns:
@@ -155,6 +181,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         int(value)  # Try converting to int
                     except ValueError:
                         raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected an integer.")
+                elif expected_type == bool:
+                    if not isinstance(value, bool):
+                        # Optionally, you could also allow values like 0/1 to be cast to bool:
+                        bool_value = bool(int(value)) if value in [0, 1] else bool(value)
+                        if bool_value not in [0, 1, True, False]:
+                            raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a boolean.")
 
     def populate_table(self, table_widget, data):
         table_widget.setRowCount(0)

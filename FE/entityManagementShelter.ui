@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1200</width>
-    <height>750</height>
+    <height>724</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -116,7 +116,7 @@ background-color: white;
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
-    background-color: #FF3B30;
+    background-color: #14AE5C;
     color: white;
     padding: 5px;
     border: none;
@@ -124,7 +124,7 @@ background-color: white;
 }
 
 QPushButton:hover {
-    background-color: #FF5A4D;
+    background-color: #12c753;
 }
 
 QPushButton:pressed {
@@ -250,6 +250,9 @@ QTableWidget::item:selected {
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
+        <attribute name="horizontalHeaderMinimumSectionSize">
+         <number>100</number>
+        </attribute>
         <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
          <bool>false</bool>
         </attribute>
@@ -261,22 +264,7 @@ QTableWidget::item:selected {
         </attribute>
         <row>
          <property name="text">
-          <string/>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>New Row</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>New Row</string>
-         </property>
-        </row>
-        <row>
-         <property name="text">
-          <string>New Row</string>
+          <string>1</string>
          </property>
         </row>
         <column>
@@ -286,12 +274,17 @@ QTableWidget::item:selected {
         </column>
         <column>
          <property name="text">
+          <string>xDegrees</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
           <string>yDegrees</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>xDegrees</string>
+          <string>Area1</string>
          </property>
         </column>
         <column>
@@ -393,15 +386,15 @@ QTableWidget::item:selected {
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
-    background-color: #FF3B30;
-    color: white;
+    background-color: #fff;
+    color: #FF3B30;
     padding: 5px;
-    border: none;
+    border: 3px solid #FF3B30 ;
     border-radius: 15px;
 }
 
 QPushButton:hover {
-    background-color: #FF5A4D;
+    background-color: #f0f0f0;
 }
 
 QPushButton:pressed {

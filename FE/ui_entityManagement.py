@@ -76,7 +76,7 @@ class Ui_EntityManagementCommunities(object):
         self.mc_import_btn.setFont(font1)
         self.mc_import_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mc_import_btn.setStyleSheet(u"QPushButton {\n"
-"    background-color: #FF3B30;\n"
+"    background-color: #14AE5C;\n"
 "    color: white;\n"
 "    padding: 5px;\n"
 "    border: none;\n"
@@ -84,7 +84,7 @@ class Ui_EntityManagementCommunities(object):
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #FF5A4D;\n"
+"    background-color: #12c753;\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
@@ -153,16 +153,10 @@ class Ui_EntityManagementCommunities(object):
         self.communityInfo_table.setHorizontalHeaderItem(6, __qtablewidgetitem6)
         __qtablewidgetitem7 = QTableWidgetItem()
         self.communityInfo_table.setHorizontalHeaderItem(7, __qtablewidgetitem7)
-        if (self.communityInfo_table.rowCount() < 4):
-            self.communityInfo_table.setRowCount(4)
+        if (self.communityInfo_table.rowCount() < 1):
+            self.communityInfo_table.setRowCount(1)
         __qtablewidgetitem8 = QTableWidgetItem()
         self.communityInfo_table.setVerticalHeaderItem(0, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.communityInfo_table.setVerticalHeaderItem(1, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.communityInfo_table.setVerticalHeaderItem(2, __qtablewidgetitem10)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.communityInfo_table.setVerticalHeaderItem(3, __qtablewidgetitem11)
         self.communityInfo_table.setObjectName(u"communityInfo_table")
         self.communityInfo_table.setStyleSheet(u"QHeaderView::section {\n"
 "    font-weight: bold;\n"
@@ -205,6 +199,7 @@ class Ui_EntityManagementCommunities(object):
 "")
         self.communityInfo_table.setFrameShadow(QFrame.Raised)
         self.communityInfo_table.horizontalHeader().setVisible(True)
+        self.communityInfo_table.horizontalHeader().setMinimumSectionSize(100)
         self.communityInfo_table.horizontalHeader().setDefaultSectionSize(120)
         self.communityInfo_table.horizontalHeader().setStretchLastSection(True)
         self.communityInfo_table.verticalHeader().setVisible(True)
@@ -240,15 +235,15 @@ class Ui_EntityManagementCommunities(object):
         self.mc_cancel_changes_btn.setFont(font2)
         self.mc_cancel_changes_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mc_cancel_changes_btn.setStyleSheet(u"QPushButton {\n"
-"    background-color: #FF3B30;\n"
-"    color: white;\n"
+"    background-color: #fff;\n"
+"    color: #FF3B30;\n"
 "    padding: 5px;\n"
-"    border: none;\n"
+"    border: 3px solid #FF3B30 ;\n"
 "    border-radius: 15px;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #FF5A4D;\n"
+"    background-color: #f0f0f0;\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
@@ -319,12 +314,8 @@ class Ui_EntityManagementCommunities(object):
         ___qtablewidgetitem6.setText(QCoreApplication.translate("EntityManagementCommunities", u"Remarks", None));
         ___qtablewidgetitem7 = self.communityInfo_table.horizontalHeaderItem(7)
         ___qtablewidgetitem7.setText(QCoreApplication.translate("EntityManagementCommunities", u"Actions", None));
-        ___qtablewidgetitem8 = self.communityInfo_table.verticalHeaderItem(1)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("EntityManagementCommunities", u"New Row", None));
-        ___qtablewidgetitem9 = self.communityInfo_table.verticalHeaderItem(2)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("EntityManagementCommunities", u"New Row", None));
-        ___qtablewidgetitem10 = self.communityInfo_table.verticalHeaderItem(3)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("EntityManagementCommunities", u"New Row", None));
+        ___qtablewidgetitem8 = self.communityInfo_table.verticalHeaderItem(0)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("EntityManagementCommunities", u"1", None));
         self.mc_cancel_changes_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Cancel", None))
         self.mc_save_changes_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Save Changes", None))
     # retranslateUi

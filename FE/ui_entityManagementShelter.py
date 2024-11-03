@@ -138,8 +138,8 @@ class Ui_entityManagementShelter(object):
         self.horizontalLayout_2 = QHBoxLayout(self.frame_2)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.shelterInfo_table = QTableWidget(self.frame_2)
-        if (self.shelterInfo_table.columnCount() < 8):
-            self.shelterInfo_table.setColumnCount(8)
+        if (self.shelterInfo_table.columnCount() < 11):
+            self.shelterInfo_table.setColumnCount(11)
         __qtablewidgetitem = QTableWidgetItem()
         self.shelterInfo_table.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
@@ -156,16 +156,22 @@ class Ui_entityManagementShelter(object):
         self.shelterInfo_table.setHorizontalHeaderItem(6, __qtablewidgetitem6)
         __qtablewidgetitem7 = QTableWidgetItem()
         self.shelterInfo_table.setHorizontalHeaderItem(7, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.shelterInfo_table.setHorizontalHeaderItem(8, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.shelterInfo_table.setHorizontalHeaderItem(9, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.shelterInfo_table.setHorizontalHeaderItem(10, __qtablewidgetitem10)
         if (self.shelterInfo_table.rowCount() < 4):
             self.shelterInfo_table.setRowCount(4)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.shelterInfo_table.setVerticalHeaderItem(0, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.shelterInfo_table.setVerticalHeaderItem(1, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.shelterInfo_table.setVerticalHeaderItem(2, __qtablewidgetitem10)
         __qtablewidgetitem11 = QTableWidgetItem()
-        self.shelterInfo_table.setVerticalHeaderItem(3, __qtablewidgetitem11)
+        self.shelterInfo_table.setVerticalHeaderItem(0, __qtablewidgetitem11)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.shelterInfo_table.setVerticalHeaderItem(1, __qtablewidgetitem12)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.shelterInfo_table.setVerticalHeaderItem(2, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.shelterInfo_table.setVerticalHeaderItem(3, __qtablewidgetitem14)
         self.shelterInfo_table.setObjectName(u"shelterInfo_table")
         self.shelterInfo_table.setStyleSheet(u"QHeaderView::section {\n"
 "    font-weight: bold;\n"
@@ -202,6 +208,9 @@ class Ui_entityManagementShelter(object):
 "}\n"
 "")
         self.shelterInfo_table.setFrameShadow(QFrame.Raised)
+        self.shelterInfo_table.horizontalHeader().setProperty("showSortIndicator", False)
+        self.shelterInfo_table.horizontalHeader().setStretchLastSection(True)
+        self.shelterInfo_table.verticalHeader().setProperty("showSortIndicator", False)
 
         self.horizontalLayout_2.addWidget(self.shelterInfo_table)
 
@@ -297,25 +306,31 @@ class Ui_entityManagementShelter(object):
         ___qtablewidgetitem = self.shelterInfo_table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("entityManagementShelter", u"Name", None));
         ___qtablewidgetitem1 = self.shelterInfo_table.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("entityManagementShelter", u"x Deg", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("entityManagementShelter", u"yDegrees", None));
         ___qtablewidgetitem2 = self.shelterInfo_table.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("entityManagementShelter", u"y Deg", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("entityManagementShelter", u"xDegrees", None));
         ___qtablewidgetitem3 = self.shelterInfo_table.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("entityManagementShelter", u"Pop", None));
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("entityManagementShelter", u"Cost1", None));
         ___qtablewidgetitem4 = self.shelterInfo_table.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("entityManagementShelter", u"VulPop", None));
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("entityManagementShelter", u"Area2", None));
         ___qtablewidgetitem5 = self.shelterInfo_table.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("entityManagementShelter", u"WorkPop", None));
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("entityManagementShelter", u"Cost2", None));
         ___qtablewidgetitem6 = self.shelterInfo_table.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("entityManagementShelter", u"Remarks", None));
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("entityManagementShelter", u"ResToFlood", None));
         ___qtablewidgetitem7 = self.shelterInfo_table.horizontalHeaderItem(7)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("entityManagementShelter", u"Actions", None));
-        ___qtablewidgetitem8 = self.shelterInfo_table.verticalHeaderItem(1)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("entityManagementShelter", u"New Row", None));
-        ___qtablewidgetitem9 = self.shelterInfo_table.verticalHeaderItem(2)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("entityManagementShelter", u"New Row", None));
-        ___qtablewidgetitem10 = self.shelterInfo_table.verticalHeaderItem(3)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("entityManagementShelter", u"New Row", None));
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("entityManagementShelter", u"ResToTyphoon", None));
+        ___qtablewidgetitem8 = self.shelterInfo_table.horizontalHeaderItem(8)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("entityManagementShelter", u"ResToEarthquake", None));
+        ___qtablewidgetitem9 = self.shelterInfo_table.horizontalHeaderItem(9)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("entityManagementShelter", u"Status", None));
+        ___qtablewidgetitem10 = self.shelterInfo_table.horizontalHeaderItem(10)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("entityManagementShelter", u"Actions", None));
+        ___qtablewidgetitem11 = self.shelterInfo_table.verticalHeaderItem(1)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("entityManagementShelter", u"New Row", None));
+        ___qtablewidgetitem12 = self.shelterInfo_table.verticalHeaderItem(2)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("entityManagementShelter", u"New Row", None));
+        ___qtablewidgetitem13 = self.shelterInfo_table.verticalHeaderItem(3)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("entityManagementShelter", u"New Row", None));
         self.ms_cancel_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Cancel", None))
         self.ms_save_changes_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Save Changes", None))
     # retranslateUi

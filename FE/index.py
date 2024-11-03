@@ -67,6 +67,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Excel File", "", "Excel Files (*.xls *.xlsx)")
         if file_path:
             data = pd.read_excel(file_path).fillna("")
+            required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'VulPop', 'WorkPop', 'Remarks']
+            
+            if list(data.columns) != required_headers:
+                QMessageBox.critical(self, "Error", "The imported Excel file does not have the correct headers.")
+                return
+
             self.populate_table(table_widget, data)
 
     def save_to_excel(self, table_widget):

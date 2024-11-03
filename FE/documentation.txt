@@ -6,6 +6,7 @@ pip install PyQt6
 pip install PyQt6-tools
 pip install pandas
 pip install openpyxl xlrd (to read .xlsx and .xls files)
+pip install folium
 
 Install Qt Designer with this link: https://build-system.fman.io/qt-designer-download
 

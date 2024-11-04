@@ -298,7 +298,7 @@ class Ui_entityManagementShelter(object):
         entityManagementShelter.setWindowTitle(QCoreApplication.translate("entityManagementShelter", u"Dialog", None))
         self.ms_back_btn.setText("")
         self.label.setText(QCoreApplication.translate("entityManagementShelter", u"Manage Shelters", None))
-        self.ms_import_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Import XLXS", None))
+        self.ms_import_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Import XLSX", None))
         self.ms_add_shelter_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Add Shelter", None))
         ___qtablewidgetitem = self.shelterInfo_table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("entityManagementShelter", u"Name", None));

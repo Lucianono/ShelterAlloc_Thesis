@@ -307,7 +307,7 @@ class Ui_EntityManagementCommunities(object):
         ___qtablewidgetitem3 = self.communityInfo_table.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("EntityManagementCommunities", u"Pop", None));
         ___qtablewidgetitem4 = self.communityInfo_table.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("EntityManagementCommunities", u"VulPop", None));
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("EntityManagementCommunities", u"AffectedPop", None));
         ___qtablewidgetitem5 = self.communityInfo_table.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("EntityManagementCommunities", u"WorkPop", None));
         ___qtablewidgetitem6 = self.communityInfo_table.horizontalHeaderItem(6)

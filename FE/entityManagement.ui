@@ -256,7 +256,7 @@ QTableWidget::item:selected {
          <enum>QFrame::Raised</enum>
         </property>
         <attribute name="horizontalHeaderVisible">
-         <bool>false</bool>
+         <bool>true</bool>
         </attribute>
         <attribute name="horizontalHeaderDefaultSectionSize">
          <number>120</number>
@@ -268,7 +268,7 @@ QTableWidget::item:selected {
          <bool>true</bool>
         </attribute>
         <attribute name="verticalHeaderVisible">
-         <bool>false</bool>
+         <bool>true</bool>
         </attribute>
         <attribute name="verticalHeaderHighlightSections">
          <bool>true</bool>
@@ -300,7 +300,7 @@ QTableWidget::item:selected {
         </column>
         <column>
          <property name="text">
-          <string>VulPop</string>
+          <string>AffectedPop</string>
          </property>
         </column>
         <column>

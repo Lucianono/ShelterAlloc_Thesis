@@ -133,7 +133,7 @@ QPushButton:pressed {
 </string>
         </property>
         <property name="text">
-         <string>Import XLXS</string>
+         <string>Import XLSX</string>
         </property>
        </widget>
       </item>

@@ -311,6 +311,40 @@ def spawn():
     return allocations
 
 # =======================
+# FEASIBILITY CHECK
+# check if data input has solution
+def feasibilityCheck(communities,shelters):
+    # check if there exists distance <= max distance 
+    failing_communities = []
+    for community in communities:
+        if not any(d <= community["maxdistance"] for d in community["distances"].values()):
+            failing_communities.append(community["name"])
+    
+    if not failing_communities:
+        print(failing_communities)
+        return
+
+    # check if there exists population <= shelter area * areaPerIndiv
+    failing_communities = []
+    for community in communities:
+        if not ( any(area*area_per_individual <= community["population"] for area in shelters["area1"].values()) or any(area*area_per_individual <= community["population"] for area in shelters["area2"].values()) ):
+            failing_communities.append(community["name"])
+    
+    if not failing_communities:
+        print(failing_communities)
+        return
+
+    # check if total population <= max shelter
+    Shelters_sorted = sorted(Shelters, key=lambda x: x['area2'])
+    top_3_area2_sum = sum(shelter['area2'] for shelter in Shelters[-3:])
+
+
+
+
+
+
+
+# =======================
 # START OF THE ALGORITHM
 # initial population
 for _ in range(num_solutions):

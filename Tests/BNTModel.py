@@ -313,31 +313,93 @@ def spawn():
 # =======================
 # FEASIBILITY CHECK
 # check if data input has solution
-def feasibilityCheck(communities,shelters):
+def feasibilityCheck():
     # check if there exists distance <= max distance 
     failing_communities = []
-    for community in communities:
+    for community in Community:
         if not any(d <= community["maxdistance"] for d in community["distances"].values()):
             failing_communities.append(community["name"])
     
-    if not failing_communities:
-        print(failing_communities)
-        return
+    if failing_communities:
+        print(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
+        return False
 
     # check if there exists population <= shelter area * areaPerIndiv
     failing_communities = []
-    for community in communities:
-        if not ( any(area*area_per_individual <= community["population"] for area in shelters["area1"].values()) or any(area*area_per_individual <= community["population"] for area in shelters["area2"].values()) ):
+    for community in Community:
+        if not (
+            any(shelter["area1"] * area_per_individual >= community["population"] for shelter in Shelters) or
+            any(shelter["area2"] * area_per_individual >= community["population"] for shelter in Shelters)
+        ):
             failing_communities.append(community["name"])
     
-    if not failing_communities:
-        print(failing_communities)
-        return
+    if failing_communities:
+        print(f"{failing_communities} has affected population that is impossible to allocate. No shelters is large enough.")
+        return False
 
-    # check if total population <= max shelter
-    Shelters_sorted = sorted(Shelters, key=lambda x: x['area2'])
-    top_3_area2_sum = sum(shelter['area2'] for shelter in Shelters[-3:])
+    # check if total population is theoretically possible to allocate on largest  shelters
+    total_population = sum(community['population'] for community in Community)
 
+    Shelters_sorted = sorted(Shelters, key=lambda x: x['area2'], reverse=True)
+    top_area2_sum = sum(shelter['area2'] for shelter in Shelters[:max_lvl2_shelters])
+    Shelters_sorted = Shelters_sorted[max_lvl2_shelters:]
+
+    Shelters_sorted = sorted(Shelters, key=lambda x: x['area1'], reverse=True)
+    top_area1_sum = sum(shelter['area1'] for shelter in Shelters[:(max_shelters - max_lvl2_shelters)])
+    Shelters_sorted = Shelters_sorted[(max_shelters - max_lvl2_shelters):]
+
+    if total_population > (top_area2_sum + top_area1_sum):
+        print(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
+        return False
+    
+    # if no cases are violated return true
+    return True
+
+# =======================
+# LOGIC CHECK
+# check if parameters are logical or correct
+def logicCheck():
+    # check if max_shelters >= max_lvl2_shelters
+    if max_shelters < max_lvl2_shelters:
+        print("max_shelters should be greater than or equal to max_lvl2_shelters")
+        return False
+    # check if max_shelters >= 1
+    if max_shelters < 1:
+        print("max_shelters should have atleast 1")
+        return False
+    # check if area_per_individual > 0
+    if area_per_individual <= 0:
+        print("area_per_individual should be greater than 0")
+        return False
+    # check if num_generations >= 1
+    if num_generations < 1:
+        print("num_generations should be greater than or equal to 1")
+        return False
+    # check if num_solutions >= 1
+    if num_solutions < 1:
+        print("num_solutions should be greater than or equal to 1")
+        return False
+    # check if mutation_rate not < 0
+    if mutation_rate < 0:
+        print("mutation_rate should not be less than to 0")
+        return False
+    # check if weight_dist not < 0
+    if weight_dist < 0:
+        print("weight_dist should not be less than to 0")
+        return False
+    # check if weight_cost not < 0
+    if weight_cost < 0:
+        print("weight_cost should not be less than to 0")
+        return False
+    # check if area2 >= area1
+    for shelter in Shelters:
+        if shelter["area2"] < shelter["area1"]:
+            print(f"{shelter['name']}: area2 should be grated than or equal to area1.")
+            return False
+
+
+    # if no cases are violated return true
+        return True
 
 
 
@@ -347,12 +409,31 @@ def feasibilityCheck(communities,shelters):
 # =======================
 # START OF THE ALGORITHM
 # initial population
+if not logicCheck():
+    print("Parameters are not inputted incorrectly.")
+    exit()
+if not feasibilityCheck():
+    print("No solution exists")
+    exit()
+
+infeasibility_ctr = 0
 for _ in range(num_solutions):
     solution = spawn()
     while not checkConstraints(solution):
+        infeasibility_ctr += 1
+        # warning and halting
+        if infeasibility_ctr >= 1000:
+            print ("WARNING: 1000 infeasible solutions are generated. Program stopping.")
+            exit()
+        elif infeasibility_ctr % 500 == 0:
+            print(f"WARNING: {infeasibility_ctr} infeasible solutions are generated. Program continuing.")
+
         solution = spawn()
+
+
     fitnessVal = fitness(solution)
     solutions.append(solution)
+    infeasibility_ctr = 0
 
 # generations
 for generation in range(num_generations):

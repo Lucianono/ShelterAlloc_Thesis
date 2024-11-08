@@ -153,6 +153,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             try:
                 data = pd.read_excel( os.path.join(os.getcwd(), file_name) ).fillna("")
                 self.populate_table(table_widget, data)
+                table_widget.resizeColumnsToContents()
+
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
         else:

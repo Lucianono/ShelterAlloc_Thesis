@@ -12,11 +12,12 @@ import os
 # get data and parameters from excel
 Community_data = pd.read_excel( os.path.join(os.getcwd(), "commData.xlsx") ).fillna("")
 Shelter_data = pd.read_excel( os.path.join(os.getcwd(), "shelData.xlsx") ).fillna("")
+Distances_data = pd.read_excel( os.path.join(os.getcwd(), "distCommShelData.xlsx") ).fillna("")
 
 # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
-area_per_individual = 1
-max_lvl2_shelters = 10
-max_shelters = 10
+area_per_individual = 0.01
+max_lvl2_shelters = 22
+max_shelters = 22
 
 solutions = []
 num_generations = 100
@@ -26,31 +27,41 @@ mutation_rate = 0.5
 weight_dist = 0.5
 weight_cost = 0.5
 
+# list of shelters with area1 and cost1 (area and cost as level 1 shelter), area 2 and cost2 (area and cost as level 2 shelter) 
+Shelters = []
+for row in Shelter_data.itertuples(index=False):
+        # Extract shelter details 
+        row_data = {
+            "name": row.Name,
+            "area1": row.Area1,
+            "cost1": row.Cost1,
+            "area2": row.Area2,
+            "cost2": row.Cost2
+        }
+        Shelters.append(row_data)
+
 # sample data of communities with barangay names along with population and distances from each shelter
 Community = []
-for sheet_name, sheet_df in Community_data.items():
-        # Extract community details and distance to shelters
-        community_data = {
-            "name": sheet_name,
-            "population": sheet_df["population"].values[0],
-            "maxdistance": sheet_df["maxdistance"].values[0],
-            "distances": sheet_df.set_index("shelter_name")["distance"].to_dict()
-        }
-        Community.append(community_data)
+for row in Community_data.itertuples(index=False):
+        # store all distances from community to all shleters
+        distance_row_data = {}
+        for _, shelter_row in Distances_data.iterrows():
+            shelter = shelter_row["Shelters"]  
+            distance = shelter_row[row.Name]  
+            distance_row_data[shelter] = distance  
 
-# list of shelters with area1 and cost1 (area and cost as level 1 shelter), area 2 and cost2 (area and cost as level 2 shelter) 
-Shelters = [
-    {"name": "Brgy. Asis-3 EC", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
-    {"name": "City EC of Sto. Tomas", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
-    {"name": "Suplang Covered Court", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
-    {"name": "Brgy. San Jose BB Court", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
-    {"name": "Maugat Gymnasium", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
-    {"name": "Tagaytay Unida Church", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
-    {"name": "San Antonio Brgy. Hall", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
-    {"name": "Darasa Brgy. Hall", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
-    {"name": "Santa Clara Brgy. Hall", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
-    {"name": "San Fernando Brgy. Hall", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000},
-]
+            
+
+        # Extract community details and distance to shelters
+        row_data = {
+            "name": row.Name,
+            "population": row.AffectedPop,
+            "maxdistance": row.MaxDistance,
+            "distances": distance_row_data
+        }
+        Community.append(row_data)
+
+
 
 # objective function, also the fitness
 # minimize fitness
@@ -281,12 +292,12 @@ def feasibilityCheck():
         print(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
         return False
 
-    # check if there exists population <= shelter area * areaPerIndiv
+    # check if there exists population * areaPerIndiv <= shelter area 
     failing_communities = []
     for community in Community:
         if not (
-            any(shelter["area1"] * area_per_individual >= community["population"] for shelter in Shelters) or
-            any(shelter["area2"] * area_per_individual >= community["population"] for shelter in Shelters)
+            any(shelter["area1"] >= area_per_individual * community["population"] for shelter in Shelters) or
+            any(shelter["area2"] >= area_per_individual * community["population"] for shelter in Shelters)
         ):
             failing_communities.append(community["name"])
     
@@ -305,8 +316,10 @@ def feasibilityCheck():
     top_area1_sum = sum(shelter['area1'] for shelter in Shelters[:(max_shelters - max_lvl2_shelters)])
     Shelters_sorted = Shelters_sorted[(max_shelters - max_lvl2_shelters):]
 
-    if total_population > (top_area2_sum + top_area1_sum):
+    if total_population > ((top_area2_sum + top_area1_sum) / area_per_individual):
         print(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
+        print(f"Total capacity of shelters :  {(top_area2_sum + top_area1_sum) / area_per_individual }" )
+        print(f"Total population : {total_population}")
         return False
     
     # if no cases are violated return true
@@ -356,7 +369,7 @@ def logicCheck():
 
 
     # if no cases are violated return true
-        return True
+    return True
 
 
 
@@ -379,10 +392,10 @@ for _ in range(num_solutions):
     while not checkConstraints(solution):
         infeasibility_ctr += 1
         # warning and halting
-        if infeasibility_ctr >= 1000:
-            print ("WARNING: 1000 infeasible solutions are generated. Program stopping.")
+        if infeasibility_ctr >= 100000:
+            print ("WARNING: 100000 infeasible solutions are generated. Program stopping.")
             exit()
-        elif infeasibility_ctr % 500 == 0:
+        elif infeasibility_ctr % 10000 == 0:
             print(f"WARNING: {infeasibility_ctr} infeasible solutions are generated. Program continuing.")
 
         solution = spawn()

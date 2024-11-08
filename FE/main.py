@@ -5,6 +5,6 @@ import sys
 app = QApplication(sys.argv)
 
 window = MainWindow()
-window.show()
+window.show() 
 
 app.exec()

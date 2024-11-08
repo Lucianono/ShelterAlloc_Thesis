@@ -36,8 +36,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         dialog = QDialog(self)
         file_name = "commData.xlsx"
-        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'WorkPop', 'Remarks']
-        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 800, 'Sample remarks']], columns=required_headers)
+        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'WorkPop', 'MaxDistance', 'Remarks' ]
+        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 800, 1000, 'Sample remarks']], columns=required_headers)
         addEMC_dialog = Ui_EntityManagementCommunities()
         addEMC_dialog.setupUi(dialog)
 
@@ -48,6 +48,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             'Population': int,
             'AffectedPop': int,
             'WorkPop': int,
+            'MaxDistance': int,
             'Remarks': str
         }
 

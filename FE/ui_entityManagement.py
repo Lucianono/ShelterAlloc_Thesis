@@ -301,19 +301,19 @@ class Ui_EntityManagementCommunities(object):
         ___qtablewidgetitem = self.communityInfo_table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("EntityManagementCommunities", u"Name", None));
         ___qtablewidgetitem1 = self.communityInfo_table.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("EntityManagementCommunities", u"x Deg", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("EntityManagementCommunities", u"xDegrees", None));
         ___qtablewidgetitem2 = self.communityInfo_table.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("EntityManagementCommunities", u"y Deg", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("EntityManagementCommunities", u"yDegrees", None));
         ___qtablewidgetitem3 = self.communityInfo_table.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("EntityManagementCommunities", u"Pop", None));
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("EntityManagementCommunities", u"Population", None));
         ___qtablewidgetitem4 = self.communityInfo_table.horizontalHeaderItem(4)
         ___qtablewidgetitem4.setText(QCoreApplication.translate("EntityManagementCommunities", u"AffectedPop", None));
         ___qtablewidgetitem5 = self.communityInfo_table.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("EntityManagementCommunities", u"WorkPop", None));
         ___qtablewidgetitem6 = self.communityInfo_table.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("EntityManagementCommunities", u"Remarks", None));
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("EntityManagementCommunities", u"MaxDistance", None));
         ___qtablewidgetitem7 = self.communityInfo_table.horizontalHeaderItem(7)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("EntityManagementCommunities", u"Actions", None));
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("EntityManagementCommunities", u"Remarks", None));
         ___qtablewidgetitem8 = self.communityInfo_table.verticalHeaderItem(0)
         ___qtablewidgetitem8.setText(QCoreApplication.translate("EntityManagementCommunities", u"1", None));
         self.mc_cancel_changes_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Cancel", None))

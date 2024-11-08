@@ -285,17 +285,17 @@ QTableWidget::item:selected {
         </column>
         <column>
          <property name="text">
-          <string>x Deg</string>
+          <string>xDegrees</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>y Deg</string>
+          <string>yDegrees</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Pop</string>
+          <string>Population</string>
          </property>
         </column>
         <column>
@@ -310,12 +310,12 @@ QTableWidget::item:selected {
         </column>
         <column>
          <property name="text">
-          <string>Remarks</string>
+          <string>MaxDistance</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Actions</string>
+          <string>Remarks</string>
          </property>
         </column>
        </widget>

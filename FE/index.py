@@ -11,6 +11,8 @@ import os
 import sys
 import folium
 import io
+import networkx as nx
+import osmnx as ox
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -263,9 +265,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if os.path.exists(map_path):
             print(f"Map already exists at: {map_path}")
         else:
-            m = folium.Map(location=[14.7919, 120.7350], zoom_start=13).add_child(
-                folium.ClickForMarker("Julius Ian Dino")
-            )
+            m = folium.Map(location=[14.7919, 120.7350], zoom_start=13)
+
+            start = (14.833799, 120.734049)
+            end = (14.836125, 120.733770)
+
+            G = ox.graph_from_point(start, dist=3000, network_type='all')
+            print("number of nodes in graph:", len(G.nodes))
+            print("Number of edges in graph:", len(G.edges))
+
+            G_projected = ox.project_graph(G)
+
+            start_node = ox.distance.nearest_nodes(G_projected, start[1], start[0])
+            end_node = ox.distance.nearest_nodes(G_projected, end[1], end[0])
+
+            path = nx.shortest_path(G, start_node, end_node, weight='length')
+            print("path nodes:", path)
+            path_coords = [(G.nodes[node]['y'], G.nodes[node]['x']) for node in path]
+            print("Path coordinates:", path_coords)
+            folium.PolyLine(locations=path_coords, color='red', weight=5, opacity=1).add_to(m)
+            
+            folium.Marker(location=start, popup='Start', icon=folium.Icon(color='green')).add_to(m)
+            folium.Marker(location=end, popup='End', icon=folium.Icon(color='red')).add_to(m)
             m.save(map_path)
             print(f"New map created and saved at: {map_path}")
 

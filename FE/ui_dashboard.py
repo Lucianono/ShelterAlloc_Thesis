@@ -32,7 +32,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QSize(0, 0))
+        MainWindow.setMinimumSize(QSize(1200, 800))
         MainWindow.setMaximumSize(QSize(1200, 800))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -1007,7 +1007,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 277, 733))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 371, 750))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.horizontalLayout_29 = QHBoxLayout()
@@ -1378,17 +1378,29 @@ class Ui_MainWindow(object):
 
         self.widget_3 = QWidget(self.Main)
         self.widget_3.setObjectName(u"widget_3")
-        self.MapWidget = QWidget(self.widget_3)
-        self.MapWidget.setObjectName(u"MapWidget")
-        self.MapWidget.setGeometry(QRect(-10, -10, 848, 711))
-        self.webEngineView = QWebEngineView(self.MapWidget)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.widget_3.sizePolicy().hasHeightForWidth())
+        self.widget_3.setSizePolicy(sizePolicy4)
+        self.gridLayout_4 = QGridLayout(self.widget_3)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.webEngineView = QWebEngineView(self.widget_3)
         self.webEngineView.setObjectName(u"webEngineView")
-        self.webEngineView.setGeometry(QRect(-361, 9, 841, 751))
+        sizePolicy4.setHeightForWidth(self.webEngineView.sizePolicy().hasHeightForWidth())
+        self.webEngineView.setSizePolicy(sizePolicy4)
+        self.gridLayout_3 = QGridLayout(self.webEngineView)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+
+        self.gridLayout_4.addWidget(self.webEngineView, 1, 0, 1, 1)
+
         self.solve_btn = QPushButton(self.widget_3)
         self.solve_btn.setObjectName(u"solve_btn")
-        self.solve_btn.setGeometry(QRect(30, 620, 221, 49))
-        sizePolicy2.setHeightForWidth(self.solve_btn.sizePolicy().hasHeightForWidth())
-        self.solve_btn.setSizePolicy(sizePolicy2)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.solve_btn.sizePolicy().hasHeightForWidth())
+        self.solve_btn.setSizePolicy(sizePolicy5)
         font8 = QFont()
         font8.setPointSize(24)
         font8.setBold(True)
@@ -1404,6 +1416,9 @@ class Ui_MainWindow(object):
 "QPushButton:hover {\n"
 "    background-color: rgba(61, 189, 124, 255);\n"
 "}")
+
+        self.gridLayout_4.addWidget(self.solve_btn, 2, 0, 1, 1)
+
 
         self.horizontalLayout_27.addWidget(self.widget_3)
 

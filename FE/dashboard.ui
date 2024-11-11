@@ -18,8 +18,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>0</width>
-    <height>0</height>
+    <width>1200</width>
+    <height>800</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -210,7 +210,7 @@
                     <string>Communities</string>
                    </property>
                    <property name="icon">
-                    <iconset>
+                    <iconset resource="resources.qrc">
                      <normaloff>:/ICONS/352021_arrow_drop down_icon.png</normaloff>
                      <normalon>:/ICONS/352023_arrow_drop_up_icon.png</normalon>:/ICONS/352021_arrow_drop down_icon.png</iconset>
                    </property>
@@ -279,7 +279,7 @@ QPushButton:pressed {
                          <string>Add Community</string>
                         </property>
                         <property name="icon">
-                         <iconset>
+                         <iconset resource="resources.qrc">
                           <normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</iconset>
                         </property>
                         <property name="iconSize">
@@ -343,7 +343,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>:/ICONS/pin-5-128.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -393,7 +393,7 @@ color: #00B5FF;
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset>
+                           <iconset resource="resources.qrc">
                             <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -431,7 +431,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>:/ICONS/pin-5-128.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -481,7 +481,7 @@ color: #00B5FF;
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset>
+                           <iconset resource="resources.qrc">
                             <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -516,7 +516,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>:/ICONS/pin-5-128.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -566,7 +566,7 @@ color: #00B5FF;
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset>
+                           <iconset resource="resources.qrc">
                             <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -601,7 +601,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>:/ICONS/pin-5-128.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -651,7 +651,7 @@ color: #00B5FF;
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset>
+                           <iconset resource="resources.qrc">
                             <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -686,7 +686,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>:/ICONS/pin-5-128.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -736,7 +736,7 @@ color: #00B5FF;
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset>
+                           <iconset resource="resources.qrc">
                             <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -771,7 +771,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>:/ICONS/pin-5-128.png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -821,7 +821,7 @@ color: #00B5FF;
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset>
+                           <iconset resource="resources.qrc">
                             <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -887,7 +887,7 @@ color: #00B5FF;
                     <string>Shelters</string>
                    </property>
                    <property name="icon">
-                    <iconset>
+                    <iconset resource="resources.qrc">
                      <normaloff>:/ICONS/352021_arrow_drop down_icon.png</normaloff>
                      <normalon>:/ICONS/352023_arrow_drop_up_icon.png</normalon>:/ICONS/352021_arrow_drop down_icon.png</iconset>
                    </property>
@@ -950,7 +950,7 @@ QPushButton:pressed {
                          <string>Add Shelter</string>
                         </property>
                         <property name="icon">
-                         <iconset>
+                         <iconset resource="resources.qrc">
                           <normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</normaloff>:/ICONS/460625174_1063840541791504_8083137884705313080_n.png</iconset>
                         </property>
                         <property name="iconSize">
@@ -1008,7 +1008,7 @@ color: #00B5FF;
                              <string/>
                             </property>
                             <property name="pixmap">
-                             <pixmap>:/ICONS/pin-5-128 (1).png</pixmap>
+                             <pixmap resource="resources.qrc">:/ICONS/pin-5-128 (1).png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -1056,7 +1056,7 @@ color: #00B5FF;
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset>
+                           <iconset resource="resources.qrc">
                             <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -1089,7 +1089,7 @@ color: #00B5FF;
                            <string/>
                           </property>
                           <property name="pixmap">
-                           <pixmap>:/ICONS/pin-5-128 (1).png</pixmap>
+                           <pixmap resource="resources.qrc">:/ICONS/pin-5-128 (1).png</pixmap>
                           </property>
                           <property name="scaledContents">
                            <bool>true</bool>
@@ -1139,7 +1139,7 @@ color: #00B5FF;
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset>
+                           <iconset resource="resources.qrc">
                             <normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</normaloff>:/ICONS/462544067_1241440546885630_5886192978905579196_n.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -1601,7 +1601,7 @@ QStackedWidget{
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset>
+                     <iconset resource="resources.qrc">
                       <normaloff>:/ICONS/462547553_520698087383761_137860076397263527_n.png</normaloff>:/ICONS/462547553_520698087383761_137860076397263527_n.png</iconset>
                     </property>
                     <property name="iconSize">
@@ -1702,7 +1702,7 @@ QStackedWidget{
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset>
+                     <iconset resource="resources.qrc">
                       <normaloff>:/ICONS/9022869_duotone_trash.png</normaloff>:/ICONS/9022869_duotone_trash.png</iconset>
                     </property>
                     <property name="iconSize">
@@ -1941,8 +1941,8 @@ QStackedWidget{
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>277</width>
-                  <height>733</height>
+                  <width>371</width>
+                  <height>750</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -1972,7 +1972,7 @@ QStackedWidget{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset>
+                      <iconset resource="resources.qrc">
                        <normaloff>:/ICONS/462547553_520698087383761_137860076397263527_n.png</normaloff>:/ICONS/462547553_520698087383761_137860076397263527_n.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -2073,7 +2073,7 @@ QStackedWidget{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset>
+                      <iconset resource="resources.qrc">
                        <normaloff>:/ICONS/9022869_duotone_trash.png</normaloff>:/ICONS/9022869_duotone_trash.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -2745,53 +2745,44 @@ QStackedWidget{
          </item>
          <item>
           <widget class="QWidget" name="widget_3" native="true">
-           <widget class="QWidget" name="MapWidget" native="true">
-            <property name="geometry">
-             <rect>
-              <x>-10</x>
-              <y>-10</y>
-              <width>848</width>
-              <height>711</height>
-             </rect>
-            </property>
-            <widget class="QWebEngineView" name="webEngineView" native="true">
-             <property name="geometry">
-              <rect>
-               <x>-361</x>
-               <y>9</y>
-               <width>841</width>
-               <height>751</height>
-              </rect>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QPushButton" name="solve_btn">
-            <property name="geometry">
-             <rect>
-              <x>30</x>
-              <y>620</y>
-              <width>221</width>
-              <height>49</height>
-             </rect>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>24</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">* {
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="1" column="0">
+             <widget class="QWebEngineView" name="webEngineView" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_3"/>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="solve_btn">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>24</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">* {
 	border: none;
 	border-radius: 10px;
 	background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(28, 87, 57, 255), stop:1 rgba(61, 189, 124, 255));
@@ -2801,11 +2792,13 @@ QStackedWidget{
 QPushButton:hover {
     background-color: rgba(61, 189, 124, 255);
 }</string>
-            </property>
-            <property name="text">
-             <string>GENERATE</string>
-            </property>
-           </widget>
+              </property>
+              <property name="text">
+               <string>GENERATE</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>

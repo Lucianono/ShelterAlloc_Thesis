@@ -1,0 +1,88 @@
+\makeatletter
+\def\@maketitle{%
+	\begin{center}%
+		{\LARGE \@title \par}%
+		{\large
+			\begin{tabular}[t]{c}%
+				\@author
+			\end{tabular}\par}%
+		{\large \@date}%
+	\end{center}%
+	\par
+}
+\makeatother
+
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{array,tabularx,longtable,multicol,multirow}
+\usepackage{graphicx,setspace,caption}
+\usepackage{indentfirst}
+	\setlength{\parindent}{5 ex}
+	\setlength{\parskip}{0.5\baselineskip}
+\usepackage{titling}
+	\setlength{\droptitle}{-3cm}
+\usepackage[shortlabels,inline]{enumitem}
+	\setlist[enumerate]{nosep}
+	\setlist[itemize]{nosep}
+\usepackage[style=apa]{biblatex}
+\usepackage{csquotes}
+\DeclareLanguageMapping{english}{english-apa}
+
+%---------------------------------
+%  DEFINE NEW TABULAR COLUMN TYPE	
+%---------------------------------
+\newcolumntype{L}[1]%fixed columnd width, aligned left and top
+{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]%fixed columnd width, aligned center and top
+{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]%fixed columnd width, aligned right and top
+{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+\usepackage{titlesec}
+%----------------------------------------------------------------
+% SECTIONING FORMAT
+%----------------------------------------------------------------
+\setcounter{secnumdepth}{0}	%<-section numbering only up to sec
+%\titleformat{command}[shape]{format}{label}{sep}{before-code}[after-code]
+
+%\titleformat{\chapter}[display]
+%{\centering\normalfont\normalsize\bfseries}
+%{\MakeUppercase{\chaptertitlename\ \thechapter}\filcenter}
+%{0pt}%sep
+%{\centering\uppercase}
+%{\normalsize\filcenter}
+%\titlespacing{\chapter}{0pt}{-2em plus 0pt minus 0pt}{18pt}
+%\renewcommand{\thechapter}{\Roman{chapter}}
+
+\titleformat{\section}
+{\normalfont\normalsize\bfseries}
+{\thesection}
+{1em}
+{}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\titlespacing{\section}{0pt}{2ex plus 1ex minus 0ex}{0ex}
+
+\titleformat{\subsection}
+{\normalfont\normalsize\itshape\bfseries}
+{\thesubsection}
+{1em}
+{}
+
+\titleformat{\subsubsection}[block]
+{\hspace{2em}\normalfont\normalsize\bfseries}
+{\thesubsubsection}
+{1em}
+{}
+
+\titlespacing{\subsection}{0pt}{2ex plus 1ex minus 0ex}{0ex}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+
+%------------------------
+%Figures and Tables Set up
+%------------------------
+\DeclareCaptionLabelSeparator*{spaced}{\\[12pt]}
+\captionsetup[table]{textfont=it,format=plain,justification=justified,
+	singlelinecheck=false,labelsep=spaced,skip=12pt}
+\captionsetup[figure]{textfont=it,format=plain,justification=justified,
+	singlelinecheck=false,labelsep=spaced,skip=12pt}

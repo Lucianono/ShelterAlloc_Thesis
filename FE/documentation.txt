@@ -7,6 +7,7 @@ pip install PyQt6-tools
 pip install pandas
 pip install openpyxl xlrd (to read .xlsx and .xls files)
 pip install folium
+pip install osmnx
 
 Install Qt Designer with this link: https://build-system.fman.io/qt-designer-download
 
@@ -17,51 +18,10 @@ pyside6-uic widget.ui > ui_widget.py
 to convert resources.qrc to resources_rc.py
 pyside6-rcc resources.qrc -o resources_rc.py
 
-- start entityman and entitymanshelter backend 10-24-24
-
-task - 10-24-24
-- convert resources.qrc to .py
-- added main.py
-- added window titles on entityManagement.ui - EntityManagementCommunities
-- added window titles on entityManagementShelter.ui - entityManagementShelter
-- convert entityManagement.ui to ui_entityManagement.py
-- convert entityManagementShelter.ui to ui_entityManagementShelter.py
-- added index.py where all bullshit of buttons, open of new dialog, and such will be handled
-- convert dashboard.ui to ui_dashboard.py
-- advanced settings btn now working
-
-task - 10-25-24
-- back btn function finished
-- changes in entmanshel.ui and entmanshel.py
-- import now working
-- AYM DYING AND DISTRACTED
-- updated UI of entman and entmanshel
-- added checkbox and delete btn
-
-task - 10-27-24
-- delete confirmation qmessage
-
-task - 10-29-24
-- added save changes to a new excel file, keeping the files while software is open not yet working
-- import issues, remove NaN RESOLVED
-- added multi-row deletion function, NOT WORKING HAS issues
-- user ability to add new row sa entity entityManagement, UNSTABLE
-
-task - 10-30-24
-- fixing table_widget issues with add new row for entity management, when typing text is white, when entered text is black
-- bobo yung issue sa taas, NAKA DARK MODE PALA KO HAYOP
-- fixed issue with not being able to delete first and last row
-- still fixing issues with saving the file, fixed on putting the file on documents, nag lload kaagad yung previous data na nilagay
-
-task - 11-01-24
-- refactored code for readability
-- issue with naka fix kung saan ma ssave yung document, FIXED
-- add shelter btn now working
-
-
 to do:
 - light mode and dark mode option
 - connect pag save sa main window communities
+- solve settings & progress
 
 issues:
 - multi-row deleteion issues

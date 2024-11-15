@@ -1,0 +1,121 @@
+%%%%%%%%%%%%%%%%%%%-D O  N O T  D E L E T E-%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                            %%
+%%  BulSU BS Math Thesis Proposal                             %%
+%%  LateX Template                                            %%
+%%  Version 4 (4 November 2024)                               %%
+%%                                                            %%
+%%  Load documentclass{bulsuthesis}                           %%
+%%  This template is for the use of BS Math students of       %%
+%%  the Collge of Sicence, Bulacan State University           %%
+%%  in typsetting their undergraduate thesis.                 %%
+%%                                                            %%
+%%  Original Author:                                          %%
+%%  Harris R. Dela Cruz                                       %%
+%%  Bulacan State University                                  %%
+%%  e-mail: harris.delacruz@bulsu.edu.ph                      %%
+%%                                                            %%
+%%  Permission: Any student of the University is hereby given %%
+%%  permission to use this template and the accompanying      %%
+%%  bulsuthesis.cls and thesis-structure.tex files provided   %%
+%%  the original author is given due acknwledgement.          %%
+%%                                                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%-D O  N O T  D E L E T E-%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[hidelinks,a4paper,12pt]{bulsuthesis}
+\input{thesis-structure}
+\graphicspath{{Figures/}}	%change graphic path folder
+\addbibresource{reference.bib} %filename of your .bib database
+%\geometry{showframe}
+
+%--------------------------------------------------------------%
+% THESIS BASIC INFORMATION
+%--------------------------------------------------------------%
+\title{Proposed Thesis Title Goes Here With a Very Long Title Using a Maximum of Fourteen Words}%Type your thesis title here without any line break
+
+\fronttitle{%
+	Proposed Thesis Title Goes Here With a Very Long Title Using a Maximum of Fourteen Words
+	} 
+	%Type your thesis title as how it will appear [inverted triangle] in the title page
+	%Use \protect\\ to force a new line in the title
+
+\author{%Name of the research proponents, in alphabetical order
+	Name OF. Student 1
+	
+	Name OF. Student 2
+	
+	Name OF. Student 3
+	
+	Name OF. Student 4
+}
+\authorone{Name OF. Student 1}  %<-Re-type individual names here
+\authortwo{Name OF. Student 2}  %<-Re-type individual names here
+\authorthree{Name OF. Student 3}%<-Re-type individual names here
+\authorfour{Name OF. Student 4} %<-Re-type individual names here
+
+\papertype{Thesis Proposal} %papertype can be thesis proposal, 
+%thesis or dissertation
+\adviser{Thesis Adviser}		%<-thesis adviser
+\panelchair{Panel Chair}	%<-thesis panel-chair
+\paneltwo{Panel Member 2}		%<-thesis panel-member
+\panelthree{Panel Member 3}		%<-thesis panel-member
+\degree{Bachelor of Science in Mathematics} %<-student's course
+\specialization{Computer Science} %<-student's specialization
+\college{College of Science}	%<-student's college
+\csdean{THELMA V. PAGTALUNAN, PhD.}%<-dean of the college
+\ddate{December 2024}			%<-Month Year of defense date
+
+
+\begin{document}
+\emergencystretch 3em
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
+\renewcommand{\listtablename}{LIST OF TABLES}
+\renewcommand{\listfigurename}{LIST OF FIGURES}
+
+%--------------------------------------------------------------%
+% FRONTMATTER
+%--------------------------------------------------------------%
+\doublespacing
+\begin{preliminary}
+	\maketitle
+	\tableofcontents 		%<-print the ToC
+	\newpage
+	\listoftables			%<-print the list of tables page
+		\addcontentsline{toc}{chapter}{LIST OF TABLES}
+		\addtocontents{lot}{\noindent\makebox[0.75in][l]{\textbf{Table}}\makebox[\linewidth-0.75in]{\textbf{Title}\hfill\textbf{Page}}\par}
+	\newpage
+	\listoffigures			%<-print the list of figures page
+		\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+		\addtocontents{lof}{\noindent\makebox[0.75in][l]{\textbf{Figure}}\makebox[\linewidth-0.75in]{\textbf{Title}\hfill\textbf{Page}}\par}
+	\newpage
+\end{preliminary}
+
+	\addtocontents{toc}{\let\protect\contentsline\protect\nopagecontentsline}
+	\addcontentsline{toc}{chapter}{CHAPTER}
+	\addtocontents{toc}{\let\protect\contentsline\protect\oldcontentsline}
+
+
+%--------------------------------------------------------------%
+% MAINMATTER
+%--------------------------------------------------------------%
+%Compose the body of your thesis in separate .tex file
+%Input them separately using the command \input{filename}
+\input{chapter1}
+\input{chapter2}
+\input{chapter3}
+
+%\nocite{*}
+%--------------------------------------------------------------
+% ENDMATTER of the Thesis
+%--------------------------------------------------------------
+%============%
+% REFERENCES %
+%============%
+
+\printbibliography[heading=bibintoc,title={REFERENCES}] %<-start the bibliography
+\clearpage
+
+\input{appendix}
+
+\end{document}

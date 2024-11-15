@@ -1,0 +1,98 @@
+\usepackage{lipsum}			%garabge words
+\usepackage[none]{hyphenat} 	%no hypenation
+%----------------------------------------------------------------
+% SECTIONING FORMAT
+%----------------------------------------------------------------
+%\usepackage[skip=5ex]{parskip}
+\setcounter{secnumdepth}{0}	%<-section numbering only up to sec
+	%\titleformat{command}[shape]{format}{label}{sep}{before-code}[after-code]
+
+\titleformat{\chapter}[display]
+	{\centering\normalfont\large\bfseries}
+	{\MakeUppercase{\chaptertitlename\ \thechapter}\filcenter}
+	{0pt}%sep
+	{\centering\uppercase}
+	{\normalsize\filcenter}
+\titlespacing{\chapter}{0pt}{-30pt}{18pt}
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+\titleformat{\section}
+	{\normalfont\normalsize\bfseries}
+	{\thesection}
+	{1em}
+	{}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\titlespacing{\section}{0pt}{2ex plus 1ex minus 0ex}{0ex}
+
+\titleformat{\subsection}
+	{\normalfont\normalsize\itshape\bfseries}
+	{\thesubsection}
+	{1em}
+	{}
+\titlespacing{\subsection}{0pt}{2ex plus 1ex minus 0ex}{0ex}
+
+\titleformat{\subsubsection}
+{\normalfont\normalsize\itshape}
+{\thesubsubsection}
+{1em}
+{}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+
+
+%----------------------------------------------------------------
+% TABLE/FIGURES/EQUATION
+%----------------------------------------------------------------
+\usepackage{booktabs,longtable,threeparttable,siunitx,tabularx}
+\usepackage{array,multicol,multirow,color,calc}
+	\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+	\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+	\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\usepackage{caption}
+	\DeclareCaptionLabelSeparator*{spaced}{\\[1ex]}
+	\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+	\captionsetup[table]{
+%		font=sf,
+		labelfont=bf,
+		textfont=it, 
+		format=plain,
+		justification=justified,
+		singlelinecheck=false,
+		labelsep=spaced,skip=12pt
+		}
+	\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+	\captionsetup[figure]{
+%		font=sf,
+		labelfont=bf,
+		textfont=it, 
+		format=plain,
+		justification=justified,
+		singlelinecheck=false,
+		labelsep=spaced,skip=12pt
+		}
+		
+	\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
+
+
+%----------------------------------------------------------------
+% TABLE OF CONTENTS
+%----------------------------------------------------------------
+%\usepackage[titles]{tocloft}
+\setcounter{tocdepth}{1} 	%<-toc level shows only up to sec
+%setting the indentation of section in the TOC
+\setlength{\cftchapnumwidth}{2em}
+\setlength{\cftsecindent}{2em}
+
+\makeatletter
+\renewcommand*\l@figure{\@dottedtocline{1}{1em}{3.5em}}% Default: 1.5em/2.3em
+\let\l@table\l@figure
+\makeatother
+%----------------------------------------------------------------
+% BIBLIOGRAPHY
+%----------------------------------------------------------------
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[style=apa,defernumbers=true]{biblatex}
+	\DeclareLanguageMapping{american}{american-apa}
+	\defbibheading{subbibliography}[\refname]{\section*{#1}}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}

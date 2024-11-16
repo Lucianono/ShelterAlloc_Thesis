@@ -1,19 +1,84 @@
 \chapter{The Problem and Its Background}
 
-This is the Introduction. Provide an overview of your thesis without giving too much detail about the background of the study. Just enought to entice the reader and jump start the discussion in order to segway the background of the study.
+test test
 
 \section{Background of the Study}
 
-Discuss here the background of the study. Be sure to cite your references \nocite{*}.
+The Philippines experiences typhoons, earthquakes, and volcanic eruptions each year, leaving people vulnerable and displaced because the country is situated within the Pacific Ring of Fire and directly in the path of the typhoon belt in the Pacific Ocean. Typhoon Haiyan, also known as Super Typhoon Yolanda, devastated the nation in 2013 and displaced over 4 million people, exposing severe shortcomings in the Philippine shelter allocation systems \parencite{Iuchi2019}. Despite ongoing efforts, the country continues to face significant challenges in shelter allocation. Overcrowding remains a persistent issue, with many shelters operating beyond their intended capacity, leading to unsafe and unsanitary conditions. Accessibility problems further worsen the situation, as shelters are often located at distances difficult for affected individuals, particularly those in rural or remote areas, to reach due to poor infrastructure.
+
+
+Additionally, the inefficient distribution of resources like food, water, and medical supplies results in shortages and uneven support across shelters. The needs of vulnerable groups, such as the elderly, disabled, and those with chronic health conditions, are frequently overlooked, increasing their risk during disasters. Compounding these issues are data and communication gaps that hinder effective decision-making and timely shelter assignments, emphasizing the need for a more efficient and responsive shelter allocation system. The recurring nature of these disasters highlights the urgent need for innovative approaches to develop a robust system capable of meeting the high demand for effective shelter allocation.
+
+Historically, it has been a critical aspect of disaster management since ancient times when communities would seek refuge in caves or fortified structures during emergencies. However, formalized shelter allocation strategies emerged in the 20th century with the rise of civil defense measures during World War II, where air raid shelters were established in urban areas. These air raid shelters were used to ensure the safety of the population of Europe because of the civil casualties and weakening of their social and military morale, as seen in London, Berlin, and Paris \parencite{Flebus1941,Shakibamaesh2015}. Post-war, shelter allocation evolved in response to natural disasters, and humanitarian organizations developed temporary shelters for displaced populations. Later, in 1970 in Bangladesh, the inadequacy of early efforts became evident during the Bhola cyclone, which led to numerous deaths. As cited by \textcite{Hossain2018}, a study showed that people lacked access to information about the cyclone warning and that appropriate shelters were rare, resulting in a devastating 300,000 fatalities, with some estimates being even higher and an estimated 4.8 million people were affected by the cyclone due to the lack of effective shelter allocation.
+
+Shelter location-allocation (or shelter allocation) refers to assigning displaced communities to available shelters during a disaster \parencite{Yin2023}. It is a crucial aspect of disaster prevention and mitigation that involves the safety and well-being of affected populations by providing secure, accessible, and adequate temporary shelter. Effective shelter allocation involves considerations such as shelter capacity, proximity to disaster sites, and the specific needs of vulnerable communities. Over the years, strategies have evolved from reactive measures to a more systematic approach incorporating modern technologies and methodologies, highlighting the increasing importance of structured and efficient shelter allocation. However, ensuring sufficient and accessible shelter persists, especially in developing countries like the Philippines.
+
+This study proposes using a genetic algorithm (GA), a computational method inspired by natural selection and evolution, to address the inefficiencies in shelter allocation. \textcite{Mathew2012} discussed that these algorithms represent potential solutions to a given problem using a basic chromosome-like data structure and employ recombination operators to maintain essential information. Genetic algorithms are commonly regarded as tools for function optimization, mimicking the process of evolution by generating solutions to optimization problems through selection, crossover, and mutation. This algorithm has been applied to a wide variety of problems. In shelter allocation, genetic algorithms can optimize the assignment process by simultaneously considering factors such as shelter capacity, location, and accessibility. This approach aims to minimize overcrowding, improve resource distribution, and enhance overall efficiency in managing shelters during disasters.
+
+Given the Philippines' frequent exposure to natural disasters, implementing a shelter allocation system is needed. This study is dedicated to developing a system based on genetic algorithms to address the unique challenges experienced in the Philippines, focusing on Hagonoy, Bulacan, chosen for its high vulnerability to flooding and its challenges in managing shelter allocation during disasters. The proposed shelter allocation system has the potential to significantly improve disaster response efficiency, reduce overcrowding, and enhance safety for displaced individuals. Implementing a shelter allocation system using genetic algorithms in Hagonoy, Bulacan, is expected to improve disaster response significantly. By optimizing shelter allocation, the system can reduce overcrowding, improve access to resources, and enhance overall safety for displaced individuals. Additionally, the insights gained from this study could be applied to other municipalities facing similar challenges, contributing to the national effort to strengthen disaster resilience. 
+\nocite{*}.
 
 \section{Statement of the Problem}
-Discuss here the general and specific statement of the problems (SOP).
+This study aims to address the shelter allocation problem for the municipality of Hagonoy, particularly during disaster situations such as storm surges and flash floods. The primary challenge is how to model and solve the location-allocation problem to ensure that victims are allocated to shelters in an optimal manner. Specifically, the paper aims to solve the following questions:
+
+\begin{enumerate}
+	\item What is the optimal shelter allocation for the municipality of Hagonoy?
+	\item How the system will be developed featuring the following functionalities:
+	\begin{enumerate}
+		\item Data Modification,
+		\item Data Simulation,
+		\item Shelter Tagging, and
+		\item System Security?
+	\end{enumerate}
+	\item How acceptable will the proposed system be based on criteria of ISO / IEC 25010?
+	\begin{enumerate}
+		\item Functional Suitability,
+		\item Performance Efficiency,
+		\item Compatibility,
+		\item Interaction Capability,
+		\item Reliability,
+		\item Security,
+		\item Maintainability,
+		\item Flexibility,
+		\item Safety?
+	\end{enumerate}
+\end{enumerate}
 
 \section{Objective of the Study}
-Discuss here the general and specific objectives of the study, parallel to your SOP.
+The primary objective of this study is to develop an efficient Decision Support System (DSS) for optimal shelter allocation in disaster situations, specifically designed for the municipality of Hagonoy. The specific goals of the study are to:
+
+\begin{enumerate}
+	\item \textbf{Model Adoption}: Use of Bilevel No Transfer model, derived from the General Single Level (GEN) and Hierarchical (HIER) models, to minimize travel distance and shelter construction/maintenance costs. The model is known to have a feasible solution for optimal shelter allocation.
+	
+	\item \textbf{System Development}: Develop a DSS integrating the formulated model, and solving the model using Genetic Algorithm. The system should produce an output containing the optimal shelter allocation of the municipality by integrating the formulated model. The user of the system should also have access to modify the data, tag the shelters, and secure the data.
+	
+	\item \textbf{System Assessment}: The acceptability of the proposed system will be determined by a survey based on the criteria of ISO/IEC 25010. This will be given to the potential users of the system such as the administrators in disaster risk reduction management.
+	
+\end{enumerate}
 
 \section{Significance of the Study}
-Discuss here the significance of the study.
+In 2022, the Philippines was ranked as the most disaster-prone country on the World Risk Index. The nation faces a diverse array of natural disasters each year, including typhoons, earthquakes, and volcanic eruptions (Andwii, 2022). The country's location on the "Pacific Ring of Fire" also makes it prone to frequent earthquakes and volcanic activity. Its geographical features make it more vulnerable to various disasters, such as tsunamis, rising sea levels, storm surges, landslides, floods, flash floods, and droughts.
+
+This project seeks to improve disaster preparedness by providing a program and a model that facilitates more efficient decision-making and optimizes shelter placements regarding accessibility, cost-efficiency, and community proximity. Once validated through simulations in Hagonoy, Bulacan, the proposed solution has the potential to significantly reduce the risks associated with natural disasters in that area and enhance the overall management of shelter allocation and emergency resources.
+
+The resulting models and program from this project will primarily benefit and protect the citizens of the disaster-prone area of Hagonoy, Bulacan by optimizing allocation of shelters, thus leading to faster evacuation times and better distribution of resources for use in the welfare of its citizens. The resulting optimization of shelter locations also extends to the efficient use of financial and logistical resources, minimizing the costs required in the maintenance and operation of shelters, thus allowing reallocation of previously spent resources into other areas.
+
+By providing insights into optimized shelter locations and evacuee distribution, this project seeks to benefit the following parties:
+
+\begin{description}
+	\item[Local Government.] he local government of the target municipality is a beneficiary of this project due to being responsible for disaster management and response within their jurisdiction. The administration of the affected municipalities’ LGU would achieve a system that will assist in the evacuation and protection of citizens and thus may divert their attention elsewhere into other areas.
+	
+	\item[Provincial Disaster Risk Reduction and Management Council (PDRRMC).] The PDRRMC is the group responsible for coordination of disaster risk reduction and management at the provincial level. This project’s resulting findings may be a valuable tool for the PDRRMC to assist them in terms of optimal shelter locations and distribution of evacuees.
+	
+	\item[Communities.] The local communities within Hagonoy are directly affected by disasters, especially floods and are thus important beneficiaries of this project. The community of Hagonoy would in theory achieve faster response times, shelters that are located in optimal positions that take into account their homes and workplaces, and more systematic procedures in evacuation.
+	
+	\item[Future researchers.] Future researchers are a beneficiary due to this project being open to the public and thus, researchers and developers may derive their own thesis projects that are similar for use in different areas of the Philippines.
+	
+\end{description}
 
 \section{Scope and Limitations}
-Discuss here the scopes and limitations of the study.
+This thesis on the optimization of the allocation of evacuation shelters is geographically limited to Hagonoy, Bulacan due to the municipality being very vulnerable to natural disasters, especially flooding. However, this study can be applied to other disaster-prone areas with some adjustments, which will not be covered in this thesis. Moreover, this thesis will use the Bilevel No Transfer model derived from the General Single Level model (GEN) and Hierarchical model (HIER) through Genetic Algorithm only.
+
+The thesis will utilize real-world information from Hagonoy, including existing shelter locations and geographic layouts, as well as cost estimates for shelter maintenance and other operations. This data will be acquired by the researchers with the help of the local government unit of Hagonoy.
+
+The project is limited to a 10-month period wherein all stages of the thesis and consequent testing must be completed. Prolonged data collection and project maintenance beyond this period will not be covered by the researchers.

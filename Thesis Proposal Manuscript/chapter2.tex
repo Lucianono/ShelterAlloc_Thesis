@@ -1,31 +1,80 @@
 \chapter{Review of Related Literature}
 
-Provide a short introduction for the chapter. Highlight the importance of the literature review in the context of your research
+	Over the years, different types of models have been developed for shelter location-allocation to support evacuation efforts, each with distinct objectives and often integrated with simulation programming. This chapter delves into key theories in modeling and system integration that inform the development of effective shelter location-allocation systems. A comprehensive review of related literature is conducted, analyzing and synthesizing existing studies to highlight their relevance, explore the current models, and identify areas where system features are lacking. 
 
 \section{Theoretical Framework}
-Discuss here the relevant theories for your study.
+	The development of the shelter location-allocation system draws on key theories which feature the optimization of shelter location-allocation, development, and assessment of the system.
 
-\subsection{Relevant Theory 1}
-Discuss here a theoretical framework/theory relevant to your study.
+\subsection{Operations Research}
+ 	Mathematically modeling is an approach to represent a real-life problem and solving them using mathematical techniques such as the operations research. This theory addresses the optimization of objectives, crucial in shelter location-allocation where factors like distance and cost must be balanced. The problem is modeled to find the optimal locations while minimizing travel distances and associated costs, making it ideal for a multi-objective optimization.
 
-\subsection{Relevant Theory 2}
-Discuss here a theoretical framework/theory relevant to your study.
+\subsection{Theory of Evolution}
+	Inspired by Charles Darwin’s theory of evolution, evolutionary algorithms such as genetic algorithms simulate natural selection within code to solve complex optimization problems effectively. This approach is widely used due to its robustness and adaptability, and it will be applied to solve the multi-objective model for shelter location-allocation.
 
+\subsection{Decision Theory}
+ 	Decision theory is a study of having a rational choice by using models and tools.. This involves creating a system that serves as a decision support tool for decision-makers, such as the PDRRMC, in the allocation of shelters. It features user-defined parameters for model customization and provides functionality for creating, reading, updating, and deleting data.
 
-\section{RRL Topic 1}
-Discuss here a review of the literatures and studies on Topic 1 related to the current research. 
+\subsection{Software Product Assessment Framework (ISO 25010)}
+	ISO 25010 provides standards for assessing software quality, covering aspects such as functionality, usability, reliability, and efficiency. This framework will guide the evaluation of our decision support system through surveys, ensuring it meets high-quality standards.
 
-\section{RRL Topic 2}
-Discuss here a review of the literatures and studies on Topic 2 related to the current research.
+\section{Bulacan is vulnerable in disasters}
+	According to a report by Reyes-Estrope covering Typhoon Fabian in 2021 \parencite{Carmela2021}, heavy rainfall caused by the southwest monsoon and Typhoon Fabian resulted in flooding across 35 villages in Bulacan, including Hagonoy and Marilao. The water level of the Angat Dam rose to 185.72 meters above sea level during this event. Moreover, Gozum's report on Typhoon Egay in 2023 \parencite{Iya2023} emphasizes the hardships faced by flood victims in Bulacan. The province was declared under a state of calamity due to Typhoon Egay, which affected over 200,000 families and forced many residents to evacuate.
+	
+	Regarding the municipality of Hagonoy, Manabat reports on the ongoing concerns of Hagonoy residents regarding frequent flooding in the area, urging the government to take action to address the issue which has been affecting their livelihoods; calling for the construction of a flood control projects or system. \parencite{Jacque2022}
 
-\section{RRL Topic n}
-Include as many topic as eneded.
+\section{Existing shelter location-allocation models}
+The allocation of different resources during each evacuation phase is critical, however, this is often delayed, either due to extenuating circumstances or simply lack of a system. Therefore, optimization is a must. In this section, the paper will introduce different models with varying solving techniques to solve each of their own objectives.
+
+In disaster management, the organization of effective evacuation is important. Yiying Wang and Zeshui Xu (2022) address the challenge of determining optimal shelter locations and evacuation routes, integrating methods such as the normal distribution, analytic hierarchy process (AHP), and ordered weighted aggregation operator (OWA); These approaches that have assigned subjective scores and initial weights to critical attributes significantly advances shelter location models for disaster response. \parencite{Yiying2022}
+
+The thesis features two levels of shelters which introduces a hierarchy of shelters, each with different needs that they fulfill and with different requirements to be assigned a level, therefore the levels of each shelter must be taken into account, this segment of the system requires the use of hierarchical optimization.
+
+Yunjia Ma et al. (2019) show the importance of site selection models in disaster scenarios, particularly highlighting the application of bilevel programming, a hierarchical optimization method first introduced by H.v. Stackelberg in 1934. The methods used are applied to different complex location problems, such as the p-median and p-center problems, which are crucial for the distribution of resources during emergencies. \parencite{Yunjia2019}
+
+Building on the hierarchical approach, Xiujuan Zhao et al. (2019) applied a hierarchical model for shelter location and evacuee allocation, distinguishing between emergency shelters (EMS) and long-term shelters (LTS). Combined with an optimization algorithm, their model facilitates the selection of EMS locations from a pool of candidates, ensuring the initial allocation of evacuees. Over time, evacuees transitioned from EMS to LTS in a structured and efficient manner, highlighting the practical advantages of hierarchical models in emergency management. \parencite{Xiujuan2019}
+
+In a different study created by Yunjia Ma, Wei Xu, Lianjie Qin, and Xiajuan Zhao titled “Site selection models in natural disaster shelters: a review”, the paper exposes different models to best represent a shelter location-allocation problem, Single-Objective, Multi-Objective, and Hierarchical models. These models were compared for the objectives that were maximized and minimized, and then introduced different algorithms that may be used to solve them. \parencite{Yunjia2019}
+
+According to ongoing research in UP Diliman, there exists 4 shelter location-allocation models that are derived from the study of Xiujuan Zhao et al. (2019); BNST, BST, BNT, and WORK models that are solved using binary genetic algorithms. These models answer the optimization of allocation of shelters based on the cost, distance, workplace, and the hierarchy of shelter. This study was applied to the area of Talisay in Batangas using simulated data for shelter information. \parencite{Xiujuan2019}
+
+A study similar to the thesis has been published locally, however this study answers the optimization of COVID-19 vaccination site allocations. Made by Kurt Izak M. Cabanilla, Erika Antonette T. Enriquez, Renier Mendoza, and Victoria May P. Mendoza, the study is titled “Optimal selection of COVID-19 vaccination sites in the Philippines at the municipal level. \parencite{Kurt2021}
+
+\subsection{Optimization Technique by Genetic Algorithm}
+
+	Since the optimization of the allocation of shelters requires multiple iterations to test and figure out what is truly optimal, one method of solving this is through the use of genetic algorithms.
+	
+	In a study created by Tom Mathew in 2012, Genetic Algorithms are based on the concept of natural selection and evolves possible solutions through operators such as selection, crossover, and mutation. Iterative processes are essential for refining solutions over successive generations. Multi-Objective Genetic Programming (MOGP) emphasizes the importance of semantic diversity and that methods like Pivot Similarity Semantic-based Distance outperform traditional approaches by enhancing solution quality and diversity, according to a study by Edgar Galvan and Fergai Stapleton (2020). \parencite{Mathew2012}
+	
+	There have been many published studies and thesis for model allocation, such as the study made by Yiying Wang and Zeshui Xu titled “A Multi-Objective Location Decision Making Model for Emergency Shelters Giving Priority to Subjective Evaluation of Residents”. Another such study is titled “An approach for optimizing multi-objective problems using hybrid genetic algorithms.” created by Ahmed Maghawry, Rania Hodhod, Yasser Omar, and Mohamed Kholief; this paper proposes a hybrid genetic algorithm (HGA) in optimizing multi-objective problems. \parencite{Yiying2022}
+	
+	Another problem with solving optimization problems is its speed, according to Yang Yin, Xiangcheng Zhao, and Wei Lv in the paper “Emergency shelter allocation planning technology for large-scale evacuation based on quantum genetic algorithm”. The study also indicated the formulation of shelter allocation models, and solved by using Improved Quantum Genetic Algorithm (IQGA). This is applicable for the extension of this project. \parencite{Yin2023}
+
+\section{Lack of System Integration}
+	The referenced articles each propose models with various objectives. However, none offer a fully implemented system for practical use by disaster-response teams. This gap highlights the need for a comprehensive decision support system that integrates these models and enables real-time decision-making and adaptability in disaster situations. While the following articles propose a system, they remain incomplete and require further development.
+	
+	In the study “Optimizing Emergency Shelter Selection in Earthquakes using a Risk-Driven Large Group Decision-Making Support System” by Amir Reza Bakhshi Lomer and Mahdi Rezaeian and Hamid Rezaei and Akbar Lorestani and Naeim Mijani and Mohammadreza Mahdad and Ahmad Raeisi and Jamal Jokar Arsanjan, it has been claimed that the group has created a system with risk-based features that affect the output. The paper, however, did not show the system structure nor the system itself, the paper also proposed no acceptability measures. \parencite{Amir2023}
+	
+	A decision support tool for allocating temporary-disaster-response facilities by Fatih Cavdur and Asli Sebatli. This paper proposes the use of a decision support tool for the allocation of temporary disaster-response facilities while under the effects of demand uncertainty. The study also develops a database for storing disaster and shelter details to support disaster operations. This system closely aligns with this thesis, as it addresses shelter allocation and provides decision-making assistance for disaster-response teams. However, the study lacks any measures for evaluating system acceptability and has room for improvement, as the system design is also outdated. \parencite{Cavdur2019}
 
 \section{Synthesis of the Review}
-Discuss here the synthesis of the review of related literature.
+	Overtime, the researchers have reviewed and analyzed multiple literatures and studies that relate to the thesis. These range from literature and studies that cover different areas using differing allocation techniques as well as other formulae and algorithms that may be used in the thesis. However, a large amount of this literature and studies lack a system or other feature that is partly required for the usability of the end-user. By studying these collected pieces of literature, the researchers aim to create a system with enough improvements from the previous studies presented. Moreover, this thesis will base most of the system and algorithms from the ongoing research in UP Diliman. 
 
 \section{Conceptual Framework}
-Discuss here the conceptual framework of the current study.
+	This section provides an Input-Process-Output framework (IPO) as a basis for conceptual framework outlining the development and implementation of Shelter Location-Allocation System for Hagonoy, Bulacan. The IPO model was first introduced in the context of computer programming and documentation using the Hierarchy plus IPO (HIPO) technique. Moreover, the concept of input and output has been used before in economics, back in the 1930s, Wassily Leontief first conceptualized input-output analysis to illustrate economic interrelationships
+	
+	 \begin{figure}[h!]
+		\centering
+		\caption{IPO Model} \label{fig:ipo}
+		\includegraphics[width=\linewidth]{IPO}
+	\end{figure}
+	
+	The inputs for this project include related studies and literature, which provide a foundation for selecting and adapting an appropriate model for our system. These resources will be analyzed and synthesized to establish a strong foundation in conducting this project. We also need to gather software and hardware requirements, such as the compatible Windows version and system prerequisites, to ensure a smooth development process. Additionally, real data from Hagonoy, Bulacan, specifically community and shelter information, will be essential for testing and validating the system.
+	
+	The process begins with planning, where we outline the objectives and approach for building the system. Once a clear plan is established, we proceed to analysis and design, which involves creating mock-up designs, an ERD schema, and process flows to help the developers visualize the system structure. The development phase is the longest phase, involving both frontend design and backend coding using the Qt framework. Once developed, the system undergoes rigorous testing to identify and correct any errors or anomalies, which will then be debugged or will be resolved. Finally, the system will be evaluated through a survey based on the ISO 25010 criteria to assess its acceptability.
+	
+	The expected output is a fully functional decision support system that incorporates the  model adopted using a genetic algorithm as the solving method. The researchers will generate results showing the optimal shelter location-allocation for Hagonoy, Bulacan using the developed system.
+	
+	
 
 \begin{figure}[h]
 	\centering

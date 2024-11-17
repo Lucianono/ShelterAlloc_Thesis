@@ -177,7 +177,10 @@ padding:0;</string>
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_4">
+                <widget class="QPushButton" name="write_community_btn">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton{
 	background-color: none;
@@ -617,7 +620,10 @@ padding:0;</string>
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_3">
+                <widget class="QPushButton" name="write_shelter_btn">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton{
 	background-color: none;
@@ -874,12 +880,15 @@ padding:0;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox">
+                <widget class="QCheckBox" name="shelter_res_checkbox">
                  <property name="maximumSize">
                   <size>
                    <width>30</width>
                    <height>30</height>
                   </size>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="text">
                   <string/>
@@ -915,7 +924,7 @@ border-radius: 20px;
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>0</y>
+                 <y>-17</y>
                  <width>364</width>
                  <height>131</height>
                 </rect>
@@ -1012,12 +1021,15 @@ color:rgb(43, 43, 43);</string>
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QCheckBox" name="checkBox_2">
+                 <widget class="QCheckBox" name="shelter_res_flood_checkbox">
                   <property name="maximumSize">
                    <size>
                     <width>30</width>
                     <height>16777215</height>
                    </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
                    <string/>
@@ -1025,12 +1037,15 @@ color:rgb(43, 43, 43);</string>
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QCheckBox" name="checkBox_3">
+                 <widget class="QCheckBox" name="shelter_res_typhoon_checkbox">
                   <property name="maximumSize">
                    <size>
                     <width>30</width>
                     <height>16777215</height>
                    </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
                    <string/>
@@ -1038,12 +1053,15 @@ color:rgb(43, 43, 43);</string>
                  </widget>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QCheckBox" name="checkBox_4">
+                 <widget class="QCheckBox" name="shelter_res_earthquake_checkbox">
                   <property name="maximumSize">
                    <size>
                     <width>30</width>
                     <height>16777215</height>
                    </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
                    <string/>
@@ -1051,12 +1069,15 @@ color:rgb(43, 43, 43);</string>
                  </widget>
                 </item>
                 <item row="3" column="1">
-                 <widget class="QCheckBox" name="checkBox_5">
+                 <widget class="QCheckBox" name="shelter_res_volcanic_checkbox">
                   <property name="maximumSize">
                    <size>
                     <width>30</width>
                     <height>16777215</height>
                    </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
                    <string/>
@@ -1159,12 +1180,15 @@ padding:0;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox_10">
+                <widget class="QCheckBox" name="shelter_stat_checkbox">
                  <property name="maximumSize">
                   <size>
                    <width>30</width>
                    <height>30</height>
                   </size>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="text">
                   <string/>
@@ -1200,7 +1224,7 @@ border-radius: 20px;
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>0</y>
+                 <y>-15</y>
                  <width>363</width>
                  <height>131</height>
                 </rect>
@@ -1297,12 +1321,15 @@ color:rgb(43, 43, 43);</string>
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QCheckBox" name="checkBox_6">
+                 <widget class="QCheckBox" name="shelter_stat_built_checkbox">
                   <property name="maximumSize">
                    <size>
                     <width>30</width>
                     <height>16777215</height>
                    </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
                    <string/>
@@ -1310,12 +1337,15 @@ color:rgb(43, 43, 43);</string>
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QCheckBox" name="checkBox_7">
+                 <widget class="QCheckBox" name="shelter_stat_pbuilt_checkbox">
                   <property name="maximumSize">
                    <size>
                     <width>30</width>
                     <height>16777215</height>
                    </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
                    <string/>
@@ -1323,12 +1353,15 @@ color:rgb(43, 43, 43);</string>
                  </widget>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QCheckBox" name="checkBox_8">
+                 <widget class="QCheckBox" name="shelter_stat_dmg_checkbox">
                   <property name="maximumSize">
                    <size>
                     <width>30</width>
                     <height>16777215</height>
                    </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
                    <string/>
@@ -1336,12 +1369,15 @@ color:rgb(43, 43, 43);</string>
                  </widget>
                 </item>
                 <item row="3" column="1">
-                 <widget class="QCheckBox" name="checkBox_9">
+                 <widget class="QCheckBox" name="shelter_stat_empty_lot_checkbox">
                   <property name="maximumSize">
                    <size>
                     <width>30</width>
                     <height>16777215</height>
                    </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
                    <string/>
@@ -1393,12 +1429,15 @@ color:rgb(43, 43, 43);</string>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="solveSet_adc_set_btn">
           <property name="font">
            <font>
             <pointsize>8</pointsize>
             <underline>true</underline>
            </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
            <string notr="true">border: none;
@@ -1415,7 +1454,7 @@ text-align: right;</string>
        </layout>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox_2">
+       <widget class="QComboBox" name="model_pick_comboBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -1439,6 +1478,9 @@ text-align: right;</string>
           <pointsize>11</pointsize>
          </font>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <item>
          <property name="text">
           <string>Single-level with Workplace Distance Inclusion (WORK)</string>
@@ -1452,13 +1494,16 @@ text-align: right;</string>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="solveSet_solve_btn">
         <property name="font">
          <font>
           <pointsize>16</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(28, 87, 57, 255), stop:1 rgba(61, 189, 124, 255));

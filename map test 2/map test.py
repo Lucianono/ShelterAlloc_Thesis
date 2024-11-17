@@ -2,12 +2,23 @@ import osmnx as ox
 import folium
 import pandas as pd
 import time #can be removed after.
+from math import radians, cos, sin, sqrt, atan2
+import networkx as nx
 
 # Define a list of colors for the routes
 ROUTE_COLORS = ['blue', 'green', 'red', 'purple', 'orange', 'pink', 'yellow', 'brown', 'gray', 'cyan']
 
 def get_route_color(iteration_index):
     return ROUTE_COLORS[iteration_index % len(ROUTE_COLORS)]
+
+def haversine_distance(lat1, lon1, lat2, lon2):
+    # Calculate haversine distance in meters
+    R = 6371000  # Earth's radius in meters
+    phi1, phi2 = radians(lat1), radians(lat2)
+    dphi = radians(lat2 - lat1)
+    dlambda = radians(lon2 - lon1)
+    a = sin(dphi / 2)**2 + cos(phi1) * cos(phi2) * sin(dlambda / 2)**2
+    return 2 * R * atan2(sqrt(a), sqrt(1 - a))
 
 def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.html", excel_name="distance_matrix.xlsx"):
     # Center the map at the average location of all communities and shelters
@@ -45,8 +56,12 @@ def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.htm
             lat1, lon1 = community_coords
             lat2, lon2 = shelter_coords
 
-            # Create the road graph within a larger bounding box defined by the points
-            bbox = (lat1 + 0.05, lat2 - 0.05, lon1 + 0.05, lon2 - 0.05)
+            # Create road graph
+            bbox_margin = max(abs(community_coords[0] - shelter_coords[0]),
+                              abs(community_coords[1] - shelter_coords[1])) + 0.01
+            bbox = (community_coords[0] + bbox_margin, community_coords[0] - bbox_margin,
+                    community_coords[1] + bbox_margin, community_coords[1] - bbox_margin)
+            roadgraph = ox.graph_from_bbox(*bbox, network_type='drive')
 
             roadgraph = ox.graph_from_bbox(*bbox, network_type='drive')
 
@@ -55,8 +70,8 @@ def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.htm
                 continue
 
             # Find the nearest nodes to the starting and ending points
-            start_node = ox.distance.nearest_nodes(roadgraph, lon1, lat1)
-            end_node = ox.distance.nearest_nodes(roadgraph, lon2, lat2)
+            start_node = ox.distance.nearest_nodes(roadgraph, community_coords[1], community_coords[0])
+            end_node = ox.distance.nearest_nodes(roadgraph, shelter_coords[1], shelter_coords[0])
 
             if start_node is None or end_node is None:
                 print(f"Error: Could not find nodes for the route from {community_name} to {shelter_name}.")
@@ -64,9 +79,22 @@ def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.htm
 
             # Find the shortest path between the nodes
             try:
-                route = ox.shortest_path(roadgraph, start_node, end_node)
+                # Use NetworkX's astar_path for A* pathfinding
+                route = nx.astar_path(
+                    roadgraph,
+                    source=start_node,
+                    target=end_node,
+                    heuristic=lambda u, v: haversine_distance(
+                        roadgraph.nodes[u]['y'], roadgraph.nodes[u]['x'],
+                        roadgraph.nodes[v]['y'], roadgraph.nodes[v]['x']
+                    ),
+                    weight='length'
+                )
+            except nx.NetworkXNoPath:
+                print(f"No path found using A* for {community_name} to {shelter_name}.")
+                continue
             except Exception as e:
-                print(f"Error: Could not compute shortest path from {community_name} to {shelter_name}. {e}")
+                print(f"Error: Could not compute shortest path using A* for {community_name} to {shelter_name}. {e}")
                 continue
             
             # Calculate the total route distance

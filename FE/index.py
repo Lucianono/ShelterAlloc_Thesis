@@ -26,6 +26,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.file_path = None
         self.advanced_settings_com.clicked.connect(self.open_entitymanagement_dialog)
         self.advanced_settings_shel.clicked.connect(self.open_entitymanagement_shelter_dialog)
+        self.solve_btn.clicked.connect(self.open_solve_settings_dialog)
 
         self.menu = QMenu(self)
         self.show()
@@ -97,6 +98,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         addEMS_dialog.ms_save_changes_btn.clicked.connect(lambda: self.save_to_excel(addEMS_dialog.shelterInfo_table, file_name, dialog, expected_types))
         addEMS_dialog.ms_add_shelter_btn.clicked.connect(lambda: self.add_row(addEMS_dialog.shelterInfo_table))
 
+        dialog.exec()
+
+    def open_solve_settings_dialog(self):
+        from ui_solveSettings import Ui_solveSettings
+        dialog = QDialog(self)
+        solve_settings_dialog = Ui_solveSettings()
+        solve_settings_dialog.setupUi(dialog)
         dialog.exec()
 
     def import_excel_data(self, table_widget, required_headers, expected_types):

@@ -22,9 +22,6 @@ to do:
 - light mode and dark mode option
 - connect pag save sa main window communities
 - solve settings & progress
-- make the ui of advance settings ng model
-- change scroll bar to gray when not in use
-- write button on selected communities and shelters
 
 issues:
 - multi-row deleteion issues

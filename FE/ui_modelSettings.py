@@ -71,21 +71,21 @@ class Ui_modelSettings(object):
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_28 = QHBoxLayout()
         self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
-        self.modeSettings_back_btn = QPushButton(self.widget_4)
-        self.modeSettings_back_btn.setObjectName(u"modeSettings_back_btn")
-        self.modeSettings_back_btn.setMinimumSize(QSize(30, 41))
-        self.modeSettings_back_btn.setMaximumSize(QSize(25, 41))
-        self.modeSettings_back_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.modeSettings_back_btn.setStyleSheet(u"QPushButton{\n"
+        self.modelSettings_back_btn = QPushButton(self.widget_4)
+        self.modelSettings_back_btn.setObjectName(u"modelSettings_back_btn")
+        self.modelSettings_back_btn.setMinimumSize(QSize(30, 41))
+        self.modelSettings_back_btn.setMaximumSize(QSize(25, 41))
+        self.modelSettings_back_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.modelSettings_back_btn.setStyleSheet(u"QPushButton{\n"
 "	background-color: none;\n"
 "	border: none;\n"
 "}")
         icon = QIcon()
         icon.addFile(u":/ICONS/462547553_520698087383761_137860076397263527_n.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.modeSettings_back_btn.setIcon(icon)
-        self.modeSettings_back_btn.setIconSize(QSize(41, 41))
+        self.modelSettings_back_btn.setIcon(icon)
+        self.modelSettings_back_btn.setIconSize(QSize(41, 41))
 
-        self.horizontalLayout_28.addWidget(self.modeSettings_back_btn)
+        self.horizontalLayout_28.addWidget(self.modelSettings_back_btn)
 
         self.label_18 = QLabel(self.widget_4)
         self.label_18.setObjectName(u"label_18")
@@ -275,7 +275,7 @@ class Ui_modelSettings(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.modeSettings_back_btn.setText("")
+        self.modelSettings_back_btn.setText("")
         self.label_18.setText(QCoreApplication.translate("Dialog", u"Model Settings", None))
         self.label_27.setText(QCoreApplication.translate("Dialog", u"Population", None))
         self.label_28.setText(QCoreApplication.translate("Dialog", u"Mutation", None))

@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication
+from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
 from PySide6.QtGui import QAction, QColor, QIcon, QCursor
 from PySide6.QtCore import Qt, QUrl
 from PySide6.QtWebEngineWidgets import QWebEngineView
@@ -99,14 +99,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         addEMS_dialog.ms_add_shelter_btn.clicked.connect(lambda: self.add_row(addEMS_dialog.shelterInfo_table))
 
         dialog.exec()
-
-    def open_solve_settings_dialog(self):
-        from ui_solveSettings import Ui_solveSettings
-        dialog = QDialog(self)
-        solve_settings_dialog = Ui_solveSettings()
-        solve_settings_dialog.setupUi(dialog)
-        dialog.exec()
-
     def import_excel_data(self, table_widget, required_headers, expected_types):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Excel File", "", "Excel Files (*.xls *.xlsx)")
         if file_path:
@@ -296,3 +288,34 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print(f"New map created and saved at: {map_path}")
 
         return map_path
+
+    def open_solve_settings_dialog(self):
+        from ui_solveSettings import Ui_solveSettings
+        dialog = QDialog(self)
+        solve_settings_dialog = Ui_solveSettings()
+        solve_settings_dialog.setupUi(dialog)
+
+        solve_settings_dialog.write_community_btn.clicked.connect(self.open_entitymanagement_dialog)
+        solve_settings_dialog.write_shelter_btn.clicked.connect(self.open_entitymanagement_shelter_dialog)
+        solve_settings_dialog.solveSet_adc_set_btn.clicked.connect(self.open_model_advanced_settings_dialog)
+        solve_settings_dialog.solveSet_solve_btn.clicked.connect(self.open_solving_progress_dialog)
+        dialog.exec()
+
+    def open_model_advanced_settings_dialog(self):
+        from ui_modelSettings import Ui_modelSettings
+        dialog = QDialog(self)
+        solve_settings_dialog = Ui_modelSettings()
+        solve_settings_dialog.setupUi(dialog)
+
+        solve_settings_dialog.modelSettings_back_btn.clicked.connect(dialog.close)
+        solve_settings_dialog.modelSettings_done_btn.clicked.connect(dialog.close)
+        dialog.exec()
+
+    def open_solving_progress_dialog(self):
+        from ui_solvingprogress import Ui_solvingProgress
+        dialog = QDialog(self)
+        solving_progress_dialog = Ui_solvingProgress()
+        solving_progress_dialog.setupUi(dialog)
+        
+        solving_progress_dialog.solving_prog_cancel_btn.clicked.connect(dialog.close)
+        dialog.exec()

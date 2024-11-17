@@ -80,7 +80,7 @@ QStackedWidget{
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_28">
         <item>
-         <widget class="QPushButton" name="modeSettings_back_btn">
+         <widget class="QPushButton" name="modelSettings_back_btn">
           <property name="minimumSize">
            <size>
             <width>30</width>

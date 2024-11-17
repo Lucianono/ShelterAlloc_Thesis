@@ -104,7 +104,7 @@
       <number>40</number>
      </property>
      <item>
-      <widget class="QProgressBar" name="progressBar">
+      <widget class="QProgressBar" name="solvingModel_progressBar">
        <property name="font">
         <font>
          <pointsize>1</pointsize>
@@ -132,7 +132,7 @@ border-radius: 3px;
       </widget>
      </item>
      <item>
-      <widget class="QFrame" name="textFrame">
+      <widget class="QFrame" name="solvingModel_textFrame">
        <property name="styleSheet">
         <string notr="true">#textFrame {
 border-radius: 10px;
@@ -162,8 +162,8 @@ border:none;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>500</width>
-             <height>198</height>
+             <width>496</width>
+             <height>182</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -211,7 +211,7 @@ border:none;</string>
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="solving_prog_cancel_btn">
          <property name="minimumSize">
           <size>
            <width>150</width>
@@ -228,6 +228,9 @@ border:none;</string>
           <font>
            <pointsize>-1</pointsize>
           </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {

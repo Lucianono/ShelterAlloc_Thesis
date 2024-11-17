@@ -80,7 +80,7 @@ QStackedWidget{
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_28">
         <item>
-         <widget class="QPushButton" name="pushButton_14">
+         <widget class="QPushButton" name="modeSettings_back_btn">
           <property name="minimumSize">
            <size>
             <width>30</width>
@@ -92,6 +92,9 @@ QStackedWidget{
             <width>25</width>
             <height>41</height>
            </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton{
@@ -273,7 +276,7 @@ QStackedWidget{
          </widget>
         </item>
         <item row="6" column="2" alignment="Qt::AlignHCenter">
-         <widget class="QCheckBox" name="checkBox_18">
+         <widget class="QCheckBox" name="hierarchy_checkBox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -291,6 +294,9 @@ QStackedWidget{
             <width>40</width>
             <height>30</height>
            </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
            <string notr="true">QCheckBox::indicator {
@@ -313,12 +319,15 @@ QStackedWidget{
          </widget>
         </item>
         <item row="0" column="2">
-         <widget class="QComboBox" name="status_comboBox_2">
+         <widget class="QComboBox" name="model_comboBox">
           <property name="minimumSize">
            <size>
             <width>150</width>
             <height>16</height>
            </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
            <string notr="true"/>
@@ -377,7 +386,7 @@ QStackedWidget{
        </layout>
       </item>
       <item alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="modelSettings_done_btn">
         <property name="minimumSize">
          <size>
           <width>161</width>
@@ -396,6 +405,9 @@ QStackedWidget{
           <weight>75</weight>
           <bold>true</bold>
          </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {

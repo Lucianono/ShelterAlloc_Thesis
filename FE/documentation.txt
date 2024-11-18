@@ -22,6 +22,8 @@ to do:
 - light mode and dark mode option
 - connect pag save sa main window communities
 - solve settings & progress
+- kapag inuupdate yung names ng shelter and community hindi nag uupdate kaagad
+- figure out that damn background problem it looks ass
 
 issues:
 - multi-row deleteion issues

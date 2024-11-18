@@ -12,7 +12,7 @@ import os
 # get data and parameters from excel
 Community_data = pd.read_excel( os.path.join(os.getcwd(), "commData.xlsx") ).fillna("")
 Shelter_data = pd.read_excel( os.path.join(os.getcwd(), "shelData.xlsx") ).fillna("")
-Distances_data = pd.read_excel( os.path.join(os.getcwd(), "distCommShelData.xlsx") ).fillna("")
+Distances_data = pd.read_excel( os.path.join(os.getcwd(), "distance_matrix.xlsx") ).fillna("")
 
 # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
 area_per_individual = 0.01
@@ -371,9 +371,66 @@ def logicCheck():
     # if no cases are violated return true
     return True
 
+# Function to read community coordinates from the Excel file
+def read_community_coordinates():
+    community_coords_df = pd.read_excel("commData.xlsx")
+    return {row["Name"]: {"Latitude": row["yDegrees"], "Longitude": row["xDegrees"]} 
+            for _, row in community_coords_df.iterrows()}
+
+# Function to read shelter coordinates from the Excel file
+def read_shelter_coordinates():
+    shelter_coords_df = pd.read_excel("shelData.xlsx")
+    return {row["Name"]: {"Latitude": row["yDegrees"], "Longitude": row["xDegrees"]} 
+            for _, row in shelter_coords_df.iterrows()}
 
 
+def export_to_excel(allocation, community_coords, shelter_coords):
+    data = []
+    
+    for community in Community:
+        shelter_name = allocation[community["name"]]
+        population = community["population"]
+        
+        # Get coordinates from the community coordinates dataframe
+        community_lat = community_coords.get(community["name"], {}).get("Latitude", None)
+        community_lon = community_coords.get(community["name"], {}).get("Longitude", None)
+        
+        # Get coordinates from the shelter coordinates dataframe
+        shelter_lat = shelter_coords.get(shelter_name, {}).get("Latitude", None)
+        shelter_lon = shelter_coords.get(shelter_name, {}).get("Longitude", None)
+        
+        # Calculate used area and shelter level
+        shelter_areas_lvl1 = {shelter["name"]: shelter["area1"] for shelter in Shelters}
+        shelter_areas_lvl2 = {shelter["name"]: shelter["area2"] for shelter in Shelters}
+        
+        used_area = population * area_per_individual
+        if used_area <= shelter_areas_lvl1[shelter_name]:
+            level = "Level 1"
+        else:
+            level = "Level 2"
+        
+        # Append data
+        data.append({
+            "Community Name": community["name"],
+            "Community Latitude": community_lat,
+            "Community Longitude": community_lon,
+            "Shelter Assigned": shelter_name,
+            "Shelter Latitude": shelter_lat,
+            "Shelter Longitude": shelter_lon,
+            "Population": population,
+            "Area Used (m²)": used_area,
+            "Shelter Level": level
+        })
+    
+    # Create a DataFrame and export to Excel
+    df = pd.DataFrame(data)
+    output_file = os.path.join(os.getcwd(), "allocation_results.xlsx")
+    df.to_excel(output_file, index=False)
 
+    print(f"Allocation results saved to {output_file}")
+
+community_coords = read_community_coordinates()
+shelter_coords = read_shelter_coordinates()
 
 
 # =======================
@@ -438,8 +495,11 @@ for generation in range(num_generations):
     # replace old population
     solutions = [sol[1] for sol in best_solutions]
 
+    
 
 best_allocation = solutions[0]
 show_allocation_details_grouped(best_allocation)
+
+export_to_excel(best_allocation, community_coords, shelter_coords)
 
 

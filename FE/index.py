@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
 from PySide6.QtGui import QAction, QColor, QIcon, QCursor
-from PySide6.QtCore import Qt, QUrl
+from PySide6.QtCore import Qt, QUrl, QTimer
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEngineSettings
 from functools import partial
@@ -23,8 +23,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("Dashboard")
 
-        map_path = self.create_map()
-        self.webEngineView.setUrl(QUrl.fromLocalFile(map_path))
+        self.initial_map_file_path = os.path.join(os.getcwd(), "map.html")
+        self.optimized_map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+        self.last_modified_time = os.path.getmtime(self.optimized_map_file_path) if os.path.exists(self.optimized_map_file_path) else None
+
+        self.webEngineView.setUrl(QUrl.fromLocalFile(self.initial_map_file_path))
+
+        self.map_update_timer = QTimer(self)
+        self.map_update_timer.timeout.connect(self.check_for_optimized_map_update)
+        self.map_update_timer.start(1000)  # Check every second
 
         self.file_path = None
         self.advanced_settings_com.clicked.connect(self.open_entitymanagement_dialog)
@@ -45,40 +52,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.entityManagementShelter_Window = EntityManagementShelter()
         self.entityManagementShelter_Window.show()
 
-    def create_map(self):
-        map_path = os.path.join(os.getcwd(), "map.html")
-
-        if os.path.exists(map_path):
-            print(f"Map already exists at: {map_path}")
-        else:
-            m = folium.Map(location=[14.7919, 120.7350], zoom_start=13)
-
-            start = (14.833799, 120.734049)
-            end = (14.836125, 120.733770)
-
-            G = ox.graph_from_point(start, dist=3000, network_type='all')
-            print("number of nodes in graph:", len(G.nodes))
-            print("Number of edges in graph:", len(G.edges))
-
-            G_projected = ox.project_graph(G)
-
-            start_node = ox.distance.nearest_nodes(G_projected, start[1], start[0])
-            end_node = ox.distance.nearest_nodes(G_projected, end[1], end[0])
-
-            path = nx.shortest_path(G, start_node, end_node, weight='length')
-            print("path nodes:", path)
-            path_coords = [(G.nodes[node]['y'], G.nodes[node]['x']) for node in path]
-            print("Path coordinates:", path_coords)
-            folium.PolyLine(locations=path_coords, color='red', weight=5, opacity=1).add_to(m)
-            
-            folium.Marker(location=start, popup='Start', icon=folium.Icon(color='green')).add_to(m)
-            folium.Marker(location=end, popup='End', icon=folium.Icon(color='red')).add_to(m)
-            m.save(map_path)
-            print(f"New map created and saved at: {map_path}")
-
-        return map_path
-
     def open_solve_settings_dialog(self):
         self.solveSettings_Window = SolveSettingsDialog()
         self.solveSettings_Window.show()
 
+    def check_for_optimized_map_update(self):
+        # Check if the optimized-routes-map.html exists
+        if os.path.exists(self.optimized_map_file_path):
+            # Get the last modified time of the optimized map
+            current_modified_time = os.path.getmtime(self.optimized_map_file_path)
+
+            # Check if the optimized map is newer than the initial map
+            initial_map_modified_time = os.path.getmtime(self.initial_map_file_path)
+            if (
+                self.last_modified_time is None or 
+                (current_modified_time != self.last_modified_time and current_modified_time > initial_map_modified_time)
+            ):
+                self.last_modified_time = current_modified_time
+
+                # Switch the displayed map to optimized-routes-map.html
+                self.webEngineView.setUrl(QUrl.fromLocalFile(self.optimized_map_file_path))
+                print(f"Map updated to optimized routes: {self.optimized_map_file_path}")

@@ -58,8 +58,7 @@ def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.htm
         lat2, lon2 = node_coords[v]
         return haversine_distance(lat1, lon1, lat2, lon2)
 
-    # Initialize the distance matrix
-    distance_matrix = pd.DataFrame(index=communities_df['Name'], columns=shelters_df['Name'], dtype=float)
+    distance_matrix = pd.DataFrame(index=shelters_df['Name'], columns=communities_df['Name'], dtype=float)
 
     # Plot routes from each community to each shelter
     route_counter = 0
@@ -76,7 +75,7 @@ def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.htm
 
                 # Calculate the total route distance
                 route_distance = sum(ox.utils_graph.get_route_edge_attributes(roadgraph, route, 'length'))
-                distance_matrix.at[community['Name'], shelter['Name']] = route_distance / 1000  # Convert to km
+                distance_matrix.at[shelter['Name'], community['Name']] = route_distance / 1000  # Convert to km
 
                 # Get the route coordinates
                 route_coords = [(node_coords[node][0], node_coords[node][1]) for node in route]
@@ -100,7 +99,8 @@ def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.htm
                 print(f"Error processing route from {community['Name']} to {shelter['Name']}: {e}")
                 continue
 
-    # Save the distance matrix to an Excel file
+    # Save the modified distance matrix (with shelters as rows and communities as columns) to an Excel file
+    distance_matrix.index.name = 'Shelters'
     distance_matrix.to_excel(excel_name)
     print(f"Distance matrix saved as {excel_name}")
 
@@ -110,10 +110,10 @@ def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.htm
 
     return m
 
-def run_pathfinding(communities_file='community-data.xlsx', shelters_file='shelter-data.xlsx'):
+def run_pathfinding(communities_file='commData.xlsx', shelters_file='shelData.xlsx'):
     # Load data from Excel files
-    communities_df = pd.read_excel('community-data.xlsx')
-    shelters_df = pd.read_excel('shelter-data.xlsx')
+    communities_df = pd.read_excel('commData.xlsx')
+    shelters_df = pd.read_excel('shelData.xlsx')
 
     # Plot all routes on a single map and generate the distance matrix
     plot_routes_on_map(communities_df, shelters_df)

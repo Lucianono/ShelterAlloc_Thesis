@@ -7,6 +7,7 @@ import pandas as pd
 import os
 from functools import partial
 from pathfinder import PathfindingWorker
+from optimizedRouting import run_optimization
 
 class SolvingProgress(QDialog):
     def __init__(self):
@@ -21,7 +22,7 @@ class SolvingProgress(QDialog):
         self.start_pathfinding()
 
     def start_pathfinding(self):
-        self.worker = PathfindingWorker("community-data.xlsx", "shelter-data.xlsx")
+        self.worker = PathfindingWorker("commData.xlsx", "shelData.xlsx")
         self.worker.moveToThread(self.worker_thread)
 
         # Connect signals
@@ -38,3 +39,5 @@ class SolvingProgress(QDialog):
     def on_finished(self):
         self.ui.textEdit.append("Pathfinding Complete!")
         self.worker_thread.quit()
+        run_optimization()
+        

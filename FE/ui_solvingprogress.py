@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'solvingprogress.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -17,7 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout,
     QLabel, QProgressBar, QPushButton, QScrollArea,
-    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+    QSizePolicy, QSpacerItem, QTextEdit, QVBoxLayout,
+    QWidget)
 
 class Ui_solvingProgress(object):
     def setupUi(self, Dialog):
@@ -108,16 +109,14 @@ class Ui_solvingProgress(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 496, 182))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 500, 196))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.label = QLabel(self.scrollAreaWidgetContents)
-        self.label.setObjectName(u"label")
-        self.label.setStyleSheet(u"")
-        self.label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.label.setWordWrap(True)
+        self.textEdit = QTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit.setObjectName(u"textEdit")
+        self.textEdit.setReadOnly(True)
 
-        self.verticalLayout_3.addWidget(self.label)
+        self.verticalLayout_3.addWidget(self.textEdit)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -178,12 +177,6 @@ class Ui_solvingProgress(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-weight:600;\">Solving Model</span></p></body></html>", None))
-        self.label.setText(QCoreApplication.translate("Dialog", u"=== Gen 20 best solutions ===\n"
-"(1585.0, ({'name': 'ShelB', 'capacity': 800, 'cost': 1000}, {'name': 'ShelA', 'capacity': 400, 'cost': 1000}, {'name': 'ShelB', 'capacity': 800, 'cost': 1000}))\n"
-"=== Gen 21 best solutions ===\n"
-"(1585.0, ({'name': 'ShelB', 'capacity': 800, 'cost': 1000}, {'name': 'ShelA', 'capacity': 400, 'cost': 1000}, {'name': 'ShelB', 'capacity': 800, 'cost': 1000}))\n"
-"=== Gen 22 best solutions ===\n"
-"(1585.0, ({'name': 'ShelB', 'capacity': 800, 'cost': 1000}, {'name': 'ShelA', 'capacity': 400, 'cost': 1000}, {'name': 'ShelB', 'capacity': 800, 'cost': 1000}))", None))
         self.solving_prog_cancel_btn.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
     # retranslateUi
 

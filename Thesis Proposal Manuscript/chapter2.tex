@@ -1,45 +1,45 @@
 \chapter{Review of Related Literature}
 
-	Over the years, different types of models have been developed for shelter location-allocation to support evacuation efforts, each with distinct objectives and often integrated with simulation programming. This chapter delves into key theories in modeling and system integration that inform the development of effective shelter location-allocation systems. A comprehensive review of related literature is conducted, analyzing and synthesizing existing studies to highlight their relevance, explore the current models, and identify areas where system features are lacking. 
+	Over the years, different types of models have been developed for shelter location-allocation to support evacuation efforts, each with distinct objectives and often integrated with programming. This chapter delves into key theories in modeling and system integration that inform the development of effective shelter location-allocation systems. Moreover, comprehensive review of related literature is conducted, analyzing and synthesizing existing studies to highlight their relevance, explore the current models, and identify areas where system features are lacking. 
 
 \section{Theoretical Framework}
 	The development of the shelter location-allocation system draws on key theories which feature the optimization of shelter location-allocation, development, and assessment of the system.
 
 \subsection{Operations Research}
- 	Mathematically modeling is an approach to represent a real-life problem and solving them using mathematical techniques such as the operations research. This theory addresses the optimization of objectives, crucial in shelter location-allocation where factors like distance and cost must be balanced. The problem is modeled to find the optimal locations while minimizing travel distances and associated costs, making it ideal for a multi-objective optimization.
+ 	Mathematical modeling is an approach to represent a real-life problem and solving them using mathematical techniques such as the operations research. This theory addresses the optimization of objectives, crucial in shelter location-allocation where factors like distance and cost must be balanced. The problem is modeled to find the optimal locations while minimizing travel distances and associated costs, making it ideal for a multi-objective optimization.
 
 \subsection{Theory of Evolution}
 	Inspired by Charles Darwin’s theory of evolution, evolutionary algorithms such as genetic algorithms simulate natural selection within code to solve complex optimization problems effectively. This approach is widely used due to its robustness and adaptability, and it will be applied to solve the multi-objective model for shelter location-allocation.
 
 \subsection{Decision Theory}
- 	Decision theory is a study of having a rational choice by using models and tools.. This involves creating a system that serves as a decision support tool for decision-makers, such as the PDRRMC, in the allocation of shelters. It features user-defined parameters for model customization and provides functionality for creating, reading, updating, and deleting data.
+ 	Decision theory is a study of having a rational choice by using models and tools. This involves creating a system that serves as a decision support tool for decision-makers, such as the DRRMO, in allocation of shelters. It features user-defined parameters for model customization and provides functionality for creating, reading, updating, and deleting data.
 
 \subsection{Software Product Assessment Framework (ISO 25010)}
 	ISO 25010 provides standards for assessing software quality, covering aspects such as functionality, usability, reliability, and efficiency. This framework will guide the evaluation of our decision support system through surveys, ensuring it meets high-quality standards.
 
 \section{Bulacan is vulnerable in disasters}
-	According to a report by Reyes-Estrope covering Typhoon Fabian in 2021 \parencite{Carmela2021}, heavy rainfall caused by the southwest monsoon and Typhoon Fabian resulted in flooding across 35 villages in Bulacan, including Hagonoy and Marilao. The water level of the Angat Dam rose to 185.72 meters above sea level during this event. Moreover, Gozum's report on Typhoon Egay in 2023 \parencite{Iya2023} emphasizes the hardships faced by flood victims in Bulacan. The province was declared under a state of calamity due to Typhoon Egay, which affected over 200,000 families and forced many residents to evacuate.
-	
-	Regarding the municipality of Hagonoy, Manabat reports on the ongoing concerns of Hagonoy residents regarding frequent flooding in the area, urging the government to take action to address the issue which has been affecting their livelihoods; calling for the construction of a flood control projects or system. \parencite{Jacque2022}
+	One of the most devastating typhoons to hit the Philippines was Typhoon Ondoy. According to Managhaya's report, it claimed nearly 100 lives and affected around 250,000 families. Large parts of Luzon suffered significant damage, including Bulacan, resulting in heavy flooding. \parencite{James2009}
+
+	According to a report by Reyes-Estrope covering Typhoon Fabian in 2021 \parencite{Carmela2021}, heavy rainfall caused by the southwest monsoon and Typhoon Fabian resulted in flooding across 35 villages in Bulacan, including Calumpit. The water level of the Angat Dam rose to 185.72 meters above sea level during this event. Moreover, Gozum's report on Typhoon Egay in 2023 \parencite{Iya2023} emphasizes the hardships faced by flood victims in Bulacan. The province was declared under a state of calamity due to Typhoon Egay, which affected over 200,000 families and forced many residents to evacuate.
 
 \section{Existing shelter location-allocation models}
-The allocation of different resources during each evacuation phase is critical, however, this is often delayed, either due to extenuating circumstances or simply lack of a system. Therefore, optimization is a must. In this section, the paper will introduce different models with varying solving techniques to solve each of their own objectives.
+	The allocation of different resources during each evacuation phase is critical, however, this is often delayed, either due to extenuating circumstances or simply lack of a system. Therefore, optimization is a must. In this section, the paper will introduce different models with varying solving techniques to solve each of their own objectives.
+	
+	In disaster management, the organization of effective evacuation is important.\textcite{Yiying2022} address the challenge of determining optimal shelter locations and evacuation routes, integrating methods such as the normal distribution, analytic hierarchy process (AHP), and ordered weighted aggregation operator (OWA); These approaches that have assigned subjective scores and initial weights to critical attributes significantly advances shelter location models for disaster response.
+	
+	The thesis features two levels of shelters which introduces a hierarchy of shelters, each with different needs that they fulfill and with different requirements to be assigned a level, therefore the levels of each shelter must be taken into account, this segment of the system requires the use of hierarchical optimization.
+	
+	Yunjia Ma et al. (2019) show the importance of site selection models in disaster scenarios, particularly highlighting the application of bilevel programming, a hierarchical optimization method first introduced by H.v. Stackelberg in 1934. The methods used are applied to different complex location problems, such as the p-median and p-center problems, which are crucial for the distribution of resources during emergencies. \parencite{Yunjia2019}
+	
+	Building on the hierarchical approach, Xiujuan Zhao et al. (2019) applied a hierarchical model for shelter location and evacuee allocation, distinguishing between emergency shelters (EMS) and long-term shelters (LTS). Combined with an optimization algorithm, their model facilitates the selection of EMS locations from a pool of candidates, ensuring the initial allocation of evacuees. Over time, evacuees transitioned from EMS to LTS in a structured and efficient manner, highlighting the practical advantages of hierarchical models in emergency management. \parencite{Xiujuan2019}
+	
+	In a different study created by Yunjia Ma, Wei Xu, Lianjie Qin, and Xiajuan Zhao titled “Site selection models in natural disaster shelters: a review”, the paper exposes different models to best represent a shelter location-allocation problem, Single-Objective, Multi-Objective, and Hierarchical models. These models were compared for the objectives that were maximized and minimized, and then introduced different algorithms that may be used to solve them. \parencite{Yunjia2019}
+	
+	According to ongoing research in UP Diliman, there exists 4 shelter location-allocation models that are derived from the study of Xiujuan Zhao et al. (2019); BNST, BST, BNT, and WORK models that are solved using binary genetic algorithms. These models answer the optimization of allocation of shelters based on the cost, distance, workplace, and the hierarchy of shelter. This study was applied to the area of Talisay in Batangas using simulated data for shelter information. \parencite{Xiujuan2019}
+	
+	A study similar to the thesis has been published locally, however this study answers the optimization of COVID-19 vaccination site allocations. Made by Kurt Izak M. Cabanilla, Erika Antonette T. Enriquez, Renier Mendoza, and Victoria May P. Mendoza, the study is titled “Optimal selection of COVID-19 vaccination sites in the Philippines at the municipal level. \parencite{Kurt2021}
 
-In disaster management, the organization of effective evacuation is important. Yiying Wang and Zeshui Xu (2022) address the challenge of determining optimal shelter locations and evacuation routes, integrating methods such as the normal distribution, analytic hierarchy process (AHP), and ordered weighted aggregation operator (OWA); These approaches that have assigned subjective scores and initial weights to critical attributes significantly advances shelter location models for disaster response. \parencite{Yiying2022}
-
-The thesis features two levels of shelters which introduces a hierarchy of shelters, each with different needs that they fulfill and with different requirements to be assigned a level, therefore the levels of each shelter must be taken into account, this segment of the system requires the use of hierarchical optimization.
-
-Yunjia Ma et al. (2019) show the importance of site selection models in disaster scenarios, particularly highlighting the application of bilevel programming, a hierarchical optimization method first introduced by H.v. Stackelberg in 1934. The methods used are applied to different complex location problems, such as the p-median and p-center problems, which are crucial for the distribution of resources during emergencies. \parencite{Yunjia2019}
-
-Building on the hierarchical approach, Xiujuan Zhao et al. (2019) applied a hierarchical model for shelter location and evacuee allocation, distinguishing between emergency shelters (EMS) and long-term shelters (LTS). Combined with an optimization algorithm, their model facilitates the selection of EMS locations from a pool of candidates, ensuring the initial allocation of evacuees. Over time, evacuees transitioned from EMS to LTS in a structured and efficient manner, highlighting the practical advantages of hierarchical models in emergency management. \parencite{Xiujuan2019}
-
-In a different study created by Yunjia Ma, Wei Xu, Lianjie Qin, and Xiajuan Zhao titled “Site selection models in natural disaster shelters: a review”, the paper exposes different models to best represent a shelter location-allocation problem, Single-Objective, Multi-Objective, and Hierarchical models. These models were compared for the objectives that were maximized and minimized, and then introduced different algorithms that may be used to solve them. \parencite{Yunjia2019}
-
-According to ongoing research in UP Diliman, there exists 4 shelter location-allocation models that are derived from the study of Xiujuan Zhao et al. (2019); BNST, BST, BNT, and WORK models that are solved using binary genetic algorithms. These models answer the optimization of allocation of shelters based on the cost, distance, workplace, and the hierarchy of shelter. This study was applied to the area of Talisay in Batangas using simulated data for shelter information. \parencite{Xiujuan2019}
-
-A study similar to the thesis has been published locally, however this study answers the optimization of COVID-19 vaccination site allocations. Made by Kurt Izak M. Cabanilla, Erika Antonette T. Enriquez, Renier Mendoza, and Victoria May P. Mendoza, the study is titled “Optimal selection of COVID-19 vaccination sites in the Philippines at the municipal level. \parencite{Kurt2021}
-
-\subsection{Optimization Technique by Genetic Algorithm}
+\section{Optimization Technique by Genetic Algorithm}
 
 	Since the optimization of the allocation of shelters requires multiple iterations to test and figure out what is truly optimal, one method of solving this is through the use of genetic algorithms.
 	

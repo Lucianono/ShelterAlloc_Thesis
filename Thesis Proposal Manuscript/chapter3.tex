@@ -22,38 +22,44 @@
 	This insight is important for ensuring the system's effectiveness, as it helps identify the challenges to ensure the proper functioning of the shelter location allocation system and meet the needs of the affected communities. By capturing these detailed perspectives, the system will be more practical, user-friendly, and responsive to the real-world needs of disaster management.
 
 \section{Model Adoption}
-	The model adopted for this study is the Bilevel No-transfer (BNT) Model, which solves the shelter location-allocation problem under disaster scenarios. As discussed in a published paper from the University of the Philippines, this model is effective when it assigns communities to shelters without allowing transfers between different shelter levels during recovery. Using the BNT Model, the researchers can optimize the allocation of communities to shelters, accounting for each shelter’s capacity and the maximum travel distance allowable for evacuees.
-	The BNT Model includes a two-tiered shelter structure, consisting of Level 1 and Level 2 shelters. Level 1 shelters are smaller facilities intended for immediate use, providing basic services for short-term stays. In contrast, Level 2 shelters are larger and equipped with comprehensive services, including private rooms and extended support amenities, these shelters are intended for longer-term stays. However, once assigned to a shelter in the BNT Model, evacuees remain in that shelter until the disaster subsides, eliminating the need for transfers between shelters.
+	The model adopted for this study is the Bilevel No-transfer (BNT) Model, which solves the shelter location-allocation problem under disaster scenarios. As discussed in a published paper from the UP Diliman, this model is effective when it assigns communities to shelters without allowing transfers between different shelter levels during recovery. Using the BNT Model, the researchers can optimize the allocation of communities to shelters, accounting for each shelter’s capacity and travel distance for evacuees.
+	The BNT Model includes a two-tiered shelter structure, consisting of level 1 and 2 shelters. Level 1 shelters are smaller facilities intended for immediate use, providing basic services for short-term stays. In contrast, Level 2 shelters are significantly larger and equipped with comprehensive services, including private rooms and extended support amenities, these shelters are intended for longer-term stays. However, once assigned to a shelter in the BNT Model, evacuees remain in that shelter until the disaster subsides, eliminating the need for transfers between shelters.
 	The objective function for the BNT model can be expressed as follows:
 	
-	Minimize \begin{equation} wt_{dist}\sum_{j=1}^{N}\left[  \right]\sum_{i=1}^{M}\left[  \right]d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{j=1}^{N}\left[  \right]C_{j}y_{j} \end{equation}
+	Minimize \begin{equation} wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{j=1}^{N}C_{j}y_{j} \end{equation}
 	
 	Where:
+	\\$wt_{dist}$ – weight given to the distance cost.
+	\\$wt_{cost}$ – weight given to the fixed shelter cost.
+	\\$N$ – total number of communities
+	\\$M$ – total number of potential shelter locations
+	\\$d_{ij}$ – distance between shelter i and community j.
+	\\$P_{i}$ – population of the community i.
+	\\$C_{j}$ – fixed cost for establishing shelter j.
+	\\$x_{ij}$ – binary decision variable indicating if community j is assigned to shelter i.
+	\\$y_{j}$ – binary decision variable indicating if shelter j is opened.
+	\\
 	
-	$wt_{dist}$ weight given to the distance cost, emphasizing the importance of minimizing travel or transportation costs.
+	The constraints of BNT model include the distance, capacity, assignment, and binary constraints, each of which plays a crucial role in ensuring the model functions effectively under the disaster response scenario:
 	
-	$wt_{cost}$ weight given to the fixed shelter cost, representing the importance of minimizing the cost of establishing shelters.
+	\textbf{Distance Constraint: } This ensures that each community is allocated to a shelter within a defined maximum distance. 
 	
-	$N$: total number of communities
-	$M$: total number of potential shelter locations
+	\textbf{Capacity Constraint: }This constraint guarantees that the total number of evacuees assigned to a shelter does not exceed its maximum capacity. 
 	
-	$d_{ij}$: distance between shelter i and community j.
-	$P_{i}$: population of the community i.
-	$x_{ij}$: binary decision variable indicating if community j is assigned to shelter i.
-	$C_{j}$: fixed cost for establishing shelter j.
-	$y_{j}$: binary decision variable indicating if shelter j is opened (1 if opened, 0 otherwise).
+	\textbf{Assignment Constraint: }This constraint ensures that every community is assigned to exactly one shelter. This prevents problems in shelter allocation and ensures that each community has a designated place.
 	
-	The constraints of the Bilevel No-transfer (BNT) model include the distance, capacity, assignment, and binary constraints, each of which plays a crucial role in ensuring the model functions effectively under the disaster response scenario:
+	\textbf{Binary Constraint: } This constraint ensures that the model only takes binary variable, where can either be true (1) or false (0).
 	
-	\textbf{Distance Constraint:} This ensures that each community is allocated to a shelter within a defined maximum distance. It minimizes the travel distance by ensuring that shelters are accessible, considering the geographical spread and the need for timely evacuation.
+	\subsection{Optimization Technique}
+	Genetic algorithm, a powerful optimization technique inspired by the process of natural selection, is particularly well-suited for tackling complex problems like shelter location allocation. This algorithm will iteratively evolve a population of potential solutions, utilizing operations such as selection, crossover, and mutation to explore the solution space and gradually converge toward an optimal solution.
 	
-	\textbf{Capacity Constraint: }This constraint guarantees that the total number of evacuees assigned to a shelter does not exceed its maximum capacity. This helps prevent overcrowding in shelters and ensures that resources and space are adequately available for all evacuees.
+	The BNT model was originally solved using Binary Genetic Algorithm implemented in MATLAB. However, since system integration will be conducted on this thesis, the model will be solved using Integer-based Genetic Algorithm implemented in Python. This decision derived from analyzing time complexity, and Python being a well suited programming language for both data simulation and system development.
 	
-	\textbf{Assignment Constraint: }The assignment constraint ensures that every community is assigned to exactly one shelter. This prevents problems in shelter allocation and ensures that each community has a designated place, which is crucial for efficient disaster management and response.
+
 	
-	\textbf{Binary Constraint: } The binary constraint specifies whether a shelter is open or closed for evacuees. This is represented as a binary variable, where a shelter can either be open (1) or closed (0). This ensures that only available shelters are considered in the allocation process.
 	
-	The BNT model is solved using a genetic algorithm implemented in Python. The genetic algorithm, a powerful optimization technique inspired by the process of natural selection, is particularly well-suited for tackling complex problems like shelter location allocation. This algorithm will iteratively evolve a population of potential solutions, utilizing operations such as selection, crossover, and mutation to explore the solution space and gradually converge toward an optimal solution. By applying these evolutionary principles, the genetic algorithm can efficiently navigate the large and complex problem space of shelter allocation, ensuring the most effective distribution of evacuees to shelters based on the model’s constraints and objectives.
+	
+	By applying these evolutionary principles, the genetic algorithm can efficiently navigate the large and complex problem space of shelter allocation, ensuring the most effective distribution of evacuees to shelters based on the model’s constraints and objectives.
 
 \section{Process of Developing the System}
 This study employs a structured system development methodology following the Agile approach. Agile was chosen for its flexibility and iterative nature, which allows for continuous refinement and adaptation of the system based on feedback and testing results. Each development phase—planning, design, implementation, testing, and deployment—will include regular reviews and adjustments to ensure the system evolves effectively to meet technical and user needs.

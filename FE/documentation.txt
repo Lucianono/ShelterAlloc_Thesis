@@ -8,6 +8,7 @@ pip install pandas
 pip install openpyxl xlrd (to read .xlsx and .xls files)
 pip install folium
 pip install osmnx
+pip install networkx
 
 Install Qt Designer with this link: https://build-system.fman.io/qt-designer-download
 

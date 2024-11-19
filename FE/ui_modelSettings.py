@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'modelSettings.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.7.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,17 +15,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDialog,
-    QGridLayout, QHBoxLayout, QLabel, QPlainTextEdit,
-    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QGridLayout,
+    QHBoxLayout, QLabel, QPlainTextEdit, QPushButton,
+    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 import resources_rc
 
 class Ui_modelSettings(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(350, 462)
+        Dialog.resize(350, 550)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -62,7 +61,6 @@ class Ui_modelSettings(object):
 "}")
         self.verticalLayout = QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(-1, 9, -1, -1)
         self.widget_4 = QWidget(Dialog)
         self.widget_4.setObjectName(u"widget_4")
         self.verticalLayout_2 = QVBoxLayout(self.widget_4)
@@ -111,51 +109,29 @@ class Ui_modelSettings(object):
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setVerticalSpacing(12)
-        self.label_27 = QLabel(self.widget_4)
-        self.label_27.setObjectName(u"label_27")
+        self.label_32 = QLabel(self.widget_4)
+        self.label_32.setObjectName(u"label_32")
 
-        self.gridLayout.addWidget(self.label_27, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_32, 2, 0, 1, 1)
 
-        self.label_28 = QLabel(self.widget_4)
-        self.label_28.setObjectName(u"label_28")
+        self.label_30 = QLabel(self.widget_4)
+        self.label_30.setObjectName(u"label_30")
 
-        self.gridLayout.addWidget(self.label_28, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_30, 4, 0, 1, 1)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.textEdit_generations = QPlainTextEdit(self.widget_4)
+        self.textEdit_generations.setObjectName(u"textEdit_generations")
 
-        self.gridLayout.addItem(self.horizontalSpacer_3, 4, 1, 1, 1)
+        self.gridLayout.addWidget(self.textEdit_generations, 6, 2, 1, 1)
 
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout.addItem(self.horizontalSpacer_4, 5, 1, 1, 1)
-
-        self.label_29 = QLabel(self.widget_4)
-        self.label_29.setObjectName(u"label_29")
-
-        self.gridLayout.addWidget(self.label_29, 6, 0, 1, 1)
-
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_5, 6, 1, 1, 1)
-
-        self.plainTextEdit_4 = QPlainTextEdit(self.widget_4)
-        self.plainTextEdit_4.setObjectName(u"plainTextEdit_4")
-
-        self.gridLayout.addWidget(self.plainTextEdit_4, 5, 2, 1, 1)
-
-        self.plainTextEdit_3 = QPlainTextEdit(self.widget_4)
-        self.plainTextEdit_3.setObjectName(u"plainTextEdit_3")
-
-        self.gridLayout.addWidget(self.plainTextEdit_3, 4, 2, 1, 1)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_2, 3, 1, 1, 1)
+        self.gridLayout.addItem(self.horizontalSpacer_8, 3, 1, 1, 1)
 
         self.label_20 = QLabel(self.widget_4)
         self.label_20.setObjectName(u"label_20")
 
-        self.gridLayout.addWidget(self.label_20, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_20, 6, 0, 1, 1)
 
         self.label_19 = QLabel(self.widget_4)
         self.label_19.setObjectName(u"label_19")
@@ -171,67 +147,103 @@ class Ui_modelSettings(object):
 
         self.gridLayout.addItem(self.horizontalSpacer, 0, 1, 1, 1)
 
-        self.plainTextEdit_2 = QPlainTextEdit(self.widget_4)
-        self.plainTextEdit_2.setObjectName(u"plainTextEdit_2")
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout.addWidget(self.plainTextEdit_2, 3, 2, 1, 1)
+        self.gridLayout.addItem(self.horizontalSpacer_2, 6, 1, 1, 1)
 
-        self.label_30 = QLabel(self.widget_4)
-        self.label_30.setObjectName(u"label_30")
+        self.textEdit_population = QPlainTextEdit(self.widget_4)
+        self.textEdit_population.setObjectName(u"textEdit_population")
 
-        self.gridLayout.addWidget(self.label_30, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.textEdit_population, 7, 2, 1, 1)
 
-        self.hierarchy_checkBox = QCheckBox(self.widget_4)
-        self.hierarchy_checkBox.setObjectName(u"hierarchy_checkBox")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.hierarchy_checkBox.sizePolicy().hasHeightForWidth())
-        self.hierarchy_checkBox.setSizePolicy(sizePolicy1)
-        self.hierarchy_checkBox.setMinimumSize(QSize(0, 0))
-        self.hierarchy_checkBox.setMaximumSize(QSize(40, 30))
-        self.hierarchy_checkBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.hierarchy_checkBox.setStyleSheet(u"QCheckBox::indicator {\n"
-"     width: 40px;\n"
-"     height: 40px;\n"
-"}")
-        self.hierarchy_checkBox.setIconSize(QSize(41, 41))
-        self.hierarchy_checkBox.setChecked(False)
+        self.textEdit_wtCost = QPlainTextEdit(self.widget_4)
+        self.textEdit_wtCost.setObjectName(u"textEdit_wtCost")
 
-        self.gridLayout.addWidget(self.hierarchy_checkBox, 6, 2, 1, 1, Qt.AlignHCenter)
+        self.gridLayout.addWidget(self.textEdit_wtCost, 5, 2, 1, 1)
 
-        self.model_comboBox = QComboBox(self.widget_4)
-        self.model_comboBox.addItem("")
-        self.model_comboBox.addItem("")
-        self.model_comboBox.setObjectName(u"model_comboBox")
-        self.model_comboBox.setMinimumSize(QSize(150, 16))
-        self.model_comboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.model_comboBox.setStyleSheet(u"")
+        self.textEdit_mutation = QPlainTextEdit(self.widget_4)
+        self.textEdit_mutation.setObjectName(u"textEdit_mutation")
 
-        self.gridLayout.addWidget(self.model_comboBox, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.textEdit_mutation, 8, 2, 1, 1)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_6, 4, 1, 1, 1)
+
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_7, 5, 1, 1, 1)
+
+        self.comboBox_modelType = QComboBox(self.widget_4)
+        self.comboBox_modelType.addItem("")
+        self.comboBox_modelType.addItem("")
+        self.comboBox_modelType.setObjectName(u"comboBox_modelType")
+        self.comboBox_modelType.setMinimumSize(QSize(150, 16))
+        self.comboBox_modelType.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.comboBox_modelType.setStyleSheet(u"")
+
+        self.gridLayout.addWidget(self.comboBox_modelType, 0, 2, 1, 1)
 
         self.label_31 = QLabel(self.widget_4)
         self.label_31.setObjectName(u"label_31")
 
-        self.gridLayout.addWidget(self.label_31, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_31, 5, 0, 1, 1)
 
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.textEdit_wtDist = QPlainTextEdit(self.widget_4)
+        self.textEdit_wtDist.setObjectName(u"textEdit_wtDist")
 
-        self.gridLayout.addItem(self.horizontalSpacer_6, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.textEdit_wtDist, 4, 2, 1, 1)
 
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.label_33 = QLabel(self.widget_4)
+        self.label_33.setObjectName(u"label_33")
 
-        self.gridLayout.addItem(self.horizontalSpacer_7, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.label_33, 3, 0, 1, 1)
 
-        self.plainTextEdit_8 = QPlainTextEdit(self.widget_4)
-        self.plainTextEdit_8.setObjectName(u"plainTextEdit_8")
+        self.label_27 = QLabel(self.widget_4)
+        self.label_27.setObjectName(u"label_27")
 
-        self.gridLayout.addWidget(self.plainTextEdit_8, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.label_27, 7, 0, 1, 1)
 
-        self.plainTextEdit_6 = QPlainTextEdit(self.widget_4)
-        self.plainTextEdit_6.setObjectName(u"plainTextEdit_6")
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout.addWidget(self.plainTextEdit_6, 2, 2, 1, 1)
+        self.gridLayout.addItem(self.horizontalSpacer_3, 7, 1, 1, 1)
+
+        self.label_28 = QLabel(self.widget_4)
+        self.label_28.setObjectName(u"label_28")
+
+        self.gridLayout.addWidget(self.label_28, 8, 0, 1, 1)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_4, 8, 1, 1, 1)
+
+        self.label_29 = QLabel(self.widget_4)
+        self.label_29.setObjectName(u"label_29")
+
+        self.gridLayout.addWidget(self.label_29, 1, 0, 1, 1)
+
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_10, 1, 1, 1, 1)
+
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_9, 2, 1, 1, 1)
+
+        self.textEdit_maxShelters = QPlainTextEdit(self.widget_4)
+        self.textEdit_maxShelters.setObjectName(u"textEdit_maxShelters")
+
+        self.gridLayout.addWidget(self.textEdit_maxShelters, 3, 2, 1, 1)
+
+        self.textEdit_maxL2Shelters = QPlainTextEdit(self.widget_4)
+        self.textEdit_maxL2Shelters.setObjectName(u"textEdit_maxL2Shelters")
+
+        self.gridLayout.addWidget(self.textEdit_maxL2Shelters, 2, 2, 1, 1)
+
+        self.textEdit_areaPerIdniv = QPlainTextEdit(self.widget_4)
+        self.textEdit_areaPerIdniv.setObjectName(u"textEdit_areaPerIdniv")
+
+        self.gridLayout.addWidget(self.textEdit_areaPerIdniv, 1, 2, 1, 1)
 
 
         self.verticalLayout_2.addLayout(self.gridLayout)
@@ -277,17 +289,18 @@ class Ui_modelSettings(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
         self.modelSettings_back_btn.setText("")
         self.label_18.setText(QCoreApplication.translate("Dialog", u"Model Settings", None))
-        self.label_27.setText(QCoreApplication.translate("Dialog", u"Population", None))
-        self.label_28.setText(QCoreApplication.translate("Dialog", u"Mutation", None))
-        self.label_29.setText(QCoreApplication.translate("Dialog", u"Hierarchy ", None))
-        self.label_20.setText(QCoreApplication.translate("Dialog", u"Generation", None))
-        self.label_19.setText(QCoreApplication.translate("Dialog", u"Model", None))
+        self.label_32.setText(QCoreApplication.translate("Dialog", u"MaxLvl2Shelters", None))
         self.label_30.setText(QCoreApplication.translate("Dialog", u"WeightDistance", None))
-        self.hierarchy_checkBox.setText("")
-        self.model_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT)", None))
-        self.model_comboBox.setItemText(1, QCoreApplication.translate("Dialog", u"Single-level with Workplace Distance Inclusion (WORK)", None))
+        self.label_20.setText(QCoreApplication.translate("Dialog", u"Generations", None))
+        self.label_19.setText(QCoreApplication.translate("Dialog", u"Model", None))
+        self.comboBox_modelType.setItemText(0, QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT)", None))
+        self.comboBox_modelType.setItemText(1, QCoreApplication.translate("Dialog", u"Single-level with Workplace Distance Inclusion (WORK)", None))
 
         self.label_31.setText(QCoreApplication.translate("Dialog", u"WeightCost", None))
+        self.label_33.setText(QCoreApplication.translate("Dialog", u"MaxShelters", None))
+        self.label_27.setText(QCoreApplication.translate("Dialog", u"Population", None))
+        self.label_28.setText(QCoreApplication.translate("Dialog", u"Mutation Rate", None))
+        self.label_29.setText(QCoreApplication.translate("Dialog", u"AreaPerIndividual", None))
         self.modelSettings_done_btn.setText(QCoreApplication.translate("Dialog", u"DONE", None))
     # retranslateUi
 

@@ -16,4 +16,23 @@ class ModelSettings(QDialog):
         self.ui.modelSettings_back_btn.clicked.connect(self.close)
         self.ui.modelSettings_done_btn.clicked.connect(self.close)
 
-    
+        self.update_params_from_excel("modelParam.xlsx")
+
+        print("Opened")
+
+    def update_params_from_excel(self, excel_name):
+        try:
+            # get data from excel
+            Model_params_data = pd.read_excel( os.path.join(os.getcwd(), excel_name), header=0).fillna("").iloc[0] 
+            print(Model_params_data["Model"])
+
+
+        except FileNotFoundError:
+            QMessageBox.critical(self, "Error", f"File '{excel_name}' not found.")
+        except KeyError as e:
+            QMessageBox.critical(self, "Error", f"Missing column in Excel: {e}")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
+
+        
+        

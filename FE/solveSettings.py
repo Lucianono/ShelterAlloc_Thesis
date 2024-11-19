@@ -23,10 +23,24 @@ class SolveSettingsDialog(QDialog):
         self.community_layout = QVBoxLayout()
         self.ui.scrollArea_2.setWidget(QWidget())  # Set an empty widget to scrollArea_2
         self.ui.scrollArea_2.widget().setLayout(self.community_layout)
+        self.ui.scrollArea_2.setStyleSheet("""QScrollArea { border: 1px solid gray;
+        background-color: transparent;
+        padding: 5px;
+        border-radius: 20px; }
+        QWidget { background-color: transparent; }
+        QLabel { color: black;
+        background-color: transparent;}""")
 
         self.shelter_layout = QVBoxLayout()
         self.ui.scrollArea.setWidget(QWidget())  # Set an empty widget to scrollArea
         self.ui.scrollArea.widget().setLayout(self.shelter_layout)
+        self.ui.scrollArea.setStyleSheet("""QScrollArea { border: 1px solid gray;
+        background-color: transparent;
+        padding: 5px;
+        border-radius: 20px; }
+        QWidget { background-color: transparent; }
+        QLabel { color: black;
+        background-color: transparent;}""")
 
         # Call these methods to load and display data
         self.load_and_display_community_data()  # Load community data
@@ -71,7 +85,7 @@ class SolveSettingsDialog(QDialog):
 
         for name in names:
             name_label = QLabel(name)
-            name_label.setStyleSheet("background-color: transparent; background: transparent;")
+            name_label.setStyleSheet("color: black; background-color: white;")
             self.community_layout.addWidget(name_label)    
     def get_names_from_shelter_excel(self, file_path = "shelterData.xlsx"):
         try:
@@ -96,4 +110,5 @@ class SolveSettingsDialog(QDialog):
 
         for name in names:
             name_label = QLabel(name)
+            name_label.setStyleSheet("color: black; background-color: white;")
             self.shelter_layout.addWidget(name_label)

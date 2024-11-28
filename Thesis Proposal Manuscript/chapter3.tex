@@ -26,7 +26,7 @@
 	The BNT Model includes a two-tiered shelter structure, consisting of level 1 and 2 shelters. Level 1 shelters are smaller facilities intended for immediate use, providing basic services for short-term stays. In contrast, Level 2 shelters are significantly larger and equipped with comprehensive services, including private rooms and extended support amenities, these shelters are intended for longer-term stays. However, once assigned to a shelter in the BNT Model, evacuees remain in that shelter until the disaster subsides, eliminating the need for transfers between shelters.
 	The objective function for the BNT model can be expressed as follows:
 	
-	Minimize \begin{equation} wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{j=1}^{N}C_{j}y_{j} \end{equation}
+	Minimize \begin{equation} wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{k=1}^{2}\sum_{j=1}^{N}C_{j}^{(k)}y_{j}^{(k)} \end{equation}
 	
 	Where:
 	\\$wt_{dist}$ – weight given to the distance cost.
@@ -35,9 +35,9 @@
 	\\$M$ – total number of potential shelter locations
 	\\$d_{ij}$ – distance between shelter i and community j.
 	\\$P_{i}$ – population of the community i.
-	\\$C_{j}$ – fixed cost for establishing shelter j.
+	\\$C_{j}^{(k)}$ – fixed cost for establishing shelter j with level k.
 	\\$x_{ij}$ – binary decision variable indicating if community j is assigned to shelter i.
-	\\$y_{j}$ – binary decision variable indicating if shelter j is opened.
+	\\$y_{j}^{(k)}$ – binary decision variable indicating if shelter j with level k is opened.
 	\\
 	
 	The constraints of BNT model include the distance, capacity, assignment, and binary constraints, each of which plays a crucial role in ensuring the model functions effectively under the disaster response scenario:
@@ -159,7 +159,7 @@
 		\caption{The ERD Schema}
 		\centering
 		\includegraphics[width=\textwidth]{ERD}
-		\ref{ERD}
+		\label{ERD}
 	\end{figure}
 	
 	Figure \ref{ERD} shows the entity relationship (ERD) which has 4 entities: Community, Shelter, Distance, and ModelParameters. Distances are derived from the location of Shelter and Community, then will be saved accordingly to be used in performing the system model. ModelParameters shows no relationship since it only saves the current settings for the model and algorithm.

@@ -14,16 +14,17 @@ class EntityManagementComm(QDialog):
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
 
         file_name = "commData.xlsx"
-        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'VulPop', 'WorkPop', 'Remarks']
-        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 800, 'Sample remarks']], columns=required_headers)
+        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'WorkPop', 'MaxDistance',  'Remarks']
+        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 800, 100, 'Sample remarks']], columns=required_headers)
 
         expected_types = {
             'Name': str,
             'xDegrees': float,
             'yDegrees': float,
             'Population': int,
-            'VulPop': int,
+            'AffectedPop': int,
             'WorkPop': int,
+            'MaxDistance': float,
             'Remarks': str
         }
 
@@ -84,9 +85,8 @@ class EntityManagementComm(QDialog):
             
             if list(data.columns) != required_headers:
                 QMessageBox.critical(self, "Error", "The imported Excel file does not have the correct headers.")
+                print(list(data.columns))
                 return
-            
-            print(list(data.columns) )
             
             try:
                 self.validate_imported_data(data, expected_types)

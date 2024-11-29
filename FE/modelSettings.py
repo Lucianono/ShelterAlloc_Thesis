@@ -72,24 +72,25 @@ class ModelSettings(QDialog):
             }
 
             # Validate and convert data based on expected types
-            validated_data = {}
-            for key, value in data.items():
-                if key in expected_types:
+            for key,value in data.items():
+               # Check if the value is of the expected type
+                if expected_types[key] == str:
+                    if not isinstance(value, str):
+                        raise ValueError(f"Invalid value '{value}' for '{key}'. Expected a string.")
+                elif expected_types[key] == float:
                     try:
-                        # Convert the value to the expected type
-                        validated_data[key] = expected_types[key](value) if value else None
+                        float(value)  # Try converting to float
                     except ValueError:
-                        QMessageBox.warning(
-                            self,
-                            "Validation Error",
-                            f"Invalid value for {key}. Expected {expected_types[key].__name__}.",
-                        )
-                        return
-                else:
-                    validated_data[key] = value  # If no type is expected, keep as-is
+                        raise ValueError(f"Invalid value '{value}' for '{key}' . Expected a float.")
+                elif expected_types[key] == int:
+                    try:
+                        int(value)  # Try converting to int
+                    except ValueError:
+                        raise ValueError(f"Invalid value '{value}' for '{key}'. Expected an integer.")
+
 
             # Save to Excel
-            df = pd.DataFrame([validated_data])
+            df = pd.DataFrame([data])
             file_path = os.path.join(os.getcwd(), file_name)
             df.to_excel(file_path, index=False)
             dialog.close()

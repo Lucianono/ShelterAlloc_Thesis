@@ -26,31 +26,67 @@
 	The BNT Model includes a two-tiered shelter structure, consisting of level 1 and 2 shelters. Level 1 shelters are smaller facilities intended for immediate use, providing basic services for short-term stays. In contrast, Level 2 shelters are significantly larger and equipped with comprehensive services, including private rooms and extended support amenities, these shelters are intended for longer-term stays. However, once assigned to a shelter in the BNT Model, evacuees remain in that shelter until the disaster subsides, eliminating the need for transfers between shelters.
 	The objective function for the BNT model can be expressed as follows:
 	
-	Minimize \begin{equation} wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{k=1}^{2}\sum_{j=1}^{N}C_{j}^{(k)}y_{j}^{(k)} \end{equation}
+	Minimize 
+	\begin{equation} 					  		wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{k=1}^{2}\sum_{j=1}^{N}C_{j}^{(k)}y_{j}^{(k)} \end{equation}
+	
+	Subject to
+	\begin{equation} 	
+		\label{c1}
+		d_{ij}x_{ij} \le D_{i}, \forall i = 1,..., M,  \forall j = 1,..., N 
+	\end{equation}
+	\begin{equation} 
+		\label{c2}
+		\sum_{i=1}^{M}LP_{i}x_{ij} \le \sum_{k} Area_{j}^{(k)} y_{j}^{(k)}, \forall j = 1,..., N , k=1,2
+	\end{equation}
+	\begin{equation} 
+		\label{c3}
+		\sum_{k=1}^{2} \sum_j={1}^{N}y_{j}^{(k)} \le MaxSh
+	\end{equation}
+	\begin{equation}
+		\label{c4} 
+		\sum_j={1}^{N}y_{j}^2 \le MaxL2
+	\end{equation}
+	\begin{equation}
+		\label{c5}
+		\sum_{j=1}^{N}x_{ij} = 1, \forall i=1,...,M
+	\end{equation}
+	\begin{equation}
+		\label{c6}
+		\sum_{k=1}^{N}y_{j}^{(k)} \le 1, \forall j=1,...,N
+	\end{equation}
+	\begin{equation}
+		\label{c7}
+	 	x_{ij}, y_{j}^{(1)},y_{j}^{(2)} \in \{0,1\}, \forall i=1,...,M,  \forall j=1,...,N
+	\end{equation}
 	
 	Where:
 	\\$wt_{dist}$ – weight given to the distance cost.
 	\\$wt_{cost}$ – weight given to the fixed shelter cost.
-	\\$N$ – total number of communities
-	\\$M$ – total number of potential shelter locations
+	\\$M$ – total number of communities.
+	\\$N$ – total number of potential shelter locations.
 	\\$d_{ij}$ – distance between shelter i and community j.
 	\\$P_{i}$ – population of the community i.
-	\\$C_{j}^{(k)}$ – fixed cost for establishing shelter j with level k.
+	\\$C_{j}^{(k)}$ – fixed cost for establishing shelter j of level k.
 	\\$x_{ij}$ – binary decision variable indicating if community j is assigned to shelter i.
-	\\$y_{j}^{(k)}$ – binary decision variable indicating if shelter j with level k is opened.
+	\\$y_{j}^{(k)}$ – binary decision variable indicating if shelter j of level k is opened.
+	\\$L$ - area allotted per individual
+	\\$D_{i}$ – maximum distance that community i can be traveled.
+	\\$Area_{j}^{(k)}$ - area of shelter j of level k.
+	\\$MaxL2$ - maximum number of level 2 shelters to be opened.
+	\\$MaxSh$ - maximum number of shelters to be opened.
 	\\
 	
 	The constraints of BNT model include the distance, capacity, assignment, and binary constraints, each of which plays a crucial role in ensuring the model functions effectively under the disaster response scenario:
 	
-	\textit{Distance Constraint.} This ensures that each community is allocated to a shelter within a defined maximum distance. 
+	\textit{Distance Constraint.} Equation \ref{c1} ensures that each community is allocated to a shelter within a defined maximum distance. 
 	
-	\textit{Capacity Constraint.} This constraint guarantees that the total number of evacuees assigned to a shelter does not exceed its maximum capacity. 
+	\textit{Capacity Constraint.} Equation \ref{c2} guarantees that the total number of evacuees assigned to a shelter does not exceed its maximum capacity. 
 	
-	\textit{Assignment Constraint.} This constraint ensures that every community is assigned to exactly one shelter. This prevents problems in shelter allocation and ensures that each community has a designated place.
+	\textit{Assignment Constraints.} Equations \ref{c3} and \ref{c4} ensures that the total assigned shelters and level 2 shelter does not exceeds over the user defined parameters respectively.  Equation \ref{c5} ensures that every community is assigned to exactly one shelter. Equation \ref{c6} ensures that the assigned shelter does not duplicate like being opened as level 1 and level 2 at the same time. This prevents problems in shelter allocation and ensures that each community has a designated place.
 	
 	\textit{Binary Constraint.} This constraint ensures that the model only takes binary variable, where can either be true (1) or false (0).
 	
-	\subsection{Optimization Technique}
+\subsection{Optimization Technique}
 	Genetic algorithm, a powerful optimization technique inspired by the process of natural selection, is particularly well-suited for tackling complex problems like shelter location allocation. This algorithm will iteratively evolve a population of potential solutions, utilizing operations such as selection, crossover, and mutation to explore the population space and gradually converge toward an optimal solution.
 	
 	The BNT model was originally solved using Binary Genetic Algorithm implemented in MATLAB. However, since system integration will be conducted on this thesis, the model will be solved using Integer-based Genetic Algorithm implemented in Python. This decision derived from analyzing chromosome length, and Python being a well suited programming language for both data simulation and system development.
@@ -102,7 +138,51 @@
 	\end{figure}
 	
 	By applying these evolutionary principles, the genetic algorithm can efficiently navigate the large and complex problem space of shelter allocation, ensuring the most effective distribution of evacuees to shelters based on the model’s constraints and objectives.
-
+	
+\subsection{Feasibility Checks}
+	
+	Checking if a solution exists based on the user defined parameters is a must in developing the system thus conducting  feasibility checks before executing the algorithm. This adds a feature that allows users to view if their inputs are incorrect having an additional functionality and capability of the system.
+	
+	The following conditions should satisfy else no solution exists:
+	
+	\begin{equation} 
+		\label{f1}
+		Area_{j}^{(2)} \ge Area_{j}^{(1)}, \forall j = 1, ..., N
+	\end{equation}
+	
+	Condition \ref{f1} checks if shelter j area for level 2 is greater than or equal to their area for level 1, else it doesn't satisfies the logic of having a level 2 shelter with lesser area than its level 1.
+	
+	\begin{equation} 
+		\label{f2}
+		MaxL2 \le MaxSh
+	\end{equation}
+	
+	Condition \ref{f2} checks if the user defined number of maximum level 2 shelters is less than to number of maximum shelters, else  it doesn't satisfies the logic of having a more number of level 2 shelters than the total maximum opened shelters
+	
+	\begin{equation} 
+		\label{f3}
+		\exists j \in d_{ij} \le D_{i}, \forall i = 1, ..., M
+	\end{equation}
+	
+	Condition \ref{f3} checks if there exists a distance from community i to all shelters that is less than or equal to its max distance. If it doesn't exist then community i can't be assigned to any shelter.
+	
+	\begin{equation} 
+		\label{f4}
+		\exists i \in LP_{i} \le Area_{j}^{(2)}, \forall j = 1, ..., N
+	\end{equation}
+	
+	Condition \ref{f4} checks if there exists a level 2 shelter that could accommodate a community i by their population multiplied by the area allotted per individual. If it doesn't exist then there's no shelter that could accommodate community i.
+	
+	\begin{equation} 
+		\label{f5}
+		\sum_{i=1}^{M}P_{i} \le L\sum_{j=1}^{N}Area_{j}, \forall i=1,...,M,  \forall j=1,...,N
+	\end{equation}
+	
+	Condition \ref{f5} checks if the total population is less than or equal to the total area of shelters multiplied to area allotted per individual. If this fails, then it is theoretically impossible to allocate all individuals given with their shorted capacity of shelters.
+	
+	Incorporating these feasibility checks ensures that the system proceeds only with valid input configurations. By verifying these conditions, users receive instant feedback on whether their inputs are valid, allowing the model to proceed with solving. These conditions represent key feasibility checks but are not exhaustive, and infeasible solutions may still persist. An additional feature could include halting the program if $n$ generated solutions fail to satisfy the model's constraints.
+	
+	
 \section{Process of Developing the System}
 	This study employs a structured system development methodology following the Agile approach. Agile was chosen for its flexibility and iterative nature, which allows for continuous refinement and adaptation of the system based on feedback and testing results. Each development phase—planning, design, implementation, testing, and deployment—will include regular reviews and adjustments to ensure the system evolves effectively to meet technical and user needs.
 	The system development process is divided into several distinct phases, each of which is designed to build upon the previous stage, ensuring a comprehensive and systematic approach. As shown in figure \ref{Agile} illustrated by \textcite{Jayathilaka2020}

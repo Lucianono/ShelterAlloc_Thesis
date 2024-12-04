@@ -86,6 +86,49 @@
 	
 	\textit{Binary Constraint.} This constraint ensures that the model only takes binary variable, where can either be true (1) or false (0).
 	
+\subsection{Feasibility Conditions}
+
+	Checking if a solution exists based on the user defined parameters is a must in developing the system thus conducting feasibility checks before executing the algorithm. This adds a feature that allows users to view if their inputs are incorrect having an additional functionality and capability of the system.
+	
+	The following conditions should satisfy else no solution exists:
+	
+	\begin{equation} 
+		\label{f1}
+		Area_{j}^{(2)} \ge Area_{j}^{(1)}, \forall j = 1, ..., N
+	\end{equation}
+	
+	Condition \ref{f1} checks if shelter j area for level 2 is greater than or equal to their area for level 1. 
+	
+	\begin{equation} 
+		\label{f2}
+		MaxL2 \le MaxSh
+	\end{equation}
+	
+	Condition \ref{f2} checks if the user defined number of maximum level 2 shelters is less than to number of maximum shelters.
+	
+	\begin{equation} 
+		\label{f3}
+		\exists j \in d_{ij} \le D_{i}, \forall i = 1, ..., M
+	\end{equation}
+	
+	Condition \ref{f3} checks if there exists a distance from community i to all shelters that is less than or equal to its max distance.
+	
+	\begin{equation} 
+		\label{f4}
+		\exists i \in LP_{i} \le Area_{j}^{(2)}, \forall j = 1, ..., N
+	\end{equation}
+	
+	Condition \ref{f4} checks if there exists a level 2 shelter that could accommodate a community i by their population multiplied by the area allotted per individual. 
+	
+	\begin{equation} 
+		\label{f5}
+		\sum_{i=1}^{M}P_{i} \le L\sum_{j=1}^{N}Area_{j}, \forall i=1,...,M,  \forall j=1,...,N
+	\end{equation}
+	
+	Condition \ref{f5} checks if the total population is less than or equal to the total area of shelters multiplied to area allotted per individual. If this fails, then it is theoretically impossible to allocate all individuals given with their shorted capacity of shelters.
+	
+	Incorporating these feasibility conditions ensures that the model will produce a feasible solution, and the system proceeds only with valid input configurations. By verifying these conditions, users receive instant feedback on whether their inputs are valid, allowing the model to proceed with solving. These conditions represent key feasibility checks but are not exhaustive, and infeasible solutions may still persist. An additional feature could include halting the program if $n$ generated solutions fail to satisfy the model's constraints.	
+	
 \subsection{Optimization Technique}
 	Genetic algorithm, a powerful optimization technique inspired by the process of natural selection, is particularly well-suited for tackling complex problems like shelter location allocation. This algorithm will iteratively evolve a population of potential solutions, utilizing operations such as selection, crossover, and mutation to explore the population space and gradually converge toward an optimal solution.
 	
@@ -139,48 +182,7 @@
 	
 	By applying these evolutionary principles, the genetic algorithm can efficiently navigate the large and complex problem space of shelter allocation, ensuring the most effective distribution of evacuees to shelters based on the model’s constraints and objectives.
 	
-\subsection{Feasibility Checks}
-	
-	Checking if a solution exists based on the user defined parameters is a must in developing the system thus conducting  feasibility checks before executing the algorithm. This adds a feature that allows users to view if their inputs are incorrect having an additional functionality and capability of the system.
-	
-	The following conditions should satisfy else no solution exists:
-	
-	\begin{equation} 
-		\label{f1}
-		Area_{j}^{(2)} \ge Area_{j}^{(1)}, \forall j = 1, ..., N
-	\end{equation}
-	
-	Condition \ref{f1} checks if shelter j area for level 2 is greater than or equal to their area for level 1, else it doesn't satisfies the logic of having a level 2 shelter with lesser area than its level 1.
-	
-	\begin{equation} 
-		\label{f2}
-		MaxL2 \le MaxSh
-	\end{equation}
-	
-	Condition \ref{f2} checks if the user defined number of maximum level 2 shelters is less than to number of maximum shelters, else  it doesn't satisfies the logic of having a more number of level 2 shelters than the total maximum opened shelters
-	
-	\begin{equation} 
-		\label{f3}
-		\exists j \in d_{ij} \le D_{i}, \forall i = 1, ..., M
-	\end{equation}
-	
-	Condition \ref{f3} checks if there exists a distance from community i to all shelters that is less than or equal to its max distance. If it doesn't exist then community i can't be assigned to any shelter.
-	
-	\begin{equation} 
-		\label{f4}
-		\exists i \in LP_{i} \le Area_{j}^{(2)}, \forall j = 1, ..., N
-	\end{equation}
-	
-	Condition \ref{f4} checks if there exists a level 2 shelter that could accommodate a community i by their population multiplied by the area allotted per individual. If it doesn't exist then there's no shelter that could accommodate community i.
-	
-	\begin{equation} 
-		\label{f5}
-		\sum_{i=1}^{M}P_{i} \le L\sum_{j=1}^{N}Area_{j}, \forall i=1,...,M,  \forall j=1,...,N
-	\end{equation}
-	
-	Condition \ref{f5} checks if the total population is less than or equal to the total area of shelters multiplied to area allotted per individual. If this fails, then it is theoretically impossible to allocate all individuals given with their shorted capacity of shelters.
-	
-	Incorporating these feasibility checks ensures that the system proceeds only with valid input configurations. By verifying these conditions, users receive instant feedback on whether their inputs are valid, allowing the model to proceed with solving. These conditions represent key feasibility checks but are not exhaustive, and infeasible solutions may still persist. An additional feature could include halting the program if $n$ generated solutions fail to satisfy the model's constraints.
+
 	
 	
 \section{Process of Developing the System}
@@ -199,12 +201,14 @@
 	In the initial phase, the researchers outlined the shelter location allocation system's scope, objectives, and requirements. This process identifies the key features and functionalities essential for the system. Additionally, this phase includes the thesis project plan, which details the project timeline.
 	The Gantt chart outlines the phases of the thesis project, including thesis one output, thesis two output, data collection and preparation, paper miscellaneous, system design, system development, and system assessment. Each phase addresses specific objectives that contribute to completing the shelter location-allocation system. The Gantt chart is shown in Figure \ref{Gantt}.
 	
-	\begin{figure}[h!]
-		\caption{The Gantt Chart}
-		\centering
-		\includegraphics[width=\textwidth]{Gantt}
-		\label{Gantt}
-	\end{figure}
+	\begin{landscape}
+		\begin{figure}[h!]
+			\caption{The Gantt Chart}
+			\centering
+			\includegraphics[width=600px]{Gantt}
+			\label{Gantt}
+		\end{figure}
+	\end{landscape}
 	
 	\textbf{Thesis One Output:} This phase involves drafting the initial sections of the thesis, such as the overview, rationale, scope, and significance, along with Chapters one through three (Introduction, Review of Related Literature, and Methodology). Additionally, this phase includes preparing the proposal manuscript, slides, and script for the mock defense and proposal defense. Parallel to this is the Paper Miscellaneous, which includes the creation of the literature review matrix to organize and support the contents of Chapter 2. This approach maintains a well-structured reference base for literature review.
 	
@@ -318,6 +322,18 @@
 	\textbf{MSWDO:} The Municipal Social Welfare and Development Office plays a key role in managing the evacuation and welfare of the communities during disasters. Their expertise is essential in ensuring that the shelter allocation system aligns with evacuees' specific needs, such as accessibility and capacity to the shelter location allocation across the province. Their input will help tailor the system to address the welfare requirements of evacuee management during emergencies.
 	
 	The sampling technique that will be utilized is Stratified Sampling Technique, where the population is divided into a respective groups or strata, where in this study, our stratum is the MDRRMO and MSWDO. This ensures comprehensive representation, to capture the perspectives of different stakeholder groups proportionately.
+	
+	\begin{equation} 
+		\label{slovin}
+		n = \frac{N}{(1+Ne^2)}
+	\end{equation}
+	
+	Where:
+	\\$n$ - sample size
+	\\$N$ - population size
+	\\$e$ - margin of error
+ 	
+	The sample size will be computed using Slovin's formula shown in equation \ref{slovin}. This equation will be used to determine the sample size to be used based on known target population. The confidence level is 90\% or 0.1 margin of error. The sample size would be much smaller than the population size, hence conducting the evaluation considering the respondents' working schedule and the time constraints of this study would be feasible.
 
 \subsection{Data Collection Procedures}
 	Evaluation phase will gauge the system’s acceptability and user satisfaction. To do this, a questionnaire will be developed based on the ISO/IEC 25010 software quality model, which will employ a 10-point Likert scale, allowing participants to provide precise feedback on each quality criterion. The system will be demonstrated to a selected sample population in a face-to-face presentation, where they will have the chance to interact with the system firsthand. This will be followed by the completion of the questionnaire, enabling participants to provide feedback based on their experience using the system.
@@ -327,28 +343,20 @@
 \subsection{Data Processing and Analysis}
 	The structured survey will be given to the target samples to evaluate the system's acceptability and provide critical feedback for further refinement.
 	
-	This study's data processing will involve structured analysis to interpret findings from the acceptability survey, aligning with the ISO/IEC 25010 standard. This standard evaluates key quality attributes, and each attribute will be assessed using a 10-point Likert scale. 1 being the lowest or extremely disagree, and 10 being the highest or extremely agree. The Table \ref{Likert} shows the description of each numerical data.
+	This study's data processing will involve structured analysis to interpret findings from the acceptability survey, aligning with the ISO/IEC 25010 standard. This standard evaluates key quality attributes, and each attribute will be assessed using a 10-point rating scale. 1 being the lowest or extremely dissatisfied, and 10 being the highest or extremely satisfied. 
 	
-	\begin{table}[h]
-		\centering
-		\caption{Description of each numerical data.}
-		\label{Likert}
-		\begin{tabular}{|c|c|}
-			\hline
-			1  & Extremely Disagree   \\ \hline
-			2  & Moderately Disagree  \\ \hline
-			3  & Little more disagree \\ \hline
-			4  & Mildly disagree      \\ \hline
-			5  & Partially disagree   \\ \hline
-			6  & Partially agree      \\ \hline
-			7  & Mildly agree         \\ \hline
-			8  & Little more agree    \\ \hline
-			9  & Moderately agree     \\ \hline
-			10 & Extremely agree      \\ \hline
-		\end{tabular}
-	\end{table}
+	\begin{equation} 
+		\label{mean}
+		\bar{x} = \frac{\sum_{i=1}^{n} x_{i}}{n}
+	\end{equation}
 	
-	After the data collection and summarization, the 10-point Likert scale will categorize the acceptability levels. This dual use of data allows both the system functionality and its user acceptability to be comprehensively assessed. 
+	Where:
+	\\$\bar{x}$ - sample mean
+	\\$\sum_{i=1}^{n} x$ - sum of all data points
+	\\$n$ - sample size
+	
+	
+	After the data collection, the rating scale will categorize the acceptability levels. Formula \ref{mean} or the mean will be used to compute the overall score from the respondents' answers. This dual use of data allows both the system functionality and its user acceptability to be comprehensively assessed. 
 
 \section{Ethical Considerations}
 	Data gathered contained sensitive data so that ethical considerations should be practiced throughout the research.  Informed consent will be obtained from each participant, providing them with a clear understanding of the research purpose, procedures, and their rights to withdraw at any time. To protect the participants’ privacy, all responses will be anonymized and handled with strict confidentiality. Additionally, data usage will be restricted to research purposes only, ensuring that participants' information remains safeguarded throughout the research process and beyond. 

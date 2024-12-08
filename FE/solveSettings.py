@@ -47,8 +47,6 @@ class SolveSettingsDialog(QDialog):
         # Call these methods to load and display data
         self.load_and_display_community_data()  # Load community data
         self.load_and_display_shelter_data()    # Load shelter data
-        self.read_shelter_res_data() # Read shelter res data
-        self.read_shelter_stat_data() # Read shelter stat data
 
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
@@ -63,8 +61,14 @@ class SolveSettingsDialog(QDialog):
         self.modelSettings_Window.show()
 
     def open_solving_progress_dialog(self):
-        self.solvingProgress_Window = SolvingProgress()
-        self.solvingProgress_Window.show()
+        try:
+            self.filter_shelter_data()
+
+            self.solvingProgress_Window = SolvingProgress()
+            self.solvingProgress_Window.show()
+        
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
     
     def get_names_from_community_excel(self, file_path = "commData.xlsx"):
         try:
@@ -131,20 +135,6 @@ class SolveSettingsDialog(QDialog):
         )
         self.ui.shelter_res_checkbox.setChecked(all_checked)
     
-    def read_shelter_res_data(self, file_path="shelData.xlsx"):
-        try:
-            data = pd.read_excel(file_path, usecols=["ResToFlood", "ResToTyphoon", "ResToEarthquake"])
-            self.ui.shelter_res_flood_checkbox.setChecked(bool(data["ResToFlood"].iloc[0]))
-            self.ui.shelter_res_typhoon_checkbox.setChecked(bool(data["ResToTyphoon"].iloc[0]))
-            self.ui.shelter_res_earthquake_checkbox.setChecked(bool(data["ResToEarthquake"].iloc[0]))
-
-        except FileNotFoundError:
-            QMessageBox.critical(self, "Error", f"File {file_path} not found.")
-        except KeyError as e:
-            QMessageBox.critical(self, "Error", f"Missing expected column in the Excel file: {e}")
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
-    
     def toggle_all_shelter_stat_checkboxes(self, checked):
         self.ui.shelter_stat_built_checkbox.setChecked(checked)
         self.ui.shelter_stat_pbuilt_checkbox.setChecked(checked)
@@ -159,22 +149,50 @@ class SolveSettingsDialog(QDialog):
             self.ui.shelter_stat_empty_lot_checkbox.isChecked()
         )
         self.ui.shelter_stat_checkbox.setChecked(all_checked)
-
-    def read_shelter_stat_data(self, file_path="shelData.xlsx"):
+    def filter_shelter_data(self, file_path="shelData.xlsx"):
         try:
-            data = pd.read_excel(file_path, usecols=["Status"])
-            if data.empty or "Status" not in data.columns:
-                raise ValueError("Column 'Status' not found in the Excel file.")
+            data = pd.read_excel(file_path)
 
-            status = data["Status"].dropna().unique()
+            required_columns = ["ResToFlood", "ResToTyphoon", "ResToEarthquake", "Status"]
+            for column in required_columns:
+                if column not in data.columns:
+                    raise ValueError(f"Missing expected column: {column}")
 
-            self.ui.shelter_stat_built_checkbox.setChecked("Built" in status)
-            self.ui.shelter_stat_pbuilt_checkbox.setChecked("Partially Built" in status)
-            self.ui.shelter_stat_dmg_checkbox.setChecked("Damaged" in status)
-            self.ui.shelter_stat_empty_lot_checkbox.setChecked("Empty Lot" in status)
+            res_conditions = []
+            if self.ui.shelter_res_flood_checkbox.isChecked():
+                res_conditions.append(data["ResToFlood"] == True)
+            if self.ui.shelter_res_typhoon_checkbox.isChecked():
+                res_conditions.append(data["ResToTyphoon"] == True)
+            if self.ui.shelter_res_earthquake_checkbox.isChecked():
+                res_conditions.append(data["ResToEarthquake"] == True)
+
+            if res_conditions:
+                res_filter = pd.concat(res_conditions, axis=1).any(axis=1)
+            else:
+                res_filter = pd.Series([True] * len(data))
+
+            status_conditions = []
+            if self.ui.shelter_stat_built_checkbox.isChecked():
+                status_conditions.append(data["Status"] == "Built")
+            if self.ui.shelter_stat_pbuilt_checkbox.isChecked():
+                status_conditions.append(data["Status"] == "Partially Built")
+            if self.ui.shelter_stat_dmg_checkbox.isChecked():
+                status_conditions.append(data["Status"] == "Damaged")
+            if self.ui.shelter_stat_empty_lot_checkbox.isChecked():
+                status_conditions.append(data["Status"] == "Empty Lot")
+
+            if status_conditions:
+                status_filter = pd.concat(status_conditions, axis=1).any(axis=1)
+            else:
+                status_filter = pd.Series([True] * len(data))
+
+            # Apply both filters
+            filtered_data = data[res_filter & status_filter]
+
+            # Print the filtered rows
+            print(filtered_data)
+
         except FileNotFoundError:
             QMessageBox.critical(self, "Error", f"File {file_path} not found.")
-        except KeyError as e:
-            QMessageBox.critical(self, "Error", f"Missing expected column in the Excel file: {e}")
         except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
+            QMessageBox.critical(self, "Error", f"An error occurred: {e}")

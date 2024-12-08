@@ -48,13 +48,7 @@ def plot_optimized_routes(communities_df, shelters_df, map_name="optimized-route
     )
 
     # Load the road graph for the region
-    roadgraph = ox.graph.graph_from_bbox(
-        north=bbox[0],
-        south=bbox[1],
-        east=bbox[2],
-        west=bbox[3],
-        network_type='drive'
-    )
+    roadgraph = ox.graph_from_bbox(*bbox, network_type='drive')
 
     # Precompute node coordinates for the heuristic
     node_coords = {node: (data['y'], data['x']) for node, data in roadgraph.nodes(data=True)}

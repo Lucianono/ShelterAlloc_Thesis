@@ -55,8 +55,7 @@ for row in Community_data.itertuples(index=False):
         # Extract community details and distance to shelters
         row_data = {
             "name": row.Name,
-            "population": row.AffectedPop,
-            "maxdistance": row.MaxDistance,
+            "population": row.VulPop,
             "distances": distance_row_data
         }
         Community.append(row_data)
@@ -168,10 +167,10 @@ def check_distance(allocation):
     for community in Community:
         shelter_name = allocation[community["name"]]
         distance = community["distances"][shelter_name]
-        max_distance_community = community["maxdistance"]
+        #max_distance_community = community["maxdistance"]
         # check if distance is greater than max dist
-        if (distance > max_distance_community):
-            return False
+        #if (distance > max_distance_community):
+            #return False
         
     return True
 
@@ -216,7 +215,7 @@ def check_max_lvl2_shelters(allocation):
 # Check all constraints
 def checkConstraints(allocation):
      return (check_capacity(allocation) and 
-            check_distance(allocation) and 
+            #check_distance(allocation) and 
             check_max_shelters(allocation) and 
             check_max_lvl2_shelters(allocation))
 
@@ -284,9 +283,9 @@ def spawn():
 def feasibilityCheck():
     # check if there exists distance <= max distance 
     failing_communities = []
-    for community in Community:
-        if not any(d <= community["maxdistance"] for d in community["distances"].values()):
-            failing_communities.append(community["name"])
+    #for community in Community:
+        #if not any(d <= community["maxdistance"] for d in community["distances"].values()):
+            #failing_communities.append(community["name"])
     
     if failing_communities:
         print(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")

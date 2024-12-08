@@ -95,10 +95,7 @@ class SolveSettingsDialog(QDialog):
             name_label = QLabel(name)
             name_label.setStyleSheet("color: black; background-color: white;")
             self.community_layout.addWidget(name_label)    
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
+    
     def get_names_from_shelter_excel(self, file_path = "shelData.xlsx"):
         try:
             data = pd.read_excel(file_path)

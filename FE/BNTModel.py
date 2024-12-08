@@ -55,7 +55,8 @@ for row in Community_data.itertuples(index=False):
         # Extract community details and distance to shelters
         row_data = {
             "name": row.Name,
-            "population": row.VulPop,
+            "population": row.AffectedPop,
+            "maxdistance": row.MaxDistance,
             "distances": distance_row_data
         }
         Community.append(row_data)
@@ -436,7 +437,7 @@ shelter_coords = read_shelter_coordinates()
 # START OF THE ALGORITHM
 # initial population
 if not logicCheck():
-    print("Parameters are not inputted incorrectly.")
+    print("Parameters are inputted incorrectly.")
     exit()
 if not feasibilityCheck():
     print("No solution exists")

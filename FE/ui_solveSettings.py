@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'solveSettings.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -122,7 +122,7 @@ class Ui_solveSettings(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_4 = QWidget()
         self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 364, 239))
+        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 370, 188))
         font2 = QFont()
         font2.setBold(True)
         self.scrollAreaWidgetContents_4.setFont(font2)
@@ -303,7 +303,7 @@ class Ui_solveSettings(object):
         self.scrollArea.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 384, 148))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 386, 148))
         self.scrollAreaWidgetContents_2.setFont(font2)
         self.scrollAreaWidgetContents_2.setStyleSheet(u"background-color: white;\n"
 "color:rgb(43, 43, 43);")
@@ -412,7 +412,7 @@ class Ui_solveSettings(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollAreaWidgetContents_5 = QWidget()
         self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
-        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, -17, 364, 131))
+        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 387, 129))
         self.scrollAreaWidgetContents_5.setFont(font2)
         self.scrollAreaWidgetContents_5.setStyleSheet(u"background-color: white;\n"
 "color:rgb(43, 43, 43);")
@@ -442,26 +442,12 @@ class Ui_solveSettings(object):
 
         self.gridLayout_3.addWidget(self.label_24, 2, 0, 1, 1)
 
-        self.label_25 = QLabel(self.scrollAreaWidgetContents_5)
-        self.label_25.setObjectName(u"label_25")
-        self.label_25.setMaximumSize(QSize(16777215, 100))
-        self.label_25.setFont(font5)
-
-        self.gridLayout_3.addWidget(self.label_25, 3, 0, 1, 1)
-
         self.shelter_res_flood_checkbox = QCheckBox(self.scrollAreaWidgetContents_5)
         self.shelter_res_flood_checkbox.setObjectName(u"shelter_res_flood_checkbox")
         self.shelter_res_flood_checkbox.setMaximumSize(QSize(30, 16777215))
         self.shelter_res_flood_checkbox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         self.gridLayout_3.addWidget(self.shelter_res_flood_checkbox, 0, 1, 1, 1)
-
-        self.shelter_res_typhoon_checkbox = QCheckBox(self.scrollAreaWidgetContents_5)
-        self.shelter_res_typhoon_checkbox.setObjectName(u"shelter_res_typhoon_checkbox")
-        self.shelter_res_typhoon_checkbox.setMaximumSize(QSize(30, 16777215))
-        self.shelter_res_typhoon_checkbox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-
-        self.gridLayout_3.addWidget(self.shelter_res_typhoon_checkbox, 1, 1, 1, 1)
 
         self.shelter_res_earthquake_checkbox = QCheckBox(self.scrollAreaWidgetContents_5)
         self.shelter_res_earthquake_checkbox.setObjectName(u"shelter_res_earthquake_checkbox")
@@ -470,12 +456,12 @@ class Ui_solveSettings(object):
 
         self.gridLayout_3.addWidget(self.shelter_res_earthquake_checkbox, 2, 1, 1, 1)
 
-        self.shelter_res_volcanic_checkbox = QCheckBox(self.scrollAreaWidgetContents_5)
-        self.shelter_res_volcanic_checkbox.setObjectName(u"shelter_res_volcanic_checkbox")
-        self.shelter_res_volcanic_checkbox.setMaximumSize(QSize(30, 16777215))
-        self.shelter_res_volcanic_checkbox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.shelter_res_typhoon_checkbox = QCheckBox(self.scrollAreaWidgetContents_5)
+        self.shelter_res_typhoon_checkbox.setObjectName(u"shelter_res_typhoon_checkbox")
+        self.shelter_res_typhoon_checkbox.setMaximumSize(QSize(30, 16777215))
+        self.shelter_res_typhoon_checkbox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
-        self.gridLayout_3.addWidget(self.shelter_res_volcanic_checkbox, 3, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.shelter_res_typhoon_checkbox, 1, 1, 1, 1)
 
         self.scrollArea_4.setWidget(self.scrollAreaWidgetContents_5)
 
@@ -539,7 +525,7 @@ class Ui_solveSettings(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollAreaWidgetContents_6 = QWidget()
         self.scrollAreaWidgetContents_6.setObjectName(u"scrollAreaWidgetContents_6")
-        self.scrollAreaWidgetContents_6.setGeometry(QRect(0, -15, 363, 131))
+        self.scrollAreaWidgetContents_6.setGeometry(QRect(0, 0, 386, 124))
         self.scrollAreaWidgetContents_6.setFont(font2)
         self.scrollAreaWidgetContents_6.setStyleSheet(u"background-color: white;\n"
 "color:rgb(43, 43, 43);")
@@ -721,11 +707,9 @@ class Ui_solveSettings(object):
         self.label_22.setText(QCoreApplication.translate("Dialog", u"Flood", None))
         self.label_23.setText(QCoreApplication.translate("Dialog", u"Typhoon", None))
         self.label_24.setText(QCoreApplication.translate("Dialog", u"Earthquake", None))
-        self.label_25.setText(QCoreApplication.translate("Dialog", u"Volcanic Eruption", None))
         self.shelter_res_flood_checkbox.setText("")
-        self.shelter_res_typhoon_checkbox.setText("")
         self.shelter_res_earthquake_checkbox.setText("")
-        self.shelter_res_volcanic_checkbox.setText("")
+        self.shelter_res_typhoon_checkbox.setText("")
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Shelter Status", None))
         self.shelter_stat_checkbox.setText("")
         self.label_26.setText(QCoreApplication.translate("Dialog", u"Built", None))

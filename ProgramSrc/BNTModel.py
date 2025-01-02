@@ -1,6 +1,6 @@
-# =======================
+# ========================
 # the Official Function for Bilevel No Transfer model
-# =======================
+# ========================
 
 import random
 import numpy as np

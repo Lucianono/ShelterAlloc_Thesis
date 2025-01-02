@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a8b30ab640fc95b5c7f6dc537add3a0a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_a8b30ab640fc95b5c7f6dc537add3a0a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a8b30ab640fc95b5c7f6dc537add3a0a = L.map(
+                "map_a8b30ab640fc95b5c7f6dc537add3a0a",
+                {
+                    center: [14.726163532504348, 120.77141098649864],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 13,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_68ed0a89facc7fc66121dcb52c25b77e = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_68ed0a89facc7fc66121dcb52c25b77e.addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var marker_415efae9b60b542e07a88ff37a2f586f = L.marker(
+                [14.8881, 120.7855],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_b8e88742a45cf1f75adcfe036ae271d9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_415efae9b60b542e07a88ff37a2f586f.setIcon(icon_b8e88742a45cf1f75adcfe036ae271d9);
+        
+    
+        var popup_e150acd32c4abb6605d04bf2ede1b576 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0e77eb0384174246f3a25f5449572e47 = $(`<div id="html_0e77eb0384174246f3a25f5449572e47" style="width: 100.0%; height: 100.0%;">Community: Pio Cruzcosa</div>`)[0];
+                popup_e150acd32c4abb6605d04bf2ede1b576.setContent(html_0e77eb0384174246f3a25f5449572e47);
+            
+        
+
+        marker_415efae9b60b542e07a88ff37a2f586f.bindPopup(popup_e150acd32c4abb6605d04bf2ede1b576)
+        ;
+
+        
+    
+    
+            var marker_aa710c5a2fea575b1e7efc63af6388d5 = L.marker(
+                [14.2, 120.7855],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_9d384519a08343315b68d62a39354e8f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_aa710c5a2fea575b1e7efc63af6388d5.setIcon(icon_9d384519a08343315b68d62a39354e8f);
+        
+    
+        var popup_4b70e977f1777209a36b2f6db54b85db = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9b9290c9bc0adeaff3e5da60dfa3980a = $(`<div id="html_9b9290c9bc0adeaff3e5da60dfa3980a" style="width: 100.0%; height: 100.0%;">Community: Poblacion</div>`)[0];
+                popup_4b70e977f1777209a36b2f6db54b85db.setContent(html_9b9290c9bc0adeaff3e5da60dfa3980a);
+            
+        
+
+        marker_aa710c5a2fea575b1e7efc63af6388d5.bindPopup(popup_4b70e977f1777209a36b2f6db54b85db)
+        ;
+
+        
+    
+    
+            var marker_57755b41abc0cd44b6c4dcd80177ce08 = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_fc656b8349e8a1f28cbc800052a993c0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_57755b41abc0cd44b6c4dcd80177ce08.setIcon(icon_fc656b8349e8a1f28cbc800052a993c0);
+        
+    
+        var popup_c28720ce51c6108944b0433daef7e4bc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f743385f0afed57fcea373614dea686c = $(`<div id="html_f743385f0afed57fcea373614dea686c" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_c28720ce51c6108944b0433daef7e4bc.setContent(html_f743385f0afed57fcea373614dea686c);
+            
+        
+
+        marker_57755b41abc0cd44b6c4dcd80177ce08.bindPopup(popup_c28720ce51c6108944b0433daef7e4bc)
+        ;
+
+        
+    
+    
+            var marker_980b2c9194394cdd59466b95116b2f6a = L.marker(
+                [14.9176780529243, 120.767878787289],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_a8a22fd0671e7643c9e70f232c243464 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_980b2c9194394cdd59466b95116b2f6a.setIcon(icon_a8a22fd0671e7643c9e70f232c243464);
+        
+    
+        var popup_5df531e9a0797a42da37c3af5bf327c5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0461cfbe246d00366f35057225ad4e08 = $(`<div id="html_0461cfbe246d00366f35057225ad4e08" style="width: 100.0%; height: 100.0%;">Shelter: F. Mendoza Memorial Elem Sch.</div>`)[0];
+                popup_5df531e9a0797a42da37c3af5bf327c5.setContent(html_0461cfbe246d00366f35057225ad4e08);
+            
+        
+
+        marker_980b2c9194394cdd59466b95116b2f6a.bindPopup(popup_5df531e9a0797a42da37c3af5bf327c5)
+        ;
+
+        
+    
+    
+            var marker_5491bc21e6a001152e1722c23649f774 = L.marker(
+                [14.9185209048724, 120.767571728115],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_a66424c5bd0ed5fd6dcee265eff38594 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_5491bc21e6a001152e1722c23649f774.setIcon(icon_a66424c5bd0ed5fd6dcee265eff38594);
+        
+    
+        var popup_6dba7aaadb106e70c8996d04ffa7b94c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b3580e33ffd8bf1ec6c4e1721c4d5bc3 = $(`<div id="html_b3580e33ffd8bf1ec6c4e1721c4d5bc3" style="width: 100.0%; height: 100.0%;">Shelter: Calumpit Sports Complex</div>`)[0];
+                popup_6dba7aaadb106e70c8996d04ffa7b94c.setContent(html_b3580e33ffd8bf1ec6c4e1721c4d5bc3);
+            
+        
+
+        marker_5491bc21e6a001152e1722c23649f774.bindPopup(popup_6dba7aaadb106e70c8996d04ffa7b94c)
+        ;
+
+        
+    
+    
+            var marker_e7c1c2b8f4fa4a9052345247a3511c21 = L.marker(
+                [14.9221390531142, 120.766774213649],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_785a042ac5d50bc4c53379f80035a20c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_e7c1c2b8f4fa4a9052345247a3511c21.setIcon(icon_785a042ac5d50bc4c53379f80035a20c);
+        
+    
+        var popup_ff4ec126c8e8d47d257b95d556b0fcda = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7e6b9f0561db3914c597625acd12b4d4 = $(`<div id="html_7e6b9f0561db3914c597625acd12b4d4" style="width: 100.0%; height: 100.0%;">Shelter: Gatbuca Basketball Court</div>`)[0];
+                popup_ff4ec126c8e8d47d257b95d556b0fcda.setContent(html_7e6b9f0561db3914c597625acd12b4d4);
+            
+        
+
+        marker_e7c1c2b8f4fa4a9052345247a3511c21.bindPopup(popup_ff4ec126c8e8d47d257b95d556b0fcda)
+        ;
+
+        
+    
+    
+            var marker_69d8e9c1c42623bdf411fb8346327026 = L.marker(
+                [14.9239360863606, 120.743854227842],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_91845c26eb29748715753fcf9da7c8d9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_69d8e9c1c42623bdf411fb8346327026.setIcon(icon_91845c26eb29748715753fcf9da7c8d9);
+        
+    
+        var popup_1b57a75c0d81ed2e8c921f7cee9e96db = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d82d79dffa68e9d7c112f312632ba670 = $(`<div id="html_d82d79dffa68e9d7c112f312632ba670" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Evacuation Center</div>`)[0];
+                popup_1b57a75c0d81ed2e8c921f7cee9e96db.setContent(html_d82d79dffa68e9d7c112f312632ba670);
+            
+        
+
+        marker_69d8e9c1c42623bdf411fb8346327026.bindPopup(popup_1b57a75c0d81ed2e8c921f7cee9e96db)
+        ;
+
+        
+    
+    
+            var marker_ee7f5151d1f27041b771f4f7303e7919 = L.marker(
+                [14.9183631788682, 120.74341426756],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_d8d850a063ab8b12bd7248781371b6b3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_ee7f5151d1f27041b771f4f7303e7919.setIcon(icon_d8d850a063ab8b12bd7248781371b6b3);
+        
+    
+        var popup_94247ad1ed7551b05ed6d313e25169e5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0d8d3c62d2701f334cf5208cc5f0e1b1 = $(`<div id="html_0d8d3c62d2701f334cf5208cc5f0e1b1" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
+                popup_94247ad1ed7551b05ed6d313e25169e5.setContent(html_0d8d3c62d2701f334cf5208cc5f0e1b1);
+            
+        
+
+        marker_ee7f5151d1f27041b771f4f7303e7919.bindPopup(popup_94247ad1ed7551b05ed6d313e25169e5)
+        ;
+
+        
+    
+    
+            var marker_2b73dd879f1b35c0a5395d6d15caaa66 = L.marker(
+                [14.9271290793079, 120.75016278348],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_9a00a2d79d09aba3d35672001709b909 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_2b73dd879f1b35c0a5395d6d15caaa66.setIcon(icon_9a00a2d79d09aba3d35672001709b909);
+        
+    
+        var popup_f7b3cccbff72ea47a7891145779dff43 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8d26a7a19adba1b107b132c1fca35e18 = $(`<div id="html_8d26a7a19adba1b107b132c1fca35e18" style="width: 100.0%; height: 100.0%;">Shelter: Danga Dike</div>`)[0];
+                popup_f7b3cccbff72ea47a7891145779dff43.setContent(html_8d26a7a19adba1b107b132c1fca35e18);
+            
+        
+
+        marker_2b73dd879f1b35c0a5395d6d15caaa66.bindPopup(popup_f7b3cccbff72ea47a7891145779dff43)
+        ;
+
+        
+    
+    
+            var marker_1b1ced4abca8e5d9c9fe093582fe5c25 = L.marker(
+                [14.9059685215204, 120.739306695061],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_babddb155a4a7044c4d9f7395f484091 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_1b1ced4abca8e5d9c9fe093582fe5c25.setIcon(icon_babddb155a4a7044c4d9f7395f484091);
+        
+    
+        var popup_c2d445378c82bc109ccf5fc010570270 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_27a5db6caf347eb27187ed84f16e72df = $(`<div id="html_27a5db6caf347eb27187ed84f16e72df" style="width: 100.0%; height: 100.0%;">Shelter: Meysulao Multipurpose/E.C.</div>`)[0];
+                popup_c2d445378c82bc109ccf5fc010570270.setContent(html_27a5db6caf347eb27187ed84f16e72df);
+            
+        
+
+        marker_1b1ced4abca8e5d9c9fe093582fe5c25.bindPopup(popup_c2d445378c82bc109ccf5fc010570270)
+        ;
+
+        
+    
+    
+            var marker_35d128814cb4d677fce1d0b4407aa12b = L.marker(
+                [14.9103133008009, 120.738828966419],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_8a57ddc3ac7a6c60b7912f995351f962 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_35d128814cb4d677fce1d0b4407aa12b.setIcon(icon_8a57ddc3ac7a6c60b7912f995351f962);
+        
+    
+        var popup_567775bd2e4a9a3137aa7bdd50a3960c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_93e859bb7d385981e357612b74e43281 = $(`<div id="html_93e859bb7d385981e357612b74e43281" style="width: 100.0%; height: 100.0%;">Shelter: Meysulao Dike </div>`)[0];
+                popup_567775bd2e4a9a3137aa7bdd50a3960c.setContent(html_93e859bb7d385981e357612b74e43281);
+            
+        
+
+        marker_35d128814cb4d677fce1d0b4407aa12b.bindPopup(popup_567775bd2e4a9a3137aa7bdd50a3960c)
+        ;
+
+        
+    
+    
+            var marker_297653f58c61d90fa5eac47943e9a60d = L.marker(
+                [14.9149192538653, 120.749282551866],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_55f647bff4a3af99718e301aad137087 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_297653f58c61d90fa5eac47943e9a60d.setIcon(icon_55f647bff4a3af99718e301aad137087);
+        
+    
+        var popup_5c76c165e410d52f3c92f27f4c2f21b8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_bfda5744aff953cdc49f1c64d6026111 = $(`<div id="html_bfda5744aff953cdc49f1c64d6026111" style="width: 100.0%; height: 100.0%;">Shelter: Calizon Dike</div>`)[0];
+                popup_5c76c165e410d52f3c92f27f4c2f21b8.setContent(html_bfda5744aff953cdc49f1c64d6026111);
+            
+        
+
+        marker_297653f58c61d90fa5eac47943e9a60d.bindPopup(popup_5c76c165e410d52f3c92f27f4c2f21b8)
+        ;
+
+        
+    
+    
+            var marker_7bc60b702ce90136deda61ef1ddf32df = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_fd82985b3afb619c0441e6ff94e95524 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_7bc60b702ce90136deda61ef1ddf32df.setIcon(icon_fd82985b3afb619c0441e6ff94e95524);
+        
+    
+        var popup_c38fa29fca1c26b20bdd5c6f4ccd2293 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2a99becb36c88c7b7a5d8a6fbac7d3de = $(`<div id="html_2a99becb36c88c7b7a5d8a6fbac7d3de" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_c38fa29fca1c26b20bdd5c6f4ccd2293.setContent(html_2a99becb36c88c7b7a5d8a6fbac7d3de);
+            
+        
+
+        marker_7bc60b702ce90136deda61ef1ddf32df.bindPopup(popup_c38fa29fca1c26b20bdd5c6f4ccd2293)
+        ;
+
+        
+    
+    
+            var marker_05dcee125e380f6aa15558e1a886f1bb = L.marker(
+                [14.8938559117996, 120.778052198391],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_14467bea2f8d17eef55469fc8826483f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_05dcee125e380f6aa15558e1a886f1bb.setIcon(icon_14467bea2f8d17eef55469fc8826483f);
+        
+    
+        var popup_9805857331626d10bd9d281d1c6044a9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e8086fc86c4087ae28b4a9018f27219c = $(`<div id="html_e8086fc86c4087ae28b4a9018f27219c" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_9805857331626d10bd9d281d1c6044a9.setContent(html_e8086fc86c4087ae28b4a9018f27219c);
+            
+        
+
+        marker_05dcee125e380f6aa15558e1a886f1bb.bindPopup(popup_9805857331626d10bd9d281d1c6044a9)
+        ;
+
+        
+    
+    
+            var marker_77d63255312b76c615aee305185403d6 = L.marker(
+                [14.8957602136898, 120.796318926682],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_e8c5ed5269a698f664f5fe9be7b232ef = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_77d63255312b76c615aee305185403d6.setIcon(icon_e8c5ed5269a698f664f5fe9be7b232ef);
+        
+    
+        var popup_45b10439465e22f7afd945f7e4cad58c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_22f04023a3c8ea122da8fc46b333dacc = $(`<div id="html_22f04023a3c8ea122da8fc46b333dacc" style="width: 100.0%; height: 100.0%;">Shelter: GMA Kapuso E.C.</div>`)[0];
+                popup_45b10439465e22f7afd945f7e4cad58c.setContent(html_22f04023a3c8ea122da8fc46b333dacc);
+            
+        
+
+        marker_77d63255312b76c615aee305185403d6.bindPopup(popup_45b10439465e22f7afd945f7e4cad58c)
+        ;
+
+        
+    
+    
+            var marker_a1aac9efec1b0c990777fe45ac2456cc = L.marker(
+                [14.8984661105575, 120.765656923103],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_a46f475a8f870f3ed4681843f09ab8a4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_a1aac9efec1b0c990777fe45ac2456cc.setIcon(icon_a46f475a8f870f3ed4681843f09ab8a4);
+        
+    
+        var popup_f694bffd146c9694aa2430cb7f9f552a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cf2941b79e9f78b383c436a6fd2a855d = $(`<div id="html_cf2941b79e9f78b383c436a6fd2a855d" style="width: 100.0%; height: 100.0%;">Shelter: NV9 Multi-Purpose</div>`)[0];
+                popup_f694bffd146c9694aa2430cb7f9f552a.setContent(html_cf2941b79e9f78b383c436a6fd2a855d);
+            
+        
+
+        marker_a1aac9efec1b0c990777fe45ac2456cc.bindPopup(popup_f694bffd146c9694aa2430cb7f9f552a)
+        ;
+
+        
+    
+    
+            var marker_33554341c4f7f5c54477542d692f3adf = L.marker(
+                [14.9194611702998, 120.762172685224],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_140a15519147d33b3ee021dc5d6953c8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_33554341c4f7f5c54477542d692f3adf.setIcon(icon_140a15519147d33b3ee021dc5d6953c8);
+        
+    
+        var popup_bccd5d68922f404f7a97ae41b1122eba = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4c881d53cffbd1d92a43fe44964b680d = $(`<div id="html_4c881d53cffbd1d92a43fe44964b680d" style="width: 100.0%; height: 100.0%;">Shelter: Frances E.C.</div>`)[0];
+                popup_bccd5d68922f404f7a97ae41b1122eba.setContent(html_4c881d53cffbd1d92a43fe44964b680d);
+            
+        
+
+        marker_33554341c4f7f5c54477542d692f3adf.bindPopup(popup_bccd5d68922f404f7a97ae41b1122eba)
+        ;
+
+        
+    
+    
+            var marker_0bbaaa20bf591066610d06f18fbca9ee = L.marker(
+                [14.9148551401837, 120.761492937455],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_b5013dfea1ff92024b1de7a7068cf8fc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_0bbaaa20bf591066610d06f18fbca9ee.setIcon(icon_b5013dfea1ff92024b1de7a7068cf8fc);
+        
+    
+        var popup_962bca322ee7c5d0da6bcf44ff215633 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8dc9a55f9eaaf7ae4aeac362e841dd85 = $(`<div id="html_8dc9a55f9eaaf7ae4aeac362e841dd85" style="width: 100.0%; height: 100.0%;">Shelter: Balungao E.C.</div>`)[0];
+                popup_962bca322ee7c5d0da6bcf44ff215633.setContent(html_8dc9a55f9eaaf7ae4aeac362e841dd85);
+            
+        
+
+        marker_0bbaaa20bf591066610d06f18fbca9ee.bindPopup(popup_962bca322ee7c5d0da6bcf44ff215633)
+        ;
+
+        
+    
+    
+            var marker_0bdc0d8f85bfb78559cd951beabd613c = L.marker(
+                [14.9020620809296, 120.754567377767],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_727645fafd29ebcd851b96e2dffbda15 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_0bdc0d8f85bfb78559cd951beabd613c.setIcon(icon_727645fafd29ebcd851b96e2dffbda15);
+        
+    
+        var popup_4b2e34906ba832a97306e826faf182fe = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_49062b439763a73eef8e3264497db3d4 = $(`<div id="html_49062b439763a73eef8e3264497db3d4" style="width: 100.0%; height: 100.0%;">Shelter: Gugo E.C.</div>`)[0];
+                popup_4b2e34906ba832a97306e826faf182fe.setContent(html_49062b439763a73eef8e3264497db3d4);
+            
+        
+
+        marker_0bdc0d8f85bfb78559cd951beabd613c.bindPopup(popup_4b2e34906ba832a97306e826faf182fe)
+        ;
+
+        
+    
+    
+            var marker_93d987ba31bf539da097f31d54e484b3 = L.marker(
+                [14.8977769256005, 120.779698188389],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_f9bb97c85467596266d17344660d47c4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_93d987ba31bf539da097f31d54e484b3.setIcon(icon_f9bb97c85467596266d17344660d47c4);
+        
+    
+        var popup_27c8853c56dd7e70269122b6a63b2619 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5fa0d8128d7a9b5fe47b22eaf7eb24c7 = $(`<div id="html_5fa0d8128d7a9b5fe47b22eaf7eb24c7" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos E.C.</div>`)[0];
+                popup_27c8853c56dd7e70269122b6a63b2619.setContent(html_5fa0d8128d7a9b5fe47b22eaf7eb24c7);
+            
+        
+
+        marker_93d987ba31bf539da097f31d54e484b3.bindPopup(popup_27c8853c56dd7e70269122b6a63b2619)
+        ;
+
+        
+    
+    
+            var marker_e5bd743e03fa506f7af463658d40aa65 = L.marker(
+                [14.8832968907295, 120.734404217521],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_d2cc73e6dd21224c94d4ccd0e1cfa24f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_e5bd743e03fa506f7af463658d40aa65.setIcon(icon_d2cc73e6dd21224c94d4ccd0e1cfa24f);
+        
+    
+        var popup_287deb2ca119c26b2eec4343ade689a8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_263f8825ef17f41a8b8f01752067a8cc = $(`<div id="html_263f8825ef17f41a8b8f01752067a8cc" style="width: 100.0%; height: 100.0%;">Shelter: San Jose E.C.</div>`)[0];
+                popup_287deb2ca119c26b2eec4343ade689a8.setContent(html_263f8825ef17f41a8b8f01752067a8cc);
+            
+        
+
+        marker_e5bd743e03fa506f7af463658d40aa65.bindPopup(popup_287deb2ca119c26b2eec4343ade689a8)
+        ;
+
+        
+    
+    
+            var marker_9c4ae6c478304d7e84d85758ee41da49 = L.marker(
+                [14.8833047964844, 120.72904705443],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_75e3986cb070eb83352461ae9ce16f7c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_9c4ae6c478304d7e84d85758ee41da49.setIcon(icon_75e3986cb070eb83352461ae9ce16f7c);
+        
+    
+        var popup_188dad242642b2dd33dbef414da84cd7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_27e40beebb58a4753172404d2fe19f11 = $(`<div id="html_27e40beebb58a4753172404d2fe19f11" style="width: 100.0%; height: 100.0%;">Shelter: MEYTO Multi-Purpose/ E.C.</div>`)[0];
+                popup_188dad242642b2dd33dbef414da84cd7.setContent(html_27e40beebb58a4753172404d2fe19f11);
+            
+        
+
+        marker_9c4ae6c478304d7e84d85758ee41da49.bindPopup(popup_188dad242642b2dd33dbef414da84cd7)
+        ;
+
+        
+    
+    
+            var marker_79758828eff4b9ff986c6a77b80c6d2d = L.marker(
+                [14.9104237817507, 120.742556915324],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_ba4cfd6198f25f0a821b1f7fbe99d524 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_79758828eff4b9ff986c6a77b80c6d2d.setIcon(icon_ba4cfd6198f25f0a821b1f7fbe99d524);
+        
+    
+        var popup_77f634fcaf464ca89e186b913bf006d1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f84ef2bd4a460d93dee0ae6171509c29 = $(`<div id="html_f84ef2bd4a460d93dee0ae6171509c29" style="width: 100.0%; height: 100.0%;">Shelter: Barangay Hall Bulusan</div>`)[0];
+                popup_77f634fcaf464ca89e186b913bf006d1.setContent(html_f84ef2bd4a460d93dee0ae6171509c29);
+            
+        
+
+        marker_79758828eff4b9ff986c6a77b80c6d2d.bindPopup(popup_77f634fcaf464ca89e186b913bf006d1)
+        ;
+
+        
+    
+    
+            var marker_46a6b093e29f5a39393de297f5fdd7aa = L.marker(
+                [14.9014927315593, 120.736527735677],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_5cfed9f9cacaa4ca834680f56fd806d8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_46a6b093e29f5a39393de297f5fdd7aa.setIcon(icon_5cfed9f9cacaa4ca834680f56fd806d8);
+        
+    
+        var popup_cca9b41ad317af34896bf8ff249e39b6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d046a8950ac15cf9471a570e03e614f8 = $(`<div id="html_d046a8950ac15cf9471a570e03e614f8" style="width: 100.0%; height: 100.0%;">Shelter: Brgy. Hall Sta. Lucia</div>`)[0];
+                popup_cca9b41ad317af34896bf8ff249e39b6.setContent(html_d046a8950ac15cf9471a570e03e614f8);
+            
+        
+
+        marker_46a6b093e29f5a39393de297f5fdd7aa.bindPopup(popup_cca9b41ad317af34896bf8ff249e39b6)
+        ;
+
+        
+    
+    
+            var marker_b83d6c92d22cff93507743ac55f06118 = L.marker(
+                [14.9142263888355, 120.765260684344],
+                {}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+            var icon_6d9ae00d2213d13b6f10ec6983344512 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_b83d6c92d22cff93507743ac55f06118.setIcon(icon_6d9ae00d2213d13b6f10ec6983344512);
+        
+    
+        var popup_e92fe15c92551a28827e2c1e82e5ccce = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b627ccdf09004ba79e0639a173eaa991 = $(`<div id="html_b627ccdf09004ba79e0639a173eaa991" style="width: 100.0%; height: 100.0%;">Shelter: Mun. Covered Court</div>`)[0];
+                popup_e92fe15c92551a28827e2c1e82e5ccce.setContent(html_b627ccdf09004ba79e0639a173eaa991);
+            
+        
+
+        marker_b83d6c92d22cff93507743ac55f06118.bindPopup(popup_e92fe15c92551a28827e2c1e82e5ccce)
+        ;
+
+        
+    
+    
+            var poly_line_a1cc262869504ac8940a4581519c1652 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_c518c797e6accdc13157684bccedb0a2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c4b23ad60c19abbb08c3f032bb99977f = $(`<div id="html_c4b23ad60c19abbb08c3f032bb99977f" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_c518c797e6accdc13157684bccedb0a2.setContent(html_c4b23ad60c19abbb08c3f032bb99977f);
+            
+        
+
+        poly_line_a1cc262869504ac8940a4581519c1652.bindPopup(popup_c518c797e6accdc13157684bccedb0a2)
+        ;
+
+        
+    
+    
+            var poly_line_c0c137c1e1e8bc67dec154dbaeeb2f9b = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_b63a9e891eb72624fec8072697994db5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2bffbd9b2302d6f5e21b4ea0cdc82075 = $(`<div id="html_2bffbd9b2302d6f5e21b4ea0cdc82075" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to F. Mendoza Memorial Elem Sch.</div>`)[0];
+                popup_b63a9e891eb72624fec8072697994db5.setContent(html_2bffbd9b2302d6f5e21b4ea0cdc82075);
+            
+        
+
+        poly_line_c0c137c1e1e8bc67dec154dbaeeb2f9b.bindPopup(popup_b63a9e891eb72624fec8072697994db5)
+        ;
+
+        
+    
+    
+            var poly_line_9d3b1fb252341a73f983b28a3cc408ea = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_892a8353d6e43d5235706f3f9f7157d2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4e08f28a1236c0aaa7887b1250cde100 = $(`<div id="html_4e08f28a1236c0aaa7887b1250cde100" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Calumpit Sports Complex</div>`)[0];
+                popup_892a8353d6e43d5235706f3f9f7157d2.setContent(html_4e08f28a1236c0aaa7887b1250cde100);
+            
+        
+
+        poly_line_9d3b1fb252341a73f983b28a3cc408ea.bindPopup(popup_892a8353d6e43d5235706f3f9f7157d2)
+        ;
+
+        
+    
+    
+            var poly_line_d983ed21d05ebcaa0b1dd3cd6114e77f = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_a444a98ce9d0994d27372cf3ad1583ea = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a95371c147d9912a4c99ed36933db06c = $(`<div id="html_a95371c147d9912a4c99ed36933db06c" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Gatbuca Basketball Court</div>`)[0];
+                popup_a444a98ce9d0994d27372cf3ad1583ea.setContent(html_a95371c147d9912a4c99ed36933db06c);
+            
+        
+
+        poly_line_d983ed21d05ebcaa0b1dd3cd6114e77f.bindPopup(popup_a444a98ce9d0994d27372cf3ad1583ea)
+        ;
+
+        
+    
+    
+            var poly_line_195792e879feca79c3123ce6795902db = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_7d346b6118d1303aeac0580f46435adb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1aeedffbe4ad2956928e9cabe36d3bfc = $(`<div id="html_1aeedffbe4ad2956928e9cabe36d3bfc" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to San Miguel Evacuation Center</div>`)[0];
+                popup_7d346b6118d1303aeac0580f46435adb.setContent(html_1aeedffbe4ad2956928e9cabe36d3bfc);
+            
+        
+
+        poly_line_195792e879feca79c3123ce6795902db.bindPopup(popup_7d346b6118d1303aeac0580f46435adb)
+        ;
+
+        
+    
+    
+            var poly_line_56755fe9e9e72efbb139f26e2f743060 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "pink", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_57b0e67e226c221dec4e1fb4cb73db3a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_aa7c08d28c406af9e298ebbceed3ac62 = $(`<div id="html_aa7c08d28c406af9e298ebbceed3ac62" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Doña Damiana Elem School</div>`)[0];
+                popup_57b0e67e226c221dec4e1fb4cb73db3a.setContent(html_aa7c08d28c406af9e298ebbceed3ac62);
+            
+        
+
+        poly_line_56755fe9e9e72efbb139f26e2f743060.bindPopup(popup_57b0e67e226c221dec4e1fb4cb73db3a)
+        ;
+
+        
+    
+    
+            var poly_line_96a1630f387cdad2bc0de9304b56eab7 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "yellow", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_e172aea429254785221f99f65d098ed8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2d42dea7825654d9873f5b3995a18620 = $(`<div id="html_2d42dea7825654d9873f5b3995a18620" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Danga Dike</div>`)[0];
+                popup_e172aea429254785221f99f65d098ed8.setContent(html_2d42dea7825654d9873f5b3995a18620);
+            
+        
+
+        poly_line_96a1630f387cdad2bc0de9304b56eab7.bindPopup(popup_e172aea429254785221f99f65d098ed8)
+        ;
+
+        
+    
+    
+            var poly_line_c95794ac61749540c3d9949ece250037 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "brown", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "brown", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_a1e7cd9f27e6fa4c152d3038dab2aa77 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2cf3a1dae2d3f457205cb2eb766c7f76 = $(`<div id="html_2cf3a1dae2d3f457205cb2eb766c7f76" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Meysulao Multipurpose/E.C.</div>`)[0];
+                popup_a1e7cd9f27e6fa4c152d3038dab2aa77.setContent(html_2cf3a1dae2d3f457205cb2eb766c7f76);
+            
+        
+
+        poly_line_c95794ac61749540c3d9949ece250037.bindPopup(popup_a1e7cd9f27e6fa4c152d3038dab2aa77)
+        ;
+
+        
+    
+    
+            var poly_line_353c5cb33f9faf7fbd7898b7bb0e363a = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_77ab4b4f630171044dc3836b07a5c2f0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d07953c587386e0d456316cd0abe2d77 = $(`<div id="html_d07953c587386e0d456316cd0abe2d77" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Meysulao Dike </div>`)[0];
+                popup_77ab4b4f630171044dc3836b07a5c2f0.setContent(html_d07953c587386e0d456316cd0abe2d77);
+            
+        
+
+        poly_line_353c5cb33f9faf7fbd7898b7bb0e363a.bindPopup(popup_77ab4b4f630171044dc3836b07a5c2f0)
+        ;
+
+        
+    
+    
+            var poly_line_860c773ff05aaec12820d8e275cb19d5 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "cyan", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "cyan", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_74e94dc8063cbcda27f83803f67f7f1b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_83e2a690a0e0b632ec52f00311178915 = $(`<div id="html_83e2a690a0e0b632ec52f00311178915" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Calizon Dike</div>`)[0];
+                popup_74e94dc8063cbcda27f83803f67f7f1b.setContent(html_83e2a690a0e0b632ec52f00311178915);
+            
+        
+
+        poly_line_860c773ff05aaec12820d8e275cb19d5.bindPopup(popup_74e94dc8063cbcda27f83803f67f7f1b)
+        ;
+
+        
+    
+    
+            var poly_line_0adfff4de197457a1515470c915b3912 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_918fe05f68de74e86a31d10c41efdfaa = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_12e7a237fdca518d8de265e00757a82d = $(`<div id="html_12e7a237fdca518d8de265e00757a82d" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to San Marcos Elem. Sch.</div>`)[0];
+                popup_918fe05f68de74e86a31d10c41efdfaa.setContent(html_12e7a237fdca518d8de265e00757a82d);
+            
+        
+
+        poly_line_0adfff4de197457a1515470c915b3912.bindPopup(popup_918fe05f68de74e86a31d10c41efdfaa)
+        ;
+
+        
+    
+    
+            var poly_line_e864fcdb7d1c47bc862643e29b0033a8 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_3951f9c6e377d9e2558e535265e59b80 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_08945b0d7440cd816e3114f0eed9000b = $(`<div id="html_08945b0d7440cd816e3114f0eed9000b" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to San Marcos National H.S.</div>`)[0];
+                popup_3951f9c6e377d9e2558e535265e59b80.setContent(html_08945b0d7440cd816e3114f0eed9000b);
+            
+        
+
+        poly_line_e864fcdb7d1c47bc862643e29b0033a8.bindPopup(popup_3951f9c6e377d9e2558e535265e59b80)
+        ;
+
+        
+    
+    
+            var poly_line_8e6a4105a35788969614d8eed0f6632a = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_af3fa6647bfcd7279e4389f333100142 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_942906f6b8c06c08e1a68cf8f94ca501 = $(`<div id="html_942906f6b8c06c08e1a68cf8f94ca501" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to GMA Kapuso E.C.</div>`)[0];
+                popup_af3fa6647bfcd7279e4389f333100142.setContent(html_942906f6b8c06c08e1a68cf8f94ca501);
+            
+        
+
+        poly_line_8e6a4105a35788969614d8eed0f6632a.bindPopup(popup_af3fa6647bfcd7279e4389f333100142)
+        ;
+
+        
+    
+    
+            var poly_line_2020bca40b60510a76699ac3582603dd = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_e126eada4c43cef0ed0563485f7e924f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_47d256621eee42006d42d53a632e3729 = $(`<div id="html_47d256621eee42006d42d53a632e3729" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to NV9 Multi-Purpose</div>`)[0];
+                popup_e126eada4c43cef0ed0563485f7e924f.setContent(html_47d256621eee42006d42d53a632e3729);
+            
+        
+
+        poly_line_2020bca40b60510a76699ac3582603dd.bindPopup(popup_e126eada4c43cef0ed0563485f7e924f)
+        ;
+
+        
+    
+    
+            var poly_line_15b3cd2f2472dce768332ee22440f496 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_64cd0a226a207e14a18e2f7497a6f100 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1eaf324dda9ddcaf63c9abdd9d8faca0 = $(`<div id="html_1eaf324dda9ddcaf63c9abdd9d8faca0" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Frances E.C.</div>`)[0];
+                popup_64cd0a226a207e14a18e2f7497a6f100.setContent(html_1eaf324dda9ddcaf63c9abdd9d8faca0);
+            
+        
+
+        poly_line_15b3cd2f2472dce768332ee22440f496.bindPopup(popup_64cd0a226a207e14a18e2f7497a6f100)
+        ;
+
+        
+    
+    
+            var poly_line_d3c4e2ad318750f5b44be568d114d088 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "pink", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_70e5d6927409b95fa116edbae40e1cd0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_14e49bc59dd8544760198b242b9c8f89 = $(`<div id="html_14e49bc59dd8544760198b242b9c8f89" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Balungao E.C.</div>`)[0];
+                popup_70e5d6927409b95fa116edbae40e1cd0.setContent(html_14e49bc59dd8544760198b242b9c8f89);
+            
+        
+
+        poly_line_d3c4e2ad318750f5b44be568d114d088.bindPopup(popup_70e5d6927409b95fa116edbae40e1cd0)
+        ;
+
+        
+    
+    
+            var poly_line_10abd0e3275b368f4c42cb4d07a65177 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "yellow", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_a4c5d6b9ac2441f4e275637900bfe53a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_eb107ef23fbfaf2eb7cbf23c610d160c = $(`<div id="html_eb107ef23fbfaf2eb7cbf23c610d160c" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Gugo E.C.</div>`)[0];
+                popup_a4c5d6b9ac2441f4e275637900bfe53a.setContent(html_eb107ef23fbfaf2eb7cbf23c610d160c);
+            
+        
+
+        poly_line_10abd0e3275b368f4c42cb4d07a65177.bindPopup(popup_a4c5d6b9ac2441f4e275637900bfe53a)
+        ;
+
+        
+    
+    
+            var poly_line_e146b84b105b4d57589a4251c47dfacc = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "brown", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "brown", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_4ec26fa5bd5debdc653d318122a2edf3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_25b1f961763ddc5b7b5661b7ebcb380b = $(`<div id="html_25b1f961763ddc5b7b5661b7ebcb380b" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to San Marcos E.C.</div>`)[0];
+                popup_4ec26fa5bd5debdc653d318122a2edf3.setContent(html_25b1f961763ddc5b7b5661b7ebcb380b);
+            
+        
+
+        poly_line_e146b84b105b4d57589a4251c47dfacc.bindPopup(popup_4ec26fa5bd5debdc653d318122a2edf3)
+        ;
+
+        
+    
+    
+            var poly_line_a52564ee6a1dab8b77c126c0497f162f = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_2fc5e6e518eb8d5803f866ec8404b850 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b8d52d10e3d42921a34089fe5d5422ce = $(`<div id="html_b8d52d10e3d42921a34089fe5d5422ce" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to San Jose E.C.</div>`)[0];
+                popup_2fc5e6e518eb8d5803f866ec8404b850.setContent(html_b8d52d10e3d42921a34089fe5d5422ce);
+            
+        
+
+        poly_line_a52564ee6a1dab8b77c126c0497f162f.bindPopup(popup_2fc5e6e518eb8d5803f866ec8404b850)
+        ;
+
+        
+    
+    
+            var poly_line_4c4d0bcd35988e64ca8d072e707fb120 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "cyan", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "cyan", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_b2d29006d4f82bb7c60bd68a2584e2b9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_14e21946e7a2f2e2c6288df9f1397c7b = $(`<div id="html_14e21946e7a2f2e2c6288df9f1397c7b" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to MEYTO Multi-Purpose/ E.C.</div>`)[0];
+                popup_b2d29006d4f82bb7c60bd68a2584e2b9.setContent(html_14e21946e7a2f2e2c6288df9f1397c7b);
+            
+        
+
+        poly_line_4c4d0bcd35988e64ca8d072e707fb120.bindPopup(popup_b2d29006d4f82bb7c60bd68a2584e2b9)
+        ;
+
+        
+    
+    
+            var poly_line_5cecb88ac0b8a16a378587c592513e44 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_cb94fdfacb2a63695632c09c4109ecb6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_364911b32350b72bf1692eba470ba0e8 = $(`<div id="html_364911b32350b72bf1692eba470ba0e8" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Barangay Hall Bulusan</div>`)[0];
+                popup_cb94fdfacb2a63695632c09c4109ecb6.setContent(html_364911b32350b72bf1692eba470ba0e8);
+            
+        
+
+        poly_line_5cecb88ac0b8a16a378587c592513e44.bindPopup(popup_cb94fdfacb2a63695632c09c4109ecb6)
+        ;
+
+        
+    
+    
+            var poly_line_86162a0bc6686aa8495c760ef9085855 = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_72efc6df9e770d0e2f779e797a7d0223 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_05de7132e3ba099f1317a9950f856375 = $(`<div id="html_05de7132e3ba099f1317a9950f856375" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Brgy. Hall Sta. Lucia</div>`)[0];
+                popup_72efc6df9e770d0e2f779e797a7d0223.setContent(html_05de7132e3ba099f1317a9950f856375);
+            
+        
+
+        poly_line_86162a0bc6686aa8495c760ef9085855.bindPopup(popup_72efc6df9e770d0e2f779e797a7d0223)
+        ;
+
+        
+    
+    
+            var poly_line_4e3bcecc7e2db21f1e9ac1217931beae = L.polyline(
+                [[14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_6e5979bd25a2f9f519952c6bd94d1a2c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b9b33033057c711bc653860e4dad51a0 = $(`<div id="html_b9b33033057c711bc653860e4dad51a0" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to Mun. Covered Court</div>`)[0];
+                popup_6e5979bd25a2f9f519952c6bd94d1a2c.setContent(html_b9b33033057c711bc653860e4dad51a0);
+            
+        
+
+        poly_line_4e3bcecc7e2db21f1e9ac1217931beae.bindPopup(popup_6e5979bd25a2f9f519952c6bd94d1a2c)
+        ;
+
+        
+    
+    
+            var poly_line_16154bbe3cf957e6dfa5633639a6dd1f = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_4785f621a32f2bb7588b7eae1948c958 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1fbe9aae11c2a0e8cea4eeaa17e460aa = $(`<div id="html_1fbe9aae11c2a0e8cea4eeaa17e460aa" style="width: 100.0%; height: 100.0%;">Route from Poblacion to BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_4785f621a32f2bb7588b7eae1948c958.setContent(html_1fbe9aae11c2a0e8cea4eeaa17e460aa);
+            
+        
+
+        poly_line_16154bbe3cf957e6dfa5633639a6dd1f.bindPopup(popup_4785f621a32f2bb7588b7eae1948c958)
+        ;
+
+        
+    
+    
+            var poly_line_2f0124a71bd4f02a676a265fc6902edf = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_09182f5d53e8d5423d93a9cf65238002 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d8c31419b7f289a98118e8a03e54db00 = $(`<div id="html_d8c31419b7f289a98118e8a03e54db00" style="width: 100.0%; height: 100.0%;">Route from Poblacion to F. Mendoza Memorial Elem Sch.</div>`)[0];
+                popup_09182f5d53e8d5423d93a9cf65238002.setContent(html_d8c31419b7f289a98118e8a03e54db00);
+            
+        
+
+        poly_line_2f0124a71bd4f02a676a265fc6902edf.bindPopup(popup_09182f5d53e8d5423d93a9cf65238002)
+        ;
+
+        
+    
+    
+            var poly_line_753db496f52b95c8d191de0c3b8cd582 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "pink", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_0c265e502d3364128d49bc33ef734c82 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_34907ab3ff5cb21becb58216c9f50dfc = $(`<div id="html_34907ab3ff5cb21becb58216c9f50dfc" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Calumpit Sports Complex</div>`)[0];
+                popup_0c265e502d3364128d49bc33ef734c82.setContent(html_34907ab3ff5cb21becb58216c9f50dfc);
+            
+        
+
+        poly_line_753db496f52b95c8d191de0c3b8cd582.bindPopup(popup_0c265e502d3364128d49bc33ef734c82)
+        ;
+
+        
+    
+    
+            var poly_line_0bd65cd4e48836129570af3ce824dbf4 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "yellow", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_a3bcf35e940cae1e3a00848e5f652aef = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f1ae70e4dc8b6c5cdf3c320de3c2a0e1 = $(`<div id="html_f1ae70e4dc8b6c5cdf3c320de3c2a0e1" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Gatbuca Basketball Court</div>`)[0];
+                popup_a3bcf35e940cae1e3a00848e5f652aef.setContent(html_f1ae70e4dc8b6c5cdf3c320de3c2a0e1);
+            
+        
+
+        poly_line_0bd65cd4e48836129570af3ce824dbf4.bindPopup(popup_a3bcf35e940cae1e3a00848e5f652aef)
+        ;
+
+        
+    
+    
+            var poly_line_9faa99c34f5b05380f579c5118437feb = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "brown", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "brown", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_a1347af1a17a6eddea4a3da98d451a90 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_35a6f5b43ed5da8cee871ec3cd4b5cc5 = $(`<div id="html_35a6f5b43ed5da8cee871ec3cd4b5cc5" style="width: 100.0%; height: 100.0%;">Route from Poblacion to San Miguel Evacuation Center</div>`)[0];
+                popup_a1347af1a17a6eddea4a3da98d451a90.setContent(html_35a6f5b43ed5da8cee871ec3cd4b5cc5);
+            
+        
+
+        poly_line_9faa99c34f5b05380f579c5118437feb.bindPopup(popup_a1347af1a17a6eddea4a3da98d451a90)
+        ;
+
+        
+    
+    
+            var poly_line_32f994d8c605774a2dcdbc8d4e529e35 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_90ee382a9c1860b3ba262542fd5e92a0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9d3023278d8eccd1094b667584f81516 = $(`<div id="html_9d3023278d8eccd1094b667584f81516" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Doña Damiana Elem School</div>`)[0];
+                popup_90ee382a9c1860b3ba262542fd5e92a0.setContent(html_9d3023278d8eccd1094b667584f81516);
+            
+        
+
+        poly_line_32f994d8c605774a2dcdbc8d4e529e35.bindPopup(popup_90ee382a9c1860b3ba262542fd5e92a0)
+        ;
+
+        
+    
+    
+            var poly_line_ee31626e4b87cde9d157607566eaac8c = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "cyan", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "cyan", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_b892e6277bc2daab47a377a247723743 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9ea489aebc33452e18528cc475cba7a1 = $(`<div id="html_9ea489aebc33452e18528cc475cba7a1" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Danga Dike</div>`)[0];
+                popup_b892e6277bc2daab47a377a247723743.setContent(html_9ea489aebc33452e18528cc475cba7a1);
+            
+        
+
+        poly_line_ee31626e4b87cde9d157607566eaac8c.bindPopup(popup_b892e6277bc2daab47a377a247723743)
+        ;
+
+        
+    
+    
+            var poly_line_2dda2bac289ce4aac4cedb410d515913 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_45a84e08ac4e8fbe1fe6310d163931b6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1a28fb4d20dda3d036868b938a3f29de = $(`<div id="html_1a28fb4d20dda3d036868b938a3f29de" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Meysulao Multipurpose/E.C.</div>`)[0];
+                popup_45a84e08ac4e8fbe1fe6310d163931b6.setContent(html_1a28fb4d20dda3d036868b938a3f29de);
+            
+        
+
+        poly_line_2dda2bac289ce4aac4cedb410d515913.bindPopup(popup_45a84e08ac4e8fbe1fe6310d163931b6)
+        ;
+
+        
+    
+    
+            var poly_line_b98fcc8842f8cd08c065b34e8bd0151c = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_0ac86f847339a6304d885d2f09275857 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cedb65dbfee097f9371702ed027f117c = $(`<div id="html_cedb65dbfee097f9371702ed027f117c" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Meysulao Dike </div>`)[0];
+                popup_0ac86f847339a6304d885d2f09275857.setContent(html_cedb65dbfee097f9371702ed027f117c);
+            
+        
+
+        poly_line_b98fcc8842f8cd08c065b34e8bd0151c.bindPopup(popup_0ac86f847339a6304d885d2f09275857)
+        ;
+
+        
+    
+    
+            var poly_line_48317bb7a865eec6a2b30102e9512a24 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_44998c79aaf617b078f5c9663e61103e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c9644532b870b6f1edf1d111adc58124 = $(`<div id="html_c9644532b870b6f1edf1d111adc58124" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Calizon Dike</div>`)[0];
+                popup_44998c79aaf617b078f5c9663e61103e.setContent(html_c9644532b870b6f1edf1d111adc58124);
+            
+        
+
+        poly_line_48317bb7a865eec6a2b30102e9512a24.bindPopup(popup_44998c79aaf617b078f5c9663e61103e)
+        ;
+
+        
+    
+    
+            var poly_line_f6db4548c04f7b3df32ecea686a7b951 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_518f7fc868eba30e39439522f8ef8739 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_54f5b5c466f11cb2789c7f6f29277a1e = $(`<div id="html_54f5b5c466f11cb2789c7f6f29277a1e" style="width: 100.0%; height: 100.0%;">Route from Poblacion to San Marcos Elem. Sch.</div>`)[0];
+                popup_518f7fc868eba30e39439522f8ef8739.setContent(html_54f5b5c466f11cb2789c7f6f29277a1e);
+            
+        
+
+        poly_line_f6db4548c04f7b3df32ecea686a7b951.bindPopup(popup_518f7fc868eba30e39439522f8ef8739)
+        ;
+
+        
+    
+    
+            var poly_line_b62a1f7b098bb2c73a4a98acdd4fd9b7 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_5d739d73dc00d4d855dd63e3361a5c73 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_34844ab221067abcc936f2cacdfb75da = $(`<div id="html_34844ab221067abcc936f2cacdfb75da" style="width: 100.0%; height: 100.0%;">Route from Poblacion to San Marcos National H.S.</div>`)[0];
+                popup_5d739d73dc00d4d855dd63e3361a5c73.setContent(html_34844ab221067abcc936f2cacdfb75da);
+            
+        
+
+        poly_line_b62a1f7b098bb2c73a4a98acdd4fd9b7.bindPopup(popup_5d739d73dc00d4d855dd63e3361a5c73)
+        ;
+
+        
+    
+    
+            var poly_line_6aefeaf58abffe907b9858219497cc7b = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "pink", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_ccd94c924c44036ef53e4f3efe06f314 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d20e0b75aed472e10d0612de8ca575e0 = $(`<div id="html_d20e0b75aed472e10d0612de8ca575e0" style="width: 100.0%; height: 100.0%;">Route from Poblacion to GMA Kapuso E.C.</div>`)[0];
+                popup_ccd94c924c44036ef53e4f3efe06f314.setContent(html_d20e0b75aed472e10d0612de8ca575e0);
+            
+        
+
+        poly_line_6aefeaf58abffe907b9858219497cc7b.bindPopup(popup_ccd94c924c44036ef53e4f3efe06f314)
+        ;
+
+        
+    
+    
+            var poly_line_c993836045fa5060d358bacde3228937 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "yellow", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_b60aef2727ba08e32dc716e71886cc35 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2a32a5455c62ca8bf7a2b2f62d048403 = $(`<div id="html_2a32a5455c62ca8bf7a2b2f62d048403" style="width: 100.0%; height: 100.0%;">Route from Poblacion to NV9 Multi-Purpose</div>`)[0];
+                popup_b60aef2727ba08e32dc716e71886cc35.setContent(html_2a32a5455c62ca8bf7a2b2f62d048403);
+            
+        
+
+        poly_line_c993836045fa5060d358bacde3228937.bindPopup(popup_b60aef2727ba08e32dc716e71886cc35)
+        ;
+
+        
+    
+    
+            var poly_line_d928597697b6cc926692996f954c1334 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "brown", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "brown", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_5cd9c33ea434fce02137a018157cafa2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_aab2f99cd32c7c1c3fe6104ccccc79bf = $(`<div id="html_aab2f99cd32c7c1c3fe6104ccccc79bf" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Frances E.C.</div>`)[0];
+                popup_5cd9c33ea434fce02137a018157cafa2.setContent(html_aab2f99cd32c7c1c3fe6104ccccc79bf);
+            
+        
+
+        poly_line_d928597697b6cc926692996f954c1334.bindPopup(popup_5cd9c33ea434fce02137a018157cafa2)
+        ;
+
+        
+    
+    
+            var poly_line_a30c66986fb19064234e8fe57d340431 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_c3bf29699bee17b632c6b7e63a46fd86 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4812b309a8f86a45aac3b9f30722e9a2 = $(`<div id="html_4812b309a8f86a45aac3b9f30722e9a2" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Balungao E.C.</div>`)[0];
+                popup_c3bf29699bee17b632c6b7e63a46fd86.setContent(html_4812b309a8f86a45aac3b9f30722e9a2);
+            
+        
+
+        poly_line_a30c66986fb19064234e8fe57d340431.bindPopup(popup_c3bf29699bee17b632c6b7e63a46fd86)
+        ;
+
+        
+    
+    
+            var poly_line_650eda247393885f4fc9eb9d46a0632b = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "cyan", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "cyan", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_0d745ea3dd766ad699e5f5681bffd35a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6c78e164e6c81ba9cfcf6661a8819a6b = $(`<div id="html_6c78e164e6c81ba9cfcf6661a8819a6b" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Gugo E.C.</div>`)[0];
+                popup_0d745ea3dd766ad699e5f5681bffd35a.setContent(html_6c78e164e6c81ba9cfcf6661a8819a6b);
+            
+        
+
+        poly_line_650eda247393885f4fc9eb9d46a0632b.bindPopup(popup_0d745ea3dd766ad699e5f5681bffd35a)
+        ;
+
+        
+    
+    
+            var poly_line_cc16faa337ad207c96b4951dd76f8f7c = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_05e622a6fe23bc919bfccd5652ed6c53 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f1ff3de2e06749109e4f4cc2284e6b74 = $(`<div id="html_f1ff3de2e06749109e4f4cc2284e6b74" style="width: 100.0%; height: 100.0%;">Route from Poblacion to San Marcos E.C.</div>`)[0];
+                popup_05e622a6fe23bc919bfccd5652ed6c53.setContent(html_f1ff3de2e06749109e4f4cc2284e6b74);
+            
+        
+
+        poly_line_cc16faa337ad207c96b4951dd76f8f7c.bindPopup(popup_05e622a6fe23bc919bfccd5652ed6c53)
+        ;
+
+        
+    
+    
+            var poly_line_bff3e4bf4e7d863164c6a99c60e46660 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_89cbc0d8c90fd50931f61787b14f7c31 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_97a9d3dc48f8f71ddfcb9b762ea8e26e = $(`<div id="html_97a9d3dc48f8f71ddfcb9b762ea8e26e" style="width: 100.0%; height: 100.0%;">Route from Poblacion to San Jose E.C.</div>`)[0];
+                popup_89cbc0d8c90fd50931f61787b14f7c31.setContent(html_97a9d3dc48f8f71ddfcb9b762ea8e26e);
+            
+        
+
+        poly_line_bff3e4bf4e7d863164c6a99c60e46660.bindPopup(popup_89cbc0d8c90fd50931f61787b14f7c31)
+        ;
+
+        
+    
+    
+            var poly_line_bdf50a86b3648327ac5c63659dfdd08f = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_0380a2400e0cce83b12434caea27b7b4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_88115de660c44236ac267c2af22dc94e = $(`<div id="html_88115de660c44236ac267c2af22dc94e" style="width: 100.0%; height: 100.0%;">Route from Poblacion to MEYTO Multi-Purpose/ E.C.</div>`)[0];
+                popup_0380a2400e0cce83b12434caea27b7b4.setContent(html_88115de660c44236ac267c2af22dc94e);
+            
+        
+
+        poly_line_bdf50a86b3648327ac5c63659dfdd08f.bindPopup(popup_0380a2400e0cce83b12434caea27b7b4)
+        ;
+
+        
+    
+    
+            var poly_line_ab758ffc167161bf2fbc114b9617a302 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_6cfa6fc169eaf39670e4710738026076 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9661ba572a4a91f8229f375180e41d9b = $(`<div id="html_9661ba572a4a91f8229f375180e41d9b" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Barangay Hall Bulusan</div>`)[0];
+                popup_6cfa6fc169eaf39670e4710738026076.setContent(html_9661ba572a4a91f8229f375180e41d9b);
+            
+        
+
+        poly_line_ab758ffc167161bf2fbc114b9617a302.bindPopup(popup_6cfa6fc169eaf39670e4710738026076)
+        ;
+
+        
+    
+    
+            var poly_line_6722558282734386cab83d2343541be0 = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_5f69e232023e1621d5794c8a7d4814db = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4d2b320e6fc338a155c56a85a869e39b = $(`<div id="html_4d2b320e6fc338a155c56a85a869e39b" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Brgy. Hall Sta. Lucia</div>`)[0];
+                popup_5f69e232023e1621d5794c8a7d4814db.setContent(html_4d2b320e6fc338a155c56a85a869e39b);
+            
+        
+
+        poly_line_6722558282734386cab83d2343541be0.bindPopup(popup_5f69e232023e1621d5794c8a7d4814db)
+        ;
+
+        
+    
+    
+            var poly_line_d02b5db789d38cc9951e413300cfbdba = L.polyline(
+                [[14.2038138, 120.7856457], [14.2053241, 120.7853283], [14.207823, 120.7857001], [14.2397605, 120.7796041], [14.2444617, 120.7790777], [14.2496837, 120.7788811], [14.2523373, 120.7780239], [14.2545061, 120.777196], [14.2601963, 120.7753723], [14.2604791, 120.7736335], [14.2610438, 120.7737607], [14.2617668, 120.7739153], [14.2621013, 120.7739925], [14.2646254, 120.7738203], [14.2651707, 120.7735258], [14.2674708, 120.7722249], [14.2685323, 120.7713737], [14.2708744, 120.7714272], [14.2720005, 120.7699952], [14.2748477, 120.7694182], [14.276996, 120.7628183], [14.2801999, 120.7650672], [14.285944, 120.7660266], [14.286009, 120.7661165], [14.2858927, 120.7662002], [14.289223, 120.7679438], [14.2974837, 120.765174], [14.3008675, 120.7613755], [14.3021686, 120.7626946], [14.302425, 120.7629546], [14.3025152, 120.763046], [14.3027345, 120.7632684], [14.3031129, 120.7636438], [14.3034765, 120.764002], [14.3055569, 120.7660291], [14.3061261, 120.7665776], [14.3071198, 120.7675994], [14.3072255, 120.7677081], [14.3074168, 120.7679168], [14.3077531, 120.7682875], [14.3080511, 120.7686088], [14.3083712, 120.7689465], [14.3092144, 120.7698683], [14.3092507, 120.7699069], [14.3096676, 120.7703497], [14.3102387, 120.7709498], [14.3110475, 120.7718457], [14.3115149, 120.7723375], [14.3122545, 120.7726277], [14.3136866, 120.7723576], [14.3175496, 120.7717726], [14.3190103, 120.7716274], [14.3190286, 120.7716255], [14.3195757, 120.7715678], [14.3197732, 120.7715524], [14.3206789, 120.7715316], [14.3213554, 120.7716324], [14.3216627, 120.7716752], [14.3220162, 120.7717021], [14.3226523, 120.7717494], [14.3226857, 120.7717507], [14.3238533, 120.7721544], [14.324222, 120.7726139], [14.3251944, 120.7738443], [14.325539, 120.7742579], [14.3257946, 120.7745648], [14.3259702, 120.7747756], [14.3264171, 120.7752974], [14.3265765, 120.7755009], [14.3275169, 120.7766779], [14.3279715, 120.7772383], [14.3282021, 120.7775484], [14.3284728, 120.7778777], [14.3294928, 120.7791136], [14.3298631, 120.7795971], [14.3322195, 120.7825152], [14.3330505, 120.7835492], [14.3350892, 120.7860879], [14.3388152, 120.7907014], [14.3388845, 120.7907523], [14.339561, 120.7909077], [14.3403462, 120.7910729], [14.3404507, 120.7910956], [14.3408352, 120.791179], [14.3412002, 120.7912569], [14.3419553, 120.7914164], [14.3421416, 120.7914558], [14.3423473, 120.7914992], [14.3425182, 120.7915335], [14.3429138, 120.7916215], [14.3436496, 120.7917836], [14.3440202, 120.7918815], [14.3441615, 120.7919188], [14.3442009, 120.7919292], [14.3448211, 120.7921323], [14.3459843, 120.7923766], [14.3481927, 120.793963], [14.3508446, 120.797446], [14.3534365, 120.8008441], [14.3564768, 120.804844], [14.356503, 120.8048763], [14.3578259, 120.8066283], [14.3589486, 120.8081124], [14.3599145, 120.8094025], [14.3601684, 120.8097236], [14.3601954, 120.8097572], [14.3604468, 120.8100958], [14.3604854, 120.8101475], [14.3606126, 120.8103181], [14.3606588, 120.8103839], [14.3622796, 120.8125372], [14.3643759, 120.8153052], [14.3649007, 120.8159961], [14.3649381, 120.8160454], [14.3699654, 120.8113198], [14.370593, 120.8107117], [14.3706495, 120.8108166], [14.3720704, 120.8134932], [14.3723124, 120.8132532], [14.3734422, 120.8125937], [14.374001, 120.8122647], [14.3748858, 120.8145908]],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "pink", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_a8b30ab640fc95b5c7f6dc537add3a0a);
+        
+    
+        var popup_be96a8dbcee5c6d1b83dac79cce697c1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e736967326b2d86cf02c10677c90c538 = $(`<div id="html_e736967326b2d86cf02c10677c90c538" style="width: 100.0%; height: 100.0%;">Route from Poblacion to Mun. Covered Court</div>`)[0];
+                popup_be96a8dbcee5c6d1b83dac79cce697c1.setContent(html_e736967326b2d86cf02c10677c90c538);
+            
+        
+
+        poly_line_d02b5db789d38cc9951e413300cfbdba.bindPopup(popup_be96a8dbcee5c6d1b83dac79cce697c1)
+        ;
+
+        
+    
+</script>
+</html>

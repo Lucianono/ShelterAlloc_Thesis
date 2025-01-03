@@ -1,7 +1,7 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout
 from PySide6.QtGui import QIcon, QCursor
-from PySide6.QtCore import Qt, QUrl
+from PySide6.QtCore import Qt, QUrl, QPropertyAnimation, QRect
 from ui_entityManagementShelter import Ui_entityManagementShelter
 import pandas as pd
 import os
@@ -135,7 +135,7 @@ class EntityManagementShelter(QDialog):
     def add_row(self, table_widget):
         row_position = table_widget.rowCount()
         table_widget.insertRow(row_position)
-        self.add_checkbox(table_widget, row_position)
+        self.add_switch(table_widget, row_position)
 
         for col in range(1, table_widget.columnCount() - 1):
             table_widget.setItem(row_position, col, QTableWidgetItem(""))
@@ -145,12 +145,12 @@ class EntityManagementShelter(QDialog):
     def populate_table(self, table_widget, data):
         table_widget.setRowCount(0)
         table_widget.setColumnCount(len(data.columns) + 2)
-        table_widget.setHorizontalHeaderLabels(['Select'] + list(data.columns) + ['Delete'])
+        table_widget.setHorizontalHeaderLabels(['Active'] + list(data.columns) + ['Delete'])
 
         for row_idx, row_data in data.iterrows():
             row_position = table_widget.rowCount()
             table_widget.insertRow(row_position)
-            self.add_checkbox(table_widget, row_position)
+            self.add_switch(table_widget, row_position)
             
             for col_idx, value in enumerate(row_data, start=1):
                 item = QTableWidgetItem(str(value))
@@ -160,15 +160,66 @@ class EntityManagementShelter(QDialog):
 
         table_widget.resizeColumnsToContents()
 
-    def add_checkbox(self, table_widget, row_position):
-        check_box_widget = QWidget()
-        layout = QHBoxLayout(check_box_widget)
+    def add_switch(self, table_widget, row_position):
+        switch_widget = QWidget()
+        layout = QHBoxLayout(switch_widget)
         layout.setAlignment(Qt.AlignCenter)
-        check_box_widget.setLayout(layout)
-        checkbox = QCheckBox()
-        layout.addWidget(checkbox)
         layout.setContentsMargins(0, 0, 0, 0)
-        table_widget.setCellWidget(row_position, 0, check_box_widget)
+
+        switch = QPushButton()
+        switch.setCheckable(True)
+        switch.setFixedSize(40, 20)  # Set the switch size
+        switch.setStyleSheet("""
+            QPushButton {
+                background-color: #ccc;
+                border-radius: 10px;  /* Rounded corners for the switch */
+            }
+            QPushButton::indicator {
+                width: 0;  /* Hide default indicator */
+            }
+        """)
+
+        # Create a circle (knob) for the switch
+        self.knob = QPushButton(switch)
+        self.knob.setFixedSize(16, 16)  # Smaller knob size
+        self.knob.setStyleSheet("""
+            QPushButton {
+                background-color: white;
+                border-radius: 8px;  /* Rounded corners for the knob */
+            }
+        """)
+        self.knob.move(2, 2)  # Initial position for the knob (left side)
+
+        # Add toggle animation for smooth knob movement
+        self.animation = QPropertyAnimation(self.knob, b"geometry")
+        self.animation.setDuration(200)
+
+        switch.clicked.connect(lambda: self.toggle_switch_animation(switch, self.knob))
+        layout.addWidget(switch)
+        table_widget.setCellWidget(row_position, 0, switch_widget)
+
+    def toggle_switch_animation(self, switch, knob):
+        if switch.isChecked():
+            # Move knob to the right
+            self.animation.setStartValue(QRect(2, 2, 16, 16))
+            self.animation.setEndValue(QRect(22, 2, 16, 16))
+            switch.setStyleSheet("""
+                QPushButton {
+                    background-color: #4CAF50;
+                    border-radius: 10px;
+                }
+            """)
+        else:
+            # Move knob to the left
+            self.animation.setStartValue(QRect(22, 2, 16, 16))
+            self.animation.setEndValue(QRect(2, 2, 16, 16))  # Reset to left side
+            switch.setStyleSheet("""
+                QPushButton {
+                    background-color: #ccc;
+                    border-radius: 10px;
+                }
+            """)
+        self.animation.start()
 
     def add_delete_button(self, table_widget, row_position):
         delete_btn_widget = QWidget()
@@ -193,7 +244,7 @@ class EntityManagementShelter(QDialog):
     def add_row(self, table_widget):
         row_position = table_widget.rowCount()
         table_widget.insertRow(row_position)
-        self.add_checkbox(table_widget, row_position)
+        self.add_switch(table_widget, row_position)
 
         for col in range(1, table_widget.columnCount() - 1):
             table_widget.setItem(row_position, col, QTableWidgetItem(""))

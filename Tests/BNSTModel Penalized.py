@@ -12,9 +12,10 @@ max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 1
+num_generations = 10000
 num_solutions = 20
 mutation_rate = 0.5
+mutation_iteration = 3
 
 weight_dist = 0.5
 weight_cost = 0.5
@@ -225,6 +226,7 @@ Shelters = [
 def spawn():
     initial_allocations = {}
     transfer_allocations = {}
+    shelter_lvl_assignment = {}
     opened_shelters = set() 
 
     for community in Community:
@@ -234,8 +236,11 @@ def spawn():
     for community in Community:
         shelter = random.choice(list(opened_shelters))
         transfer_allocations[community["name"]] = shelter
+    for shelter in Shelters:
+        level = random.choice([1,2])
+        shelter_lvl_assignment[shelter["name"]] = level
 
-    allocations = {"initial": initial_allocations, "transferred": transfer_allocations}
+    allocations = {"initial": initial_allocations, "transferred": transfer_allocations, "shelterlvl": shelter_lvl_assignment}
     return allocations
 
 # =======================
@@ -244,9 +249,10 @@ def spawn():
 # minimize fitness
 def fitness(allocation):
 
-    shelter_areas_lvl1 = {shelter["name"]: shelter["area1"] for shelter in Shelters}
-    shelter_areas_lvl2 = {shelter["name"]: shelter["area2"] for shelter in Shelters}
-    used_area = {shelter["name"]: 0 for shelter in Shelters}
+    initial_shelters = set(allocation['initial'].values())
+    transferred_shelters = set(allocation['transferred'].values())
+    all_shelters = initial_shelters.union(transferred_shelters)
+
     Shelters_dict = {shelter["name"]: shelter for shelter in Shelters}
 
     total_distance = 0
@@ -255,31 +261,26 @@ def fitness(allocation):
     for community in Community:
         # add distance * population
         shelter_name = allocation["initial"][community["name"]]
-        shelter_dict = Shelters_dict.get(shelter_name)
         distance = community["distances"][shelter_name]
         total_distance += distance * community["population"]
 
-        # add to used_area based on population
-        used_area[shelter_name] += community["population"] * area_per_individual
-
         #for transferring
         shelter_name_transfer = allocation["transferred"][community["name"]]
+        shelter_dict = Shelters_dict.get(shelter_name)
         distance = shelter_dict["distances"][shelter_name_transfer]
         total_distance += distance * community["population"] * community["portiontransfer"]
 
-    for shelter in Shelters:
-        # add cost based on used area
-        shelter_name = shelter["name"]
-        used_area_val = used_area[shelter_name]
-        if(used_area_val == 0):
-            continue
-        elif(used_area_val <= shelter_areas_lvl1[shelter_name]):
-            total_cost += shelter["cost1"]
-        elif (used_area_val <= shelter_areas_lvl2[shelter_name]):
-            total_cost += shelter["cost2"]
+        
+
+    for shelter_name in all_shelters:
+        # add cost based on shelter level
+        shelter = Shelters_dict.get(shelter_name)
+        if (allocation["shelterlvl"][shelter_name] == 1):
+            total_cost += shelter["cost1"] 
+        elif (allocation["shelterlvl"][shelter_name] == 2):
+            total_cost += shelter["cost2"] 
         else:
-            total_cost += shelter["cost2"]
-            # print("Area usage exceeded to capacity of shelter. Constraints are wrong")
+            print("Shelter exceeded 2 levels. Something is wrong")
         
     # the actual model
     objective_value = weight_dist * total_distance + weight_cost * total_cost
@@ -301,14 +302,15 @@ def check_max_distance(allocation):
         # check if distance is greater than max dist
         if (distance > max_distance_community):
             print("maximum distance constraint failed")
-            penalty += distance
+            penalty += distance - max_distance_community
         
     return penalty
 
 # initial capacity constraint (2.3)
 def check_initial_capacity(allocation):
-    shelter_areas_lvl2 = {shelter["name"]: shelter["area2"] for shelter in Shelters}
+    shelter_areas = {shelter["name"]: shelter[f"area{allocation["shelterlvl"][shelter['name']]}"] for shelter in Shelters}
     used_area = {shelter["name"]: 0 for shelter in Shelters}
+
     penalty = 0
 
     for community in Community:
@@ -318,15 +320,15 @@ def check_initial_capacity(allocation):
             required_area = community["population"] * area_per_individual
             used_area[shelter_name] += required_area
 
-            if used_area[shelter_name] > shelter_areas_lvl2[shelter_name]:
+            if used_area[shelter_name] > shelter_areas[shelter_name]:
                 print("initial capacity constraint failed")
-                penalty += used_area[shelter_name]
+                penalty += used_area[shelter_name] - shelter_areas[shelter_name]
 
     return penalty
 
 # capacity constraint for transfering (2.4)
 def check_transferred_capacity(allocation):
-    shelter_areas_lvl2 = {shelter["name"]: shelter["area2"] for shelter in Shelters}
+    shelter_areas = {shelter["name"]: shelter[f"area{allocation["shelterlvl"][shelter['name']]}"] for shelter in Shelters}
     used_area = {shelter["name"]: 0 for shelter in Shelters}
     penalty = 0
 
@@ -337,9 +339,9 @@ def check_transferred_capacity(allocation):
             required_area = community["population"] * community["portiontransfer"] * area_per_individual
             used_area[shelter_name] += required_area
 
-            if used_area[shelter_name] > shelter_areas_lvl2[shelter_name]:
-                print("transfering capacity constraint failed")
-                penalty += used_area[shelter_name]
+            if used_area[shelter_name] > shelter_areas[shelter_name]:
+                print("transferring capacity constraint failed")
+                penalty += used_area[shelter_name] - shelter_areas[shelter_name]
 
     return penalty
 
@@ -360,28 +362,11 @@ def check_max_shelters(allocation):
             
     return penalty
         
-# count lvl 2 shelters opened (2.5)
-def count_lvl2_shelters(allocation):
-    shelter_areas_lvl1 = {shelter["name"]: shelter["area1"] for shelter in Shelters}
-    used_area = {shelter["name"]: 0 for shelter in Shelters}
-    
-    # Calculate the used area for each shelter based on the allocation
-    for community in Community:
-        shelter_name = allocation["initial"][community["name"]]
-        used_area[shelter_name] += community["population"] * area_per_individual
-    
-    # Count how many shelters have exceeded their level 1 area
-    lvl2_shelters = 0
-    for shelter in Shelters:
-        shelter_name = shelter["name"]
-        if used_area[shelter_name] > shelter_areas_lvl1[shelter_name]:
-            lvl2_shelters += 1
-    
-    return lvl2_shelters
-# max lvl2 shelters to be constructed/allocated constraint (2.26)
+# max lvl2 shelters to be constructed/allocated constraint (2.5)
 def check_max_lvl2_shelters(allocation):
+    
+    lvl2_shelters_ctr = sum(1 for level in allocation["shelterlvl"].values() if level == 2)
     penalty = 0
-    lvl2_shelters_ctr = count_lvl2_shelters(allocation)
 
     if lvl2_shelters_ctr > max_lvl2_shelters:
         print("max lvl2 shelters constraint failed")
@@ -391,22 +376,11 @@ def check_max_lvl2_shelters(allocation):
 
 # check if transferred shelter is lvl 2 (2.10)
 def check_transfer_lvl2_shelters(allocation):
-    shelter_areas_lvl1 = {shelter["name"]: shelter["area1"] for shelter in Shelters}
-    used_area = {shelter["name"]: 0 for shelter in Shelters}
-    transfered_shelters = set()
+    transfered_shelters = set(allocation['transferred'].values())
     penalty = 0
-    
-    # Calculate the used area for each shelter based on the allocation
-    for community in Community:
-        shelter_name = allocation["initial"][community["name"]]
-        used_area[shelter_name] += community["population"] * area_per_individual
-        transfered_shelters.add(allocation["transferred"][community["name"]])
-    
-    # Return false if a transfer shelter is lvl 1
-    for shelter in Shelters:
-        shelter_name = shelter["name"]
-        if (used_area[shelter_name] <= shelter_areas_lvl1[shelter_name] and 
-            shelter_name in transfered_shelters):
+
+    for shelter_name in transfered_shelters:
+        if allocation["shelterlvl"][shelter_name] < 2:
             print("transferred shelter is lvl 2 constraint failed")
             penalty += 1
 
@@ -428,29 +402,29 @@ def getPenaltySum(allocation):
 # mutation operator
 # TYPE : Random Reset
 def mutate(allocation):
-    initial_or_transfer_rand = random.choice(list(allocation.keys()))
-    community_to_mutate = random.choice(list(allocation[initial_or_transfer_rand].keys()))
-    current_shelter = allocation[initial_or_transfer_rand][community_to_mutate]
-    
-    if initial_or_transfer_rand == "initial":
-        available_shelters = [shelter["name"] for shelter in Shelters if shelter["name"] != current_shelter]
-    elif initial_or_transfer_rand == "transferred":
-        initial_shelters = set(allocation['initial'].values())
-        available_shelters = [shelter for shelter in initial_shelters if shelter != current_shelter]
+    new_allocations = copy.deepcopy(allocation)
 
-    if available_shelters:
-        new_shelter = random.choice(available_shelters)
-        new_allocations = copy.deepcopy(allocation)
-        new_allocations[initial_or_transfer_rand][community_to_mutate] = new_shelter
+    for _ in range(mutation_iteration) : 
+        key_rand = random.choice(list(allocation.keys()))
+        gene_to_mutate = random.choice(list(allocation[key_rand].keys()))
+        current_value = allocation[key_rand][gene_to_mutate]
         
-        return new_allocations
+        if key_rand == "initial" or key_rand == "transferred":
+            available_choices = [shelter["name"] for shelter in Shelters if shelter["name"] != current_value]
+        elif key_rand == "shelterlvl":
+            available_choices = [1,2]
+            available_choices.remove(current_value)
 
-    return allocation
+        if available_choices:
+            new_value = random.choice(available_choices)
+            new_allocations[key_rand][gene_to_mutate] = new_value
+            
+    return new_allocations
 
 # crossover operator
 # TYPE : Uniform Crossover
 def generate_offspring(parent1, parent2):
-    offspring = {"initial":{},"transferred":{}}
+    offspring = {"initial":{},"transferred":{},"shelterlvl":{}}
     for community in Community:
         #for initial
         shelters = {parent1["initial"][community["name"]], parent2["initial"][community["name"]]} 
@@ -458,9 +432,6 @@ def generate_offspring(parent1, parent2):
         if shelters:
             chosen_shelter = random.choice(list(shelters))
         else:
-            chosen_shelter = random.choice([shelter["name"] for shelter in Shelters])
-
-        while chosen_shelter not in [s["name"] for s in Shelters]:
             chosen_shelter = random.choice([shelter["name"] for shelter in Shelters])
 
         offspring["initial"][community["name"]] = chosen_shelter
@@ -473,10 +444,19 @@ def generate_offspring(parent1, parent2):
         else:
             chosen_shelter = random.choice([shelter["name"] for shelter in Shelters])
 
-        while chosen_shelter not in [s["name"] for s in Shelters]:
-            chosen_shelter = random.choice([shelter["name"] for shelter in Shelters])
-
         offspring["transferred"][community["name"]] = chosen_shelter
+
+    for shelter in Shelters:
+
+        #for shelterlvl
+        levels = {parent1["shelterlvl"][shelter["name"]], parent2["shelterlvl"][shelter["name"]]} 
+        
+        if shelters:
+            chosen_lvl = random.choice(list(levels))
+        else:
+            chosen_lvl = random.choice([1,2])
+
+        offspring["shelterlvl"][shelter["name"]] = chosen_lvl
 
     return offspring
 
@@ -588,99 +568,27 @@ def logicCheck():
 # =======================
 # DISPLAY ALLOCATION
 def show_allocation_details_grouped(allocation):
-    """
-    Prints allocation details grouped by shelter for both 'initial' and 'transferred' stages.
-    Includes communities allocated to each shelter, their populations, and shelter levels for 'initial' stage only.
-    """
-    # Precompute shelter areas
-    shelter_areas = {
-        shelter["name"]: {"lvl1": shelter["area1"], "lvl2": shelter["area2"]}
-        for shelter in Shelters
-    }
+    # Grouping communities by shelters for initial and transferred allocations
+    grouped_by_shelter = {}
 
-    # Function to group allocation details by shelter
-    def group_allocation(stage_allocation, is_transferred=False):
-        # Calculate used area for each shelter
-        used_area = {shelter["name"]: 0 for shelter in Shelters}
+    for phase, allocations in allocation.items():
+        if phase in ('initial', 'transferred'):
+            for community, shelter in allocations.items():
+                if shelter not in grouped_by_shelter:
+                    grouped_by_shelter[shelter] = {'level': allocation['shelterlvl'].get(shelter, None), 'initial': [], 'transferred': []}
+                grouped_by_shelter[shelter][phase].append(community)
 
-        for community in Community:
-            community_name = community["name"]
-            population = community["population"]
+    # Print the grouped data
+    for shelter, details in grouped_by_shelter.items():
+        print(f"Shelter: {shelter} (Level {details['level']})")
+        print(f"  Initial:")
+        for community in details['initial']:
+            print(f"    - {community}")
+        print(f"  Transferred:")
+        for community in details['transferred']:
+            print(f"    - {community}")
+        print()
 
-            # Determine population for transferred stage
-            if is_transferred:
-                transferred_population = population * community["portiontransfer"]
-                shelter_name = stage_allocation.get(community_name, None)
-                if shelter_name:
-                    used_area[shelter_name] += transferred_population
-            else:
-                shelter_name = stage_allocation[community_name]
-                used_area[shelter_name] += population
-
-        # Group by shelter
-        shelters_details = {}
-        for community in Community:
-            community_name = community["name"]
-            population = community["population"]
-
-            if is_transferred:
-                transferred_population = population * community["portiontransfer"]
-                shelter_name = stage_allocation.get(community_name, None)
-                actual_population = transferred_population
-            else:
-                shelter_name = stage_allocation[community_name]
-                actual_population = population
-
-            if not shelter_name:
-                continue
-
-            area_used = used_area[shelter_name]
-            level = "Level 1" if area_used <= shelter_areas[shelter_name]["lvl1"] else "Level 2"
-
-            if shelter_name not in shelters_details:
-                shelters_details[shelter_name] = []
-
-            details = {
-                "community": community_name,
-                "population": actual_population,
-                "area_used": area_used,
-            }
-            if not is_transferred:
-                details["level"] = level  # Add level only for the 'initial' stage
-
-            shelters_details[shelter_name].append(details)
-
-        return shelters_details
-
-    # Iterate over allocation stages and print grouped details
-    for stage_name, stage_allocation in allocation.items():
-        is_transferred = stage_name == "transferred"
-        print(f"\n=== Allocation Details for '{stage_name.capitalize()}' Stage ===")
-        grouped_allocation = group_allocation(stage_allocation, is_transferred)
-
-        for shelter_name, details in grouped_allocation.items():
-            print(f"\nShelter: {shelter_name}")
-            for detail in details:
-                level_str = f", Shelter Level: {detail['level']}" if "level" in detail else ""
-                print(f"  Community: {detail['community']}, "
-                      f"Population: {detail['population']}, "
-                      f"Used Area: {detail['area_used']}{level_str}")
-
-
-
-test_alloc = {
-    'initial':{
-        'CommA' : 'ShelA',
-        'CommB' : 'ShelB',
-        'CommC' : 'ShelB',
-    },
-    'transferred':{
-        'CommA' : 'ShelB',
-        'CommB' : 'ShelB',
-        'CommC' : 'ShelB',
-    }
-}
-# print(show_allocation_details_grouped(test_alloc))
 
 # =======================
 # START OF THE ALGORITHM

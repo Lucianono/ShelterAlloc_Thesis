@@ -12,7 +12,7 @@ max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 100
+num_generations = 10000
 num_solutions = 20
 mutation_rate = 0.5
 
@@ -281,7 +281,7 @@ def fitness(allocation):
             print("Area usage exceeded to capacity of shelter. Constraints are wrong")
         
     # the actual model
-    return weight_dist * total_distance + weight_cost * total_cost
+    return int(weight_dist * total_distance + weight_cost * total_cost)
 
 # =======================
 # CONSTRAINTS

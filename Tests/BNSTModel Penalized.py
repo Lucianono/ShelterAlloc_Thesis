@@ -12,13 +12,14 @@ max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 1
+num_generations = 10000
 num_solutions = 20
 mutation_rate = 0.5
 
 weight_dist = 0.5
 weight_cost = 0.5
-penalty_constant = 10**10
+penalty_constant = 10**20
+
 
 # sample data of communities with barangay names along with population and distances from each shelter
 Community = [
@@ -280,13 +281,13 @@ def fitness(allocation):
             total_cost += shelter["cost2"]
         else:
             total_cost += shelter["cost2"]
-            print("Area usage exceeded to capacity of shelter. Constraints are wrong")
+            # print("Area usage exceeded to capacity of shelter. Constraints are wrong")
         
     # the actual model
     objective_value = weight_dist * total_distance + weight_cost * total_cost
     penalty_value = penalty_constant * getPenaltySum(allocation)
 
-    return objective_value + penalty_value
+    return int(objective_value + penalty_value)
 
 # =======================
 # CONSTRAINTS

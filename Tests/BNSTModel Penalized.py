@@ -12,7 +12,7 @@ max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 10000
+num_generations = 1
 num_solutions = 20
 mutation_rate = 0.5
 
@@ -83,8 +83,6 @@ Community = [
         "San Antonio Brgy. Hall": 238.34, "Darasa Brgy. Hall": 276.74, "Santa Clara Brgy. Hall": 404.33,
         "San Fernando Brgy. Hall": 341.93}, "portiontransfer":0.5,}
 ]
-
-
 
 # list of shelters with area1 and cost1 (area and cost as level 1 shelter), area 2 and cost2 (area and cost as level 2 shelter) 
 Shelters = [

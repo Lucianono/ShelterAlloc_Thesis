@@ -293,7 +293,7 @@ def fitness(allocation):
 
 # =======================
 # CONSTRAINTS
-# maximum distance constraint (2.2)
+# maximum distance constraint (2.13)
 def check_max_distance(allocation):
 
     penalty = 0
@@ -309,9 +309,9 @@ def check_max_distance(allocation):
         
     return penalty
 
-# initial capacity constraint (2.3)
+# initial capacity constraint (2.14)
 def check_initial_capacity(allocation):
-    shelter_areas = {shelter["name"]: shelter[f"area{allocation["shelterlvl"][shelter['name']]}"] for shelter in Shelters}
+    shelter_areas = {shelter["name"]: shelter["area1"] for shelter in Shelters}
     used_area = {shelter["name"]: 0 for shelter in Shelters}
 
     penalty = 0
@@ -329,9 +329,9 @@ def check_initial_capacity(allocation):
 
     return penalty
 
-# capacity constraint for transfering (2.4)
+# capacity constraint for transfering (2.15)
 def check_transferred_capacity(allocation):
-    shelter_areas = {shelter["name"]: shelter[f"area{allocation["shelterlvl"][shelter['name']]}"] for shelter in Shelters}
+    shelter_areas = {shelter["name"]: shelter["area2"] for shelter in Shelters}
     used_area = {shelter["name"]: 0 for shelter in Shelters}
     penalty = 0
 
@@ -349,7 +349,7 @@ def check_transferred_capacity(allocation):
     return penalty
 
 
-# max shelters to be constructed/allocated constraint (2.6)
+# max shelters to be constructed/allocated constraint (2.16)
 def check_max_shelters(allocation):
     used_shelters = set() 
     penalty = 0
@@ -365,7 +365,7 @@ def check_max_shelters(allocation):
             
     return penalty
         
-# max lvl2 shelters to be constructed/allocated constraint (2.5)
+# max lvl2 shelters to be constructed/allocated constraint (2.17)
 def check_max_lvl2_shelters(allocation):
     
     lvl2_shelters_ctr = sum(1 for level in allocation["shelterlvl"].values() if level == 2)
@@ -377,7 +377,19 @@ def check_max_lvl2_shelters(allocation):
    
     return penalty
 
-# check if transferred shelter is lvl 2 (2.10)
+# check if initial shelter is lvl 1 (2.20)
+def check_initial_lvl1_shelters(allocation):
+    initial_shelters = set(allocation['initial'].values())
+    penalty = 0
+
+    for shelter_name in initial_shelters:
+        if allocation["shelterlvl"][shelter_name] > 1:
+            print("initial shelter is lvl 1 constraint failed")
+            penalty += 1
+
+    return penalty
+
+# check if transferred shelter is lvl 2 (2.21)
 def check_transfer_lvl2_shelters(allocation):
     transfered_shelters = set(allocation['transferred'].values())
     penalty = 0
@@ -398,175 +410,8 @@ def getPenaltySum(allocation):
             check_max_distance(allocation)**2 + 
             check_max_shelters(allocation)**2 + 
             check_max_lvl2_shelters(allocation)**2 +
+            check_initial_lvl1_shelters(allocation)**2 +
             check_transfer_lvl2_shelters(allocation)**2)
-
-# =======================
-# GENETIC ALGORITHM
-# mutation operator
-# TYPE : Random Reset
-def mutate(allocation):
-    new_allocations = copy.deepcopy(allocation)
-
-    for _ in range(mutation_iteration) : 
-        key_rand = random.choice(list(allocation.keys()))
-        gene_to_mutate = random.choice(list(allocation[key_rand].keys()))
-        current_value = allocation[key_rand][gene_to_mutate]
-        
-        if key_rand == "initial" or key_rand == "transferred":
-            available_choices = [shelter["name"] for shelter in Shelters if shelter["name"] != current_value]
-        elif key_rand == "shelterlvl":
-            available_choices = [1,2]
-            available_choices.remove(current_value)
-
-        if available_choices:
-            new_value = random.choice(available_choices)
-            new_allocations[key_rand][gene_to_mutate] = new_value
-            
-    return new_allocations
-
-# crossover operator
-# TYPE : Uniform Crossover
-def generate_offspring(parent1, parent2):
-    offspring = {"initial":{},"transferred":{},"shelterlvl":{}}
-    for community in Community:
-        #for initial
-        shelters = {parent1["initial"][community["name"]], parent2["initial"][community["name"]]} 
-        
-        if shelters:
-            chosen_shelter = random.choice(list(shelters))
-        else:
-            chosen_shelter = random.choice([shelter["name"] for shelter in Shelters])
-
-        offspring["initial"][community["name"]] = chosen_shelter
-
-        #for transfer
-        shelters = {parent1["transferred"][community["name"]], parent2["transferred"][community["name"]]} 
-        
-        if shelters:
-            chosen_shelter = random.choice(list(shelters))
-        else:
-            chosen_shelter = random.choice([shelter["name"] for shelter in Shelters])
-
-        offspring["transferred"][community["name"]] = chosen_shelter
-
-    for shelter in Shelters:
-
-        #for shelterlvl
-        levels = {parent1["shelterlvl"][shelter["name"]], parent2["shelterlvl"][shelter["name"]]} 
-        
-        if shelters:
-            chosen_lvl = random.choice(list(levels))
-        else:
-            chosen_lvl = random.choice([1,2])
-
-        offspring["shelterlvl"][shelter["name"]] = chosen_lvl
-
-    return offspring
-
-# selection operator
-# TYPE : Roulette Wheel Selection
-def selectParent(solutions):
-    sum_fitness = sum(fitness for fitness, _ in solutions)
-    inv_proportions = [sum_fitness/ fitness for fitness, _ in solutions]
-    sum_inv_proportions = sum(inv_proportions)
-    probability = [inv_proportion / sum_inv_proportions for inv_proportion in inv_proportions]
-    solution_indices = np.arange(len(solutions))
-
-    selected_solution = np.random.choice(solution_indices, p=probability)
-
-    return solutions[selected_solution]
-
-# =======================
-# FEASIBILITY CHECK
-# check if data input has solution
-def feasibilityCheck():
-    # check if there exists distance <= max distance 
-    failing_communities = []
-    for community in Community:
-        if not any(d <= community["maxdistance"] for d in community["distances"].values()):
-            failing_communities.append(community["name"])
-    
-    if failing_communities:
-        print(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
-        return False
-
-    # check if there exists population <= shelter area * areaPerIndiv
-    failing_communities = []
-    for community in Community:
-        if not (
-            any(shelter["area1"] * area_per_individual >= community["population"] for shelter in Shelters) or
-            any(shelter["area2"] * area_per_individual >= community["population"] for shelter in Shelters)
-        ):
-            failing_communities.append(community["name"])
-    
-    if failing_communities:
-        print(f"{failing_communities} has affected population that is impossible to allocate. No shelters is large enough.")
-        return False
-
-    # check if total population is theoretically possible to allocate on largest  shelters
-    total_population = sum(community['population'] for community in Community)
-
-    Shelters_sorted = sorted(Shelters, key=lambda x: x['area2'], reverse=True)
-    top_area2_sum = sum(shelter['area2'] for shelter in Shelters[:max_lvl2_shelters])
-    Shelters_sorted = Shelters_sorted[max_lvl2_shelters:]
-
-    Shelters_sorted = sorted(Shelters, key=lambda x: x['area1'], reverse=True)
-    top_area1_sum = sum(shelter['area1'] for shelter in Shelters[:(max_shelters - max_lvl2_shelters)])
-    Shelters_sorted = Shelters_sorted[(max_shelters - max_lvl2_shelters):]
-
-    if total_population > (top_area2_sum + top_area1_sum):
-        print(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
-        return False
-    
-    # if no cases are violated return true
-    return True
-
-# =======================
-# LOGIC CHECK
-# check if parameters are logical or correct
-def logicCheck():
-    # check if max_shelters >= max_lvl2_shelters
-    if max_shelters < max_lvl2_shelters:
-        print("max_shelters should be greater than or equal to max_lvl2_shelters")
-        return False
-    # check if max_shelters >= 1
-    if max_shelters < 1:
-        print("max_shelters should have atleast 1")
-        return False
-    # check if area_per_individual > 0
-    if area_per_individual <= 0:
-        print("area_per_individual should be greater than 0")
-        return False
-    # check if num_generations >= 1
-    if num_generations < 1:
-        print("num_generations should be greater than or equal to 1")
-        return False
-    # check if num_solutions >= 1
-    if num_solutions < 1:
-        print("num_solutions should be greater than or equal to 1")
-        return False
-    # check if mutation_rate not < 0
-    if mutation_rate < 0:
-        print("mutation_rate should not be less than to 0")
-        return False
-    # check if weight_dist not < 0
-    if weight_dist < 0:
-        print("weight_dist should not be less than to 0")
-        return False
-    # check if weight_cost not < 0
-    if weight_cost < 0:
-        print("weight_cost should not be less than to 0")
-        return False
-    # check if area2 >= area1
-    for shelter in Shelters:
-        if shelter["area2"] < shelter["area1"]:
-            print(f"{shelter['name']}: area2 should be grated than or equal to area1.")
-            return False
-
-
-    # if no cases are violated return true
-        return True
-
 
 # =======================
 # DISPLAY ALLOCATION
@@ -633,5 +478,6 @@ test_alloc = {
 
     }
 }
-print(fitness(test_alloc))
-print(show_allocation_details_grouped(test_alloc))
+test_alloc2 = {'initial': {'Aya': 'San Antonio Brgy. Hall', 'Banga & San Guillermo': 'Suplang Covered Court', 'Caloocan & Leynes': 'Brgy. Asis-3 EC', 'Poblacion Barangay 1': 'Maugat Gymnasium', 'Poblacion Barangay 5': 'Brgy. San Jose BB Court', 'Poblacion Barangay 2,3,4,6,7,8': 'Maugat Gymnasium', 'Quiling, Miranda, & Tumaway': 'Brgy. San Jose BB Court', 'Sampaloc': 'Brgy. Asis-3 EC', 'Santa Maria, Balas, & Buco': 'Brgy. San Jose BB Court', 'Tranca': 'Suplang Covered Court'}, 'transferred': {'Aya': 'City EC of Sto. Tomas', 'Banga & San Guillermo': 'City EC of Sto. Tomas', 'Caloocan & Leynes': 'Tagaytay Unida Church', 'Poblacion Barangay 1': 'City EC of Sto. Tomas', 'Poblacion Barangay 5': 'City EC of Sto. Tomas', 'Poblacion Barangay 2,3,4,6,7,8': 'City EC of Sto. Tomas', 'Quiling, Miranda, & Tumaway': 'City EC of Sto. Tomas', 'Sampaloc': 'Tagaytay Unida Church', 'Santa Maria, Balas, & Buco': 'City EC of Sto. Tomas', 'Tranca': 'City EC of Sto. Tomas'}, 'shelterlvl': {'Brgy. Asis-3 EC': 1, 'City EC of Sto. Tomas': 2, 'Suplang Covered Court': 1, 'Brgy. San Jose BB Court': 1, 'Maugat Gymnasium': 1, 'Tagaytay Unida Church': 2, 'San Antonio Brgy. Hall': 1, 'Darasa Brgy. Hall': 2, 'Santa Clara Brgy. Hall': 2, 'San Fernando Brgy. Hall': 1}}
+print(fitness(test_alloc2))
+print(show_allocation_details_grouped(test_alloc2))

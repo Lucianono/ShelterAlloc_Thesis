@@ -1,4 +1,4 @@
-# the official function for Bilevel Non-sequential Transfer model
+# the official function for Bilevel Sequential Transfer model
 
 import random
 import copy
@@ -12,7 +12,7 @@ max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 1000
+num_generations = 10000
 num_solutions = 20
 mutation_rate = 0.5
 mutation_iteration = 3
@@ -290,7 +290,7 @@ def fitness(allocation):
 
 # =======================
 # CONSTRAINTS
-# maximum distance constraint (2.2)
+# maximum distance constraint (2.13)
 def check_max_distance(allocation):
 
     penalty = 0
@@ -306,9 +306,9 @@ def check_max_distance(allocation):
         
     return penalty
 
-# initial capacity constraint (2.3)
+# initial capacity constraint (2.14)
 def check_initial_capacity(allocation):
-    shelter_areas = {shelter["name"]: shelter[f"area{allocation["shelterlvl"][shelter['name']]}"] for shelter in Shelters}
+    shelter_areas = {shelter["name"]: shelter["area1"] for shelter in Shelters}
     used_area = {shelter["name"]: 0 for shelter in Shelters}
 
     penalty = 0
@@ -326,7 +326,7 @@ def check_initial_capacity(allocation):
 
     return penalty
 
-# capacity constraint for transfering (2.4)
+# capacity constraint for transfering (2.15)
 def check_transferred_capacity(allocation):
     shelter_areas = {shelter["name"]: shelter["area2"] for shelter in Shelters}
     used_area = {shelter["name"]: 0 for shelter in Shelters}
@@ -346,7 +346,7 @@ def check_transferred_capacity(allocation):
     return penalty
 
 
-# max shelters to be constructed/allocated constraint (2.6)
+# max shelters to be constructed/allocated constraint (2.16)
 def check_max_shelters(allocation):
     used_shelters = set() 
     penalty = 0
@@ -362,7 +362,7 @@ def check_max_shelters(allocation):
             
     return penalty
         
-# max lvl2 shelters to be constructed/allocated constraint (2.5)
+# max lvl2 shelters to be constructed/allocated constraint (2.17)
 def check_max_lvl2_shelters(allocation):
     
     lvl2_shelters_ctr = sum(1 for level in allocation["shelterlvl"].values() if level == 2)
@@ -374,7 +374,19 @@ def check_max_lvl2_shelters(allocation):
    
     return penalty
 
-# check if transferred shelter is lvl 2 (2.10)
+# check if initial shelter is lvl 1 (2.20)
+def check_initial_lvl1_shelters(allocation):
+    initial_shelters = set(allocation['initial'].values())
+    penalty = 0
+
+    for shelter_name in initial_shelters:
+        if allocation["shelterlvl"][shelter_name] > 1:
+            print("initial shelter is lvl 1 constraint failed")
+            penalty += 1
+
+    return penalty
+
+# check if transferred shelter is lvl 2 (2.21)
 def check_transfer_lvl2_shelters(allocation):
     transfered_shelters = set(allocation['transferred'].values())
     penalty = 0
@@ -395,6 +407,7 @@ def getPenaltySum(allocation):
             check_max_distance(allocation)**2 + 
             check_max_shelters(allocation)**2 + 
             check_max_lvl2_shelters(allocation)**2 +
+            check_initial_lvl1_shelters(allocation)**2 +
             check_transfer_lvl2_shelters(allocation)**2)
 
 # =======================

@@ -2,10 +2,9 @@
 # tester only
 # model but without the GA
 #======================================
-
 # the official function for  Single-level with Workplace Distance Inclusion
 
-from Talisay_Data import Community,Shelters
+from Sample_Data2 import Community,Shelters
 import random
 import numpy as np
 import copy
@@ -13,12 +12,12 @@ import copy
 # TEMPORARY DUMMY DATA
 # should be replaced with dynamic data from system
 # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
-area_per_individual = 0.3
+area_per_individual = 1
 max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 10000
+num_generations = 1000
 num_solutions = 20
 mutation_rate = 0.5
 mutation_iteration = 2
@@ -71,7 +70,7 @@ def fitness(allocation):
         total_cost += shelter["cost1"] 
         
     # the actual model
-    objective_value = weight_dist * total_distance + weight_cost * total_cost
+    objective_value = weight_dist * total_distance + weight_work * total_workdistance + weight_cost * total_cost
     penalty_value = penalty_constant * getPenaltySum(allocation)
 
     return int(objective_value + penalty_value)
@@ -306,20 +305,16 @@ def show_allocation_details_grouped(allocation):
         print()
 
 
+
 test_alloc = {
     'initial': {
-        'Aya': 'Brgy. San Jose BB Court', 
-        'Banga & San Guillermo': 'Suplang Covered Court', 
-        'Caloocan & Leynes': 'San Antonio Brgy. Hall', 
-        'Poblacion Barangay 1': 'Darasa Brgy. Hall', 
-        'Poblacion Barangay 5': 'Darasa Brgy. Hall', 
-        'Poblacion Barangay 2,3,4,6,7,8': 'Suplang Covered Court', 
-        'Quiling, Miranda, & Tumaway': 'Suplang Covered Court', 
-        'Sampaloc': 'Brgy. San Jose BB Court', 
-        'Santa Maria, Balas, & Buco': 'Brgy. San Jose BB Court', 
-        'Tranca': 'Suplang Covered Court'}, 
-        
+        'Comm1': 'Shel3', 
+        'Comm2': 'Shel4', 
+        'Comm3': 'Shel3', 
+        'Comm4': 'Shel3', 
+        'Comm5': 'Shel3'
+        }
 }
-test_alloc2 = {'initial': {'Aya': 'Brgy. San Jose BB Court', 'Banga & San Guillermo': 'Maugat Gymnasium', 'Caloocan & Leynes': 'Brgy. Asis-3 EC', 'Poblacion Barangay 1': 'Tagaytay Unida Church', 'Poblacion Barangay 5': 'Brgy. San Jose BB Court', 'Poblacion Barangay 2,3,4,6,7,8': 'Tagaytay Unida Church', 'Quiling, Miranda, & Tumaway': 'Suplang Covered Court', 'Sampaloc': 'Brgy. Asis-3 EC', 'Santa Maria, Balas, & Buco': 'Maugat Gymnasium', 'Tranca': 'Brgy. San Jose BB Court'}}
+test_alloc2 = {'initial': {'Comm1': 'Shel3', 'Comm2': 'Shel3', 'Comm3': 'Shel3', 'Comm4': 'Shel3', 'Comm5': 'Shel4'}}
 print(fitness(test_alloc2))
 print(show_allocation_details_grouped(test_alloc2))

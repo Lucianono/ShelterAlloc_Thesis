@@ -1,6 +1,6 @@
 # the official function for Bilevel No Transfer model
 
-from Talisay_Data import Community,Shelters
+from Sample_Data2 import Community,Shelters
 import random
 import numpy as np
 import copy
@@ -13,7 +13,7 @@ max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 10
+num_generations = 1000
 num_solutions = 20
 mutation_rate = 0.5
 mutation_iteration = 2

@@ -1,6 +1,6 @@
 # the official function for  Single-level with Workplace Distance Inclusion
 
-from Talisay_Data import Community,Shelters
+from Sample_Data2 import Community,Shelters
 import random
 import numpy as np
 import copy
@@ -13,7 +13,7 @@ max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 10
+num_generations = 1000
 num_solutions = 20
 mutation_rate = 0.5
 mutation_iteration = 2
@@ -66,7 +66,7 @@ def fitness(allocation):
         total_cost += shelter["cost1"] 
         
     # the actual model
-    objective_value = weight_dist * total_distance + weight_cost * total_cost
+    objective_value = weight_dist * total_distance + weight_work * total_workdistance + weight_cost * total_cost
     penalty_value = penalty_constant * getPenaltySum(allocation)
 
     return int(objective_value + penalty_value)

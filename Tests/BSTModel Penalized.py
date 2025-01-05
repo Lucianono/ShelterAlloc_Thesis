@@ -227,15 +227,13 @@ def spawn():
     initial_allocations = {}
     transfer_allocations = {}
     shelter_lvl_assignment = {}
-    opened_shelters = set() 
 
     for community in Community:
         shelter = random.choice(Shelters)["name"]
         initial_allocations[community["name"]] = shelter
-        opened_shelters.add(shelter)  
-    for community in Community:
-        shelter = random.choice(list(opened_shelters))
+        shelter = random.choice(Shelters)["name"]
         transfer_allocations[community["name"]] = shelter
+
     for shelter in Shelters:
         level = random.choice([1,2])
         shelter_lvl_assignment[shelter["name"]] = level
@@ -607,7 +605,7 @@ def show_allocation_details_grouped(allocation):
 # START OF THE ALGORITHM
 # initial population
 if not logicCheck():
-    print("Parameters are not inputted incorrectly.")
+    print("Parameters are inputted incorrectly.")
     exit()
 if not feasibilityCheck():
     print("No solution exists")

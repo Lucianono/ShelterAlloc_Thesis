@@ -1,8 +1,8 @@
-# the official function for Bilevel Non-sequential Transfer model
+# the official function for Bilevel No Transfer model
 
 import random
-import copy
 import numpy as np
+import copy
 
 # TEMPORARY DUMMY DATA
 # should be replaced with dynamic data from system
@@ -12,15 +12,14 @@ max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 1000
+num_generations = 10000
 num_solutions = 20
 mutation_rate = 0.5
-mutation_iteration = 3
+mutation_iteration = 2
 
 weight_dist = 0.5
 weight_cost = 0.5
 penalty_constant = 10**20
-
 
 # sample data of communities with barangay names along with population and distances from each shelter
 Community = [
@@ -219,26 +218,23 @@ Shelters = [
      }}
 ]
 
+
 # =======================
 # SOLUTION SPAWNING
 # create chromosome with randomized allocation
-# chromosome are x2 in length, the second one are for transferred
 def spawn():
-    initial_allocations = {}
-    transfer_allocations = {}
+    allocations = {}
     shelter_lvl_assignment = {}
 
     for community in Community:
         shelter = random.choice(Shelters)["name"]
-        initial_allocations[community["name"]] = shelter
-        shelter = random.choice(Shelters)["name"]
-        transfer_allocations[community["name"]] = shelter
+        allocations[community["name"]] = shelter
 
     for shelter in Shelters:
         level = random.choice([1,2])
         shelter_lvl_assignment[shelter["name"]] = level
 
-    allocations = {"initial": initial_allocations, "transferred": transfer_allocations, "shelterlvl": shelter_lvl_assignment}
+    allocations = {"initial": allocations, "shelterlvl": shelter_lvl_assignment}
     return allocations
 
 # =======================
@@ -248,9 +244,6 @@ def spawn():
 def fitness(allocation):
 
     initial_shelters = set(allocation['initial'].values())
-    transferred_shelters = set(allocation['transferred'].values())
-    all_shelters = initial_shelters.union(transferred_shelters)
-
     Shelters_dict = {shelter["name"]: shelter for shelter in Shelters}
 
     total_distance = 0
@@ -262,15 +255,8 @@ def fitness(allocation):
         distance = community["distances"][shelter_name]
         total_distance += distance * community["population"]
 
-        #for transferring
-        shelter_name_transfer = allocation["transferred"][community["name"]]
-        shelter_dict = Shelters_dict.get(shelter_name)
-        distance = shelter_dict["distances"][shelter_name_transfer]
-        total_distance += distance * community["population"] * community["portiontransfer"]
 
-        
-
-    for shelter_name in all_shelters:
+    for shelter_name in initial_shelters:
         # add cost based on shelter level
         shelter = Shelters_dict.get(shelter_name)
         if (allocation["shelterlvl"][shelter_name] == 1):
@@ -288,7 +274,7 @@ def fitness(allocation):
 
 # =======================
 # CONSTRAINTS
-# maximum distance constraint (2.2)
+# maximum distance constraint (2.24)
 def check_max_distance(allocation):
 
     penalty = 0
@@ -304,7 +290,7 @@ def check_max_distance(allocation):
         
     return penalty
 
-# initial capacity constraint (2.3)
+# initial capacity constraint (2.25)
 def check_initial_capacity(allocation):
     shelter_areas = {shelter["name"]: shelter[f"area{allocation["shelterlvl"][shelter['name']]}"] for shelter in Shelters}
     used_area = {shelter["name"]: 0 for shelter in Shelters}
@@ -324,27 +310,7 @@ def check_initial_capacity(allocation):
 
     return penalty
 
-# capacity constraint for transfering (2.4)
-def check_transferred_capacity(allocation):
-    shelter_areas = {shelter["name"]: shelter["area2"] for shelter in Shelters}
-    used_area = {shelter["name"]: 0 for shelter in Shelters}
-    penalty = 0
-
-    for community in Community:
-        shelter_name = allocation["transferred"][community["name"]]
-        if shelter_name:
-            # add to used_area based on population
-            required_area = community["population"] * community["portiontransfer"] * area_per_individual
-            used_area[shelter_name] += required_area
-
-            if used_area[shelter_name] > shelter_areas[shelter_name]:
-                print("transferring capacity constraint failed")
-                penalty += used_area[shelter_name] - shelter_areas[shelter_name]
-
-    return penalty
-
-
-# max shelters to be constructed/allocated constraint (2.6)
+# max shelters to be constructed/allocated constraint (2.27)
 def check_max_shelters(allocation):
     used_shelters = set() 
     penalty = 0
@@ -360,7 +326,7 @@ def check_max_shelters(allocation):
             
     return penalty
         
-# max lvl2 shelters to be constructed/allocated constraint (2.5)
+# max lvl2 shelters to be constructed/allocated constraint (2.26)
 def check_max_lvl2_shelters(allocation):
     
     lvl2_shelters_ctr = sum(1 for level in allocation["shelterlvl"].values() if level == 2)
@@ -372,28 +338,14 @@ def check_max_lvl2_shelters(allocation):
    
     return penalty
 
-# check if transferred shelter is lvl 2 (2.10)
-def check_transfer_lvl2_shelters(allocation):
-    transfered_shelters = set(allocation['transferred'].values())
-    penalty = 0
-
-    for shelter_name in transfered_shelters:
-        if allocation["shelterlvl"][shelter_name] < 2:
-            print("transferred shelter is lvl 2 constraint failed")
-            penalty += 1
-
-    return penalty
-
 # =======================
 # CONSTRAINTS/PENALTY EXECUTION
 # Check all constraints
 def getPenaltySum(allocation):
-     return (check_initial_capacity(allocation)**2 + 
-            check_transferred_capacity(allocation)**2 + 
+     return (check_initial_capacity(allocation)**2 +  
             check_max_distance(allocation)**2 + 
             check_max_shelters(allocation)**2 + 
-            check_max_lvl2_shelters(allocation)**2 +
-            check_transfer_lvl2_shelters(allocation)**2)
+            check_max_lvl2_shelters(allocation)**2 )
 
 # =======================
 # GENETIC ALGORITHM
@@ -419,10 +371,11 @@ def mutate(allocation):
             
     return new_allocations
 
+
 # crossover operator
 # TYPE : Uniform Crossover
 def generate_offspring(parent1, parent2):
-    offspring = {"initial":{},"transferred":{},"shelterlvl":{}}
+    offspring = {"initial":{},"shelterlvl":{}}
     for community in Community:
         #for initial
         shelters = {parent1["initial"][community["name"]], parent2["initial"][community["name"]]} 
@@ -433,16 +386,6 @@ def generate_offspring(parent1, parent2):
             chosen_shelter = random.choice([shelter["name"] for shelter in Shelters])
 
         offspring["initial"][community["name"]] = chosen_shelter
-
-        #for transfer
-        shelters = {parent1["transferred"][community["name"]], parent2["transferred"][community["name"]]} 
-        
-        if shelters:
-            chosen_shelter = random.choice(list(shelters))
-        else:
-            chosen_shelter = random.choice([shelter["name"] for shelter in Shelters])
-
-        offspring["transferred"][community["name"]] = chosen_shelter
 
     for shelter in Shelters:
 
@@ -562,18 +505,17 @@ def logicCheck():
     # if no cases are violated return true
         return True
 
-
 # =======================
 # DISPLAY ALLOCATION
 def show_allocation_details_grouped(allocation):
-    # Grouping communities by shelters for initial and transferred allocations
+    # Grouping communities by shelters for initial allocations
     grouped_by_shelter = {}
 
     for phase, allocations in allocation.items():
-        if phase in ('initial', 'transferred'):
+        if phase in ('initial'):
             for community, shelter in allocations.items():
                 if shelter not in grouped_by_shelter:
-                    grouped_by_shelter[shelter] = {'level': allocation['shelterlvl'].get(shelter, None), 'initial': [], 'transferred': []}
+                    grouped_by_shelter[shelter] = {'level': allocation['shelterlvl'].get(shelter, None), 'initial': []}
                 grouped_by_shelter[shelter][phase].append(community)
 
     # Print the grouped data
@@ -582,11 +524,7 @@ def show_allocation_details_grouped(allocation):
         print(f"  Initial:")
         for community in details['initial']:
             print(f"    - {community}")
-        print(f"  Transferred:")
-        for community in details['transferred']:
-            print(f"    - {community}")
         print()
-
 
 # =======================
 # START OF THE ALGORITHM

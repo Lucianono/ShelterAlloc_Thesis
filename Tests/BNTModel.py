@@ -56,7 +56,7 @@ Community = [
         "San Antonio Brgy. Hall": 311.57, "Darasa Brgy. Hall": 308.53, "Santa Clara Brgy. Hall": 429.73, 
         "San Fernando Brgy. Hall": 364.07}},
     
-    {"name": "Quiling, Miranda, & Tumaway", "population": 4510, "maxdistance": 570, "distances": {
+    {"name": "Quiling, Miranda, & Tumaway", "population": 9050, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 329.97, "City EC of Sto. Tomas": 242.34, "Suplang Covered Court": 166.72,
         "Brgy. San Jose BB Court": 101.59, "Maugat Gymnasium": 109.04, "Tagaytay Unida Church": 227.14,
         "San Antonio Brgy. Hall": 278.09, "Darasa Brgy. Hall": 285.72, "Santa Clara Brgy. Hall": 409.55, 

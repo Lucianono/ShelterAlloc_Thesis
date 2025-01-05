@@ -63,7 +63,7 @@ Community = [
         "San Antonio Brgy. Hall": 306.74, "Darasa Brgy. Hall": 310.37, "Santa Clara Brgy. Hall": 432.52,
         "San Fernando Brgy. Hall": 366.90}, "portiontransfer":0.5,},
     
-    {"name": "Quiling, Miranda, & Tumaway", "population": 5700, "maxdistance": 570, "distances": {
+    {"name": "Quiling, Miranda, & Tumaway", "population": 9050, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 351.86, "City EC of Sto. Tomas": 224.54, "Suplang Covered Court": 120.74,
         "Brgy. San Jose BB Court": 69.84, "Maugat Gymnasium": 90.32, "Tagaytay Unida Church": 249.34,
         "San Antonio Brgy. Hall": 255.07, "Darasa Brgy. Hall": 277.98, "Santa Clara Brgy. Hall": 404.84,
@@ -441,43 +441,43 @@ def show_allocation_details_grouped(allocation):
 
 test_alloc = {
     'initial': {
-        'Aya': 'Brgy. Asis-3 EC', 
-        'Banga & San Guillermo': 'San Fernando Brgy. Hall', 
-        'Caloocan & Leynes': 'Brgy. San Jose BB Court', 
-        'Poblacion Barangay 1': 'Brgy. San Jose BB Court', 
-        'Poblacion Barangay 5': 'Brgy. San Jose BB Court', 
-        'Poblacion Barangay 2,3,4,6,7,8': 'Darasa Brgy. Hall', 
-        'Quiling, Miranda, & Tumaway': 'Suplang Covered Court', 
-        'Sampaloc': 'Tagaytay Unida Church', 
-        'Santa Maria, Balas, & Buco': 'Brgy. San Jose BB Court', 
-        'Tranca': 'Suplang Covered Court'}, 
+        'Aya': 'City EC of Sto. Tomas', 
+        'Banga & San Guillermo': 'Tagaytay Unida Church', 
+        'Caloocan & Leynes': 'Tagaytay Unida Church', 
+        'Poblacion Barangay 1': 'City EC of Sto. Tomas', 
+        'Poblacion Barangay 5': 'San Antonio Brgy. Hall', 
+        'Poblacion Barangay 2,3,4,6,7,8': 'Brgy. San Jose BB Court', 
+        'Quiling, Miranda, & Tumaway': 'Brgy. San Jose BB Court', 
+        'Sampaloc': 'Maugat Gymnasium', 
+        'Santa Maria, Balas, & Buco': 'Suplang Covered Court', 
+        'Tranca': 'San Fernando Brgy. Hall'}, 
         
     'transferred': {
-        'Aya': 'Brgy. San Jose BB Court', 
-        'Banga & San Guillermo': 'San Antonio Brgy. Hall', 
-        'Caloocan & Leynes': 'San Antonio Brgy. Hall', 
-        'Poblacion Barangay 1': 'San Antonio Brgy. Hall', 
-        'Poblacion Barangay 5': 'San Antonio Brgy. Hall', 
-        'Poblacion Barangay 2,3,4,6,7,8': 'San Antonio Brgy. Hall', 
-        'Quiling, Miranda, & Tumaway': 'Brgy. San Jose BB Court', 
-        'Sampaloc': 'Brgy. San Jose BB Court', 
-        'Santa Maria, Balas, & Buco': 'San Antonio Brgy. Hall', 
-        'Tranca': 'San Antonio Brgy. Hall'},
+        'Aya': 'Darasa Brgy. Hall', 
+        'Banga & San Guillermo': 'Darasa Brgy. Hall', 
+        'Caloocan & Leynes': 'Darasa Brgy. Hall', 
+        'Poblacion Barangay 1': 'Darasa Brgy. Hall', 
+        'Poblacion Barangay 5': 'Darasa Brgy. Hall', 
+        'Poblacion Barangay 2,3,4,6,7,8': 'Darasa Brgy. Hall', 
+        'Quiling, Miranda, & Tumaway': 'Darasa Brgy. Hall', 
+        'Sampaloc': 'Darasa Brgy. Hall', 
+        'Santa Maria, Balas, & Buco': 'Darasa Brgy. Hall', 
+        'Tranca': 'Darasa Brgy. Hall'},
 
     'shelterlvl':{
         "Brgy. Asis-3 EC": 1, 
         "City EC of Sto. Tomas": 1, 
         "Suplang Covered Court": 1, 
-        "Brgy. San Jose BB Court": 2, 
+        "Brgy. San Jose BB Court": 1, 
         "Maugat Gymnasium": 1, 
         "Tagaytay Unida Church": 1, 
-        "San Antonio Brgy. Hall": 2, 
-        "Darasa Brgy. Hall": 1, 
+        "San Antonio Brgy. Hall": 1, 
+        "Darasa Brgy. Hall": 2, 
         "Santa Clara Brgy. Hall": 1, 
         "San Fernando Brgy. Hall": 1
 
     }
 }
 test_alloc2 = {'initial': {'Aya': 'San Antonio Brgy. Hall', 'Banga & San Guillermo': 'Suplang Covered Court', 'Caloocan & Leynes': 'Brgy. Asis-3 EC', 'Poblacion Barangay 1': 'Maugat Gymnasium', 'Poblacion Barangay 5': 'Brgy. San Jose BB Court', 'Poblacion Barangay 2,3,4,6,7,8': 'Maugat Gymnasium', 'Quiling, Miranda, & Tumaway': 'Brgy. San Jose BB Court', 'Sampaloc': 'Brgy. Asis-3 EC', 'Santa Maria, Balas, & Buco': 'Brgy. San Jose BB Court', 'Tranca': 'Suplang Covered Court'}, 'transferred': {'Aya': 'City EC of Sto. Tomas', 'Banga & San Guillermo': 'City EC of Sto. Tomas', 'Caloocan & Leynes': 'Tagaytay Unida Church', 'Poblacion Barangay 1': 'City EC of Sto. Tomas', 'Poblacion Barangay 5': 'City EC of Sto. Tomas', 'Poblacion Barangay 2,3,4,6,7,8': 'City EC of Sto. Tomas', 'Quiling, Miranda, & Tumaway': 'City EC of Sto. Tomas', 'Sampaloc': 'Tagaytay Unida Church', 'Santa Maria, Balas, & Buco': 'City EC of Sto. Tomas', 'Tranca': 'City EC of Sto. Tomas'}, 'shelterlvl': {'Brgy. Asis-3 EC': 1, 'City EC of Sto. Tomas': 2, 'Suplang Covered Court': 1, 'Brgy. San Jose BB Court': 1, 'Maugat Gymnasium': 1, 'Tagaytay Unida Church': 2, 'San Antonio Brgy. Hall': 1, 'Darasa Brgy. Hall': 2, 'Santa Clara Brgy. Hall': 2, 'San Fernando Brgy. Hall': 1}}
-print(fitness(test_alloc2))
-print(show_allocation_details_grouped(test_alloc2))
+print(fitness(test_alloc))
+print(show_allocation_details_grouped(test_alloc))

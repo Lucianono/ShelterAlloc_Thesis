@@ -3,7 +3,7 @@
 # model but without the GA
 #======================================
 
-# the official function for Bilevel No Transfer model
+# the official function for  Single-level with Workplace Distance Inclusion
 
 import random
 import numpy as np
@@ -12,7 +12,7 @@ import copy
 # TEMPORARY DUMMY DATA
 # should be replaced with dynamic data from system
 # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
-area_per_individual = 1
+area_per_individual = 0.3
 max_lvl2_shelters = 10
 max_shelters = 10
 
@@ -22,71 +22,120 @@ num_solutions = 20
 mutation_rate = 0.5
 mutation_iteration = 2
 
-weight_dist = 0.5
-weight_cost = 0.5
+weight_dist = 0.3
+weight_cost = 0.3
+weight_work = 0.4
 penalty_constant = 10**20
 
 # sample data of communities with barangay names along with population and distances from each shelter
 Community = [
-    {"name": "Aya", "population": 6215, "maxdistance": 570, "distances": {
-        "Brgy. Asis-3 EC": 374.90, "City EC of Sto. Tomas": 197.28, "Suplang Covered Court": 151.16,
-        "Brgy. San Jose BB Court": 62.86, "Maugat Gymnasium": 64.26, "Tagaytay Unida Church": 272.00,
-        "San Antonio Brgy. Hall": 233.10, "Darasa Brgy. Hall": 242.71, "Santa Clara Brgy. Hall": 367.89,
-        "San Fernando Brgy. Hall": 302.74}, "portiontransfer":0.5,},
+    {"name": "Aya", "population": 6215, "maxdistance": 570, 
+     "distances": {
+        "Brgy. Asis-3 EC": 374.90, 
+        "City EC of Sto. Tomas": 197.28, 
+        "Suplang Covered Court": 151.16,
+        "Brgy. San Jose BB Court": 62.86, 
+        "Maugat Gymnasium": 64.26, 
+        "Tagaytay Unida Church": 272.00,
+        "San Antonio Brgy. Hall": 233.10, 
+        "Darasa Brgy. Hall": 242.71, 
+        "Santa Clara Brgy. Hall": 367.89,
+        "San Fernando Brgy. Hall": 302.74}, 
+        "portiontransfer":0.5,
+        "portionwork" : {
+            "Sto Tomas Batangas" : 0.02
+        }
+    },
     
     {"name": "Banga & San Guillermo", "population": 5116, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 268.72, "City EC of Sto. Tomas": 303.71, "Suplang Covered Court": 200.81,
         "Brgy. San Jose BB Court": 159.09, "Maugat Gymnasium": 170.07, "Tagaytay Unida Church": 166.00,
         "San Antonio Brgy. Hall": 339.18, "Darasa Brgy. Hall": 345.62, "Santa Clara Brgy. Hall": 467.99,
-        "San Fernando Brgy. Hall": 402.38}, "portiontransfer":0.5,},
+        "San Fernando Brgy. Hall": 402.38}, "portiontransfer":0.5,
+        "portionwork" : {
+            "Sto Tomas Batangas" : 0.66,
+        }
+    },
     
     {"name": "Caloocan & Leynes", "population": 3258, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 208.44, "City EC of Sto. Tomas": 369.01, "Suplang Covered Court": 264.84,
         "Brgy. San Jose BB Court": 228.38, "Maugat Gymnasium": 237.39, "Tagaytay Unida Church": 109.49,
         "San Antonio Brgy. Hall": 406.17, "Darasa Brgy. Hall": 405.44, "Santa Clara Brgy. Hall": 524.12,
-        "San Fernando Brgy. Hall": 458.62}, "portiontransfer":0.5,},
+        "San Fernando Brgy. Hall": 458.62}, "portiontransfer":0.5,
+        "portionwork" : {
+            "Sto Tomas Batangas" : 0.34,
+        }
+    },
     
     {"name": "Poblacion Barangay 1", "population": 1921, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 312.82, "City EC of Sto. Tomas": 261.91, "Suplang Covered Court": 192.62,
         "Brgy. San Jose BB Court": 127.45, "Maugat Gymnasium": 131.45, "Tagaytay Unida Church": 210.74,
         "San Antonio Brgy. Hall": 299.48, "Darasa Brgy. Hall": 300.36, "Santa Clara Brgy. Hall": 421.82,
-        "San Fernando Brgy. Hall": 356.18}, "portiontransfer":0.5,},
+        "San Fernando Brgy. Hall": 356.18}, "portiontransfer":0.5,
+        "portionwork" : {
+            "Sto Tomas Batangas" : 0.34,
+        }
+    },
     
     {"name": "Poblacion Barangay 5", "population": 265, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 294.99, "City EC of Sto. Tomas": 279.31, "Suplang Covered Court": 199.02,
         "Brgy. San Jose BB Court": 141.70, "Maugat Gymnasium": 147.90, "Tagaytay Unida Church": 192.89,
         "San Antonio Brgy. Hall": 316.43, "Darasa Brgy. Hall": 318.21, "Santa Clara Brgy. Hall": 439.57,
-        "San Fernando Brgy. Hall": 373.93}, "portiontransfer":0.5,},
+        "San Fernando Brgy. Hall": 373.93}, "portiontransfer":0.5,
+        "portionwork" : {
+            "Sto Tomas Batangas" : 0,
+        }
+    },
     
     {"name": "Poblacion Barangay 2,3,4,6,7,8", "population": 8073, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 303.30, "City EC of Sto. Tomas": 270.07, "Suplang Covered Court": 189.35,
         "Brgy. San Jose BB Court": 131.11, "Maugat Gymnasium": 137.96, "Tagaytay Unida Church": 200.87,
         "San Antonio Brgy. Hall": 306.74, "Darasa Brgy. Hall": 310.37, "Santa Clara Brgy. Hall": 432.52,
-        "San Fernando Brgy. Hall": 366.90}, "portiontransfer":0.5,},
+        "San Fernando Brgy. Hall": 366.90}, "portiontransfer":0.5,
+        "portionwork" : {
+            "Sto Tomas Batangas" : 0.64,
+        }
+    },
     
     {"name": "Quiling, Miranda, & Tumaway", "population": 9050, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 351.86, "City EC of Sto. Tomas": 224.54, "Suplang Covered Court": 120.74,
         "Brgy. San Jose BB Court": 69.84, "Maugat Gymnasium": 90.32, "Tagaytay Unida Church": 249.34,
         "San Antonio Brgy. Hall": 255.07, "Darasa Brgy. Hall": 277.98, "Santa Clara Brgy. Hall": 404.84,
-        "San Fernando Brgy. Hall": 340.45}, "portiontransfer":0.5,},
+        "San Fernando Brgy. Hall": 340.45}, "portiontransfer":0.5,
+        "portionwork" : {
+            "Sto Tomas Batangas" : 0.84,
+        }
+    },
     
     {"name": "Sampaloc", "population": 4531, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 167.19, "City EC of Sto. Tomas": 420.32, "Suplang Covered Court": 316.14,
         "Brgy. San Jose BB Court": 282.04, "Maugat Gymnasium": 290.10, "Tagaytay Unida Church": 81.61,
         "San Antonio Brgy. Hall": 458.41, "Darasa Brgy. Hall": 453.42, "Santa Clara Brgy. Hall": 569.31,
-        "San Fernando Brgy. Hall": 504.14}, "portiontransfer":0.5,},
+        "San Fernando Brgy. Hall": 504.14}, "portiontransfer":0.5,
+        "portionwork" : {
+            "Sto Tomas Batangas" : 0.25,
+        }
+    },
     
     {"name": "Santa Maria, Balas, & Buco", "population": 3922, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 263.79, "City EC of Sto. Tomas": 314.29, "Suplang Covered Court": 231.04,
         "Brgy. San Jose BB Court": 178.84, "Maugat Gymnasium": 184.40, "Tagaytay Unida Church": 163.44,
         "San Antonio Brgy. Hall": 352.34, "Darasa Brgy. Hall": 349.80, "Santa Clara Brgy. Hall": 468.83,
-        "San Fernando Brgy. Hall": 403.27}, "portiontransfer":0.5,},
+        "San Fernando Brgy. Hall": 403.27}, "portiontransfer":0.5,
+        "portionwork" : {
+            "Sto Tomas Batangas" : 0.07,
+        }
+    },
     
     {"name": "Tranca", "population": 2950, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 377.92, "City EC of Sto. Tomas": 214.54, "Suplang Covered Court": 76.48,
         "Brgy. San Jose BB Court": 59.50, "Maugat Gymnasium": 91.75, "Tagaytay Unida Church": 277.14,
         "San Antonio Brgy. Hall": 238.34, "Darasa Brgy. Hall": 276.74, "Santa Clara Brgy. Hall": 404.33,
-        "San Fernando Brgy. Hall": 341.93}, "portiontransfer":0.5,}
+        "San Fernando Brgy. Hall": 341.93}, "portiontransfer":0.5,
+        "portionwork" : {
+            "Sto Tomas Batangas" : 0.42,
+        }
+    }
 ]
 
 # list of shelters with area1 and cost1 (area and cost as level 1 shelter), area 2 and cost2 (area and cost as level 2 shelter) 
@@ -103,7 +152,10 @@ Shelters = [
          "Darasa Brgy. Hall": 613.04, 
          "Santa Clara Brgy. Hall": 732.55, 
          "San Fernando Brgy. Hall": 667.03
-     }},
+    },
+    "distanceswork": {
+         "Sto Tomas Batangas": 638.57 
+    }},
     {"name": "City EC of Sto. Tomas", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000, 
      "distances": {
          "Brgy. Asis-3 EC": 572.12, 
@@ -116,7 +168,10 @@ Shelters = [
          "Darasa Brgy. Hall": 75.92, 
          "Santa Clara Brgy. Hall": 196.26, 
          "San Fernando Brgy. Hall": 141.12
-     }},
+     },
+    "distanceswork": {
+         "Sto Tomas Batangas": 97.29 
+    }},
     {"name": "Suplang Covered Court", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000, 
      "distances": {
          "Brgy. Asis-3 EC": 422.12, 
@@ -129,7 +184,10 @@ Shelters = [
          "Darasa Brgy. Hall": 300.72, 
          "Santa Clara Brgy. Hall": 424.81, 
          "San Fernando Brgy. Hall": 367.40
-     }},
+     },
+    "distanceswork": {
+         "Sto Tomas Batangas": 248.36
+    }},
     {"name": "Brgy. San Jose BB Court", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000, 
      "distances": {
          "Brgy. Asis-3 EC": 421.70, 
@@ -142,7 +200,10 @@ Shelters = [
          "Darasa Brgy. Hall": 217.42, 
          "Santa Clara Brgy. Hall": 345.04, 
          "San Fernando Brgy. Hall": 282.45
-     }},
+     },
+    "distanceswork": {
+         "Sto Tomas Batangas": 217.18
+    }},
     {"name": "Maugat Gymnasium", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000, 
      "distances": {
          "Brgy. Asis-3 EC": 437.58, 
@@ -155,7 +216,10 @@ Shelters = [
          "Darasa Brgy. Hall": 188.44, 
          "Santa Clara Brgy. Hall": 315.81, 
          "San Fernando Brgy. Hall": 252.19
-     }},
+     },
+    "distanceswork": {
+         "Sto Tomas Batangas": 206.89
+    }},
     {"name": "Tagaytay Unida Church", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000, 
      "distances": {
          "Brgy. Asis-3 EC": 102.96, 
@@ -168,7 +232,10 @@ Shelters = [
          "Darasa Brgy. Hall": 511.09, 
          "Santa Clara Brgy. Hall": 631.85, 
          "San Fernando Brgy. Hall": 566.23
-     }},
+     },
+    "distanceswork": {
+         "Sto Tomas Batangas": 536.19
+    }},
     {"name": "San Antonio Brgy. Hall", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000, 
      "distances": {
          "Brgy. Asis-3 EC": 606.08, 
@@ -181,7 +248,10 @@ Shelters = [
          "Darasa Brgy. Hall": 97.91, 
          "Santa Clara Brgy. Hall": 197.01, 
          "San Fernando Brgy. Hall": 153.26
-     }},
+     },
+    "distanceswork": {
+         "Sto Tomas Batangas": 52
+    }},
     {"name": "Darasa Brgy. Hall", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000, 
      "distances": {
          "Brgy. Asis-3 EC": 613.04, 
@@ -194,7 +264,10 @@ Shelters = [
          "Darasa Brgy. Hall": 0.00, 
          "Santa Clara Brgy. Hall": 127.62, 
          "San Fernando Brgy. Hall": 66.69
-     }},
+     },
+    "distanceswork": {
+         "Sto Tomas Batangas": 143.19
+    }},
     {"name": "Santa Clara Brgy. Hall", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000, 
      "distances": {
          "Brgy. Asis-3 EC": 732.55, 
@@ -207,7 +280,10 @@ Shelters = [
          "Darasa Brgy. Hall": 127.62, 
          "Santa Clara Brgy. Hall": 0.00, 
          "San Fernando Brgy. Hall": 65.64
-     }},
+     },
+    "distanceswork": {
+         "Sto Tomas Batangas": 220.37
+    }},
     {"name": "San Fernando Brgy. Hall", "area1": 10000, "cost1": 10000, "area2": 20000, "cost2": 20000, 
      "distances": {
          "Brgy. Asis-3 EC": 667.03, 
@@ -220,26 +296,23 @@ Shelters = [
          "Darasa Brgy. Hall": 66.69, 
          "Santa Clara Brgy. Hall": 65.64, 
          "San Fernando Brgy. Hall": 0.00
-     }}
+     },
+    "distanceswork": {
+         "Sto Tomas Batangas": 188.75
+    }}
 ]
-
 
 # =======================
 # SOLUTION SPAWNING
 # create chromosome with randomized allocation
 def spawn():
     allocations = {}
-    shelter_lvl_assignment = {}
 
     for community in Community:
         shelter = random.choice(Shelters)["name"]
         allocations[community["name"]] = shelter
 
-    for shelter in Shelters:
-        level = random.choice([1,2])
-        shelter_lvl_assignment[shelter["name"]] = level
-
-    allocations = {"initial": allocations, "shelterlvl": shelter_lvl_assignment}
+    allocations = {"initial": allocations}
     return allocations
 
 # =======================
@@ -252,6 +325,7 @@ def fitness(allocation):
     Shelters_dict = {shelter["name"]: shelter for shelter in Shelters}
 
     total_distance = 0
+    total_workdistance = 0
     total_cost = 0
 
     for community in Community:
@@ -260,16 +334,15 @@ def fitness(allocation):
         distance = community["distances"][shelter_name]
         total_distance += distance * community["population"]
 
+        # add work distance per work
+        for work in community["portionwork"]:
+            workdistance = Shelters_dict.get(shelter_name)["distanceswork"][work]
+            total_workdistance += workdistance * community["portionwork"][work] * community["population"]
 
     for shelter_name in initial_shelters:
-        # add cost based on shelter level
+        # add cost based on shelter level 1
         shelter = Shelters_dict.get(shelter_name)
-        if (allocation["shelterlvl"][shelter_name] == 1):
-            total_cost += shelter["cost1"] 
-        elif (allocation["shelterlvl"][shelter_name] == 2):
-            total_cost += shelter["cost2"] 
-        else:
-            print("Shelter exceeded 2 levels. Something is wrong")
+        total_cost += shelter["cost1"] 
         
     # the actual model
     objective_value = weight_dist * total_distance + weight_cost * total_cost
@@ -279,7 +352,7 @@ def fitness(allocation):
 
 # =======================
 # CONSTRAINTS
-# maximum distance constraint (2.24)
+# maximum distance constraint (2.32)
 def check_max_distance(allocation):
 
     penalty = 0
@@ -295,9 +368,9 @@ def check_max_distance(allocation):
         
     return penalty
 
-# initial capacity constraint (2.25)
+# initial capacity constraint (2.33)
 def check_initial_capacity(allocation):
-    shelter_areas = {shelter["name"]: shelter[f"area{allocation["shelterlvl"][shelter['name']]}"] for shelter in Shelters}
+    shelter_areas = {shelter["name"]: shelter[f"area1"] for shelter in Shelters}
     used_area = {shelter["name"]: 0 for shelter in Shelters}
 
     penalty = 0
@@ -315,7 +388,7 @@ def check_initial_capacity(allocation):
 
     return penalty
 
-# max shelters to be constructed/allocated constraint (2.27)
+# max shelters to be constructed/allocated constraint (2.34)
 def check_max_shelters(allocation):
     used_shelters = set() 
     penalty = 0
@@ -330,18 +403,6 @@ def check_max_shelters(allocation):
             penalty += len(used_shelters)
             
     return penalty
-        
-# max lvl2 shelters to be constructed/allocated constraint (2.26)
-def check_max_lvl2_shelters(allocation):
-    
-    lvl2_shelters_ctr = sum(1 for level in allocation["shelterlvl"].values() if level == 2)
-    penalty = 0
-
-    if lvl2_shelters_ctr > max_lvl2_shelters:
-        print("max lvl2 shelters constraint failed")
-        penalty += lvl2_shelters_ctr
-   
-    return penalty
 
 # =======================
 # CONSTRAINTS/PENALTY EXECUTION
@@ -349,8 +410,7 @@ def check_max_lvl2_shelters(allocation):
 def getPenaltySum(allocation):
      return (check_initial_capacity(allocation)**2 +  
             check_max_distance(allocation)**2 + 
-            check_max_shelters(allocation)**2 + 
-            check_max_lvl2_shelters(allocation)**2 )
+            check_max_shelters(allocation)**2 )
 
 # =======================
 # GENETIC ALGORITHM
@@ -380,7 +440,7 @@ def mutate(allocation):
 # crossover operator
 # TYPE : Uniform Crossover
 def generate_offspring(parent1, parent2):
-    offspring = {"initial":{},"shelterlvl":{}}
+    offspring = {"initial":{}}
     for community in Community:
         #for initial
         shelters = {parent1["initial"][community["name"]], parent2["initial"][community["name"]]} 
@@ -391,18 +451,6 @@ def generate_offspring(parent1, parent2):
             chosen_shelter = random.choice([shelter["name"] for shelter in Shelters])
 
         offspring["initial"][community["name"]] = chosen_shelter
-
-    for shelter in Shelters:
-
-        #for shelterlvl
-        levels = {parent1["shelterlvl"][shelter["name"]], parent2["shelterlvl"][shelter["name"]]} 
-        
-        if shelters:
-            chosen_lvl = random.choice(list(levels))
-        else:
-            chosen_lvl = random.choice([1,2])
-
-        offspring["shelterlvl"][shelter["name"]] = chosen_lvl
 
     return offspring
 
@@ -520,47 +568,32 @@ def show_allocation_details_grouped(allocation):
         if phase in ('initial'):
             for community, shelter in allocations.items():
                 if shelter not in grouped_by_shelter:
-                    grouped_by_shelter[shelter] = {'level': allocation['shelterlvl'].get(shelter, None), 'initial': []}
+                    grouped_by_shelter[shelter] = {'initial': []}
                 grouped_by_shelter[shelter][phase].append(community)
 
     # Print the grouped data
     for shelter, details in grouped_by_shelter.items():
-        print(f"Shelter: {shelter} (Level {details['level']})")
+        print(f"Shelter: {shelter} ")
         print(f"  Initial:")
         for community in details['initial']:
             print(f"    - {community}")
         print()
 
 
-
 test_alloc = {
     'initial': {
-        'Aya': 'Tagaytay Unida Church', 
-        'Banga & San Guillermo': 'Tagaytay Unida Church', 
-        'Caloocan & Leynes': 'Tagaytay Unida Church', 
-        'Poblacion Barangay 1': 'Brgy. San Jose BB Court', 
-        'Poblacion Barangay 5': 'Brgy. San Jose BB Court', 
-        'Poblacion Barangay 2,3,4,6,7,8': 'Tagaytay Unida Church', 
-        'Quiling, Miranda, & Tumaway': 'Brgy. San Jose BB Court', 
+        'Aya': 'Brgy. San Jose BB Court', 
+        'Banga & San Guillermo': 'Suplang Covered Court', 
+        'Caloocan & Leynes': 'San Antonio Brgy. Hall', 
+        'Poblacion Barangay 1': 'Darasa Brgy. Hall', 
+        'Poblacion Barangay 5': 'Darasa Brgy. Hall', 
+        'Poblacion Barangay 2,3,4,6,7,8': 'Suplang Covered Court', 
+        'Quiling, Miranda, & Tumaway': 'Suplang Covered Court', 
         'Sampaloc': 'Brgy. San Jose BB Court', 
-        'Santa Maria, Balas, & Buco': 'Maugat Gymnasium', 
-        'Tranca': 'Brgy. San Jose BB Court'}, 
+        'Santa Maria, Balas, & Buco': 'Brgy. San Jose BB Court', 
+        'Tranca': 'Suplang Covered Court'}, 
         
-
-    'shelterlvl':{
-        "Brgy. Asis-3 EC": 1, 
-        "City EC of Sto. Tomas": 1, 
-        "Suplang Covered Court": 1, 
-        "Brgy. San Jose BB Court": 2, 
-        "Maugat Gymnasium": 1, 
-        "Tagaytay Unida Church": 2, 
-        "San Antonio Brgy. Hall": 1, 
-        "Darasa Brgy. Hall": 1, 
-        "Santa Clara Brgy. Hall": 1, 
-        "San Fernando Brgy. Hall": 1
-
-    }
 }
-test_alloc2 = {'initial': {'Aya': 'Brgy. San Jose BB Court', 'Banga & San Guillermo': 'Tagaytay Unida Church', 'Caloocan & Leynes': 'Tagaytay Unida Church', 'Poblacion Barangay 1': 'Maugat Gymnasium', 'Poblacion Barangay 5': 'Brgy. San Jose BB Court', 'Poblacion Barangay 2,3,4,6,7,8': 'Maugat Gymnasium', 'Quiling, Miranda, & Tumaway': 'Brgy. San Jose BB Court', 'Sampaloc': 'Tagaytay Unida Church', 'Santa Maria, Balas, & Buco': 'Tagaytay Unida Church', 'Tranca': 'Brgy. San Jose BB Court'}, 'shelterlvl': {'Brgy. Asis-3 EC': 2, 'City EC of Sto. Tomas': 1, 'Suplang Covered Court': 1, 'Brgy. San Jose BB Court': 2, 'Maugat Gymnasium': 1, 'Tagaytay Unida Church': 2, 'San Antonio Brgy. Hall': 1, 'Darasa Brgy. Hall': 2, 'Santa Clara Brgy. Hall': 2, 'San Fernando Brgy. Hall': 1}}
-print(fitness(test_alloc))
-print(show_allocation_details_grouped(test_alloc))
+test_alloc2 = {'initial': {'Aya': 'Brgy. San Jose BB Court', 'Banga & San Guillermo': 'Maugat Gymnasium', 'Caloocan & Leynes': 'Brgy. Asis-3 EC', 'Poblacion Barangay 1': 'Tagaytay Unida Church', 'Poblacion Barangay 5': 'Brgy. San Jose BB Court', 'Poblacion Barangay 2,3,4,6,7,8': 'Tagaytay Unida Church', 'Quiling, Miranda, & Tumaway': 'Suplang Covered Court', 'Sampaloc': 'Brgy. Asis-3 EC', 'Santa Maria, Balas, & Buco': 'Maugat Gymnasium', 'Tranca': 'Brgy. San Jose BB Court'}}
+print(fitness(test_alloc2))
+print(show_allocation_details_grouped(test_alloc2))

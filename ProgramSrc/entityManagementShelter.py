@@ -166,13 +166,14 @@ class EntityManagementShelter(QDialog):
         layout.setAlignment(Qt.AlignCenter)
         layout.setContentsMargins(0, 0, 0, 0)
 
+        # Create the switch
         switch = QPushButton()
         switch.setCheckable(True)
         switch.setFixedSize(40, 20)  # Set the switch size
         switch.setStyleSheet("""
             QPushButton {
                 background-color: #ccc;
-                border-radius: 10px;  /* Rounded corners for the switch */
+                border-radius: 10px;
             }
             QPushButton::indicator {
                 width: 0;  /* Hide default indicator */
@@ -180,29 +181,32 @@ class EntityManagementShelter(QDialog):
         """)
 
         # Create a circle (knob) for the switch
-        self.knob = QPushButton(switch)
-        self.knob.setFixedSize(16, 16)  # Smaller knob size
-        self.knob.setStyleSheet("""
+        knob = QPushButton(switch)
+        knob.setFixedSize(16, 16)
+        knob.setStyleSheet("""
             QPushButton {
                 background-color: white;
-                border-radius: 8px;  /* Rounded corners for the knob */
+                border-radius: 8px;
             }
         """)
-        self.knob.move(2, 2)  # Initial position for the knob (left side)
+        knob.move(2, 2)  # Initial position for the knob (left side)
 
-        # Add toggle animation for smooth knob movement
-        self.animation = QPropertyAnimation(self.knob, b"geometry")
-        self.animation.setDuration(200)
+        # Create a unique animation instance for this switch
+        animation = QPropertyAnimation(knob, b"geometry")
+        animation.setDuration(200)
 
-        switch.clicked.connect(lambda: self.toggle_switch_animation(switch, self.knob))
+        # Connect the toggle functionality
+        switch.clicked.connect(lambda: self.toggle_switch_animation(switch, knob, animation))
+
+        # Add the switch to the layout
         layout.addWidget(switch)
         table_widget.setCellWidget(row_position, 0, switch_widget)
 
-    def toggle_switch_animation(self, switch, knob):
+    def toggle_switch_animation(self, switch, knob, animation):
         if switch.isChecked():
             # Move knob to the right
-            self.animation.setStartValue(QRect(2, 2, 16, 16))
-            self.animation.setEndValue(QRect(22, 2, 16, 16))
+            animation.setStartValue(QRect(2, 2, 16, 16))
+            animation.setEndValue(QRect(22, 2, 16, 16))
             switch.setStyleSheet("""
                 QPushButton {
                     background-color: #4CAF50;
@@ -211,15 +215,15 @@ class EntityManagementShelter(QDialog):
             """)
         else:
             # Move knob to the left
-            self.animation.setStartValue(QRect(22, 2, 16, 16))
-            self.animation.setEndValue(QRect(2, 2, 16, 16))  # Reset to left side
+            animation.setStartValue(QRect(22, 2, 16, 16))
+            animation.setEndValue(QRect(2, 2, 16, 16))  # Reset to left side
             switch.setStyleSheet("""
                 QPushButton {
                     background-color: #ccc;
                     border-radius: 10px;
                 }
             """)
-        self.animation.start()
+        animation.start()
 
     def add_delete_button(self, table_widget, row_position):
         delete_btn_widget = QWidget()

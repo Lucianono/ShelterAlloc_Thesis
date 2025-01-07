@@ -74,8 +74,6 @@ def fitness(allocation):
         distance = shelter_dict["distances"][shelter_name_transfer]
         total_distance += distance * community["population"] * community["portiontransfer"]
 
-        
-
     for shelter_name in all_shelters:
         # add cost based on shelter level
         shelter = Shelters_dict.get(shelter_name)
@@ -162,7 +160,7 @@ def check_max_shelters(allocation):
         # If the number of unique shelters exceeds the max allowed
         if len(used_shelters) > max_shelters:
             print("max shelters constraint failed")
-            penalty += len(used_shelters)
+            penalty += len(used_shelters) - max_shelters
             
     return penalty
         
@@ -174,7 +172,7 @@ def check_max_lvl2_shelters(allocation):
 
     if lvl2_shelters_ctr > max_lvl2_shelters:
         print("max lvl2 shelters constraint failed")
-        penalty += lvl2_shelters_ctr
+        penalty += lvl2_shelters_ctr - max_lvl2_shelters
    
     return penalty
 

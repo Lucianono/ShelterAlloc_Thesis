@@ -14,7 +14,7 @@ max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 1000
+num_generations = 200000
 num_solutions = 100
 mutation_rate = 0.2
 mutation_iteration = 3

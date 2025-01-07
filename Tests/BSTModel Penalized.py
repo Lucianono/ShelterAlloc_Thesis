@@ -14,7 +14,7 @@ max_lvl2_shelters = 10
 max_shelters = 10
 
 solutions = []
-num_generations = 1000
+num_generations = 200000
 num_solutions = 100
 mutation_rate = 0.2
 mutation_iteration = 3
@@ -73,8 +73,6 @@ def fitness(allocation):
         shelter_dict = Shelters_dict.get(shelter_name)
         distance = shelter_dict["distances"][shelter_name_transfer]
         total_distance += distance * community["population"] * community["portiontransfer"]
-
-        
 
     for shelter_name in all_shelters:
         # add cost based on shelter level
@@ -150,7 +148,7 @@ def check_transferred_capacity(allocation):
     return penalty
 
 
-# max shelters to be constructed/allocated constraint (2.16)
+# max shelters to be constructed/allocated constraint (2.17)
 def check_max_shelters(allocation):
     used_shelters = set() 
     penalty = 0
@@ -166,7 +164,7 @@ def check_max_shelters(allocation):
             
     return penalty
         
-# max lvl2 shelters to be constructed/allocated constraint (2.17)
+# max lvl2 shelters to be constructed/allocated constraint (2.16)
 def check_max_lvl2_shelters(allocation):
     
     lvl2_shelters_ctr = sum(1 for level in allocation["shelterlvl"].values() if level == 2)

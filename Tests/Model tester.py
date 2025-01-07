@@ -124,7 +124,11 @@ def check_initial_capacity(allocation):
 
             if used_area[shelter_name] > shelter_areas[shelter_name]:
                 print("initial capacity constraint failed")
-                penalty += used_area[shelter_name] - shelter_areas[shelter_name]
+
+    for shelter in Shelters:
+        shelter_name = shelter["name"]
+        penalty_value = used_area[shelter_name] - shelter_areas[shelter_name]
+        penalty += max(0,penalty_value)
 
     return penalty
 
@@ -143,8 +147,12 @@ def check_transferred_capacity(allocation):
 
             if used_area[shelter_name] > shelter_areas[shelter_name]:
                 print("transferring capacity constraint failed")
-                penalty += used_area[shelter_name] - shelter_areas[shelter_name]
 
+    for shelter in Shelters:
+        shelter_name = shelter["name"]
+        penalty_value = used_area[shelter_name] - shelter_areas[shelter_name]
+        penalty += max(0,penalty_value)
+        
     return penalty
 
 
@@ -407,13 +415,43 @@ def show_allocation_details_grouped(allocation):
 
 test_alloc = {
     'initial': {
-        'Comm1': 'Shel3', 
-        'Comm2': 'Shel4', 
-        'Comm3': 'Shel3', 
-        'Comm4': 'Shel3', 
-        'Comm5': 'Shel3'
-        }
+        'Aya': 'City EC of Sto. Tomas', 
+        'Banga & San Guillermo': 'Tagaytay Unida Church', 
+        'Caloocan & Leynes': 'Tagaytay Unida Church', 
+        'Poblacion Barangay 1': 'City EC of Sto. Tomas', 
+        'Poblacion Barangay 5': 'San Antonio Brgy. Hall', 
+        'Poblacion Barangay 2,3,4,6,7,8': 'Brgy. San Jose BB Court', 
+        'Quiling, Miranda, & Tumaway': 'Brgy. San Jose BB Court', 
+        'Sampaloc': 'Maugat Gymnasium', 
+        'Santa Maria, Balas, & Buco': 'Suplang Covered Court', 
+        'Tranca': 'San Fernando Brgy. Hall'}, 
+        
+    'transferred': {
+        'Aya': 'Darasa Brgy. Hall', 
+        'Banga & San Guillermo': 'Darasa Brgy. Hall', 
+        'Caloocan & Leynes': 'Darasa Brgy. Hall', 
+        'Poblacion Barangay 1': 'Darasa Brgy. Hall', 
+        'Poblacion Barangay 5': 'Darasa Brgy. Hall', 
+        'Poblacion Barangay 2,3,4,6,7,8': 'Darasa Brgy. Hall', 
+        'Quiling, Miranda, & Tumaway': 'Darasa Brgy. Hall', 
+        'Sampaloc': 'Darasa Brgy. Hall', 
+        'Santa Maria, Balas, & Buco': 'Darasa Brgy. Hall', 
+        'Tranca': 'Darasa Brgy. Hall'},
+
+    'shelterlvl':{
+        "Brgy. Asis-3 EC": 1, 
+        "City EC of Sto. Tomas": 1, 
+        "Suplang Covered Court": 1, 
+        "Brgy. San Jose BB Court": 1, 
+        "Maugat Gymnasium": 1, 
+        "Tagaytay Unida Church": 1, 
+        "San Antonio Brgy. Hall": 1, 
+        "Darasa Brgy. Hall": 2, 
+        "Santa Clara Brgy. Hall": 1, 
+        "San Fernando Brgy. Hall": 1
+
+    }
 }
 test_alloc2 = {'initial': {'Aya': 'Maugat Gymnasium', 'Banga & San Guillermo': 'Tagaytay Unida Church', 'Caloocan & Leynes': 'Maugat Gymnasium', 'Poblacion Barangay 1': 'Brgy. San Jose BB Court', 'Poblacion Barangay 5': 'Brgy. San Jose BB Court', 'Poblacion Barangay 2,3,4,6,7,8': 'Darasa Brgy. Hall', 'Quiling, Miranda, & Tumaway': 'City EC of Sto. Tomas', 'Sampaloc': 'Tagaytay Unida Church', 'Santa Maria, Balas, & Buco': 'Brgy. San Jose BB Court', 'Tranca': 'Brgy. San Jose BB Court'}, 'transferred': {'Aya': 'Suplang Covered Court', 'Banga & San Guillermo': 'Brgy. Asis-3 EC', 'Caloocan & Leynes': 'Suplang Covered Court', 'Poblacion Barangay 1': 'Suplang Covered Court', 'Poblacion Barangay 5': 'Suplang Covered Court', 'Poblacion Barangay 2,3,4,6,7,8': 'San Fernando Brgy. Hall', 'Quiling, Miranda, & Tumaway': 'San Antonio Brgy. Hall', 'Sampaloc': 'Brgy. Asis-3 EC', 'Santa Maria, Balas, & Buco': 'Suplang Covered Court', 'Tranca': 'Suplang Covered Court'}, 'shelterlvl': {'Brgy. Asis-3 EC': 2, 'City EC of Sto. Tomas': 1, 'Suplang Covered Court': 2, 'Brgy. San Jose BB Court': 1, 'Maugat Gymnasium': 1, 'Tagaytay Unida Church': 1, 'San Antonio Brgy. Hall': 2, 'Darasa Brgy. Hall': 1, 'Santa Clara Brgy. Hall': 2, 'San Fernando Brgy. Hall': 2}}
-print(fitness(test_alloc2))
-print(show_allocation_details_grouped(test_alloc2))
+print(fitness(test_alloc))
+print(show_allocation_details_grouped(test_alloc))

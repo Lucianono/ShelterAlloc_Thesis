@@ -112,7 +112,11 @@ def check_initial_capacity(allocation):
 
             if used_area[shelter_name] > shelter_areas[shelter_name]:
                 print("initial capacity constraint failed")
-                penalty += used_area[shelter_name] - shelter_areas[shelter_name]
+
+    for shelter in Shelters:
+        shelter_name = shelter["name"]
+        penalty_value = used_area[shelter_name] - shelter_areas[shelter_name]
+        penalty += max(0,penalty_value)
 
     return penalty
 
@@ -125,10 +129,10 @@ def check_max_shelters(allocation):
         shelter_name = allocation["initial"][community["name"]]
         used_shelters.add(shelter_name)  
 
-        # If the number of unique shelters exceeds the max allowed
-        if len(used_shelters) > max_shelters:
-            print("max shelters constraint failed")
-            penalty += len(used_shelters)
+    # If the number of unique shelters exceeds the max allowed
+    if len(used_shelters) > max_shelters:
+        print("max shelters constraint failed")
+        penalty += len(used_shelters) - max_shelters
             
     return penalty
         
@@ -140,7 +144,7 @@ def check_max_lvl2_shelters(allocation):
 
     if lvl2_shelters_ctr > max_lvl2_shelters:
         print("max lvl2 shelters constraint failed")
-        penalty += lvl2_shelters_ctr
+        penalty += lvl2_shelters_ctr - max_lvl2_shelters 
    
     return penalty
 

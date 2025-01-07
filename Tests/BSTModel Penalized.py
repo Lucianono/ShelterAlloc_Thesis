@@ -1,9 +1,10 @@
 # the official function for Bilevel Sequential Transfer model
 
-from Sample_Data2 import Community,Shelters
+from Talisay_Data import Community,Shelters
 import random
 import copy
 import numpy as np
+import time
 
 # TEMPORARY DUMMY DATA
 # should be replaced with dynamic data from system
@@ -14,13 +15,15 @@ max_shelters = 10
 
 solutions = []
 num_generations = 1000
-num_solutions = 20
-mutation_rate = 0.5
+num_solutions = 100
+mutation_rate = 0.2
 mutation_iteration = 3
 
 weight_dist = 0.5
 weight_cost = 0.5
 penalty_constant = 10**20
+
+start_time = time.time()
 
 # =======================
 # SOLUTION SPAWNING
@@ -415,6 +418,8 @@ if not feasibilityCheck():
     exit()
 
 infeasibility_ctr = 0
+generation_last_updated = 0
+
 for _ in range(num_solutions):
     solution = spawn()
 
@@ -450,12 +455,30 @@ for generation in range(num_generations):
     best_solutions = mutated_population + ranked_solutions
     best_solutions = sorted(best_solutions, key=lambda x: x[0])[:num_solutions] 
 
-    print(f"=== Gen {generation} best solution ===")
+    print(f"=== Gen {generation+1} best solution ===")
     print(best_solutions[0])
+
+    prev_best_solution = fitness(solutions[0])
 
     # replace old population
     solutions = [sol[1] for sol in best_solutions]
 
+    new_best_solution = fitness(solutions[0])
+
+    #update generation_last_updated
+    if(prev_best_solution != new_best_solution):
+        generation_last_updated = generation+1
+
 
 best_allocation = solutions[0]
 show_allocation_details_grouped(best_allocation)
+print(f"Generation when solution last updated : {generation_last_updated}")
+
+# Calculate elapsed time
+elapsed_time = time.time() - start_time
+
+# Convert to minutes and seconds
+minutes = int(elapsed_time // 60)
+seconds = elapsed_time % 60
+
+print(f"--- {minutes} minutes and {seconds:.2f} seconds ---")

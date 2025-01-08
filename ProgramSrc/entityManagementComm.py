@@ -98,10 +98,12 @@ class EntityManagementComm(QDialog):
             
     def save_to_excel(self, table_widget, file_name, dialog, expected_types):
         data = []
-        headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
+        headers = ['Active'] + [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
         
         for row in range(table_widget.rowCount()):
-            row_data = [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
+            # Get the active switch state
+            active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
+            row_data = [active_switch] + [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
             data.append(row_data)
 
         if data:
@@ -144,7 +146,8 @@ class EntityManagementComm(QDialog):
         for row_idx, row_data in data.iterrows():
             row_position = table_widget.rowCount()
             table_widget.insertRow(row_position)
-            self.add_switch(table_widget, row_position)
+            is_active = row_data.get('Active', False) == True
+            self.add_switch(table_widget, row_position, is_active)
             
             for col_idx, value in enumerate(row_data, start=1):
                 item = QTableWidgetItem(str(value))
@@ -154,7 +157,7 @@ class EntityManagementComm(QDialog):
 
         table_widget.resizeColumnsToContents()
 
-    def add_switch(self, table_widget, row_position):
+    def add_switch(self, table_widget, row_position, is_active=False):
         switch_widget = QWidget()
         layout = QHBoxLayout(switch_widget)
         layout.setAlignment(Qt.AlignCenter)
@@ -163,6 +166,7 @@ class EntityManagementComm(QDialog):
         # Create the switch
         switch = QPushButton()
         switch.setCheckable(True)
+        switch.setChecked(is_active)
         switch.setFixedSize(40, 20)  # Set the switch size
         switch.setStyleSheet("""
             QPushButton {
@@ -183,7 +187,7 @@ class EntityManagementComm(QDialog):
                 border-radius: 8px;
             }
         """)
-        knob.move(2, 2)  # Initial position for the knob (left side)
+        knob.move(22 if is_active else 2, 2)  # Initial position for the knob (left side)
 
         # Create a unique animation instance for this switch
         animation = QPropertyAnimation(knob, b"geometry")

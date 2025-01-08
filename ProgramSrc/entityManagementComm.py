@@ -246,16 +246,6 @@ class EntityManagementComm(QDialog):
             table_widget.removeRow(row_position)
             self.reconnect_delete_buttons(table_widget)
 
-    def add_row(self, table_widget):
-        row_position = table_widget.rowCount()
-        table_widget.insertRow(row_position)
-        self.add_switch(table_widget, row_position)
-
-        for col in range(1, table_widget.columnCount() - 1):
-            table_widget.setItem(row_position, col, QTableWidgetItem(""))
-
-        self.add_delete_button(table_widget, row_position)
-
     def reconnect_delete_buttons(self, table_widget):
         for row in range(table_widget.rowCount()):
             delete_btn_widget = table_widget.cellWidget(row, table_widget.columnCount() - 1)
@@ -278,7 +268,7 @@ class EntityManagementComm(QDialog):
                         for col in range(1, table_widget.columnCount() - 1)
                     ]
                     active_data.append(row_data)
-                    
+
         return active_data
     
     def feed_data_to_model(self, active_data):

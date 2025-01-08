@@ -6,14 +6,14 @@ from ui_entityManagement import Ui_EntityManagementCommunities
 import pandas as pd
 import os
 from functools import partial
-from BNTModel import BNTModel
+# from BNTModel import BNTModel
 
 class EntityManagementComm(QDialog):
     def __init__(self):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_EntityManagementCommunities()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
-        self.model = BNTModel()
+        # self.model = BNTModel()
 
         file_name = "commData.xlsx"
         required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'WorkPop', 'MaxDistance',  'Remarks']
@@ -254,27 +254,27 @@ class EntityManagementComm(QDialog):
                 delete_btn.clicked.disconnect()
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
     
-    def get_active_rows(self, table_widget):
-        active_data = []
-        headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
+    # def get_active_rows(self, table_widget):
+    #     active_data = []
+    #     headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
 
-        for row in range(table_widget.rowCount()):
-            switch_widget = table_widget.cellWidget(row, 0)
-            if switch_widget:
-                switch = switch_widget.findChild(QPushButton)
-                if switch and switch.isChecked():
-                    row_data = [
-                        table_widget.item(row, col).text() if table_widget.item(row, col) else ""
-                        for col in range(1, table_widget.columnCount() - 1)
-                    ]
-                    active_data.append(row_data)
+    #     for row in range(table_widget.rowCount()):
+    #         switch_widget = table_widget.cellWidget(row, 0)
+    #         if switch_widget:
+    #             switch = switch_widget.findChild(QPushButton)
+    #             if switch and switch.isChecked():
+    #                 row_data = [
+    #                     table_widget.item(row, col).text() if table_widget.item(row, col) else ""
+    #                     for col in range(1, table_widget.columnCount() - 1)
+    #                 ]
+    #                 active_data.append(row_data)
 
-        return active_data
+    #     return active_data
     
-    def feed_data_to_model(self, active_data):
-        if active_data:
-            mode_data = pd.DataFrame(active_data, columns=["Name", "xDegrees", "yDegrees", "Population", "AffectedPop", "WorkPop", "MaxDistance", "Remarks"])
-            model = BNTModel()
-            model.process_data(mode_data)
-        else:
-            QMessageBox.warning(self, "Warning", "No data to feed to the model.")
+    # def feed_data_to_model(self, active_data):
+    #     if active_data:
+    #         mode_data = pd.DataFrame(active_data, columns=["Name", "xDegrees", "yDegrees", "Population", "AffectedPop", "WorkPop", "MaxDistance", "Remarks"])
+    #         model = BNTModel()
+    #         model.process_data(mode_data)
+    #     else:
+    #         QMessageBox.warning(self, "Warning", "No data to feed to the model.")

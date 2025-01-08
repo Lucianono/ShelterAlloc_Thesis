@@ -104,20 +104,31 @@ class SolveSettingsDialog(QDialog):
             return []
     
     def load_and_display_community_data(self):
-        names = self.get_names_from_community_excel()
-        if not names:
-            return
-        
-        # clear scroll area before populating
-        for i in reversed(range(self.community_layout.count())):
-            widget_to_remove = self.community_layout.itemAt(i).widget()
-            if widget_to_remove:
-                widget_to_remove.deleteLater()
+        try:
+            # Load the community data
+            data = pd.read_excel("commData.xlsx")
 
-        for name in names:
-            name_label = QLabel(name)
-            name_label.setStyleSheet("color: black; background-color: white;")
-            self.community_layout.addWidget(name_label)    
+            # Filter rows where 'Active' column is True
+            active_data = data[data["Active"] == True]
+
+            if active_data.empty:
+                return
+            
+            # clear scroll area before populating
+            for i in reversed(range(self.community_layout.count())):
+                widget_to_remove = self.community_layout.itemAt(i).widget()
+                if widget_to_remove:
+                    widget_to_remove.deleteLater()
+
+            # Display only active names
+            for name in active_data["Name"]:
+                name_label = QLabel(name)
+                name_label.setStyleSheet("color: black; background-color: white;")
+                self.community_layout.addWidget(name_label)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
+
     
     def get_names_from_shelter_excel(self, file_path = "shelData.xlsx"):
         try:
@@ -130,20 +141,31 @@ class SolveSettingsDialog(QDialog):
             return []
     
     def load_and_display_shelter_data(self):
-        names = self.get_names_from_shelter_excel()
-        if not names:
-            return
-        
-        # clear scroll area before populating
-        for i in reversed(range(self.shelter_layout.count())):
-            widget_to_remove = self.shelter_layout.itemAt(i).widget()
-            if widget_to_remove:
-                widget_to_remove.deleteLater()
+        try:
+            # Load the shelter data
+            data = pd.read_excel("shelData.xlsx")
 
-        for name in names:
-            name_label = QLabel(name)
-            name_label.setStyleSheet("color: black; background-color: white;")
-            self.shelter_layout.addWidget(name_label)
+            # Filter rows where 'Active' column is True
+            active_data = data[data["Active"] == True]
+
+            if active_data.empty:
+                return
+            
+            # clear scroll area before populating
+            for i in reversed(range(self.shelter_layout.count())):
+                widget_to_remove = self.shelter_layout.itemAt(i).widget()
+                if widget_to_remove:
+                    widget_to_remove.deleteLater()
+
+            # Display only active names
+            for name in active_data["Name"]:
+                name_label = QLabel(name)
+                name_label.setStyleSheet("color: black; background-color: white;")
+                self.shelter_layout.addWidget(name_label)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
+
 
     def init_shelter_status_switches(self):
         self.create_switch("Built", self.shelter_status_layout)

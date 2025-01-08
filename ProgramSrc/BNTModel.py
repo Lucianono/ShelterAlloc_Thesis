@@ -14,6 +14,10 @@ Community_data = pd.read_excel( os.path.join(os.getcwd(), "commData.xlsx") ).fil
 Shelter_data = pd.read_excel( os.path.join(os.getcwd(), "shelData.xlsx") ).fillna("")
 Distances_data = pd.read_excel( os.path.join(os.getcwd(), "distance_matrix.xlsx") ).fillna("")
 
+# Filter Active rows
+active_data = Community_data[Community_data['Active']]
+active_data = Shelter_data[Shelter_data['Active']]
+
 # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
 area_per_individual = 0.01
 max_lvl2_shelters = 22

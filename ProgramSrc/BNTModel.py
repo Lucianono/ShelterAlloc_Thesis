@@ -14,9 +14,9 @@ Community_data = pd.read_excel( os.path.join(os.getcwd(), "commData.xlsx") ).fil
 Shelter_data = pd.read_excel( os.path.join(os.getcwd(), "shelData.xlsx") ).fillna("")
 Distances_data = pd.read_excel( os.path.join(os.getcwd(), "distance_matrix.xlsx") ).fillna("")
 
-# Filter Active rows
-active_data = Community_data[Community_data['Active']]
-active_data = Shelter_data[Shelter_data['Active']]
+# Filter only active rows where Active column is True
+Community_data_active = Community_data[Community_data['Active'] == True]
+Shelter_data_active = Shelter_data[Shelter_data['Active'] == True]
 
 # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
 area_per_individual = 0.01
@@ -33,7 +33,7 @@ weight_cost = 0.5
 
 # list of shelters with area1 and cost1 (area and cost as level 1 shelter), area 2 and cost2 (area and cost as level 2 shelter) 
 Shelters = []
-for row in Shelter_data.itertuples(index=False):
+for row in Shelter_data_active.itertuples(index=False):
         # Extract shelter details 
         row_data = {
             "name": row.Name,
@@ -46,7 +46,7 @@ for row in Shelter_data.itertuples(index=False):
 
 # sample data of communities with barangay names along with population and distances from each shelter
 Community = []
-for row in Community_data.itertuples(index=False):
+for row in Community_data_active.itertuples(index=False):
         # store all distances from community to all shleters
         distance_row_data = {}
         for _, shelter_row in Distances_data.iterrows():
@@ -55,7 +55,6 @@ for row in Community_data.itertuples(index=False):
             distance_row_data[shelter] = distance  
 
             
-
         # Extract community details and distance to shelters
         row_data = {
             "name": row.Name,

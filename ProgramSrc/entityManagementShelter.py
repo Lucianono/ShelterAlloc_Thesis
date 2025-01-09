@@ -6,14 +6,12 @@ from ui_entityManagementShelter import Ui_entityManagementShelter
 import pandas as pd
 import os
 from functools import partial
-# from BNTModel import BNTModel
 
 class EntityManagementShelter(QDialog):
     def __init__(self):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_entityManagementShelter()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
-        # self.model = BNTModel()
 
         file_name = "shelData.xlsx"
         required_headers = ['Name', 'xDegrees', 'yDegrees', 'Area1', 'Cost1', 'Area2', 'Cost2', 'ResToFlood', 'ResToTyphoon', 'ResToEarthquake', 'Status', 'Remarks']
@@ -257,28 +255,3 @@ class EntityManagementShelter(QDialog):
                 delete_btn = delete_btn_widget.findChild(QPushButton)
                 delete_btn.clicked.disconnect()
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
-    
-    # def get_active_rows(self, table_widget):
-    #     active_data = []
-    #     headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
-
-    #     for row in range(table_widget.rowCount()):
-    #         switch_widget = table_widget.cellWidget(row, 0)
-    #         if switch_widget:
-    #             switch = switch_widget.findChild(QPushButton)
-    #             if switch and switch.isChecked():
-    #                 row_data = [
-    #                     table_widget.item(row, col).text() if table_widget.item(row, col) else ""
-    #                     for col in range(1, table_widget.columnCount() - 1)
-    #                 ]
-    #                 active_data.append(row_data)
-
-    #     return active_data
-    
-    # def get_active_rows(self, active_data):
-    #     if active_data:
-    #         mode_data = pd.DataFrame(active_data, columns=["Name", "xDegrees", "yDegrees", "Population", "AffectedPop", "WorkPop", "MaxDistance", "Remarks"])
-    #         model = BNTModel()
-    #         model.process_data(mode_data)
-    #     else:
-    #         QMessageBox.warning(self, "Warning", "No data to feed to the model.")

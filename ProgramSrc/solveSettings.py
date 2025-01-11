@@ -85,7 +85,7 @@ class SolveSettingsDialog(QDialog):
 
     def open_solving_progress_dialog(self):
         try:
-            self.filter_shelter_data()
+            self.filter_shelter_resistance_data()
 
             self.solvingProgress_Window = SolvingProgress()
             self.solvingProgress_Window.show()
@@ -174,9 +174,10 @@ class SolveSettingsDialog(QDialog):
         self.create_switch("Empty Lot", self.shelter_status_layout)
 
     def init_shelter_resistance_switches(self):
-        self.create_switch("Flood", self.shelter_resistance_layout)
-        self.create_switch("Typhoon", self.shelter_resistance_layout)
-        self.create_switch("Earthquake", self.shelter_resistance_layout)
+        self.shelter_resistance_switches = {}
+        for label in ["Flood", "Typhoon", "Earthquake"]:
+            switch = self.create_switch(label, self.shelter_resistance_layout)
+            self.shelter_resistance_switches[label] = switch
         # self.create_switch("Volcanic Eruption", self.shelter_resistance_layout)
 
     def create_switch(self, label_text, layout):
@@ -250,6 +251,7 @@ class SolveSettingsDialog(QDialog):
         row_layout.addWidget(label)
         row_layout.addWidget(switch)
         layout.addWidget(row_widget)
+        return switch # Return the switch object
 
 
     def toggle_switch_animation(self, switch, knob):
@@ -274,67 +276,50 @@ class SolveSettingsDialog(QDialog):
                 }
             """)
         self.animation.start()
-    
-    def update_shelter_res_checkbox(self):
-        all_checked = (
-            self.ui.shelter_res_flood_checkbox.isChecked() and
-            self.ui.shelter_res_typhoon_checkbox.isChecked() and
-            self.ui.shelter_res_earthquake_checkbox.isChecked()
-        )
-        self.ui.shelter_res_checkbox.setChecked(all_checked)
 
-    def update_shelter_stat_checkbox(self):
-        all_checked = (
-            self.ui.shelter_stat_built_checkbox.isChecked() and
-            self.ui.shelter_stat_pbuilt_checkbox.isChecked() and
-            self.ui.shelter_stat_dmg_checkbox.isChecked() and
-            self.ui.shelter_stat_empty_lot_checkbox.isChecked()
-        )
-        self.ui.shelter_stat_checkbox.setChecked(all_checked)
-    def filter_shelter_data(self, file_path="shelData.xlsx"):
+    def filter_shelter_resistance_data(self, file_path="shelData.xlsx"):
         try:
             data = pd.read_excel(file_path)
 
-            required_columns = ["ResToFlood", "ResToTyphoon", "ResToEarthquake", "Status"]
-            for column in required_columns:
-                if column not in data.columns:
-                    raise ValueError(f"Missing expected column: {column}")
+            # Retrieve switch states
+            flood_switch_state = self.shelter_resistance_switches["Flood"].isChecked()
+            typhoon_switch_state = self.shelter_resistance_switches["Typhoon"].isChecked()
+            earthquake_switch_state = self.shelter_resistance_switches["Earthquake"].isChecked()
 
-            res_conditions = []
-            if self.ui.shelter_res_flood_checkbox.isChecked():
-                res_conditions.append(data["ResToFlood"] == True)
-            if self.ui.shelter_res_typhoon_checkbox.isChecked():
-                res_conditions.append(data["ResToTyphoon"] == True)
-            if self.ui.shelter_res_earthquake_checkbox.isChecked():
-                res_conditions.append(data["ResToEarthquake"] == True)
+            # Apply filters based on switch states
+            if flood_switch_state:
+                data = data[data["ResToFlood"] == True]
+            if typhoon_switch_state:
+                data = data[data["ResToTyphoon"] == True]
+            if earthquake_switch_state:
+                data = data[data["ResToEarthquake"] == True]
 
-            if res_conditions:
-                res_filter = pd.concat(res_conditions, axis=1).any(axis=1)
-            else:
-                res_filter = pd.Series([True] * len(data))
+            # Reflect filtered data in the UI
+            self.update_shelter_scroll_area(data)
 
-            status_conditions = []
-            if self.ui.shelter_stat_built_checkbox.isChecked():
-                status_conditions.append(data["Status"] == "Built")
-            if self.ui.shelter_stat_pbuilt_checkbox.isChecked():
-                status_conditions.append(data["Status"] == "Partially Built")
-            if self.ui.shelter_stat_dmg_checkbox.isChecked():
-                status_conditions.append(data["Status"] == "Damaged")
-            if self.ui.shelter_stat_empty_lot_checkbox.isChecked():
-                status_conditions.append(data["Status"] == "Empty Lot")
-
-            if status_conditions:
-                status_filter = pd.concat(status_conditions, axis=1).any(axis=1)
-            else:
-                status_filter = pd.Series([True] * len(data))
-
-            # Apply both filters
-            filtered_data = data[res_filter & status_filter]
-
-            # Print the filtered rows
-            print(filtered_data)
-
-        except FileNotFoundError:
-            QMessageBox.critical(self, "Error", f"File {file_path} not found.")
         except Exception as e:
-            QMessageBox.critical(self, "Error", f"An error occurred: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to filter file: {e}")
+
+    def load_shelter_data(self):
+        # Retrieve switch states from the UI
+        flood_switch_state = self.flood_switch.isChecked()
+        typhoon_switch_state = self.typhoon_switch.isChecked()
+        earthquake_switch_state = self.earthquake_switch.isChecked()
+
+    def update_shelter_scroll_area(self, filtered_data):
+        try:
+            # Clear existing widgets in the scroll area
+            for i in reversed(range(self.shelter_layout.count())):
+                widget_to_remove = self.shelter_layout.itemAt(i).widget()
+                if widget_to_remove:
+                    widget_to_remove.deleteLater()
+
+            # Populate with filtered shelters
+            for name in filtered_data["Name"]:
+                name_label = QLabel(name)
+                name_label.setStyleSheet("color: black; background-color: white;")
+                self.shelter_layout.addWidget(name_label)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to update shelter display: {e}")
+

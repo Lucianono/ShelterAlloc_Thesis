@@ -168,10 +168,10 @@ class SolveSettingsDialog(QDialog):
 
 
     def init_shelter_status_switches(self):
-        self.create_switch("Built", self.shelter_status_layout)
-        self.create_switch("Partially Built", self.shelter_status_layout)
-        self.create_switch("Damaged", self.shelter_status_layout)
-        self.create_switch("Empty Lot", self.shelter_status_layout)
+        self.shelter_status_switches = {}
+        for label in ["Built", "Partially Built", "Damaged", "Empty Lot"]:
+            switch = self.create_switch(label, self.shelter_status_layout)
+            self.shelter_status_switches[label] = switch
 
     def init_shelter_resistance_switches(self):
         self.shelter_resistance_switches = {}
@@ -300,11 +300,41 @@ class SolveSettingsDialog(QDialog):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to filter file: {e}")
 
+    def filter_shelter_status_data(self, file_path="shelData.xlsx"):
+        try:
+            data = pd.read_excel(file_path)
+
+            # Retrieve switch states
+            built_switch_state = self.shelter_status_switches["Built"].isChecked()
+            partially_built_switch_state = self.shelter_status_switches["Partially Built"].isChecked()
+            damaged_switch_state = self.shelter_status_switches["Damaged"].isChecked()
+            empty_lot_switch_state = self.shelter_status_switches["Empty Lot"].isChecked()
+
+            # Apply filters based on switch states
+            if built_switch_state:
+                data = data[data["Status"] == "Built"]
+            if partially_built_switch_state:
+                data = data[data["Status"] == "Partially Built"]
+            if damaged_switch_state:
+                data = data[data["Status"] == "Damaged"]
+            if empty_lot_switch_state:
+                data = data[data["Status"] == "Empty Lot"]
+
+            # Reflect filtered data in the UI
+            self.update_shelter_scroll_area(data)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to filter file: {e}")
+
     def load_shelter_data(self):
         # Retrieve switch states from the UI
         flood_switch_state = self.flood_switch.isChecked()
         typhoon_switch_state = self.typhoon_switch.isChecked()
         earthquake_switch_state = self.earthquake_switch.isChecked()
+        built_switch_state = self.built_switch.isChecked()
+        partially_built_switch_state = self.partially_built_switch.isChecked()
+        damaged_switch_state = self.damaged_switch.isChecked()
+        empty_lot_switch_state = self.empty_lot_switch.isChecked()
 
     def update_shelter_scroll_area(self, filtered_data):
         try:

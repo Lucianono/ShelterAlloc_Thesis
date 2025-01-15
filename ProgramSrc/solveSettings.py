@@ -366,7 +366,7 @@ class SolveSettingsDialog(QDialog):
                 if widget:
                     widget.deleteLater()
 
-        switch = self.create_switch("Shelter Resistance", layout)
+        switch = self.create_title_switch("Shelter Resistance", layout)
 
         # Access the layout again after adding the switch
         layout = frame_12.layout()
@@ -385,9 +385,107 @@ class SolveSettingsDialog(QDialog):
                 if widget:
                     widget.deleteLater()
 
-        switch = self.create_switch("Shelter Status", layout)
+        switch = self.create_title_switch("Shelter Status", layout)
 
         layout = frame_8.layout()
 
         frame_8.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         frame_7.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+
+    def create_title_switch(self, label_text, layout):
+        row_widget = QWidget()
+        row_layout = QHBoxLayout(row_widget)
+        row_layout.setAlignment(Qt.AlignLeft)
+        row_layout.setContentsMargins(0, 0, 0, 0)  # Spaces
+        row_layout.setSpacing(10)  # Space between label and switch
+
+        # Create label
+        label = QLabel(label_text)
+        label.setStyleSheet("""
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: underline;""")
+        label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+
+        # Create switch
+        switch = QPushButton()
+        switch.setCheckable(True)
+        switch.setFixedSize(40, 20)  # Switch size
+        switch.setStyleSheet("""
+            QPushButton {
+                background-color: #ccc;
+                border-radius: 10px;
+            }
+            QPushButton::indicator {
+                width: 0;  /* Hide default indicator */
+            }
+        """)
+
+        # Create knob
+        knob = QPushButton(switch)
+        knob.setFixedSize(16, 16)
+        knob.setStyleSheet("""
+            QPushButton {
+                background-color: white;
+                border-radius: 8px;
+            }
+        """)
+        knob.move(2, 2)
+
+        # Create animation
+        animation = QPropertyAnimation(knob, b"geometry")
+        animation.setDuration(200)
+
+        # Toggle function
+        def toggle_title_switch():
+            if switch.isChecked():
+                animation.setStartValue(QRect(2, 2, 16, 16))
+                animation.setEndValue(QRect(22, 2, 16, 16))
+                switch.setStyleSheet("""
+                    QPushButton {
+                        background-color: #4CAF50;
+                        border-radius: 10px;
+                    }
+                """)
+            else:
+                animation.setStartValue(QRect(22, 2, 16, 16))
+                animation.setEndValue(QRect(2, 2, 16, 16))
+                switch.setStyleSheet("""
+                    QPushButton {
+                        background-color: #ccc;
+                        border-radius: 10px;
+                    }
+                """)
+            animation.start()
+
+        switch.clicked.connect(toggle_title_switch)
+
+        # Add label and switch to the row layout
+        row_layout.addWidget(label)
+        row_layout.addWidget(switch)
+        layout.addWidget(row_widget)
+        return switch # Return the switch object
+
+
+    def toggle_title_switch_animation(self, switch, knob):
+        if switch.isChecked():
+            # Move knob to the right
+            self.animation.setStartValue(QRect(2, 2, 16, 16))
+            self.animation.setEndValue(QRect(22, 2, 16, 16))
+            switch.setStyleSheet("""
+                QPushButton {
+                    background-color: #4CAF50;
+                    border-radius: 10px;
+                }
+            """)
+        else:
+            # Move knob to the left
+            self.animation.setStartValue(QRect(22, 2, 16, 16))
+            self.animation.setEndValue(QRect(2, 2, 16, 16))  # Reset to left side
+            switch.setStyleSheet("""
+                QPushButton {
+                    background-color: #ccc;
+                    border-radius: 10px;
+                }
+            """)
+        self.animation.start()

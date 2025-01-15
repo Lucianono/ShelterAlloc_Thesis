@@ -262,7 +262,6 @@
 	
 	Table \ref{TechUsed} shows the list needed to start the development process. The system will be developed using Python programming language, and Qt framework to efficiently implement the graphical user interface(GUI) of the system. Visual Studio Code will be utilized as the integrated development environment (IDE), and QtDesigner as an extension for creating frontend designs by Qt framework.
 	
-	
 	\begin{table}[h]
 		\centering
 		\caption{List of tools and technologies used in the development process}
@@ -278,6 +277,31 @@
 				QtDesigner           & 5.11.1   & GUI design tool which has drag and drop feature \\ \hline
 				GitKraken            & 10.6.1   & Git client that is user friendly for executing Git commands      \\ \hline
 				GitHub               & Web      & Repository host which used for collaboration and backup of the project\\ \hline
+			\end{tabular}
+		}
+	\end{table}
+	
+	Developing the proposed system using Python allows us to use Python libraries. As shown in Table \ref{PythonUsed}, displays all the libraries used to develop the system. PySide6 is responsible for the GUI that uses the Qt framework. Pandas and openpyxl are used for handling data. Folium, OSMnx, networkx, and scikit-learn are for displaying and calculating the map shown in the system. Lastly, numpy is used for executing genetic algorithm.
+	
+	\begin{table}[h]
+		\centering
+		\caption{List of libraries installed in Python}
+		\label{PythonUsed}
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{|c|c|p{8cm}|}
+				\hline
+				\multicolumn{1}{|c|}{\textbf{Name}} & 
+				\multicolumn{1}{c|}{\textbf{Version}} & 
+				\multicolumn{1}{c|}{\textbf{Description}} \\ \hline
+				PySide6   & 6.7.2   & Uses Qt framework for frontend development \\ \hline
+				pandas               & 2.2.3   & Reads and handles datasets  \\ \hline
+				openpyxl            & 3.1.5   & Opens and reads excel files \\ \hline
+				folium            & 0.17.0   & Provides visualization and interactivity on a geographical map  \\ \hline
+				osmnx               & 1.9.4      & Retrieves OpenStreetMap(OSM) data and could calculate road paths\\ \hline
+				networkx               & 3.3      & Creates and computes complex graphs such as road networks\\ \hline
+				scikit-learn               & 1.5.2      & Provides simple machine learning tools and functions\\ \hline
+				numpy               & 1.26.4     & Generates non probabilistic numbers \\ \hline
+				
 			\end{tabular}
 		}
 	\end{table}

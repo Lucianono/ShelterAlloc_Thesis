@@ -1,5 +1,5 @@
 import sys
-from PySide6.QtWidgets import QDialog, QLabel, QMessageBox, QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QSizePolicy
+from PySide6.QtWidgets import QDialog, QLabel, QMessageBox, QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QSizePolicy, QCheckBox
 from PySide6.QtCore import Qt, QPropertyAnimation, QRect, QEasingCurve
 from ui_solveSettings import Ui_solveSettings
 from entityManagementComm import EntityManagementComm
@@ -70,6 +70,8 @@ class SolveSettingsDialog(QDialog):
         self.load_and_display_shelter_data()    # Load shelter data
         self.init_shelter_status_switches()     # Initialize shelter status switches
         self.init_shelter_resistance_switches() # Initialize shelter resistance switches
+        self.replace_checkbox_with_switch_sr()      # Replace checkbox with switch
+        self.replace_checkbox_with_switch_ss()      # Replace checkbox with switch
 
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
@@ -353,3 +355,39 @@ class SolveSettingsDialog(QDialog):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to update shelter display: {e}")
 
+    def replace_checkbox_with_switch_sr(self):
+        frame_12 = self.ui.frame_12
+        frame_11 = self.ui.frame_11
+
+        layout = frame_12.layout()
+        if layout:
+            for i in reversed(range(layout.count())):
+                widget = layout.itemAt(i).widget()
+                if widget:
+                    widget.deleteLater()
+
+        switch = self.create_switch("Shelter Resistance", layout)
+
+        # Access the layout again after adding the switch
+        layout = frame_12.layout()
+
+        frame_12.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        frame_11.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+
+    def replace_checkbox_with_switch_ss(self):
+        frame_8 = self.ui.frame_8
+        frame_7 = self.ui.frame_7
+
+        layout = frame_8.layout()
+        if layout:
+            for i in reversed(range(layout.count())):
+                widget = layout.itemAt(i).widget()
+                if widget:
+                    widget.deleteLater()
+
+        switch = self.create_switch("Shelter Status", layout)
+
+        layout = frame_8.layout()
+
+        frame_8.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        frame_7.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)

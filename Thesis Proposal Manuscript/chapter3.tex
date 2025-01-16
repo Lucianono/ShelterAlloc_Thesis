@@ -127,7 +127,33 @@
 	
 	Condition \ref{f5} checks if the total population is less than or equal to the total area of shelters multiplied to area allotted per individual. If this fails, then it is theoretically impossible to allocate all individuals given with their shorted capacity of shelters.
 	
-	Incorporating these feasibility conditions ensures that the model will produce a feasible solution, and the system proceeds only with valid input configurations. By verifying these conditions, users receive instant feedback on whether their inputs are valid, allowing the model to proceed with solving. These conditions represent key feasibility checks but are not exhaustive, and infeasible solutions may still persist. An additional feature could include halting the program if $n$ generated solutions fail to satisfy the model's constraints.	
+	Incorporating these feasibility conditions ensures that the model will produce atleast one feasible solution, and the system proceeds only with valid input configurations. By verifying these conditions, users receive instant feedback on whether their inputs are valid, allowing the model to proceed with solving. These conditions represent key feasibility checks but are not exhaustive, and infeasible solutions may still persist. An additional feature would employ a penalty function that would transform the model to an unconstrained model.	
+	
+\subsection{Penalty Function}
+	The penalty function will be used to handle the problem constraints. Instead of discarding infeasible solutions or chromosomes, they will be assigned a very large objective value making them not fit to be a solution. The type of penalty to be used is the Courant-Beltrami penalty function method, as shown in equation \ref{p1}.
+	
+	\begin{equation} 
+		\label{p1}
+		h(x)=(g^+(x))^2
+	\end{equation}
+	
+	where
+	
+	\begin{equation} 
+		\label{p2}
+		g^+(x)=max\{g(x),0\}
+	\end{equation}
+	
+	where $g(x)$ is a constraint function of the form $g(x)\le0$. 
+	\\
+	The new objective function would be adding the initial objective value $f(x)$ to the penalty multiplied by some constant $\gamma$ as shown in equation \ref{p3}.
+	
+	\begin{equation} 
+		\label{p3}
+		f_(new)(x)=f(x)+\gamma\sum_{i=1}^{n}(max\{g_i(x),0\})^2
+	\end{equation}
+	
+	where $g_1(x),g_2(x),...g_n(x)$ are the constraints of the model of the form $g_i(x)\le0$, and $\gamma\in\mathbb{R}^+$ is sufficiently large. The penalty would add up to the objective value for each constraints it violated, otherwise it would not affect the objective value.	
 	
 \subsection{Optimization Technique}
 	In a study created by \textcite{Mathew2012}, Genetic Algorithms are based on the concept of natural selection and evolves possible solutions through operators such as selection, crossover, and mutation. This algorithm will iteratively evolve a population of potential solutions, utilizing operations to explore the population space and gradually converge toward an optimal solution.
@@ -136,10 +162,10 @@
 	
 	We start by defining the some terms of genetic algorithm that will be used in the context of shelter location-allocation model.
 	
-	\textit{Chromosome.}  An array or dictionary which represents the  solution in a problem. This refers to the allocation of community to a shelter, being the array index as the community index, and the array value being the shelter index. Figure \ref{Chromosome} shows a solution where community 0 is allocated to shelter 0, and community 1 and 2 is allocated to shelter 2.
+	\textit{Chromosome.}  An array or dictionary which represents the  solution in a problem. A chromosome is composed of two parts, community allocation and shelter level. Community allocation refers to assigning shelter index to communities, and shelter level refers to assigning a value of 1 or 2 to represent as level to shelters. Figure \ref{Chromosome} shows a solution where community 0 was allocated to shelter 0, and community 1 and 2 was allocated to shelter 1. Additionaly, shelter 0 was assigned as level 1, and shelter 1 was assigned as level 2.
 	
 	\begin{figure}[h!]
-		\caption{A chromosome with 3 communities assigned to a 2 shelters}
+		\caption{A chromosome with 3 communities and 2 shelters}
 		\centering
 		\includegraphics[width=250px]{Chromosome}
 		\label{Chromosome}

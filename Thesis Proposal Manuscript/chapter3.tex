@@ -130,9 +130,9 @@
 	Incorporating these feasibility conditions ensures that the model will produce a feasible solution, and the system proceeds only with valid input configurations. By verifying these conditions, users receive instant feedback on whether their inputs are valid, allowing the model to proceed with solving. These conditions represent key feasibility checks but are not exhaustive, and infeasible solutions may still persist. An additional feature could include halting the program if $n$ generated solutions fail to satisfy the model's constraints.	
 	
 \subsection{Optimization Technique}
-	Genetic algorithm, a powerful optimization technique inspired by the process of natural selection, is particularly well-suited for tackling complex problems like shelter location allocation. This algorithm will iteratively evolve a population of potential solutions, utilizing operations such as selection, crossover, and mutation to explore the population space and gradually converge toward an optimal solution.
+	In a study created by \textcite{Mathew2012}, Genetic Algorithms are based on the concept of natural selection and evolves possible solutions through operators such as selection, crossover, and mutation. This algorithm will iteratively evolve a population of potential solutions, utilizing operations to explore the population space and gradually converge toward an optimal solution.
 	
-	The BNT model was originally solved using Binary Genetic Algorithm implemented in MATLAB. However, since system integration will be conducted on this thesis, the model will be solved using Integer-based Genetic Algorithm implemented in Python. This decision derived from analyzing chromosome length, and Python being a well suited programming language for both data simulation and system development.
+	The BNT model was originally solved using Binary Genetic Algorithm implemented in MATLAB. However, since system integration will be conducted on this thesis, the model will be solved using Integer-based Genetic Algorithm implemented in Python. This decision derived for satisfying the assignment constraint of the model, and Python being a well suited programming language for both data simulation and system development.
 	
 	We start by defining the some terms of genetic algorithm that will be used in the context of shelter location-allocation model.
 	

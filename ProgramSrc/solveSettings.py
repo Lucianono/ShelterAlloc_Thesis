@@ -14,6 +14,7 @@ class SolveSettingsDialog(QDialog):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_solveSettings()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
+        self.animation = None  # Initialize the animation object
 
         self.ui.write_community_btn.clicked.connect(self.open_entitymanagement_dialog)
         self.ui.write_shelter_btn.clicked.connect(self.open_entitymanagement_shelter_dialog)
@@ -66,12 +67,16 @@ class SolveSettingsDialog(QDialog):
         background-color: transparent;}""")
 
         # Call these methods to load and display data
-        self.load_and_display_community_data()  # Load community data
-        self.load_and_display_shelter_data()    # Load shelter data
-        self.init_shelter_status_switches()     # Initialize shelter status switches
-        self.init_shelter_resistance_switches() # Initialize shelter resistance switches
-        self.replace_checkbox_with_switch_sr()      # Replace checkbox with switch
-        self.replace_checkbox_with_switch_ss()      # Replace checkbox with switch
+        self.load_and_display_community_data()
+        self.load_and_display_shelter_data()
+
+        # Initialize shelter status switches
+        self.init_shelter_status_switches()
+        self.replace_checkbox_with_switch_ss()
+
+        # Initialize shelter resistance switches
+        self.init_shelter_resistance_switches()
+        self.replace_checkbox_with_switch_sr()
 
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
@@ -257,6 +262,11 @@ class SolveSettingsDialog(QDialog):
 
 
     def toggle_switch_animation(self, switch, knob):
+        # Ensure self.animation is properly initialized
+        if not self.animation:
+            self.animation = QPropertyAnimation(knob, b"geometry")
+            self.animation.setDuration(200)  # Set the duration once when initializing
+
         if switch.isChecked():
             # Move knob to the right
             self.animation.setStartValue(QRect(2, 2, 16, 16))
@@ -359,17 +369,18 @@ class SolveSettingsDialog(QDialog):
         frame_12 = self.ui.frame_12
         frame_11 = self.ui.frame_11
 
-        layout = frame_12.layout()
-        if layout:
-            for i in reversed(range(layout.count())):
-                widget = layout.itemAt(i).widget()
+        sr_switch = frame_12.layout()
+        if sr_switch:
+            for i in reversed(range(sr_switch.count())):
+                widget = sr_switch.itemAt(i).widget()
                 if widget:
                     widget.deleteLater()
+        
+        sr_switch = self.create_title_switch("Shelter Resistance", frame_12.layout())
+        # shelter_resistance_switch = self.create_title_switch("Shelter Resistance", sr_switch)
 
-        switch = self.create_title_switch("Shelter Resistance", layout)
-
-        # Access the layout again after adding the switch
-        layout = frame_12.layout()
+        # sr_switch = frame_12.layout()
+        sr_switch.toggled.connect(lambda: self.toggle_all_shelter_resistance_switches(sr_switch.isChecked()))
 
         frame_12.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         frame_11.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
@@ -378,16 +389,17 @@ class SolveSettingsDialog(QDialog):
         frame_8 = self.ui.frame_8
         frame_7 = self.ui.frame_7
 
-        layout = frame_8.layout()
-        if layout:
-            for i in reversed(range(layout.count())):
-                widget = layout.itemAt(i).widget()
+        ss_switch = frame_8.layout()
+        if ss_switch:
+            for i in reversed(range(ss_switch.count())):
+                widget = ss_switch.itemAt(i).widget()
                 if widget:
                     widget.deleteLater()
+        ss_switch = self.create_title_switch("Shelter Status", frame_8.layout())
+        # shelter_status_switch = self.create_title_switch("Shelter Status", ss_switch)
 
-        switch = self.create_title_switch("Shelter Status", layout)
-
-        layout = frame_8.layout()
+        # ss_switch = frame_8.layout()
+        ss_switch.toggled.connect(lambda: self.toggle_all_shelter_status_switches(ss_switch.isChecked()))
 
         frame_8.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         frame_7.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
@@ -468,24 +480,67 @@ class SolveSettingsDialog(QDialog):
 
 
     def toggle_title_switch_animation(self, switch, knob):
+        # Create a unique animation for each switch
+        animation = QPropertyAnimation(knob, b"geometry")
+        animation.setDuration(200)  # Set the duration once when initializing
+
         if switch.isChecked():
             # Move knob to the right
-            self.animation.setStartValue(QRect(2, 2, 16, 16))
-            self.animation.setEndValue(QRect(22, 2, 16, 16))
-            switch.setStyleSheet("""
-                QPushButton {
-                    background-color: #4CAF50;
-                    border-radius: 10px;
-                }
-            """)
+            animation.setStartValue(QRect(2, 2, 16, 16))
+            animation.setEndValue(QRect(22, 2, 16, 16))
+            switch.setStyleSheet("""QPushButton { background-color: #4CAF50; border-radius: 10px; }""")
         else:
             # Move knob to the left
-            self.animation.setStartValue(QRect(22, 2, 16, 16))
-            self.animation.setEndValue(QRect(2, 2, 16, 16))  # Reset to left side
-            switch.setStyleSheet("""
-                QPushButton {
-                    background-color: #ccc;
-                    border-radius: 10px;
-                }
-            """)
-        self.animation.start()
+            animation.setStartValue(QRect(22, 2, 16, 16))
+            animation.setEndValue(QRect(2, 2, 16, 16))
+            switch.setStyleSheet("""QPushButton { background-color: #ccc; border-radius: 10px; }""")
+
+        animation.start()
+
+    def toggle_all_shelter_resistance_switches(self, state):
+        # Toggle Flood, Typhoon, Earthquake switches based on the state of Shelter Resistance switch
+        flood_switch = self.shelter_resistance_switches["Flood"]
+        typhoon_switch = self.shelter_resistance_switches["Typhoon"]
+        earthquake_switch = self.shelter_resistance_switches["Earthquake"]
+
+        if state:
+            # If the Shelter Resistance switch is turned on, turn on all other switches
+            flood_switch.setChecked(True)
+            typhoon_switch.setChecked(True)
+            earthquake_switch.setChecked(True)
+        else:
+            # If the Shelter Resistance switch is turned off, turn off all other switches
+            flood_switch.setChecked(False)
+            typhoon_switch.setChecked(False)
+            earthquake_switch.setChecked(False)
+
+        # Trigger the animation for each switch after toggling them
+        self.toggle_switch_animation(flood_switch, flood_switch.findChild(QPushButton))
+        self.toggle_switch_animation(typhoon_switch, typhoon_switch.findChild(QPushButton))
+        self.toggle_switch_animation(earthquake_switch, earthquake_switch.findChild(QPushButton))
+
+    def toggle_all_shelter_status_switches(self, state):
+        # Toggle Built, Partially Built, Damaged, Empty Lot switches based on the state of Shelter Status switch
+        built_switch = self.shelter_status_switches["Built"]
+        partially_built_switch = self.shelter_status_switches["Partially Built"]
+        damaged_switch = self.shelter_status_switches["Damaged"]
+        empty_lot_switch = self.shelter_status_switches["Empty Lot"]
+
+        if state:
+            # If the Shelter Status switch is turned on, turn on all other switches
+            built_switch.setChecked(True)
+            partially_built_switch.setChecked(True)
+            damaged_switch.setChecked(True)
+            empty_lot_switch.setChecked(True)
+        else:
+            # If the Shelter Status switch is turned off, turn off all other switches
+            built_switch.setChecked(False)
+            partially_built_switch.setChecked(False)
+            damaged_switch.setChecked(False)
+            empty_lot_switch.setChecked(False)
+
+        # Trigger the animation for each switch after toggling them
+        self.toggle_switch_animation(built_switch, built_switch.findChild(QPushButton))
+        self.toggle_switch_animation(partially_built_switch, partially_built_switch.findChild(QPushButton))
+        self.toggle_switch_animation(damaged_switch, damaged_switch.findChild(QPushButton))
+        self.toggle_switch_animation(empty_lot_switch, empty_lot_switch.findChild(QPushButton))

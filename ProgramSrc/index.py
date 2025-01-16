@@ -207,6 +207,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_6.setPlainText(str(self.data.iloc[row, 6]))
 
         elif button_name.startswith("shelter_"):
+            self.stackedWidget.setCurrentWidget(self.page_2)
             self.page_2.show()
             self.page.hide()
             row = self.shel_data[self.shel_data.iloc[:, 0] == value].index[0]
@@ -219,5 +220,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_12.setPlainText(str(self.shel_data.iloc[row, 4]))
             self.plainTextEdit_13.setPlainText(str(self.shel_data.iloc[row, 5]))
             self.plainTextEdit_14.setPlainText(str(self.shel_data.iloc[row, 6]))
+
+            self.page_2.update()
+            self.stackedWidget.update()
 
 

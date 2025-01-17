@@ -26,17 +26,15 @@ def plot_optimized_routes(communities_df, shelters_df, map_name="optimized-route
     avg_lon = (communities_df['yDegrees'].mean() + shelters_df['yDegrees'].mean()) / 2
     m = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
 
-    # Add markers for communities
     for _, community in communities_df.iterrows():
-        folium.Marker([community['xDegrees'], community['yDegrees']], 
-                      popup=f"Community: {community['Community Name']}",
+        folium.Marker([community['xDegrees'], community['yDegrees']],
+                      popup = f"Community: {community['Community Name']}",
                       icon=folium.Icon(color='green')).add_to(m)
-    
-    # Add markers for shelters
+        
     for _, shelter in shelters_df.iterrows():
-        folium.Marker([shelter['xDegrees'], shelter['yDegrees']], 
-                      popup=f"Shelter: {shelter['Shelter Assigned']}",
-                      icon=folium.Icon(color='red')).add_to(m)
+        folium.Marker([shelter['xDegrees'], shelter['yDegrees']],
+                      popup = f"Shelter: {shelter['Shelter Assigned']}",
+                      icon=folium.Icon(color='blue')).add_to(m)
 
     # Define a bounding box for the entire region
     bbox_margin = 0.02
@@ -61,41 +59,41 @@ def plot_optimized_routes(communities_df, shelters_df, map_name="optimized-route
     # Plot routes from each community to each shelter
     route_counter = 0
 
-    for _, community in communities_df.iterrows():
-        for _, shelter in shelters_df.iterrows():
-            try:
+    for _, (community, shelter) in enumerate(zip(communities_df.iterrows(), shelters_df.iterrows())):
+    # Extract the data for each community and shelter pair
+        _, community_row = community
+        _, shelter_row = shelter
+    
+        try:
+            # Get the nearest nodes for both community and shelter
+            start_node = ox.distance.nearest_nodes(roadgraph, community_row['yDegrees'], community_row['xDegrees'])
+            end_node = ox.distance.nearest_nodes(roadgraph, shelter_row['yDegrees'], shelter_row['xDegrees'])
 
-                shelter = shelters_df.loc[communities_df.index == community.name].iloc[0]
-                
-                # Get the nearest nodes
-                start_node = ox.distance.nearest_nodes(roadgraph, community['yDegrees'], community['xDegrees'])
-                end_node = ox.distance.nearest_nodes(roadgraph, shelter['yDegrees'], shelter['xDegrees'])
+            # Find the shortest path using A* algorithm
+            route = nx.astar_path(roadgraph, start_node, end_node, heuristic=haversine_heuristic, weight='length')
 
-                # Find the shortest path using A* algorithm
-                route = nx.astar_path(roadgraph, start_node, end_node, heuristic=haversine_heuristic, weight='length')
+            # Calculate the total route distance
+            route_distance = sum(ox.utils_graph.get_route_edge_attributes(roadgraph, route, 'length'))
 
-                # Calculate the total route distance
-                route_distance = sum(ox.utils_graph.get_route_edge_attributes(roadgraph, route, 'length'))
+            # Get the route coordinates
+            route_coords = [(node_coords[node][0], node_coords[node][1]) for node in route]
 
-                # Get the route coordinates
-                route_coords = [(node_coords[node][0], node_coords[node][1]) for node in route]
+            # Add the route to the map
+            route_color = get_route_color(route_counter)
+            folium.PolyLine(route_coords, color=route_color, weight=2.5, opacity=0.7,
+                        popup=f"Route from {community_row['Community Name']} to {shelter_row['Shelter Assigned']}").add_to(m)
 
-                # Add the route to the map
-                route_color = get_route_color(route_counter)
-                folium.PolyLine(route_coords, color=route_color, weight=2.5, opacity=0.7,
-                                popup=f"Route from {community['Community Name']} to {shelter['Shelter Assigned']}").add_to(m)
+            # Increment the route counter
+            route_counter += 1
 
-                # Increment the route counter
-                route_counter += 1
+            print(f"Route from {community_row['Community Name']} to {shelter_row['Shelter Assigned']}: {route_distance / 1000:.2f} km")
 
-                print(f"Route from {community['Community Name']} to {shelter['Shelter Assigned']}: {route_distance / 1000:.2f} km")
-
-            except nx.NetworkXNoPath:
-                print(f"No path found from {community['Community Name']} to {shelter['Shelter Assigned']}.")
-                continue
-            except Exception as e:
-                print(f"Error processing route from {community['Community Name']} to {shelter['Shelter Assigned']}: {e}")
-                continue
+        except nx.NetworkXNoPath:
+            print(f"No path found from {community_row['Community Name']} to {shelter_row['Shelter Assigned']}.")
+            continue
+        except Exception as e:
+            print(f"Error processing route from {community_row['Community Name']} to {shelter_row['Shelter Assigned']}: {e}")
+            continue
 
     # Save the map to an HTML file
     m.save(map_name)

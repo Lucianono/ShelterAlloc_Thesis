@@ -25,6 +25,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.is_adding_community = False
         self.is_adding_shelter = False
+
+        self.stackedWidget.hide()
         
         self.add_community_btn.clicked.connect(self.handle_add_community)
         self.add_shelter_btn.clicked.connect(self.handle_add_shelter)
@@ -310,7 +312,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.add_new_community_to_ui(new_data, last_index + 1)
 
-            self.add_marker_to_map(x_degrees, y_degrees, new_data["Name"], "community")
+            self.add_marker_to_map("commData.xlsx", "community")
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to save data: {e}")
@@ -357,7 +359,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.add_new_shelter_to_ui(new_data, last_index + 1)
 
-            self.add_marker_to_map(new_data["xDegrees"], new_data["yDegrees"], new_data["Name"], "shelter")
+            self.add_marker_to_map("shelData.xlsx", "shelter")
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to save data: {e}")
@@ -431,32 +433,38 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         layout.addWidget(container_widget)
 
-    def add_marker_to_map(self, latitude, longitude, name, marker_type):
+    def add_marker_to_map(self, excel_file_path, marker_type):
         try:
-            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            data = pd.read_excel(excel_file_path)
 
-            if os.path.exists(map_file_path):
-                with open(map_file_path, "r") as f:
-                    map_html = f.read()
-                map = folium.Map(location=[latitude, longitude], zoom_start=12)
+            if not data.empty:
+                center_latitude = data.iloc[1]["xDegrees"]
+                center_longitude = data.iloc[1]["yDegrees"]
+                map = folium.Map(location=[center_latitude, center_longitude], zoom_start=12)
             else:
-                map = folium.Map(location=[latitude, longitude], zoom_start=12)
+                map = folium.Map(location=[0,0], zoom_start=2)
 
-            if marker_type == "community":
-                color = 'green'
-            elif marker_type == "shelter":
-                color = 'blue'
+            for index, row in data.iterrows():
+                latitude = row.get("xDegrees", 1)
+                longitude = row.get("yDegrees", 1)
+                name = row.get("Name", "Unknown")
 
-            folium.Marker(
-                location=[latitude, longitude],
-                popup=name,
-                icon=folium.Icon(color)
-            ).add_to(map)
+                if marker_type == "community":
+                    color = 'green'
+                elif marker_type == "shelter":
+                    color = 'blue'
+                else:
+                    color = 'red'
 
+                folium.Marker(
+                    location=[latitude, longitude],
+                    popup=name,
+                    icon=folium.Icon(color=color)
+                ).add_to(map)
+
+            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
             map.save(map_file_path)
+
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
-            
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to update map: {e}")
-
-

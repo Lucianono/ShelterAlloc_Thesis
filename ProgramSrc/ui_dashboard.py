@@ -512,6 +512,7 @@ class Ui_MainWindow(object):
 
         self.label_18 = QLabel(self.widget_4)
         self.label_18.setObjectName(u"label_18")
+        self.label_18.setMaximumSize(QSize(250, 16777215))
         font4 = QFont()
         font4.setFamilies([u"Ms Shell Dlg 2"])
         font4.setBold(True)
@@ -690,9 +691,15 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 371, 750))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.widget_5 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_5.setObjectName(u"widget_5")
+        self.verticalLayout_15 = QVBoxLayout(self.widget_5)
+        self.verticalLayout_15.setSpacing(9)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_29 = QHBoxLayout()
         self.horizontalLayout_29.setObjectName(u"horizontalLayout_29")
-        self.pushButton_15 = QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_15 = QPushButton(self.widget_5)
         self.pushButton_15.setObjectName(u"pushButton_15")
         self.pushButton_15.setMinimumSize(QSize(30, 41))
         self.pushButton_15.setMaximumSize(QSize(25, 41))
@@ -705,8 +712,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_29.addWidget(self.pushButton_15)
 
-        self.label_31 = QLabel(self.scrollAreaWidgetContents)
+        self.label_31 = QLabel(self.widget_5)
         self.label_31.setObjectName(u"label_31")
+        self.label_31.setMaximumSize(QSize(230, 16777215))
         self.label_31.setFont(font4)
         self.label_31.setStyleSheet(u"QLabel {\n"
 "    font-size: 20px;\n"
@@ -718,7 +726,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_29.addWidget(self.label_31)
 
-        self.checkBox_16 = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_16 = QCheckBox(self.widget_5)
         self.checkBox_16.setObjectName(u"checkBox_16")
         sizePolicy2.setHeightForWidth(self.checkBox_16.sizePolicy().hasHeightForWidth())
         self.checkBox_16.setSizePolicy(sizePolicy2)
@@ -733,7 +741,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_29.addWidget(self.checkBox_16)
 
-        self.pushButton_17 = QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_17 = QPushButton(self.widget_5)
         self.pushButton_17.setObjectName(u"pushButton_17")
         self.pushButton_17.setMinimumSize(QSize(41, 41))
         self.pushButton_17.setMaximumSize(QSize(41, 41))
@@ -747,12 +755,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_29.addWidget(self.pushButton_17)
 
 
-        self.verticalLayout_11.addLayout(self.horizontalLayout_29)
+        self.verticalLayout_15.addLayout(self.horizontalLayout_29)
 
         self.gridLayout_2 = QGridLayout()
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setVerticalSpacing(12)
-        self.plainTextEdit_8 = QPlainTextEdit(self.scrollAreaWidgetContents)
+        self.plainTextEdit_8 = QPlainTextEdit(self.widget_5)
         self.plainTextEdit_8.setObjectName(u"plainTextEdit_8")
 
         self.gridLayout_2.addWidget(self.plainTextEdit_8, 3, 2, 1, 1)
@@ -761,7 +769,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_9, 2, 1, 1, 1)
 
-        self.label_33 = QLabel(self.scrollAreaWidgetContents)
+        self.label_33 = QLabel(self.widget_5)
         self.label_33.setObjectName(u"label_33")
 
         self.gridLayout_2.addWidget(self.label_33, 2, 0, 1, 1)
@@ -770,17 +778,17 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_7, 1, 1, 1, 1)
 
-        self.label_32 = QLabel(self.scrollAreaWidgetContents)
+        self.label_32 = QLabel(self.widget_5)
         self.label_32.setObjectName(u"label_32")
 
         self.gridLayout_2.addWidget(self.label_32, 1, 0, 1, 1)
 
-        self.plainTextEdit_12 = QPlainTextEdit(self.scrollAreaWidgetContents)
+        self.plainTextEdit_12 = QPlainTextEdit(self.widget_5)
         self.plainTextEdit_12.setObjectName(u"plainTextEdit_12")
 
         self.gridLayout_2.addWidget(self.plainTextEdit_12, 4, 2, 1, 1)
 
-        self.label_48 = QLabel(self.scrollAreaWidgetContents)
+        self.label_48 = QLabel(self.widget_5)
         self.label_48.setObjectName(u"label_48")
 
         self.gridLayout_2.addWidget(self.label_48, 13, 0, 1, 1)
@@ -789,7 +797,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_22, 12, 1, 1, 1)
 
-        self.label_47 = QLabel(self.scrollAreaWidgetContents)
+        self.label_47 = QLabel(self.widget_5)
         self.label_47.setObjectName(u"label_47")
 
         self.gridLayout_2.addWidget(self.label_47, 12, 0, 1, 1)
@@ -798,12 +806,12 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_23, 13, 1, 1, 1)
 
-        self.plainTextEdit_10 = QPlainTextEdit(self.scrollAreaWidgetContents)
+        self.plainTextEdit_10 = QPlainTextEdit(self.widget_5)
         self.plainTextEdit_10.setObjectName(u"plainTextEdit_10")
 
         self.gridLayout_2.addWidget(self.plainTextEdit_10, 1, 2, 1, 1)
 
-        self.label_38 = QLabel(self.scrollAreaWidgetContents)
+        self.label_38 = QLabel(self.widget_5)
         self.label_38.setObjectName(u"label_38")
 
         self.gridLayout_2.addWidget(self.label_38, 5, 0, 1, 1)
@@ -816,7 +824,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_13, 5, 1, 1, 1)
 
-        self.label_43 = QLabel(self.scrollAreaWidgetContents)
+        self.label_43 = QLabel(self.widget_5)
         self.label_43.setObjectName(u"label_43")
         self.label_43.setStyleSheet(u"font-style:italic;")
         self.label_43.setIndent(24)
@@ -831,7 +839,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_14, 6, 1, 1, 1)
 
-        self.label_35 = QLabel(self.scrollAreaWidgetContents)
+        self.label_35 = QLabel(self.widget_5)
         self.label_35.setObjectName(u"label_35")
         self.label_35.setStyleSheet(u"font-style:italic;")
         self.label_35.setIndent(24)
@@ -842,7 +850,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_11, 0, 1, 1, 1)
 
-        self.label_36 = QLabel(self.scrollAreaWidgetContents)
+        self.label_36 = QLabel(self.widget_5)
         self.label_36.setObjectName(u"label_36")
         self.label_36.setFont(font5)
 
@@ -856,14 +864,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_12, 4, 1, 1, 1)
 
-        self.label_37 = QLabel(self.scrollAreaWidgetContents)
+        self.label_37 = QLabel(self.widget_5)
         self.label_37.setObjectName(u"label_37")
         self.label_37.setStyleSheet(u"font-style:italic;")
         self.label_37.setIndent(24)
 
         self.gridLayout_2.addWidget(self.label_37, 4, 0, 1, 1)
 
-        self.plainTextEdit_11 = QPlainTextEdit(self.scrollAreaWidgetContents)
+        self.plainTextEdit_11 = QPlainTextEdit(self.widget_5)
         self.plainTextEdit_11.setObjectName(u"plainTextEdit_11")
         sizePolicy2.setHeightForWidth(self.plainTextEdit_11.sizePolicy().hasHeightForWidth())
         self.plainTextEdit_11.setSizePolicy(sizePolicy2)
@@ -879,7 +887,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_18, 9, 1, 1, 1)
 
-        self.checkBox_19 = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_19 = QCheckBox(self.widget_5)
         self.checkBox_19.setObjectName(u"checkBox_19")
         sizePolicy2.setHeightForWidth(self.checkBox_19.sizePolicy().hasHeightForWidth())
         self.checkBox_19.setSizePolicy(sizePolicy2)
@@ -894,24 +902,24 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.checkBox_19, 10, 2, 1, 1, Qt.AlignHCenter)
 
-        self.plainTextEdit_13 = QPlainTextEdit(self.scrollAreaWidgetContents)
+        self.plainTextEdit_13 = QPlainTextEdit(self.widget_5)
         self.plainTextEdit_13.setObjectName(u"plainTextEdit_13")
 
         self.gridLayout_2.addWidget(self.plainTextEdit_13, 6, 2, 1, 1)
 
-        self.plainTextEdit_14 = QPlainTextEdit(self.scrollAreaWidgetContents)
+        self.plainTextEdit_14 = QPlainTextEdit(self.widget_5)
         self.plainTextEdit_14.setObjectName(u"plainTextEdit_14")
 
         self.gridLayout_2.addWidget(self.plainTextEdit_14, 7, 2, 1, 1)
 
-        self.label_40 = QLabel(self.scrollAreaWidgetContents)
+        self.label_40 = QLabel(self.widget_5)
         self.label_40.setObjectName(u"label_40")
         self.label_40.setStyleSheet(u"font-style:italic;")
         self.label_40.setIndent(24)
 
         self.gridLayout_2.addWidget(self.label_40, 6, 0, 1, 1)
 
-        self.checkBox_17 = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_17 = QCheckBox(self.widget_5)
         self.checkBox_17.setObjectName(u"checkBox_17")
         sizePolicy2.setHeightForWidth(self.checkBox_17.sizePolicy().hasHeightForWidth())
         self.checkBox_17.setSizePolicy(sizePolicy2)
@@ -926,26 +934,26 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.checkBox_17, 9, 2, 1, 1, Qt.AlignHCenter)
 
-        self.label_42 = QLabel(self.scrollAreaWidgetContents)
+        self.label_42 = QLabel(self.widget_5)
         self.label_42.setObjectName(u"label_42")
 
         self.gridLayout_2.addWidget(self.label_42, 8, 0, 1, 1)
 
-        self.label_41 = QLabel(self.scrollAreaWidgetContents)
+        self.label_41 = QLabel(self.widget_5)
         self.label_41.setObjectName(u"label_41")
         self.label_41.setStyleSheet(u"font-style:italic;")
         self.label_41.setIndent(24)
 
         self.gridLayout_2.addWidget(self.label_41, 7, 0, 1, 1)
 
-        self.label_44 = QLabel(self.scrollAreaWidgetContents)
+        self.label_44 = QLabel(self.widget_5)
         self.label_44.setObjectName(u"label_44")
         self.label_44.setStyleSheet(u"font-style:italic;")
         self.label_44.setIndent(24)
 
         self.gridLayout_2.addWidget(self.label_44, 9, 0, 1, 1)
 
-        self.label_45 = QLabel(self.scrollAreaWidgetContents)
+        self.label_45 = QLabel(self.widget_5)
         self.label_45.setObjectName(u"label_45")
         self.label_45.setStyleSheet(u"font-style:italic;")
         self.label_45.setIndent(24)
@@ -956,7 +964,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_20, 11, 1, 1, 1)
 
-        self.checkBox_18 = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_18 = QCheckBox(self.widget_5)
         self.checkBox_18.setObjectName(u"checkBox_18")
         sizePolicy2.setHeightForWidth(self.checkBox_18.sizePolicy().hasHeightForWidth())
         self.checkBox_18.setSizePolicy(sizePolicy2)
@@ -971,12 +979,12 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.checkBox_18, 11, 2, 1, 1, Qt.AlignHCenter)
 
-        self.plainTextEdit_17 = QPlainTextEdit(self.scrollAreaWidgetContents)
+        self.plainTextEdit_17 = QPlainTextEdit(self.widget_5)
         self.plainTextEdit_17.setObjectName(u"plainTextEdit_17")
 
         self.gridLayout_2.addWidget(self.plainTextEdit_17, 13, 2, 1, 1)
 
-        self.status_comboBox_2 = QComboBox(self.scrollAreaWidgetContents)
+        self.status_comboBox_2 = QComboBox(self.widget_5)
         self.status_comboBox_2.addItem("")
         self.status_comboBox_2.addItem("")
         self.status_comboBox_2.addItem("")
@@ -988,7 +996,10 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.status_comboBox_2, 12, 2, 1, 1)
 
 
-        self.verticalLayout_11.addLayout(self.gridLayout_2)
+        self.verticalLayout_15.addLayout(self.gridLayout_2)
+
+
+        self.verticalLayout_11.addWidget(self.widget_5, 0, Qt.AlignTop)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -1061,7 +1072,7 @@ class Ui_MainWindow(object):
 
         self.communities_dropdown_2.setDefault(False)
         self.add_community_btn.setDefault(False)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

@@ -1,6 +1,6 @@
-from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
-from PySide6.QtGui import QAction, QColor, QIcon, QCursor
-from PySide6.QtCore import Qt, QUrl, QTimer
+from PySide6.QtWidgets import QLabel, QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
+from PySide6.QtGui import QAction, QColor, QIcon, QCursor, QPixmap
+from PySide6.QtCore import Qt, QUrl, QTimer, QSize
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEngineSettings
 from functools import partial
@@ -23,11 +23,35 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("Dashboard")
 
+        self.is_adding_community = False
+        self.is_adding_shelter = False
+
+        self.stackedWidget.hide()
+        
+        self.add_community_btn.clicked.connect(self.handle_add_community)
+        self.add_shelter_btn.clicked.connect(self.handle_add_shelter)
+
+        self.load_comm_data()
+        self.load_shel_data()
+
+        self.data = pd.read_excel(os.path.join(os.getcwd(), "commData.xlsx"), skiprows=1)
+        self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), skiprows=1)
+
+        #for value in self.data.iloc[:, 0]:
+         #   button = self.findChild(QPushButton, f"barangay_{value}_btn")
+          #  if button:
+           #     button.clicked.connect(lambda checked, value=value: self.handle_button_click(value))
+
+        self.barangay_a_btn.clicked.connect(self.unhide_stacked_widget)
+
         self.initial_map_file_path = os.path.join(os.getcwd(), "map.html")
         self.optimized_map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
         self.last_modified_time = os.path.getmtime(self.optimized_map_file_path) if os.path.exists(self.optimized_map_file_path) else None
 
-        self.webEngineView.setUrl(QUrl.fromLocalFile(self.initial_map_file_path))
+        if os.path.exists(self.optimized_map_file_path):
+            self.webEngineView.setUrl(QUrl.fromLocalFile(self.optimized_map_file_path))
+        else:
+            self.webEngineView.setUrl(QUrl.fromLocalFile(self.initial_map_file_path))
 
         self.map_update_timer = QTimer(self)
         self.map_update_timer.timeout.connect(self.check_for_optimized_map_update)
@@ -73,3 +97,374 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 # Switch the displayed map to optimized-routes-map.html
                 self.webEngineView.setUrl(QUrl.fromLocalFile(self.optimized_map_file_path))
                 print(f"Map updated to optimized routes: {self.optimized_map_file_path}")
+
+    def unhide_stacked_widget(self):
+        self.stackedWidget.show()
+
+    def load_comm_data(self):
+        try:
+            file_path = os.path.join(os.getcwd(), "commData.xlsx")
+            self.data = pd.read_excel(file_path, usecols=[0], skiprows=[0])
+
+            layout = self.communities_dropdown.layout()
+
+            for index, value in self.data.iloc[:, 0].items():
+                hbox_layout = QHBoxLayout()
+
+                picture_label = QLabel()
+                icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128.png")
+                pixmap = QPixmap(icon_path)
+
+                pixmap = pixmap.scaled(31, 31)
+
+                picture_label.setPixmap(pixmap)
+                picture_label.setFixedSize(31, 31)
+
+                name_label = QLabel(str(value))
+
+                button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
+                button = QPushButton()
+
+                button_icon = QPixmap(button_icon_path)
+                button.setIcon(button_icon)
+                button.setIconSize(QSize(41, 41))
+
+                button.setFixedSize(41, 41)
+
+                button.setStyleSheet("background: transparent; border: none;")
+
+                button.setObjectName(f"barangay_{value}_btn")
+
+                button.clicked.connect(lambda checked, button_name=button.objectName(): self.handle_button_click(button_name))
+
+                hbox_layout.addWidget(picture_label)
+                hbox_layout.addWidget(name_label)
+                hbox_layout.addWidget(button)
+
+                container_widget = QWidget()
+                container_widget.setLayout(hbox_layout)
+
+                layout.addWidget(container_widget)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load data: {e}")
+
+    def load_shel_data(self):
+        try:
+            file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+            self.shel_data = pd.read_excel(file_path, usecols=[0], skiprows=[0])
+
+            layout = self.verticalLayout_4.layout()
+
+            for index, value in self.shel_data.iloc[:, 0].items():
+                hbox_layout = QHBoxLayout()
+
+                picture_label = QLabel()
+                icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (1).png")
+                pixmap = QPixmap(icon_path)
+
+                pixmap = pixmap.scaled(31, 31)
+
+                picture_label.setPixmap(pixmap)
+                picture_label.setFixedSize(31, 31)
+
+                name_label = QLabel(str(value))
+
+                button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
+                button = QPushButton()
+
+                button_icon = QPixmap(button_icon_path)
+                button.setIcon(button_icon)
+                button.setIconSize(QSize(41, 41))
+
+                button.setFixedSize(41, 41)
+
+                button.setStyleSheet("background: transparent; border: none;")
+
+                button.setObjectName(f"shelter_{value}_btn")
+
+                button.clicked.connect(lambda checked, button_name=button.objectName(): self.handle_button_click(button_name))
+
+                hbox_layout.addWidget(picture_label)
+                hbox_layout.addWidget(name_label)
+                hbox_layout.addWidget(button)
+
+                container_widget = QWidget()
+                container_widget.setLayout(hbox_layout)
+
+                layout.addWidget(container_widget)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load data: {e}")
+
+
+    def handle_button_click(self, button_name):
+        value = button_name.split("_")[1]
+        
+        self.stackedWidget.show()
+
+        if button_name.startswith("barangay_"):
+            self.page.show()
+            self.page_2.hide()
+            row = self.data[self.data.iloc[:, 0] == value].index[0]
+
+            self.label_18.setText(str(self.data.iloc[row, 0]))
+
+            self.plainTextEdit.setPlainText(str(self.data.iloc[row, 1]))
+            self.plainTextEdit_2.setPlainText(str(self.data.iloc[row, 2]))
+            self.plainTextEdit_3.setPlainText(str(self.data.iloc[row, 3]))
+            self.plainTextEdit_4.setPlainText(str(self.data.iloc[row, 4]))
+            self.plainTextEdit_5.setPlainText(str(self.data.iloc[row, 5]))
+            self.plainTextEdit_6.setPlainText(str(self.data.iloc[row, 6]))
+
+        elif button_name.startswith("shelter_"):
+            self.stackedWidget.setCurrentWidget(self.page_2)
+            self.page_2.show()
+            self.page.hide()
+            row = self.shel_data[self.shel_data.iloc[:, 0] == value].index[0]
+
+            self.label_31.setText(str(self.shel_data.iloc[row, 0]))
+
+            self.plainTextEdit_11.setPlainText(str(self.shel_data.iloc[row, 1]))
+            self.plainTextEdit_10.setPlainText(str(self.shel_data.iloc[row, 2]))
+            self.plainTextEdit_8.setPlainText(str(self.shel_data.iloc[row, 3]))
+            self.plainTextEdit_12.setPlainText(str(self.shel_data.iloc[row, 4]))
+            self.plainTextEdit_13.setPlainText(str(self.shel_data.iloc[row, 5]))
+            self.plainTextEdit_14.setPlainText(str(self.shel_data.iloc[row, 6]))
+
+            self.page_2.update()
+            self.stackedWidget.update()
+
+    def handle_add_community(self):
+        if not self.is_adding_community:
+            self.is_adding_community = True
+            self.open_add_community_page()
+        else:
+            self.save_community_to_excel()
+            self.is_adding_community = False
+
+    def handle_add_shelter(self):
+        if not self.is_adding_shelter:
+            self.is_adding_shelter = True
+            self.open_add_shelter_page()
+        else:
+            self.save_shelter_to_excel()
+            self.is_adding_shelter = False
+
+    def open_add_community_page(self):
+        self.plainTextEdit.clear()
+        self.plainTextEdit_2.clear()
+        self.plainTextEdit_3.clear()
+        self.plainTextEdit_4.clear()
+        self.plainTextEdit_5.clear()
+        self.plainTextEdit_6.clear()
+
+        self.stackedWidget.setCurrentWidget(self.page)
+        self.stackedWidget.show()
+
+    def open_add_shelter_page(self):
+        self.plainTextEdit_11.clear()
+        self.plainTextEdit_10.clear()
+        self.plainTextEdit_8.clear()
+        self.plainTextEdit_12.clear()
+        self.plainTextEdit_13.clear()
+        self.plainTextEdit_14.clear()
+
+        self.stackedWidget.setCurrentWidget(self.page_2)
+        self.stackedWidget.show()
+
+    def save_community_to_excel(self):
+        try:
+            x_degrees = float(self.plainTextEdit.toPlainText()) if self.plainTextEdit.toPlainText() else 0.0
+            y_degrees = float(self.plainTextEdit_2.toPlainText()) if self.plainTextEdit_2.toPlainText() else 0.0
+            population = int(self.plainTextEdit_3.toPlainText()) if self.plainTextEdit_3.toPlainText() else 0
+            affected_pop = int(self.plainTextEdit_4.toPlainText()) if self.plainTextEdit_4.toPlainText() else 0
+            work_pop = int(self.plainTextEdit_5.toPlainText()) if self.plainTextEdit_5.toPlainText() else 0
+            remarks = self.plainTextEdit_6.toPlainText()
+        
+            new_data = {
+                "Name": "testAdd",
+                "xDegrees": x_degrees,
+                "yDegrees": y_degrees,
+                "Population": population,
+                "AffectedPop": affected_pop,
+                "WorkPop": work_pop,
+                "MaxDistance": "1000",
+                "Remarks": remarks,
+            }
+        
+            file_path = os.path.join(os.getcwd(), "commData.xlsx")
+
+        
+            if os.path.exists(file_path):
+                existing_data = pd.read_excel(file_path)
+                last_index = existing_data.index[-1]
+            else:
+                existing_data = pd.DataFrame(columns=new_data.keys())
+                last_index = -1
+
+            new_row = pd.DataFrame([new_data])
+
+            updated_data = pd.concat([existing_data, new_row], ignore_index=True)
+            updated_data.to_excel(file_path, index=False)
+
+            self.data = pd.read_excel(file_path)
+
+            self.add_new_community_to_ui(new_data, last_index + 1)
+
+            self.add_marker_to_map("commData.xlsx", "community")
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to save data: {e}")
+
+    def save_shelter_to_excel(self):
+        try:
+            x_degrees = float(self.plainTextEdit_11.toPlainText()) if self.plainTextEdit_11.toPlainText() else 0.0
+            y_degrees = float(self.plainTextEdit_10.toPlainText()) if self.plainTextEdit_10.toPlainText() else 0.0
+            area1 = int(self.plainTextEdit_8.toPlainText()) if self.plainTextEdit_8.toPlainText() else 0
+            cost1 = int(self.plainTextEdit_12.toPlainText()) if self.plainTextEdit_12.toPlainText() else 0
+            area2 = int(self.plainTextEdit_13.toPlainText()) if self.plainTextEdit_13.toPlainText() else 0
+            cost2 = int(self.plainTextEdit_14.toPlainText()) if self.plainTextEdit_14.toPlainText() else 0
+
+            new_data = {
+                "Name": "testAdd",
+                "xDegrees": x_degrees,
+                "yDegrees": y_degrees,
+                "Area1": area1,
+                "Cost1": cost1,
+                "Area2": area2,
+                "Cost2": cost2,
+                "ResToFlood": "1",
+                "ResToTyphoon": "1",
+                "ResToEarthquake": "1",
+                "Status": "Built"
+                }
+        
+            file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+
+        
+            if os.path.exists(file_path):
+                existing_data = pd.read_excel(file_path)
+                last_index = existing_data.index[-1]
+            else:
+                existing_data = pd.DataFrame(columns=new_data.keys())
+                last_index = -1
+
+            new_row = pd.DataFrame([new_data])
+
+            updated_data = pd.concat([existing_data, new_row], ignore_index=True)
+            updated_data.to_excel(file_path, index=False)
+
+            self.shel_data = pd.read_excel(file_path)
+
+            self.add_new_shelter_to_ui(new_data, last_index + 1)
+
+            self.add_marker_to_map("shelData.xlsx", "shelter")
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to save data: {e}")
+
+    def add_new_community_to_ui(self, community_data, index):
+        layout = self.communities_dropdown.layout()
+
+        hbox_layout = QHBoxLayout()
+
+        
+        picture_label = QLabel()
+        icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128.png")
+        pixmap = QPixmap(icon_path)
+        pixmap = pixmap.scaled(31, 31)
+        picture_label.setPixmap(pixmap)
+        picture_label.setFixedSize(31, 31)
+
+        name_label = QLabel(community_data["Name"])
+
+        button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
+        button = QPushButton()
+        button_icon = QPixmap(button_icon_path)
+        button.setIcon(button_icon)
+        button.setIconSize(QSize(41, 41))
+        button.setFixedSize(41, 41)
+        button.setStyleSheet("background: transparent; border: none;")
+        button.setObjectName(f"barangay_{community_data['Name']}_btn")
+
+        button.clicked.connect(lambda checked, button_name=button.objectName(): self.handle_button_click(button_name))
+
+        hbox_layout.addWidget(picture_label)
+        hbox_layout.addWidget(name_label)
+        hbox_layout.addWidget(button)
+
+        container_widget = QWidget()
+        container_widget.setLayout(hbox_layout)
+
+        layout.addWidget(container_widget)
+
+    def add_new_shelter_to_ui(self, shelter_data, index):
+        layout = self.verticalLayout_4.layout()
+
+        hbox_layout = QHBoxLayout()
+
+        picture_label = QLabel()
+        icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (1).png")
+        pixmap = QPixmap(icon_path)
+        pixmap = pixmap.scaled(31, 31)
+        picture_label.setPixmap(pixmap)
+        picture_label.setFixedSize(31, 31)
+
+        name_label = QLabel(shelter_data["Name"])
+
+        button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
+        button = QPushButton()
+        button_icon = QPixmap(button_icon_path)
+        button.setIcon(button_icon)
+        button.setIconSize(QSize(41, 41))
+        button.setFixedSize(41, 41)
+        button.setStyleSheet("background: transparent; border: none;")
+        button.setObjectName(f"shelter_{shelter_data['Name']}_btn")
+
+        button.clicked.connect(lambda checked, button_name=button.objectName(): self.handle_button_click(button_name))
+
+        hbox_layout.addWidget(picture_label)
+        hbox_layout.addWidget(name_label)
+        hbox_layout.addWidget(button)
+
+        container_widget = QWidget()
+        container_widget.setLayout(hbox_layout)
+
+        layout.addWidget(container_widget)
+
+    def add_marker_to_map(self, excel_file_path, marker_type):
+        try:
+            data = pd.read_excel(excel_file_path)
+
+            if not data.empty:
+                center_latitude = data.iloc[1]["xDegrees"]
+                center_longitude = data.iloc[1]["yDegrees"]
+                map = folium.Map(location=[center_latitude, center_longitude], zoom_start=12)
+            else:
+                map = folium.Map(location=[0,0], zoom_start=2)
+
+            for index, row in data.iterrows():
+                latitude = row.get("xDegrees", 1)
+                longitude = row.get("yDegrees", 1)
+                name = row.get("Name", "Unknown")
+
+                if marker_type == "community":
+                    color = 'green'
+                elif marker_type == "shelter":
+                    color = 'blue'
+                else:
+                    color = 'red'
+
+                folium.Marker(
+                    location=[latitude, longitude],
+                    popup=name,
+                    icon=folium.Icon(color=color)
+                ).add_to(map)
+
+            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            map.save(map_file_path)
+
+            self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to update map: {e}")

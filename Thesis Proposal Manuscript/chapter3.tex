@@ -12,7 +12,7 @@
 	This applied research approach aims to deliver a functional and reliable shelter location-allocation system that local government units (LGUs) and disaster response agencies can easily deploy and adapt. By emphasizing incremental progress and user-centered development, this ensures that the research outputs are directly applicable and beneficial to communities in disaster-prone areas.
 
 \subsection{Quantitative Research}
-	The quantitative research component of this study aims to measure and analyze the acceptability of the proposing system using ISO/IEC 25010 standard. The approach will provide objective and measurable evidence to evaluate the system's usability, reliability, and overall quality performance. The quantitative methods will seek to quantify the use of genetic algorithms in the shelter location allocation system, providing valuable insights into the system's effectiveness for emergency management.
+	The quantitative research component of this study aims to measure and analyze the acceptability of the proposing system using TAM concepts and ISO/IEC 25010 standard. The approach will provide objective and measurable evidence to evaluate the system's usability, reliability, and overall quality performance. The quantitative methods will seek to quantify the use of genetic algorithms in the shelter location allocation system, providing valuable insights into the system's effectiveness for emergency management.
 	Methods will include collecting user feedback and performance metrics through structured surveys and system testing to assess these attributes. The survey will gauge user satisfaction with system usability and functionality using a 10-point rating scale, providing quantifiable insights into the system's ease of use and accessibility. 
 	Incorporating quantitative research in this study is justified as it can provide empirical evidence supporting the shelter allocation system's acceptability. 
 
@@ -27,7 +27,9 @@
 	The objective function for the BNT model can be expressed as follows:
 	
 	Minimize 
-	\begin{equation} 					  		wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{k=1}^{2}\sum_{j=1}^{N}C_{j}^{(k)}y_{j}^{(k)} \end{equation}
+	\begin{equation}
+		wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{k=1}^{2}\sum_{j=1}^{N}C_{j}^{(k)}y_{j}^{(k)} 
+	\end{equation}
 	
 	Subject to
 	\begin{equation} 	
@@ -177,7 +179,7 @@
 	
 	\textit{Fitness.} A value generated from the objective function. This refers to the objective value of a chromosome based on the implemented model.
 	
-	A genetic algortihm is composed of three key components: selection, crossover, and mutation. Each serves a distinct purpose in addressing optimization problems and simulates the evolution theory. Each component has various implementation methods tailored to specific objectives. \parencite{Eyal2020}
+	A genetic algorithm is composed of three key components: selection, crossover, and mutation. Each serves a distinct purpose in addressing optimization problems and simulates the evolution theory. Each component has various implementation methods tailored to specific objectives. \parencite{Eyal2020}
 	
 	\textit{Selection.} A process of selecting parents. This refers to selecting two chromosome based on their fitness value. The proposed system uses Roulette Wheel Selection, which is the likelihood of a chromosome to be selected is directly proportional to its fitness value. Figure \ref{Selection} shows that the probability is inversely proportional to the fitness value, since we aim to minimize the objective. Moreover, a randomizer will select a chromosome based on the computed probabilities.
 	
@@ -335,13 +337,13 @@
 	
 	
 \subsection{Testing and Debugging}
-	The system will undergo functionality, performance, and reliability testing during the testing phase. The researchers will employ manual testing techniques to identify and resolve any bugs or issues that arise. This phase will also evaluate the system against the ISO/IEC 25010 standard to ensure its usability, reliability, and overall quality. Found any errors and anomalies within the system, it will be then fixed and debugged. Through this thorough testing and debugging approach, the researchers aim to ensure that the shelter location allocation system meets high quality, performance, and user satisfaction standards, making it ready for deployment.
+	The system will undergo functionality, performance, and reliability testing during the testing phase. The researchers will employ manual testing techniques to identify and resolve any bugs or issues that arise. Found any errors and anomalies within the system, it will be then fixed and debugged. Through this thorough testing and debugging approach, the researchers aim to ensure that the shelter location allocation system meets high quality, performance, and user satisfaction standards, making it ready for deployment.
 	
 \subsection{Deployment}
 	During the deployment phase, the shelter location-allocation system will undergo pilot testing in collaboration with local government units (LGUs). This process will involve configuring the system, establishing the necessary data inputs, and training users to utilize the platform effectively. Additionally, the deployment phase will continuously monitor the system's performance to ensure it operates efficiently and meets the objective of optimizing shelter locations. 
 	
 \subsection{Evaluation}
-	This section will focus on assessing the acceptability of the shelter location allocation system using the ISO/IEC 25010 standard. This standard provides a framework for evaluating the software's quality. The system evaluation will include the evaluation instrument, determining the population and sample, outlining data collection procedures, and discussing the data analysis techniques used.
+	Evaluation of system includes preparing ang distributing survey questionnaires based on TAM and ISO/IEC 25010 to our target sample. This phase will ensure that the developed system has feedback from potential users as well as from experts in software engineering and development.
 
 \section{System Preliminaries}
 	Developing a system requires careful planning and analysis before implementing it. A communication between the potential users or clients and the researchers is essential to ensure all system requirements are met and improved. This phase aims to establish a foundational understanding of current disaster-response processes, along with gathering essential data for the system. Interviews will be conducted with representatives from local government units (LGUs) specifically from the target population to understand their existing shelter allocation process, challenges, and expectations for a decision support system. 
@@ -363,10 +365,24 @@
 	
 	
 \section{System Evaluation}
-	The evaluation instrument is a structured questionnaire designed to assess the acceptability of the shelter location allocation system based on the key quality attributes outlined in the International Organization for Standardization and International Electoral Commission (ISO/IEC) 25010 standard. The questionnaire will evaluate various aspects of the system, including usability, reliability, performance efficiency, and overall user satisfaction. Through this instrument, the study aims to gather objective data that will help determine how well the system meets user needs and expectations. \parencite{ISOIEC2023}
+	System evaluation will focus on assessing acceptability of the shelter location allocation system using the TAM concepts and ISO/IEC 25010 standard. These standards provides a framework for evaluating the software's quality and acceptability. The system evaluation will include the evaluation instrument, determining the population and sample, outlining data collection procedures, and discussing the data analysis techniques used.
 
 \subsection{Evaluation Instrument}
-	The following criteria are based upon the nine quality characteristics for product quality model defined in ISO/IEC 25010:
+	The evaluation instrument is a structured questionnaire designed to assess the acceptability of the shelter location allocation system based on the determinants of Technology Acceptance Model(TAM) and key quality attributes outlined in the International Organization for Standardization and International Electoral Commission (ISO/IEC) 25010 standard. Questionnaires based on TAM will be distributed to the potential end-users of the system. On the other hand, questionnaires based on ISO/IEC 25010 will be distributed to the experts in software development.
+	
+	TAM questionnaire will evaluate the system's acceptability by the user of the system. This model answers why users accept or reject information systems, and examines a system's acceptance based on their attitudes, preferences, and behaviors.\parencite{Davis1987}
+	\\The following criteria are based upon the four determinants defined in TAM:
+	
+	\textit{Perceived Usefulness.} This answers on how much a user believes using the system will improve their performance such as job tasks. It evaluates whether the users thinks the proposed system will be genuinely beneficial to LGUs or if it can assist other LGUs effectively.
+	
+	\textit{Perceived Ease of Use.} This answers on how much a user belies using the system will be efficient and user-friendly. It considers whether the proposed system can be used smoothly with minimal errors and without performance issues.
+	
+	\textit{Behavioral Intention to Use.} This answers on willingness to use the system in the future. It determines whether users find the system valuable enough to incorporate into their long-term plans.
+	
+	\textit{Actual System Use.} This evaluates the overall user experience and their likelihood of using and adopting the system. It assesses whether users will actively and consistently use the system.
+	
+	Additionally, ISO/IEC 25010 questionnaire will evaluate various aspects of the system, including usability, reliability, performance efficiency, and overall user satisfaction. Through this instrument, the study aims to gather objective data that will help determine how well the system meets user needs and expectations. \parencite{ISOIEC2023}
+	\\The following criteria are based upon the nine quality characteristics for product quality model defined in ISO/IEC 25010:
 	
 	\textit{Functional Suitability.} This evaluates how well the system meets user needs and performs its intended functions. The questions will focus on the system's ability to allocate shelters effectively, manage community and shelter information, and provide accurate data.
 	

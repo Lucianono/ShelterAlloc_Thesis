@@ -42,7 +42,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
           #  if button:
            #     button.clicked.connect(lambda checked, value=value: self.handle_button_click(value))
 
-        self.barangay_a_btn.clicked.connect(self.unhide_stacked_widget)
+        #self.barangay_a_btn.clicked.connect(self.unhide_stacked_widget)
 
         self.initial_map_file_path = os.path.join(os.getcwd(), "map.html")
         self.optimized_map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")

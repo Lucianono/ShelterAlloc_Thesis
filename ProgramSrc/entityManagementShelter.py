@@ -172,27 +172,30 @@ class EntityManagementShelter(QDialog):
         switch = QPushButton()
         switch.setCheckable(True)
         switch.setChecked(is_active)
-        switch.setFixedSize(40, 20)  # Set the switch size
-        switch.setStyleSheet("""
-            QPushButton {
-                background-color: #ccc;
-                border-radius: 10px;
-            }
-            QPushButton::indicator {
-                width: 0;  /* Hide default indicator */
-            }
-        """)
+        switch.setFixedSize(38, 18)  # Set the switch size
+        switch.setStyleSheet(
+            "QPushButton { background-color: #4CAF50; border-radius: 8px; }" 
+            if switch.isChecked() else 
+            "QPushButton { background-color: #ccc; border-radius: 8px; }"
+        )
 
         # Create a circle (knob) for the switch
         knob = QPushButton(switch)
-        knob.setFixedSize(16, 16)
+        knob.setFixedSize(14, 14)
         knob.setStyleSheet("""
             QPushButton {
                 background-color: white;
-                border-radius: 8px;
+                border-radius: 7px;
             }
         """)
         knob.move(22 if is_active else 2, 2)  # Initial position for the knob (left side)
+        if switch.isChecked():
+            switch.setStyleSheet("""
+                QPushButton {
+                    background-color: #4CAF50;
+                    border-radius: 8px;
+                }
+            """)
 
         # Create a unique animation instance for this switch
         animation = QPropertyAnimation(knob, b"geometry")
@@ -200,6 +203,13 @@ class EntityManagementShelter(QDialog):
 
         # Connect the toggle functionality
         switch.clicked.connect(lambda: self.toggle_switch_animation(switch, knob, animation))
+
+        # Delegate knob clicks to the switch
+        def knob_mouse_press(event):
+            switch.click()  # Simulate a click on the switch
+            super(knob.__class__, knob).mousePressEvent(event)
+
+        knob.mousePressEvent = knob_mouse_press
 
         # Add the switch to the layout
         layout.addWidget(switch)
@@ -213,7 +223,7 @@ class EntityManagementShelter(QDialog):
             switch.setStyleSheet("""
                 QPushButton {
                     background-color: #4CAF50;
-                    border-radius: 10px;
+                    border-radius: 8px;
                 }
             """)
         else:
@@ -223,7 +233,7 @@ class EntityManagementShelter(QDialog):
             switch.setStyleSheet("""
                 QPushButton {
                     background-color: #ccc;
-                    border-radius: 10px;
+                    border-radius: 8px;
                 }
             """)
         animation.start()

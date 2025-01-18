@@ -26,10 +26,10 @@ class SolveSettingsDialog(QDialog):
         self.ui.scrollArea_2.setWidget(QWidget())  # Set an empty widget to scrollArea_2
         self.ui.scrollArea_2.widget().setLayout(self.community_layout)
         self.ui.scrollArea_2.setStyleSheet("""QScrollArea { border: 1px solid gray;
-        background-color: transparent;
+        background-color: #fff;
         padding: 5px;
         border-radius: 20px; }
-        QWidget { background-color: transparent; }
+        QWidget { background-color: #fff; }
         QLabel { color: black;
         background-color: transparent;}""")
 
@@ -37,10 +37,10 @@ class SolveSettingsDialog(QDialog):
         self.ui.scrollArea.setWidget(QWidget())  # Set an empty widget to scrollArea
         self.ui.scrollArea.widget().setLayout(self.shelter_layout)
         self.ui.scrollArea.setStyleSheet("""QScrollArea { border: 1px solid gray;
-        background-color: transparent;
+        background-color: #fff;
         padding: 5px;
         border-radius: 20px; }
-        QWidget { background-color: transparent; }
+        QWidget { background-color: #fff; }
         QLabel { color: black;
         background-color: transparent;}""")
 
@@ -48,10 +48,10 @@ class SolveSettingsDialog(QDialog):
         self.ui.scrollArea_5.setWidget(QWidget())  # Set an empty widget to scrollArea_5
         self.ui.scrollArea_5.widget().setLayout(self.shelter_status_layout)
         self.ui.scrollArea_5.setStyleSheet("""QScrollArea { border: 1px solid gray;
-        background-color: transparent;
+        background-color: #fff;
         padding: 5px;
         border-radius: 20px; }
-        QWidget { background-color: transparent; }
+        QWidget { background-color: #fff; }
         QLabel { color: black;
         background-color: transparent;}""")
 
@@ -59,10 +59,10 @@ class SolveSettingsDialog(QDialog):
         self.ui.scrollArea_4.setWidget(QWidget())  # Set an empty widget to scrollArea_4
         self.ui.scrollArea_4.widget().setLayout(self.shelter_resistance_layout)
         self.ui.scrollArea_4.setStyleSheet("""QScrollArea { border: 1px solid gray;
-        background-color: transparent;
+        background-color: #fff;
         padding: 5px;
         border-radius: 20px; }
-        QWidget { background-color: transparent; }
+        QWidget { background-color: #fff; }
         QLabel { color: black;
         background-color: transparent;}""")
 
@@ -205,15 +205,11 @@ class SolveSettingsDialog(QDialog):
         switch = QPushButton()
         switch.setCheckable(True)
         switch.setFixedSize(40, 20)  # Switch size
-        switch.setStyleSheet("""
-            QPushButton {
-                background-color: #ccc;
-                border-radius: 10px;
-            }
-            QPushButton::indicator {
-                width: 0;  /* Hide default indicator */
-            }
-        """)
+        switch.setStyleSheet(
+            "QPushButton { background-color: #4CAF50; border-radius: 10px; }" 
+            if switch.isChecked() else 
+            "QPushButton { background-color: #ccc; border-radius: 10px; }"
+        )
 
         # Create knob
         knob = QPushButton(switch)
@@ -225,6 +221,14 @@ class SolveSettingsDialog(QDialog):
             }
         """)
         knob.move(2, 2)
+
+        
+        # Delegate knob clicks to the switch
+        def knob_mouse_press(event):
+            switch.click()  # Simulate a click on the switch
+            super(knob.__class__, knob).mousePressEvent(event)
+
+        knob.mousePressEvent = knob_mouse_press
 
         # Create animation
         animation = QPropertyAnimation(knob, b"geometry")
@@ -423,15 +427,11 @@ class SolveSettingsDialog(QDialog):
         switch = QPushButton()
         switch.setCheckable(True)
         switch.setFixedSize(40, 20)  # Switch size
-        switch.setStyleSheet("""
-            QPushButton {
-                background-color: #ccc;
-                border-radius: 10px;
-            }
-            QPushButton::indicator {
-                width: 0;  /* Hide default indicator */
-            }
-        """)
+        switch.setStyleSheet(
+            "QPushButton { background-color: #4CAF50; border-radius: 10px; }" 
+            if switch.isChecked() else 
+            "QPushButton { background-color: #ccc; border-radius: 10px; }"
+        )
 
         # Create knob
         knob = QPushButton(switch)
@@ -443,6 +443,14 @@ class SolveSettingsDialog(QDialog):
             }
         """)
         knob.move(2, 2)
+
+        
+        # Delegate knob clicks to the switch
+        def knob_mouse_press(event):
+            switch.click()  # Simulate a click on the switch
+            super(knob.__class__, knob).mousePressEvent(event)
+
+        knob.mousePressEvent = knob_mouse_press
 
         # Create animation
         animation = QPropertyAnimation(knob, b"geometry")

@@ -513,18 +513,21 @@ class SolveSettingsDialog(QDialog):
 
         if state:
             # If the Shelter Resistance switch is turned on, turn on all other switches
-            flood_switch.setChecked(False)
-            typhoon_switch.setChecked(False)
-            earthquake_switch.setChecked(False)
+            if not flood_switch.isChecked() : 
+                flood_switch.click()
+            if not typhoon_switch.isChecked() : 
+                typhoon_switch.click()
+            if not earthquake_switch.isChecked() : 
+                earthquake_switch.click()
         else:
             # If the Shelter Resistance switch is turned off, turn off all other switches
-            flood_switch.setChecked(True)
-            typhoon_switch.setChecked(True)
-            earthquake_switch.setChecked(True)
+            if flood_switch.isChecked() : 
+                flood_switch.click()
+            if typhoon_switch.isChecked() : 
+                typhoon_switch.click()
+            if earthquake_switch.isChecked() : 
+                earthquake_switch.click()
 
-        flood_switch.click()
-        typhoon_switch.click()
-        earthquake_switch.click()
 
     def toggle_all_shelter_status_switches(self, state):
         # Toggle Built, Partially Built, Damaged, Empty Lot switches based on the state of Shelter Status switch
@@ -534,19 +537,23 @@ class SolveSettingsDialog(QDialog):
         empty_lot_switch = self.shelter_status_switches["Empty Lot"]
 
         if state:
-            # If the Shelter Status switch is turned on, turn on all other switches
-            built_switch.setChecked(False)
-            partially_built_switch.setChecked(False)
-            damaged_switch.setChecked(False)
-            empty_lot_switch.setChecked(False)
+            # If the Shelter Resistance switch is turned on, turn on all other switches
+            if not built_switch.isChecked() : 
+                built_switch.click()
+            if not partially_built_switch.isChecked() : 
+                partially_built_switch.click()
+            if not damaged_switch.isChecked() : 
+                damaged_switch.click()
+            if not empty_lot_switch.isChecked() : 
+                empty_lot_switch.click()
         else:
-            # If the Shelter Status switch is turned off, turn off all other switches
-            built_switch.setChecked(True)
-            partially_built_switch.setChecked(True)
-            damaged_switch.setChecked(True)
-            empty_lot_switch.setChecked(True)
+            # If the Shelter Resistance switch is turned off, turn off all other switches
+            if built_switch.isChecked() : 
+                built_switch.click()
+            if partially_built_switch.isChecked() : 
+                partially_built_switch.click()
+            if damaged_switch.isChecked() : 
+                damaged_switch.click()
+            if empty_lot_switch.isChecked() : 
+                empty_lot_switch.click()
 
-        built_switch.click()
-        partially_built_switch.click()
-        damaged_switch.click()
-        empty_lot_switch.click()

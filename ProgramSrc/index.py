@@ -121,6 +121,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 picture_label.setFixedSize(24, 24)
 
                 name_label = QLabel(str(value))
+                name_label.setMaximumSize(QSize(170, 16777215))
 
                 button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
                 button = QPushButton()
@@ -170,6 +171,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 picture_label.setFixedSize(24, 24)
 
                 name_label = QLabel(str(value))
+                name_label.setMaximumSize(QSize(170, 16777215))
 
                 button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
                 button = QPushButton()
@@ -209,7 +211,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.page_2.hide()
             row = self.data[self.data['Name'] == value].index[0]
 
-            self.label_18.setText(str(self.data.loc[row, 'Name']))
+            self.plainTextEdit_7.setPlainText(str(self.data.loc[row, 'Name']))
 
             self.plainTextEdit.setPlainText(str(self.data.loc[row, 'xDegrees']))
             self.plainTextEdit_2.setPlainText(str(self.data.loc[row, 'yDegrees']))
@@ -222,10 +224,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.stackedWidget.setCurrentWidget(self.page_2)
             self.page_2.show()
             self.page.hide()
-            print(self.shel_data.columns)
             row = self.shel_data[self.shel_data['Name'] == value].index[0]
 
-            self.label_31.setText(str(self.shel_data.loc[row, 'Name']))
+            self.plainTextEdit_9.setPlainText(str(self.shel_data.loc[row, 'Name']))
 
             self.plainTextEdit_11.setPlainText(str(self.shel_data.loc[row, 'xDegrees']))
             self.plainTextEdit_10.setPlainText(str(self.shel_data.loc[row, 'yDegrees']))

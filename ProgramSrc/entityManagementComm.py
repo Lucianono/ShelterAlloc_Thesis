@@ -14,8 +14,8 @@ class EntityManagementComm(QDialog):
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
 
         file_name = "commData.xlsx"
-        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'WorkPop', 'MaxDistance',  'Remarks']
-        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 800, 100, 'Sample remarks']], columns=required_headers)
+        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'MaxDistance',  'Remarks']
+        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 100, 'Sample remarks']], columns=required_headers)
 
         expected_types = {
             'Name': str,
@@ -23,7 +23,6 @@ class EntityManagementComm(QDialog):
             'yDegrees': float,
             'Population': int,
             'AffectedPop': int,
-            'WorkPop': int,
             'MaxDistance': float,
             'Remarks': str
         }

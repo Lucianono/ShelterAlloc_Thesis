@@ -512,7 +512,7 @@ class Ui_MainWindow(object):
 
         self.label_18 = QLabel(self.widget_4)
         self.label_18.setObjectName(u"label_18")
-        self.label_18.setMaximumSize(QSize(250, 16777215))
+        self.label_18.setMaximumSize(QSize(220, 16777215))
         font4 = QFont()
         font4.setFamilies([u"Ms Shell Dlg 2"])
         font4.setBold(True)
@@ -714,7 +714,7 @@ class Ui_MainWindow(object):
 
         self.label_31 = QLabel(self.widget_5)
         self.label_31.setObjectName(u"label_31")
-        self.label_31.setMaximumSize(QSize(230, 16777215))
+        self.label_31.setMaximumSize(QSize(220, 16777215))
         self.label_31.setFont(font4)
         self.label_31.setStyleSheet(u"QLabel {\n"
 "    font-size: 20px;\n"
@@ -1111,8 +1111,8 @@ class Ui_MainWindow(object):
         self.pushButton_16.setText("")
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"yDegrees", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Population", None))
-        self.label_28.setText(QCoreApplication.translate("MainWindow", u"VulnerablePop", None))
-        self.label_29.setText(QCoreApplication.translate("MainWindow", u"WorkingPop", None))
+        self.label_28.setText(QCoreApplication.translate("MainWindow", u"AffectedPop", None))
+        self.label_29.setText(QCoreApplication.translate("MainWindow", u"MaxDistance", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"xDegrees", None))
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"Remarks", None))
         self.pushButton_15.setText("")

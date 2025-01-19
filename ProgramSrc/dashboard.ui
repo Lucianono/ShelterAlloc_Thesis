@@ -937,7 +937,7 @@ QStackedWidget{
                    <widget class="QLabel" name="label_18">
                     <property name="maximumSize">
                      <size>
-                      <width>250</width>
+                      <width>220</width>
                       <height>16777215</height>
                      </size>
                     </property>
@@ -1093,7 +1093,7 @@ QStackedWidget{
                   <item row="3" column="0">
                    <widget class="QLabel" name="label_28">
                     <property name="text">
-                     <string>VulnerablePop</string>
+                     <string>AffectedPop</string>
                     </property>
                    </widget>
                   </item>
@@ -1116,7 +1116,7 @@ QStackedWidget{
                   <item row="4" column="0">
                    <widget class="QLabel" name="label_29">
                     <property name="text">
-                     <string>WorkingPop</string>
+                     <string>MaxDistance</string>
                     </property>
                    </widget>
                   </item>
@@ -1332,7 +1332,7 @@ QStackedWidget{
                        <widget class="QLabel" name="label_31">
                         <property name="maximumSize">
                          <size>
-                          <width>230</width>
+                          <width>220</width>
                           <height>16777215</height>
                          </size>
                         </property>

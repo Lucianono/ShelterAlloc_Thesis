@@ -34,8 +34,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.load_comm_data()
         self.load_shel_data()
 
-        self.data = pd.read_excel(os.path.join(os.getcwd(), "commData.xlsx"), skiprows=1)
-        self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), skiprows=1)
+        self.data = pd.read_excel(os.path.join(os.getcwd(), "commData.xlsx"), header=0)
+        self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), header=0)
 
         #for value in self.data.iloc[:, 0]:
          #   button = self.findChild(QPushButton, f"barangay_{value}_btn")
@@ -104,7 +104,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def load_comm_data(self):
         try:
             file_path = os.path.join(os.getcwd(), "commData.xlsx")
-            self.data = pd.read_excel(file_path, usecols=[0], skiprows=[0])
+            self.data = pd.read_excel(file_path, usecols=['Name'])
 
             layout = self.communities_dropdown.layout()
 
@@ -115,10 +115,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128.png")
                 pixmap = QPixmap(icon_path)
 
-                pixmap = pixmap.scaled(31, 31)
+                pixmap = pixmap.scaled(24, 24)
 
                 picture_label.setPixmap(pixmap)
-                picture_label.setFixedSize(31, 31)
+                picture_label.setFixedSize(24, 24)
 
                 name_label = QLabel(str(value))
 
@@ -127,9 +127,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 button_icon = QPixmap(button_icon_path)
                 button.setIcon(button_icon)
-                button.setIconSize(QSize(41, 41))
+                button.setIconSize(QSize(30,30))
 
-                button.setFixedSize(41, 41)
+                button.setFixedSize(30,30)
 
                 button.setStyleSheet("background: transparent; border: none;")
 
@@ -143,6 +143,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 container_widget = QWidget()
                 container_widget.setLayout(hbox_layout)
+                container_widget.setStyleSheet("background: transparent;")
 
                 layout.addWidget(container_widget)
 
@@ -152,7 +153,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def load_shel_data(self):
         try:
             file_path = os.path.join(os.getcwd(), "shelData.xlsx")
-            self.shel_data = pd.read_excel(file_path, usecols=[0], skiprows=[0])
+            self.shel_data = pd.read_excel(file_path, usecols=['Name'])
 
             layout = self.verticalLayout_4.layout()
 
@@ -163,10 +164,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (1).png")
                 pixmap = QPixmap(icon_path)
 
-                pixmap = pixmap.scaled(31, 31)
+                pixmap = pixmap.scaled(24, 24)
 
                 picture_label.setPixmap(pixmap)
-                picture_label.setFixedSize(31, 31)
+                picture_label.setFixedSize(24, 24)
 
                 name_label = QLabel(str(value))
 
@@ -175,9 +176,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 button_icon = QPixmap(button_icon_path)
                 button.setIcon(button_icon)
-                button.setIconSize(QSize(41, 41))
+                button.setIconSize(QSize(30,30))
 
-                button.setFixedSize(41, 41)
+                button.setFixedSize(30,30)
 
                 button.setStyleSheet("background: transparent; border: none;")
 
@@ -206,31 +207,39 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if button_name.startswith("barangay_"):
             self.page.show()
             self.page_2.hide()
-            row = self.data[self.data.iloc[:, 0] == value].index[0]
+            row = self.data[self.data['Name'] == value].index[0]
 
-            self.label_18.setText(str(self.data.iloc[row, 0]))
+            self.label_18.setText(str(self.data.loc[row, 'Name']))
 
-            self.plainTextEdit.setPlainText(str(self.data.iloc[row, 1]))
-            self.plainTextEdit_2.setPlainText(str(self.data.iloc[row, 2]))
-            self.plainTextEdit_3.setPlainText(str(self.data.iloc[row, 3]))
-            self.plainTextEdit_4.setPlainText(str(self.data.iloc[row, 4]))
-            self.plainTextEdit_5.setPlainText(str(self.data.iloc[row, 5]))
-            self.plainTextEdit_6.setPlainText(str(self.data.iloc[row, 6]))
+            self.plainTextEdit.setPlainText(str(self.data.loc[row, 'xDegrees']))
+            self.plainTextEdit_2.setPlainText(str(self.data.loc[row, 'yDegrees']))
+            self.plainTextEdit_3.setPlainText(str(self.data.loc[row, 'Population']))
+            self.plainTextEdit_4.setPlainText(str(self.data.loc[row, 'AffectedPop']))
+            self.plainTextEdit_5.setPlainText(str(self.data.loc[row, 'MaxDistance']))
+            self.plainTextEdit_6.setPlainText(str(self.data.loc[row, 'Remarks']).replace('nan', ''))
 
         elif button_name.startswith("shelter_"):
             self.stackedWidget.setCurrentWidget(self.page_2)
             self.page_2.show()
             self.page.hide()
-            row = self.shel_data[self.shel_data.iloc[:, 0] == value].index[0]
+            print(self.shel_data.columns)
+            row = self.shel_data[self.shel_data['Name'] == value].index[0]
 
-            self.label_31.setText(str(self.shel_data.iloc[row, 0]))
+            self.label_31.setText(str(self.shel_data.loc[row, 'Name']))
 
-            self.plainTextEdit_11.setPlainText(str(self.shel_data.iloc[row, 1]))
-            self.plainTextEdit_10.setPlainText(str(self.shel_data.iloc[row, 2]))
-            self.plainTextEdit_8.setPlainText(str(self.shel_data.iloc[row, 3]))
-            self.plainTextEdit_12.setPlainText(str(self.shel_data.iloc[row, 4]))
-            self.plainTextEdit_13.setPlainText(str(self.shel_data.iloc[row, 5]))
-            self.plainTextEdit_14.setPlainText(str(self.shel_data.iloc[row, 6]))
+            self.plainTextEdit_11.setPlainText(str(self.shel_data.loc[row, 'xDegrees']))
+            self.plainTextEdit_10.setPlainText(str(self.shel_data.loc[row, 'yDegrees']))
+            self.plainTextEdit_8.setPlainText(str(self.shel_data.loc[row, 'Area1']))
+            self.plainTextEdit_12.setPlainText(str(self.shel_data.loc[row, 'Cost1']))
+            self.plainTextEdit_13.setPlainText(str(self.shel_data.loc[row, 'Area2']))
+            self.plainTextEdit_14.setPlainText(str(self.shel_data.loc[row, 'Cost2']))
+            self.checkBox_17.setChecked(self.shel_data.loc[row, 'ResToFlood'])
+            self.checkBox_18.setChecked(self.shel_data.loc[row, 'ResToTyphoon'])
+            self.checkBox_19.setChecked(self.shel_data.loc[row, 'ResToEarthquake'])
+            status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 2}
+            self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
+            self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
+            
 
             self.page_2.update()
             self.stackedWidget.update()

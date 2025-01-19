@@ -98,12 +98,21 @@ class EntityManagementComm(QDialog):
             
     def save_to_excel(self, table_widget, file_name, dialog, expected_types):
         data = []
-        headers = ['Active'] + [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
+        
+        hadActiveColumn = True
+        headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
+        if 'Active' not in headers:
+            headers = ['Active'] + headers
+            hadActiveColumn = False
         
         for row in range(table_widget.rowCount()):
-            # Get the active switch state
-            active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
-            row_data = [active_switch] + [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
+            row_data = [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
+            
+            if not hadActiveColumn:
+                # Get the active switch state
+                active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
+                row_data = [active_switch] + row_data
+
             data.append(row_data)
 
         if data:
@@ -140,15 +149,25 @@ class EntityManagementComm(QDialog):
 
     def populate_table(self, table_widget, data):
         table_widget.setRowCount(0)
-        table_widget.setColumnCount(len(data.columns) + 2)
-        table_widget.setHorizontalHeaderLabels(['Active'] + list(data.columns) + ['Delete'])
+
+        hadActiveColumn = True
+        headers = list(data.columns) + ['Delete']
+        if 'Active' not in headers:
+            headers = ['Active'] + headers
+            hadActiveColumn = False
+        table_widget.setColumnCount(len(headers))
+        table_widget.setHorizontalHeaderLabels(headers)
 
         for row_idx, row_data in data.iterrows():
             row_position = table_widget.rowCount()
             table_widget.insertRow(row_position)
-            is_active = row_data.get('Active', False) == True
+            is_active = row_data.get('Active', True) == True
             self.add_switch(table_widget, row_position, is_active)
             
+            #remove Active if Active already exists
+            if hadActiveColumn:
+                row_data = row_data[1:] 
+
             for col_idx, value in enumerate(row_data, start=1):
                 item = QTableWidgetItem(str(value))
                 table_widget.setItem(row_position, col_idx, item)

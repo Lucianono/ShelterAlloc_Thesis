@@ -1,7 +1,7 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout
 from PySide6.QtGui import QIcon, QCursor
-from PySide6.QtCore import Qt, QUrl
+from PySide6.QtCore import Qt, QUrl, QPropertyAnimation, QRect
 from ui_entityManagement import Ui_EntityManagementCommunities
 import pandas as pd
 import os
@@ -98,10 +98,12 @@ class EntityManagementComm(QDialog):
             
     def save_to_excel(self, table_widget, file_name, dialog, expected_types):
         data = []
-        headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
+        headers = ['Active'] + [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
         
         for row in range(table_widget.rowCount()):
-            row_data = [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
+            # Get the active switch state
+            active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
+            row_data = [active_switch] + [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
             data.append(row_data)
 
         if data:
@@ -129,7 +131,7 @@ class EntityManagementComm(QDialog):
     def add_row(self, table_widget):
         row_position = table_widget.rowCount()
         table_widget.insertRow(row_position)
-        self.add_checkbox(table_widget, row_position)
+        self.add_switch(table_widget, row_position)
 
         for col in range(1, table_widget.columnCount() - 1):
             table_widget.setItem(row_position, col, QTableWidgetItem(""))
@@ -139,12 +141,13 @@ class EntityManagementComm(QDialog):
     def populate_table(self, table_widget, data):
         table_widget.setRowCount(0)
         table_widget.setColumnCount(len(data.columns) + 2)
-        table_widget.setHorizontalHeaderLabels(['Select'] + list(data.columns) + ['Delete'])
+        table_widget.setHorizontalHeaderLabels(['Active'] + list(data.columns) + ['Delete'])
 
         for row_idx, row_data in data.iterrows():
             row_position = table_widget.rowCount()
             table_widget.insertRow(row_position)
-            self.add_checkbox(table_widget, row_position)
+            is_active = row_data.get('Active', False) == True
+            self.add_switch(table_widget, row_position, is_active)
             
             for col_idx, value in enumerate(row_data, start=1):
                 item = QTableWidgetItem(str(value))
@@ -154,15 +157,72 @@ class EntityManagementComm(QDialog):
 
         table_widget.resizeColumnsToContents()
 
-    def add_checkbox(self, table_widget, row_position):
-        check_box_widget = QWidget()
-        layout = QHBoxLayout(check_box_widget)
+    def add_switch(self, table_widget, row_position, is_active=False):
+        switch_widget = QWidget()
+        layout = QHBoxLayout(switch_widget)
         layout.setAlignment(Qt.AlignCenter)
-        check_box_widget.setLayout(layout)
-        checkbox = QCheckBox()
-        layout.addWidget(checkbox)
         layout.setContentsMargins(0, 0, 0, 0)
-        table_widget.setCellWidget(row_position, 0, check_box_widget)
+
+        # Create the switch
+        switch = QPushButton()
+        switch.setCheckable(True)
+        switch.setChecked(is_active)
+        switch.setFixedSize(40, 20)  # Set the switch size
+        switch.setStyleSheet("""
+            QPushButton {
+                background-color: #ccc;
+                border-radius: 10px;
+            }
+            QPushButton::indicator {
+                width: 0;  /* Hide default indicator */
+            }
+        """)
+
+        # Create a circle (knob) for the switch
+        knob = QPushButton(switch)
+        knob.setFixedSize(16, 16)
+        knob.setStyleSheet("""
+            QPushButton {
+                background-color: white;
+                border-radius: 8px;
+            }
+        """)
+        knob.move(22 if is_active else 2, 2)  # Initial position for the knob (left side)
+
+        # Create a unique animation instance for this switch
+        animation = QPropertyAnimation(knob, b"geometry")
+        animation.setDuration(200)
+
+        # Connect the toggle functionality
+        switch.clicked.connect(lambda: self.toggle_switch_animation(switch, knob, animation))
+
+        # Add the switch to the layout
+        layout.addWidget(switch)
+        table_widget.setCellWidget(row_position, 0, switch_widget)
+
+    def toggle_switch_animation(self, switch, knob, animation):
+        if switch.isChecked():
+            # Move knob to the right
+            animation.setStartValue(QRect(2, 2, 16, 16))
+            animation.setEndValue(QRect(22, 2, 16, 16))
+            switch.setStyleSheet("""
+                QPushButton {
+                    background-color: #4CAF50;
+                    border-radius: 10px;
+                }
+            """)
+        else:
+            # Move knob to the left
+            animation.setStartValue(QRect(22, 2, 16, 16))
+            animation.setEndValue(QRect(2, 2, 16, 16))  # Reset to left side
+            switch.setStyleSheet("""
+                QPushButton {
+                    background-color: #ccc;
+                    border-radius: 10px;
+                }
+            """)
+        animation.start()
+
 
     def add_delete_button(self, table_widget, row_position):
         delete_btn_widget = QWidget()
@@ -184,16 +244,6 @@ class EntityManagementComm(QDialog):
             table_widget.removeRow(row_position)
             self.reconnect_delete_buttons(table_widget)
 
-    def add_row(self, table_widget):
-        row_position = table_widget.rowCount()
-        table_widget.insertRow(row_position)
-        self.add_checkbox(table_widget, row_position)
-
-        for col in range(1, table_widget.columnCount() - 1):
-            table_widget.setItem(row_position, col, QTableWidgetItem(""))
-
-        self.add_delete_button(table_widget, row_position)
-
     def reconnect_delete_buttons(self, table_widget):
         for row in range(table_widget.rowCount()):
             delete_btn_widget = table_widget.cellWidget(row, table_widget.columnCount() - 1)
@@ -201,4 +251,3 @@ class EntityManagementComm(QDialog):
                 delete_btn = delete_btn_widget.findChild(QPushButton)
                 delete_btn.clicked.disconnect()
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
-    

@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QLabel, QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
 from PySide6.QtGui import QAction, QColor, QIcon, QCursor, QPixmap
-from PySide6.QtCore import Qt, QUrl, QTimer, QSize
+from PySide6.QtCore import Qt, QUrl, QTimer, QSize, QRect, QPropertyAnimation
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEngineSettings
 from functools import partial
@@ -61,6 +61,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.advanced_settings_com.clicked.connect(self.open_entitymanagement_dialog)
         self.advanced_settings_shel.clicked.connect(self.open_entitymanagement_shelter_dialog)
         self.solve_btn.clicked.connect(self.open_solve_settings_dialog)
+        
+        # swap checkboxes to switches
+        self.switch_1 = self.add_switch(self.checkBox_15)
+        self.switch_2 = self.add_switch(self.checkBox_16)
 
         self.menu = QMenu(self)
         self.show()
@@ -211,7 +215,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.page_2.hide()
             row = self.data[self.data['Name'] == value].index[0]
 
-            self.plainTextEdit_7.setPlainText(str(self.data.loc[row, 'Name']))
+            self.switch_1.setChecked(self.data.loc[row, 'Active'])
+            self.switch_1.toggle_animation()
+
+            self.plainTextEdit_15.setPlainText(str(self.data.loc[row, 'Name']))
 
             self.plainTextEdit.setPlainText(str(self.data.loc[row, 'xDegrees']))
             self.plainTextEdit_2.setPlainText(str(self.data.loc[row, 'yDegrees']))
@@ -220,11 +227,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_5.setPlainText(str(self.data.loc[row, 'MaxDistance']))
             self.plainTextEdit_6.setPlainText(str(self.data.loc[row, 'Remarks']).replace('nan', ''))
 
+            self.page.update()
+            self.stackedWidget.update()
+
         elif button_name.startswith("shelter_"):
             self.stackedWidget.setCurrentWidget(self.page_2)
             self.page_2.show()
             self.page.hide()
             row = self.shel_data[self.shel_data['Name'] == value].index[0]
+
+            self.switch_2.setChecked(self.shel_data.loc[row, 'Active'])
+            self.switch_2.toggle_animation()
 
             self.plainTextEdit_9.setPlainText(str(self.shel_data.loc[row, 'Name']))
 
@@ -478,3 +491,87 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to update map: {e}")
+
+    def add_switch(self, checkbox, is_active=False):
+        # Get the layout of the parent widget
+        layout = checkbox.parentWidget().layout()
+
+        # Create the switch container widget
+        switch_widget = QWidget()
+        switch_layout = QHBoxLayout(switch_widget)
+        switch_layout.setAlignment(Qt.AlignCenter)
+        switch_layout.setContentsMargins(0, 0, 0, 0)
+
+
+        # Create the switch
+        switch = QPushButton()
+        switch.setCheckable(True)
+        switch.setChecked(is_active)
+        switch.setFixedSize(38, 18)  # Set the switch size
+        switch.setStyleSheet(
+            "QPushButton { background-color: #4CAF50; border-radius: 8px; }" 
+            if switch.isChecked() else 
+            "QPushButton { background-color: #ccc; border-radius: 8px; }"
+        )
+        
+        # Set an object name for the switch
+        switch.setObjectName(checkbox.objectName().replace("checkBox", "switch"))
+
+        # Create a circle (knob) for the switch
+        knob = QPushButton(switch)
+        knob.setFixedSize(14, 14)
+        knob.setStyleSheet("""
+            QPushButton {
+                background-color: white;
+                border-radius: 7px;
+            }
+        """)
+        knob.move(22 if is_active else 2, 2)  # Initial position for the knob (left side)
+        switch.knob = knob
+
+        # Animation for toggling
+        animation = QPropertyAnimation(knob, b"geometry")
+        animation.setDuration(200)
+
+        # Connect the toggle functionality
+        switch.clicked.connect(lambda: toggle_switch_animation())
+
+        # Delegate knob clicks to the switch
+        def knob_mouse_press(event):
+            switch.click()  # Simulate a click on the switch
+            super(knob.__class__, knob).mousePressEvent(event)
+
+        knob.mousePressEvent = knob_mouse_press
+
+        def toggle_switch_animation():
+            if switch.isChecked():
+                # Move knob to the right
+                animation.setStartValue(QRect(2, 2, 16, 16))
+                animation.setEndValue(QRect(22, 2, 16, 16))
+                switch.setStyleSheet("""
+                    QPushButton {
+                        background-color: #4CAF50;
+                        border-radius: 8px;
+                    }
+                """)
+            else:
+                # Move knob to the left
+                animation.setStartValue(QRect(22, 2, 16, 16))
+                animation.setEndValue(QRect(2, 2, 16, 16))  # Reset to left side
+                switch.setStyleSheet("""
+                    QPushButton {
+                        background-color: #ccc;
+                        border-radius: 8px;
+                    }
+                """)
+            animation.start()
+
+        # Add the switch to the layout
+        switch_layout.addWidget(switch)
+        layout.replaceWidget(checkbox, switch_widget)  # Replace the checkbox with the switch
+        checkbox.deleteLater()  # Remove the old checkbox
+        switch.toggle_animation = toggle_switch_animation
+
+        return switch
+
+    

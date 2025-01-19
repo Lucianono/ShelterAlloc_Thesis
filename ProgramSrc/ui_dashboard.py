@@ -662,23 +662,23 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.plainTextEdit_6, 6, 2, 1, 1)
 
-        self.label_21 = QLabel(self.widget_4)
-        self.label_21.setObjectName(u"label_21")
-        self.label_21.setFont(font6)
+        self.label_23 = QLabel(self.widget_4)
+        self.label_23.setObjectName(u"label_23")
+        self.label_23.setFont(font6)
 
-        self.gridLayout.addWidget(self.label_21, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_23, 0, 0, 1, 1)
 
-        self.plainTextEdit_7 = QPlainTextEdit(self.widget_4)
-        self.plainTextEdit_7.setObjectName(u"plainTextEdit_7")
-        sizePolicy3.setHeightForWidth(self.plainTextEdit_7.sizePolicy().hasHeightForWidth())
-        self.plainTextEdit_7.setSizePolicy(sizePolicy3)
-        self.plainTextEdit_7.setMaximumSize(QSize(206, 31))
+        self.horizontalSpacer_26 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout.addWidget(self.plainTextEdit_7, 0, 2, 1, 1)
+        self.gridLayout.addItem(self.horizontalSpacer_26, 0, 1, 1, 1)
 
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.plainTextEdit_15 = QPlainTextEdit(self.widget_4)
+        self.plainTextEdit_15.setObjectName(u"plainTextEdit_15")
+        sizePolicy3.setHeightForWidth(self.plainTextEdit_15.sizePolicy().hasHeightForWidth())
+        self.plainTextEdit_15.setSizePolicy(sizePolicy3)
+        self.plainTextEdit_15.setMaximumSize(QSize(206, 31))
 
-        self.gridLayout.addItem(self.horizontalSpacer_8, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.plainTextEdit_15, 0, 2, 1, 1)
 
 
         self.verticalLayout_14.addLayout(self.gridLayout)
@@ -1174,9 +1174,7 @@ class Ui_MainWindow(object):
         sizePolicy5.setHeightForWidth(self.webEngineView.sizePolicy().hasHeightForWidth())
         self.webEngineView.setSizePolicy(sizePolicy5)
         self.gridLayout_3 = QGridLayout(self.webEngineView)
-        self.gridLayout_3.setSpacing(0)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
 
         self.verticalLayout_16.addWidget(self.webEngineView)
 
@@ -1200,7 +1198,7 @@ class Ui_MainWindow(object):
 
         self.communities_dropdown_2.setDefault(False)
         self.add_community_btn.setDefault(False)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1241,7 +1239,7 @@ class Ui_MainWindow(object):
         self.label_29.setText(QCoreApplication.translate("MainWindow", u"MaxDistance", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"xDegrees", None))
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"Remarks", None))
-        self.label_21.setText(QCoreApplication.translate("MainWindow", u"Name", None))
+        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Name", None))
         self.mc_cancel_changes_btn.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
         self.mc_save_changes_btn.setText(QCoreApplication.translate("MainWindow", u"Save Changes", None))
         self.pushButton_15.setText("")

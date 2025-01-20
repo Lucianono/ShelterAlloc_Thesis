@@ -61,6 +61,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.advanced_settings_shel.clicked.connect(self.open_entitymanagement_shelter_dialog)
         self.solve_btn.clicked.connect(self.open_solve_settings_dialog)
         
+        self.mc_cancel_changes_btn.clicked.connect(self.open_solve_settings_dialog)
+        self.mc_cancel_changes_btn_2.clicked.connect(self.open_solve_settings_dialog)
+        self.mc_save_changes_btn.clicked.connect(self.open_solve_settings_dialog)
+        self.mc_save_changes_btn_2.clicked.connect(self.open_solve_settings_dialog)
+
+        
         # swap checkboxes to switches
         self.switch_1 = self.add_switch(self.checkBox_15)
         self.switch_2 = self.add_switch(self.checkBox_16)
@@ -592,4 +598,5 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         return switch
 
-    
+    def save_community_data_dashboard(self):
+        print("yey")

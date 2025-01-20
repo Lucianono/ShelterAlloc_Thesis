@@ -884,7 +884,7 @@ QStackedWidget{
             <enum>QFrame::Plain</enum>
            </property>
            <property name="currentIndex">
-            <number>0</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="page">
             <property name="sizePolicy">
@@ -1426,8 +1426,8 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>335</width>
-                  <height>729</height>
+                  <width>377</width>
+                  <height>750</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_11">

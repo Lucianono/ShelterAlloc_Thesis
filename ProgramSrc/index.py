@@ -72,13 +72,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
     def open_entitymanagement_dialog(self):
-        # Initialize EntityManagementComm and connect the signal
         self.entityManagementComm_Window = EntityManagementComm()
         self.entityManagementComm_Window.changes_saved.connect(self.load_comm_data)
         self.entityManagementComm_Window.show()
 
     def open_entitymanagement_shelter_dialog(self):
         self.entityManagementShelter_Window = EntityManagementShelter()
+        self.entityManagementShelter_Window.changes_saved.connect(self.load_shel_data)
         self.entityManagementShelter_Window.show()
 
     def open_solve_settings_dialog(self):
@@ -166,13 +166,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def load_shel_data(self):
 
+        layout = self.verticalLayout_19.layout()
+        
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget is not None:
+                widget.deleteLater()  # Properly delete the widget
+
         self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), header=0)
 
         try:
             file_path = os.path.join(os.getcwd(), "shelData.xlsx")
             self.data_Names = pd.read_excel(file_path, usecols=['Name'])
-
-            layout = self.verticalLayout_4.layout()
 
             for index, value in self.data_Names.iloc[:, 0].items():
                 hbox_layout = QHBoxLayout()

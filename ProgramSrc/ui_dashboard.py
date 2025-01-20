@@ -267,6 +267,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addWidget(self.advanced_settings_shel)
 
+        self.verticalLayout_19 = QVBoxLayout()
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+
+        self.verticalLayout_4.addLayout(self.verticalLayout_19)
+
 
         self.verticalLayout_8.addLayout(self.verticalLayout_4)
 

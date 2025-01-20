@@ -1,13 +1,16 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout
 from PySide6.QtGui import QIcon, QCursor
-from PySide6.QtCore import Qt, QUrl, QPropertyAnimation, QRect
+from PySide6.QtCore import Signal, Qt, QUrl, QPropertyAnimation, QRect
 from ui_entityManagementShelter import Ui_entityManagementShelter
 import pandas as pd
 import os
 from functools import partial
 
 class EntityManagementShelter(QDialog):
+
+    changes_saved = Signal()
+
     def __init__(self):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_entityManagementShelter()  # Create an instance of the UI class
@@ -135,7 +138,7 @@ class EntityManagementShelter(QDialog):
             if file_path:
                 try:
                     dataframe.to_excel(file_path, index=False)
-                    QMessageBox.information(self, "Success", f"File saved successfully as {file_path}")
+                    self.changes_saved.emit()
                     dialog.close()
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to save file: {e}")

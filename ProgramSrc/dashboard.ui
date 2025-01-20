@@ -476,6 +476,9 @@ color: #00B5FF;
                         </property>
                        </widget>
                       </item>
+                      <item>
+                       <layout class="QVBoxLayout" name="verticalLayout_19"/>
+                      </item>
                      </layout>
                     </item>
                    </layout>

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dashboard.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.2
+## Created by: Qt User Interface Compiler version 6.7.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -79,7 +79,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
-        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 348, 712))
+        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 319, 694))
         self.verticalLayout_7 = QVBoxLayout(self.scrollAreaWidgetContents_9)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.widget = QWidget(self.scrollAreaWidgetContents_9)
@@ -178,6 +178,11 @@ class Ui_MainWindow(object):
 "}")
 
         self.communities_dropdown.addWidget(self.advanced_settings_com)
+
+        self.verticalLayout_18 = QVBoxLayout()
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+
+        self.communities_dropdown.addLayout(self.verticalLayout_18)
 
 
         self.horizontalLayout_18.addLayout(self.communities_dropdown)
@@ -769,7 +774,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 371, 750))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 335, 729))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)

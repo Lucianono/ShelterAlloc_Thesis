@@ -31,12 +31,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.add_community_btn.clicked.connect(self.handle_add_community)
         self.add_shelter_btn.clicked.connect(self.handle_add_shelter)
 
+
         self.load_comm_data()
         self.load_shel_data()
 
-        self.data = pd.read_excel(os.path.join(os.getcwd(), "commData.xlsx"), header=0)
-        self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), header=0)
-
+        
         #for value in self.data.iloc[:, 0]:
          #   button = self.findChild(QPushButton, f"barangay_{value}_btn")
           #  if button:
@@ -73,7 +72,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
     def open_entitymanagement_dialog(self):
+        # Initialize EntityManagementComm and connect the signal
         self.entityManagementComm_Window = EntityManagementComm()
+        self.entityManagementComm_Window.changes_saved.connect(self.load_comm_data)
         self.entityManagementComm_Window.show()
 
     def open_entitymanagement_shelter_dialog(self):
@@ -106,13 +107,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.stackedWidget.show()
 
     def load_comm_data(self):
+        layout = self.verticalLayout_18.layout()
+        
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget is not None:
+                widget.deleteLater()  # Properly delete the widget
+
+        self.data = pd.read_excel(os.path.join(os.getcwd(), "commData.xlsx"), header=0)
+        
         try:
             file_path = os.path.join(os.getcwd(), "commData.xlsx")
-            self.data = pd.read_excel(file_path, usecols=['Name'])
+            self.data_Names = pd.read_excel(file_path, usecols=['Name'])
 
-            layout = self.communities_dropdown.layout()
-
-            for index, value in self.data.iloc[:, 0].items():
+            for index, value in self.data_Names.iloc[:, 0].items():
                 hbox_layout = QHBoxLayout()
 
                 picture_label = QLabel()
@@ -156,13 +165,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             QMessageBox.critical(self, "Error", f"Failed to load data: {e}")
 
     def load_shel_data(self):
+
+        self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), header=0)
+
         try:
             file_path = os.path.join(os.getcwd(), "shelData.xlsx")
-            self.shel_data = pd.read_excel(file_path, usecols=['Name'])
+            self.data_Names = pd.read_excel(file_path, usecols=['Name'])
 
             layout = self.verticalLayout_4.layout()
 
-            for index, value in self.shel_data.iloc[:, 0].items():
+            for index, value in self.data_Names.iloc[:, 0].items():
                 hbox_layout = QHBoxLayout()
 
                 picture_label = QLabel()

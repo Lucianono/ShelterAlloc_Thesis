@@ -1,13 +1,16 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout
 from PySide6.QtGui import QIcon, QCursor
-from PySide6.QtCore import Qt, QUrl, QPropertyAnimation, QRect
+from PySide6.QtCore import Signal, Qt, QUrl, QPropertyAnimation, QRect
 from ui_entityManagement import Ui_EntityManagementCommunities
 import pandas as pd
 import os
 from functools import partial
 
 class EntityManagementComm(QDialog):
+    
+    changes_saved = Signal()
+
     def __init__(self):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_EntityManagementCommunities()  # Create an instance of the UI class
@@ -127,7 +130,8 @@ class EntityManagementComm(QDialog):
             if file_path:
                 try:
                     dataframe.to_excel(file_path, index=False)
-                    QMessageBox.information(self, "Success", f"File saved successfully as {file_path}")
+                    self.changes_saved.emit()
+                    # self.index_Window = MainWindow
                     dialog.close()
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
@@ -279,3 +283,4 @@ class EntityManagementComm(QDialog):
                 delete_btn = delete_btn_widget.findChild(QPushButton)
                 delete_btn.clicked.disconnect()
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
+

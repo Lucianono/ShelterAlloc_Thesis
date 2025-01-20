@@ -78,7 +78,13 @@ class EntityManagementComm(QDialog):
                         bool_value = bool(int(value)) if value in [0, 1] else bool(value)
                         if bool_value not in [0, 1, True, False]:
                             raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a boolean.")
-
+                        
+        # Check for duplicate values in the "Name" column
+        if "Name" in data.columns:
+            duplicate_names = data["Name"][data["Name"].duplicated()]
+            if not duplicate_names.empty:
+                raise ValueError(f"Duplicate entries found in the 'Name' column: {', '.join(duplicate_names)}")
+                        
 
     def import_excel_data(self, table_widget, required_headers, expected_types):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Excel File", "", "Excel Files (*.xls *.xlsx)")
@@ -131,7 +137,6 @@ class EntityManagementComm(QDialog):
                 try:
                     dataframe.to_excel(file_path, index=False)
                     self.changes_saved.emit()
-                    # self.index_Window = MainWindow
                     dialog.close()
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to save file: {e}")

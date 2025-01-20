@@ -63,7 +63,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.mc_cancel_changes_btn.clicked.connect(self.open_solve_settings_dialog)
         self.mc_cancel_changes_btn_2.clicked.connect(self.open_solve_settings_dialog)
-        self.mc_save_changes_btn.clicked.connect(self.open_solve_settings_dialog)
         self.mc_save_changes_btn_2.clicked.connect(self.open_solve_settings_dialog)
 
         
@@ -250,6 +249,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_4.setPlainText(str(self.data.loc[row, 'AffectedPop']))
             self.plainTextEdit_5.setPlainText(str(self.data.loc[row, 'MaxDistance']))
             self.plainTextEdit_6.setPlainText(str(self.data.loc[row, 'Remarks']).replace('nan', ''))
+
+            #connect button for saving
+            self.mc_save_changes_btn.clicked.disconnect()
+            self.mc_save_changes_btn.clicked.connect(lambda: self.save_community_data_dashboard(str(self.data.loc[row, 'Name'])))
 
             self.page.update()
             self.stackedWidget.update()
@@ -598,5 +601,83 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         return switch
 
-    def save_community_data_dashboard(self):
-        print("yey")
+    # Validate the data
+    def validate_input_data(self, old_name, data, expected_types):
+        if data['Name'] in self.data['Name'].values and data['Name'] != old_name:
+            raise ValueError(f"Duplicate entry found for 'Name': {data['Name']}.")
+
+        for key, expected_type in expected_types.items():
+            value = data.get(key)
+            if value is None:
+                raise ValueError(f"Missing value for {key}.")
+            
+            if pd.isnull(value):
+                continue  # Allow NaN/None values
+            
+            try:
+                # Attempt type conversion
+                if expected_type == int:
+                    int(value)
+                elif expected_type == float:
+                    float(value)
+                elif expected_type == str:
+                    str(value)
+            except ValueError:
+                raise ValueError(f"Invalid type for {key}. Expected {expected_type.__name__}, got {type(value).__name__}.")
+            
+        
+
+    def save_community_data_dashboard(self, old_data_name):
+                
+        data_active = self.switch_1.isChecked()
+        data_name = self.plainTextEdit_15.toPlainText()
+        data_xDegrees = self.plainTextEdit.toPlainText()
+        data_yDegrees = self.plainTextEdit_2.toPlainText()
+        data_population = self.plainTextEdit_3.toPlainText()
+        data_affectedPop = self.plainTextEdit_4.toPlainText()
+        data_maxDistance = self.plainTextEdit_5.toPlainText()
+        data_remarks = self.plainTextEdit_6.toPlainText()
+
+        # Validate the input
+        new_row = {
+            "Active": data_active,
+            "Name": data_name,
+            "xDegrees": data_xDegrees,
+            "yDegrees": data_yDegrees,
+            "Population": data_population,
+            "AffectedPop": data_affectedPop,
+            "MaxDistance": data_maxDistance,
+            "Remarks": data_remarks,
+        }
+        expected_types = {
+            'Name': str,
+            'xDegrees': float,
+            'yDegrees': float,
+            'Population': int,
+            'AffectedPop': int,
+            'MaxDistance': float,
+            'Remarks': str
+        }
+        try:
+            self.validate_input_data(old_data_name, new_row, expected_types)
+            print("All data is valid.")
+        except ValueError as e:
+            QMessageBox.critical(self, "Error", f"{e}")
+            return
+        
+        row_idx = self.data.loc[self.data["Name"] == old_data_name].index[0]
+        self.data.loc[row_idx, "Active"] = data_active
+        self.data.loc[row_idx, "Name"] = data_name
+        self.data.loc[row_idx, "xDegrees"] = float(data_xDegrees)
+        self.data.loc[row_idx, "yDegrees"] = float(data_yDegrees)
+        self.data.loc[row_idx, "Population"] = int(data_population)
+        self.data.loc[row_idx, "AffectedPop"] = int(data_affectedPop)
+        self.data.loc[row_idx, "MaxDistance"] = float(data_maxDistance)
+        self.data.loc[row_idx, "Remarks"] = data_remarks
+
+        # Save the updated DataFrame back to the Excel file
+        file_path = os.path.join(os.getcwd(), "commData.xlsx")
+        with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
+            self.data.to_excel(writer, index=False)
+
+        self.load_comm_data()

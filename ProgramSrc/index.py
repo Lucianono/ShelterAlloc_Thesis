@@ -232,6 +232,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if button_name.startswith("barangay_"):
             self.page.show()
             self.page_2.hide()
+            self.label_18.setText("Edit Community")
             row = self.data[self.data['Name'] == value].index[0]
 
             self.switch_1.setChecked(self.data.loc[row, 'Active'])
@@ -247,6 +248,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_6.setPlainText(str(self.data.loc[row, 'Remarks']).replace('nan', ''))
 
             #connect button for saving
+            self.mc_cancel_changes_btn.show()
             self.mc_save_changes_btn.clicked.disconnect()
             self.mc_cancel_changes_btn.clicked.disconnect()
             self.mc_save_changes_btn.clicked.connect(lambda: self.save_community_data_dashboard(str(self.data.loc[row, 'Name'])))
@@ -289,12 +291,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.stackedWidget.update()
 
     def handle_add_community(self):
-        if not self.is_adding_community:
-            self.is_adding_community = True
-            self.open_add_community_page()
-        else:
-            self.save_community_to_excel()
-            self.is_adding_community = False
+        self.open_add_community_page()
+
 
     def handle_add_shelter(self):
         if not self.is_adding_shelter:
@@ -305,12 +303,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.is_adding_shelter = False
 
     def open_add_community_page(self):
+        self.label_18.setText("New Community")
+
+        self.mc_cancel_changes_btn.hide()
+
+        self.switch_1.setChecked(True)
+        self.switch_1.toggle_animation()
+
         self.plainTextEdit.clear()
         self.plainTextEdit_2.clear()
         self.plainTextEdit_3.clear()
         self.plainTextEdit_4.clear()
         self.plainTextEdit_5.clear()
         self.plainTextEdit_6.clear()
+        self.plainTextEdit_15.clear()
+
+        self.mc_save_changes_btn.clicked.disconnect()
+        self.mc_save_changes_btn.clicked.connect(lambda: self.save_community_data_dashboard("c0mmN3wc0d3"))
+       
 
         self.stackedWidget.setCurrentWidget(self.page)
         self.stackedWidget.show()
@@ -614,8 +624,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if value is None:
                 raise ValueError(f"Missing value for {key}.")
             
-            if pd.isnull(value):
-                continue  # Allow NaN/None values
+            if (pd.isnull(value) or value == '') and key != "Remarks":
+                raise ValueError(f"Missing value for {key}.")
             
             try:
                 # Attempt type conversion
@@ -668,15 +678,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             QMessageBox.critical(self, "Error", f"{e}")
             return
         
-        row_idx = self.data.loc[self.data["Name"] == old_data_name].index[0]
-        self.data.loc[row_idx, "Active"] = data_active
-        self.data.loc[row_idx, "Name"] = data_name
-        self.data.loc[row_idx, "xDegrees"] = float(data_xDegrees)
-        self.data.loc[row_idx, "yDegrees"] = float(data_yDegrees)
-        self.data.loc[row_idx, "Population"] = int(data_population)
-        self.data.loc[row_idx, "AffectedPop"] = int(data_affectedPop)
-        self.data.loc[row_idx, "MaxDistance"] = float(data_maxDistance)
-        self.data.loc[row_idx, "Remarks"] = data_remarks
+
+        if (old_data_name == "c0mmN3wc0d3") :
+            new_row = pd.DataFrame([new_row])
+            self.data = pd.concat([self.data, new_row], ignore_index=True) 
+        else :
+            row_idx = self.data.loc[self.data["Name"] == old_data_name].index[0]
+            self.data.loc[row_idx, "Active"] = data_active
+            self.data.loc[row_idx, "Name"] = data_name
+            self.data.loc[row_idx, "xDegrees"] = float(data_xDegrees)
+            self.data.loc[row_idx, "yDegrees"] = float(data_yDegrees)
+            self.data.loc[row_idx, "Population"] = int(data_population)
+            self.data.loc[row_idx, "AffectedPop"] = int(data_affectedPop)
+            self.data.loc[row_idx, "MaxDistance"] = float(data_maxDistance)
+            self.data.loc[row_idx, "Remarks"] = data_remarks
 
         # Save the updated DataFrame back to the Excel file
         file_path = os.path.join(os.getcwd(), "commData.xlsx")
@@ -761,25 +776,32 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.load_shel_data()
 
     def delete_community_data_dashboard(self, old_data_name):
-        row_idx = self.data.loc[self.data["Name"] == old_data_name].index[0]
-        self.data = self.data.drop(index = row_idx)
         
-        # Save the updated DataFrame back to the Excel file
-        file_path = os.path.join(os.getcwd(), "commData.xlsx")
-        with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
-            self.data.to_excel(writer, index=False)
+        response = QMessageBox.question(self, "Delete Confirmation", "Are you sure you want to delete this item?", QMessageBox.Yes | QMessageBox.No)
+        if response == QMessageBox.Yes:
+            row_idx = self.data.loc[self.data["Name"] == old_data_name].index[0]
+            self.data = self.data.drop(index = row_idx)
+            
+            # Save the updated DataFrame back to the Excel file
+            file_path = os.path.join(os.getcwd(), "commData.xlsx")
+            with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
+                self.data.to_excel(writer, index=False)
 
-        self.stackedWidget.hide()
-        self.load_comm_data()
+            self.stackedWidget.hide()
+            self.load_comm_data()
 
     def delete_shelter_data_dashboard(self, old_data_name):
-        row_idx = self.shel_data.loc[self.shel_data["Name"] == old_data_name].index[0]
-        self.shel_data = self.shel_data.drop(index = row_idx)
-        
-        # Save the updated DataFrame back to the Excel file
-        file_path = os.path.join(os.getcwd(), "shelData.xlsx")
-        with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
-            self.shel_data.to_excel(writer, index=False)
 
-        self.stackedWidget.hide()
-        self.load_shel_data()
+        response = QMessageBox.question(self, "Delete Confirmation", "Are you sure you want to delete this item?", QMessageBox.Yes | QMessageBox.No)
+        if response == QMessageBox.Yes:
+
+            row_idx = self.shel_data.loc[self.shel_data["Name"] == old_data_name].index[0]
+            self.shel_data = self.shel_data.drop(index = row_idx)
+            
+            # Save the updated DataFrame back to the Excel file
+            file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+            with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
+                self.shel_data.to_excel(writer, index=False)
+
+            self.stackedWidget.hide()
+            self.load_shel_data()

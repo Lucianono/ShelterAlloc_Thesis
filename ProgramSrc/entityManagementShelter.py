@@ -59,6 +59,12 @@ class EntityManagementShelter(QDialog):
         for column, expected_type in expected_types.items():
             if column not in data.columns:
                 raise ValueError(f"Missing expected column: {column}")
+            
+            # Check for duplicate values in the "Name" column
+            if "Name" in data.columns:
+                duplicate_names = data["Name"][data["Name"].duplicated()]
+                if not duplicate_names.empty:
+                    raise ValueError(f"Duplicate entries found in the 'Name' column: {', '.join(duplicate_names)}")
 
             for idx, value in enumerate(data[column]):
                 if pd.isnull(value):

@@ -63,7 +63,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.mc_cancel_changes_btn.clicked.connect(self.open_solve_settings_dialog)
         self.mc_cancel_changes_btn_2.clicked.connect(self.open_solve_settings_dialog)
-        self.mc_save_changes_btn_2.clicked.connect(self.open_solve_settings_dialog)
 
         
         # swap checkboxes to switches
@@ -280,8 +279,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 2}
             self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
             self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
-            
 
+            #connect button for saving
+            self.mc_save_changes_btn_2.clicked.disconnect()
+            self.mc_save_changes_btn_2.clicked.connect(lambda: self.save_shelter_data_dashboard(str(self.shel_data.loc[row, 'Name'])))
+            
             self.page_2.update()
             self.stackedWidget.update()
 
@@ -681,3 +683,78 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.data.to_excel(writer, index=False)
 
         self.load_comm_data()
+
+    def save_shelter_data_dashboard(self, old_data_name):
+        data_active = self.switch_2.isChecked()
+        data_name = self.plainTextEdit_9.toPlainText()
+        data_xDegrees = self.plainTextEdit_11.toPlainText()
+        data_yDegrees = self.plainTextEdit_10.toPlainText()
+        data_area1 = self.plainTextEdit_8.toPlainText()
+        data_cost1 = self.plainTextEdit_12.toPlainText()
+        data_area2 = self.plainTextEdit_13.toPlainText()
+        data_cost2 = self.plainTextEdit_14.toPlainText()
+        data_resFlood = self.checkBox_17.isChecked()
+        data_resTyphoon = self.checkBox_18.isChecked()
+        data_resEarthquake = self.checkBox_19.isChecked()
+        status_mapping = ["Built", "Partially Built", "Damaged", "Empty Lot"]
+        data_status = status_mapping[self.status_comboBox_2.currentIndex()]
+        data_remarks = self.plainTextEdit_17.toPlainText()
+
+        # Validate the input
+        new_row = {
+            "Active": data_active,
+            "Name": data_name,
+            "xDegrees": data_xDegrees,
+            "yDegrees": data_yDegrees,
+            'Area1': data_area1,
+            'Cost1': data_cost1,
+            'Area2': data_area2,
+            'Cost2': data_cost2,
+            'ResToFlood': data_resFlood,
+            'ResToTyphoon': data_resTyphoon,
+            'ResToEarthquake': data_resEarthquake,
+            'Status': data_status,
+            "Remarks": data_remarks,
+        }
+        expected_types = {
+            'Name': str,
+            'xDegrees': float,
+            'yDegrees': float,
+            'Area1': float,
+            'Cost1': float,
+            'Area2': float,
+            'Cost2': float,
+            'ResToFlood': bool,
+            'ResToTyphoon': bool,
+            'ResToEarthquake': bool,
+            'Status': str,
+            'Remarks': str
+        }
+        try:
+            self.validate_input_data(old_data_name, new_row, expected_types)
+            print("All data is valid.")
+        except ValueError as e:
+            QMessageBox.critical(self, "Error", f"{e}")
+            return
+        
+        row_idx = self.shel_data.loc[self.shel_data["Name"] == old_data_name].index[0]
+        self.shel_data.loc[row_idx, "Active"] = data_active
+        self.shel_data.loc[row_idx, "Name"] = data_name
+        self.shel_data.loc[row_idx, "xDegrees"] = float(data_xDegrees)
+        self.shel_data.loc[row_idx, "yDegrees"] = float(data_yDegrees)
+        self.shel_data.loc[row_idx, "Area1"] = float(data_area1)
+        self.shel_data.loc[row_idx, "Cost1"] = float(data_cost1)
+        self.shel_data.loc[row_idx, "Area2"] = float(data_area2)
+        self.shel_data.loc[row_idx, "Cost2"] = float(data_cost2)
+        self.shel_data.loc[row_idx, "ResToFlood"] = data_resFlood
+        self.shel_data.loc[row_idx, "ResToTyphoon"] = data_resTyphoon
+        self.shel_data.loc[row_idx, "ResToEarthquake"] = data_resEarthquake
+        self.shel_data.loc[row_idx, "Status"] = data_status
+        self.shel_data.loc[row_idx, "Remarks"] = data_remarks
+
+        # Save the updated DataFrame back to the Excel file
+        file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+        with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
+            self.shel_data.to_excel(writer, index=False)
+
+        self.load_shel_data()

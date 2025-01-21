@@ -84,6 +84,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def open_solve_settings_dialog(self):
         self.solveSettings_Window = SolveSettingsDialog()
+        self.solveSettings_Window.changes_saved_comm.connect(self.load_comm_data)
+        self.solveSettings_Window.changes_saved_shel.connect(self.load_shel_data)
         self.solveSettings_Window.show()
 
     def check_for_optimized_map_update(self):

@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QDialog, QLabel, QMessageBox, QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QSizePolicy, QCheckBox
-from PySide6.QtCore import Qt, QPropertyAnimation, QRect, QEasingCurve
+from PySide6.QtCore import Signal, Qt, QPropertyAnimation, QRect, QEasingCurve
 from ui_solveSettings import Ui_solveSettings
 from entityManagementComm import EntityManagementComm
 from entityManagementShelter import EntityManagementShelter
@@ -10,6 +10,10 @@ from solvingProgress import SolvingProgress
 import pandas as pd
 
 class SolveSettingsDialog(QDialog):
+
+    changes_saved_comm = Signal()
+    changes_saved_shel = Signal()
+
     def __init__(self):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_solveSettings()  # Create an instance of the UI class
@@ -82,10 +86,12 @@ class SolveSettingsDialog(QDialog):
 
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
+        self.entityManagementComm_Window.changes_saved.connect(self.load_and_display_community_data)
         self.entityManagementComm_Window.show()
 
     def open_entitymanagement_shelter_dialog(self):
         self.entityManagementShelter_Window = EntityManagementShelter()
+        self.entityManagementShelter_Window.changes_saved.connect(self.load_and_display_shelter_data)
         self.entityManagementShelter_Window.show()
     
     def open_model_advanced_settings_dialog(self):
@@ -136,6 +142,8 @@ class SolveSettingsDialog(QDialog):
                 name_label.setStyleSheet("color: black; background-color: white;")
                 self.community_layout.addWidget(name_label)
 
+            self.changes_saved_comm.emit()
+
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
 
@@ -172,6 +180,8 @@ class SolveSettingsDialog(QDialog):
                 name_label = QLabel(name)
                 name_label.setStyleSheet("color: black; background-color: white;")
                 self.shelter_layout.addWidget(name_label)
+
+            self.changes_saved_shel.emit()
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")

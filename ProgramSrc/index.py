@@ -60,9 +60,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.advanced_settings_com.clicked.connect(self.open_entitymanagement_dialog)
         self.advanced_settings_shel.clicked.connect(self.open_entitymanagement_shelter_dialog)
         self.solve_btn.clicked.connect(self.open_solve_settings_dialog)
-        
-        self.mc_cancel_changes_btn.clicked.connect(self.open_solve_settings_dialog)
-        self.mc_cancel_changes_btn_2.clicked.connect(self.open_solve_settings_dialog)
 
         
         # swap checkboxes to switches
@@ -251,7 +248,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             #connect button for saving
             self.mc_save_changes_btn.clicked.disconnect()
+            self.mc_cancel_changes_btn.clicked.disconnect()
             self.mc_save_changes_btn.clicked.connect(lambda: self.save_community_data_dashboard(str(self.data.loc[row, 'Name'])))
+            self.mc_cancel_changes_btn.clicked.connect(lambda: self.delete_community_data_dashboard(str(self.data.loc[row, 'Name'])))
 
             self.page.update()
             self.stackedWidget.update()
@@ -282,7 +281,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             #connect button for saving
             self.mc_save_changes_btn_2.clicked.disconnect()
+            self.mc_cancel_changes_btn_2.clicked.disconnect()
             self.mc_save_changes_btn_2.clicked.connect(lambda: self.save_shelter_data_dashboard(str(self.shel_data.loc[row, 'Name'])))
+            self.mc_cancel_changes_btn_2.clicked.connect(lambda: self.delete_shelter_data_dashboard(str(self.shel_data.loc[row, 'Name'])))
             
             self.page_2.update()
             self.stackedWidget.update()
@@ -757,4 +758,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
             self.shel_data.to_excel(writer, index=False)
 
+        self.load_shel_data()
+
+    def delete_community_data_dashboard(self, old_data_name):
+        row_idx = self.data.loc[self.data["Name"] == old_data_name].index[0]
+        self.data = self.data.drop(index = row_idx)
+        
+        # Save the updated DataFrame back to the Excel file
+        file_path = os.path.join(os.getcwd(), "commData.xlsx")
+        with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
+            self.data.to_excel(writer, index=False)
+
+        self.stackedWidget.hide()
+        self.load_comm_data()
+
+    def delete_shelter_data_dashboard(self, old_data_name):
+        row_idx = self.shel_data.loc[self.shel_data["Name"] == old_data_name].index[0]
+        self.shel_data = self.shel_data.drop(index = row_idx)
+        
+        # Save the updated DataFrame back to the Excel file
+        file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+        with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
+            self.shel_data.to_excel(writer, index=False)
+
+        self.stackedWidget.hide()
         self.load_shel_data()

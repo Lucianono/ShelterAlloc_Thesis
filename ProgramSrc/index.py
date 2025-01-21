@@ -282,6 +282,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
 
             #connect button for saving
+            self.mc_cancel_changes_btn_2.show()
             self.mc_save_changes_btn_2.clicked.disconnect()
             self.mc_cancel_changes_btn_2.clicked.disconnect()
             self.mc_save_changes_btn_2.clicked.connect(lambda: self.save_shelter_data_dashboard(str(self.shel_data.loc[row, 'Name'])))
@@ -295,12 +296,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
     def handle_add_shelter(self):
-        if not self.is_adding_shelter:
-            self.is_adding_shelter = True
-            self.open_add_shelter_page()
-        else:
-            self.save_shelter_to_excel()
-            self.is_adding_shelter = False
+        self.open_add_shelter_page()
 
     def open_add_community_page(self):
         self.label_18.setText("New Community")
@@ -326,12 +322,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.stackedWidget.show()
 
     def open_add_shelter_page(self):
+        self.label_31.setText("New Shelter")
+
+        self.mc_cancel_changes_btn_2.hide()
+
+        self.switch_2.setChecked(True)
+        self.switch_2.toggle_animation()
+
+        self.plainTextEdit_9.clear()
         self.plainTextEdit_11.clear()
         self.plainTextEdit_10.clear()
         self.plainTextEdit_8.clear()
         self.plainTextEdit_12.clear()
         self.plainTextEdit_13.clear()
         self.plainTextEdit_14.clear()
+        self.plainTextEdit_17.clear()
+        self.checkBox_17.setChecked(False)
+        self.checkBox_18.setChecked(False)
+        self.checkBox_19.setChecked(False)
+        self.status_comboBox_2.setCurrentIndex(0)
+
+        self.mc_save_changes_btn_2.clicked.disconnect()
+        self.mc_save_changes_btn_2.clicked.connect(lambda: self.save_shelter_data_dashboard("sh31N3wc0d3"))
+       
 
         self.stackedWidget.setCurrentWidget(self.page_2)
         self.stackedWidget.show()
@@ -753,20 +766,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             QMessageBox.critical(self, "Error", f"{e}")
             return
         
-        row_idx = self.shel_data.loc[self.shel_data["Name"] == old_data_name].index[0]
-        self.shel_data.loc[row_idx, "Active"] = data_active
-        self.shel_data.loc[row_idx, "Name"] = data_name
-        self.shel_data.loc[row_idx, "xDegrees"] = float(data_xDegrees)
-        self.shel_data.loc[row_idx, "yDegrees"] = float(data_yDegrees)
-        self.shel_data.loc[row_idx, "Area1"] = float(data_area1)
-        self.shel_data.loc[row_idx, "Cost1"] = float(data_cost1)
-        self.shel_data.loc[row_idx, "Area2"] = float(data_area2)
-        self.shel_data.loc[row_idx, "Cost2"] = float(data_cost2)
-        self.shel_data.loc[row_idx, "ResToFlood"] = data_resFlood
-        self.shel_data.loc[row_idx, "ResToTyphoon"] = data_resTyphoon
-        self.shel_data.loc[row_idx, "ResToEarthquake"] = data_resEarthquake
-        self.shel_data.loc[row_idx, "Status"] = data_status
-        self.shel_data.loc[row_idx, "Remarks"] = data_remarks
+        if (old_data_name == "sh31N3wc0d3") :
+            new_row = pd.DataFrame([new_row])
+            self.shel_data = pd.concat([self.shel_data, new_row], ignore_index=True) 
+        else :
+            row_idx = self.shel_data.loc[self.shel_data["Name"] == old_data_name].index[0]
+            self.shel_data.loc[row_idx, "Active"] = data_active
+            self.shel_data.loc[row_idx, "Name"] = data_name
+            self.shel_data.loc[row_idx, "xDegrees"] = float(data_xDegrees)
+            self.shel_data.loc[row_idx, "yDegrees"] = float(data_yDegrees)
+            self.shel_data.loc[row_idx, "Area1"] = float(data_area1)
+            self.shel_data.loc[row_idx, "Cost1"] = float(data_cost1)
+            self.shel_data.loc[row_idx, "Area2"] = float(data_area2)
+            self.shel_data.loc[row_idx, "Cost2"] = float(data_cost2)
+            self.shel_data.loc[row_idx, "ResToFlood"] = data_resFlood
+            self.shel_data.loc[row_idx, "ResToTyphoon"] = data_resTyphoon
+            self.shel_data.loc[row_idx, "ResToEarthquake"] = data_resEarthquake
+            self.shel_data.loc[row_idx, "Status"] = data_status
+            self.shel_data.loc[row_idx, "Remarks"] = data_remarks
 
         # Save the updated DataFrame back to the Excel file
         file_path = os.path.join(os.getcwd(), "shelData.xlsx")

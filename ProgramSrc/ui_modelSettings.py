@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'modelSettings.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.3
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -176,7 +176,6 @@ class Ui_modelSettings(object):
 
         self.comboBox_modelType = QComboBox(self.widget_4)
         self.comboBox_modelType.addItem("")
-        self.comboBox_modelType.addItem("")
         self.comboBox_modelType.setObjectName(u"comboBox_modelType")
         self.comboBox_modelType.setMinimumSize(QSize(150, 16))
         self.comboBox_modelType.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
@@ -294,7 +293,6 @@ class Ui_modelSettings(object):
         self.label_20.setText(QCoreApplication.translate("Dialog", u"Generations", None))
         self.label_19.setText(QCoreApplication.translate("Dialog", u"Model", None))
         self.comboBox_modelType.setItemText(0, QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT)", None))
-        self.comboBox_modelType.setItemText(1, QCoreApplication.translate("Dialog", u"Single-level with Workplace Distance Inclusion (WORK)", None))
 
         self.label_31.setText(QCoreApplication.translate("Dialog", u"WeightCost", None))
         self.label_33.setText(QCoreApplication.translate("Dialog", u"MaxShelters", None))

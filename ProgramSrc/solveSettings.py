@@ -20,7 +20,7 @@ class SolveSettingsDialog(QDialog):
         self.ui.write_shelter_btn.clicked.connect(self.open_entitymanagement_shelter_dialog)
         self.ui.solveSet_adc_set_btn.clicked.connect(self.open_model_advanced_settings_dialog)
         self.ui.solveSet_solve_btn.clicked.connect(self.open_solving_progress_dialog)
-
+        
         # Setup layouts for community and shelter scroll areas
         self.community_layout = QVBoxLayout()
         self.ui.scrollArea_2.setWidget(QWidget())  # Set an empty widget to scrollArea_2
@@ -78,6 +78,8 @@ class SolveSettingsDialog(QDialog):
         self.init_shelter_resistance_switches()
         self.replace_checkbox_with_switch_sr()
 
+        
+
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
         self.entityManagementComm_Window.show()
@@ -111,6 +113,7 @@ class SolveSettingsDialog(QDialog):
             return []
     
     def load_and_display_community_data(self):
+
         try:
             # Load the community data
             data = pd.read_excel("commData.xlsx")
@@ -177,13 +180,15 @@ class SolveSettingsDialog(QDialog):
     def init_shelter_status_switches(self):
         self.shelter_status_switches = {}
         for label in ["Built", "Partially Built", "Damaged", "Empty Lot"]:
-            switch = self.create_switch(label, self.shelter_status_layout)
+            switch = self.create_switch(label, self.shelter_status_layout,True)
+            switch.clicked.connect(self.filter_shelter_data)
             self.shelter_status_switches[label] = switch
 
     def init_shelter_resistance_switches(self):
         self.shelter_resistance_switches = {}
         for label in ["Flood", "Typhoon", "Earthquake"]:
-            switch = self.create_switch(label, self.shelter_resistance_layout)
+            switch = self.create_switch(label, self.shelter_resistance_layout,False)
+            switch.clicked.connect(self.filter_shelter_data)
             self.shelter_resistance_switches[label] = switch
 
     def create_switch(self, label_text, layout, is_active=False):
@@ -203,6 +208,7 @@ class SolveSettingsDialog(QDialog):
         # Create switch
         switch = QPushButton()
         switch.setCheckable(True)
+        switch.setChecked(is_active)
         switch.setFixedSize(40, 20)  # Switch size
         switch.setStyleSheet(
             "QPushButton { background-color: #4CAF50; border-radius: 10px; }" 
@@ -293,14 +299,32 @@ class SolveSettingsDialog(QDialog):
             """)
         self.animation.start()
 
-    def filter_shelter_resistance_data(self, file_path="shelData.xlsx"):
+    def filter_shelter_data(self):
         try:
+            file_path="shelData.xlsx"
+
             data = pd.read_excel(file_path)
+
+            # Retrieve switch states
+            built_switch_state = self.shelter_status_switches["Built"].isChecked()
+            partially_built_switch_state = self.shelter_status_switches["Partially Built"].isChecked()
+            damaged_switch_state = self.shelter_status_switches["Damaged"].isChecked()
+            empty_lot_switch_state = self.shelter_status_switches["Empty Lot"].isChecked()
 
             # Retrieve switch states
             flood_switch_state = self.shelter_resistance_switches["Flood"].isChecked()
             typhoon_switch_state = self.shelter_resistance_switches["Typhoon"].isChecked()
             earthquake_switch_state = self.shelter_resistance_switches["Earthquake"].isChecked()
+
+            # Apply filters based on switch states
+            if not built_switch_state:
+                data = data[data["Status"] != "Built"]
+            if not partially_built_switch_state:
+                data = data[data["Status"] != "Partially Built"]
+            if not damaged_switch_state:
+                data = data[data["Status"] != "Damaged"]
+            if not empty_lot_switch_state:
+                data = data[data["Status"] != "Empty Lot"]
 
             # Apply filters based on switch states
             if flood_switch_state:
@@ -316,41 +340,6 @@ class SolveSettingsDialog(QDialog):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to filter file: {e}")
 
-    def filter_shelter_status_data(self, file_path="shelData.xlsx"):
-        try:
-            data = pd.read_excel(file_path)
-
-            # Retrieve switch states
-            built_switch_state = self.shelter_status_switches["Built"].isChecked()
-            partially_built_switch_state = self.shelter_status_switches["Partially Built"].isChecked()
-            damaged_switch_state = self.shelter_status_switches["Damaged"].isChecked()
-            empty_lot_switch_state = self.shelter_status_switches["Empty Lot"].isChecked()
-
-            # Apply filters based on switch states
-            if built_switch_state:
-                data = data[data["Status"] == "Built"]
-            if partially_built_switch_state:
-                data = data[data["Status"] == "Partially Built"]
-            if damaged_switch_state:
-                data = data[data["Status"] == "Damaged"]
-            if empty_lot_switch_state:
-                data = data[data["Status"] == "Empty Lot"]
-
-            # Reflect filtered data in the UI
-            self.update_shelter_scroll_area(data)
-
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to filter file: {e}")
-
-    def load_shelter_data(self):
-        # Retrieve switch states from the UI
-        flood_switch_state = self.flood_switch.isChecked()
-        typhoon_switch_state = self.typhoon_switch.isChecked()
-        earthquake_switch_state = self.earthquake_switch.isChecked()
-        built_switch_state = self.built_switch.isChecked()
-        partially_built_switch_state = self.partially_built_switch.isChecked()
-        damaged_switch_state = self.damaged_switch.isChecked()
-        empty_lot_switch_state = self.empty_lot_switch.isChecked()
 
     def update_shelter_scroll_area(self, filtered_data):
         try:

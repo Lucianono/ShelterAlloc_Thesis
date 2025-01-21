@@ -280,11 +280,6 @@ QStackedWidget{
             <string>Bilevel No Transfer (BNT)</string>
            </property>
           </item>
-          <item>
-           <property name="text">
-            <string>Single-level with Workplace Distance Inclusion (WORK)</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item row="5" column="0">

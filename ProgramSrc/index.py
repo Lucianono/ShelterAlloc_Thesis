@@ -279,8 +279,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_13.setPlainText(str(self.shel_data.loc[row, 'Area2']))
             self.plainTextEdit_14.setPlainText(str(self.shel_data.loc[row, 'Cost2']))
             self.checkBox_17.setChecked(self.shel_data.loc[row, 'ResToFlood'])
-            self.checkBox_18.setChecked(self.shel_data.loc[row, 'ResToTyphoon'])
-            self.checkBox_19.setChecked(self.shel_data.loc[row, 'ResToEarthquake'])
+            self.checkBox_19.setChecked(self.shel_data.loc[row, 'ResToTyphoon'])
+            self.checkBox_18.setChecked(self.shel_data.loc[row, 'ResToEarthquake'])
             status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 2}
             self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
             self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
@@ -358,8 +358,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
       
     def refresh_map(self):
         try:
-            comm_data = pd.read_excel("commData.xlsx",usecols=['Name','xDegrees','yDegrees'])
-            shel_data = pd.read_excel("shelData.xlsx",usecols=['Name','xDegrees','yDegrees'])
+            comm_data = pd.read_excel("commData.xlsx",usecols=['Name','xDegrees','yDegrees','Active'])
+            shel_data = pd.read_excel("shelData.xlsx",usecols=['Name','xDegrees','yDegrees','Active'])
 
             if not comm_data.empty:
                 avg_lat = comm_data['xDegrees'].mean()
@@ -377,10 +377,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 longitude = row.get("yDegrees", 1)
                 name = row.get("Name", "Unknown")
 
+                if row.get("Active") :
+                    color="green"
+                else :
+                    color="lightgray"
+
                 folium.Marker(
                     location=[latitude, longitude],
                     popup=name,
-                    icon=folium.Icon(color="green")
+                    icon=folium.Icon(color=color)
                 ).add_to(self.map)
 
             for index, row in shel_data.iterrows():
@@ -388,10 +393,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 longitude = row.get("yDegrees", 1)
                 name = row.get("Name", "Unknown")
 
+                if row.get("Active") :
+                    color="blue"
+                else :
+                    color="lightgray"
+
                 folium.Marker(
                     location=[latitude, longitude],
                     popup=name,
-                    icon=folium.Icon(color="blue")
+                    icon=folium.Icon(color=color)
                 ).add_to(self.map)
 
             map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
@@ -601,8 +611,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         data_area2 = self.plainTextEdit_13.toPlainText()
         data_cost2 = self.plainTextEdit_14.toPlainText()
         data_resFlood = self.checkBox_17.isChecked()
-        data_resTyphoon = self.checkBox_18.isChecked()
-        data_resEarthquake = self.checkBox_19.isChecked()
+        data_resTyphoon = self.checkBox_19.isChecked()
+        data_resEarthquake = self.checkBox_18.isChecked()
         status_mapping = ["Built", "Partially Built", "Damaged", "Empty Lot"]
         data_status = status_mapping[self.status_comboBox_2.currentIndex()]
         data_remarks = self.plainTextEdit_17.toPlainText()

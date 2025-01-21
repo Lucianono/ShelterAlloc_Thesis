@@ -117,6 +117,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 widget.deleteLater()  # Properly delete the widget
 
         self.data = pd.read_excel(os.path.join(os.getcwd(), "commData.xlsx"), header=0)
+        self.refresh_map()
         
         try:
             file_path = os.path.join(os.getcwd(), "commData.xlsx")
@@ -176,6 +177,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 widget.deleteLater()  # Properly delete the widget
 
         self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), header=0)
+        self.refresh_map()
 
         try:
             file_path = os.path.join(os.getcwd(), "shelData.xlsx")
@@ -247,6 +249,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_5.setPlainText(str(self.data.loc[row, 'MaxDistance']))
             self.plainTextEdit_6.setPlainText(str(self.data.loc[row, 'Remarks']).replace('nan', ''))
 
+            self.focus_to_marker(self.data.loc[row, 'xDegrees'],self.data.loc[row, 'yDegrees'])
+
             #connect button for saving
             self.mc_cancel_changes_btn.show()
             self.mc_save_changes_btn.clicked.disconnect()
@@ -280,6 +284,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 2}
             self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
             self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
+
+            self.focus_to_marker(self.shel_data.loc[row, 'xDegrees'],self.shel_data.loc[row, 'yDegrees'])
 
             #connect button for saving
             self.mc_cancel_changes_btn_2.show()
@@ -349,201 +355,73 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.stackedWidget.setCurrentWidget(self.page_2)
         self.stackedWidget.show()
 
-    def save_community_to_excel(self):
+      
+    def refresh_map(self):
         try:
-            x_degrees = float(self.plainTextEdit.toPlainText()) if self.plainTextEdit.toPlainText() else 0.0
-            y_degrees = float(self.plainTextEdit_2.toPlainText()) if self.plainTextEdit_2.toPlainText() else 0.0
-            population = int(self.plainTextEdit_3.toPlainText()) if self.plainTextEdit_3.toPlainText() else 0
-            affected_pop = int(self.plainTextEdit_4.toPlainText()) if self.plainTextEdit_4.toPlainText() else 0
-            work_pop = int(self.plainTextEdit_5.toPlainText()) if self.plainTextEdit_5.toPlainText() else 0
-            remarks = self.plainTextEdit_6.toPlainText()
-        
-            new_data = {
-                "Name": "testAdd",
-                "xDegrees": x_degrees,
-                "yDegrees": y_degrees,
-                "Population": population,
-                "AffectedPop": affected_pop,
-                "WorkPop": work_pop,
-                "MaxDistance": "1000",
-                "Remarks": remarks,
-            }
-        
-            file_path = os.path.join(os.getcwd(), "commData.xlsx")
+            comm_data = pd.read_excel("commData.xlsx",usecols=['Name','xDegrees','yDegrees'])
+            shel_data = pd.read_excel("shelData.xlsx",usecols=['Name','xDegrees','yDegrees'])
 
-        
-            if os.path.exists(file_path):
-                existing_data = pd.read_excel(file_path)
-                last_index = existing_data.index[-1]
+            if not comm_data.empty:
+                avg_lat = comm_data['xDegrees'].mean()
+                avg_lon = comm_data['yDegrees'].mean()
+                self.map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
+            elif not shel_data.empty:
+                avg_lat = shel_data['xDegrees'].mean()
+                avg_lon = shel_data['yDegrees'].mean()
+                self.map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
             else:
-                existing_data = pd.DataFrame(columns=new_data.keys())
-                last_index = -1
+                self.map = folium.Map(location=[0,0], zoom_start=2)
 
-            new_row = pd.DataFrame([new_data])
-
-            updated_data = pd.concat([existing_data, new_row], ignore_index=True)
-            updated_data.to_excel(file_path, index=False)
-
-            self.data = pd.read_excel(file_path)
-
-            self.add_new_community_to_ui(new_data, last_index + 1)
-
-            self.add_marker_to_map("commData.xlsx", "community")
-
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to save data: {e}")
-
-    def save_shelter_to_excel(self):
-        try:
-            x_degrees = float(self.plainTextEdit_11.toPlainText()) if self.plainTextEdit_11.toPlainText() else 0.0
-            y_degrees = float(self.plainTextEdit_10.toPlainText()) if self.plainTextEdit_10.toPlainText() else 0.0
-            area1 = int(self.plainTextEdit_8.toPlainText()) if self.plainTextEdit_8.toPlainText() else 0
-            cost1 = int(self.plainTextEdit_12.toPlainText()) if self.plainTextEdit_12.toPlainText() else 0
-            area2 = int(self.plainTextEdit_13.toPlainText()) if self.plainTextEdit_13.toPlainText() else 0
-            cost2 = int(self.plainTextEdit_14.toPlainText()) if self.plainTextEdit_14.toPlainText() else 0
-
-            new_data = {
-                "Name": "testAdd",
-                "xDegrees": x_degrees,
-                "yDegrees": y_degrees,
-                "Area1": area1,
-                "Cost1": cost1,
-                "Area2": area2,
-                "Cost2": cost2,
-                "ResToFlood": "1",
-                "ResToTyphoon": "1",
-                "ResToEarthquake": "1",
-                "Status": "Built"
-                }
-        
-            file_path = os.path.join(os.getcwd(), "shelData.xlsx")
-
-        
-            if os.path.exists(file_path):
-                existing_data = pd.read_excel(file_path)
-                last_index = existing_data.index[-1]
-            else:
-                existing_data = pd.DataFrame(columns=new_data.keys())
-                last_index = -1
-
-            new_row = pd.DataFrame([new_data])
-
-            updated_data = pd.concat([existing_data, new_row], ignore_index=True)
-            updated_data.to_excel(file_path, index=False)
-
-            self.shel_data = pd.read_excel(file_path)
-
-            self.add_new_shelter_to_ui(new_data, last_index + 1)
-
-            self.add_marker_to_map("shelData.xlsx", "shelter")
-
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to save data: {e}")
-
-    def add_new_community_to_ui(self, community_data, index):
-        layout = self.communities_dropdown.layout()
-
-        hbox_layout = QHBoxLayout()
-
-        
-        picture_label = QLabel()
-        icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128.png")
-        pixmap = QPixmap(icon_path)
-        pixmap = pixmap.scaled(31, 31)
-        picture_label.setPixmap(pixmap)
-        picture_label.setFixedSize(31, 31)
-
-        name_label = QLabel(community_data["Name"])
-
-        button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
-        button = QPushButton()
-        button_icon = QPixmap(button_icon_path)
-        button.setIcon(button_icon)
-        button.setIconSize(QSize(41, 41))
-        button.setFixedSize(41, 41)
-        button.setStyleSheet("background: transparent; border: none;")
-        button.setObjectName(f"barangay_{community_data['Name']}_btn")
-
-        button.clicked.connect(lambda checked, button_name=button.objectName(): self.handle_button_click(button_name))
-
-        hbox_layout.addWidget(picture_label)
-        hbox_layout.addWidget(name_label)
-        hbox_layout.addWidget(button)
-
-        container_widget = QWidget()
-        container_widget.setLayout(hbox_layout)
-
-        layout.addWidget(container_widget)
-
-    def add_new_shelter_to_ui(self, shelter_data, index):
-        layout = self.verticalLayout_4.layout()
-
-        hbox_layout = QHBoxLayout()
-
-        picture_label = QLabel()
-        icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (1).png")
-        pixmap = QPixmap(icon_path)
-        pixmap = pixmap.scaled(31, 31)
-        picture_label.setPixmap(pixmap)
-        picture_label.setFixedSize(31, 31)
-
-        name_label = QLabel(shelter_data["Name"])
-
-        button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
-        button = QPushButton()
-        button_icon = QPixmap(button_icon_path)
-        button.setIcon(button_icon)
-        button.setIconSize(QSize(41, 41))
-        button.setFixedSize(41, 41)
-        button.setStyleSheet("background: transparent; border: none;")
-        button.setObjectName(f"shelter_{shelter_data['Name']}_btn")
-
-        button.clicked.connect(lambda checked, button_name=button.objectName(): self.handle_button_click(button_name))
-
-        hbox_layout.addWidget(picture_label)
-        hbox_layout.addWidget(name_label)
-        hbox_layout.addWidget(button)
-
-        container_widget = QWidget()
-        container_widget.setLayout(hbox_layout)
-
-        layout.addWidget(container_widget)
-
-    def add_marker_to_map(self, excel_file_path, marker_type):
-        try:
-            data = pd.read_excel(excel_file_path)
-
-            if not data.empty:
-                center_latitude = data.iloc[1]["xDegrees"]
-                center_longitude = data.iloc[1]["yDegrees"]
-                map = folium.Map(location=[center_latitude, center_longitude], zoom_start=12)
-            else:
-                map = folium.Map(location=[0,0], zoom_start=2)
-
-            for index, row in data.iterrows():
+            for index, row in comm_data.iterrows():
                 latitude = row.get("xDegrees", 1)
                 longitude = row.get("yDegrees", 1)
                 name = row.get("Name", "Unknown")
 
-                if marker_type == "community":
-                    color = 'green'
-                elif marker_type == "shelter":
-                    color = 'blue'
-                else:
-                    color = 'red'
+                folium.Marker(
+                    location=[latitude, longitude],
+                    popup=name,
+                    icon=folium.Icon(color="green")
+                ).add_to(self.map)
+
+            for index, row in shel_data.iterrows():
+                latitude = row.get("xDegrees", 1)
+                longitude = row.get("yDegrees", 1)
+                name = row.get("Name", "Unknown")
 
                 folium.Marker(
                     location=[latitude, longitude],
                     popup=name,
-                    icon=folium.Icon(color=color)
-                ).add_to(map)
+                    icon=folium.Icon(color="blue")
+                ).add_to(self.map)
 
             map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
-            map.save(map_file_path)
+            self.map.save(map_file_path)
 
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
+
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to update map: {e}")
+
+    def focus_to_marker(self,xDeg,yDeg):
+        try:
+            focused_map = folium.Map(location=[xDeg, yDeg], zoom_start=16)
+
+            # Re-add all existing markers from the current map to the focused map
+            for child in self.map._children.values():
+                focused_map.add_child(child)
+
+            self.map = focused_map
+            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            self.map.save(map_file_path)
+
+            self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to focus on marker: {e}")
+
+
+
+
 
     def add_switch(self, checkbox, is_active=False):
         # Get the layout of the parent widget

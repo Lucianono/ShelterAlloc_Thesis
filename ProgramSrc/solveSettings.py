@@ -100,7 +100,7 @@ class SolveSettingsDialog(QDialog):
 
     def open_solving_progress_dialog(self):
         try:
-            self.filter_shelter_resistance_data()
+            self.filter_shelter_data()
 
             self.solvingProgress_Window = SolvingProgress()
             self.solvingProgress_Window.show()

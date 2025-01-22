@@ -36,7 +36,7 @@ def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.htm
     for _, shelter in shelters_df.iterrows():
         folium.Marker([shelter['xDegrees'], shelter['yDegrees']], 
                       popup=f"Shelter: {shelter['Name']}",
-                      icon=folium.Icon(color='red')).add_to(m)
+                      icon=folium.Icon(color='blue')).add_to(m)
 
     # Define a bounding box for the entire region
     bbox_margin = 0.02
@@ -48,7 +48,7 @@ def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.htm
     )
 
     # Load the road graph for the region
-    roadgraph = ox.graph_from_bbox(*bbox, network_type='drive')
+    roadgraph = ox.graph_from_bbox(*bbox, network_type='all')
 
     # Precompute node coordinates for the heuristic
     node_coords = {node: (data['y'], data['x']) for node, data in roadgraph.nodes(data=True)}

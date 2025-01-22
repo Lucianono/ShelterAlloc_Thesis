@@ -1,6 +1,6 @@
-from PySide6.QtWidgets import QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
-from PySide6.QtGui import QAction, QColor, QIcon, QCursor
-from PySide6.QtCore import Qt, QUrl, QTimer
+from PySide6.QtWidgets import QLabel, QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
+from PySide6.QtGui import QAction, QColor, QIcon, QCursor, QPixmap
+from PySide6.QtCore import Qt, QUrl, QTimer, QSize, QRect, QPropertyAnimation
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEngineSettings
 from functools import partial
@@ -23,11 +23,34 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("Dashboard")
 
+        self.is_adding_community = False
+        self.is_adding_shelter = False
+
+        self.stackedWidget.hide()
+        
+        self.add_community_btn.clicked.connect(self.handle_add_community)
+        self.add_shelter_btn.clicked.connect(self.handle_add_shelter)
+
+
+        self.load_comm_data()
+        self.load_shel_data()
+
+        
+        #for value in self.data.iloc[:, 0]:
+         #   button = self.findChild(QPushButton, f"barangay_{value}_btn")
+          #  if button:
+           #     button.clicked.connect(lambda checked, value=value: self.handle_button_click(value))
+
+        #self.barangay_a_btn.clicked.connect(self.unhide_stacked_widget)
+
         self.initial_map_file_path = os.path.join(os.getcwd(), "map.html")
         self.optimized_map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
         self.last_modified_time = os.path.getmtime(self.optimized_map_file_path) if os.path.exists(self.optimized_map_file_path) else None
 
-        self.webEngineView.setUrl(QUrl.fromLocalFile(self.initial_map_file_path))
+        if os.path.exists(self.optimized_map_file_path):
+            self.webEngineView.setUrl(QUrl.fromLocalFile(self.optimized_map_file_path))
+        else:
+            self.webEngineView.setUrl(QUrl.fromLocalFile(self.initial_map_file_path))
 
         self.map_update_timer = QTimer(self)
         self.map_update_timer.timeout.connect(self.check_for_optimized_map_update)
@@ -38,6 +61,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.advanced_settings_shel.clicked.connect(self.open_entitymanagement_shelter_dialog)
         self.solve_btn.clicked.connect(self.open_solve_settings_dialog)
 
+        
+        # swap checkboxes to switches
+        self.switch_1 = self.add_switch(self.checkBox_15)
+        self.switch_2 = self.add_switch(self.checkBox_16)
+
         self.menu = QMenu(self)
         self.show()
 
@@ -46,14 +74,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
+        self.entityManagementComm_Window.changes_saved.connect(self.load_comm_data)
         self.entityManagementComm_Window.show()
 
     def open_entitymanagement_shelter_dialog(self):
         self.entityManagementShelter_Window = EntityManagementShelter()
+        self.entityManagementShelter_Window.changes_saved.connect(self.load_shel_data)
         self.entityManagementShelter_Window.show()
 
     def open_solve_settings_dialog(self):
         self.solveSettings_Window = SolveSettingsDialog()
+        self.solveSettings_Window.changes_saved_comm.connect(self.load_comm_data)
+        self.solveSettings_Window.changes_saved_shel.connect(self.load_shel_data)
         self.solveSettings_Window.show()
 
     def check_for_optimized_map_update(self):
@@ -73,3 +105,610 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 # Switch the displayed map to optimized-routes-map.html
                 self.webEngineView.setUrl(QUrl.fromLocalFile(self.optimized_map_file_path))
                 print(f"Map updated to optimized routes: {self.optimized_map_file_path}")
+
+    def unhide_stacked_widget(self):
+        self.stackedWidget.show()
+
+    def load_comm_data(self):
+        layout = self.verticalLayout_18.layout()
+        
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget is not None:
+                widget.deleteLater()  # Properly delete the widget
+
+        self.data = pd.read_excel(os.path.join(os.getcwd(), "commData.xlsx"), header=0)
+        self.refresh_map()
+        
+        try:
+            file_path = os.path.join(os.getcwd(), "commData.xlsx")
+            self.data_Names = pd.read_excel(file_path, usecols=['Name'])
+
+            for index, value in self.data_Names.iloc[:, 0].items():
+                hbox_layout = QHBoxLayout()
+
+                picture_label = QLabel()
+                icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128.png")
+                pixmap = QPixmap(icon_path)
+
+                pixmap = pixmap.scaled(24, 24)
+
+                picture_label.setPixmap(pixmap)
+                picture_label.setFixedSize(24, 24)
+
+                name_label = QLabel(str(value))
+                name_label.setMaximumSize(QSize(170, 16777215))
+
+                button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
+                button = QPushButton()
+
+                button_icon = QPixmap(button_icon_path)
+                button.setIcon(button_icon)
+                button.setIconSize(QSize(30,30))
+
+                button.setFixedSize(30,30)
+
+                button.setStyleSheet("background: transparent; border: none;")
+
+                button.setObjectName(f"barangay_{value}_btn")
+
+                button.clicked.connect(lambda checked, button_name=button.objectName(): self.handle_button_click(button_name))
+
+                hbox_layout.addWidget(picture_label)
+                hbox_layout.addWidget(name_label)
+                hbox_layout.addWidget(button)
+
+                container_widget = QWidget()
+                container_widget.setLayout(hbox_layout)
+                container_widget.setStyleSheet("background: transparent;")
+
+                layout.addWidget(container_widget)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load data: {e}")
+
+    def load_shel_data(self):
+
+        layout = self.verticalLayout_19.layout()
+        
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget is not None:
+                widget.deleteLater()  # Properly delete the widget
+
+        self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), header=0)
+        self.refresh_map()
+
+        try:
+            file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+            self.data_Names = pd.read_excel(file_path, usecols=['Name'])
+
+            for index, value in self.data_Names.iloc[:, 0].items():
+                hbox_layout = QHBoxLayout()
+
+                picture_label = QLabel()
+                icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (1).png")
+                pixmap = QPixmap(icon_path)
+
+                pixmap = pixmap.scaled(24, 24)
+
+                picture_label.setPixmap(pixmap)
+                picture_label.setFixedSize(24, 24)
+
+                name_label = QLabel(str(value))
+                name_label.setMaximumSize(QSize(170, 16777215))
+
+                button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
+                button = QPushButton()
+
+                button_icon = QPixmap(button_icon_path)
+                button.setIcon(button_icon)
+                button.setIconSize(QSize(30,30))
+
+                button.setFixedSize(30,30)
+
+                button.setStyleSheet("background: transparent; border: none;")
+
+                button.setObjectName(f"shelter_{value}_btn")
+
+                button.clicked.connect(lambda checked, button_name=button.objectName(): self.handle_button_click(button_name))
+
+                hbox_layout.addWidget(picture_label)
+                hbox_layout.addWidget(name_label)
+                hbox_layout.addWidget(button)
+
+                container_widget = QWidget()
+                container_widget.setLayout(hbox_layout)
+
+                layout.addWidget(container_widget)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load data: {e}")
+
+
+    def handle_button_click(self, button_name):
+        value = button_name.split("_")[1]
+        
+        self.stackedWidget.show()
+
+        if button_name.startswith("barangay_"):
+            self.page.show()
+            self.page_2.hide()
+            self.label_18.setText("Edit Community")
+            row = self.data[self.data['Name'] == value].index[0]
+
+            self.switch_1.setChecked(self.data.loc[row, 'Active'])
+            self.switch_1.toggle_animation()
+
+            self.plainTextEdit_15.setPlainText(str(self.data.loc[row, 'Name']))
+
+            self.plainTextEdit.setPlainText(str(self.data.loc[row, 'xDegrees']))
+            self.plainTextEdit_2.setPlainText(str(self.data.loc[row, 'yDegrees']))
+            self.plainTextEdit_3.setPlainText(str(self.data.loc[row, 'Population']))
+            self.plainTextEdit_4.setPlainText(str(self.data.loc[row, 'AffectedPop']))
+            self.plainTextEdit_5.setPlainText(str(self.data.loc[row, 'MaxDistance']))
+            self.plainTextEdit_6.setPlainText(str(self.data.loc[row, 'Remarks']).replace('nan', ''))
+
+            self.focus_to_marker(self.data.loc[row, 'xDegrees'],self.data.loc[row, 'yDegrees'])
+
+            #connect button for saving
+            self.mc_cancel_changes_btn.show()
+            self.mc_save_changes_btn.clicked.disconnect()
+            self.mc_cancel_changes_btn.clicked.disconnect()
+            self.mc_save_changes_btn.clicked.connect(lambda: self.save_community_data_dashboard(str(self.data.loc[row, 'Name'])))
+            self.mc_cancel_changes_btn.clicked.connect(lambda: self.delete_community_data_dashboard(str(self.data.loc[row, 'Name'])))
+
+            self.page.update()
+            self.stackedWidget.update()
+
+        elif button_name.startswith("shelter_"):
+            self.stackedWidget.setCurrentWidget(self.page_2)
+            self.page_2.show()
+            self.page.hide()
+            row = self.shel_data[self.shel_data['Name'] == value].index[0]
+
+            self.switch_2.setChecked(self.shel_data.loc[row, 'Active'])
+            self.switch_2.toggle_animation()
+
+            self.plainTextEdit_9.setPlainText(str(self.shel_data.loc[row, 'Name']))
+
+            self.plainTextEdit_11.setPlainText(str(self.shel_data.loc[row, 'xDegrees']))
+            self.plainTextEdit_10.setPlainText(str(self.shel_data.loc[row, 'yDegrees']))
+            self.plainTextEdit_8.setPlainText(str(self.shel_data.loc[row, 'Area1']))
+            self.plainTextEdit_12.setPlainText(str(self.shel_data.loc[row, 'Cost1']))
+            self.plainTextEdit_13.setPlainText(str(self.shel_data.loc[row, 'Area2']))
+            self.plainTextEdit_14.setPlainText(str(self.shel_data.loc[row, 'Cost2']))
+            self.checkBox_17.setChecked(self.shel_data.loc[row, 'ResToFlood'])
+            self.checkBox_19.setChecked(self.shel_data.loc[row, 'ResToTyphoon'])
+            self.checkBox_18.setChecked(self.shel_data.loc[row, 'ResToEarthquake'])
+            status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 2}
+            self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
+            self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
+
+            self.focus_to_marker(self.shel_data.loc[row, 'xDegrees'],self.shel_data.loc[row, 'yDegrees'])
+
+            #connect button for saving
+            self.mc_cancel_changes_btn_2.show()
+            self.mc_save_changes_btn_2.clicked.disconnect()
+            self.mc_cancel_changes_btn_2.clicked.disconnect()
+            self.mc_save_changes_btn_2.clicked.connect(lambda: self.save_shelter_data_dashboard(str(self.shel_data.loc[row, 'Name'])))
+            self.mc_cancel_changes_btn_2.clicked.connect(lambda: self.delete_shelter_data_dashboard(str(self.shel_data.loc[row, 'Name'])))
+            
+            self.page_2.update()
+            self.stackedWidget.update()
+
+    def handle_add_community(self):
+        self.open_add_community_page()
+
+
+    def handle_add_shelter(self):
+        self.open_add_shelter_page()
+
+    def open_add_community_page(self):
+        self.label_18.setText("New Community")
+
+        self.mc_cancel_changes_btn.hide()
+
+        self.switch_1.setChecked(True)
+        self.switch_1.toggle_animation()
+
+        self.plainTextEdit.clear()
+        self.plainTextEdit_2.clear()
+        self.plainTextEdit_3.clear()
+        self.plainTextEdit_4.clear()
+        self.plainTextEdit_5.clear()
+        self.plainTextEdit_6.clear()
+        self.plainTextEdit_15.clear()
+
+        self.mc_save_changes_btn.clicked.disconnect()
+        self.mc_save_changes_btn.clicked.connect(lambda: self.save_community_data_dashboard("c0mmN3wc0d3"))
+       
+
+        self.stackedWidget.setCurrentWidget(self.page)
+        self.stackedWidget.show()
+
+    def open_add_shelter_page(self):
+        self.label_31.setText("New Shelter")
+
+        self.mc_cancel_changes_btn_2.hide()
+
+        self.switch_2.setChecked(True)
+        self.switch_2.toggle_animation()
+
+        self.plainTextEdit_9.clear()
+        self.plainTextEdit_11.clear()
+        self.plainTextEdit_10.clear()
+        self.plainTextEdit_8.clear()
+        self.plainTextEdit_12.clear()
+        self.plainTextEdit_13.clear()
+        self.plainTextEdit_14.clear()
+        self.plainTextEdit_17.clear()
+        self.checkBox_17.setChecked(False)
+        self.checkBox_18.setChecked(False)
+        self.checkBox_19.setChecked(False)
+        self.status_comboBox_2.setCurrentIndex(0)
+
+        self.mc_save_changes_btn_2.clicked.disconnect()
+        self.mc_save_changes_btn_2.clicked.connect(lambda: self.save_shelter_data_dashboard("sh31N3wc0d3"))
+       
+
+        self.stackedWidget.setCurrentWidget(self.page_2)
+        self.stackedWidget.show()
+
+      
+    def refresh_map(self):
+        try:
+            comm_data = pd.read_excel("commData.xlsx",usecols=['Name','xDegrees','yDegrees','Active'])
+            shel_data = pd.read_excel("shelData.xlsx",usecols=['Name','xDegrees','yDegrees','Active'])
+
+            if not comm_data.empty:
+                avg_lat = comm_data['xDegrees'].mean()
+                avg_lon = comm_data['yDegrees'].mean()
+                self.map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
+            elif not shel_data.empty:
+                avg_lat = shel_data['xDegrees'].mean()
+                avg_lon = shel_data['yDegrees'].mean()
+                self.map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
+            else:
+                self.map = folium.Map(location=[0,0], zoom_start=2)
+
+            for index, row in comm_data.iterrows():
+                latitude = row.get("xDegrees", 1)
+                longitude = row.get("yDegrees", 1)
+                name = row.get("Name", "Unknown")
+
+                if row.get("Active") :
+                    color="green"
+                else :
+                    color="lightgray"
+
+                folium.Marker(
+                    location=[latitude, longitude],
+                    popup=name,
+                    icon=folium.Icon(color=color)
+                ).add_to(self.map)
+
+            for index, row in shel_data.iterrows():
+                latitude = row.get("xDegrees", 1)
+                longitude = row.get("yDegrees", 1)
+                name = row.get("Name", "Unknown")
+
+                if row.get("Active") :
+                    color="blue"
+                else :
+                    color="lightgray"
+
+                folium.Marker(
+                    location=[latitude, longitude],
+                    popup=name,
+                    icon=folium.Icon(color=color)
+                ).add_to(self.map)
+
+            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            self.map.save(map_file_path)
+
+            self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to update map: {e}")
+
+    def focus_to_marker(self,xDeg,yDeg):
+        try:
+            focused_map = folium.Map(location=[xDeg, yDeg], zoom_start=16)
+
+            # Re-add all existing markers from the current map to the focused map
+            for child in self.map._children.values():
+                focused_map.add_child(child)
+
+            self.map = focused_map
+            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            self.map.save(map_file_path)
+
+            self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to focus on marker: {e}")
+
+
+
+
+
+    def add_switch(self, checkbox, is_active=False):
+        # Get the layout of the parent widget
+        layout = checkbox.parentWidget().layout()
+
+        # Create the switch container widget
+        switch_widget = QWidget()
+        switch_layout = QHBoxLayout(switch_widget)
+        switch_layout.setAlignment(Qt.AlignCenter)
+        switch_layout.setContentsMargins(0, 0, 0, 0)
+
+
+        # Create the switch
+        switch = QPushButton()
+        switch.setCheckable(True)
+        switch.setChecked(is_active)
+        switch.setFixedSize(38, 18)  # Set the switch size
+        switch.setStyleSheet(
+            "QPushButton { background-color: #4CAF50; border-radius: 8px; }" 
+            if switch.isChecked() else 
+            "QPushButton { background-color: #ccc; border-radius: 8px; }"
+        )
+        
+        # Set an object name for the switch
+        switch.setObjectName(checkbox.objectName().replace("checkBox", "switch"))
+
+        # Create a circle (knob) for the switch
+        knob = QPushButton(switch)
+        knob.setFixedSize(14, 14)
+        knob.setStyleSheet("""
+            QPushButton {
+                background-color: white;
+                border-radius: 7px;
+            }
+        """)
+        knob.move(22 if is_active else 2, 2)  # Initial position for the knob (left side)
+        switch.knob = knob
+
+        # Animation for toggling
+        animation = QPropertyAnimation(knob, b"geometry")
+        animation.setDuration(200)
+
+        # Connect the toggle functionality
+        switch.clicked.connect(lambda: toggle_switch_animation())
+
+        # Delegate knob clicks to the switch
+        def knob_mouse_press(event):
+            switch.click()  # Simulate a click on the switch
+            super(knob.__class__, knob).mousePressEvent(event)
+
+        knob.mousePressEvent = knob_mouse_press
+
+        def toggle_switch_animation():
+            if switch.isChecked():
+                # Move knob to the right
+                animation.setStartValue(QRect(2, 2, 16, 16))
+                animation.setEndValue(QRect(22, 2, 16, 16))
+                switch.setStyleSheet("""
+                    QPushButton {
+                        background-color: #4CAF50;
+                        border-radius: 8px;
+                    }
+                """)
+            else:
+                # Move knob to the left
+                animation.setStartValue(QRect(22, 2, 16, 16))
+                animation.setEndValue(QRect(2, 2, 16, 16))  # Reset to left side
+                switch.setStyleSheet("""
+                    QPushButton {
+                        background-color: #ccc;
+                        border-radius: 8px;
+                    }
+                """)
+            animation.start()
+
+        # Add the switch to the layout
+        switch_layout.addWidget(switch)
+        layout.replaceWidget(checkbox, switch_widget)  # Replace the checkbox with the switch
+        checkbox.deleteLater()  # Remove the old checkbox
+        switch.toggle_animation = toggle_switch_animation
+
+        return switch
+
+    # Validate the data
+    def validate_input_data(self, old_name, data, expected_types):
+        if data['Name'] in self.data['Name'].values and data['Name'] != old_name:
+            raise ValueError(f"Duplicate entry found for 'Name': {data['Name']}.")
+
+        for key, expected_type in expected_types.items():
+            value = data.get(key)
+            if value is None:
+                raise ValueError(f"Missing value for {key}.")
+            
+            if (pd.isnull(value) or value == '') and key != "Remarks":
+                raise ValueError(f"Missing value for {key}.")
+            
+            try:
+                # Attempt type conversion
+                if expected_type == int:
+                    int(value)
+                elif expected_type == float:
+                    float(value)
+                elif expected_type == str:
+                    str(value)
+            except ValueError:
+                raise ValueError(f"Invalid type for {key}. Expected {expected_type.__name__}, got {type(value).__name__}.")
+            
+        
+
+    def save_community_data_dashboard(self, old_data_name):
+                
+        data_active = self.switch_1.isChecked()
+        data_name = self.plainTextEdit_15.toPlainText()
+        data_xDegrees = self.plainTextEdit.toPlainText()
+        data_yDegrees = self.plainTextEdit_2.toPlainText()
+        data_population = self.plainTextEdit_3.toPlainText()
+        data_affectedPop = self.plainTextEdit_4.toPlainText()
+        data_maxDistance = self.plainTextEdit_5.toPlainText()
+        data_remarks = self.plainTextEdit_6.toPlainText()
+
+        # Validate the input
+        new_row = {
+            "Active": data_active,
+            "Name": data_name,
+            "xDegrees": data_xDegrees,
+            "yDegrees": data_yDegrees,
+            "Population": data_population,
+            "AffectedPop": data_affectedPop,
+            "MaxDistance": data_maxDistance,
+            "Remarks": data_remarks,
+        }
+        expected_types = {
+            'Name': str,
+            'xDegrees': float,
+            'yDegrees': float,
+            'Population': int,
+            'AffectedPop': int,
+            'MaxDistance': float,
+            'Remarks': str
+        }
+        try:
+            self.validate_input_data(old_data_name, new_row, expected_types)
+            print("All data is valid.")
+        except ValueError as e:
+            QMessageBox.critical(self, "Error", f"{e}")
+            return
+        
+
+        if (old_data_name == "c0mmN3wc0d3") :
+            new_row = pd.DataFrame([new_row])
+            self.data = pd.concat([self.data, new_row], ignore_index=True) 
+        else :
+            row_idx = self.data.loc[self.data["Name"] == old_data_name].index[0]
+            self.data.loc[row_idx, "Active"] = data_active
+            self.data.loc[row_idx, "Name"] = data_name
+            self.data.loc[row_idx, "xDegrees"] = float(data_xDegrees)
+            self.data.loc[row_idx, "yDegrees"] = float(data_yDegrees)
+            self.data.loc[row_idx, "Population"] = int(data_population)
+            self.data.loc[row_idx, "AffectedPop"] = int(data_affectedPop)
+            self.data.loc[row_idx, "MaxDistance"] = float(data_maxDistance)
+            self.data.loc[row_idx, "Remarks"] = data_remarks
+
+        # Save the updated DataFrame back to the Excel file
+        file_path = os.path.join(os.getcwd(), "commData.xlsx")
+        with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
+            self.data.to_excel(writer, index=False)
+
+        self.load_comm_data()
+
+    def save_shelter_data_dashboard(self, old_data_name):
+        data_active = self.switch_2.isChecked()
+        data_name = self.plainTextEdit_9.toPlainText()
+        data_xDegrees = self.plainTextEdit_11.toPlainText()
+        data_yDegrees = self.plainTextEdit_10.toPlainText()
+        data_area1 = self.plainTextEdit_8.toPlainText()
+        data_cost1 = self.plainTextEdit_12.toPlainText()
+        data_area2 = self.plainTextEdit_13.toPlainText()
+        data_cost2 = self.plainTextEdit_14.toPlainText()
+        data_resFlood = self.checkBox_17.isChecked()
+        data_resTyphoon = self.checkBox_19.isChecked()
+        data_resEarthquake = self.checkBox_18.isChecked()
+        status_mapping = ["Built", "Partially Built", "Damaged", "Empty Lot"]
+        data_status = status_mapping[self.status_comboBox_2.currentIndex()]
+        data_remarks = self.plainTextEdit_17.toPlainText()
+
+        # Validate the input
+        new_row = {
+            "Active": data_active,
+            "Name": data_name,
+            "xDegrees": data_xDegrees,
+            "yDegrees": data_yDegrees,
+            'Area1': data_area1,
+            'Cost1': data_cost1,
+            'Area2': data_area2,
+            'Cost2': data_cost2,
+            'ResToFlood': data_resFlood,
+            'ResToTyphoon': data_resTyphoon,
+            'ResToEarthquake': data_resEarthquake,
+            'Status': data_status,
+            "Remarks": data_remarks,
+        }
+        expected_types = {
+            'Name': str,
+            'xDegrees': float,
+            'yDegrees': float,
+            'Area1': float,
+            'Cost1': float,
+            'Area2': float,
+            'Cost2': float,
+            'ResToFlood': bool,
+            'ResToTyphoon': bool,
+            'ResToEarthquake': bool,
+            'Status': str,
+            'Remarks': str
+        }
+        try:
+            self.validate_input_data(old_data_name, new_row, expected_types)
+            print("All data is valid.")
+        except ValueError as e:
+            QMessageBox.critical(self, "Error", f"{e}")
+            return
+        
+        if (old_data_name == "sh31N3wc0d3") :
+            new_row = pd.DataFrame([new_row])
+            self.shel_data = pd.concat([self.shel_data, new_row], ignore_index=True) 
+        else :
+            row_idx = self.shel_data.loc[self.shel_data["Name"] == old_data_name].index[0]
+            self.shel_data.loc[row_idx, "Active"] = data_active
+            self.shel_data.loc[row_idx, "Name"] = data_name
+            self.shel_data.loc[row_idx, "xDegrees"] = float(data_xDegrees)
+            self.shel_data.loc[row_idx, "yDegrees"] = float(data_yDegrees)
+            self.shel_data.loc[row_idx, "Area1"] = float(data_area1)
+            self.shel_data.loc[row_idx, "Cost1"] = float(data_cost1)
+            self.shel_data.loc[row_idx, "Area2"] = float(data_area2)
+            self.shel_data.loc[row_idx, "Cost2"] = float(data_cost2)
+            self.shel_data.loc[row_idx, "ResToFlood"] = data_resFlood
+            self.shel_data.loc[row_idx, "ResToTyphoon"] = data_resTyphoon
+            self.shel_data.loc[row_idx, "ResToEarthquake"] = data_resEarthquake
+            self.shel_data.loc[row_idx, "Status"] = data_status
+            self.shel_data.loc[row_idx, "Remarks"] = data_remarks
+
+        # Save the updated DataFrame back to the Excel file
+        file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+        with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
+            self.shel_data.to_excel(writer, index=False)
+
+        self.load_shel_data()
+
+    def delete_community_data_dashboard(self, old_data_name):
+        
+        response = QMessageBox.question(self, "Delete Confirmation", "Are you sure you want to delete this item?", QMessageBox.Yes | QMessageBox.No)
+        if response == QMessageBox.Yes:
+            row_idx = self.data.loc[self.data["Name"] == old_data_name].index[0]
+            self.data = self.data.drop(index = row_idx)
+            
+            # Save the updated DataFrame back to the Excel file
+            file_path = os.path.join(os.getcwd(), "commData.xlsx")
+            with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
+                self.data.to_excel(writer, index=False)
+
+            self.stackedWidget.hide()
+            self.load_comm_data()
+
+    def delete_shelter_data_dashboard(self, old_data_name):
+
+        response = QMessageBox.question(self, "Delete Confirmation", "Are you sure you want to delete this item?", QMessageBox.Yes | QMessageBox.No)
+        if response == QMessageBox.Yes:
+
+            row_idx = self.shel_data.loc[self.shel_data["Name"] == old_data_name].index[0]
+            self.shel_data = self.shel_data.drop(index = row_idx)
+            
+            # Save the updated DataFrame back to the Excel file
+            file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+            with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
+                self.shel_data.to_excel(writer, index=False)
+
+            self.stackedWidget.hide()
+            self.load_shel_data()

@@ -1,21 +1,24 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout
 from PySide6.QtGui import QIcon, QCursor
-from PySide6.QtCore import Qt, QUrl, QPropertyAnimation, QRect
+from PySide6.QtCore import Signal, Qt, QUrl, QPropertyAnimation, QRect
 from ui_entityManagement import Ui_EntityManagementCommunities
 import pandas as pd
 import os
 from functools import partial
 
 class EntityManagementComm(QDialog):
+    
+    changes_saved = Signal()
+
     def __init__(self):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_EntityManagementCommunities()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
 
         file_name = "commData.xlsx"
-        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'WorkPop', 'MaxDistance',  'Remarks']
-        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 800, 100, 'Sample remarks']], columns=required_headers)
+        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'MaxDistance',  'Remarks']
+        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 100, 'Sample remarks']], columns=required_headers)
 
         expected_types = {
             'Name': str,
@@ -23,7 +26,6 @@ class EntityManagementComm(QDialog):
             'yDegrees': float,
             'Population': int,
             'AffectedPop': int,
-            'WorkPop': int,
             'MaxDistance': float,
             'Remarks': str
         }
@@ -76,7 +78,13 @@ class EntityManagementComm(QDialog):
                         bool_value = bool(int(value)) if value in [0, 1] else bool(value)
                         if bool_value not in [0, 1, True, False]:
                             raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a boolean.")
-
+                        
+        # Check for duplicate values in the "Name" column
+        if "Name" in data.columns:
+            duplicate_names = data["Name"][data["Name"].duplicated()]
+            if not duplicate_names.empty:
+                raise ValueError(f"Duplicate entries found in the 'Name' column: {', '.join(duplicate_names)}")
+                        
 
     def import_excel_data(self, table_widget, required_headers, expected_types):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Excel File", "", "Excel Files (*.xls *.xlsx)")
@@ -98,12 +106,21 @@ class EntityManagementComm(QDialog):
             
     def save_to_excel(self, table_widget, file_name, dialog, expected_types):
         data = []
-        headers = ['Active'] + [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
+        
+        hadActiveColumn = True
+        headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
+        if 'Active' not in headers:
+            headers = ['Active'] + headers
+            hadActiveColumn = False
         
         for row in range(table_widget.rowCount()):
-            # Get the active switch state
-            active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
-            row_data = [active_switch] + [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
+            row_data = [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
+            
+            if not hadActiveColumn:
+                # Get the active switch state
+                active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
+                row_data = [active_switch] + row_data
+
             data.append(row_data)
 
         if data:
@@ -119,7 +136,7 @@ class EntityManagementComm(QDialog):
             if file_path:
                 try:
                     dataframe.to_excel(file_path, index=False)
-                    QMessageBox.information(self, "Success", f"File saved successfully as {file_path}")
+                    self.changes_saved.emit()
                     dialog.close()
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
@@ -140,15 +157,25 @@ class EntityManagementComm(QDialog):
 
     def populate_table(self, table_widget, data):
         table_widget.setRowCount(0)
-        table_widget.setColumnCount(len(data.columns) + 2)
-        table_widget.setHorizontalHeaderLabels(['Active'] + list(data.columns) + ['Delete'])
+
+        hadActiveColumn = True
+        headers = list(data.columns) + ['Delete']
+        if 'Active' not in headers:
+            headers = ['Active'] + headers
+            hadActiveColumn = False
+        table_widget.setColumnCount(len(headers))
+        table_widget.setHorizontalHeaderLabels(headers)
 
         for row_idx, row_data in data.iterrows():
             row_position = table_widget.rowCount()
             table_widget.insertRow(row_position)
-            is_active = row_data.get('Active', False) == True
+            is_active = row_data.get('Active', True) == True
             self.add_switch(table_widget, row_position, is_active)
             
+            #remove Active if Active already exists
+            if hadActiveColumn:
+                row_data = row_data[1:] 
+
             for col_idx, value in enumerate(row_data, start=1):
                 item = QTableWidgetItem(str(value))
                 table_widget.setItem(row_position, col_idx, item)
@@ -167,27 +194,30 @@ class EntityManagementComm(QDialog):
         switch = QPushButton()
         switch.setCheckable(True)
         switch.setChecked(is_active)
-        switch.setFixedSize(40, 20)  # Set the switch size
-        switch.setStyleSheet("""
-            QPushButton {
-                background-color: #ccc;
-                border-radius: 10px;
-            }
-            QPushButton::indicator {
-                width: 0;  /* Hide default indicator */
-            }
-        """)
+        switch.setFixedSize(38, 18)  # Set the switch size
+        switch.setStyleSheet(
+            "QPushButton { background-color: #4CAF50; border-radius: 8px; }" 
+            if switch.isChecked() else 
+            "QPushButton { background-color: #ccc; border-radius: 8px; }"
+        )
 
         # Create a circle (knob) for the switch
         knob = QPushButton(switch)
-        knob.setFixedSize(16, 16)
+        knob.setFixedSize(14, 14)
         knob.setStyleSheet("""
             QPushButton {
                 background-color: white;
-                border-radius: 8px;
+                border-radius: 7px;
             }
         """)
         knob.move(22 if is_active else 2, 2)  # Initial position for the knob (left side)
+        if switch.isChecked():
+            switch.setStyleSheet("""
+                QPushButton {
+                    background-color: #4CAF50;
+                    border-radius: 8px;
+                }
+            """)
 
         # Create a unique animation instance for this switch
         animation = QPropertyAnimation(knob, b"geometry")
@@ -195,6 +225,13 @@ class EntityManagementComm(QDialog):
 
         # Connect the toggle functionality
         switch.clicked.connect(lambda: self.toggle_switch_animation(switch, knob, animation))
+
+        # Delegate knob clicks to the switch
+        def knob_mouse_press(event):
+            switch.click()  # Simulate a click on the switch
+            super(knob.__class__, knob).mousePressEvent(event)
+
+        knob.mousePressEvent = knob_mouse_press
 
         # Add the switch to the layout
         layout.addWidget(switch)
@@ -208,7 +245,7 @@ class EntityManagementComm(QDialog):
             switch.setStyleSheet("""
                 QPushButton {
                     background-color: #4CAF50;
-                    border-radius: 10px;
+                    border-radius: 8px;
                 }
             """)
         else:
@@ -218,7 +255,7 @@ class EntityManagementComm(QDialog):
             switch.setStyleSheet("""
                 QPushButton {
                     background-color: #ccc;
-                    border-radius: 10px;
+                    border-radius: 8px;
                 }
             """)
         animation.start()
@@ -251,3 +288,4 @@ class EntityManagementComm(QDialog):
                 delete_btn = delete_btn_widget.findChild(QPushButton)
                 delete_btn.clicked.disconnect()
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
+

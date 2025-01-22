@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QDialog, QLabel, QMessageBox, QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QSizePolicy, QCheckBox
-from PySide6.QtCore import Qt, QPropertyAnimation, QRect, QEasingCurve
+from PySide6.QtCore import Signal, Qt, QPropertyAnimation, QRect, QEasingCurve
 from ui_solveSettings import Ui_solveSettings
 from entityManagementComm import EntityManagementComm
 from entityManagementShelter import EntityManagementShelter
@@ -10,6 +10,10 @@ from solvingProgress import SolvingProgress
 import pandas as pd
 
 class SolveSettingsDialog(QDialog):
+
+    changes_saved_comm = Signal()
+    changes_saved_shel = Signal()
+
     def __init__(self):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_solveSettings()  # Create an instance of the UI class
@@ -20,16 +24,16 @@ class SolveSettingsDialog(QDialog):
         self.ui.write_shelter_btn.clicked.connect(self.open_entitymanagement_shelter_dialog)
         self.ui.solveSet_adc_set_btn.clicked.connect(self.open_model_advanced_settings_dialog)
         self.ui.solveSet_solve_btn.clicked.connect(self.open_solving_progress_dialog)
-
+        
         # Setup layouts for community and shelter scroll areas
         self.community_layout = QVBoxLayout()
         self.ui.scrollArea_2.setWidget(QWidget())  # Set an empty widget to scrollArea_2
         self.ui.scrollArea_2.widget().setLayout(self.community_layout)
         self.ui.scrollArea_2.setStyleSheet("""QScrollArea { border: 1px solid gray;
-        background-color: transparent;
+        background-color: #fff;
         padding: 5px;
         border-radius: 20px; }
-        QWidget { background-color: transparent; }
+        QWidget { background-color: #fff; }
         QLabel { color: black;
         background-color: transparent;}""")
 
@@ -37,10 +41,10 @@ class SolveSettingsDialog(QDialog):
         self.ui.scrollArea.setWidget(QWidget())  # Set an empty widget to scrollArea
         self.ui.scrollArea.widget().setLayout(self.shelter_layout)
         self.ui.scrollArea.setStyleSheet("""QScrollArea { border: 1px solid gray;
-        background-color: transparent;
+        background-color: #fff;
         padding: 5px;
         border-radius: 20px; }
-        QWidget { background-color: transparent; }
+        QWidget { background-color: #fff; }
         QLabel { color: black;
         background-color: transparent;}""")
 
@@ -48,10 +52,10 @@ class SolveSettingsDialog(QDialog):
         self.ui.scrollArea_5.setWidget(QWidget())  # Set an empty widget to scrollArea_5
         self.ui.scrollArea_5.widget().setLayout(self.shelter_status_layout)
         self.ui.scrollArea_5.setStyleSheet("""QScrollArea { border: 1px solid gray;
-        background-color: transparent;
+        background-color: #fff;
         padding: 5px;
         border-radius: 20px; }
-        QWidget { background-color: transparent; }
+        QWidget { background-color: #fff; }
         QLabel { color: black;
         background-color: transparent;}""")
 
@@ -59,10 +63,10 @@ class SolveSettingsDialog(QDialog):
         self.ui.scrollArea_4.setWidget(QWidget())  # Set an empty widget to scrollArea_4
         self.ui.scrollArea_4.widget().setLayout(self.shelter_resistance_layout)
         self.ui.scrollArea_4.setStyleSheet("""QScrollArea { border: 1px solid gray;
-        background-color: transparent;
+        background-color: #fff;
         padding: 5px;
         border-radius: 20px; }
-        QWidget { background-color: transparent; }
+        QWidget { background-color: #fff; }
         QLabel { color: black;
         background-color: transparent;}""")
 
@@ -78,12 +82,16 @@ class SolveSettingsDialog(QDialog):
         self.init_shelter_resistance_switches()
         self.replace_checkbox_with_switch_sr()
 
+        
+
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
+        self.entityManagementComm_Window.changes_saved.connect(self.load_and_display_community_data)
         self.entityManagementComm_Window.show()
 
     def open_entitymanagement_shelter_dialog(self):
         self.entityManagementShelter_Window = EntityManagementShelter()
+        self.entityManagementShelter_Window.changes_saved.connect(self.load_and_display_shelter_data)
         self.entityManagementShelter_Window.show()
     
     def open_model_advanced_settings_dialog(self):
@@ -92,7 +100,7 @@ class SolveSettingsDialog(QDialog):
 
     def open_solving_progress_dialog(self):
         try:
-            self.filter_shelter_resistance_data()
+            self.filter_shelter_data()
 
             self.solvingProgress_Window = SolvingProgress()
             self.solvingProgress_Window.show()
@@ -111,6 +119,7 @@ class SolveSettingsDialog(QDialog):
             return []
     
     def load_and_display_community_data(self):
+
         try:
             # Load the community data
             data = pd.read_excel("commData.xlsx")
@@ -132,6 +141,8 @@ class SolveSettingsDialog(QDialog):
                 name_label = QLabel(name)
                 name_label.setStyleSheet("color: black; background-color: white;")
                 self.community_layout.addWidget(name_label)
+
+            self.changes_saved_comm.emit()
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
@@ -170,6 +181,8 @@ class SolveSettingsDialog(QDialog):
                 name_label.setStyleSheet("color: black; background-color: white;")
                 self.shelter_layout.addWidget(name_label)
 
+            self.changes_saved_shel.emit()
+
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
 
@@ -177,17 +190,18 @@ class SolveSettingsDialog(QDialog):
     def init_shelter_status_switches(self):
         self.shelter_status_switches = {}
         for label in ["Built", "Partially Built", "Damaged", "Empty Lot"]:
-            switch = self.create_switch(label, self.shelter_status_layout)
+            switch = self.create_switch(label, self.shelter_status_layout,True)
+            switch.clicked.connect(self.filter_shelter_data)
             self.shelter_status_switches[label] = switch
 
     def init_shelter_resistance_switches(self):
         self.shelter_resistance_switches = {}
         for label in ["Flood", "Typhoon", "Earthquake"]:
-            switch = self.create_switch(label, self.shelter_resistance_layout)
+            switch = self.create_switch(label, self.shelter_resistance_layout,False)
+            switch.clicked.connect(self.filter_shelter_data)
             self.shelter_resistance_switches[label] = switch
-        # self.create_switch("Volcanic Eruption", self.shelter_resistance_layout)
 
-    def create_switch(self, label_text, layout):
+    def create_switch(self, label_text, layout, is_active=False):
         row_widget = QWidget()
         row_layout = QHBoxLayout(row_widget)
         row_layout.setAlignment(Qt.AlignLeft)
@@ -204,19 +218,17 @@ class SolveSettingsDialog(QDialog):
         # Create switch
         switch = QPushButton()
         switch.setCheckable(True)
+        switch.setChecked(is_active)
         switch.setFixedSize(40, 20)  # Switch size
-        switch.setStyleSheet("""
-            QPushButton {
-                background-color: #ccc;
-                border-radius: 10px;
-            }
-            QPushButton::indicator {
-                width: 0;  /* Hide default indicator */
-            }
-        """)
+        switch.setStyleSheet(
+            "QPushButton { background-color: #4CAF50; border-radius: 10px; }" 
+            if switch.isChecked() else 
+            "QPushButton { background-color: #ccc; border-radius: 10px; }"
+        )
 
         # Create knob
         knob = QPushButton(switch)
+        knob.setObjectName("knob")
         knob.setFixedSize(16, 16)
         knob.setStyleSheet("""
             QPushButton {
@@ -224,7 +236,16 @@ class SolveSettingsDialog(QDialog):
                 border-radius: 8px;
             }
         """)
-        knob.move(2, 2)
+        knob.move(22 if is_active else 2, 2)
+        switch.knob = knob
+
+        
+        # Delegate knob clicks to the switch
+        def knob_mouse_press(event):
+            switch.click()  # Simulate a click on the switch
+            super(knob.__class__, knob).mousePressEvent(event)
+
+        knob.mousePressEvent = knob_mouse_press
 
         # Create animation
         animation = QPropertyAnimation(knob, b"geometry")
@@ -263,9 +284,8 @@ class SolveSettingsDialog(QDialog):
 
     def toggle_switch_animation(self, switch, knob):
         # Ensure self.animation is properly initialized
-        if not self.animation:
-            self.animation = QPropertyAnimation(knob, b"geometry")
-            self.animation.setDuration(200)  # Set the duration once when initializing
+        self.animation = QPropertyAnimation(knob, b"geometry")
+        self.animation.setDuration(200)  # Set the duration once when initializing
 
         if switch.isChecked():
             # Move knob to the right
@@ -289,14 +309,32 @@ class SolveSettingsDialog(QDialog):
             """)
         self.animation.start()
 
-    def filter_shelter_resistance_data(self, file_path="shelData.xlsx"):
+    def filter_shelter_data(self):
         try:
+            file_path="shelData.xlsx"
+
             data = pd.read_excel(file_path)
+
+            # Retrieve switch states
+            built_switch_state = self.shelter_status_switches["Built"].isChecked()
+            partially_built_switch_state = self.shelter_status_switches["Partially Built"].isChecked()
+            damaged_switch_state = self.shelter_status_switches["Damaged"].isChecked()
+            empty_lot_switch_state = self.shelter_status_switches["Empty Lot"].isChecked()
 
             # Retrieve switch states
             flood_switch_state = self.shelter_resistance_switches["Flood"].isChecked()
             typhoon_switch_state = self.shelter_resistance_switches["Typhoon"].isChecked()
             earthquake_switch_state = self.shelter_resistance_switches["Earthquake"].isChecked()
+
+            # Apply filters based on switch states
+            if not built_switch_state:
+                data = data[data["Status"] != "Built"]
+            if not partially_built_switch_state:
+                data = data[data["Status"] != "Partially Built"]
+            if not damaged_switch_state:
+                data = data[data["Status"] != "Damaged"]
+            if not empty_lot_switch_state:
+                data = data[data["Status"] != "Empty Lot"]
 
             # Apply filters based on switch states
             if flood_switch_state:
@@ -312,41 +350,6 @@ class SolveSettingsDialog(QDialog):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to filter file: {e}")
 
-    def filter_shelter_status_data(self, file_path="shelData.xlsx"):
-        try:
-            data = pd.read_excel(file_path)
-
-            # Retrieve switch states
-            built_switch_state = self.shelter_status_switches["Built"].isChecked()
-            partially_built_switch_state = self.shelter_status_switches["Partially Built"].isChecked()
-            damaged_switch_state = self.shelter_status_switches["Damaged"].isChecked()
-            empty_lot_switch_state = self.shelter_status_switches["Empty Lot"].isChecked()
-
-            # Apply filters based on switch states
-            if built_switch_state:
-                data = data[data["Status"] == "Built"]
-            if partially_built_switch_state:
-                data = data[data["Status"] == "Partially Built"]
-            if damaged_switch_state:
-                data = data[data["Status"] == "Damaged"]
-            if empty_lot_switch_state:
-                data = data[data["Status"] == "Empty Lot"]
-
-            # Reflect filtered data in the UI
-            self.update_shelter_scroll_area(data)
-
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to filter file: {e}")
-
-    def load_shelter_data(self):
-        # Retrieve switch states from the UI
-        flood_switch_state = self.flood_switch.isChecked()
-        typhoon_switch_state = self.typhoon_switch.isChecked()
-        earthquake_switch_state = self.earthquake_switch.isChecked()
-        built_switch_state = self.built_switch.isChecked()
-        partially_built_switch_state = self.partially_built_switch.isChecked()
-        damaged_switch_state = self.damaged_switch.isChecked()
-        empty_lot_switch_state = self.empty_lot_switch.isChecked()
 
     def update_shelter_scroll_area(self, filtered_data):
         try:
@@ -404,7 +407,7 @@ class SolveSettingsDialog(QDialog):
         frame_8.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         frame_7.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
 
-    def create_title_switch(self, label_text, layout):
+    def create_title_switch(self, label_text, layout, is_active=False):
         row_widget = QWidget()
         row_layout = QHBoxLayout(row_widget)
         row_layout.setAlignment(Qt.AlignLeft)
@@ -423,15 +426,11 @@ class SolveSettingsDialog(QDialog):
         switch = QPushButton()
         switch.setCheckable(True)
         switch.setFixedSize(40, 20)  # Switch size
-        switch.setStyleSheet("""
-            QPushButton {
-                background-color: #ccc;
-                border-radius: 10px;
-            }
-            QPushButton::indicator {
-                width: 0;  /* Hide default indicator */
-            }
-        """)
+        switch.setStyleSheet(
+            "QPushButton { background-color: #4CAF50; border-radius: 10px; }" 
+            if switch.isChecked() else 
+            "QPushButton { background-color: #ccc; border-radius: 10px; }"
+        )
 
         # Create knob
         knob = QPushButton(switch)
@@ -442,7 +441,15 @@ class SolveSettingsDialog(QDialog):
                 border-radius: 8px;
             }
         """)
-        knob.move(2, 2)
+        knob.move(22 if is_active else 2, 2)
+
+        
+        # Delegate knob clicks to the switch
+        def knob_mouse_press(event):
+            switch.click()  # Simulate a click on the switch
+            super(knob.__class__, knob).mousePressEvent(event)
+
+        knob.mousePressEvent = knob_mouse_press
 
         # Create animation
         animation = QPropertyAnimation(knob, b"geometry")
@@ -505,19 +512,21 @@ class SolveSettingsDialog(QDialog):
 
         if state:
             # If the Shelter Resistance switch is turned on, turn on all other switches
-            flood_switch.setChecked(True)
-            typhoon_switch.setChecked(True)
-            earthquake_switch.setChecked(True)
+            if not flood_switch.isChecked() : 
+                flood_switch.click()
+            if not typhoon_switch.isChecked() : 
+                typhoon_switch.click()
+            if not earthquake_switch.isChecked() : 
+                earthquake_switch.click()
         else:
             # If the Shelter Resistance switch is turned off, turn off all other switches
-            flood_switch.setChecked(False)
-            typhoon_switch.setChecked(False)
-            earthquake_switch.setChecked(False)
+            if flood_switch.isChecked() : 
+                flood_switch.click()
+            if typhoon_switch.isChecked() : 
+                typhoon_switch.click()
+            if earthquake_switch.isChecked() : 
+                earthquake_switch.click()
 
-        # Trigger the animation for each switch after toggling them
-        self.toggle_switch_animation(flood_switch, flood_switch.findChild(QPushButton))
-        self.toggle_switch_animation(typhoon_switch, typhoon_switch.findChild(QPushButton))
-        self.toggle_switch_animation(earthquake_switch, earthquake_switch.findChild(QPushButton))
 
     def toggle_all_shelter_status_switches(self, state):
         # Toggle Built, Partially Built, Damaged, Empty Lot switches based on the state of Shelter Status switch
@@ -527,20 +536,23 @@ class SolveSettingsDialog(QDialog):
         empty_lot_switch = self.shelter_status_switches["Empty Lot"]
 
         if state:
-            # If the Shelter Status switch is turned on, turn on all other switches
-            built_switch.setChecked(True)
-            partially_built_switch.setChecked(True)
-            damaged_switch.setChecked(True)
-            empty_lot_switch.setChecked(True)
+            # If the Shelter Resistance switch is turned on, turn on all other switches
+            if not built_switch.isChecked() : 
+                built_switch.click()
+            if not partially_built_switch.isChecked() : 
+                partially_built_switch.click()
+            if not damaged_switch.isChecked() : 
+                damaged_switch.click()
+            if not empty_lot_switch.isChecked() : 
+                empty_lot_switch.click()
         else:
-            # If the Shelter Status switch is turned off, turn off all other switches
-            built_switch.setChecked(False)
-            partially_built_switch.setChecked(False)
-            damaged_switch.setChecked(False)
-            empty_lot_switch.setChecked(False)
+            # If the Shelter Resistance switch is turned off, turn off all other switches
+            if built_switch.isChecked() : 
+                built_switch.click()
+            if partially_built_switch.isChecked() : 
+                partially_built_switch.click()
+            if damaged_switch.isChecked() : 
+                damaged_switch.click()
+            if empty_lot_switch.isChecked() : 
+                empty_lot_switch.click()
 
-        # Trigger the animation for each switch after toggling them
-        self.toggle_switch_animation(built_switch, built_switch.findChild(QPushButton))
-        self.toggle_switch_animation(partially_built_switch, partially_built_switch.findChild(QPushButton))
-        self.toggle_switch_animation(damaged_switch, damaged_switch.findChild(QPushButton))
-        self.toggle_switch_animation(empty_lot_switch, empty_lot_switch.findChild(QPushButton))

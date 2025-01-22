@@ -639,14 +639,13 @@ class Ui_solveSettings(object):
 
         self.model_pick_comboBox = QComboBox(self.frame_2)
         self.model_pick_comboBox.addItem("")
-        self.model_pick_comboBox.addItem("")
         self.model_pick_comboBox.setObjectName(u"model_pick_comboBox")
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.model_pick_comboBox.sizePolicy().hasHeightForWidth())
         self.model_pick_comboBox.setSizePolicy(sizePolicy2)
-        self.model_pick_comboBox.setMinimumSize(QSize(0, 0))
+        self.model_pick_comboBox.setMinimumSize(QSize(400, 0))
         self.model_pick_comboBox.setMaximumSize(QSize(400, 16777215))
         font8 = QFont()
         font8.setPointSize(11)
@@ -722,8 +721,7 @@ class Ui_solveSettings(object):
         self.shelter_stat_empty_lot_checkbox.setText("")
         self.label.setText(QCoreApplication.translate("Dialog", u"Model", None))
         self.solveSet_adc_set_btn.setText(QCoreApplication.translate("Dialog", u"Advanced Settings", None))
-        self.model_pick_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"Single-level with Workplace Distance Inclusion (WORK)", None))
-        self.model_pick_comboBox.setItemText(1, QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT)", None))
+        self.model_pick_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT)", None))
 
         self.solveSet_solve_btn.setText(QCoreApplication.translate("Dialog", u"SOLVE", None))
     # retranslateUi

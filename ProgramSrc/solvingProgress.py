@@ -15,7 +15,7 @@ class SolvingProgress(QDialog):
         self.ui = Ui_solvingProgress()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
 
-        self.ui.solving_prog_cancel_btn.clicked.connect(lambda : self.cancel_pathfinding(self))
+        self.ui.solving_prog_cancel_btn.clicked.connect(self.cancel_pathfinding)
         self.ui.solvingModel_progressBar.setRange(0, 100)
         
 
@@ -35,14 +35,16 @@ class SolvingProgress(QDialog):
         self.worker.finished.connect(self.on_finished)
 
         # Start the worker
-        self.worker_thread.started.connect(lambda : self.worker.run(self))
+        self.worker_thread.started.connect(self.worker.run)
+        self.worker_thread.finished.connect(self.worker.deleteLater)
         self.worker_thread.start()
 
-    def cancel_pathfinding(self,dialog):
-        if self.worker:
-            self.worker.cancel()
-            self.ui.textEdit.append("Pathfinding cancelled.")
-            dialog.close()
+    def cancel_pathfinding(self):
+        self.ui.textEdit.append("Cancelling pathfinding...")
+        self.worker.cancel_signal.emit()  # Notify the worker to cancel
+        self.worker_thread.quit()         # Stop the thread gracefully
+        self.worker_thread.wait()         # Ensure the thread is terminated
+        self.close()   
 
     def update_log(self, message):
         self.ui.textEdit.append(message)
@@ -53,4 +55,5 @@ class SolvingProgress(QDialog):
         self.worker_thread.quit()
         # run_optimization()
         self.ui.solvingModel_progressBar.setValue(100)
+        self.close()  
         

@@ -10,6 +10,7 @@ from math import radians, cos, sin, sqrt, atan2
 class PathfindingWorker(QObject):
     finished = Signal()
     progress = Signal(str)
+    cancel_signal = Signal() 
 
     def __init__(self, community_file, shelter_file):
         super().__init__()
@@ -19,8 +20,9 @@ class PathfindingWorker(QObject):
         self.timer = QTimer(self)
 
         self.timer.timeout.connect(self.check_for_cancel)
+        self.cancel_signal.connect(self.cancel)
 
-    def run(self,dialog):
+    def run(self):
         try:
             communities_df = pd.read_excel(self.community_file)
             shelters_df = pd.read_excel(self.shelter_file)
@@ -32,21 +34,19 @@ class PathfindingWorker(QObject):
             for _, community in communities_df.iterrows():
                 if self.cancelled:
                     self.progress.emit("Pathfinding cancelled during route calculation.")
-                    dialog.close()
                     return
                 
                 for _, shelter in shelters_df.iterrows():
                     if self.cancelled:
                         self.progress.emit("Pathfinding cancelled during route calculation.")
-                        dialog.close()
                         return
                     
                     try:
-                        self.plot_route(communities_df, shelters_df, route_counter, dialog)
+                        self.plot_route(communities_df, shelters_df, route_counter)
                         route_counter += 1
                         if not self.cancelled:
                             self.progress.emit("Pathfinding complete. Files saved.")
-                            self.run_genetic_algorithm(dialog)
+                            self.run_genetic_algorithm()
                         return
                     except Exception as e:
                         self.progress.emit(f"Error processing route from {community['Name']} to {shelter['Name']}: {e}")
@@ -69,10 +69,9 @@ class PathfindingWorker(QObject):
             self.finished.emit()
             return
         
-    def run_genetic_algorithm(self,dialog):
+    def run_genetic_algorithm(self):
         if self.cancelled:
             self.progress.emit("Genetic algorithm skipped due to cancellation.")
-            dialog.close()
             return
         
         community_file_path = os.path.join(os.getcwd(), "commData.xlsx")
@@ -90,8 +89,8 @@ class PathfindingWorker(QObject):
         except Exception as e:
             self.progress.emit(f"An unexpected error occurred: {e}")
 
-    def plot_route(self, communities_df, shelters_df, route_counter, dialog, map_name="all_routes_map.html", excel_name="distance_matrix.xlsx"):
-        bbox_margin = 0.02
+    def plot_route(self, communities_df, shelters_df, route_counter, map_name="all_routes_map.html", excel_name="distance_matrix.xlsx"):
+        bbox_margin = 0.01
         bbox = (
             max(communities_df['xDegrees'].max(), shelters_df['xDegrees'].max()) + bbox_margin,
             min(communities_df['xDegrees'].min(), shelters_df['xDegrees'].min()) - bbox_margin,
@@ -99,7 +98,7 @@ class PathfindingWorker(QObject):
             min(communities_df['yDegrees'].min(), shelters_df['yDegrees'].min()) - bbox_margin
         )
 
-        roadgraph = ox.graph_from_bbox(*bbox, network_type='all')
+        roadgraph = ox.graph_from_bbox(*bbox, network_type='walk')
         node_coords = {node: (data['y'], data['x']) for node, data in roadgraph.nodes(data=True)}
 
         def haversine_heuristic(u, v):
@@ -113,12 +112,10 @@ class PathfindingWorker(QObject):
         for _, community in communities_df.iterrows():
             if self.cancelled:
                 self.progress.emit("Pathfinding cancelled.")
-                dialog.close()
                 return
             for _, shelter in shelters_df.iterrows():
                 if self.cancelled:
                     self.progress.emit("Pathfinding cancelled.")
-                    dialog.close()
                     return
                 try:
                     start_node = ox.distance.nearest_nodes(roadgraph, community['yDegrees'], community['xDegrees'])

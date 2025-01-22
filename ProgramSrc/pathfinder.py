@@ -11,8 +11,6 @@ class PathfindingWorker(QObject):
     finished = Signal()
     progress = Signal(str)
 
-    ROUTE_COLORS = ['blue', 'green', 'red', 'purple', 'orange', 'pink', 'yellow', 'brown', 'gray', 'cyan']
-
     def __init__(self, community_file, shelter_file):
         super().__init__()
         self.community_file = community_file
@@ -22,7 +20,7 @@ class PathfindingWorker(QObject):
 
         self.timer.timeout.connect(self.check_for_cancel)
 
-    def run(self):
+    def run(self,dialog):
         try:
             communities_df = pd.read_excel(self.community_file)
             shelters_df = pd.read_excel(self.shelter_file)
@@ -34,19 +32,21 @@ class PathfindingWorker(QObject):
             for _, community in communities_df.iterrows():
                 if self.cancelled:
                     self.progress.emit("Pathfinding cancelled during route calculation.")
+                    dialog.close()
                     return
                 
                 for _, shelter in shelters_df.iterrows():
                     if self.cancelled:
                         self.progress.emit("Pathfinding cancelled during route calculation.")
+                        dialog.close()
                         return
                     
                     try:
-                        self.plot_route(communities_df, shelters_df, route_counter)
+                        self.plot_route(communities_df, shelters_df, route_counter, dialog)
                         route_counter += 1
                         if not self.cancelled:
                             self.progress.emit("Pathfinding complete. Files saved.")
-                            self.run_genetic_algorithm()
+                            self.run_genetic_algorithm(dialog)
                         return
                     except Exception as e:
                         self.progress.emit(f"Error processing route from {community['Name']} to {shelter['Name']}: {e}")
@@ -69,9 +69,10 @@ class PathfindingWorker(QObject):
             self.finished.emit()
             return
         
-    def run_genetic_algorithm(self):
+    def run_genetic_algorithm(self,dialog):
         if self.cancelled:
             self.progress.emit("Genetic algorithm skipped due to cancellation.")
+            dialog.close()
             return
         
         community_file_path = os.path.join(os.getcwd(), "commData.xlsx")
@@ -83,27 +84,13 @@ class PathfindingWorker(QObject):
             return
 
         try:
-            subprocess.run(["python", "BNTModel.py"], check=True)
+            subprocess.run(["python", "BNTModelPenalized.py"], check=True)
         except subprocess.CalledProcessError as e:
             self.progress.emit(f"Error running genetic algorithm: {e}")
         except Exception as e:
             self.progress.emit(f"An unexpected error occurred: {e}")
 
-    def plot_route(self, communities_df, shelters_df, route_counter, map_name="all_routes_map.html", excel_name="distance_matrix.xlsx"):
-        avg_lat = (communities_df['xDegrees'].mean() + shelters_df['xDegrees'].mean()) / 2
-        avg_lon = (communities_df['yDegrees'].mean() + shelters_df['yDegrees'].mean()) / 2
-        m = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
-
-        for _, community in communities_df.iterrows():
-            folium.Marker([community['xDegrees'], community['yDegrees']],
-                          popup=f"Community: {community['Name']}",
-                          icon=folium.Icon(color='green')).add_to(m)
-
-        for _, shelter in shelters_df.iterrows():
-            folium.Marker([shelter['xDegrees'], shelter['yDegrees']],
-                          popup=f"Shelter: {shelter['Name']}",
-                          icon=folium.Icon(color='blue')).add_to(m)
-
+    def plot_route(self, communities_df, shelters_df, route_counter, dialog, map_name="all_routes_map.html", excel_name="distance_matrix.xlsx"):
         bbox_margin = 0.02
         bbox = (
             max(communities_df['xDegrees'].max(), shelters_df['xDegrees'].max()) + bbox_margin,
@@ -126,10 +113,12 @@ class PathfindingWorker(QObject):
         for _, community in communities_df.iterrows():
             if self.cancelled:
                 self.progress.emit("Pathfinding cancelled.")
+                dialog.close()
                 return
             for _, shelter in shelters_df.iterrows():
                 if self.cancelled:
                     self.progress.emit("Pathfinding cancelled.")
+                    dialog.close()
                     return
                 try:
                     start_node = ox.distance.nearest_nodes(roadgraph, community['yDegrees'], community['xDegrees'])
@@ -138,11 +127,6 @@ class PathfindingWorker(QObject):
                     route = nx.astar_path(roadgraph, start_node, end_node, heuristic=haversine_heuristic, weight='length')
                     route_distance = sum(ox.utils_graph.get_route_edge_attributes(roadgraph, route, 'length'))
                     distance_matrix.at[shelter['Name'], community['Name']] = route_distance / 1000  # Convert to km
-
-                    route_coords = [(node_coords[node][0], node_coords[node][1]) for node in route]
-                    route_color = self.ROUTE_COLORS[route_counter % len(self.ROUTE_COLORS)]
-                    folium.PolyLine(route_coords, color=route_color, weight=2.5, opacity=0.7,
-                                    popup=f"Route from {community['Name']} to {shelter['Name']}").add_to(m)
 
                     route_counter += 1
 
@@ -158,8 +142,6 @@ class PathfindingWorker(QObject):
         distance_matrix.index.name = 'Shelters'
         distance_matrix.to_excel(excel_name)
         self.progress.emit(f"Distance matrix saved as {excel_name}")
-        m.save(map_name)
-        self.progress.emit(f"Map with all routes saved as {map_name}")
 
     @staticmethod
     def haversine_distance(lat1, lon1, lat2, lon2):

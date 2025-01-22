@@ -112,7 +112,7 @@ class PathfindingWorker(QObject):
             min(communities_df['yDegrees'].min(), shelters_df['yDegrees'].min()) - bbox_margin
         )
 
-        roadgraph = ox.graph_from_bbox(*bbox, network_type='drive')
+        roadgraph = ox.graph_from_bbox(*bbox, network_type='all')
         node_coords = {node: (data['y'], data['x']) for node, data in roadgraph.nodes(data=True)}
 
         def haversine_heuristic(u, v):

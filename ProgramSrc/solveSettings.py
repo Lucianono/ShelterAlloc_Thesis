@@ -326,6 +326,8 @@ class SolveSettingsDialog(QDialog):
             typhoon_switch_state = self.shelter_resistance_switches["Typhoon"].isChecked()
             earthquake_switch_state = self.shelter_resistance_switches["Earthquake"].isChecked()
 
+            data = data[data["Active"] == True]
+
             # Apply filters based on switch states
             if not built_switch_state:
                 data = data[data["Status"] != "Built"]

@@ -61,6 +61,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.advanced_settings_shel.clicked.connect(self.open_entitymanagement_shelter_dialog)
         self.solve_btn.clicked.connect(self.open_solve_settings_dialog)
 
+        #change map when this combobox changed
+        self.status_comboBox.currentIndexChanged.connect(self.filter_shelter_map_status)
+        self.resistance_comboBox.currentIndexChanged.connect(self.filter_shelter_map_resistance)
+
         
         # swap checkboxes to switches
         self.switch_1 = self.add_switch(self.checkBox_15)
@@ -283,7 +287,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.checkBox_17.setChecked(self.shel_data.loc[row, 'ResToFlood'])
             self.checkBox_19.setChecked(self.shel_data.loc[row, 'ResToTyphoon'])
             self.checkBox_18.setChecked(self.shel_data.loc[row, 'ResToEarthquake'])
-            status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 2}
+            status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 3}
             self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
             self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
 
@@ -712,3 +716,65 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.stackedWidget.hide()
             self.load_shel_data()
+
+    def filter_shelter_map_status(self, index):
+            file_path="shelData.xlsx"
+
+            data = pd.read_excel(file_path)
+            status_mapping = ["Built", "Partially Built", "Damaged", "Empty Lot"]
+            if index != 0:
+                data_status = status_mapping[index-1]
+                data = data[data["Status"] == data_status]
+
+
+            # Reflect filtered data in the UI
+            self.preview_map(data)
+
+    def filter_shelter_map_resistance(self, index):
+            file_path="shelData.xlsx"
+
+            data = pd.read_excel(file_path)
+            status_mapping = ["ResToFlood", "ResToTyphoon", "ResToEarthquake"]
+            if index != 0:
+                data_status = status_mapping[index-1]
+                data = data[data[data_status] == True]
+
+
+            # Reflect filtered data in the UI
+            self.preview_map(data)
+        
+    def preview_map(self,data):
+        try:
+
+            if not data.empty:
+                avg_lat = data['xDegrees'].mean()
+                avg_lon = data['yDegrees'].mean()
+                self.map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
+            else:
+                self.map = folium.Map(location=[0,0], zoom_start=2)
+
+
+            for index, row in data.iterrows():
+                latitude = row.get("xDegrees", 1)
+                longitude = row.get("yDegrees", 1)
+                name = row.get("Name", "Unknown")
+
+                if row.get("Active") :
+                    color="blue"
+                else :
+                    color="lightgray"
+
+                folium.Marker(
+                    location=[latitude, longitude],
+                    popup=name,
+                    icon=folium.Icon(color=color)
+                ).add_to(self.map)
+
+            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            self.map.save(map_file_path)
+
+            self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to update map: {e}")
+

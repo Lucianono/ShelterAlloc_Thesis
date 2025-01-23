@@ -183,7 +183,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 widget.deleteLater()  # Properly delete the widget
 
         self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), header=0)
-        self.refresh_map()
 
         try:
             file_path = os.path.join(os.getcwd(), "shelData.xlsx")
@@ -722,8 +721,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             data = pd.read_excel(file_path)
             status_mapping = ["Built", "Partially Built", "Damaged", "Empty Lot"]
-            if index != 0:
-                data_status = status_mapping[index-1]
+            if index == 0:
+                self.refresh_map()
+                return
+            elif index > 1:
+                data_status = status_mapping[index-2]
                 data = data[data["Status"] == data_status]
 
 
@@ -735,8 +737,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             data = pd.read_excel(file_path)
             status_mapping = ["ResToFlood", "ResToTyphoon", "ResToEarthquake"]
-            if index != 0:
-                data_status = status_mapping[index-1]
+            if index == 0:
+                self.refresh_map()
+                return
+            elif index > 1:
+                data_status = status_mapping[index-2]
                 data = data[data[data_status] == True]
 
 

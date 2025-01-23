@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dashboard.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.3
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -79,7 +79,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
-        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 319, 694))
+        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 348, 712))
         self.verticalLayout_7 = QVBoxLayout(self.scrollAreaWidgetContents_9)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.widget = QWidget(self.scrollAreaWidgetContents_9)
@@ -234,7 +234,7 @@ class Ui_MainWindow(object):
         self.add_shelter_btn.setFont(font1)
         self.add_shelter_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.add_shelter_btn.setStyleSheet(u"QPushButton {\n"
-"    background-color: #0e4c87;\n"
+"    background-color: #1A83E5;\n"
 "    color: white;\n"
 "    padding: 5px;\n"
 "    border: none;\n"
@@ -382,6 +382,7 @@ class Ui_MainWindow(object):
         self.resistance_comboBox.addItem("")
         self.resistance_comboBox.addItem("")
         self.resistance_comboBox.addItem("")
+        self.resistance_comboBox.addItem("")
         self.resistance_comboBox.setObjectName(u"resistance_comboBox")
         self.resistance_comboBox.setMinimumSize(QSize(150, 0))
         self.resistance_comboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
@@ -407,6 +408,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.label_15)
 
         self.status_comboBox = QComboBox(self.widget_2)
+        self.status_comboBox.addItem("")
         self.status_comboBox.addItem("")
         self.status_comboBox.addItem("")
         self.status_comboBox.addItem("")
@@ -779,7 +781,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 335, 729))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 371, 750))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
@@ -1208,7 +1210,7 @@ class Ui_MainWindow(object):
 
         self.communities_dropdown_2.setDefault(False)
         self.add_community_btn.setDefault(False)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1227,17 +1229,19 @@ class Ui_MainWindow(object):
         self.reports_btn.setText(QCoreApplication.translate("MainWindow", u"Reports", None))
         self.help_btn.setText(QCoreApplication.translate("MainWindow", u"Help", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"Resistance", None))
-        self.resistance_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"ALL", None))
-        self.resistance_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Flood", None))
-        self.resistance_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Typhoon", None))
-        self.resistance_comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Earthquake", None))
+        self.resistance_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"---", None))
+        self.resistance_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"ALL", None))
+        self.resistance_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Flood", None))
+        self.resistance_comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Typhoon", None))
+        self.resistance_comboBox.setItemText(4, QCoreApplication.translate("MainWindow", u"Earthquake", None))
 
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"Status", None))
-        self.status_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"ALL", None))
-        self.status_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Built", None))
-        self.status_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Partially Built", None))
-        self.status_comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Damaged", None))
-        self.status_comboBox.setItemText(4, QCoreApplication.translate("MainWindow", u"Empty Lot", None))
+        self.status_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"---", None))
+        self.status_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"ALL", None))
+        self.status_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Built", None))
+        self.status_comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Partially Built", None))
+        self.status_comboBox.setItemText(4, QCoreApplication.translate("MainWindow", u"Damaged", None))
+        self.status_comboBox.setItemText(5, QCoreApplication.translate("MainWindow", u"Empty Lot", None))
 
         self.solve_btn.setText(QCoreApplication.translate("MainWindow", u"GENERATE", None))
         self.pushButton_14.setText("")

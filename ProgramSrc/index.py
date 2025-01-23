@@ -183,6 +183,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 widget.deleteLater()  # Properly delete the widget
 
         self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), header=0)
+        self.refresh_map()
 
         try:
             file_path = os.path.join(os.getcwd(), "shelData.xlsx")

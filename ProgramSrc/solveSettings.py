@@ -8,6 +8,7 @@ from modelSettings import ModelSettings
 from plot_routes import run_pathfinding
 from solvingProgress import SolvingProgress
 import pandas as pd
+import os
 
 class SolveSettingsDialog(QDialog):
 
@@ -70,10 +71,7 @@ class SolveSettingsDialog(QDialog):
         QLabel { color: black;
         background-color: transparent;}""")
 
-        # Call these methods to load and display data
-        self.load_and_display_community_data()
-        self.load_and_display_shelter_data()
-
+        
         # Initialize shelter status switches
         self.init_shelter_status_switches()
         self.replace_checkbox_with_switch_ss()
@@ -82,8 +80,10 @@ class SolveSettingsDialog(QDialog):
         self.init_shelter_resistance_switches()
         self.replace_checkbox_with_switch_sr()
 
+        # Call these methods to load and display data
+        self.load_and_display_community_data()
+        self.filter_shelter_data()
         
-
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
         self.entityManagementComm_Window.changes_saved.connect(self.load_and_display_community_data)
@@ -91,7 +91,8 @@ class SolveSettingsDialog(QDialog):
 
     def open_entitymanagement_shelter_dialog(self):
         self.entityManagementShelter_Window = EntityManagementShelter()
-        self.entityManagementShelter_Window.changes_saved.connect(self.load_and_display_shelter_data)
+        self.entityManagementShelter_Window.changes_saved.connect(self.filter_shelter_data)
+        self.entityManagementShelter_Window.changes_saved.connect(self.changes_saved_shel.emit)
         self.entityManagementShelter_Window.show()
     
     def open_model_advanced_settings_dialog(self):
@@ -100,24 +101,33 @@ class SolveSettingsDialog(QDialog):
 
     def open_solving_progress_dialog(self):
         try:
-            self.filter_shelter_data()
+            filtered_comm_data = self.load_and_display_community_data()
+            filtered_shel_data = self.filter_shelter_data()
+
+            file_path = os.path.join(os.getcwd(), "modelCommData.xlsx")
+            if file_path:
+                try:
+                    filtered_comm_data.to_excel(file_path, index=False)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
+            else:
+                QMessageBox.warning(self, "Warning", "Save canceled.")
+
+            file_path = os.path.join(os.getcwd(), "modelShelData.xlsx")
+            if file_path:
+                try:
+                    filtered_shel_data.to_excel(file_path, index=False)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
+            else:
+                QMessageBox.warning(self, "Warning", "Save canceled.")
 
             self.solvingProgress_Window = SolvingProgress()
             self.solvingProgress_Window.show()
         
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
-    
-    def get_names_from_community_excel(self, file_path = "commData.xlsx"):
-        try:
-            data = pd.read_excel(file_path)
-            if "Name" not in data.columns:
-                raise ValueError("Column 'Name' not found in the Excel file.")
-            return data["Name"].tolist()
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
-            return []
-    
+        
     def load_and_display_community_data(self):
 
         try:
@@ -144,48 +154,10 @@ class SolveSettingsDialog(QDialog):
 
             self.changes_saved_comm.emit()
 
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
-
-    
-    def get_names_from_shelter_excel(self, file_path = "shelData.xlsx"):
-        try:
-            data = pd.read_excel(file_path)
-            if "Name" not in data.columns:
-                raise ValueError("Column 'Name' not found in the Excel file.")
-            return data["Name"].tolist()
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
-            return []
-    
-    def load_and_display_shelter_data(self):
-        try:
-            # Load the shelter data
-            data = pd.read_excel("shelData.xlsx")
-
-            # Filter rows where 'Active' column is True
-            active_data = data[data["Active"] == True]
-
-            if active_data.empty:
-                return
-            
-            # clear scroll area before populating
-            for i in reversed(range(self.shelter_layout.count())):
-                widget_to_remove = self.shelter_layout.itemAt(i).widget()
-                if widget_to_remove:
-                    widget_to_remove.deleteLater()
-
-            # Display only active names
-            for name in active_data["Name"]:
-                name_label = QLabel(name)
-                name_label.setStyleSheet("color: black; background-color: white;")
-                self.shelter_layout.addWidget(name_label)
-
-            self.changes_saved_shel.emit()
+            return data
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
-
 
     def init_shelter_status_switches(self):
         self.shelter_status_switches = {}
@@ -348,6 +320,8 @@ class SolveSettingsDialog(QDialog):
 
             # Reflect filtered data in the UI
             self.update_shelter_scroll_area(data)
+
+            return data
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to filter file: {e}")

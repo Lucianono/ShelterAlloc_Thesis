@@ -26,7 +26,7 @@ class SolvingProgress(QDialog):
         
 
     def start_pathfinding(self):
-        self.worker = PathfindingWorker("commData.xlsx", "shelData.xlsx")
+        self.worker = PathfindingWorker("modelCommData.xlsx", "modelShelData.xlsx")
         self.worker.moveToThread(self.worker_thread)
         self.ui.solvingModel_progressBar.setValue(25)
 

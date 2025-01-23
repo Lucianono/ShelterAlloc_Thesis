@@ -36,7 +36,7 @@ class ModelSettings(QDialog):
     def update_params_from_excel(self, excel_name):
         try:
             # get data from excel
-            Model_params_data = pd.read_excel( os.path.join(os.getcwd(), excel_name), header=0).fillna("").iloc[0]
+            Model_params_data = pd.read_excel( os.path.join(os.getcwd(), excel_name), header=0).iloc[0]
              
             self.ui.textEdit_generations.setPlainText(str(int(Model_params_data["Generations"])))
             self.ui.textEdit_population.setPlainText(str(int(Model_params_data["Population"])))
@@ -46,7 +46,7 @@ class ModelSettings(QDialog):
             self.ui.textEdit_maxShelters.setPlainText(str(int(Model_params_data["MaxShelters"])))
             self.ui.textEdit_maxL2Shelters.setPlainText(str(int(Model_params_data["MaxL2Shelters"])))
             self.ui.textEdit_areaPerIdniv.setPlainText(str(Model_params_data["AreaPerIndiv"]))
-            self.ui.comboBox_modelType.setCurrentIndex(int(str(Model_params_data["Model"])))
+            self.ui.comboBox_modelType.setCurrentIndex(int(Model_params_data["Model"]))
             
         except FileNotFoundError:
             QMessageBox.critical(self, "Error", f"File '{excel_name}' not found.")

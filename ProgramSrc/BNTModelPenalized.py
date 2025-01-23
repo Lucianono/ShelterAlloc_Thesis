@@ -11,14 +11,14 @@ import os
 # TEMPORARY DUMMY DATA
 # should be replaced with dynamic data from system
 # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
-Model_parameters = pd.read_excel( os.path.join(os.getcwd(), "modelParam.xlsx"), header=0 ).fillna("").iloc[0]
+Model_parameters = pd.read_excel( os.path.join(os.getcwd(), "modelParam.xlsx"), header=0 ).iloc[0]
 area_per_individual = Model_parameters['AreaPerIndiv']
-max_lvl2_shelters = Model_parameters['MaxL2Shelters']
-max_shelters = Model_parameters['MaxShelters']
+max_lvl2_shelters = int(min(Model_parameters['MaxL2Shelters'], len(Shelters)))
+max_shelters = int(min(Model_parameters['MaxShelters'], len(Shelters)))
 
 solutions = []
-num_generations = Model_parameters['Generations']
-num_solutions = Model_parameters['Population']
+num_generations = int(Model_parameters['Generations'])
+num_solutions = int(Model_parameters['Population'])
 mutation_rate = Model_parameters['Mutation']
 mutation_iteration = 2
 

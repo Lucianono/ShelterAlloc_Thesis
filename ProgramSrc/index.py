@@ -44,17 +44,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #self.barangay_a_btn.clicked.connect(self.unhide_stacked_widget)
 
         self.initial_map_file_path = os.path.join(os.getcwd(), "map.html")
-        self.optimized_map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
-        self.last_modified_time = os.path.getmtime(self.optimized_map_file_path) if os.path.exists(self.optimized_map_file_path) else None
-
-        if os.path.exists(self.optimized_map_file_path):
-            self.webEngineView.setUrl(QUrl.fromLocalFile(self.optimized_map_file_path))
-        else:
-            self.webEngineView.setUrl(QUrl.fromLocalFile(self.initial_map_file_path))
-
-        self.map_update_timer = QTimer(self)
-        self.map_update_timer.timeout.connect(self.check_for_optimized_map_update)
-        self.map_update_timer.start(1000)  # Check every second
+        self.webEngineView.setUrl(QUrl.fromLocalFile(self.initial_map_file_path))
 
         self.file_path = None
         self.advanced_settings_com.clicked.connect(self.open_entitymanagement_dialog)
@@ -91,24 +81,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.solveSettings_Window.changes_saved_comm.connect(self.load_comm_data)
         self.solveSettings_Window.changes_saved_shel.connect(self.load_shel_data)
         self.solveSettings_Window.show()
-
-    def check_for_optimized_map_update(self):
-        # Check if the optimized-routes-map.html exists
-        if os.path.exists(self.optimized_map_file_path):
-            # Get the last modified time of the optimized map
-            current_modified_time = os.path.getmtime(self.optimized_map_file_path)
-
-            # Check if the optimized map is newer than the initial map
-            initial_map_modified_time = os.path.getmtime(self.initial_map_file_path)
-            if (
-                self.last_modified_time is None or 
-                (current_modified_time != self.last_modified_time and current_modified_time > initial_map_modified_time)
-            ):
-                self.last_modified_time = current_modified_time
-
-                # Switch the displayed map to optimized-routes-map.html
-                self.webEngineView.setUrl(QUrl.fromLocalFile(self.optimized_map_file_path))
-                print(f"Map updated to optimized routes: {self.optimized_map_file_path}")
 
     def unhide_stacked_widget(self):
         self.stackedWidget.show()
@@ -410,7 +382,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     icon=folium.Icon(color=color)
                 ).add_to(self.map)
 
-            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            map_file_path = os.path.join(os.getcwd(), "map.html")
             self.map.save(map_file_path)
 
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
@@ -427,7 +399,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 focused_map.add_child(child)
 
             self.map = focused_map
-            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            map_file_path = os.path.join(os.getcwd(), "map.html")
             self.map.save(map_file_path)
 
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
@@ -776,7 +748,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     icon=folium.Icon(color=color)
                 ).add_to(self.map)
 
-            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            map_file_path = os.path.join(os.getcwd(), "map.html")
             self.map.save(map_file_path)
 
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))

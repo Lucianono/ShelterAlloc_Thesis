@@ -373,6 +373,28 @@ class BNTModelSimulation:
                     print(f"    - {community}")
                 print()
 
+        
+        def export_to_excel(allocation):
+            data = []
+            
+            for community in Community:
+                shelter_name = allocation["initial"][community["name"]]
+                
+                # Append data
+                data.append({
+                    "Community Name": community["name"],
+                    "Shelter Assigned": shelter_name,
+                    "Shelter Level": allocation["shelterlvl"][shelter_name]
+                })
+            
+            # Create a DataFrame and export to Excel
+            df = pd.DataFrame(data)
+            output_file = os.path.join(os.getcwd(), "allocation_results.xlsx")
+            df.to_excel(output_file, index=False)
+
+            progress_dialog(f"Allocation results saved to {output_file}")
+            print(f"Allocation results saved to {output_file}")
+
         # =======================
         # START OF THE ALGORITHM
         # initial population
@@ -425,7 +447,7 @@ class BNTModelSimulation:
 
             progress_dialog(f"=== Gen {generation+1} best solution ===")
             print(f"=== Gen {generation+1} best solution ===")
-            progress_dialog(best_solutions[0])
+            progress_dialog(str(best_solutions[0]))
             print(best_solutions[0])
 
             prev_best_solution = fitness(solutions[0])
@@ -444,6 +466,8 @@ class BNTModelSimulation:
         show_allocation_details_grouped(best_allocation)
         progress_dialog(f"Generation when solution last updated : {generation_last_updated}")
         print(f"Generation when solution last updated : {generation_last_updated}")
+
+        export_to_excel(best_allocation)
 
         # Calculate elapsed time
         elapsed_time = time.time() - start_time

@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageB
 from PySide6.QtGui import QIcon, QCursor
 from PySide6.QtCore import Qt, QUrl, QThread
 from ui_solvingprogress import Ui_solvingProgress
+from shelterAllocationReport import ShelterAllocationReport
 import pandas as pd
 import os
 from functools import partial
@@ -55,5 +56,9 @@ class SolvingProgress(QDialog):
         self.worker_thread.quit()
         # run_optimization()
         self.ui.solvingModel_progressBar.setValue(100)
+
+        self.report_Window = ShelterAllocationReport()
+        self.report_Window.show()
+
         # self.close()  
         

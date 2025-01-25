@@ -52,8 +52,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.solve_btn.clicked.connect(self.open_solve_settings_dialog)
 
         #change map when this combobox changed
-        self.status_comboBox.currentIndexChanged.connect(self.filter_shelter_map_status)
-        self.resistance_comboBox.currentIndexChanged.connect(self.filter_shelter_map_resistance)
+        self.shelterprev_comboBox.currentIndexChanged.connect(self.filter_shelter_map)
+        self.marker_comboBox.currentIndexChanged.connect(self.refresh_map)
 
         
         # swap checkboxes to switches
@@ -339,6 +339,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             comm_data = pd.read_excel("commData.xlsx",usecols=['Name','xDegrees','yDegrees','Active'])
             shel_data = pd.read_excel("shelData.xlsx",usecols=['Name','xDegrees','yDegrees','Active'])
 
+            show_inactive_marker = self.marker_comboBox.currentIndex() == 0
+
             if not comm_data.empty:
                 avg_lat = comm_data['xDegrees'].mean()
                 avg_lon = comm_data['yDegrees'].mean()
@@ -357,14 +359,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 if row.get("Active") :
                     color="green"
-                else :
-                    color="lightgray"
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
 
-                folium.Marker(
-                    location=[latitude, longitude],
-                    popup=name,
-                    icon=folium.Icon(color=color)
-                ).add_to(self.map)
+                elif show_inactive_marker :
+                    color="lightgray"
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
+
+                
 
             for index, row in shel_data.iterrows():
                 latitude = row.get("xDegrees", 1)
@@ -373,14 +382,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 if row.get("Active") :
                     color="blue"
-                else :
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
+                    
+                elif show_inactive_marker :
                     color="lightgray"
-
-                folium.Marker(
-                    location=[latitude, longitude],
-                    popup=name,
-                    icon=folium.Icon(color=color)
-                ).add_to(self.map)
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
 
             map_file_path = os.path.join(os.getcwd(), "map.html")
             self.map.save(map_file_path)
@@ -406,10 +420,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to focus on marker: {e}")
-
-
-
-
 
     def add_switch(self, checkbox, is_active=False):
         # Get the layout of the parent widget
@@ -516,8 +526,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     str(value)
             except ValueError:
                 raise ValueError(f"Invalid type for {key}. Expected {expected_type.__name__}, got {type(value).__name__}.")
-            
-        
 
     def save_community_data_dashboard(self, old_data_name):
                 
@@ -689,40 +697,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.stackedWidget.hide()
             self.load_shel_data()
 
-    def filter_shelter_map_status(self, index):
+    def filter_shelter_map(self, index):
             file_path="shelData.xlsx"
 
             data = pd.read_excel(file_path)
-            status_mapping = ["Built", "Partially Built", "Damaged", "Empty Lot"]
             if index == 0:
                 self.refresh_map()
                 return
-            elif index > 1:
+            elif index > 1 and index <= 5:
+                status_mapping = ["Built", "Partially Built", "Damaged", "Empty Lot"]
                 data_status = status_mapping[index-2]
                 data = data[data["Status"] == data_status]
-
-
-            # Reflect filtered data in the UI
-            self.preview_map(data)
-
-    def filter_shelter_map_resistance(self, index):
-            file_path="shelData.xlsx"
-
-            data = pd.read_excel(file_path)
-            status_mapping = ["ResToFlood", "ResToTyphoon", "ResToEarthquake"]
-            if index == 0:
-                self.refresh_map()
-                return
-            elif index > 1:
-                data_status = status_mapping[index-2]
+            elif index > 5 and index <= 8:
+                status_mapping = ["ResToFlood", "ResToTyphoon", "ResToEarthquake"]
+                data_status = status_mapping[index-6]
                 data = data[data[data_status] == True]
 
 
             # Reflect filtered data in the UI
             self.preview_map(data)
-        
+   
     def preview_map(self,data):
         try:
+
+            show_inactive_marker = self.marker_comboBox.currentIndex() == 0
 
             if not data.empty:
                 avg_lat = data['xDegrees'].mean()
@@ -739,14 +737,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 if row.get("Active") :
                     color="blue"
-                else :
-                    color="lightgray"
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
 
-                folium.Marker(
-                    location=[latitude, longitude],
-                    popup=name,
-                    icon=folium.Icon(color=color)
-                ).add_to(self.map)
+                elif show_inactive_marker :
+                    
+                    color="lightgray"
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
 
             map_file_path = os.path.join(os.getcwd(), "map.html")
             self.map.save(map_file_path)

@@ -365,7 +365,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setSpacing(20)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(-1, -1, 20, -1)
-        self.horizontalSpacer_25 = QSpacerItem(200, 30, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_25 = QSpacerItem(100, 30, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer_25)
 
@@ -374,19 +374,17 @@ class Ui_MainWindow(object):
         self.label_14 = QLabel(self.widget_2)
         self.label_14.setObjectName(u"label_14")
         self.label_14.setFont(font3)
+        self.label_14.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.horizontalLayout_3.addWidget(self.label_14)
 
-        self.resistance_comboBox = QComboBox(self.widget_2)
-        self.resistance_comboBox.addItem("")
-        self.resistance_comboBox.addItem("")
-        self.resistance_comboBox.addItem("")
-        self.resistance_comboBox.addItem("")
-        self.resistance_comboBox.addItem("")
-        self.resistance_comboBox.setObjectName(u"resistance_comboBox")
-        self.resistance_comboBox.setMinimumSize(QSize(150, 0))
-        self.resistance_comboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.resistance_comboBox.setStyleSheet(u"QComboBox {\n"
+        self.marker_comboBox = QComboBox(self.widget_2)
+        self.marker_comboBox.addItem("")
+        self.marker_comboBox.addItem("")
+        self.marker_comboBox.setObjectName(u"marker_comboBox")
+        self.marker_comboBox.setMinimumSize(QSize(150, 0))
+        self.marker_comboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.marker_comboBox.setStyleSheet(u"QComboBox {\n"
 "	border: 1px solid gray;\n"
 "	border-radius: 8px;\n"
 "	background-color: white;\n"
@@ -394,7 +392,7 @@ class Ui_MainWindow(object):
 "	height: 20px;\n"
 "}")
 
-        self.horizontalLayout_3.addWidget(self.resistance_comboBox)
+        self.horizontalLayout_3.addWidget(self.marker_comboBox)
 
 
         self.horizontalLayout_4.addLayout(self.horizontalLayout_3)
@@ -404,20 +402,24 @@ class Ui_MainWindow(object):
         self.label_15 = QLabel(self.widget_2)
         self.label_15.setObjectName(u"label_15")
         self.label_15.setFont(font3)
+        self.label_15.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.horizontalLayout_2.addWidget(self.label_15)
 
-        self.status_comboBox = QComboBox(self.widget_2)
-        self.status_comboBox.addItem("")
-        self.status_comboBox.addItem("")
-        self.status_comboBox.addItem("")
-        self.status_comboBox.addItem("")
-        self.status_comboBox.addItem("")
-        self.status_comboBox.addItem("")
-        self.status_comboBox.setObjectName(u"status_comboBox")
-        self.status_comboBox.setMinimumSize(QSize(150, 0))
-        self.status_comboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.status_comboBox.setStyleSheet(u"QComboBox {\n"
+        self.shelterprev_comboBox = QComboBox(self.widget_2)
+        self.shelterprev_comboBox.addItem("")
+        self.shelterprev_comboBox.addItem("")
+        self.shelterprev_comboBox.addItem("")
+        self.shelterprev_comboBox.addItem("")
+        self.shelterprev_comboBox.addItem("")
+        self.shelterprev_comboBox.addItem("")
+        self.shelterprev_comboBox.addItem("")
+        self.shelterprev_comboBox.addItem("")
+        self.shelterprev_comboBox.addItem("")
+        self.shelterprev_comboBox.setObjectName(u"shelterprev_comboBox")
+        self.shelterprev_comboBox.setMinimumSize(QSize(150, 0))
+        self.shelterprev_comboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.shelterprev_comboBox.setStyleSheet(u"QComboBox {\n"
 "	border: 1px solid gray;\n"
 "	border-radius: 8px;\n"
 "	background-color: white;\n"
@@ -425,7 +427,7 @@ class Ui_MainWindow(object):
 "	height: 20px;\n"
 "}")
 
-        self.horizontalLayout_2.addWidget(self.status_comboBox)
+        self.horizontalLayout_2.addWidget(self.shelterprev_comboBox)
 
 
         self.horizontalLayout_4.addLayout(self.horizontalLayout_2)
@@ -781,7 +783,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 371, 750))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 328, 733))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
@@ -1228,20 +1230,20 @@ class Ui_MainWindow(object):
         self.label_2.setText("")
         self.reports_btn.setText(QCoreApplication.translate("MainWindow", u"Reports", None))
         self.help_btn.setText(QCoreApplication.translate("MainWindow", u"Help", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Resistance", None))
-        self.resistance_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"---", None))
-        self.resistance_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"ALL", None))
-        self.resistance_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Flood", None))
-        self.resistance_comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Typhoon", None))
-        self.resistance_comboBox.setItemText(4, QCoreApplication.translate("MainWindow", u"Earthquake", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Marker Options", None))
+        self.marker_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"SHOW Inactive Markers", None))
+        self.marker_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"HIDE Inactive Markers", None))
 
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Status", None))
-        self.status_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"---", None))
-        self.status_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"ALL", None))
-        self.status_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Built", None))
-        self.status_comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Partially Built", None))
-        self.status_comboBox.setItemText(4, QCoreApplication.translate("MainWindow", u"Damaged", None))
-        self.status_comboBox.setItemText(5, QCoreApplication.translate("MainWindow", u"Empty Lot", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Shelter Preview", None))
+        self.shelterprev_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"---", None))
+        self.shelterprev_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"ALL", None))
+        self.shelterprev_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Built", None))
+        self.shelterprev_comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Partially Built", None))
+        self.shelterprev_comboBox.setItemText(4, QCoreApplication.translate("MainWindow", u"Damaged", None))
+        self.shelterprev_comboBox.setItemText(5, QCoreApplication.translate("MainWindow", u"Empty Lot", None))
+        self.shelterprev_comboBox.setItemText(6, QCoreApplication.translate("MainWindow", u"Resistant to Flood", None))
+        self.shelterprev_comboBox.setItemText(7, QCoreApplication.translate("MainWindow", u"Resistant to Typhoon", None))
+        self.shelterprev_comboBox.setItemText(8, QCoreApplication.translate("MainWindow", u"Resistant to Earthquake", None))
 
         self.solve_btn.setText(QCoreApplication.translate("MainWindow", u"GENERATE", None))
         self.pushButton_14.setText("")

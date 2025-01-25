@@ -1,45 +1,59 @@
 import pandas as pd
 import os
 
-# =======================
-# IMPORT DATA
-# get data and parameters from excel
-Community_data = pd.read_excel( os.path.join(os.getcwd(), "modelCommData.xlsx") ).fillna("")
-Shelter_data = pd.read_excel( os.path.join(os.getcwd(), "modelShelData.xlsx") ).fillna("")
-Distances_data = pd.read_excel( os.path.join(os.getcwd(), "distance_matrix.xlsx") ).fillna("")
+class DataSets :
+    # =======================
+    # IMPORT DATA
+    # get data and parameters from excel
+
+    def get_community_data(self) :
+        # sample data of communities with barangay names along with population and distances from each shelter
+        Community_data = pd.read_excel( os.path.join(os.getcwd(), "modelCommData.xlsx") ).fillna("")
+        Distances_data = pd.read_excel( os.path.join(os.getcwd(), "distance_matrix.xlsx") ).fillna("")
+
+        Community = []
+        for row in Community_data.itertuples(index=False):
+                # store all distances from community to all shleters
+                distance_row_data = {}
+                for _, shelter_row in Distances_data.iterrows():
+                    shelter = shelter_row["Shelters"]  
+                    distance = shelter_row[row.Name]  
+                    distance_row_data[shelter] = distance  
+
+                    
+                # Extract community details and distance to shelters
+                row_data = {
+                    "name": row.Name,
+                    "population": row.AffectedPop,
+                    "maxdistance": row.MaxDistance,
+                    "distances": distance_row_data
+                }
+                Community.append(row_data)
+
+        return Community
+
+    def get_shelter_data(self) :
+         # list of shelters with area1 and cost1 (area and cost as level 1 shelter), area 2 and cost2 (area and cost as level 2 shelter) 
+        Shelter_data = pd.read_excel( os.path.join(os.getcwd(), "modelShelData.xlsx") ).fillna("")
+        
+        Shelters = []
+        for row in Shelter_data.itertuples(index=False):
+                # Extract shelter details 
+                row_data = {
+                    "name": row.Name,
+                    "area1": row.Area1,
+                    "cost1": row.Cost1,
+                    "area2": row.Area2,
+                    "cost2": row.Cost2
+                }
+                Shelters.append(row_data)
+
+        return Shelters
 
 
 
-# list of shelters with area1 and cost1 (area and cost as level 1 shelter), area 2 and cost2 (area and cost as level 2 shelter) 
-Shelters = []
-for row in Shelter_data.itertuples(index=False):
-        # Extract shelter details 
-        row_data = {
-            "name": row.Name,
-            "area1": row.Area1,
-            "cost1": row.Cost1,
-            "area2": row.Area2,
-            "cost2": row.Cost2
-        }
-        Shelters.append(row_data)
 
-# sample data of communities with barangay names along with population and distances from each shelter
-Community = []
-for row in Community_data.itertuples(index=False):
-        # store all distances from community to all shleters
-        distance_row_data = {}
-        for _, shelter_row in Distances_data.iterrows():
-            shelter = shelter_row["Shelters"]  
-            distance = shelter_row[row.Name]  
-            distance_row_data[shelter] = distance  
 
-            
-        # Extract community details and distance to shelters
-        row_data = {
-            "name": row.Name,
-            "population": row.AffectedPop,
-            "maxdistance": row.MaxDistance,
-            "distances": distance_row_data
-        }
-        Community.append(row_data)
+
+
 

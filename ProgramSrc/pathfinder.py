@@ -1,4 +1,5 @@
 from PySide6.QtCore import QObject, Signal, QTimer
+from BNTModelPenalized import BNTModelSimulation
 import pandas as pd
 import subprocess
 import os
@@ -83,9 +84,13 @@ class PathfindingWorker(QObject):
             return
 
         try:
-            subprocess.run(["python", "BNTModelPenalized.py"], check=True)
-        except subprocess.CalledProcessError as e:
-            self.progress.emit(f"Error running genetic algorithm: {e}")
+        #     subprocess.run(["python", "BNTModelPenalized.py"], check=True)
+        # except subprocess.CalledProcessError as e:
+        #     self.progress.emit(f"Error running genetic algorithm: {e}")
+
+            model = BNTModelSimulation()
+            model.run(self.progress.emit)
+
         except Exception as e:
             self.progress.emit(f"An unexpected error occurred: {e}")
 

@@ -55,5 +55,5 @@ class SolvingProgress(QDialog):
         self.worker_thread.quit()
         # run_optimization()
         self.ui.solvingModel_progressBar.setValue(100)
-        self.close()  
+        # self.close()  
         

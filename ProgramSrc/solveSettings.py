@@ -101,7 +101,8 @@ class SolveSettingsDialog(QDialog):
 
     def open_solving_progress_dialog(self):
         try:
-            filtered_comm_data = self.load_and_display_community_data()
+            comm_data = self.load_and_display_community_data()
+            filtered_comm_data = comm_data[comm_data["Active"] == True]
             filtered_shel_data = self.filter_shelter_data()
 
             file_path = os.path.join(os.getcwd(), "modelCommData.xlsx")
@@ -124,6 +125,7 @@ class SolveSettingsDialog(QDialog):
 
             self.solvingProgress_Window = SolvingProgress()
             self.solvingProgress_Window.show()
+            self.close()
         
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")

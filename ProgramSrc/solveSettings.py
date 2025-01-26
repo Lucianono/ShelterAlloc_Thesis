@@ -1,6 +1,7 @@
 import sys
 from PySide6.QtWidgets import QDialog, QLabel, QMessageBox, QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QSizePolicy, QCheckBox, QToolTip, QApplication
 from PySide6.QtCore import Signal, Qt, QPropertyAnimation, QRect, QEasingCurve
+from PySide6.QtGui import QPalette, QColor
 from PySide6.QtGui import QFont
 from ui_solveSettings import Ui_solveSettings
 from entityManagementComm import EntityManagementComm
@@ -83,10 +84,18 @@ class SolveSettingsDialog(QDialog):
         self.init_shelter_resistance_switches()
         self.replace_checkbox_with_switch_sr()
 
-        self.ui.label_14.setToolTip("Click to write community data") #testing
-        self.ui.label_3.setToolTip("Click to write shelter data") #testing
-        self.ui.label.setToolTip("Click to set which model to use") #testing
+        self.ui.label_14.setToolTip("Community Data shows the list of communities that will be used in the simulation")
+        self.ui.label_3.setToolTip("Shelter Data shows the list of shelters that will be used in the simulation")
+        self.ui.label.setToolTip("Click to set which model to use")
 
+        QApplication.instance().setStyleSheet("""
+            QToolTip {
+                color: black;
+                font-weight: normal;
+                text-decoration: none;
+            }
+        """)
+        QToolTip.setFont(QFont('Arial', 12))
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
         self.entityManagementComm_Window.changes_saved.connect(self.load_and_display_community_data)
@@ -427,9 +436,9 @@ class SolveSettingsDialog(QDialog):
 
         # Add tooltip to the label
         if label_text == "Shelter Resistance":
-            label.setToolTip("Select the types of disasters that the shelter can withstand")
+            label.setToolTip("Shelter Resistance represent the ability of a shelter to withstand specific environmental disaster/s. Select the types of disasters that the shelter can withstand.")
         elif label_text == "Shelter Status":
-            label.setToolTip("View or update the current status of the shelter")
+            label.setToolTip("Shelter Status indicates the current condition of the shelter. Select the condition type for the evacuees to stay in.")
 
         # Create switch
         switch = QPushButton()

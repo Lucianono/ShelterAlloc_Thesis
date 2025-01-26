@@ -12,7 +12,7 @@
 	This applied research approach aims to deliver a functional and reliable shelter location-allocation system that local government units (LGUs) and disaster response agencies can easily deploy and adapt. By emphasizing incremental progress and user-centered development, this ensures that the research outputs are directly applicable and beneficial to communities in disaster-prone areas.
 
 \subsection{Quantitative Research}
-	The quantitative research component of this study aims to measure and analyze the acceptability of the proposing system using TAM concepts and ISO/IEC 25010 standard. The approach will provide objective and measurable evidence to evaluate the system's usability, reliability, and overall quality performance. The quantitative methods will seek to quantify the use of genetic algorithms in the shelter location allocation system, providing valuable insights into the system's effectiveness for emergency management.
+	The quantitative research component of this study aims to measure and analyze the acceptability of the proposing system using TAM determinants and ISO/IEC 25010 standard. The approach will provide objective and measurable evidence to evaluate the system's usability, reliability, and overall quality performance. The quantitative methods will seek to quantify the use of genetic algorithms in the shelter location allocation system, providing valuable insights into the system's effectiveness for emergency management.
 	Methods will include collecting user feedback and performance metrics through structured surveys and system testing to assess these attributes. The survey will gauge user satisfaction with system usability and functionality using a 10-point rating scale, providing quantifiable insights into the system's ease of use and accessibility. 
 	Incorporating quantitative research in this study is justified as it can provide empirical evidence supporting the shelter allocation system's acceptability. 
 
@@ -342,7 +342,7 @@
 \subsection{Deployment}
 	During the deployment phase, the shelter location-allocation system will undergo pilot testing in collaboration with local government units (LGUs). This process will involve configuring the system, establishing the necessary data inputs, and training users to utilize the platform effectively. Additionally, the deployment phase will continuously monitor the system's performance to ensure it operates efficiently and meets the objective of optimizing shelter locations. 
 
-\subsection{Sustainability Plan}
+	\textbf{Sustainability Plan}
 	The presentation of the application to the potential users, specifically the Local Government Unit (LGU) of Calumpit will include a walkthrough tutorial covering all essential features. The users will be provided with the information necessary to operate the app effectively, including an overview of its purpose, functionalities, and how to input relevant data. Specifically, this includes entering shelter locations, population data, and accessibility metrics into the system to ensure accurate allocation results. Since a detailed explanation was provided during the system evaluation, this presentation will focus on summarizing key points and addressing questions and feedback from the users.
 
 	Feedback gathered from the potential users will be important in identifying the areas for improvement. This feedback will be collected through structured surveys and interviews to provide a comprehensive understanding of user needs and challenges. The updates and adjustments to the application from the feedback to better align the users’ needs, the new version of the application will be emailed to the Local Government Unit (LGU) of Calumpit for operational use. This will ensure that they have access to the latest features and improvements. It is important to note that this application is copyrighted by Bulacan State University to protect its intellectual property and ensure proper recognition to the researchers, developers, and thesis adviser. This copyright also prevents unauthorized commercial use and distribution, ensuring that the application remains a free resource for its intended purpose. It is not for sale.
@@ -364,13 +364,49 @@
 	
 	All collected data will first be cleaned to remove any inconsistencies, duplicates, or irrelevant information. This process is crucial for ensuring the data’s quality and reliability, particularly for a system that relies on precision in both inputs and outputs. Any insufficient data will be asked on the LGU to fill in the gaps of the datasets. 
 	
+	The table \ref{dataSource} presents all the data variables on communities and shelters used in the model, along with their respective sources. Data for Level 2 shelters are simulated, as the LGU does not have a data nor system for the hierarchy of shelters. The areas are assumed to be twice their initial size, and costs are estimated based on the contract cost of the Frances Evacuation Center, as detailed in the DILG and DPWH reports, resulting in approximately ₱60,000 per square meter.
+	
+	\begin{table}[h]
+		\centering
+		\caption{Variables, Descriptions, and Sources for Community and Shelter Data}
+		\label{varDescriptionSource}
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{|c|c|p{8cm}|}
+				\hline
+				\textbf{Variable} & \textbf{Source} & \textbf{Description} \\ \hline
+				\multicolumn{3}{|c|}{\textit{\textbf{Community}}}\\ \hline
+				Name & LGU interview & Identity of a community \\ \hline
+				xDegrees & Google Map \& LGU interview & Longitudinal coordinates \\ \hline
+				yDegrees & Google Map \& LGU interview & Latitudinal coordinates \\ \hline
+				Population & Philippine Atlas (2020 population) & Number of individuals living in a community \\ \hline
+				AffectedPop & LGU interview (Typhoon Karina 2024) & Number of individuals affected during a disaster \\ \hline
+				MaxDistance & Maximum distance generated in distance calculation & Distance allowed to travel by a community \\ \hline
+				\multicolumn{3}{|c|}{\textit{\textbf{Shelter}}} \\ \hline
+				Name & LGU interview & Identity of a shelter \\ \hline
+				xDegrees & Google Map \& LGU interview & Longitudinal coordinates \\ \hline
+				yDegrees & Google Map \& LGU interview & Latitudinal coordinates \\ \hline
+				Area1 & Google Map & Lot area of a shelter (level 1) \\ \hline
+				Cost1 & Assumed 0 since the shelter is already built & Cost for constructing/maintaining a shelter with Area1 \\ \hline
+				Area2 & Assumed Area1 * 2 & Lot area of a shelter (level 2) \\ \hline
+				Cost2 & Assumed 60,000 * Area1 & Cost for constructing/maintaining a shelter with Area2 \\ \hline
+				ResToFlood & LGU interview & Is the shelter resistant to flood? \\ \hline
+				ResToTyphoon & LGU interview & Is the shelter resistant to typhoon? \\ \hline
+				ResToEarthquake & LGU interview & Is the shelter resistant to earthquake? \\ \hline
+				Status & LGU interview & State of the physical structure of a shelter \\ \hline
+				\multicolumn{3}{|c|}{\textit{\textbf{Distance between Community and Shelter}}} \\ \hline
+				distance & OpenStreetMap API & distance needed to travel by a community to a shelter  \\ \hline
+			\end{tabular}
+			}
+	\end{table}
+	
+	
 	For justification of the target area’s vulnerability, typhoon data spanning from 2006 to 2022 will be examined. This dataset includes the number of affected and evacuated individuals across various municipalities in Bulacan. The data will be grouped by municipality, summing the affected and evacuated residents over the specified period. This analysis helps justify the focus on the municipality and supports the rationale for the shelter allocation model’s implementation in the municipality.
 	
 	The cleaned shelter and community data will be fed into the system to facilitate accurate shelter location-allocation modeling. The system will use these inputs to generate optimized shelter placement recommendations based on the model adopted.
 	
 	
 \section{System Evaluation}
-	System evaluation will focus on assessing acceptability of the shelter location allocation system using the TAM concepts and ISO/IEC 25010 standard. These standards provides a framework for evaluating the software's quality and acceptability. The system evaluation will include the evaluation instrument, determining the population and sample, outlining data collection procedures, and discussing the data analysis techniques used.
+	System evaluation will focus on assessing acceptability of the shelter location allocation system using the TAM determinants and ISO/IEC 25010 standard. These standards provides a framework for evaluating the software's quality and acceptability. The system evaluation will include the evaluation instrument, determining the population and sample, outlining data collection procedures, and discussing the data analysis techniques used.
 
 \subsection{Evaluation Instrument}
 	The evaluation instrument is a structured questionnaire designed to assess the acceptability of the shelter location allocation system based on the determinants of Technology Acceptance Model(TAM) and key quality attributes outlined in the International Organization for Standardization and International Electoral Commission (ISO/IEC) 25010 standard. Questionnaires based on TAM will be distributed to the potential end-users of the system. On the other hand, questionnaires based on ISO/IEC 25010 will be distributed to the experts in software development.
@@ -421,14 +457,14 @@
 	Meanwhile, for IT experts, Purposive Sampling Technique will be employed. Researchers will purposively select 10 IT experts from CICT who have experience in system development or have worked in a government agency related to disaster risk management. These experts will be chosen based on their qualifications and relevant experience to provide insights into the system's design, functionality, and performance. This technique ensures that the selected experts evaluating the system will provide comprehensible and accurate feedback while also ensuring its feasibility.
 	
 \subsection{Data Collection Procedures}
-	Evaluation phase will gauge the system’s acceptability and user satisfaction. To do this, a questionnaire will be developed based on the ISO/IEC 25010 software quality model, which will employ a 10-point rating scale, allowing participants to provide precise feedback on each quality criterion. The system will be demonstrated to a selected sample population in a face-to-face presentation, where they will have the chance to interact with the system firsthand. This will be followed by the completion of the questionnaire, enabling participants to provide feedback based on their experience using the system.
+	Evaluation phase will gauge the system’s acceptability and user satisfaction. To do this, a questionnaire will be developed based on TAM and ISO/IEC 25010, which will employ a 10-point rating scale, allowing participants to provide precise feedback on each quality criterion. The system will be demonstrated to a selected sample population in a face-to-face presentation, where they will have the chance to interact with the system firsthand. This will be followed by the completion of the questionnaire, enabling participants to provide feedback based on their experience using the system.
 	
-	Following ISO/IEC 25010 standards ensures that the system meets its intended objectives and offers insights into potential areas for improvement, which will be critical for broader implementation in disaster-response operations. Through the data collection process, the researchers will ensure that all ethical considerations are thoroughly addressed to uphold the integrity and privacy of the participants
+	Following the research instruments ensures that the system meets its intended objectives and offers insights into potential areas for improvement, which will be critical for broader implementation in disaster-response operations. Through the data collection process, the researchers will ensure that all ethical considerations are thoroughly addressed to uphold the integrity and privacy of the participants
 
 \subsection{Data Processing and Analysis}
-	The structured survey will be given to the target samples to evaluate the system's acceptability and provide critical feedback for further refinement.
-	
 	This study's data processing will involve structured analysis to interpret findings from the acceptability survey, aligning with the ISO/IEC 25010 standard. This standard evaluates key quality attributes, and each attribute will be assessed using a 10-point rating scale. 1 being the lowest or extremely dissatisfied, and 10 being the highest or extremely satisfied. 
+	
+	After the data collection, the rating scale will categorize the acceptability levels. Descriptive statistics will be utilized to analyze the collected data. Analysis includes calculating the minimum, maximum, mean, and standard deviation for each category. Formula \ref{mean} shows the mean that computes the average score, and formula \ref{stdDev} shows the standard deviation which shows the dispersion of scores relative to the mean. This use of data allows both the system functionality and its user acceptability to be comprehensively assessed. 
 	
 	\begin{equation} 
 		\label{mean}
@@ -437,11 +473,22 @@
 	
 	Where:
 	\\$\bar{x}$ - sample mean
-	\\$\sum_{i=1}^{n} x$ - sum of all data points
 	\\$n$ - sample size
+	\\$x_{i}$ - data points
 	
 	
-	After the data collection, the rating scale will categorize the acceptability levels. Formula \ref{mean} or the mean will be used to compute the overall score from the respondents' answers. This dual use of data allows both the system functionality and its user acceptability to be comprehensively assessed. 
+	\begin{equation} 
+		\label{stdDev}
+		S = \sqrt{\frac{\sum_{i=1}^{n} (x_{i} - \bar{x} )^2 }{n-1}}
+	\end{equation}
+	
+	Where:
+	\\$S$ - sample standard deviation
+	\\$\bar{x}$ - sample mean
+	\\$n$ - sample size
+	\\$x_{i}$ - data points
+	
+	
 
 \section{Ethical Considerations}
 	Data gathered contained sensitive data so that ethical considerations should be practiced throughout the research.  Informed consent will be obtained from each participant, providing them with a clear understanding of the research purpose, procedures, and their rights to withdraw at any time. To protect the participants’ privacy, all responses will be anonymized and handled with strict confidentiality. Additionally, data usage will be restricted to research purposes only, ensuring that participants' information remains safeguarded throughout the research process and beyond. 

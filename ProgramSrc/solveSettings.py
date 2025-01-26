@@ -84,18 +84,6 @@ class SolveSettingsDialog(QDialog):
         self.init_shelter_resistance_switches()
         self.replace_checkbox_with_switch_sr()
 
-        self.ui.label_14.setToolTip("Community Data shows the list of communities that will be used in the simulation")
-        self.ui.label_3.setToolTip("Shelter Data shows the list of shelters that will be used in the simulation")
-        self.ui.label.setToolTip("Click to set which model to use")
-
-        QApplication.instance().setStyleSheet("""
-            QToolTip {
-                color: black;
-                font-weight: normal;
-                text-decoration: none;
-            }
-        """)
-        QToolTip.setFont(QFont('Arial', 12))
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
         self.entityManagementComm_Window.changes_saved.connect(self.load_and_display_community_data)
@@ -433,12 +421,6 @@ class SolveSettingsDialog(QDialog):
             font-size: 18px;
             text-decoration: underline;""")
         label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-
-        # Add tooltip to the label
-        if label_text == "Shelter Resistance":
-            label.setToolTip("Shelter Resistance represent the ability of a shelter to withstand specific environmental disaster/s. Select the types of disasters that the shelter can withstand.")
-        elif label_text == "Shelter Status":
-            label.setToolTip("Shelter Status indicates the current condition of the shelter. Select the condition type for the evacuees to stay in.")
 
         # Create switch
         switch = QPushButton()

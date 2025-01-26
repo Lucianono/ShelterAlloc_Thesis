@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'solveSettings.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.2
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -27,6 +27,7 @@ class Ui_solveSettings(object):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(855, 474)
+        Dialog.setToolTipDuration(-2)
         self.gridLayout = QGridLayout(Dialog)
         self.gridLayout.setObjectName(u"gridLayout")
         self.frame = QFrame(Dialog)
@@ -82,6 +83,7 @@ class Ui_solveSettings(object):
         font1.setBold(True)
         font1.setUnderline(False)
         self.label_14.setFont(font1)
+        self.label_14.setToolTipDuration(10000)
         self.label_14.setStyleSheet(u"margin-right:;")
 
         self.horizontalLayout_6.addWidget(self.label_14)
@@ -122,7 +124,7 @@ class Ui_solveSettings(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_4 = QWidget()
         self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 370, 188))
+        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 364, 239))
         font2 = QFont()
         font2.setBold(True)
         self.scrollAreaWidgetContents_4.setFont(font2)
@@ -262,6 +264,7 @@ class Ui_solveSettings(object):
         self.label_3.setObjectName(u"label_3")
         self.label_3.setMaximumSize(QSize(5000, 16777215))
         self.label_3.setFont(font1)
+        self.label_3.setToolTipDuration(10000)
         self.label_3.setStyleSheet(u"margin-right:;")
 
         self.horizontalLayout_4.addWidget(self.label_3)
@@ -303,7 +306,7 @@ class Ui_solveSettings(object):
         self.scrollArea.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 386, 148))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 384, 148))
         self.scrollAreaWidgetContents_2.setFont(font2)
         self.scrollAreaWidgetContents_2.setStyleSheet(u"background-color: white;\n"
 "color:rgb(43, 43, 43);")
@@ -365,6 +368,7 @@ class Ui_solveSettings(object):
         sizePolicy.setHeightForWidth(self.frame_12.sizePolicy().hasHeightForWidth())
         self.frame_12.setSizePolicy(sizePolicy)
         self.frame_12.setMaximumSize(QSize(16777215, 40))
+        self.frame_12.setToolTipDuration(10000)
         self.frame_12.setStyleSheet(u"margin:0;\n"
 "padding:0;")
         self.frame_12.setFrameShape(QFrame.StyledPanel)
@@ -381,6 +385,7 @@ class Ui_solveSettings(object):
         font4.setBold(True)
         font4.setUnderline(True)
         self.label_20.setFont(font4)
+        self.label_20.setToolTipDuration(10000)
         self.label_20.setStyleSheet(u"margin-right:;")
 
         self.horizontalLayout_7.addWidget(self.label_20)
@@ -412,7 +417,7 @@ class Ui_solveSettings(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollAreaWidgetContents_5 = QWidget()
         self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
-        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 387, 129))
+        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 385, 114))
         self.scrollAreaWidgetContents_5.setFont(font2)
         self.scrollAreaWidgetContents_5.setStyleSheet(u"background-color: white;\n"
 "color:rgb(43, 43, 43);")
@@ -485,6 +490,7 @@ class Ui_solveSettings(object):
         sizePolicy.setHeightForWidth(self.frame_8.sizePolicy().hasHeightForWidth())
         self.frame_8.setSizePolicy(sizePolicy)
         self.frame_8.setMaximumSize(QSize(16777215, 40))
+        self.frame_8.setToolTipDuration(10000)
         self.frame_8.setStyleSheet(u"margin:0;\n"
 "padding:0;")
         self.frame_8.setFrameShape(QFrame.StyledPanel)
@@ -525,7 +531,7 @@ class Ui_solveSettings(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollAreaWidgetContents_6 = QWidget()
         self.scrollAreaWidgetContents_6.setObjectName(u"scrollAreaWidgetContents_6")
-        self.scrollAreaWidgetContents_6.setGeometry(QRect(0, 0, 386, 124))
+        self.scrollAreaWidgetContents_6.setGeometry(QRect(0, 0, 363, 131))
         self.scrollAreaWidgetContents_6.setFont(font2)
         self.scrollAreaWidgetContents_6.setStyleSheet(u"background-color: white;\n"
 "color:rgb(43, 43, 43);")
@@ -615,6 +621,7 @@ class Ui_solveSettings(object):
         font6.setPointSize(14)
         font6.setBold(True)
         self.label.setFont(font6)
+        self.label.setToolTipDuration(10000)
         self.label.setStyleSheet(u"qproperty-alignment: AlignRight;")
 
         self.verticalLayout.addWidget(self.label)
@@ -682,8 +689,17 @@ class Ui_solveSettings(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
 #if QT_CONFIG(tooltip)
+        Dialog.setToolTip("")
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
         self.frame.setToolTip("")
 #endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.label_14.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">SELECTED COMMUNITIES</span> shows the list of communities that will be used in the simulation</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(whatsthis)
+        self.label_14.setWhatsThis("")
+#endif // QT_CONFIG(whatsthis)
         self.label_14.setText(QCoreApplication.translate("Dialog", u"Selected Communities", None))
         self.write_community_btn.setText("")
         self.label_17.setText(QCoreApplication.translate("Dialog", u"Barangay A", None))
@@ -694,10 +710,32 @@ class Ui_solveSettings(object):
         self.label_16.setText(QCoreApplication.translate("Dialog", u"Barangay C", None))
         self.label_18.setText(QCoreApplication.translate("Dialog", u"Barangay D", None))
         self.label_30.setText(QCoreApplication.translate("Dialog", u"Barangay C", None))
+#if QT_CONFIG(tooltip)
+        self.label_3.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">SHELTER DATA</span> shows the list of shelters that will be used in the simulation</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(whatsthis)
+        self.label_3.setWhatsThis("")
+#endif // QT_CONFIG(whatsthis)
+#if QT_CONFIG(accessibility)
+        self.label_3.setAccessibleName("")
+#endif // QT_CONFIG(accessibility)
+#if QT_CONFIG(accessibility)
+        self.label_3.setAccessibleDescription("")
+#endif // QT_CONFIG(accessibility)
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Selected Shelters", None))
         self.write_shelter_btn.setText("")
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Shelter B", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"Shelter A", None))
+#if QT_CONFIG(tooltip)
+        self.frame_12.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">Shelter Resistance</span> represent the ability of a shelter to withstand specific environmental disaster/s. Select the types of disasters that the shelter can withstand.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.label_20.setToolTip(QCoreApplication.translate("Dialog", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Shelter Resistance</span> represent the ability of a shelter to withstand specific environmental disaster/s. Select the types of disasters that the shelter can withstand.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(whatsthis)
         self.label_20.setWhatsThis(QCoreApplication.translate("Dialog", u"hello", None))
 #endif // QT_CONFIG(whatsthis)
@@ -709,6 +747,12 @@ class Ui_solveSettings(object):
         self.shelter_res_flood_checkbox.setText("")
         self.shelter_res_earthquake_checkbox.setText("")
         self.shelter_res_typhoon_checkbox.setText("")
+#if QT_CONFIG(tooltip)
+        self.frame_8.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">Shelter Status</span> indicates the current condition of the shelter. Select the condition type for the evacuees to stay in.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.label_4.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">Shelter Status</span> indicates the current condition of the shelter. Select the condition type for the evacuees to stay in.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Shelter Status", None))
         self.shelter_stat_checkbox.setText("")
         self.label_26.setText(QCoreApplication.translate("Dialog", u"Built", None))
@@ -719,6 +763,9 @@ class Ui_solveSettings(object):
         self.shelter_stat_pbuilt_checkbox.setText("")
         self.shelter_stat_dmg_checkbox.setText("")
         self.shelter_stat_empty_lot_checkbox.setText("")
+#if QT_CONFIG(tooltip)
+        self.label.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">MODEL</span> select to use which model is appropriate</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label.setText(QCoreApplication.translate("Dialog", u"Model", None))
         self.solveSet_adc_set_btn.setText(QCoreApplication.translate("Dialog", u"Advanced Settings", None))
         self.model_pick_comboBox.setItemText(0, QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT)", None))

@@ -695,7 +695,7 @@ class Ui_solveSettings(object):
         self.frame.setToolTip("")
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(tooltip)
-        self.label_14.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">SELECTED COMMUNITIES</span> shows the list of communities that will be used in the simulation</p></body></html>", None))
+        self.label_14.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">SELECTED COMMUNITIES</span> shows the list of communities that will be used in the model</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(whatsthis)
         self.label_14.setWhatsThis("")
@@ -711,7 +711,7 @@ class Ui_solveSettings(object):
         self.label_18.setText(QCoreApplication.translate("Dialog", u"Barangay D", None))
         self.label_30.setText(QCoreApplication.translate("Dialog", u"Barangay C", None))
 #if QT_CONFIG(tooltip)
-        self.label_3.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">SHELTER DATA</span> shows the list of shelters that will be used in the simulation</p></body></html>", None))
+        self.label_3.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">SHELTER DATA</span> shows the list of shelters that will be used in the model</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(whatsthis)
         self.label_3.setWhatsThis("")
@@ -734,7 +734,7 @@ class Ui_solveSettings(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Shelter Resistance</span> represent the ability of a shelter to withstand specific environmental disaster/s. Select the types of disasters that the shelter can withstand.</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">SHELTER RESISTANCE</span> represent the ability of a shelter to withstand specific environmental disaster/s. Select the types of disasters that the shelter can withstand.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(whatsthis)
         self.label_20.setWhatsThis(QCoreApplication.translate("Dialog", u"hello", None))
@@ -751,7 +751,7 @@ class Ui_solveSettings(object):
         self.frame_8.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">Shelter Status</span> indicates the current condition of the shelter. Select the condition type for the evacuees to stay in.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(tooltip)
-        self.label_4.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">Shelter Status</span> indicates the current condition of the shelter. Select the condition type for the evacuees to stay in.</p></body></html>", None))
+        self.label_4.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">SHELTER STATUS</span> indicates the current condition of the shelter. Select the condition type for the evacuees to stay in.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Shelter Status", None))
         self.shelter_stat_checkbox.setText("")

@@ -360,6 +360,12 @@ QStackedWidget{
         </item>
         <item row="8" column="0">
          <widget class="QLabel" name="label_28">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;MUTATION RATE&lt;/span&gt; determines if a community is randomly selected to update shelter allocations based on a random value&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>10000</number>
+          </property>
           <property name="text">
            <string>Mutation Rate</string>
           </property>

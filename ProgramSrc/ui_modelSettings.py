@@ -215,6 +215,7 @@ class Ui_modelSettings(object):
 
         self.label_28 = QLabel(self.widget_4)
         self.label_28.setObjectName(u"label_28")
+        self.label_28.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_28, 8, 0, 1, 1)
 
@@ -325,6 +326,9 @@ class Ui_modelSettings(object):
         self.label_27.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">POPULATION</span> the number of people living in the community</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_27.setText(QCoreApplication.translate("Dialog", u"Population", None))
+#if QT_CONFIG(tooltip)
+        self.label_28.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">MUTATION RATE</span> determines if a community is randomly selected to update shelter allocations based on a random value</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_28.setText(QCoreApplication.translate("Dialog", u"Mutation Rate", None))
 #if QT_CONFIG(tooltip)
         self.label_29.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">AREA PER INDIVIDUAL</span> represents the amount of space allocated for each individual in a shelter</p></body></html>", None))

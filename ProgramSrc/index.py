@@ -8,6 +8,7 @@ from ui_dashboard import Ui_MainWindow
 from solveSettings import SolveSettingsDialog
 from entityManagementComm import EntityManagementComm
 from entityManagementShelter import EntityManagementShelter
+from helpDialog import helpDialog
 from folium.plugins import MousePosition
 import pandas as pd
 import os
@@ -35,14 +36,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.load_comm_data()
         self.load_shel_data()
 
-        
-        #for value in self.data.iloc[:, 0]:
-         #   button = self.findChild(QPushButton, f"barangay_{value}_btn")
-          #  if button:
-           #     button.clicked.connect(lambda checked, value=value: self.handle_button_click(value))
-
-        #self.barangay_a_btn.clicked.connect(self.unhide_stacked_widget)
-
         self.initial_map_file_path = os.path.join(os.getcwd(), "map.html")
         self.optimized_map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
         self.last_modified_time = os.path.getmtime(self.optimized_map_file_path) if os.path.exists(self.optimized_map_file_path) else None
@@ -61,6 +54,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.advanced_settings_shel.clicked.connect(self.open_entitymanagement_shelter_dialog)
         self.solve_btn.clicked.connect(self.open_solve_settings_dialog)
 
+        self.help_btn.clicked.connect(self.open_help_dialog_page)
+
         
         # swap checkboxes to switches
         self.switch_1 = self.add_switch(self.checkBox_15)
@@ -71,6 +66,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
         self.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+
+    def open_help_dialog_page(self):
+        self.help_dialog_window = helpDialog()
+        self.help_dialog_window.show()
 
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()

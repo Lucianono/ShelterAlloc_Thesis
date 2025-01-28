@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'modelSettings.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.2
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -111,11 +111,13 @@ class Ui_modelSettings(object):
         self.gridLayout.setVerticalSpacing(12)
         self.label_32 = QLabel(self.widget_4)
         self.label_32.setObjectName(u"label_32")
+        self.label_32.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_32, 2, 0, 1, 1)
 
         self.label_30 = QLabel(self.widget_4)
         self.label_30.setObjectName(u"label_30")
+        self.label_30.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_30, 4, 0, 1, 1)
 
@@ -130,6 +132,7 @@ class Ui_modelSettings(object):
 
         self.label_20 = QLabel(self.widget_4)
         self.label_20.setObjectName(u"label_20")
+        self.label_20.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_20, 6, 0, 1, 1)
 
@@ -140,6 +143,7 @@ class Ui_modelSettings(object):
         font1.setBold(True)
         font1.setUnderline(True)
         self.label_19.setFont(font1)
+        self.label_19.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_19, 0, 0, 1, 1)
 
@@ -185,6 +189,7 @@ class Ui_modelSettings(object):
 
         self.label_31 = QLabel(self.widget_4)
         self.label_31.setObjectName(u"label_31")
+        self.label_31.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_31, 5, 0, 1, 1)
 
@@ -195,6 +200,7 @@ class Ui_modelSettings(object):
 
         self.label_33 = QLabel(self.widget_4)
         self.label_33.setObjectName(u"label_33")
+        self.label_33.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_33, 3, 0, 1, 1)
 
@@ -209,6 +215,7 @@ class Ui_modelSettings(object):
 
         self.label_28 = QLabel(self.widget_4)
         self.label_28.setObjectName(u"label_28")
+        self.label_28.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_28, 8, 0, 1, 1)
 
@@ -218,6 +225,7 @@ class Ui_modelSettings(object):
 
         self.label_29 = QLabel(self.widget_4)
         self.label_29.setObjectName(u"label_29")
+        self.label_29.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_29, 1, 0, 1, 1)
 
@@ -288,16 +296,43 @@ class Ui_modelSettings(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
         self.modelSettings_back_btn.setText("")
         self.label_18.setText(QCoreApplication.translate("Dialog", u"Model Settings", None))
+#if QT_CONFIG(tooltip)
+        self.label_32.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">MAX LEVEL 2 SHELTERS</span> the maximum number of level 2 shelters that can be constructed or used</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_32.setText(QCoreApplication.translate("Dialog", u"MaxLvl2Shelters", None))
+#if QT_CONFIG(tooltip)
+        self.label_30.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">WEIGHT DISTANCE</span> the shortest distance between the population and the shelters</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_30.setText(QCoreApplication.translate("Dialog", u"WeightDistance", None))
+#if QT_CONFIG(tooltip)
+        self.label_20.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">GENERATIONS</span> represents a stage in the genetic algorithm process. Higher generations indicate progress toward finding the best solution.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_20.setText(QCoreApplication.translate("Dialog", u"Generations", None))
+#if QT_CONFIG(tooltip)
+        self.label_19.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">MODEL</span> select to use which model is appropriate</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_19.setText(QCoreApplication.translate("Dialog", u"Model", None))
         self.comboBox_modelType.setItemText(0, QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT)", None))
 
+#if QT_CONFIG(tooltip)
+        self.label_31.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">WEIGHT COST</span> the cost of constructing or maintaining shelters</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_31.setText(QCoreApplication.translate("Dialog", u"WeightCost", None))
+#if QT_CONFIG(tooltip)
+        self.label_33.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">MAX SHELTERS</span> the maximum number of shelters allowed</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_33.setText(QCoreApplication.translate("Dialog", u"MaxShelters", None))
+#if QT_CONFIG(tooltip)
+        self.label_27.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">POPULATION</span> the number of people living in the community</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_27.setText(QCoreApplication.translate("Dialog", u"Population", None))
+#if QT_CONFIG(tooltip)
+        self.label_28.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">MUTATION RATE</span> determines if a community is randomly selected to update shelter allocations based on a random value</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_28.setText(QCoreApplication.translate("Dialog", u"Mutation Rate", None))
+#if QT_CONFIG(tooltip)
+        self.label_29.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">AREA PER INDIVIDUAL</span> represents the amount of space allocated for each individual in a shelter</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_29.setText(QCoreApplication.translate("Dialog", u"AreaPerIndividual", None))
         self.modelSettings_done_btn.setText(QCoreApplication.translate("Dialog", u"DONE", None))
     # retranslateUi

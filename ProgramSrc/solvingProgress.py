@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageB
 from PySide6.QtGui import QIcon, QCursor
 from PySide6.QtCore import Qt, QUrl, QThread
 from ui_solvingprogress import Ui_solvingProgress
+from shelterAllocationReport import ShelterAllocationReport
 import pandas as pd
 import os
 from functools import partial
@@ -26,7 +27,7 @@ class SolvingProgress(QDialog):
         
 
     def start_pathfinding(self):
-        self.worker = PathfindingWorker("commData.xlsx", "shelData.xlsx")
+        self.worker = PathfindingWorker("modelCommData.xlsx", "modelShelData.xlsx")
         self.worker.moveToThread(self.worker_thread)
         self.ui.solvingModel_progressBar.setValue(25)
 
@@ -36,12 +37,15 @@ class SolvingProgress(QDialog):
 
         # Start the worker
         self.worker_thread.started.connect(self.worker.run)
+        self.worker_thread.finished.connect(self.worker.deleteLater)
         self.worker_thread.start()
 
     def cancel_pathfinding(self):
-        if self.worker:
-            self.worker.cancel()
-            self.ui.textEdit.append("Pathfinding cancelled.")
+        self.ui.textEdit.append("Cancelling pathfinding...")
+        self.worker.cancel_signal.emit()  # Notify the worker to cancel
+        self.worker_thread.quit()         # Stop the thread gracefully
+        self.worker_thread.wait()         # Ensure the thread is terminated
+        self.close()   
 
     def update_log(self, message):
         self.ui.textEdit.append(message)
@@ -50,6 +54,11 @@ class SolvingProgress(QDialog):
         self.ui.textEdit.append("Pathfinding Complete!")
         self.ui.solvingModel_progressBar.setValue(50)
         self.worker_thread.quit()
-        run_optimization()
+        # run_optimization()
         self.ui.solvingModel_progressBar.setValue(100)
+
+        self.report_Window = ShelterAllocationReport()
+        self.report_Window.show()
+
+        # self.close()  
         

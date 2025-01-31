@@ -1293,7 +1293,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"xDegrees", None))
 #if QT_CONFIG(tooltip)
-        self.label_30.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">REMARKS </span>additional notes or observations regarding the shelter location or allocation process</p></body></html>", None))
+        self.label_30.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">REMARKS </span>additional notes or observations regarding the shelter location or allocation process.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"Remarks", None))
 #if QT_CONFIG(tooltip)

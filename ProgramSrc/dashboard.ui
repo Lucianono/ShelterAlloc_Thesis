@@ -132,8 +132,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>319</width>
-            <height>694</height>
+            <width>348</width>
+            <height>712</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -420,7 +420,7 @@ color: #00B5FF;
                         </property>
                         <property name="styleSheet">
                          <string notr="true">QPushButton {
-    background-color: #0e4c87;
+    background-color: #1A83E5;
     color: white;
     padding: 5px;
     border: none;
@@ -659,7 +659,7 @@ color: #00B5FF;
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>200</width>
+                <width>100</width>
                 <height>30</height>
                </size>
               </property>
@@ -677,12 +677,15 @@ color: #00B5FF;
                  </font>
                 </property>
                 <property name="text">
-                 <string>Resistance</string>
+                 <string>Marker Options</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="resistance_comboBox">
+               <widget class="QComboBox" name="marker_comboBox">
                 <property name="minimumSize">
                  <size>
                   <width>150</width>
@@ -703,22 +706,12 @@ color: #00B5FF;
                 </property>
                 <item>
                  <property name="text">
-                  <string>ALL</string>
+                  <string>SHOW Inactive Markers</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Flood</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Typhoon</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Earthquake</string>
+                  <string>HIDE Inactive Markers</string>
                  </property>
                 </item>
                </widget>
@@ -737,12 +730,15 @@ color: #00B5FF;
                  </font>
                 </property>
                 <property name="text">
-                 <string>Status</string>
+                 <string>Shelter Preview</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="status_comboBox">
+               <widget class="QComboBox" name="shelterprev_comboBox">
                 <property name="minimumSize">
                  <size>
                   <width>150</width>
@@ -761,6 +757,11 @@ color: #00B5FF;
 	height: 20px;
 }</string>
                 </property>
+                <item>
+                 <property name="text">
+                  <string>---</string>
+                 </property>
+                </item>
                 <item>
                  <property name="text">
                   <string>ALL</string>
@@ -784,6 +785,21 @@ color: #00B5FF;
                 <item>
                  <property name="text">
                   <string>Empty Lot</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Resistant to Flood</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Resistant to Typhoon</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Resistant to Earthquake</string>
                  </property>
                 </item>
                </widget>
@@ -884,7 +900,7 @@ QStackedWidget{
             <enum>QFrame::Plain</enum>
            </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="page">
             <property name="sizePolicy">
@@ -1426,8 +1442,8 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>377</width>
-                  <height>750</height>
+                  <width>328</width>
+                  <height>733</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_11">

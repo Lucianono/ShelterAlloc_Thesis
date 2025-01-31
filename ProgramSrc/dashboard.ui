@@ -132,8 +132,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>348</width>
-            <height>712</height>
+            <width>319</width>
+            <height>694</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -950,6 +950,9 @@ QStackedWidget{
                       <height>41</height>
                      </size>
                     </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">QPushButton{
 	background-color: none;
@@ -1084,6 +1087,12 @@ QStackedWidget{
                   </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_20">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;YDEGREES&lt;/span&gt; latitude coordinate of a community or shelter location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>yDegrees</string>
                     </property>
@@ -1107,6 +1116,12 @@ QStackedWidget{
                   </item>
                   <item row="3" column="0">
                    <widget class="QLabel" name="label_27">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;POPULATION&lt;/span&gt; number of people residing in the specified area&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>Population</string>
                     </property>
@@ -1114,6 +1129,12 @@ QStackedWidget{
                   </item>
                   <item row="4" column="0">
                    <widget class="QLabel" name="label_28">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;AFFECTED POPULATION&lt;/span&gt; number of individuals impacted by a disaster or requiring shelter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>AffectedPop</string>
                     </property>
@@ -1137,6 +1158,12 @@ QStackedWidget{
                   </item>
                   <item row="5" column="0">
                    <widget class="QLabel" name="label_29">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;MAX DISTANCE farthest allowable distance between a community and the assigned shelter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>MaxDistance</string>
                     </property>
@@ -1182,6 +1209,12 @@ QStackedWidget{
                       <underline>true</underline>
                      </font>
                     </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;XDEGREES&lt;/span&gt; longitude coordinate of a community or shelter location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>xDegrees</string>
                     </property>
@@ -1221,6 +1254,12 @@ QStackedWidget{
                   </item>
                   <item row="6" column="0">
                    <widget class="QLabel" name="label_30">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;REMARKS &lt;/span&gt;additional notes or observations regarding the shelter location or allocation process&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>Remarks</string>
                     </property>
@@ -1239,6 +1278,12 @@ QStackedWidget{
                       <bold>true</bold>
                       <underline>true</underline>
                      </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NAME&lt;/span&gt; designated identifier of a specific community or shelter site&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
                     </property>
                     <property name="text">
                      <string>Name</string>
@@ -1442,8 +1487,8 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>328</width>
-                  <height>733</height>
+                  <width>335</width>
+                  <height>634</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_11">

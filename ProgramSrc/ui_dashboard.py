@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dashboard.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.2
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -79,7 +79,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
-        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 348, 712))
+        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 319, 694))
         self.verticalLayout_7 = QVBoxLayout(self.scrollAreaWidgetContents_9)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.widget = QWidget(self.scrollAreaWidgetContents_9)
@@ -525,6 +525,7 @@ class Ui_MainWindow(object):
         self.pushButton_14.setObjectName(u"pushButton_14")
         self.pushButton_14.setMinimumSize(QSize(30, 41))
         self.pushButton_14.setMaximumSize(QSize(25, 41))
+        self.pushButton_14.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.pushButton_14.setStyleSheet(u"QPushButton{\n"
 "	background-color: none;\n"
 "	border: none;\n"
@@ -590,6 +591,7 @@ class Ui_MainWindow(object):
 
         self.label_20 = QLabel(self.widget_4)
         self.label_20.setObjectName(u"label_20")
+        self.label_20.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_20, 2, 0, 1, 1)
 
@@ -604,11 +606,13 @@ class Ui_MainWindow(object):
 
         self.label_27 = QLabel(self.widget_4)
         self.label_27.setObjectName(u"label_27")
+        self.label_27.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_27, 3, 0, 1, 1)
 
         self.label_28 = QLabel(self.widget_4)
         self.label_28.setObjectName(u"label_28")
+        self.label_28.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_28, 4, 0, 1, 1)
 
@@ -623,6 +627,7 @@ class Ui_MainWindow(object):
 
         self.label_29 = QLabel(self.widget_4)
         self.label_29.setObjectName(u"label_29")
+        self.label_29.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_29, 5, 0, 1, 1)
 
@@ -646,6 +651,7 @@ class Ui_MainWindow(object):
         font6.setBold(True)
         font6.setUnderline(True)
         self.label_19.setFont(font6)
+        self.label_19.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_19, 1, 0, 1, 1)
 
@@ -668,6 +674,7 @@ class Ui_MainWindow(object):
 
         self.label_30 = QLabel(self.widget_4)
         self.label_30.setObjectName(u"label_30")
+        self.label_30.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_30, 6, 0, 1, 1)
 
@@ -679,6 +686,7 @@ class Ui_MainWindow(object):
         self.label_23 = QLabel(self.widget_4)
         self.label_23.setObjectName(u"label_23")
         self.label_23.setFont(font6)
+        self.label_23.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_23, 0, 0, 1, 1)
 
@@ -783,7 +791,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 328, 733))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 335, 634))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
@@ -1249,12 +1257,33 @@ class Ui_MainWindow(object):
         self.pushButton_14.setText("")
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"Community Edit", None))
         self.checkBox_15.setText("")
+#if QT_CONFIG(tooltip)
+        self.label_20.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">YDEGREES</span> latitude coordinate of a community or shelter location</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"yDegrees", None))
+#if QT_CONFIG(tooltip)
+        self.label_27.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">POPULATION</span> number of people residing in the specified area</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Population", None))
+#if QT_CONFIG(tooltip)
+        self.label_28.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">AFFECTED POPULATION</span> number of individuals impacted by a disaster or requiring shelter</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"AffectedPop", None))
+#if QT_CONFIG(tooltip)
+        self.label_29.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>MAX DISTANCE farthest allowable distance between a community and the assigned shelter</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_29.setText(QCoreApplication.translate("MainWindow", u"MaxDistance", None))
+#if QT_CONFIG(tooltip)
+        self.label_19.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">XDEGREES</span> longitude coordinate of a community or shelter location</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"xDegrees", None))
+#if QT_CONFIG(tooltip)
+        self.label_30.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">REMARKS </span>additional notes or observations regarding the shelter location or allocation process</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"Remarks", None))
+#if QT_CONFIG(tooltip)
+        self.label_23.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">NAME</span> designated identifier of a specific community or shelter site</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_23.setText(QCoreApplication.translate("MainWindow", u"Name", None))
         self.mc_cancel_changes_btn.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
         self.mc_save_changes_btn.setText(QCoreApplication.translate("MainWindow", u"Save Changes", None))

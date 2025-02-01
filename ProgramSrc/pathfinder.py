@@ -1,4 +1,5 @@
 from PySide6.QtCore import QObject, Signal, QTimer
+from BNTModelPenalized import BNTModelSimulation
 import pandas as pd
 import subprocess
 import os
@@ -10,8 +11,7 @@ from math import radians, cos, sin, sqrt, atan2
 class PathfindingWorker(QObject):
     finished = Signal()
     progress = Signal(str)
-
-    ROUTE_COLORS = ['blue', 'green', 'red', 'purple', 'orange', 'pink', 'yellow', 'brown', 'gray', 'cyan']
+    cancel_signal = Signal() 
 
     def __init__(self, community_file, shelter_file):
         super().__init__()
@@ -21,6 +21,7 @@ class PathfindingWorker(QObject):
         self.timer = QTimer(self)
 
         self.timer.timeout.connect(self.check_for_cancel)
+        self.cancel_signal.connect(self.cancel)
 
     def run(self):
         try:
@@ -83,28 +84,18 @@ class PathfindingWorker(QObject):
             return
 
         try:
-            subprocess.run(["python", "BNTModel.py"], check=True)
-        except subprocess.CalledProcessError as e:
-            self.progress.emit(f"Error running genetic algorithm: {e}")
+        #     subprocess.run(["python", "BNTModelPenalized.py"], check=True)
+        # except subprocess.CalledProcessError as e:
+        #     self.progress.emit(f"Error running genetic algorithm: {e}")
+
+            model = BNTModelSimulation()
+            model.run(self.progress.emit)
+
         except Exception as e:
             self.progress.emit(f"An unexpected error occurred: {e}")
 
     def plot_route(self, communities_df, shelters_df, route_counter, map_name="all_routes_map.html", excel_name="distance_matrix.xlsx"):
-        avg_lat = (communities_df['xDegrees'].mean() + shelters_df['xDegrees'].mean()) / 2
-        avg_lon = (communities_df['yDegrees'].mean() + shelters_df['yDegrees'].mean()) / 2
-        m = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
-
-        for _, community in communities_df.iterrows():
-            folium.Marker([community['xDegrees'], community['yDegrees']],
-                          popup=f"Community: {community['Name']}",
-                          icon=folium.Icon(color='green')).add_to(m)
-
-        for _, shelter in shelters_df.iterrows():
-            folium.Marker([shelter['xDegrees'], shelter['yDegrees']],
-                          popup=f"Shelter: {shelter['Name']}",
-                          icon=folium.Icon(color='blue')).add_to(m)
-
-        bbox_margin = 0.02
+        bbox_margin = 0.01
         bbox = (
             max(communities_df['xDegrees'].max(), shelters_df['xDegrees'].max()) + bbox_margin,
             min(communities_df['xDegrees'].min(), shelters_df['xDegrees'].min()) - bbox_margin,
@@ -112,7 +103,7 @@ class PathfindingWorker(QObject):
             min(communities_df['yDegrees'].min(), shelters_df['yDegrees'].min()) - bbox_margin
         )
 
-        roadgraph = ox.graph_from_bbox(*bbox, network_type='all')
+        roadgraph = ox.graph_from_bbox(*bbox, network_type='walk')
         node_coords = {node: (data['y'], data['x']) for node, data in roadgraph.nodes(data=True)}
 
         def haversine_heuristic(u, v):
@@ -139,11 +130,6 @@ class PathfindingWorker(QObject):
                     route_distance = sum(ox.utils_graph.get_route_edge_attributes(roadgraph, route, 'length'))
                     distance_matrix.at[shelter['Name'], community['Name']] = route_distance / 1000  # Convert to km
 
-                    route_coords = [(node_coords[node][0], node_coords[node][1]) for node in route]
-                    route_color = self.ROUTE_COLORS[route_counter % len(self.ROUTE_COLORS)]
-                    folium.PolyLine(route_coords, color=route_color, weight=2.5, opacity=0.7,
-                                    popup=f"Route from {community['Name']} to {shelter['Name']}").add_to(m)
-
                     route_counter += 1
 
                     self.progress.emit(f"Route from {community['Name']} to {shelter['Name']} completed: {route_distance / 1000:.2f} km")
@@ -158,8 +144,6 @@ class PathfindingWorker(QObject):
         distance_matrix.index.name = 'Shelters'
         distance_matrix.to_excel(excel_name)
         self.progress.emit(f"Distance matrix saved as {excel_name}")
-        m.save(map_name)
-        self.progress.emit(f"Map with all routes saved as {map_name}")
 
     @staticmethod
     def haversine_distance(lat1, lon1, lat2, lon2):

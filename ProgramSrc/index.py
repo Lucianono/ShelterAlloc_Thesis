@@ -8,6 +8,7 @@ from ui_dashboard import Ui_MainWindow
 from solveSettings import SolveSettingsDialog
 from entityManagementComm import EntityManagementComm
 from entityManagementShelter import EntityManagementShelter
+from helpDialog import helpDialog
 from folium.plugins import MousePosition
 import pandas as pd
 import os
@@ -35,32 +36,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.load_comm_data()
         self.load_shel_data()
 
-        
-        #for value in self.data.iloc[:, 0]:
-         #   button = self.findChild(QPushButton, f"barangay_{value}_btn")
-          #  if button:
-           #     button.clicked.connect(lambda checked, value=value: self.handle_button_click(value))
-
-        #self.barangay_a_btn.clicked.connect(self.unhide_stacked_widget)
-
         self.initial_map_file_path = os.path.join(os.getcwd(), "map.html")
-        self.optimized_map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
-        self.last_modified_time = os.path.getmtime(self.optimized_map_file_path) if os.path.exists(self.optimized_map_file_path) else None
-
-        if os.path.exists(self.optimized_map_file_path):
-            self.webEngineView.setUrl(QUrl.fromLocalFile(self.optimized_map_file_path))
-        else:
-            self.webEngineView.setUrl(QUrl.fromLocalFile(self.initial_map_file_path))
-
-        self.map_update_timer = QTimer(self)
-        self.map_update_timer.timeout.connect(self.check_for_optimized_map_update)
-        self.map_update_timer.start(1000)  # Check every second
+        self.webEngineView.setUrl(QUrl.fromLocalFile(self.initial_map_file_path))
 
         self.file_path = None
         self.advanced_settings_com.clicked.connect(self.open_entitymanagement_dialog)
         self.advanced_settings_shel.clicked.connect(self.open_entitymanagement_shelter_dialog)
         self.solve_btn.clicked.connect(self.open_solve_settings_dialog)
 
+        #change map when this combobox changed
+        self.shelterprev_comboBox.currentIndexChanged.connect(self.filter_shelter_map)
+        self.marker_comboBox.currentIndexChanged.connect(self.refresh_map)
+
+        self.help_btn.clicked.connect(self.open_help_dialog_page)
         
         # swap checkboxes to switches
         self.switch_1 = self.add_switch(self.checkBox_15)
@@ -71,6 +59,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
         self.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+
+    def open_help_dialog_page(self):
+        self.help_dialog_window = helpDialog()
+        self.help_dialog_window.show()
 
     def open_entitymanagement_dialog(self):
         self.entityManagementComm_Window = EntityManagementComm()
@@ -87,24 +79,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.solveSettings_Window.changes_saved_comm.connect(self.load_comm_data)
         self.solveSettings_Window.changes_saved_shel.connect(self.load_shel_data)
         self.solveSettings_Window.show()
-
-    def check_for_optimized_map_update(self):
-        # Check if the optimized-routes-map.html exists
-        if os.path.exists(self.optimized_map_file_path):
-            # Get the last modified time of the optimized map
-            current_modified_time = os.path.getmtime(self.optimized_map_file_path)
-
-            # Check if the optimized map is newer than the initial map
-            initial_map_modified_time = os.path.getmtime(self.initial_map_file_path)
-            if (
-                self.last_modified_time is None or 
-                (current_modified_time != self.last_modified_time and current_modified_time > initial_map_modified_time)
-            ):
-                self.last_modified_time = current_modified_time
-
-                # Switch the displayed map to optimized-routes-map.html
-                self.webEngineView.setUrl(QUrl.fromLocalFile(self.optimized_map_file_path))
-                print(f"Map updated to optimized routes: {self.optimized_map_file_path}")
 
     def unhide_stacked_widget(self):
         self.stackedWidget.show()
@@ -283,7 +257,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.checkBox_17.setChecked(self.shel_data.loc[row, 'ResToFlood'])
             self.checkBox_19.setChecked(self.shel_data.loc[row, 'ResToTyphoon'])
             self.checkBox_18.setChecked(self.shel_data.loc[row, 'ResToEarthquake'])
-            status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 2}
+            status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 3}
             self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
             self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
 
@@ -363,6 +337,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             comm_data = pd.read_excel("commData.xlsx",usecols=['Name','xDegrees','yDegrees','Active'])
             shel_data = pd.read_excel("shelData.xlsx",usecols=['Name','xDegrees','yDegrees','Active'])
 
+            show_inactive_marker = self.marker_comboBox.currentIndex() == 0
+
             if not comm_data.empty:
                 avg_lat = comm_data['xDegrees'].mean()
                 avg_lon = comm_data['yDegrees'].mean()
@@ -381,14 +357,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 if row.get("Active") :
                     color="green"
-                else :
-                    color="lightgray"
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
 
-                folium.Marker(
-                    location=[latitude, longitude],
-                    popup=name,
-                    icon=folium.Icon(color=color)
-                ).add_to(self.map)
+                elif show_inactive_marker :
+                    color="lightgray"
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
+
+                
 
             for index, row in shel_data.iterrows():
                 latitude = row.get("xDegrees", 1)
@@ -397,16 +380,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 if row.get("Active") :
                     color="blue"
-                else :
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
+                    
+                elif show_inactive_marker :
                     color="lightgray"
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
 
-                folium.Marker(
-                    location=[latitude, longitude],
-                    popup=name,
-                    icon=folium.Icon(color=color)
-                ).add_to(self.map)
-
-            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            map_file_path = os.path.join(os.getcwd(), "map.html")
             self.map.save(map_file_path)
 
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
@@ -423,17 +411,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 focused_map.add_child(child)
 
             self.map = focused_map
-            map_file_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+            map_file_path = os.path.join(os.getcwd(), "map.html")
             self.map.save(map_file_path)
 
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to focus on marker: {e}")
-
-
-
-
 
     def add_switch(self, checkbox, is_active=False):
         # Get the layout of the parent widget
@@ -540,8 +524,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     str(value)
             except ValueError:
                 raise ValueError(f"Invalid type for {key}. Expected {expected_type.__name__}, got {type(value).__name__}.")
-            
-        
 
     def save_community_data_dashboard(self, old_data_name):
                 
@@ -712,3 +694,67 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.stackedWidget.hide()
             self.load_shel_data()
+
+    def filter_shelter_map(self, index):
+            file_path="shelData.xlsx"
+
+            data = pd.read_excel(file_path)
+            if index == 0:
+                self.refresh_map()
+                return
+            elif index > 1 and index <= 5:
+                status_mapping = ["Built", "Partially Built", "Damaged", "Empty Lot"]
+                data_status = status_mapping[index-2]
+                data = data[data["Status"] == data_status]
+            elif index > 5 and index <= 8:
+                status_mapping = ["ResToFlood", "ResToTyphoon", "ResToEarthquake"]
+                data_status = status_mapping[index-6]
+                data = data[data[data_status] == True]
+
+
+            # Reflect filtered data in the UI
+            self.preview_map(data)
+   
+    def preview_map(self,data):
+        try:
+
+            show_inactive_marker = self.marker_comboBox.currentIndex() == 0
+
+            if not data.empty:
+                avg_lat = data['xDegrees'].mean()
+                avg_lon = data['yDegrees'].mean()
+                self.map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
+            else:
+                self.map = folium.Map(location=[0,0], zoom_start=2)
+
+
+            for index, row in data.iterrows():
+                latitude = row.get("xDegrees", 1)
+                longitude = row.get("yDegrees", 1)
+                name = row.get("Name", "Unknown")
+
+                if row.get("Active") :
+                    color="blue"
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
+
+                elif show_inactive_marker :
+                    
+                    color="lightgray"
+                    folium.Marker(
+                        location=[latitude, longitude],
+                        popup=name,
+                        icon=folium.Icon(color=color)
+                    ).add_to(self.map)
+
+            map_file_path = os.path.join(os.getcwd(), "map.html")
+            self.map.save(map_file_path)
+
+            self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to update map: {e}")
+

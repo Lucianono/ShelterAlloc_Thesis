@@ -149,6 +149,12 @@ QStackedWidget{
         </property>
         <item row="2" column="0">
          <widget class="QLabel" name="label_32">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;MAX LEVEL 2 SHELTERS&lt;/span&gt; the maximum number of level 2 shelters that can be constructed or used&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>10000</number>
+          </property>
           <property name="text">
            <string>MaxLvl2Shelters</string>
           </property>
@@ -156,6 +162,12 @@ QStackedWidget{
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_30">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;WEIGHT DISTANCE&lt;/span&gt; the shortest distance between the population and the shelters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>10000</number>
+          </property>
           <property name="text">
            <string>WeightDistance</string>
           </property>
@@ -179,6 +191,12 @@ QStackedWidget{
         </item>
         <item row="6" column="0">
          <widget class="QLabel" name="label_20">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;GENERATIONS&lt;/span&gt; represents a stage in the genetic algorithm process. Higher generations indicate progress toward finding the best solution.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>10000</number>
+          </property>
           <property name="text">
            <string>Generations</string>
           </property>
@@ -194,6 +212,12 @@ QStackedWidget{
             <bold>true</bold>
             <underline>true</underline>
            </font>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;MODEL&lt;/span&gt; select to use which model is appropriate&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>10000</number>
           </property>
           <property name="text">
            <string>Model</string>
@@ -284,6 +308,12 @@ QStackedWidget{
         </item>
         <item row="5" column="0">
          <widget class="QLabel" name="label_31">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;WEIGHT COST&lt;/span&gt; the cost of constructing or maintaining shelters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>10000</number>
+          </property>
           <property name="text">
            <string>WeightCost</string>
           </property>
@@ -294,6 +324,12 @@ QStackedWidget{
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="label_33">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;MAX SHELTERS&lt;/span&gt; the maximum number of shelters allowed&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>10000</number>
+          </property>
           <property name="text">
            <string>MaxShelters</string>
           </property>
@@ -301,6 +337,9 @@ QStackedWidget{
         </item>
         <item row="7" column="0">
          <widget class="QLabel" name="label_27">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;POPULATION&lt;/span&gt; the number of people living in the community&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <property name="text">
            <string>Population</string>
           </property>
@@ -321,6 +360,12 @@ QStackedWidget{
         </item>
         <item row="8" column="0">
          <widget class="QLabel" name="label_28">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;MUTATION RATE&lt;/span&gt; determines if a community is randomly selected to update shelter allocations based on a random value&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>10000</number>
+          </property>
           <property name="text">
            <string>Mutation Rate</string>
           </property>
@@ -341,6 +386,12 @@ QStackedWidget{
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_29">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;AREA PER INDIVIDUAL&lt;/span&gt; represents the amount of space allocated for each individual in a shelter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>10000</number>
+          </property>
           <property name="text">
            <string>AreaPerIndividual</string>
           </property>

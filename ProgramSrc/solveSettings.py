@@ -1,6 +1,8 @@
 import sys
-from PySide6.QtWidgets import QDialog, QLabel, QMessageBox, QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QSizePolicy, QCheckBox
+from PySide6.QtWidgets import QDialog, QLabel, QMessageBox, QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QSizePolicy, QCheckBox, QToolTip, QApplication
 from PySide6.QtCore import Signal, Qt, QPropertyAnimation, QRect, QEasingCurve
+from PySide6.QtGui import QPalette, QColor
+from PySide6.QtGui import QFont
 from ui_solveSettings import Ui_solveSettings
 from entityManagementComm import EntityManagementComm
 from entityManagementShelter import EntityManagementShelter

@@ -49,7 +49,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.marker_comboBox.currentIndexChanged.connect(self.refresh_map)
 
         self.help_btn.clicked.connect(self.open_help_dialog_page)
-
         
         # swap checkboxes to switches
         self.switch_1 = self.add_switch(self.checkBox_15)

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'shelterallocationreport.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.2
+## Created by: Qt User Interface Compiler version 6.8.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,6 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QDialog, QFrame,
     QGridLayout, QHBoxLayout, QHeaderView, QLabel,
     QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,
@@ -105,21 +106,15 @@ class Ui_ShelterAllocationReport(object):
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(20, 0, 20, 20)
-        self.widget = QWidget(Dialog)
-        self.widget.setObjectName(u"widget")
-        sizePolicy.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
-        self.widget.setSizePolicy(sizePolicy)
-        self.widget.setMinimumSize(QSize(550, 550))
-        self.gridLayout = QGridLayout(self.widget)
+        self.webEngineView = QWebEngineView(Dialog)
+        self.webEngineView.setObjectName(u"webEngineView")
+        sizePolicy.setHeightForWidth(self.webEngineView.sizePolicy().hasHeightForWidth())
+        self.webEngineView.setSizePolicy(sizePolicy)
+        self.webEngineView.setMinimumSize(QSize(550, 550))
+        self.gridLayout = QGridLayout(self.webEngineView)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.label_2 = QLabel(self.widget)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setAutoFillBackground(True)
 
-        self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
-
-
-        self.horizontalLayout_3.addWidget(self.widget)
+        self.horizontalLayout_3.addWidget(self.webEngineView)
 
         self.frame = QFrame(Dialog)
         self.frame.setObjectName(u"frame")
@@ -212,7 +207,6 @@ class Ui_ShelterAllocationReport(object):
         self.pushButton.setText("")
         self.label.setText(QCoreApplication.translate("Dialog", u"Shelter Allocation Report", None))
         self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"EXPORT XLSX", None))
-        self.label_2.setText(QCoreApplication.translate("Dialog", u"map", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT) Model", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Generated report by Bryyyyy", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)

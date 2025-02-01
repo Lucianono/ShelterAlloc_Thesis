@@ -132,8 +132,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>348</width>
-            <height>712</height>
+            <width>319</width>
+            <height>694</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -950,6 +950,9 @@ QStackedWidget{
                       <height>41</height>
                      </size>
                     </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">QPushButton{
 	background-color: none;
@@ -1084,6 +1087,12 @@ QStackedWidget{
                   </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_20">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;YDEGREES&lt;/span&gt; latitude coordinate of a community location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>yDegrees</string>
                     </property>
@@ -1107,6 +1116,12 @@ QStackedWidget{
                   </item>
                   <item row="3" column="0">
                    <widget class="QLabel" name="label_27">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;POPULATION&lt;/span&gt; number of people residing in the specified area&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>Population</string>
                     </property>
@@ -1114,6 +1129,12 @@ QStackedWidget{
                   </item>
                   <item row="4" column="0">
                    <widget class="QLabel" name="label_28">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;AFFECTED POPULATION&lt;/span&gt; number of individuals impacted by a disaster or requiring shelter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>AffectedPop</string>
                     </property>
@@ -1137,6 +1158,12 @@ QStackedWidget{
                   </item>
                   <item row="5" column="0">
                    <widget class="QLabel" name="label_29">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;MAX DISTANCE&lt;/span&gt; farthest distance between a community and the assigned shelter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>MaxDistance</string>
                     </property>
@@ -1182,6 +1209,12 @@ QStackedWidget{
                       <underline>true</underline>
                      </font>
                     </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;XDEGREES&lt;/span&gt; longitude coordinate of a community location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>xDegrees</string>
                     </property>
@@ -1221,6 +1254,12 @@ QStackedWidget{
                   </item>
                   <item row="6" column="0">
                    <widget class="QLabel" name="label_30">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;REMARKS &lt;/span&gt;additional notes or observations regarding the shelter location or allocation process.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
+                    </property>
                     <property name="text">
                      <string>Remarks</string>
                     </property>
@@ -1239,6 +1278,12 @@ QStackedWidget{
                       <bold>true</bold>
                       <underline>true</underline>
                      </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NAME&lt;/span&gt; designated identifier of a specific community site&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>10000</number>
                     </property>
                     <property name="text">
                      <string>Name</string>
@@ -1442,8 +1487,8 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>328</width>
-                  <height>733</height>
+                  <width>377</width>
+                  <height>750</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -1618,6 +1663,12 @@ QPushButton:pressed {
                       </item>
                       <item row="4" column="0">
                        <widget class="QLabel" name="label_35">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;AREA&lt;/span&gt; total space occupied by a shelter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">font-style:italic;</string>
                         </property>
@@ -1670,6 +1721,12 @@ QPushButton:pressed {
                       </item>
                       <item row="11" column="0">
                        <widget class="QLabel" name="label_43">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;TYPHOON&lt;/span&gt; shelter’s structural integrity against strong winds and heavy rains caused by typhoons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">font-style:italic;</string>
                         </property>
@@ -1691,6 +1748,12 @@ QPushButton:pressed {
                           <bold>true</bold>
                           <underline>true</underline>
                          </font>
+                        </property>
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;XDEGREES&lt;/span&gt; longitude coordinate of a shelter location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
                         </property>
                         <property name="text">
                          <string>xDegrees</string>
@@ -1738,6 +1801,12 @@ QPushButton:pressed {
                       </item>
                       <item row="5" column="0">
                        <widget class="QLabel" name="label_37">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;COST&lt;/span&gt; financial requirement for constructing, maintaining, or upgrading a shelter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">font-style:italic;</string>
                         </property>
@@ -1793,6 +1862,12 @@ QPushButton:pressed {
                       </item>
                       <item row="3" column="0">
                        <widget class="QLabel" name="label_33">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LEVEL 1&lt;/span&gt; built shelter providing minimal protection and resources for temporary housing.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="text">
                          <string>Level 1</string>
                         </property>
@@ -1800,6 +1875,12 @@ QPushButton:pressed {
                       </item>
                       <item row="2" column="0">
                        <widget class="QLabel" name="label_32">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;YDEGREES&lt;/span&gt; latitude coordinate of a shelter location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="text">
                          <string>yDegrees</string>
                         </property>
@@ -1820,6 +1901,12 @@ QPushButton:pressed {
                       </item>
                       <item row="13" column="0">
                        <widget class="QLabel" name="label_47">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;STATUS&lt;/span&gt; current condition, availability, or operational state of a shelter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="text">
                          <string>Status</string>
                         </property>
@@ -1827,6 +1914,12 @@ QPushButton:pressed {
                       </item>
                       <item row="14" column="0">
                        <widget class="QLabel" name="label_48">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;REMARKS &lt;/span&gt;additional notes or observations regarding the shelter location or allocation process&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="text">
                          <string>Remarks</string>
                         </property>
@@ -1879,6 +1972,12 @@ QPushButton:pressed {
                       </item>
                       <item row="6" column="0">
                        <widget class="QLabel" name="label_38">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LEVEL 2&lt;/span&gt; upgraded shelter with improved durability, capacity, and facilities&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="text">
                          <string>Level 2</string>
                         </property>
@@ -1926,6 +2025,12 @@ QPushButton:pressed {
                       </item>
                       <item row="12" column="0">
                        <widget class="QLabel" name="label_45">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;EARTHQUAKE&lt;/span&gt; shelter’s capability to endure seismic activity and ground shaking&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">font-style:italic;</string>
                         </property>
@@ -2031,6 +2136,12 @@ QPushButton:pressed {
                       </item>
                       <item row="7" column="0">
                        <widget class="QLabel" name="label_40">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;AREA&lt;/span&gt; total space occupied by a shelter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">font-style:italic;</string>
                         </property>
@@ -2087,6 +2198,12 @@ QPushButton:pressed {
                       </item>
                       <item row="8" column="0">
                        <widget class="QLabel" name="label_41">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;COST&lt;/span&gt; financial requirement for constructing, maintaining, or upgrading a shelter&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">font-style:italic;</string>
                         </property>
@@ -2100,6 +2217,12 @@ QPushButton:pressed {
                       </item>
                       <item row="9" column="0">
                        <widget class="QLabel" name="label_42">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;RESISTANCE&lt;/span&gt; ability of a shelter to withstand natural disasters and environmental hazards&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="text">
                          <string>Resitance</string>
                         </property>
@@ -2107,6 +2230,12 @@ QPushButton:pressed {
                       </item>
                       <item row="10" column="0">
                        <widget class="QLabel" name="label_44">
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;FLOOD&lt;/span&gt; a shelter can resist or withstand flooding events&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">font-style:italic;</string>
                         </property>
@@ -2128,6 +2257,12 @@ QPushButton:pressed {
                           <bold>true</bold>
                           <underline>true</underline>
                          </font>
+                        </property>
+                        <property name="toolTip">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NAME&lt;/span&gt; designated identifier of a specific shelter site&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="toolTipDuration">
+                         <number>10000</number>
                         </property>
                         <property name="text">
                          <string>Name</string>

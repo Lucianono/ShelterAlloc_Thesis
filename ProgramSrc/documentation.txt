@@ -18,13 +18,3 @@ pyside6-uic widget.ui > ui_widget.py
 
 to convert resources.qrc to resources_rc.py
 pyside6-rcc resources.qrc -o resources_rc.py
-
-to do:
-- light mode and dark mode option
-- connect pag save sa main window communities
-- solve settings & progress
-- kapag inuupdate yung names ng shelter and community hindi nag uupdate kaagad
-- figure out that damn background problem it looks ass
-
-issues:
-- multi-row deleteion issues

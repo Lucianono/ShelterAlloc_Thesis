@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'shelterallocationreport.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.1
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -16,10 +16,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWebEngineWidgets import QWebEngineView
-from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QDialog, QFrame,
-    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
-    QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QDialog,
+    QFrame, QGridLayout, QHBoxLayout, QHeaderView,
+    QLabel, QPushButton, QSizePolicy, QTableWidget,
+    QTableWidgetItem, QVBoxLayout, QWidget)
 import resources_rc
 
 class Ui_ShelterAllocationReport(object):
@@ -169,10 +169,50 @@ class Ui_ShelterAllocationReport(object):
         self.tableWidget.setItem(1, 2, __qtablewidgetitem8)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setAutoFillBackground(False)
-        self.tableWidget.setStyleSheet(u"border: none;\n"
-"background-color: transparent;")
+        self.tableWidget.setStyleSheet(u"QHeaderView::section {\n"
+"    font-weight: bold;\n"
+"    background-color: #F0F0F0;\n"
+"    color: black;            \n"
+"    padding: 5px;              \n"
+"    border: 1px solid #C0C0C0;\n"
+"}\n"
+"\n"
+"QTableWidget {\n"
+"    background-color: transparent;\n"
+"    gridline-color: #C0C0C0;\n"
+"    border: 1px solid #C0C0C0;\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"	background-color: transparent;\n"
+"	color: black;\n"
+"    padding: 5px;\n"
+"    border: 1px solid #C0C0C0;\n"
+"}\n"
+"\n"
+"QTableWidget::item::selected {\n"
+"	color: transparent;\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #E8F4F8;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #CCE7F0;\n"
+"    color: black;\n"
+"}\n"
+"")
+        self.tableWidget.setFrameShape(QFrame.Panel)
         self.tableWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.tableWidget.setAutoScroll(True)
+        self.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.tableWidget.setShowGrid(False)
         self.tableWidget.setGridStyle(Qt.SolidLine)
         self.tableWidget.setSortingEnabled(False)

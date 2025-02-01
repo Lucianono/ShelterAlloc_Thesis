@@ -17,8 +17,6 @@ class ShelterAllocationReport(QDialog):
         self.ui = Ui_ShelterAllocationReport()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
 
-
-
         self.map_path = os.path.join(os.getcwd(), "all_routes_map.html")
         self.ui.webEngineView.setUrl(QUrl.fromLocalFile(self.map_path))
 
@@ -26,6 +24,17 @@ class ShelterAllocationReport(QDialog):
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
         self.load_table_data("allocation_results.xlsx")
+        self.reload_label()
+
+    def reload_label(self):
+        model_results_path = os.path.join(os.getcwd(), "modelPerformanceResult.txt")
+        with open(model_results_path, "r") as file:
+            content = file.readlines()
+
+        formatted_text = "<br>".join(line.strip() for line in content)
+        self.ui.label_4.setText(formatted_text)
+
+        
 
     def load_table_data(self, file_path):
         try:
@@ -36,7 +45,11 @@ class ShelterAllocationReport(QDialog):
 
             self.ui.tableWidget.setRowCount(df.shape[0])  # Set number of rows
             self.ui.tableWidget.setColumnCount(df.shape[1])  # Set number of columns
-            self.ui.tableWidget.setHorizontalHeaderLabels(df.columns)  # Set column headers
+            self.ui.tableWidget.setHorizontalHeaderLabels(["Community","Shelter Allocated","Level"])  # Set column headers
+
+            self.ui.tableWidget.setColumnWidth(0,150)
+            self.ui.tableWidget.setColumnWidth(1,170)
+            self.ui.tableWidget.setColumnWidth(2,30)
 
             for row in range(df.shape[0]):
                 for col in range(df.shape[1]):
@@ -45,3 +58,13 @@ class ShelterAllocationReport(QDialog):
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load data: {str(e)}")
+
+
+if __name__ == "__main__":
+    import sys
+    from PySide6.QtWidgets import QApplication
+
+    app = QApplication(sys.argv)  # Create application instance
+    window = ShelterAllocationReport()  # Create an instance of your dialog
+    window.show()  # Show the window
+    sys.exit(app.exec())  # Start event loop

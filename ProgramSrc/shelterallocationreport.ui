@@ -237,14 +237,58 @@ background-color: white;
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">border: none;
-background-color: transparent;</string>
+             <string notr="true">QHeaderView::section {
+    font-weight: bold;
+    background-color: #F0F0F0;
+    color: black;            
+    padding: 5px;              
+    border: 1px solid #C0C0C0;
+}
+
+QTableWidget {
+    background-color: transparent;
+    gridline-color: #C0C0C0;
+    border: 1px solid #C0C0C0;
+}
+
+QTableWidget::item {
+	background-color: transparent;
+	color: black;
+    padding: 5px;
+    border: 1px solid #C0C0C0;
+}
+
+QTableWidget::item::selected {
+	color: transparent;
+}
+
+QPushButton {
+    background-color: transparent;
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #E8F4F8;
+    border-radius: 5px;
+}
+
+QTableWidget::item:selected {
+    background-color: #CCE7F0;
+    color: black;
+}
+</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Panel</enum>
             </property>
             <property name="sizeAdjustPolicy">
              <enum>QAbstractScrollArea::AdjustIgnored</enum>
             </property>
             <property name="autoScroll">
              <bool>true</bool>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
             </property>
             <property name="showGrid">
              <bool>false</bool>

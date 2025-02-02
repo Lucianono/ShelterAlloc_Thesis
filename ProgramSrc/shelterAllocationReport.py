@@ -23,8 +23,13 @@ class ShelterAllocationReport(QDialog):
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
+        self.ui.pushButton_2.connect()
+
         self.load_table_data("allocation_results.xlsx")
         self.reload_label()
+
+    def save_report(self):
+        return
 
     def reload_label(self):
         model_results_path = os.path.join(os.getcwd(), "modelPerformanceResult.txt")
@@ -33,8 +38,6 @@ class ShelterAllocationReport(QDialog):
 
         formatted_text = "<br>".join(line.strip() for line in content)
         self.ui.label_4.setText(formatted_text)
-
-        
 
     def load_table_data(self, file_path):
         try:

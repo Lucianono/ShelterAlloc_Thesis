@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'shelterallocationreport.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.2
+## Created by: Qt User Interface Compiler version 6.7.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -245,8 +245,8 @@ class Ui_ShelterAllocationReport(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
         self.pushButton.setText("")
-        self.label.setText(QCoreApplication.translate("Dialog", u"Shelter Allocation Report", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"EXPORT XLSX", None))
+        self.label.setText(QCoreApplication.translate("Dialog", u"Shelter Location-Allocation Report", None))
+        self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"SAVE REPORT", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT) Model", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Generated report by Bryyyyy", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)

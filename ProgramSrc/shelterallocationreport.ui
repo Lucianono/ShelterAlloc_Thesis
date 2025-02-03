@@ -129,7 +129,7 @@ background-color: white;
            </font>
           </property>
           <property name="text">
-           <string>Shelter Allocation Report</string>
+           <string>Shelter Location-Allocation Report</string>
           </property>
          </widget>
         </item>
@@ -163,7 +163,7 @@ background-color: white;
 }</string>
           </property>
           <property name="text">
-           <string>EXPORT XLSX</string>
+           <string>SAVE REPORT</string>
           </property>
          </widget>
         </item>

@@ -9,6 +9,9 @@ pip install openpyxl xlrd (to read .xlsx and .xls files)
 pip install folium
 pip install osmnx
 pip install networkx
+pip install scikit-learn
+pip install msoffcrypto-tools
+pip install xlsxwriter
 
 Install Qt Designer with this link: https://build-system.fman.io/qt-designer-download
 

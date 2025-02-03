@@ -1,5 +1,5 @@
 import sys
-from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QTextEdit
+from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QInputDialog, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QTextEdit
 from PySide6.QtGui import QIcon, QCursor
 from PySide6.QtCore import Qt, QUrl, QThread
 from PySide6.QtWebEngineWidgets import QWebEngineView
@@ -7,6 +7,8 @@ from PySide6.QtWebEngineCore import QWebEngineSettings
 from ui_shelterallocationreport import Ui_ShelterAllocationReport
 import pandas as pd
 import os
+import msoffcrypto
+from io import BytesIO
 from functools import partial
 from pathfinder import PathfindingWorker
 from optimizedRouting import run_optimization
@@ -23,12 +25,42 @@ class ShelterAllocationReport(QDialog):
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
-        self.ui.pushButton_2.connect()
+        self.ui.pushButton_2.clicked.connect(lambda: self.save_report("allocation_results.xlsx"))
 
         self.load_table_data("allocation_results.xlsx")
         self.reload_label()
 
-    def save_report(self):
+    def save_report(self,file_name):
+        import pandas as pd
+
+        df = pd.read_excel(file_name)
+
+        # Save DataFrame to an in-memory buffer
+        buffer = BytesIO()
+        with pd.ExcelWriter(buffer, engine="xlsxwriter") as writer:
+            df.to_excel(writer, sheet_name="AllocationResult", index=False)
+        buffer.seek(0)  # Reset buffer position
+
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getSaveFileName(self, 
+            "Save File", "", "All Files(*);;Excel Files(*.xlsx)", options = options)
+        
+        if fileName :
+            response = QMessageBox.question(self, "Save Report", "Do you want to protect this report?", QMessageBox.Yes | QMessageBox.No)
+            if response == QMessageBox.Yes:
+
+                text, ok = QInputDialog().getText(self, "Protect report","Enter password:")
+                if ok and text:
+                    password = text
+                    # Encrypt and save the file
+                    with open(f"{fileName}.xlsx", "wb") as f_out:
+                        encryptor = msoffcrypto.OfficeFile(buffer)
+                        encryptor.encrypt( password, f_out)
+            else :
+                with open(f"{fileName}.xlsx", "wb") as f:
+                    f.write(buffer.getvalue())  # Write the buffer content to the file
+
         return
 
     def reload_label(self):

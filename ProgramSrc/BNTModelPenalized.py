@@ -478,3 +478,14 @@ class BNTModelSimulation:
 
         progress_dialog(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
         print(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
+
+        data = [
+            f"Generation when solution last updated : {generation_last_updated}",
+            f"Time run : {minutes} minutes and {seconds:.2f} seconds"
+        ]
+
+        # Open a file in write mode ('w')
+        with open("modelPerformanceResult.txt", "w") as file:
+            # Write each line to the file
+            for line in data:
+                file.write(line + "\n")  # Add a newline character after each line

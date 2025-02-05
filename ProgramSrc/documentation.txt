@@ -9,6 +9,9 @@ pip install openpyxl xlrd (to read .xlsx and .xls files)
 pip install folium
 pip install osmnx
 pip install networkx
+pip install scikit-learn
+pip install msoffcrypto-tools
+pip install xlsxwriter
 
 Install Qt Designer with this link: https://build-system.fman.io/qt-designer-download
 
@@ -18,3 +21,5 @@ pyside6-uic widget.ui > ui_widget.py
 
 to convert resources.qrc to resources_rc.py
 pyside6-rcc resources.qrc -o resources_rc.py
+
+pyside6-uic shelterallocationreport.ui > ui_shelterallocationreport.py

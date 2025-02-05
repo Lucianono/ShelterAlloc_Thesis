@@ -166,7 +166,10 @@ class SolveSettingsDialog(QDialog):
     def init_shelter_status_switches(self):
         self.shelter_status_switches = {}
         for label in ["Built", "Partially Built", "Damaged", "Empty Lot"]:
-            switch = self.create_switch(label, self.shelter_status_layout,True)
+            if label == "Built":
+                switch = self.create_switch(label, self.shelter_status_layout,True)
+            else:
+                switch = self.create_switch(label, self.shelter_status_layout,False)
             switch.clicked.connect(self.filter_shelter_data)
             self.shelter_status_switches[label] = switch
 

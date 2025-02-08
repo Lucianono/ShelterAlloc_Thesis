@@ -79,12 +79,15 @@ class ModelSettings(QDialog):
                         raise ValueError(f"Invalid value '{value}' for '{key}'. Expected a string.")
                 elif expected_types[key] == float:
                     try:
-                        float(value)  # Try converting to float
+                        data[key] = float(value)  # Try converting to float
                     except ValueError:
                         raise ValueError(f"Invalid value '{value}' for '{key}' . Expected a float.")
                 elif expected_types[key] == int:
                     try:
-                        int(value)  # Try converting to int
+                        data[key] = int(value)  # Try converting to int
+                        if key in ["Generations", "Population"] and data[key] <= 0:
+                            QMessageBox.warning(self, "Invalid Input", f"'{key}' cannot be negative.")
+                            return
                     except ValueError:
                         raise ValueError(f"Invalid value '{value}' for '{key}'. Expected an integer.")
 

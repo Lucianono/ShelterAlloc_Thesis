@@ -150,6 +150,8 @@ background-color: white;
           <property name="font">
            <font>
             <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -228,6 +230,20 @@ background-color: white;
            <widget class="QLabel" name="label_4">
             <property name="text">
              <string>Generated report by Bryyyyy</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="styleSheet">
+             <string notr="true">border: none;
+background: none;
+text-decoration: underline;
+color:rgb(0, 0, 255);
+text-align: left;</string>
+            </property>
+            <property name="text">
+             <string>More Details</string>
             </property>
            </widget>
           </item>

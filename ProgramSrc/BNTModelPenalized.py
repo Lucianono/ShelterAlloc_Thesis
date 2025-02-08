@@ -480,6 +480,14 @@ class BNTModelSimulation:
         print(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
 
         data = [
+            f"Number of generations : {num_generations}",
+            f"Number of population per generation : {num_solutions}",
+            f"Mutation rate : {mutation_rate}",
+            f"Weight of Distance : {weight_dist}",
+            f"Weight of Cost : {weight_cost}",
+            f"Area per Individual : {area_per_individual}",
+            f"Set number of max shelters : {max_shelters}",
+            f"Set number of max level 2 shelters : {max_lvl2_shelters}",
             f"Generation when solution last updated : {generation_last_updated}",
             f"Time run : {minutes} minutes and {seconds:.2f} seconds"
         ]

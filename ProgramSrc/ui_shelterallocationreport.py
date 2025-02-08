@@ -88,6 +88,7 @@ class Ui_ShelterAllocationReport(object):
         self.pushButton_2.setSizePolicy(sizePolicy)
         self.pushButton_2.setMinimumSize(QSize(200, 0))
         font1 = QFont()
+        font1.setBold(True)
         self.pushButton_2.setFont(font1)
         self.pushButton_2.setStyleSheet(u"QPushButton {\n"
 "   background-color: #1C5739;        \n"
@@ -136,21 +137,29 @@ class Ui_ShelterAllocationReport(object):
 
         self.verticalLayout_3.addWidget(self.label_4)
 
+        self.pushButton_3 = QPushButton(self.frame)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setStyleSheet(u"border: none;\n"
+"background: none;\n"
+"text-decoration: underline;\n"
+"color:rgb(0, 0, 255);\n"
+"text-align: left;")
+
+        self.verticalLayout_3.addWidget(self.pushButton_3)
+
         self.tableWidget = QTableWidget(self.frame)
         if (self.tableWidget.columnCount() < 3):
             self.tableWidget.setColumnCount(3)
-        font3 = QFont()
-        font3.setBold(True)
         __qtablewidgetitem = QTableWidgetItem()
-        __qtablewidgetitem.setFont(font3);
+        __qtablewidgetitem.setFont(font1);
         __qtablewidgetitem.setBackground(QColor(0, 0, 0, 50));
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        __qtablewidgetitem1.setFont(font3);
+        __qtablewidgetitem1.setFont(font1);
         __qtablewidgetitem1.setBackground(QColor(0, 0, 0, 50));
         self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
-        __qtablewidgetitem2.setFont(font3);
+        __qtablewidgetitem2.setFont(font1);
         __qtablewidgetitem2.setBackground(QColor(0, 0, 0, 50));
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         if (self.tableWidget.rowCount() < 2):
@@ -249,6 +258,7 @@ class Ui_ShelterAllocationReport(object):
         self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"SAVE REPORT", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT) Model", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Generated report by Bryyyyy", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"More Details", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Dialog", u"Selected Shelters", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)

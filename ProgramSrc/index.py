@@ -27,6 +27,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.is_adding_community = False
         self.is_adding_shelter = False
 
+        self.pushButton_14.setCursor(Qt.PointingHandCursor)
+        self.pushButton_15.setCursor(Qt.PointingHandCursor)
+
         self.stackedWidget.hide()
         
         self.add_community_btn.clicked.connect(self.handle_add_community)
@@ -127,6 +130,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 button.setFixedSize(30,30)
 
                 button.setStyleSheet("background: transparent; border: none;")
+                button.setCursor(Qt.PointingHandCursor)
 
                 button.setObjectName(f"barangay_{row.Name}_btn")
 
@@ -190,6 +194,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 button.setFixedSize(30,30)
 
                 button.setStyleSheet("background: transparent; border: none;")
+                button.setCursor(Qt.PointingHandCursor)
 
                 button.setObjectName(f"shelter_{row.Name}_btn")
 

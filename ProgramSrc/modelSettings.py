@@ -56,6 +56,8 @@ class ModelSettings(QDialog):
             QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
 
 
+
+
     def save_to_excel(self, file_name, dialog, expected_types):
         try:
             # Collect data from the UI elements
@@ -80,16 +82,25 @@ class ModelSettings(QDialog):
                 elif expected_types[key] == float:
                     try:
                         data[key] = float(value)  # Try converting to float
+                        if key in ["Mutation", "AreaPerIndiv"]:
+                            if data[key] <= 0:
+                                QMessageBox.warning(self, "Invalid Input", f"'{key}' must be greater than 0.")
+                                return
                     except ValueError:
                         raise ValueError(f"Invalid value '{value}' for '{key}' . Expected a float.")
                 elif expected_types[key] == int:
                     try:
                         data[key] = int(value)  # Try converting to int
-                        if key in ["Generations", "Population"] and data[key] <= 0:
-                            QMessageBox.warning(self, "Invalid Input", f"'{key}' cannot be negative.")
-                            return
+                        if key in ["Generations", "Population", "MaxShelters", "MaxL2Shelters"]:
+                            if data[key] <= 0:
+                                QMessageBox.warning(self, "Invalid Input", f"'{key}' must be greater than 0.")
+                                return
                     except ValueError:
                         raise ValueError(f"Invalid value '{value}' for '{key}'. Expected an integer.")
+                    
+            if not abs((data["WtCost"] + data["WtDist"]) - 1.0) < 1e-6:
+                QMessageBox.warning(self, "Invalid Input", "WtCost + WtDist must equal 1.0")
+                return
 
 
             # Save to Excel

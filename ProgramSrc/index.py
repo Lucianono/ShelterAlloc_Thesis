@@ -97,13 +97,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         try:
             file_path = os.path.join(os.getcwd(), "commData.xlsx")
-            self.data_Names = pd.read_excel(file_path, usecols=['Name'])
+            self.data_Names = pd.read_excel(file_path, usecols=['Name','Active'])
 
-            for index, value in self.data_Names.iloc[:, 0].items():
+            for row in self.data_Names.itertuples(index=False):
                 hbox_layout = QHBoxLayout()
 
                 picture_label = QLabel()
-                icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128.png")
+                if row.Active :
+                    icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128.png")
+                else : 
+                    icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (2).png")
                 pixmap = QPixmap(icon_path)
 
                 pixmap = pixmap.scaled(24, 24)
@@ -111,7 +114,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 picture_label.setPixmap(pixmap)
                 picture_label.setFixedSize(24, 24)
 
-                name_label = QLabel(str(value))
+                name_label = QLabel(str(row.Name))
                 name_label.setMaximumSize(QSize(170, 16777215))
 
                 button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
@@ -125,7 +128,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 button.setStyleSheet("background: transparent; border: none;")
 
-                button.setObjectName(f"barangay_{value}_btn")
+                button.setObjectName(f"barangay_{row.Name}_btn")
 
                 button.clicked.connect(lambda checked, button_name=button.objectName(): self.handle_button_click(button_name))
 
@@ -157,13 +160,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         try:
             file_path = os.path.join(os.getcwd(), "shelData.xlsx")
-            self.data_Names = pd.read_excel(file_path, usecols=['Name'])
+            self.data_Names = pd.read_excel(file_path, usecols=['Name','Active'])
 
-            for index, value in self.data_Names.iloc[:, 0].items():
+            for row in self.data_Names.itertuples(index=False):
                 hbox_layout = QHBoxLayout()
 
                 picture_label = QLabel()
-                icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (1).png")
+                if row.Active :
+                    icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (1).png")
+                else : 
+                    icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (2).png")
                 pixmap = QPixmap(icon_path)
 
                 pixmap = pixmap.scaled(24, 24)
@@ -171,7 +177,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 picture_label.setPixmap(pixmap)
                 picture_label.setFixedSize(24, 24)
 
-                name_label = QLabel(str(value))
+                name_label = QLabel(str(row.Name))
                 name_label.setMaximumSize(QSize(170, 16777215))
 
                 button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
@@ -185,7 +191,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 button.setStyleSheet("background: transparent; border: none;")
 
-                button.setObjectName(f"shelter_{value}_btn")
+                button.setObjectName(f"shelter_{row.Name}_btn")
 
                 button.clicked.connect(lambda checked, button_name=button.objectName(): self.handle_button_click(button_name))
 

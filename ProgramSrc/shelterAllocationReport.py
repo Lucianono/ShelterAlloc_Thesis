@@ -26,6 +26,7 @@ class ShelterAllocationReport(QDialog):
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
         self.ui.pushButton_2.clicked.connect(lambda: self.save_report("allocation_results.xlsx"))
+        self.ui.pushButton_3.clicked.connect(self.show_more_details)
 
         self.load_table_data("allocation_results.xlsx")
         self.reload_label()
@@ -63,13 +64,22 @@ class ShelterAllocationReport(QDialog):
 
         return
 
-    def reload_label(self):
+    def show_more_details(self):
         model_results_path = os.path.join(os.getcwd(), "modelPerformanceResult.txt")
         with open(model_results_path, "r") as file:
             content = file.readlines()
 
         formatted_text = "<br>".join(line.strip() for line in content)
+        QMessageBox.information(self, "Full Details", formatted_text)
+
+    def reload_label(self):
+        model_results_path = os.path.join(os.getcwd(), "modelPerformanceResult.txt")
+        with open(model_results_path, "r") as file:
+            content = [next(file).strip() for _ in range(3)]
+
+        formatted_text = "<br>".join(line.strip() for line in content)
         self.ui.label_4.setText(formatted_text)
+
 
     def load_table_data(self, file_path):
         try:
@@ -78,18 +88,62 @@ class ShelterAllocationReport(QDialog):
                 QMessageBox.warning(self, "Warning", "The file is empty.")
                 return
 
-            self.ui.tableWidget.setRowCount(df.shape[0])  # Set number of rows
-            self.ui.tableWidget.setColumnCount(df.shape[1])  # Set number of columns
-            self.ui.tableWidget.setHorizontalHeaderLabels(["Community","Shelter Allocated","Level"])  # Set column headers
+            # Sort and group by 'Shelter Allocated' and 'Level'
+            df = df.sort_values(by=["Shelter Assigned", "Shelter Level"])
 
-            self.ui.tableWidget.setColumnWidth(0,150)
-            self.ui.tableWidget.setColumnWidth(1,170)
-            self.ui.tableWidget.setColumnWidth(2,30)
+            self.ui.tableWidget.setRowCount(df.shape[0])  # Set number of rows
+            self.ui.tableWidget.setColumnCount(4)  # Ensure 3 columns
+            self.ui.tableWidget.setHorizontalHeaderLabels(["Community","Individuals" ,"Shelter Assigned", "Level"])  # Set column headers
+
+            self.ui.tableWidget.setColumnWidth(0, 150)
+            self.ui.tableWidget.setColumnWidth(1, 100)
+            self.ui.tableWidget.setColumnWidth(2, 170)
+            self.ui.tableWidget.setColumnWidth(3, 30)
+
+            # Insert data while tracking merging spans
+            shelter_merge_map = {}  # Dict to store start row and span for each shelter
+            level_merge_map = {}  # Dict to store start row and span for each level within each shelter
+
+            prev_shelter = None
+            prev_level = None
+            shelter_start = 0
+            level_start = 0
 
             for row in range(df.shape[0]):
-                for col in range(df.shape[1]):
-                    item = QTableWidgetItem(str(df.iloc[row, col]))
-                    self.ui.tableWidget.setItem(row, col, item)  # Insert item into the table
+                community, pop, shelter, level = df.iloc[row]
+
+                # Insert community
+                self.ui.tableWidget.setItem(row, 0, QTableWidgetItem(str(community)))
+                self.ui.tableWidget.setItem(row, 1, QTableWidgetItem(str(pop)))
+
+                # Handle shelter column merging
+                if shelter != prev_shelter:
+                    if prev_shelter is not None:
+                        shelter_merge_map[shelter_start] = row - shelter_start
+                    shelter_start = row
+                    prev_shelter = shelter
+
+                # Handle level column merging (within the same shelter)
+                if level != prev_level or shelter != prev_shelter:
+                    if prev_level is not None:
+                        level_merge_map[level_start] = row - level_start
+                    level_start = row
+                    prev_level = level
+
+                self.ui.tableWidget.setItem(row, 2, QTableWidgetItem(str(shelter)))
+                self.ui.tableWidget.setItem(row, 3, QTableWidgetItem(str(level)))
+
+            # Final merging for last group
+            shelter_merge_map[shelter_start] = df.shape[0] - shelter_start
+            level_merge_map[level_start] = df.shape[0] - level_start
+
+            # Merge cells in Shelter Allocated column
+            for start, span in shelter_merge_map.items():
+                self.ui.tableWidget.setSpan(start, 2, span, 1)
+
+            # Merge cells in Level column
+            for start, span in level_merge_map.items():
+                self.ui.tableWidget.setSpan(start, 3, span, 1)
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load data: {str(e)}")

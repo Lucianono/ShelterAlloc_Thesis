@@ -5,8 +5,13 @@ import random
 import numpy as np
 import copy
 import time
+from datetime import datetime
 import pandas as pd
 import os
+
+import uuid
+import socket
+import requests
 
 class BNTModelSimulation:
     
@@ -383,6 +388,7 @@ class BNTModelSimulation:
                 # Append data
                 data.append({
                     "Community Name": community["name"],
+                    "Allocated Population": community["population"],
                     "Shelter Assigned": shelter_name,
                     "Shelter Level": allocation["shelterlvl"][shelter_name]
                 })
@@ -479,20 +485,82 @@ class BNTModelSimulation:
         progress_dialog(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
         print(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
 
+        # =======================
+        # DETAILS RECORDING
+        def cost_of_open_shelter(allocation):
+
+            initial_shelters = set(allocation['initial'].values())
+            Shelters_dict = {shelter["name"]: shelter for shelter in Shelters}
+
+            total_cost = 0
+
+            for shelter_name in initial_shelters:
+                # add cost based on shelter level
+                shelter = Shelters_dict.get(shelter_name)
+                if (allocation["shelterlvl"][shelter_name] == 1):
+                    total_cost += shelter["cost1"] 
+                elif (allocation["shelterlvl"][shelter_name] == 2):
+                    total_cost += shelter["cost2"] 
+                else:
+                    progress_dialog("Shelter exceeded 2 levels. Something is wrong")
+                    print("Shelter exceeded 2 levels. Something is wrong")
+
+            return int(total_cost)
+        
+        def cost_of_all_lvl1_shelter():
+
+            total_cost = sum(shelter["cost1"] for shelter in Shelters)
+
+            return int(total_cost)
+        
+        # Cost rate generator
+        #new-old / old
+        cost_comparison_analysis = ""
+        if cost_of_all_lvl1_shelter() > 0:
+            cost_diff_rate = (cost_of_open_shelter(best_allocation) - cost_of_all_lvl1_shelter()) / cost_of_all_lvl1_shelter()
+            if cost_diff_rate < 0:    
+                cost_comparison_analysis = f"Cost saved by {abs(cost_diff_rate):.2%}"
+            elif cost_diff_rate > 0:  
+                cost_comparison_analysis = f"Cost increased by {cost_diff_rate:.2%}"
+
+        # pc details
+        mac_address = ':'.join(format(b, '02x') for b in uuid.getnode().to_bytes(6, 'big'))
+        username = os.getlogin()
+        local_ip = socket.gethostbyname(socket.gethostname())
+        try:
+            public_ip = requests.get("https://api64.ipify.org").text
+        except requests.RequestException:
+            public_ip = "Unavailable"
+        date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        # Save to a txt file
         data = [
+            f"Generation when solution last updated : {generation_last_updated}",
+            f"Time run : {minutes} minutes and {seconds:.2f} seconds",
+            cost_comparison_analysis,
+            "=== SHELTER DETAILS ===",
+            f"Number of all shelters : {sum(1 for shelter in Shelters)}",
+            f"Number of opened shelters : {sum(1 for shelter in set(best_allocation['initial'].values()))}",
+            f"Cost of all level 1 shelters : {cost_of_all_lvl1_shelter()}",
+            f"Cost of opened shelters : {cost_of_open_shelter(best_allocation)}",
+            "=== GENETIC ALGORTIHM PARAMETERS ===",
             f"Number of generations : {num_generations}",
             f"Number of population per generation : {num_solutions}",
             f"Mutation rate : {mutation_rate}",
+            "=== MODEL PARAMETERS ===",
             f"Weight of Distance : {weight_dist}",
             f"Weight of Cost : {weight_cost}",
             f"Area per Individual : {area_per_individual}",
             f"Set number of max shelters : {max_shelters}",
             f"Set number of max level 2 shelters : {max_lvl2_shelters}",
-            f"Generation when solution last updated : {generation_last_updated}",
-            f"Time run : {minutes} minutes and {seconds:.2f} seconds"
+            "=== REPORT and USER DETAILS ===",
+            f"MAC Address : {mac_address}",
+            f"PC Username : {username}",
+            f"Local IP Address : {local_ip}",
+            f"Public IP Address : {public_ip}",
+            f"Time of report generation : {date_now}",
         ]
 
-        # Open a file in write mode ('w')
         with open("modelPerformanceResult.txt", "w") as file:
             # Write each line to the file
             for line in data:

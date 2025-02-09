@@ -12,6 +12,8 @@ from io import BytesIO
 from functools import partial
 from pathfinder import PathfindingWorker
 from optimizedRouting import run_optimization
+from openpyxl import load_workbook
+from openpyxl.styles import PatternFill, Font
 
 class ShelterAllocationReport(QDialog):
     def __init__(self):
@@ -32,14 +34,66 @@ class ShelterAllocationReport(QDialog):
         self.reload_label()
 
     def save_report(self,file_name):
-        import pandas as pd
 
-        df = pd.read_excel(file_name)
 
         # Save DataFrame to an in-memory buffer
         buffer = BytesIO()
-        with pd.ExcelWriter(buffer, engine="xlsxwriter") as writer:
-            df.to_excel(writer, sheet_name="AllocationResult", index=False)
+
+        # Load the Excel template
+        template_path = "ReportTemplate.xlsx"
+        wb = load_workbook(template_path)
+        ws1 = wb["Shelter Location-Allocation"]
+        ws2 = wb["Report Analysis"]
+        ws3 = wb["Community Data"]
+        ws4 = wb["Shelter Data"]
+
+        # 1st sheet
+        df = pd.read_excel(file_name,header=0)
+        start_row = 5
+        for row_idx, row_data in df.iterrows():
+            for col_idx, value in enumerate(row_data, start=1):
+                ws1.cell(row=row_idx+start_row, column=col_idx, value=value)
+
+        # 2nd sheet
+        model_results_path = os.path.join(os.getcwd(), "modelPerformanceResult.txt")
+        with open(model_results_path, "r") as file:
+            content = file.readlines()
+        content.reverse()
+
+        start_row = 2
+        for row_data in content:
+            row_data = row_data.replace("\n", "")
+            ws2.insert_rows(start_row)
+
+            if "=" in row_data:
+                row_data = row_data.replace("=", "")
+                ws2.cell(row=start_row, column=1).fill = PatternFill(start_color="548235", end_color="548235", fill_type="solid") 
+                ws2.cell(row=start_row, column=1).font = Font(color="ffffff", bold=True)
+
+            ws2.cell(row=start_row, column=1, value=row_data)
+
+        # 3rd sheet
+        df = pd.read_excel("modelCommData.xlsx",header=0)
+        start_row = 2
+        for row_idx, row_data in df.iterrows():
+            for col_idx, value in enumerate(row_data, start=1):
+                ws3.cell(row=row_idx+start_row, column=col_idx, value=value)
+
+        # 4th sheet
+        df = pd.read_excel("modelShelData.xlsx",header=0)
+        start_row = 2
+        for row_idx, row_data in df.iterrows():
+            for col_idx, value in enumerate(row_data, start=1):
+                ws4.cell(row=row_idx+start_row, column=col_idx, value=value)
+
+        
+        ws1.protection.sheet = True
+        ws2.protection.sheet = True
+        ws3.protection.sheet = True
+        ws4.protection.sheet = True
+
+        # Save as a new file (preserves original template formatting)
+        wb.save(buffer)
         buffer.seek(0)  # Reset buffer position
 
         options = QFileDialog.Options()
@@ -61,6 +115,8 @@ class ShelterAllocationReport(QDialog):
             else :
                 with open(f"{fileName}.xlsx", "wb") as f:
                     f.write(buffer.getvalue())  # Write the buffer content to the file
+
+            
 
         return
 
@@ -147,6 +203,9 @@ class ShelterAllocationReport(QDialog):
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load data: {str(e)}")
+
+    
+    
 
 
 if __name__ == "__main__":

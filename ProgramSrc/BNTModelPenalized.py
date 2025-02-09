@@ -543,7 +543,7 @@ class BNTModelSimulation:
             f"Number of opened shelters : {sum(1 for shelter in set(best_allocation['initial'].values()))}",
             f"Cost of all level 1 shelters : {cost_of_all_lvl1_shelter()}",
             f"Cost of opened shelters : {cost_of_open_shelter(best_allocation)}",
-            "=== GENETIC ALGORTIHM PARAMETERS ===",
+            "=== GENETIC ALGORITHM PARAMETERS ===",
             f"Number of generations : {num_generations}",
             f"Number of population per generation : {num_solutions}",
             f"Mutation rate : {mutation_rate}",

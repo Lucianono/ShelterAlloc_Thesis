@@ -21,7 +21,7 @@ class ShelterAllocationReport(QDialog):
         self.ui = Ui_ShelterAllocationReport()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
 
-        self.map_path = os.path.join(os.getcwd(), "all_routes_map.html")
+        self.map_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
         self.ui.webEngineView.setUrl(QUrl.fromLocalFile(self.map_path))
 
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)

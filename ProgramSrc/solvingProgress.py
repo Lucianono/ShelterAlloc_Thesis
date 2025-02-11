@@ -8,7 +8,6 @@ import pandas as pd
 import os
 from functools import partial
 from pathfinder import PathfindingWorker
-from optimizedRouting import run_optimization
 
 class SolvingProgress(QDialog):
     def __init__(self):
@@ -54,11 +53,10 @@ class SolvingProgress(QDialog):
         self.ui.textEdit.append("Pathfinding Complete!")
         self.ui.solvingModel_progressBar.setValue(50)
         self.worker_thread.quit()
-        # run_optimization()
         self.ui.solvingModel_progressBar.setValue(100)
 
         self.report_Window = ShelterAllocationReport()
         self.report_Window.show()
 
-        # self.close()  
+        self.close()  
         

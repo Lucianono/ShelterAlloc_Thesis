@@ -1,11 +1,14 @@
 import osmnx as ox
 import folium
+from folium.plugins import AntPath
+import math
 import pandas as pd
 import networkx as nx
 from math import radians, cos, sin, sqrt, atan2
 
 # Define a list of colors for the routes
-ROUTE_COLORS = ['blue', 'green', 'red', 'purple', 'orange', 'pink', 'yellow', 'brown', 'gray', 'cyan']
+ROUTE_COLORS = ['darkblue', 'darkgreen', 'darkred', 'indigo', 'darkorange', 'maroon', 
+                'darkgoldenrod', 'saddlebrown', 'dimgray', 'teal', 'blue', 'green', 'red', 'purple', 'orange', 'pink', 'yellow', 'brown', 'gray', 'cyan']
 
 def get_route_color(iteration_index):
     return ROUTE_COLORS[iteration_index % len(ROUTE_COLORS)]
@@ -58,19 +61,29 @@ def plot_optimized_routes(allocation_df, comm_dict, shel_dict, map_name="optimiz
         lat1, lon1 = node_coords[u]
         lat2, lon2 = node_coords[v]
         return haversine_distance(lat1, lon1, lat2, lon2)
+    
+    used_shelters = list(set(allocation_df['Shelter Assigned']))
+    route_layer = folium.FeatureGroup(name="Route Path")  # Follows the road network
+    straight_layer = folium.FeatureGroup(name="Straight Path")  # Direct straight line
+
+# Draw the route path (A* path)
 
     # Plot routes
     for idx, row in allocation_df.iterrows():
         try:
             start_node = ox.distance.nearest_nodes(roadgraph, row['yDegrees_Comm'], row['xDegrees_Comm'])
             end_node = ox.distance.nearest_nodes(roadgraph, row['yDegrees_Shel'], row['xDegrees_Shel'])
+            start_location = (row['xDegrees_Comm'], row['yDegrees_Comm'])
+            end_location = (row['xDegrees_Shel'], row['yDegrees_Shel'])
+            shelter_id = used_shelters.index(row['Shelter Assigned'])
+            
 
             route = nx.astar_path(roadgraph, start_node, end_node, heuristic=haversine_heuristic, weight='length')
             route_distance = sum(ox.utils_graph.get_route_edge_attributes(roadgraph, route, 'length'))
             route_coords = [(node_coords[node][0], node_coords[node][1]) for node in route]
 
-            folium.PolyLine(route_coords, color=get_route_color(idx), weight=2.5, opacity=0.7,
-                            popup=f"Route from {row['Community Name']} to {row['Shelter Assigned']} ({route_distance/1000:.2f} km)").add_to(m)
+            AntPath(route_coords, color=get_route_color(idx), weight=4, delay=800, popup=f"Route from {row['Community Name']} to {row['Shelter Assigned']} ({route_distance/1000:.2f} km)").add_to(route_layer)
+            AntPath([start_location,end_location], color=get_route_color(shelter_id), weight=6, delay=800, popup=f"Route from {row['Community Name']} to {row['Shelter Assigned']} ({route_distance/1000:.2f} km)").add_to(straight_layer)
 
             print(f"Route from {row['Community Name']} to {row['Shelter Assigned']}: {route_distance / 1000:.2f} km")
 
@@ -82,6 +95,9 @@ def plot_optimized_routes(allocation_df, comm_dict, shel_dict, map_name="optimiz
             continue
 
     # Save map
+    route_layer.add_to(m)
+    straight_layer.add_to(m)
+    folium.LayerControl(collapsed=False).add_to(m)
     m.save(map_name)
     print(f"Map saved as {map_name}")
     return m
@@ -100,3 +116,11 @@ def run_optimization(communities_file='commData.xlsx', shelters_file='shelData.x
 
     # Plot the optimized routes
     plot_optimized_routes(allocation_df, comm_dict, shel_dict)
+
+
+if __name__ == "__main__":
+    import sys
+    from PySide6.QtWidgets import QApplication
+
+    app = QApplication(sys.argv)  # Create application instance
+    run_optimization()

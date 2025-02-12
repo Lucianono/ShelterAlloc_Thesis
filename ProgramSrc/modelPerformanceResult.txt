@@ -1,9 +1,9 @@
-Generation when solution last updated : 65
-Time run : 0 minutes and 0.31 seconds
+Generation when solution last updated : 99
+Time run : 0 minutes and 0.35 seconds
 
 === SHELTER DETAILS ===
 Number of all shelters : 8
-Number of opened shelters : 5
+Number of opened shelters : 7
 Cost of all level 1 shelters : 0
 Cost of opened shelters : 0
 === GENETIC ALGORITHM PARAMETERS ===
@@ -21,4 +21,4 @@ MAC Address : d8:43:ae:27:1c:03
 PC Username : USER
 Local IP Address : 192.168.254.191
 Public IP Address : 120.28.251.112
-Time of report generation : 2025-02-12 08:43:12
+Time of report generation : 2025-02-12 09:11:17

@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_ec8f6c83db1c04988f99aa7308dc55df {
+                #map_6045983b68014801ca0c36cff757677f {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -35,20 +35,21 @@
                 .leaflet-container { font-size: 1rem; }
             </style>
         
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.1.2/dist/leaflet-ant-path.min.js"></script>
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_ec8f6c83db1c04988f99aa7308dc55df" ></div>
+            <div class="folium-map" id="map_6045983b68014801ca0c36cff757677f" ></div>
         
 </body>
 <script>
     
     
-            var map_ec8f6c83db1c04988f99aa7308dc55df = L.map(
-                "map_ec8f6c83db1c04988f99aa7308dc55df",
+            var map_6045983b68014801ca0c36cff757677f = L.map(
+                "map_6045983b68014801ca0c36cff757677f",
                 {
-                    center: [14.903524376798353, 120.76507496742391],
+                    center: [14.903729002167392, 120.76311726701255],
                     crs: L.CRS.EPSG3857,
                     zoom: 13,
                     zoomControl: true,
@@ -60,913 +61,1198 @@
 
         
     
-            var tile_layer_ecbd358eafb26d3e3b738f48fe9e8594 = L.tileLayer(
+            var tile_layer_7fcb88e2890c2383f56d61523496d0c3 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
             );
         
     
-            tile_layer_ecbd358eafb26d3e3b738f48fe9e8594.addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            tile_layer_7fcb88e2890c2383f56d61523496d0c3.addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-            var marker_303037f53571202c503800963abfaea1 = L.marker(
+            var marker_c0bd2f63b7be5c1b26fa6b5ffd46f97d = L.marker(
                 [14.8956, 120.7855],
                 {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-            var icon_68a7ee83b535cc2efb0c1418aeab74d2 = L.AwesomeMarkers.icon(
+            var icon_fddf9afcc8604a32d4f75f1c7e5f441e = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
             );
-            marker_303037f53571202c503800963abfaea1.setIcon(icon_68a7ee83b535cc2efb0c1418aeab74d2);
+            marker_c0bd2f63b7be5c1b26fa6b5ffd46f97d.setIcon(icon_fddf9afcc8604a32d4f75f1c7e5f441e);
         
     
-        var popup_15c00ff206ad81a5e82244dac351f583 = L.popup({"maxWidth": "100%"});
+        var popup_94b981d7465a301d049b6afb6b1964e5 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_b9656c04b757a23d562b0f7e396dc700 = $(`<div id="html_b9656c04b757a23d562b0f7e396dc700" style="width: 100.0%; height: 100.0%;">Community: Balite</div>`)[0];
-                popup_15c00ff206ad81a5e82244dac351f583.setContent(html_b9656c04b757a23d562b0f7e396dc700);
+                var html_4777cdefc35a5ad73a0d57d65a1e469c = $(`<div id="html_4777cdefc35a5ad73a0d57d65a1e469c" style="width: 100.0%; height: 100.0%;">Community: Balite</div>`)[0];
+                popup_94b981d7465a301d049b6afb6b1964e5.setContent(html_4777cdefc35a5ad73a0d57d65a1e469c);
             
         
 
-        marker_303037f53571202c503800963abfaea1.bindPopup(popup_15c00ff206ad81a5e82244dac351f583)
+        marker_c0bd2f63b7be5c1b26fa6b5ffd46f97d.bindPopup(popup_94b981d7465a301d049b6afb6b1964e5)
         ;
 
         
     
     
-            var marker_19f19fdaf197366a18a9bccd2ff3b1b9 = L.marker(
-                [14.917701586824, 120.743048619728],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_1fb7b5e80a3c33a99fe0bcdd3ebc4a1e = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_19f19fdaf197366a18a9bccd2ff3b1b9.setIcon(icon_1fb7b5e80a3c33a99fe0bcdd3ebc4a1e);
-        
-    
-        var popup_c4a07c18e1f09a8d29c3ccf3699b7a8b = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_128dc5de874af8382fecda7559335c4b = $(`<div id="html_128dc5de874af8382fecda7559335c4b" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
-                popup_c4a07c18e1f09a8d29c3ccf3699b7a8b.setContent(html_128dc5de874af8382fecda7559335c4b);
-            
-        
-
-        marker_19f19fdaf197366a18a9bccd2ff3b1b9.bindPopup(popup_c4a07c18e1f09a8d29c3ccf3699b7a8b)
-        ;
-
-        
-    
-    
-            var marker_2da19eceefd994be1ea8de1c6d97e01b = L.marker(
-                [14.9143, 120.7622],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_ed615a88928e86be165fd6f4a8809e7f = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_2da19eceefd994be1ea8de1c6d97e01b.setIcon(icon_ed615a88928e86be165fd6f4a8809e7f);
-        
-    
-        var popup_cd671f0b778691ee957a1abe451b3f76 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_9675c5f9e363f7c7d0b70d2ce4fda513 = $(`<div id="html_9675c5f9e363f7c7d0b70d2ce4fda513" style="width: 100.0%; height: 100.0%;">Community: Balungao</div>`)[0];
-                popup_cd671f0b778691ee957a1abe451b3f76.setContent(html_9675c5f9e363f7c7d0b70d2ce4fda513);
-            
-        
-
-        marker_2da19eceefd994be1ea8de1c6d97e01b.bindPopup(popup_cd671f0b778691ee957a1abe451b3f76)
-        ;
-
-        
-    
-    
-            var marker_0ce2f1a65426767bda9409942e84c471 = L.marker(
-                [14.9136800407707, 120.755871075221],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_da7a1dec6e3fca20fae417853ae715e3 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_0ce2f1a65426767bda9409942e84c471.setIcon(icon_da7a1dec6e3fca20fae417853ae715e3);
-        
-    
-        var popup_0b106182314c7b93d40921c194711dab = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_74cb975db003b3ffcff0be5a3be7dfa3 = $(`<div id="html_74cb975db003b3ffcff0be5a3be7dfa3" style="width: 100.0%; height: 100.0%;">Shelter: Calizon Dike</div>`)[0];
-                popup_0b106182314c7b93d40921c194711dab.setContent(html_74cb975db003b3ffcff0be5a3be7dfa3);
-            
-        
-
-        marker_0ce2f1a65426767bda9409942e84c471.bindPopup(popup_0b106182314c7b93d40921c194711dab)
-        ;
-
-        
-    
-    
-            var marker_e31b42b1305d7889a8c7a3c358e31b5b = L.marker(
-                [14.8845, 120.7838],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_45024e5fd177d42080909326dc018ae5 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_e31b42b1305d7889a8c7a3c358e31b5b.setIcon(icon_45024e5fd177d42080909326dc018ae5);
-        
-    
-        var popup_c38cd381c3ee1d81bbbb6620387d54ca = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_89a9e9334e76987a6a0a2469edb473c8 = $(`<div id="html_89a9e9334e76987a6a0a2469edb473c8" style="width: 100.0%; height: 100.0%;">Community: Calumpang</div>`)[0];
-                popup_c38cd381c3ee1d81bbbb6620387d54ca.setContent(html_89a9e9334e76987a6a0a2469edb473c8);
-            
-        
-
-        marker_e31b42b1305d7889a8c7a3c358e31b5b.bindPopup(popup_c38cd381c3ee1d81bbbb6620387d54ca)
-        ;
-
-        
-    
-    
-            var marker_024ed0886b89da19b2cf6d9141e66977 = L.marker(
-                [14.9194611702998, 120.762172685224],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_2481f138435a5f0ea0718626247a2f08 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_024ed0886b89da19b2cf6d9141e66977.setIcon(icon_2481f138435a5f0ea0718626247a2f08);
-        
-    
-        var popup_676c69d793bf752ff41af5575295f78e = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_68013efdb9900f9016c0623b9331aba6 = $(`<div id="html_68013efdb9900f9016c0623b9331aba6" style="width: 100.0%; height: 100.0%;">Shelter: Frances E.C.</div>`)[0];
-                popup_676c69d793bf752ff41af5575295f78e.setContent(html_68013efdb9900f9016c0623b9331aba6);
-            
-        
-
-        marker_024ed0886b89da19b2cf6d9141e66977.bindPopup(popup_676c69d793bf752ff41af5575295f78e)
-        ;
-
-        
-    
-    
-            var marker_9831813bd4e26723552654aa88a7f118 = L.marker(
-                [14.9153, 120.7532],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_a9ae516213cec9f3763e9cfc49b947d0 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_9831813bd4e26723552654aa88a7f118.setIcon(icon_a9ae516213cec9f3763e9cfc49b947d0);
-        
-    
-        var popup_02b3ef521d2901684f46e7e695580a19 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_79b2edc875b6595871cc8ce1b01727e4 = $(`<div id="html_79b2edc875b6595871cc8ce1b01727e4" style="width: 100.0%; height: 100.0%;">Community: Frances</div>`)[0];
-                popup_02b3ef521d2901684f46e7e695580a19.setContent(html_79b2edc875b6595871cc8ce1b01727e4);
-            
-        
-
-        marker_9831813bd4e26723552654aa88a7f118.bindPopup(popup_02b3ef521d2901684f46e7e695580a19)
-        ;
-
-        
-    
-    
-            var marker_fe3f6ff9af5c2c95e494fd879de03cd9 = L.marker(
-                [14.917701586824, 120.743048619728],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_fa7cb6f058c31644e1ff0127fc8028a3 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_fe3f6ff9af5c2c95e494fd879de03cd9.setIcon(icon_fa7cb6f058c31644e1ff0127fc8028a3);
-        
-    
-        var popup_c31779ddcc86d4bd97cfdc5cadc807f5 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_7a3213075d0437596ed0ed0f750d46a3 = $(`<div id="html_7a3213075d0437596ed0ed0f750d46a3" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
-                popup_c31779ddcc86d4bd97cfdc5cadc807f5.setContent(html_7a3213075d0437596ed0ed0f750d46a3);
-            
-        
-
-        marker_fe3f6ff9af5c2c95e494fd879de03cd9.bindPopup(popup_c31779ddcc86d4bd97cfdc5cadc807f5)
-        ;
-
-        
-    
-    
-            var marker_96a04d965a68e77f632084a8c9ebdaf2 = L.marker(
-                [14.9218, 120.7685],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_141fd788549c1b4dab2bb2e1b257b619 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_96a04d965a68e77f632084a8c9ebdaf2.setIcon(icon_141fd788549c1b4dab2bb2e1b257b619);
-        
-    
-        var popup_bc99aa8a17f7968e28deca854beb6468 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_fffbd57b531ab9a91cd47da5431a055e = $(`<div id="html_fffbd57b531ab9a91cd47da5431a055e" style="width: 100.0%; height: 100.0%;">Community: Gatbuca</div>`)[0];
-                popup_bc99aa8a17f7968e28deca854beb6468.setContent(html_fffbd57b531ab9a91cd47da5431a055e);
-            
-        
-
-        marker_96a04d965a68e77f632084a8c9ebdaf2.bindPopup(popup_bc99aa8a17f7968e28deca854beb6468)
-        ;
-
-        
-    
-    
-            var marker_baee4293804268db95d5e20c498bb967 = L.marker(
-                [14.9194611702998, 120.762172685224],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_8ebdde176faf67473bae447131ff1ea7 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_baee4293804268db95d5e20c498bb967.setIcon(icon_8ebdde176faf67473bae447131ff1ea7);
-        
-    
-        var popup_307a004ade4ca7cecedf677bb7f47d4f = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_e74cd0934d0ced53f4c03af2637fd338 = $(`<div id="html_e74cd0934d0ced53f4c03af2637fd338" style="width: 100.0%; height: 100.0%;">Shelter: Frances E.C.</div>`)[0];
-                popup_307a004ade4ca7cecedf677bb7f47d4f.setContent(html_e74cd0934d0ced53f4c03af2637fd338);
-            
-        
-
-        marker_baee4293804268db95d5e20c498bb967.bindPopup(popup_307a004ade4ca7cecedf677bb7f47d4f)
-        ;
-
-        
-    
-    
-            var marker_9df795a7aad77391b37173107fde4dd5 = L.marker(
-                [14.8748, 120.7866],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_0a8cac5fa9b09bca09f0217738b74bf2 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_9df795a7aad77391b37173107fde4dd5.setIcon(icon_0a8cac5fa9b09bca09f0217738b74bf2);
-        
-    
-        var popup_115bc7c0212f820947fbb3f955931d48 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_5b62430c463002c35e001fa59e2557e6 = $(`<div id="html_5b62430c463002c35e001fa59e2557e6" style="width: 100.0%; height: 100.0%;">Community: Longos</div>`)[0];
-                popup_115bc7c0212f820947fbb3f955931d48.setContent(html_5b62430c463002c35e001fa59e2557e6);
-            
-        
-
-        marker_9df795a7aad77391b37173107fde4dd5.bindPopup(popup_115bc7c0212f820947fbb3f955931d48)
-        ;
-
-        
-    
-    
-            var marker_1fbd0530eb5a6afac7415d2f19fbbf19 = L.marker(
-                [14.8930053477281, 120.799658008805],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_8436291c2c4e7502c1df0cdf4153a79a = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_1fbd0530eb5a6afac7415d2f19fbbf19.setIcon(icon_8436291c2c4e7502c1df0cdf4153a79a);
-        
-    
-        var popup_fa6b2bafb22e31f2d7520ddd61aee2a1 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_6c16eadebe8d78ff5eacd12afa44dfd7 = $(`<div id="html_6c16eadebe8d78ff5eacd12afa44dfd7" style="width: 100.0%; height: 100.0%;">Shelter: GMA Kapuso E.C.</div>`)[0];
-                popup_fa6b2bafb22e31f2d7520ddd61aee2a1.setContent(html_6c16eadebe8d78ff5eacd12afa44dfd7);
-            
-        
-
-        marker_1fbd0530eb5a6afac7415d2f19fbbf19.bindPopup(popup_fa6b2bafb22e31f2d7520ddd61aee2a1)
-        ;
-
-        
-    
-    
-            var marker_cedf87f85d1f851b8cc0f5342c5248ed = L.marker(
-                [14.8994, 120.7756],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_4172185ddb6fd2d6c011b2bf046a51fa = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_cedf87f85d1f851b8cc0f5342c5248ed.setIcon(icon_4172185ddb6fd2d6c011b2bf046a51fa);
-        
-    
-        var popup_dc5c238eeaea8f8b40537dc129ce0264 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_f19a83af66914c02fa4f099315ece68d = $(`<div id="html_f19a83af66914c02fa4f099315ece68d" style="width: 100.0%; height: 100.0%;">Community: Palimbang</div>`)[0];
-                popup_dc5c238eeaea8f8b40537dc129ce0264.setContent(html_f19a83af66914c02fa4f099315ece68d);
-            
-        
-
-        marker_cedf87f85d1f851b8cc0f5342c5248ed.bindPopup(popup_dc5c238eeaea8f8b40537dc129ce0264)
-        ;
-
-        
-    
-    
-            var marker_49af3b20cbb3e30b91c7f4582a339091 = L.marker(
-                [14.9194611702998, 120.762172685224],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_03391ffa6ed24a564ceea27767e74c43 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_49af3b20cbb3e30b91c7f4582a339091.setIcon(icon_03391ffa6ed24a564ceea27767e74c43);
-        
-    
-        var popup_bb0a6145be9a8f1d93b6eb7b13dbd71a = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_96496be623b19f22b46abb8ba553bca0 = $(`<div id="html_96496be623b19f22b46abb8ba553bca0" style="width: 100.0%; height: 100.0%;">Shelter: Frances E.C.</div>`)[0];
-                popup_bb0a6145be9a8f1d93b6eb7b13dbd71a.setContent(html_96496be623b19f22b46abb8ba553bca0);
-            
-        
-
-        marker_49af3b20cbb3e30b91c7f4582a339091.bindPopup(popup_bb0a6145be9a8f1d93b6eb7b13dbd71a)
-        ;
-
-        
-    
-    
-            var marker_b04943cd80ebf72b4884413354167bda = L.marker(
-                [14.8761, 120.738],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_67de8f714d9bea904ccda351f70bf81c = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_b04943cd80ebf72b4884413354167bda.setIcon(icon_67de8f714d9bea904ccda351f70bf81c);
-        
-    
-        var popup_1e080ac9db075394b9d2a331413cb072 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_ecd3bdd30cfbb09d064af57afd3341a8 = $(`<div id="html_ecd3bdd30cfbb09d064af57afd3341a8" style="width: 100.0%; height: 100.0%;">Community: Panducot</div>`)[0];
-                popup_1e080ac9db075394b9d2a331413cb072.setContent(html_ecd3bdd30cfbb09d064af57afd3341a8);
-            
-        
-
-        marker_b04943cd80ebf72b4884413354167bda.bindPopup(popup_1e080ac9db075394b9d2a331413cb072)
-        ;
-
-        
-    
-    
-            var marker_4dc53d0a6600205afec8872a7d24f468 = L.marker(
-                [14.917701586824, 120.743048619728],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_b7c8a244189185b193dd31b76b196ab3 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_4dc53d0a6600205afec8872a7d24f468.setIcon(icon_b7c8a244189185b193dd31b76b196ab3);
-        
-    
-        var popup_7f645d2041a98b61d957ba7dfc435daf = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_feac3f2aff69503263fcc199c6abf72a = $(`<div id="html_feac3f2aff69503263fcc199c6abf72a" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
-                popup_7f645d2041a98b61d957ba7dfc435daf.setContent(html_feac3f2aff69503263fcc199c6abf72a);
-            
-        
-
-        marker_4dc53d0a6600205afec8872a7d24f468.bindPopup(popup_7f645d2041a98b61d957ba7dfc435daf)
-        ;
-
-        
-    
-    
-            var marker_b442ec43818c60aa14573dc2690cabda = L.marker(
-                [14.8881, 120.7855],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_08de6dd988443221130a7965d879d806 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_b442ec43818c60aa14573dc2690cabda.setIcon(icon_08de6dd988443221130a7965d879d806);
-        
-    
-        var popup_a3d57fb46d5d4e79d73b779d4a97863a = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_0ee7e3a8856ca03224e7d9117198153c = $(`<div id="html_0ee7e3a8856ca03224e7d9117198153c" style="width: 100.0%; height: 100.0%;">Community: Pio Cruzcosa</div>`)[0];
-                popup_a3d57fb46d5d4e79d73b779d4a97863a.setContent(html_0ee7e3a8856ca03224e7d9117198153c);
-            
-        
-
-        marker_b442ec43818c60aa14573dc2690cabda.bindPopup(popup_a3d57fb46d5d4e79d73b779d4a97863a)
-        ;
-
-        
-    
-    
-            var marker_3cf14c15ccfcf97a1997b9309989e021 = L.marker(
-                [14.8930053477281, 120.799658008805],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_1ca5a3078d8c7194f8106b64d5f21171 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_3cf14c15ccfcf97a1997b9309989e021.setIcon(icon_1ca5a3078d8c7194f8106b64d5f21171);
-        
-    
-        var popup_86a70eb5abc139d2b66e6a7d930176ed = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_ada6ab2ff5d153dfe219a0167210e1f7 = $(`<div id="html_ada6ab2ff5d153dfe219a0167210e1f7" style="width: 100.0%; height: 100.0%;">Shelter: GMA Kapuso E.C.</div>`)[0];
-                popup_86a70eb5abc139d2b66e6a7d930176ed.setContent(html_ada6ab2ff5d153dfe219a0167210e1f7);
-            
-        
-
-        marker_3cf14c15ccfcf97a1997b9309989e021.bindPopup(popup_86a70eb5abc139d2b66e6a7d930176ed)
-        ;
-
-        
-    
-    
-            var marker_8d84ecfe62cdf241f764ad5faf1c445a = L.marker(
-                [14.8838, 120.7395],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_4c9c73d016a1ee71b03549161df41577 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_8d84ecfe62cdf241f764ad5faf1c445a.setIcon(icon_4c9c73d016a1ee71b03549161df41577);
-        
-    
-        var popup_dd95eece9bb90daf8a21caebb2768f01 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_3111e36ea337723b39d6219cb02a99f5 = $(`<div id="html_3111e36ea337723b39d6219cb02a99f5" style="width: 100.0%; height: 100.0%;">Community: San Jose</div>`)[0];
-                popup_dd95eece9bb90daf8a21caebb2768f01.setContent(html_3111e36ea337723b39d6219cb02a99f5);
-            
-        
-
-        marker_8d84ecfe62cdf241f764ad5faf1c445a.bindPopup(popup_dd95eece9bb90daf8a21caebb2768f01)
-        ;
-
-        
-    
-    
-            var marker_899b9952a6d782498febba7545b2ceb4 = L.marker(
-                [14.8930053477281, 120.799658008805],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_2a36267245a8ae9eb26ed8703842020b = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_899b9952a6d782498febba7545b2ceb4.setIcon(icon_2a36267245a8ae9eb26ed8703842020b);
-        
-    
-        var popup_69f6f223bc99ab739acaf33c08b847e8 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_a0486d4d210f9e32b89e20981d794b77 = $(`<div id="html_a0486d4d210f9e32b89e20981d794b77" style="width: 100.0%; height: 100.0%;">Shelter: GMA Kapuso E.C.</div>`)[0];
-                popup_69f6f223bc99ab739acaf33c08b847e8.setContent(html_a0486d4d210f9e32b89e20981d794b77);
-            
-        
-
-        marker_899b9952a6d782498febba7545b2ceb4.bindPopup(popup_69f6f223bc99ab739acaf33c08b847e8)
-        ;
-
-        
-    
-    
-            var marker_e216fe9354169dc560de11af13383be6 = L.marker(
-                [14.8982, 120.736],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_dd18a0728d3e3b76ea82adef1aaf1f92 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_e216fe9354169dc560de11af13383be6.setIcon(icon_dd18a0728d3e3b76ea82adef1aaf1f92);
-        
-    
-        var popup_615aaa3b5738342e1bb0d5192a94222b = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_8db786c19f643a3b7f40c68af8c7f53d = $(`<div id="html_8db786c19f643a3b7f40c68af8c7f53d" style="width: 100.0%; height: 100.0%;">Community: Santa Lucia</div>`)[0];
-                popup_615aaa3b5738342e1bb0d5192a94222b.setContent(html_8db786c19f643a3b7f40c68af8c7f53d);
-            
-        
-
-        marker_e216fe9354169dc560de11af13383be6.bindPopup(popup_615aaa3b5738342e1bb0d5192a94222b)
-        ;
-
-        
-    
-    
-            var marker_6fb31c9a90ada217e7723027c570315e = L.marker(
-                [14.917701586824, 120.743048619728],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_71ddd4594374628fa8bdb7c7791194bd = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
-            );
-            marker_6fb31c9a90ada217e7723027c570315e.setIcon(icon_71ddd4594374628fa8bdb7c7791194bd);
-        
-    
-        var popup_a3cb0b210638d1ec5b2de79433405879 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_29792df09e7d78089b00748ee8789a0e = $(`<div id="html_29792df09e7d78089b00748ee8789a0e" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
-                popup_a3cb0b210638d1ec5b2de79433405879.setContent(html_29792df09e7d78089b00748ee8789a0e);
-            
-        
-
-        marker_6fb31c9a90ada217e7723027c570315e.bindPopup(popup_a3cb0b210638d1ec5b2de79433405879)
-        ;
-
-        
-    
-    
-            var marker_c089bd4a9e6ee79c8522a34a3d6f9abf = L.marker(
-                [14.894, 120.7909],
-                {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
-        
-    
-            var icon_6417e58088b16cbc0b6d31fb9df62617 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
-            );
-            marker_c089bd4a9e6ee79c8522a34a3d6f9abf.setIcon(icon_6417e58088b16cbc0b6d31fb9df62617);
-        
-    
-        var popup_43cf6d4e33848516b7836489a97b323d = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_b43c0bfd2538e9028e7db86e6f74644d = $(`<div id="html_b43c0bfd2538e9028e7db86e6f74644d" style="width: 100.0%; height: 100.0%;">Community: Sergio Bayan</div>`)[0];
-                popup_43cf6d4e33848516b7836489a97b323d.setContent(html_b43c0bfd2538e9028e7db86e6f74644d);
-            
-        
-
-        marker_c089bd4a9e6ee79c8522a34a3d6f9abf.bindPopup(popup_43cf6d4e33848516b7836489a97b323d)
-        ;
-
-        
-    
-    
-            var marker_a9bb822c7bdb12ef4d70fab6dffa0e91 = L.marker(
+            var marker_aaa3710370df74ba6a37d201a8e3256c = L.marker(
                 [14.9167991010101, 120.742941581954],
                 {}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-            var icon_721078ab9498ff0cd16a5fd6408cd620 = L.AwesomeMarkers.icon(
+            var icon_916a0c02195da8cc402d74b00581ecc2 = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
             );
-            marker_a9bb822c7bdb12ef4d70fab6dffa0e91.setIcon(icon_721078ab9498ff0cd16a5fd6408cd620);
+            marker_aaa3710370df74ba6a37d201a8e3256c.setIcon(icon_916a0c02195da8cc402d74b00581ecc2);
         
     
-        var popup_60f38f860eb014c7c1c89898705a70d8 = L.popup({"maxWidth": "100%"});
+        var popup_7c174cde2201af9ab4287b1d21550051 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_dce32dac16faf120ef092041753c8465 = $(`<div id="html_dce32dac16faf120ef092041753c8465" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
-                popup_60f38f860eb014c7c1c89898705a70d8.setContent(html_dce32dac16faf120ef092041753c8465);
+                var html_b7f50da6232bb0bd9b0e0078c90848f3 = $(`<div id="html_b7f50da6232bb0bd9b0e0078c90848f3" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_7c174cde2201af9ab4287b1d21550051.setContent(html_b7f50da6232bb0bd9b0e0078c90848f3);
             
         
 
-        marker_a9bb822c7bdb12ef4d70fab6dffa0e91.bindPopup(popup_60f38f860eb014c7c1c89898705a70d8)
+        marker_aaa3710370df74ba6a37d201a8e3256c.bindPopup(popup_7c174cde2201af9ab4287b1d21550051)
         ;
 
         
     
     
-            var poly_line_dbfeeb72cbcbea1a60fb742a2d01eaeb = L.polyline(
-                [[14.8955937, 120.7854567], [14.8955448, 120.7851369], [14.8953011, 120.785161], [14.8950385, 120.7852109], [14.8947517, 120.7852719], [14.8944637, 120.7853206], [14.894188, 120.785371], [14.8938934, 120.7852871], [14.8934579, 120.7840362], [14.8931659, 120.7841208], [14.8931128, 120.7837476], [14.893061, 120.7833725], [14.8929486, 120.7821961], [14.8929394, 120.7820715], [14.8927352, 120.7807853], [14.8927053, 120.7801385], [14.8929379, 120.7799218], [14.8941892, 120.7787358], [14.8947405, 120.7782147], [14.8968518, 120.7761962], [14.8973343, 120.7757302], [14.8975611, 120.775511], [14.8979105, 120.7751733], [14.8980726, 120.7750231], [14.8981763, 120.7749161], [14.8986129, 120.7745177], [14.899261, 120.7738812], [14.8997121, 120.7734415], [14.9004939, 120.7726847], [14.9005666, 120.7726143], [14.901788, 120.7714298], [14.9018013, 120.7714165], [14.9020793, 120.7711665], [14.9021708, 120.7710806], [14.9022624, 120.7709932], [14.90235, 120.7709092], [14.9025484, 120.7707205], [14.9028828, 120.7704057], [14.905988, 120.7676193], [14.9062846, 120.7674411], [14.9064366, 120.7673677], [14.9064867, 120.7673418], [14.9067238, 120.7672386], [14.9074442, 120.7669786], [14.9080943, 120.766834], [14.9094075, 120.7667029], [14.9107021, 120.7665797], [14.9109334, 120.7665604], [14.9109783, 120.7665567], [14.9111541, 120.7665363], [14.9116709, 120.7664912], [14.9122004, 120.7664432], [14.9124381, 120.7664265], [14.9128158, 120.7663933], [14.9129979, 120.7663768], [14.913146, 120.7663635], [14.913273, 120.766355], [14.9134979, 120.7663357], [14.9136249, 120.7663229], [14.9142472, 120.7662734], [14.9148042, 120.7662341], [14.9151258, 120.7662097], [14.9152057, 120.7661989], [14.9152323, 120.7661975], [14.9153493, 120.766184], [14.9163477, 120.7661058], [14.9181482, 120.7659191], [14.9188476, 120.7658474], [14.9206755, 120.7656728], [14.9210024, 120.7656304], [14.922301, 120.7654896], [14.9233594, 120.7653688], [14.9244934, 120.7652626], [14.9247444, 120.7652398], [14.9252085, 120.7651689], [14.9253113, 120.7651411], [14.9254682, 120.7650986], [14.9257555, 120.7649992], [14.925966, 120.7649193], [14.9272903, 120.7643798], [14.9285564, 120.7637967], [14.9287521, 120.7637059], [14.9297235, 120.7632719], [14.9314624, 120.7624285], [14.932818, 120.7613439], [14.9332443, 120.7608284], [14.9332784, 120.7606807], [14.9333856, 120.760126], [14.936763, 120.7562763], [14.9366771, 120.7562382], [14.9355525, 120.7571992], [14.9354048, 120.7570933], [14.9341122, 120.7561267], [14.9302354, 120.7532347], [14.9296975, 120.7528625], [14.9285505, 120.7519424], [14.9215115, 120.7467932], [14.9201015, 120.7456983], [14.9195682, 120.7452178], [14.9175112, 120.7432357]],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_2dbef84e99da88d8c0dcc43f8d4add87 = L.marker(
+                [14.9143, 120.7622],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_45db36b29245fb3a7f2957d95c29e38d = L.popup({"maxWidth": "100%"});
+            var icon_353663eb0ae947e215f7ea1d91c3c564 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_2dbef84e99da88d8c0dcc43f8d4add87.setIcon(icon_353663eb0ae947e215f7ea1d91c3c564);
+        
+    
+        var popup_c3a56b7874e14093d6ad80b25d715476 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_1561fecea71100d3877d74a719746b00 = $(`<div id="html_1561fecea71100d3877d74a719746b00" style="width: 100.0%; height: 100.0%;">Route from Balite to Doña Damiana Elem School (9.35 km)</div>`)[0];
-                popup_45db36b29245fb3a7f2957d95c29e38d.setContent(html_1561fecea71100d3877d74a719746b00);
+                var html_366a5f66927e03d2672d1fe4c4162e3b = $(`<div id="html_366a5f66927e03d2672d1fe4c4162e3b" style="width: 100.0%; height: 100.0%;">Community: Balungao</div>`)[0];
+                popup_c3a56b7874e14093d6ad80b25d715476.setContent(html_366a5f66927e03d2672d1fe4c4162e3b);
             
         
 
-        poly_line_dbfeeb72cbcbea1a60fb742a2d01eaeb.bindPopup(popup_45db36b29245fb3a7f2957d95c29e38d)
+        marker_2dbef84e99da88d8c0dcc43f8d4add87.bindPopup(popup_c3a56b7874e14093d6ad80b25d715476)
         ;
 
         
     
     
-            var poly_line_d7fe697ffb04062888999b30c35175e7 = L.polyline(
-                [[14.9142977, 120.7617806], [14.9141617, 120.760845], [14.9141424, 120.760693], [14.9140428, 120.7601446], [14.9140104, 120.7599691], [14.9138982, 120.7593845], [14.9138243, 120.759], [14.9136025, 120.7576337], [14.9133024, 120.7559967], [14.9132898, 120.7559171], [14.9136317, 120.7558206]],
-                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_63505e6e4b87434037c2412a3e132b00 = L.marker(
+                [14.917701586824, 120.743048619728],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_84d8d1ca4f3d5bc03024715f760c624b = L.popup({"maxWidth": "100%"});
+            var icon_238a9885d0ea751d9b51cebf5fe0262e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_63505e6e4b87434037c2412a3e132b00.setIcon(icon_238a9885d0ea751d9b51cebf5fe0262e);
+        
+    
+        var popup_2209ef5c5caaa3a0b2de78acc361f7aa = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_f9488714e72d3d369e740c9375fc5ada = $(`<div id="html_f9488714e72d3d369e740c9375fc5ada" style="width: 100.0%; height: 100.0%;">Route from Balungao to Calizon Dike (0.68 km)</div>`)[0];
-                popup_84d8d1ca4f3d5bc03024715f760c624b.setContent(html_f9488714e72d3d369e740c9375fc5ada);
+                var html_e7415a39e3d6f6fe17f5b137df360d69 = $(`<div id="html_e7415a39e3d6f6fe17f5b137df360d69" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
+                popup_2209ef5c5caaa3a0b2de78acc361f7aa.setContent(html_e7415a39e3d6f6fe17f5b137df360d69);
             
         
 
-        poly_line_d7fe697ffb04062888999b30c35175e7.bindPopup(popup_84d8d1ca4f3d5bc03024715f760c624b)
+        marker_63505e6e4b87434037c2412a3e132b00.bindPopup(popup_2209ef5c5caaa3a0b2de78acc361f7aa)
         ;
 
         
     
     
-            var poly_line_d12adff2584f4bef8b6a592fa961797f = L.polyline(
-                [[14.884537, 120.7838263], [14.8848073, 120.7835608], [14.8865481, 120.7813621], [14.886784, 120.7808431], [14.8870065, 120.7805109], [14.8870848, 120.7804118], [14.8871048, 120.7803901], [14.8874898, 120.7800034], [14.888096, 120.7790708], [14.8884654, 120.7782261], [14.8887013, 120.7780561], [14.8919146, 120.7776461], [14.8941892, 120.7787358], [14.8947405, 120.7782147], [14.8968518, 120.7761962], [14.8973343, 120.7757302], [14.8975611, 120.775511], [14.8979105, 120.7751733], [14.8980726, 120.7750231], [14.8981763, 120.7749161], [14.8986129, 120.7745177], [14.899261, 120.7738812], [14.8997121, 120.7734415], [14.9004939, 120.7726847], [14.9005666, 120.7726143], [14.901788, 120.7714298], [14.9018013, 120.7714165], [14.9020793, 120.7711665], [14.9021708, 120.7710806], [14.9022624, 120.7709932], [14.90235, 120.7709092], [14.9025484, 120.7707205], [14.9028828, 120.7704057], [14.905988, 120.7676193], [14.9062846, 120.7674411], [14.9064366, 120.7673677], [14.9064867, 120.7673418], [14.9067238, 120.7672386], [14.9074442, 120.7669786], [14.9080943, 120.766834], [14.9094075, 120.7667029], [14.9107021, 120.7665797], [14.9109334, 120.7665604], [14.9109783, 120.7665567], [14.9111541, 120.7665363], [14.9116709, 120.7664912], [14.9122004, 120.7664432], [14.9124381, 120.7664265], [14.9128158, 120.7663933], [14.9129979, 120.7663768], [14.913146, 120.7663635], [14.913273, 120.766355], [14.9134979, 120.7663357], [14.9136249, 120.7663229], [14.9142472, 120.7662734], [14.9148042, 120.7662341], [14.9151258, 120.7662097], [14.9152057, 120.7661989], [14.9152323, 120.7661975], [14.9153493, 120.766184], [14.9163477, 120.7661058], [14.9181482, 120.7659191], [14.9188476, 120.7658474], [14.9206755, 120.7656728], [14.9205458, 120.7643987], [14.9196901, 120.7628882], [14.9195851, 120.7626084]],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_f32c5523a1197661e03322ce68298a8a = L.marker(
+                [14.8845, 120.7838],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_89bdeb9f1324495b60da9773357c2db1 = L.popup({"maxWidth": "100%"});
+            var icon_4106c5a6b8e167bafb7a12fce40715c1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_f32c5523a1197661e03322ce68298a8a.setIcon(icon_4106c5a6b8e167bafb7a12fce40715c1);
+        
+    
+        var popup_ea611c45425b510958434964eb7445e1 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_da357ef25612d1235b54ef5725a1ea9d = $(`<div id="html_da357ef25612d1235b54ef5725a1ea9d" style="width: 100.0%; height: 100.0%;">Route from Calumpang to Frances E.C. (5.24 km)</div>`)[0];
-                popup_89bdeb9f1324495b60da9773357c2db1.setContent(html_da357ef25612d1235b54ef5725a1ea9d);
+                var html_de04575cf5ce2535c97720800f424d1b = $(`<div id="html_de04575cf5ce2535c97720800f424d1b" style="width: 100.0%; height: 100.0%;">Community: Calumpang</div>`)[0];
+                popup_ea611c45425b510958434964eb7445e1.setContent(html_de04575cf5ce2535c97720800f424d1b);
             
         
 
-        poly_line_d12adff2584f4bef8b6a592fa961797f.bindPopup(popup_89bdeb9f1324495b60da9773357c2db1)
+        marker_f32c5523a1197661e03322ce68298a8a.bindPopup(popup_ea611c45425b510958434964eb7445e1)
         ;
 
         
     
     
-            var poly_line_0a89ca9151d78e6938aced65f9f6928b = L.polyline(
-                [[14.9153694, 120.7530523], [14.9153763, 120.7526486], [14.9163367, 120.7503561], [14.9172578, 120.7500422], [14.9214248, 120.750665], [14.9256225, 120.753889], [14.9289933, 120.7563623], [14.9317905, 120.7583577], [14.9322084, 120.7586464], [14.9326373, 120.7589643], [14.9329816, 120.7592339], [14.9335662, 120.7596458], [14.9333856, 120.760126], [14.936763, 120.7562763], [14.9366771, 120.7562382], [14.9355525, 120.7571992], [14.9354048, 120.7570933], [14.9341122, 120.7561267], [14.9302354, 120.7532347], [14.9296975, 120.7528625], [14.9285505, 120.7519424], [14.9215115, 120.7467932], [14.9201015, 120.7456983], [14.9195682, 120.7452178], [14.9175112, 120.7432357]],
-                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_737c47e830a44f4ae871a9aa1e12d3f5 = L.marker(
+                [14.9087960788938, 120.742261855893],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_e76df8697dcc36348a5dee345fdfd7b4 = L.popup({"maxWidth": "100%"});
+            var icon_11065a79d7e8994c21da93d35570935d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_737c47e830a44f4ae871a9aa1e12d3f5.setIcon(icon_11065a79d7e8994c21da93d35570935d);
+        
+    
+        var popup_7e6b4ed7ff0b7e574efae686d2182676 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_a96c17f13e727423ff3ab6ac5537dbef = $(`<div id="html_a96c17f13e727423ff3ab6ac5537dbef" style="width: 100.0%; height: 100.0%;">Route from Frances to Doña Damiana Elem School (5.88 km)</div>`)[0];
-                popup_e76df8697dcc36348a5dee345fdfd7b4.setContent(html_a96c17f13e727423ff3ab6ac5537dbef);
+                var html_25d98310f62df3cc1bc11ddbab2792b4 = $(`<div id="html_25d98310f62df3cc1bc11ddbab2792b4" style="width: 100.0%; height: 100.0%;">Shelter: Barangay Hall Bulusan</div>`)[0];
+                popup_7e6b4ed7ff0b7e574efae686d2182676.setContent(html_25d98310f62df3cc1bc11ddbab2792b4);
             
         
 
-        poly_line_0a89ca9151d78e6938aced65f9f6928b.bindPopup(popup_e76df8697dcc36348a5dee345fdfd7b4)
+        marker_737c47e830a44f4ae871a9aa1e12d3f5.bindPopup(popup_7e6b4ed7ff0b7e574efae686d2182676)
         ;
 
         
     
     
-            var poly_line_68a1704f0a3827265b06d28c08c89488 = L.polyline(
-                [[14.921997, 120.7687807], [14.9214978, 120.7673994], [14.9212763, 120.7661087], [14.9210024, 120.7656304], [14.9206755, 120.7656728], [14.9205458, 120.7643987], [14.9196901, 120.7628882], [14.9195851, 120.7626084]],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_4df45255541939383c232761a8e1304f = L.marker(
+                [14.9153, 120.7532],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_5532bd7daf3f5507e8cdf8e79d81db68 = L.popup({"maxWidth": "100%"});
+            var icon_ef6577e545ff04009fbfe02cb2016da4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_4df45255541939383c232761a8e1304f.setIcon(icon_ef6577e545ff04009fbfe02cb2016da4);
+        
+    
+        var popup_0155fe131b7cf02bfbc6c180e296326c = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_74e5c4e9a100de296a6d777c9cecd714 = $(`<div id="html_74e5c4e9a100de296a6d777c9cecd714" style="width: 100.0%; height: 100.0%;">Route from Gatbuca to Frances E.C. (0.77 km)</div>`)[0];
-                popup_5532bd7daf3f5507e8cdf8e79d81db68.setContent(html_74e5c4e9a100de296a6d777c9cecd714);
+                var html_6f7ecdb1385355a5645a4b30da616d77 = $(`<div id="html_6f7ecdb1385355a5645a4b30da616d77" style="width: 100.0%; height: 100.0%;">Community: Frances</div>`)[0];
+                popup_0155fe131b7cf02bfbc6c180e296326c.setContent(html_6f7ecdb1385355a5645a4b30da616d77);
             
         
 
-        poly_line_68a1704f0a3827265b06d28c08c89488.bindPopup(popup_5532bd7daf3f5507e8cdf8e79d81db68)
+        marker_4df45255541939383c232761a8e1304f.bindPopup(popup_0155fe131b7cf02bfbc6c180e296326c)
         ;
 
         
     
     
-            var poly_line_ce398b8247eb610cfb8023d42c649253 = L.polyline(
-                [[14.8747957, 120.7865922], [14.8751508, 120.7870696], [14.8751755, 120.7871072], [14.8752351, 120.7872775], [14.8753254, 120.7893617], [14.8753815, 120.7904062], [14.8754101, 120.7920096], [14.8754243, 120.7927566], [14.8755283, 120.7940353], [14.8760443, 120.795254], [14.8773709, 120.7940682], [14.8787507, 120.7928486], [14.8792016, 120.7924501], [14.8799486, 120.7917882], [14.8805113, 120.7926566], [14.8812979, 120.7937576], [14.8825273, 120.7947978], [14.883034, 120.7950392], [14.883182, 120.7950544], [14.8836806, 120.795242], [14.8837473, 120.7952931], [14.8840446, 120.7955566], [14.884466, 120.7960919], [14.8848487, 120.7966079], [14.8852567, 120.797128], [14.8856647, 120.7976164], [14.88615, 120.7981006], [14.886494, 120.79844], [14.8867513, 120.7986842], [14.887446, 120.7994361], [14.8880551, 120.8000801], [14.8880903, 120.8001232], [14.8881157, 120.8001504], [14.8883148, 120.7999173], [14.8885584, 120.7997289], [14.8899592, 120.7990375], [14.8912307, 120.7985974], [14.8915108, 120.7985181], [14.8922617, 120.7982792], [14.892531, 120.7981802], [14.8926274, 120.7984997]],
-                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "pink", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_3ea952285ab973cc638008c7979c3ffa = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_066cc750d5c0c9ef9b20016ed5364181 = L.popup({"maxWidth": "100%"});
+            var icon_0f6ea25e6b04452aee708e7fce9070f6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3ea952285ab973cc638008c7979c3ffa.setIcon(icon_0f6ea25e6b04452aee708e7fce9070f6);
+        
+    
+        var popup_78dcd7373a0f8f63b417f70b37810d12 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_6734de0cb4bbf302ac356cd915f47d82 = $(`<div id="html_6734de0cb4bbf302ac356cd915f47d82" style="width: 100.0%; height: 100.0%;">Route from Longos to GMA Kapuso E.C. (3.41 km)</div>`)[0];
-                popup_066cc750d5c0c9ef9b20016ed5364181.setContent(html_6734de0cb4bbf302ac356cd915f47d82);
+                var html_48fb9412515c5929a591c4f97fb7973f = $(`<div id="html_48fb9412515c5929a591c4f97fb7973f" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_78dcd7373a0f8f63b417f70b37810d12.setContent(html_48fb9412515c5929a591c4f97fb7973f);
             
         
 
-        poly_line_ce398b8247eb610cfb8023d42c649253.bindPopup(popup_066cc750d5c0c9ef9b20016ed5364181)
+        marker_3ea952285ab973cc638008c7979c3ffa.bindPopup(popup_78dcd7373a0f8f63b417f70b37810d12)
         ;
 
         
     
     
-            var poly_line_aad566cbbcbdddb226d17ab962c5551a = L.polyline(
-                [[14.8987823, 120.7759042], [14.8985082, 120.7753403], [14.8981763, 120.7749161], [14.8986129, 120.7745177], [14.899261, 120.7738812], [14.8997121, 120.7734415], [14.9004939, 120.7726847], [14.9005666, 120.7726143], [14.901788, 120.7714298], [14.9018013, 120.7714165], [14.9020793, 120.7711665], [14.9021708, 120.7710806], [14.9022624, 120.7709932], [14.90235, 120.7709092], [14.9025484, 120.7707205], [14.9028828, 120.7704057], [14.905988, 120.7676193], [14.9062846, 120.7674411], [14.9064366, 120.7673677], [14.9064867, 120.7673418], [14.9067238, 120.7672386], [14.9074442, 120.7669786], [14.9080943, 120.766834], [14.9094075, 120.7667029], [14.9107021, 120.7665797], [14.9109334, 120.7665604], [14.9109783, 120.7665567], [14.9111541, 120.7665363], [14.9116709, 120.7664912], [14.9122004, 120.7664432], [14.9124381, 120.7664265], [14.9128158, 120.7663933], [14.9129979, 120.7663768], [14.913146, 120.7663635], [14.913273, 120.766355], [14.9134979, 120.7663357], [14.9136249, 120.7663229], [14.9142472, 120.7662734], [14.9148042, 120.7662341], [14.9151258, 120.7662097], [14.9152057, 120.7661989], [14.9152323, 120.7661975], [14.9153493, 120.766184], [14.9163477, 120.7661058], [14.9181482, 120.7659191], [14.9188476, 120.7658474], [14.9206755, 120.7656728], [14.9205458, 120.7643987], [14.9196901, 120.7628882], [14.9195851, 120.7626084]],
-                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "yellow", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_c99ce150f58fa61cae6a8e8d23b98934 = L.marker(
+                [14.9218, 120.7685],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_11e813b2b91ad5195be918b9ea5b3d1c = L.popup({"maxWidth": "100%"});
+            var icon_51456d09c9f10afc9088ca3849e98400 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_c99ce150f58fa61cae6a8e8d23b98934.setIcon(icon_51456d09c9f10afc9088ca3849e98400);
+        
+    
+        var popup_36ca7ab931aff2e799f9bb2b0b72d912 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_cbf36cb6cbe146c33a3fe5e42ac44db0 = $(`<div id="html_cbf36cb6cbe146c33a3fe5e42ac44db0" style="width: 100.0%; height: 100.0%;">Route from Palimbang to Frances E.C. (3.32 km)</div>`)[0];
-                popup_11e813b2b91ad5195be918b9ea5b3d1c.setContent(html_cbf36cb6cbe146c33a3fe5e42ac44db0);
+                var html_6179d89e7a84159fbe67693502e905c1 = $(`<div id="html_6179d89e7a84159fbe67693502e905c1" style="width: 100.0%; height: 100.0%;">Community: Gatbuca</div>`)[0];
+                popup_36ca7ab931aff2e799f9bb2b0b72d912.setContent(html_6179d89e7a84159fbe67693502e905c1);
             
         
 
-        poly_line_aad566cbbcbdddb226d17ab962c5551a.bindPopup(popup_11e813b2b91ad5195be918b9ea5b3d1c)
+        marker_c99ce150f58fa61cae6a8e8d23b98934.bindPopup(popup_36ca7ab931aff2e799f9bb2b0b72d912)
         ;
 
         
     
     
-            var poly_line_5429705bffe63fb760c8b513d2e50428 = L.polyline(
-                [[14.8761104, 120.7379725], [14.876689, 120.7379105], [14.8769438, 120.7378357], [14.8777242, 120.7376278], [14.8780059, 120.7374897], [14.8786164, 120.7370969], [14.8791893, 120.7366132], [14.881845, 120.7329765], [14.8829537, 120.7297082], [14.884936, 120.7310789], [14.8863245, 120.7313329], [14.8874366, 120.7322771], [14.8874956, 120.7323229], [14.8881087, 120.7326748], [14.8885662, 120.7326951], [14.88861, 120.7326914], [14.8894956, 120.7324963], [14.8895494, 120.7324585], [14.8897969, 120.7322782], [14.8901506, 120.7319403], [14.8911217, 120.7311468], [14.8918794, 120.7312122], [14.8922323, 120.7313074], [14.8936617, 120.731745], [14.894716, 120.7324391], [14.8952884, 120.7330835], [14.8958174, 120.733629], [14.898195, 120.7360235], [14.8999549, 120.7378194], [14.901217, 120.7391078], [14.9013673, 120.7392612], [14.9014743, 120.7393705], [14.9016531, 120.739553], [14.9018919, 120.7397968], [14.9031484, 120.741044], [14.9036697, 120.7415686], [14.9051313, 120.7430396], [14.9074277, 120.7453201], [14.9095159, 120.7474908], [14.9101804, 120.7483396], [14.9110059, 120.7495171], [14.9115129, 120.7503956], [14.9116422, 120.7506118], [14.9117381, 120.750814], [14.9118059, 120.7509207], [14.9120742, 120.7516106], [14.9125215, 120.7529034], [14.9125477, 120.7529851], [14.9128684, 120.7538438], [14.9132898, 120.7559171], [14.9133024, 120.7559967], [14.9136025, 120.7576337], [14.9141367, 120.7574757], [14.9145129, 120.7589132], [14.9146478, 120.7589548], [14.9165864, 120.7615862], [14.9188476, 120.7658474], [14.9206755, 120.7656728], [14.9210024, 120.7656304], [14.922301, 120.7654896], [14.9233594, 120.7653688], [14.9244934, 120.7652626], [14.9247444, 120.7652398], [14.9252085, 120.7651689], [14.9253113, 120.7651411], [14.9254682, 120.7650986], [14.9257555, 120.7649992], [14.925966, 120.7649193], [14.9272903, 120.7643798], [14.9285564, 120.7637967], [14.9287521, 120.7637059], [14.9297235, 120.7632719], [14.9314624, 120.7624285], [14.932818, 120.7613439], [14.9332443, 120.7608284], [14.9332784, 120.7606807], [14.9333856, 120.760126], [14.936763, 120.7562763], [14.9366771, 120.7562382], [14.9355525, 120.7571992], [14.9354048, 120.7570933], [14.9341122, 120.7561267], [14.9302354, 120.7532347], [14.9296975, 120.7528625], [14.9285505, 120.7519424], [14.9215115, 120.7467932], [14.9201015, 120.7456983], [14.9195682, 120.7452178], [14.9175112, 120.7432357]],
-                {"bubblingMouseEvents": true, "color": "brown", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "brown", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_2f9718e2d9ceeba2f457b76f77589d44 = L.marker(
+                [14.9176780529243, 120.767878787289],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_c9ec531ec14d74fea41f8bfa1b0cf4ea = L.popup({"maxWidth": "100%"});
+            var icon_17f69814b84300275d97162c789d70bd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2f9718e2d9ceeba2f457b76f77589d44.setIcon(icon_17f69814b84300275d97162c789d70bd);
+        
+    
+        var popup_175c0cb6131fc9fd336874eb2b4d240e = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_19546d66b8b23c7eb524c6c7f12b91e2 = $(`<div id="html_19546d66b8b23c7eb524c6c7f12b91e2" style="width: 100.0%; height: 100.0%;">Route from Panducot to Doña Damiana Elem School (12.44 km)</div>`)[0];
-                popup_c9ec531ec14d74fea41f8bfa1b0cf4ea.setContent(html_19546d66b8b23c7eb524c6c7f12b91e2);
+                var html_01bd74d2802e694efed499d7dfb4f7b4 = $(`<div id="html_01bd74d2802e694efed499d7dfb4f7b4" style="width: 100.0%; height: 100.0%;">Shelter: F. Mendoza Memorial Elem Sch.</div>`)[0];
+                popup_175c0cb6131fc9fd336874eb2b4d240e.setContent(html_01bd74d2802e694efed499d7dfb4f7b4);
             
         
 
-        poly_line_5429705bffe63fb760c8b513d2e50428.bindPopup(popup_c9ec531ec14d74fea41f8bfa1b0cf4ea)
+        marker_2f9718e2d9ceeba2f457b76f77589d44.bindPopup(popup_175c0cb6131fc9fd336874eb2b4d240e)
         ;
 
         
     
     
-            var poly_line_8487382d60afcd72b038dd3a412d0cec = L.polyline(
-                [[14.8882383, 120.7857717], [14.8884387, 120.7855438], [14.8878905, 120.7850243], [14.8878535, 120.7849829], [14.8877269, 120.7847927], [14.8876718, 120.7848443], [14.8875241, 120.7849817], [14.8873758, 120.7851187], [14.8870008, 120.7854687], [14.8864931, 120.7859368], [14.8861029, 120.7862966], [14.8857354, 120.7866354], [14.8851402, 120.7871843], [14.8849941, 120.7873149], [14.884952, 120.7873544], [14.8848334, 120.7874632], [14.8847207, 120.7875668], [14.8840673, 120.7881454], [14.883987, 120.78822], [14.8843674, 120.78863], [14.8849727, 120.7891218], [14.8851399, 120.7892455], [14.8859113, 120.7904811], [14.8849721, 120.7939806], [14.8862815, 120.7956295], [14.8860127, 120.7958999], [14.8863029, 120.7962718], [14.8867083, 120.796752], [14.8871895, 120.7972143], [14.8874665, 120.7975289], [14.887779, 120.7982367], [14.888011, 120.798541], [14.8895968, 120.7978347], [14.890887, 120.7974545], [14.8911629, 120.7973772], [14.891247, 120.7976624], [14.8913359, 120.7979427], [14.8914266, 120.7982242], [14.8915108, 120.7985181], [14.8922617, 120.7982792], [14.892531, 120.7981802], [14.8926274, 120.7984997]],
-                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_992ab39f3f64ec0a16e48382e7f174e3 = L.marker(
+                [14.8748, 120.7866],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_d60823e01bfc70517f72ddb7d40c9efb = L.popup({"maxWidth": "100%"});
+            var icon_736a8c1e2d4b7d943cfb748ad33bba0a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_992ab39f3f64ec0a16e48382e7f174e3.setIcon(icon_736a8c1e2d4b7d943cfb748ad33bba0a);
+        
+    
+        var popup_a0ed095554756933f9355a7b71e45d04 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_7184b85819d31ea9cdcaa444eb4e897f = $(`<div id="html_7184b85819d31ea9cdcaa444eb4e897f" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to GMA Kapuso E.C. (2.76 km)</div>`)[0];
-                popup_d60823e01bfc70517f72ddb7d40c9efb.setContent(html_7184b85819d31ea9cdcaa444eb4e897f);
+                var html_f2aa42c41def9e762d869a3f0420eb6e = $(`<div id="html_f2aa42c41def9e762d869a3f0420eb6e" style="width: 100.0%; height: 100.0%;">Community: Longos</div>`)[0];
+                popup_a0ed095554756933f9355a7b71e45d04.setContent(html_f2aa42c41def9e762d869a3f0420eb6e);
             
         
 
-        poly_line_8487382d60afcd72b038dd3a412d0cec.bindPopup(popup_d60823e01bfc70517f72ddb7d40c9efb)
+        marker_992ab39f3f64ec0a16e48382e7f174e3.bindPopup(popup_a0ed095554756933f9355a7b71e45d04)
         ;
 
         
     
     
-            var poly_line_fd814c4e522feeb5282a6d7f7a3730a1 = L.polyline(
-                [[14.8785092, 120.7395194], [14.8780131, 120.7397204], [14.8774211, 120.7390157], [14.8759645, 120.7392655], [14.8734688, 120.739532], [14.8725494, 120.7398458], [14.8698615, 120.7405939], [14.8682028, 120.7408699], [14.8663599, 120.7413476], [14.8660889, 120.7413895], [14.8657947, 120.7414676], [14.8643768, 120.7419485], [14.8629251, 120.7428321], [14.8628607, 120.7428877], [14.8612595, 120.7440386], [14.8618975, 120.7461814], [14.8620594, 120.7468779], [14.8620991, 120.7470356], [14.86331, 120.7517587], [14.8633842, 120.7534487], [14.863418, 120.7553887], [14.863418, 120.7560115], [14.8653692, 120.7589871], [14.8662859, 120.7602651], [14.8665238, 120.7606071], [14.8666817, 120.760834], [14.867634, 120.762241], [14.8682628, 120.7632032], [14.866643, 120.7647434], [14.8670308, 120.7654926], [14.8671378, 120.7656918], [14.8672055, 120.7658445], [14.8672724, 120.7659612], [14.8676945, 120.7666814], [14.868339, 120.7681469], [14.8686596, 120.7687421], [14.8688346, 120.7690356], [14.8693275, 120.7694506], [14.869735, 120.7699494], [14.8700274, 120.7709815], [14.8704165, 120.7717199], [14.8710183, 120.7729601], [14.8710872, 120.7730988], [14.8720374, 120.7749769], [14.8722805, 120.7760505], [14.8724647, 120.7771786], [14.872482, 120.7772843], [14.8725199, 120.777518], [14.872628, 120.7781805], [14.8728788, 120.7796437], [14.8729831, 120.7802538], [14.8731069, 120.7809687], [14.8732353, 120.7817574], [14.873379, 120.7825291], [14.873554, 120.7830584], [14.8737114, 120.7834957], [14.873813, 120.7838046], [14.8740433, 120.7845043], [14.8743851, 120.7855433], [14.8744807, 120.785849], [14.8747957, 120.7865922], [14.8751508, 120.7870696], [14.8751755, 120.7871072], [14.8752351, 120.7872775], [14.8753254, 120.7893617], [14.8753815, 120.7904062], [14.8754101, 120.7920096], [14.8754243, 120.7927566], [14.8755283, 120.7940353], [14.8760443, 120.795254], [14.8773709, 120.7940682], [14.8787507, 120.7928486], [14.8792016, 120.7924501], [14.8799486, 120.7917882], [14.8805113, 120.7926566], [14.8812979, 120.7937576], [14.8825273, 120.7947978], [14.883034, 120.7950392], [14.883182, 120.7950544], [14.8836806, 120.795242], [14.8837473, 120.7952931], [14.8840446, 120.7955566], [14.884466, 120.7960919], [14.8848487, 120.7966079], [14.8852567, 120.797128], [14.8856647, 120.7976164], [14.88615, 120.7981006], [14.886494, 120.79844], [14.8867513, 120.7986842], [14.887446, 120.7994361], [14.8880551, 120.8000801], [14.8880903, 120.8001232], [14.8881157, 120.8001504], [14.8883148, 120.7999173], [14.8885584, 120.7997289], [14.8899592, 120.7990375], [14.8912307, 120.7985974], [14.8915108, 120.7985181], [14.8922617, 120.7982792], [14.892531, 120.7981802], [14.8926274, 120.7984997]],
-                {"bubblingMouseEvents": true, "color": "cyan", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "cyan", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_f24f9ec5bc7cec662ae830329606df5c = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_2e10f12b98c4728f87040a0854dc8d39 = L.popup({"maxWidth": "100%"});
+            var icon_375b090728e695f6978d31f9d8de4064 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f24f9ec5bc7cec662ae830329606df5c.setIcon(icon_375b090728e695f6978d31f9d8de4064);
+        
+    
+        var popup_f432e509636277ba9808094d30210d62 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_93b04d3648f35d532933527696561f2f = $(`<div id="html_93b04d3648f35d532933527696561f2f" style="width: 100.0%; height: 100.0%;">Route from San Jose to GMA Kapuso E.C. (10.58 km)</div>`)[0];
-                popup_2e10f12b98c4728f87040a0854dc8d39.setContent(html_93b04d3648f35d532933527696561f2f);
+                var html_0081dbde37ff752957937432745eec5f = $(`<div id="html_0081dbde37ff752957937432745eec5f" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_f432e509636277ba9808094d30210d62.setContent(html_0081dbde37ff752957937432745eec5f);
             
         
 
-        poly_line_fd814c4e522feeb5282a6d7f7a3730a1.bindPopup(popup_2e10f12b98c4728f87040a0854dc8d39)
+        marker_f24f9ec5bc7cec662ae830329606df5c.bindPopup(popup_f432e509636277ba9808094d30210d62)
         ;
 
         
     
     
-            var poly_line_e3084070828a94f1467d2e2ca96a9f1e = L.polyline(
-                [[14.898195, 120.7360235], [14.8999549, 120.7378194], [14.901217, 120.7391078], [14.9013673, 120.7392612], [14.9014743, 120.7393705], [14.9016531, 120.739553], [14.9018919, 120.7397968], [14.9031484, 120.741044], [14.9036697, 120.7415686], [14.9051313, 120.7430396], [14.9074277, 120.7453201], [14.9095159, 120.7474908], [14.9101804, 120.7483396], [14.9110059, 120.7495171], [14.9115129, 120.7503956], [14.9116422, 120.7506118], [14.9117381, 120.750814], [14.9118059, 120.7509207], [14.9120742, 120.7516106], [14.9125215, 120.7529034], [14.9125477, 120.7529851], [14.9128684, 120.7538438], [14.9132898, 120.7559171], [14.9133024, 120.7559967], [14.9136025, 120.7576337], [14.9141367, 120.7574757], [14.9145129, 120.7589132], [14.9146478, 120.7589548], [14.9165864, 120.7615862], [14.9188476, 120.7658474], [14.9206755, 120.7656728], [14.9210024, 120.7656304], [14.922301, 120.7654896], [14.9233594, 120.7653688], [14.9244934, 120.7652626], [14.9247444, 120.7652398], [14.9252085, 120.7651689], [14.9253113, 120.7651411], [14.9254682, 120.7650986], [14.9257555, 120.7649992], [14.925966, 120.7649193], [14.9272903, 120.7643798], [14.9285564, 120.7637967], [14.9287521, 120.7637059], [14.9297235, 120.7632719], [14.9314624, 120.7624285], [14.932818, 120.7613439], [14.9332443, 120.7608284], [14.9332784, 120.7606807], [14.9333856, 120.760126], [14.936763, 120.7562763], [14.9366771, 120.7562382], [14.9355525, 120.7571992], [14.9354048, 120.7570933], [14.9341122, 120.7561267], [14.9302354, 120.7532347], [14.9296975, 120.7528625], [14.9285505, 120.7519424], [14.9215115, 120.7467932], [14.9201015, 120.7456983], [14.9195682, 120.7452178], [14.9175112, 120.7432357]],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_8a230aa84580130fe10916f4cd2c44b8 = L.marker(
+                [14.8994, 120.7756],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_deaa1ddd428eceb58ccc220e3b9cead5 = L.popup({"maxWidth": "100%"});
+            var icon_338315d894973337776b801964979e4e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_8a230aa84580130fe10916f4cd2c44b8.setIcon(icon_338315d894973337776b801964979e4e);
+        
+    
+        var popup_a24401811bf9c814a9f4a300e2563bff = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_98902e47d2121143eac63d0dcda75eb8 = $(`<div id="html_98902e47d2121143eac63d0dcda75eb8" style="width: 100.0%; height: 100.0%;">Route from Santa Lucia to Doña Damiana Elem School (9.14 km)</div>`)[0];
-                popup_deaa1ddd428eceb58ccc220e3b9cead5.setContent(html_98902e47d2121143eac63d0dcda75eb8);
+                var html_8b2342a1aaf7a8c25347cdb3d9febc1f = $(`<div id="html_8b2342a1aaf7a8c25347cdb3d9febc1f" style="width: 100.0%; height: 100.0%;">Community: Palimbang</div>`)[0];
+                popup_a24401811bf9c814a9f4a300e2563bff.setContent(html_8b2342a1aaf7a8c25347cdb3d9febc1f);
             
         
 
-        poly_line_e3084070828a94f1467d2e2ca96a9f1e.bindPopup(popup_deaa1ddd428eceb58ccc220e3b9cead5)
+        marker_8a230aa84580130fe10916f4cd2c44b8.bindPopup(popup_a24401811bf9c814a9f4a300e2563bff)
         ;
 
         
     
     
-            var poly_line_3bc4d631960ad047b24e39edc88bc217 = L.polyline(
-                [[14.8939904, 120.7908812], [14.8940576, 120.7908631], [14.89736, 120.7888131], [14.8980026, 120.7889591], [14.8983662, 120.7879122], [14.8986159, 120.7873113], [14.8994413, 120.7850919], [14.8994723, 120.7848235], [14.8994079, 120.7845847], [14.8992285, 120.7839743], [14.8991817, 120.7838386], [14.8990656, 120.7835143], [14.8990009, 120.783336], [14.8988439, 120.7828582], [14.8987643, 120.7826614], [14.8982031, 120.7811004], [14.897686, 120.7798129], [14.8976704, 120.7796815], [14.8983777, 120.7795767], [14.8983467, 120.7790731], [14.9009072, 120.7748015], [14.9008837, 120.7747442], [14.9009535, 120.7740071], [14.9005666, 120.7726143], [14.901788, 120.7714298], [14.9018013, 120.7714165], [14.9020793, 120.7711665], [14.9021708, 120.7710806], [14.9022624, 120.7709932], [14.90235, 120.7709092], [14.9025484, 120.7707205], [14.9028828, 120.7704057], [14.905988, 120.7676193], [14.9062846, 120.7674411], [14.9064366, 120.7673677], [14.9064867, 120.7673418], [14.9067238, 120.7672386], [14.9074442, 120.7669786], [14.9080943, 120.766834], [14.9094075, 120.7667029], [14.9107021, 120.7665797], [14.9109334, 120.7665604], [14.9109783, 120.7665567], [14.9111541, 120.7665363], [14.9116709, 120.7664912], [14.9122004, 120.7664432], [14.9124381, 120.7664265], [14.9128158, 120.7663933], [14.9129979, 120.7663768], [14.913146, 120.7663635], [14.913273, 120.766355], [14.9134979, 120.7663357], [14.9136249, 120.7663229], [14.9142472, 120.7662734], [14.9148042, 120.7662341], [14.9151258, 120.7662097], [14.9152057, 120.7661989], [14.9152323, 120.7661975], [14.9153493, 120.766184], [14.9163477, 120.7661058], [14.9181482, 120.7659191], [14.9188476, 120.7658474], [14.9206755, 120.7656728], [14.9210024, 120.7656304], [14.922301, 120.7654896], [14.9233594, 120.7653688], [14.9244934, 120.7652626], [14.9247444, 120.7652398], [14.9252085, 120.7651689], [14.9253113, 120.7651411], [14.9254682, 120.7650986], [14.9257555, 120.7649992], [14.925966, 120.7649193], [14.9272903, 120.7643798], [14.9285564, 120.7637967], [14.9287521, 120.7637059], [14.9297235, 120.7632719], [14.9314624, 120.7624285], [14.932818, 120.7613439], [14.9332443, 120.7608284], [14.9332784, 120.7606807], [14.9333856, 120.760126], [14.936763, 120.7562763], [14.9366771, 120.7562382], [14.9355525, 120.7571992], [14.9354048, 120.7570933], [14.9341122, 120.7561267], [14.9302354, 120.7532347], [14.9296975, 120.7528625], [14.9285505, 120.7519424], [14.9215115, 120.7467932], [14.9201015, 120.7456983], [14.9195682, 120.7452178], [14.9175112, 120.7432357], [14.9169369, 120.74267]],
-                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
-            ).addTo(map_ec8f6c83db1c04988f99aa7308dc55df);
+            var marker_73eace41e9d8de12af3e2db1de342da4 = L.marker(
+                [14.9176780529243, 120.767878787289],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
         
     
-        var popup_360cfe797c0001d973aaf7f65e62d4ab = L.popup({"maxWidth": "100%"});
+            var icon_a7c0988989498b9d431455f7e7ee9340 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_73eace41e9d8de12af3e2db1de342da4.setIcon(icon_a7c0988989498b9d431455f7e7ee9340);
+        
+    
+        var popup_e017778d1b0957130eaf23c4421d098c = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_0a948ae78cfc975df7468eab29268efe = $(`<div id="html_0a948ae78cfc975df7468eab29268efe" style="width: 100.0%; height: 100.0%;">Route from Sergio Bayan to San Miguel Meysulao High School (9.99 km)</div>`)[0];
-                popup_360cfe797c0001d973aaf7f65e62d4ab.setContent(html_0a948ae78cfc975df7468eab29268efe);
+                var html_ac2efb039a2e48ad989e146774a6f192 = $(`<div id="html_ac2efb039a2e48ad989e146774a6f192" style="width: 100.0%; height: 100.0%;">Shelter: F. Mendoza Memorial Elem Sch.</div>`)[0];
+                popup_e017778d1b0957130eaf23c4421d098c.setContent(html_ac2efb039a2e48ad989e146774a6f192);
             
         
 
-        poly_line_3bc4d631960ad047b24e39edc88bc217.bindPopup(popup_360cfe797c0001d973aaf7f65e62d4ab)
+        marker_73eace41e9d8de12af3e2db1de342da4.bindPopup(popup_e017778d1b0957130eaf23c4421d098c)
         ;
 
         
     
+    
+            var marker_d061864fe1039a1fe0ffdf7847f27051 = L.marker(
+                [14.8761, 120.738],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var icon_018147ea9d3b13900f48ed80b73c1148 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_d061864fe1039a1fe0ffdf7847f27051.setIcon(icon_018147ea9d3b13900f48ed80b73c1148);
+        
+    
+        var popup_7b6823a8a653c1bc7b61c9c436340585 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_15199f7b2fad6e51e15d3b21e1f9f92b = $(`<div id="html_15199f7b2fad6e51e15d3b21e1f9f92b" style="width: 100.0%; height: 100.0%;">Community: Panducot</div>`)[0];
+                popup_7b6823a8a653c1bc7b61c9c436340585.setContent(html_15199f7b2fad6e51e15d3b21e1f9f92b);
+            
+        
+
+        marker_d061864fe1039a1fe0ffdf7847f27051.bindPopup(popup_7b6823a8a653c1bc7b61c9c436340585)
+        ;
+
+        
+    
+    
+            var marker_93a0081073f50da90ad59cb45fabd21d = L.marker(
+                [14.9136800407707, 120.755871075221],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var icon_0d1435168334465cb5440798752332c0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_93a0081073f50da90ad59cb45fabd21d.setIcon(icon_0d1435168334465cb5440798752332c0);
+        
+    
+        var popup_25918f89a6af45ad528b6f31376b8cd8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ce04d3bcd901bf29a829f8f4d8e9aa16 = $(`<div id="html_ce04d3bcd901bf29a829f8f4d8e9aa16" style="width: 100.0%; height: 100.0%;">Shelter: Calizon Dike</div>`)[0];
+                popup_25918f89a6af45ad528b6f31376b8cd8.setContent(html_ce04d3bcd901bf29a829f8f4d8e9aa16);
+            
+        
+
+        marker_93a0081073f50da90ad59cb45fabd21d.bindPopup(popup_25918f89a6af45ad528b6f31376b8cd8)
+        ;
+
+        
+    
+    
+            var marker_275e4f0b88a24029fa10d04adb4679ec = L.marker(
+                [14.8881, 120.7855],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var icon_42a9ae2d85a5a04d51386388765b7da5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_275e4f0b88a24029fa10d04adb4679ec.setIcon(icon_42a9ae2d85a5a04d51386388765b7da5);
+        
+    
+        var popup_fda7413fa2c2389d1a7fa88f27253ade = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8f98c92313a165d6946e2b8a5010ec77 = $(`<div id="html_8f98c92313a165d6946e2b8a5010ec77" style="width: 100.0%; height: 100.0%;">Community: Pio Cruzcosa</div>`)[0];
+                popup_fda7413fa2c2389d1a7fa88f27253ade.setContent(html_8f98c92313a165d6946e2b8a5010ec77);
+            
+        
+
+        marker_275e4f0b88a24029fa10d04adb4679ec.bindPopup(popup_fda7413fa2c2389d1a7fa88f27253ade)
+        ;
+
+        
+    
+    
+            var marker_e359e4257d973d9d98e6eb49efbc4130 = L.marker(
+                [14.8930053477281, 120.799658008805],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var icon_ee90acabb66ce07e4b364fbeec36c9d8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e359e4257d973d9d98e6eb49efbc4130.setIcon(icon_ee90acabb66ce07e4b364fbeec36c9d8);
+        
+    
+        var popup_845626beb8bcb705e6800b7951146d40 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_35ca41368fad49496c0b7e6958496ff7 = $(`<div id="html_35ca41368fad49496c0b7e6958496ff7" style="width: 100.0%; height: 100.0%;">Shelter: GMA Kapuso E.C.</div>`)[0];
+                popup_845626beb8bcb705e6800b7951146d40.setContent(html_35ca41368fad49496c0b7e6958496ff7);
+            
+        
+
+        marker_e359e4257d973d9d98e6eb49efbc4130.bindPopup(popup_845626beb8bcb705e6800b7951146d40)
+        ;
+
+        
+    
+    
+            var marker_166d666bc3642d2b1a47fabb6d40604f = L.marker(
+                [14.8838, 120.7395],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var icon_99867895c01ecfde667113e4c434e31a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_166d666bc3642d2b1a47fabb6d40604f.setIcon(icon_99867895c01ecfde667113e4c434e31a);
+        
+    
+        var popup_0f9af6380a68e9e5377e963b2b8ecfde = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_54aef0e1b311f99e3fc9a0715e02c8ff = $(`<div id="html_54aef0e1b311f99e3fc9a0715e02c8ff" style="width: 100.0%; height: 100.0%;">Community: San Jose</div>`)[0];
+                popup_0f9af6380a68e9e5377e963b2b8ecfde.setContent(html_54aef0e1b311f99e3fc9a0715e02c8ff);
+            
+        
+
+        marker_166d666bc3642d2b1a47fabb6d40604f.bindPopup(popup_0f9af6380a68e9e5377e963b2b8ecfde)
+        ;
+
+        
+    
+    
+            var marker_dd0a212aa99efe88abebe0f69024dcf5 = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var icon_19d79dc22a7e1ffa7647ae49ebedf932 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_dd0a212aa99efe88abebe0f69024dcf5.setIcon(icon_19d79dc22a7e1ffa7647ae49ebedf932);
+        
+    
+        var popup_c3912b84c0b4f49c3947190667ebe7a8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_42aa87e6149398bd5ff766a0625c166b = $(`<div id="html_42aa87e6149398bd5ff766a0625c166b" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_c3912b84c0b4f49c3947190667ebe7a8.setContent(html_42aa87e6149398bd5ff766a0625c166b);
+            
+        
+
+        marker_dd0a212aa99efe88abebe0f69024dcf5.bindPopup(popup_c3912b84c0b4f49c3947190667ebe7a8)
+        ;
+
+        
+    
+    
+            var marker_1c5eece71775f10be61f3e4600c5d229 = L.marker(
+                [14.8982, 120.736],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var icon_49362650d55de5d33a82e1b1c509bb55 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_1c5eece71775f10be61f3e4600c5d229.setIcon(icon_49362650d55de5d33a82e1b1c509bb55);
+        
+    
+        var popup_6572ec4334d2ca7e18a359e6fdd4f35d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1a6ca0de93f39d9621aeb0e49fd9573d = $(`<div id="html_1a6ca0de93f39d9621aeb0e49fd9573d" style="width: 100.0%; height: 100.0%;">Community: Santa Lucia</div>`)[0];
+                popup_6572ec4334d2ca7e18a359e6fdd4f35d.setContent(html_1a6ca0de93f39d9621aeb0e49fd9573d);
+            
+        
+
+        marker_1c5eece71775f10be61f3e4600c5d229.bindPopup(popup_6572ec4334d2ca7e18a359e6fdd4f35d)
+        ;
+
+        
+    
+    
+            var marker_c987445dd2de1f28c9ac6e0ebe301001 = L.marker(
+                [14.9148551401837, 120.761492937455],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var icon_e5451ad342f7391affb3628e9bffbe84 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c987445dd2de1f28c9ac6e0ebe301001.setIcon(icon_e5451ad342f7391affb3628e9bffbe84);
+        
+    
+        var popup_4afe1ea74eb53d076c30d2f38113cd07 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_04b7045cfad5eaba0e22a6f07c2297e1 = $(`<div id="html_04b7045cfad5eaba0e22a6f07c2297e1" style="width: 100.0%; height: 100.0%;">Shelter: Balungao E.C.</div>`)[0];
+                popup_4afe1ea74eb53d076c30d2f38113cd07.setContent(html_04b7045cfad5eaba0e22a6f07c2297e1);
+            
+        
+
+        marker_c987445dd2de1f28c9ac6e0ebe301001.bindPopup(popup_4afe1ea74eb53d076c30d2f38113cd07)
+        ;
+
+        
+    
+    
+            var marker_b60b912288d7aee3ab773694e1b1170d = L.marker(
+                [14.894, 120.7909],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var icon_5a3cbe2d8374736e918cf45afb02ca9b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_b60b912288d7aee3ab773694e1b1170d.setIcon(icon_5a3cbe2d8374736e918cf45afb02ca9b);
+        
+    
+        var popup_963800294ae4ae0505ecce923d569b4d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5fc72b8e6ab93e55359fc3da86091ff5 = $(`<div id="html_5fc72b8e6ab93e55359fc3da86091ff5" style="width: 100.0%; height: 100.0%;">Community: Sergio Bayan</div>`)[0];
+                popup_963800294ae4ae0505ecce923d569b4d.setContent(html_5fc72b8e6ab93e55359fc3da86091ff5);
+            
+        
+
+        marker_b60b912288d7aee3ab773694e1b1170d.bindPopup(popup_963800294ae4ae0505ecce923d569b4d)
+        ;
+
+        
+    
+    
+            var marker_e3c4eb46dc95e13d5ad6866509f9e63c = L.marker(
+                [14.8930053477281, 120.799658008805],
+                {}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var icon_eaf282aed4c1fd0bfcc13b8586cea223 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e3c4eb46dc95e13d5ad6866509f9e63c.setIcon(icon_eaf282aed4c1fd0bfcc13b8586cea223);
+        
+    
+        var popup_48a9f64cbc913481b06c690fdab4d26a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3815eff381bfc4c5997e123a3b0b2623 = $(`<div id="html_3815eff381bfc4c5997e123a3b0b2623" style="width: 100.0%; height: 100.0%;">Shelter: GMA Kapuso E.C.</div>`)[0];
+                popup_48a9f64cbc913481b06c690fdab4d26a.setContent(html_3815eff381bfc4c5997e123a3b0b2623);
+            
+        
+
+        marker_e3c4eb46dc95e13d5ad6866509f9e63c.bindPopup(popup_48a9f64cbc913481b06c690fdab4d26a)
+        ;
+
+        
+    
+    
+            var feature_group_7ca8ffc6132d853ec7e98fbcb73080c3 = L.featureGroup(
+                {}
+            );
+        
+    
+            ant_path_983d841625c9baa3f1ff98d9f31c624d = L.polyline.antPath(
+              [[14.8955937, 120.7854567], [14.8955448, 120.7851369], [14.8953011, 120.785161], [14.8950385, 120.7852109], [14.8947517, 120.7852719], [14.8944637, 120.7853206], [14.894188, 120.785371], [14.8938934, 120.7852871], [14.8934579, 120.7840362], [14.8931659, 120.7841208], [14.8931128, 120.7837476], [14.893061, 120.7833725], [14.8929486, 120.7821961], [14.8929394, 120.7820715], [14.8927352, 120.7807853], [14.8927053, 120.7801385], [14.8929379, 120.7799218], [14.8941892, 120.7787358], [14.8947405, 120.7782147], [14.8968518, 120.7761962], [14.8973343, 120.7757302], [14.8975611, 120.775511], [14.8979105, 120.7751733], [14.8980726, 120.7750231], [14.8981763, 120.7749161], [14.8986129, 120.7745177], [14.899261, 120.7738812], [14.8997121, 120.7734415], [14.9004939, 120.7726847], [14.9005666, 120.7726143], [14.901788, 120.7714298], [14.9018013, 120.7714165], [14.9020793, 120.7711665], [14.9021708, 120.7710806], [14.9022624, 120.7709932], [14.90235, 120.7709092], [14.9025484, 120.7707205], [14.9028828, 120.7704057], [14.905988, 120.7676193], [14.9062846, 120.7674411], [14.9064366, 120.7673677], [14.9064867, 120.7673418], [14.9067238, 120.7672386], [14.9074442, 120.7669786], [14.9080943, 120.766834], [14.9094075, 120.7667029], [14.9107021, 120.7665797], [14.9109334, 120.7665604], [14.9109783, 120.7665567], [14.9111541, 120.7665363], [14.9116709, 120.7664912], [14.9122004, 120.7664432], [14.9124381, 120.7664265], [14.9128158, 120.7663933], [14.9129979, 120.7663768], [14.913146, 120.7663635], [14.913273, 120.766355], [14.9134979, 120.7663357], [14.9136249, 120.7663229], [14.9142472, 120.7662734], [14.9148042, 120.7662341], [14.9151258, 120.7662097], [14.9152057, 120.7661989], [14.9152323, 120.7661975], [14.9153493, 120.766184], [14.9163477, 120.7661058], [14.9181482, 120.7659191], [14.9188476, 120.7658474], [14.9206755, 120.7656728], [14.9210024, 120.7656304], [14.922301, 120.7654896], [14.9233594, 120.7653688], [14.9244934, 120.7652626], [14.9247444, 120.7652398], [14.9252085, 120.7651689], [14.9253113, 120.7651411], [14.9254682, 120.7650986], [14.9257555, 120.7649992], [14.925966, 120.7649193], [14.9272903, 120.7643798], [14.9285564, 120.7637967], [14.9287521, 120.7637059], [14.9297235, 120.7632719], [14.9314624, 120.7624285], [14.932818, 120.7613439], [14.9332443, 120.7608284], [14.9332784, 120.7606807], [14.9333856, 120.760126], [14.936763, 120.7562763], [14.9366771, 120.7562382], [14.9355525, 120.7571992], [14.9354048, 120.7570933], [14.9341122, 120.7561267], [14.9302354, 120.7532347], [14.9296975, 120.7528625], [14.9285505, 120.7519424], [14.9215115, 120.7467932], [14.9201015, 120.7456983], [14.9195682, 120.7452178], [14.9175112, 120.7432357], [14.9169369, 120.74267]],
+              {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_d76bb638fce22a2a03bd2ee1fc56ae7e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ec3c105940e4ea57fa01550f81f836ff = $(`<div id="html_ec3c105940e4ea57fa01550f81f836ff" style="width: 100.0%; height: 100.0%;">Route from Balite to San Miguel Meysulao High School (9.44 km)</div>`)[0];
+                popup_d76bb638fce22a2a03bd2ee1fc56ae7e.setContent(html_ec3c105940e4ea57fa01550f81f836ff);
+            
+        
+
+        ant_path_983d841625c9baa3f1ff98d9f31c624d.bindPopup(popup_d76bb638fce22a2a03bd2ee1fc56ae7e)
+        ;
+
+        
+    
+    
+            ant_path_dfc46e3ef22744779d120c77ccf97afc = L.polyline.antPath(
+              [[14.9142977, 120.7617806], [14.9144259, 120.7626625], [14.9144457, 120.7627865], [14.9147543, 120.7647686], [14.9147734, 120.7648792], [14.9147842, 120.7649615], [14.9150038, 120.7657902], [14.9151258, 120.7662097], [14.9152057, 120.7661989], [14.9152323, 120.7661975], [14.9153493, 120.766184], [14.9163477, 120.7661058], [14.9181482, 120.7659191], [14.9188476, 120.7658474], [14.9206755, 120.7656728], [14.9210024, 120.7656304], [14.922301, 120.7654896], [14.9233594, 120.7653688], [14.9244934, 120.7652626], [14.9247444, 120.7652398], [14.9252085, 120.7651689], [14.9253113, 120.7651411], [14.9254682, 120.7650986], [14.9257555, 120.7649992], [14.925966, 120.7649193], [14.9272903, 120.7643798], [14.9285564, 120.7637967], [14.9287521, 120.7637059], [14.9297235, 120.7632719], [14.9314624, 120.7624285], [14.932818, 120.7613439], [14.9332443, 120.7608284], [14.9332784, 120.7606807], [14.9333856, 120.760126], [14.936763, 120.7562763], [14.9366771, 120.7562382], [14.9355525, 120.7571992], [14.9354048, 120.7570933], [14.9341122, 120.7561267], [14.9302354, 120.7532347], [14.9296975, 120.7528625], [14.9285505, 120.7519424], [14.9215115, 120.7467932], [14.9201015, 120.7456983], [14.9195682, 120.7452178], [14.9175112, 120.7432357]],
+              {"bubblingMouseEvents": true, "color": "darkgreen", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkgreen", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_07d2a73a181fedaf1832edca32d98446 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b9039959fd34a29bf061cbb2dbeb87bb = $(`<div id="html_b9039959fd34a29bf061cbb2dbeb87bb" style="width: 100.0%; height: 100.0%;">Route from Balungao to Doña Damiana Elem School (5.96 km)</div>`)[0];
+                popup_07d2a73a181fedaf1832edca32d98446.setContent(html_b9039959fd34a29bf061cbb2dbeb87bb);
+            
+        
+
+        ant_path_dfc46e3ef22744779d120c77ccf97afc.bindPopup(popup_07d2a73a181fedaf1832edca32d98446)
+        ;
+
+        
+    
+    
+            ant_path_e9c972e6005ecb3dbef4fb4d1e1a38c1 = L.polyline.antPath(
+              [[14.884537, 120.7838263], [14.8848073, 120.7835608], [14.8865481, 120.7813621], [14.886784, 120.7808431], [14.8870065, 120.7805109], [14.8870848, 120.7804118], [14.8871048, 120.7803901], [14.8874898, 120.7800034], [14.888096, 120.7790708], [14.8884654, 120.7782261], [14.8887013, 120.7780561], [14.8919146, 120.7776461], [14.8941892, 120.7787358], [14.8947405, 120.7782147], [14.8968518, 120.7761962], [14.8973343, 120.7757302], [14.8975611, 120.775511], [14.8979105, 120.7751733], [14.8980726, 120.7750231], [14.8981763, 120.7749161], [14.8986129, 120.7745177], [14.899261, 120.7738812], [14.8997121, 120.7734415], [14.9004939, 120.7726847], [14.9005666, 120.7726143], [14.901788, 120.7714298], [14.9018013, 120.7714165], [14.9020793, 120.7711665], [14.9021708, 120.7710806], [14.9022624, 120.7709932], [14.90235, 120.7709092], [14.9025484, 120.7707205], [14.9028828, 120.7704057], [14.905988, 120.7676193], [14.9062846, 120.7674411], [14.9064366, 120.7673677], [14.9064867, 120.7673418], [14.9067238, 120.7672386], [14.9058085, 120.759786], [14.9063792, 120.7560959], [14.9081466, 120.755913], [14.9089633, 120.7553765], [14.9097365, 120.7547471], [14.9125477, 120.7529851], [14.9125215, 120.7529034], [14.9120742, 120.7516106], [14.9118059, 120.7509207], [14.9117381, 120.750814], [14.9116422, 120.7506118], [14.9115129, 120.7503956], [14.9110059, 120.7495171], [14.9101804, 120.7483396], [14.9095159, 120.7474908], [14.9074277, 120.7453201], [14.9051313, 120.7430396], [14.9062108, 120.7413182], [14.9082776, 120.7422469]],
+              {"bubblingMouseEvents": true, "color": "darkred", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkred", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_f87ef2131ec57e6a48905bbd2a0cceff = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c2664c36b36a4f56227b4725f50f5777 = $(`<div id="html_c2664c36b36a4f56227b4725f50f5777" style="width: 100.0%; height: 100.0%;">Route from Calumpang to Barangay Hall Bulusan (7.31 km)</div>`)[0];
+                popup_f87ef2131ec57e6a48905bbd2a0cceff.setContent(html_c2664c36b36a4f56227b4725f50f5777);
+            
+        
+
+        ant_path_e9c972e6005ecb3dbef4fb4d1e1a38c1.bindPopup(popup_f87ef2131ec57e6a48905bbd2a0cceff)
+        ;
+
+        
+    
+    
+            ant_path_de439f83e714d477446ee198203c091b = L.polyline.antPath(
+              [[14.9153694, 120.7530523], [14.9153763, 120.7526486], [14.9163367, 120.7503561], [14.9172578, 120.7500422], [14.9214248, 120.750665], [14.9256225, 120.753889], [14.9289933, 120.7563623], [14.9317905, 120.7583577], [14.9322084, 120.7586464], [14.9326373, 120.7589643], [14.9329816, 120.7592339], [14.9335662, 120.7596458], [14.9333856, 120.760126], [14.936763, 120.7562763], [14.9366771, 120.7562382], [14.9355525, 120.7571992], [14.9354048, 120.7570933], [14.9341122, 120.7561267], [14.9302354, 120.7532347], [14.9296975, 120.7528625], [14.9285505, 120.7519424], [14.9215115, 120.7467932], [14.9201015, 120.7456983], [14.9195682, 120.7452178], [14.9175112, 120.7432357], [14.9169369, 120.74267]],
+              {"bubblingMouseEvents": true, "color": "indigo", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "indigo", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_4e415d54eaf32a1f4156ae5572f70b46 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_de4b7587a31c2856e16ccf57b21d5984 = $(`<div id="html_de4b7587a31c2856e16ccf57b21d5984" style="width: 100.0%; height: 100.0%;">Route from Frances to San Miguel Meysulao High School (5.97 km)</div>`)[0];
+                popup_4e415d54eaf32a1f4156ae5572f70b46.setContent(html_de4b7587a31c2856e16ccf57b21d5984);
+            
+        
+
+        ant_path_de439f83e714d477446ee198203c091b.bindPopup(popup_4e415d54eaf32a1f4156ae5572f70b46)
+        ;
+
+        
+    
+    
+            ant_path_48b2f69294e6c2d59cb6e6fc57a14078 = L.polyline.antPath(
+              [[14.921997, 120.7687807], [14.9214978, 120.7673994], [14.9212763, 120.7661087], [14.9210024, 120.7656304], [14.9206755, 120.7656728], [14.9188476, 120.7658474], [14.9181482, 120.7659191], [14.9181792, 120.766478], [14.9178675, 120.7665369], [14.9180421, 120.7672674], [14.9182375, 120.768015], [14.9173848, 120.7683735]],
+              {"bubblingMouseEvents": true, "color": "darkorange", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkorange", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_b899aa7373f35beee1c8ad3482477818 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9e9902b3b464b022c5a41a27b8b25daf = $(`<div id="html_9e9902b3b464b022c5a41a27b8b25daf" style="width: 100.0%; height: 100.0%;">Route from Gatbuca to F. Mendoza Memorial Elem Sch. (1.05 km)</div>`)[0];
+                popup_b899aa7373f35beee1c8ad3482477818.setContent(html_9e9902b3b464b022c5a41a27b8b25daf);
+            
+        
+
+        ant_path_48b2f69294e6c2d59cb6e6fc57a14078.bindPopup(popup_b899aa7373f35beee1c8ad3482477818)
+        ;
+
+        
+    
+    
+            ant_path_68e54cd0c0ccc068ecf8f5eb7a938b0a = L.polyline.antPath(
+              [[14.8747957, 120.7865922], [14.8751508, 120.7870696], [14.8751755, 120.7871072], [14.8773749, 120.7869745], [14.8776042, 120.7870501], [14.8778752, 120.7871827], [14.8783705, 120.7874251], [14.878717, 120.7879602], [14.8794701, 120.7874392], [14.880806, 120.7865234], [14.8835191, 120.7846142], [14.8836678, 120.7845239], [14.884537, 120.7838263], [14.8848073, 120.7835608], [14.8865481, 120.7813621], [14.886784, 120.7808431], [14.8870065, 120.7805109], [14.8870848, 120.7804118], [14.8871048, 120.7803901], [14.8874898, 120.7800034], [14.888096, 120.7790708], [14.8884654, 120.7782261], [14.8887013, 120.7780561], [14.8919146, 120.7776461], [14.8941892, 120.7787358], [14.8947405, 120.7782147], [14.8968518, 120.7761962], [14.8973343, 120.7757302], [14.8975611, 120.775511], [14.8979105, 120.7751733], [14.8980726, 120.7750231], [14.8981763, 120.7749161], [14.8986129, 120.7745177], [14.899261, 120.7738812], [14.8997121, 120.7734415], [14.9004939, 120.7726847], [14.9005666, 120.7726143], [14.901788, 120.7714298], [14.9018013, 120.7714165], [14.9020793, 120.7711665], [14.9021708, 120.7710806], [14.9022624, 120.7709932], [14.90235, 120.7709092], [14.9025484, 120.7707205], [14.9028828, 120.7704057], [14.905988, 120.7676193], [14.9062846, 120.7674411], [14.9064366, 120.7673677], [14.9064867, 120.7673418], [14.9067238, 120.7672386], [14.9074442, 120.7669786], [14.9080943, 120.766834], [14.9094075, 120.7667029], [14.9107021, 120.7665797], [14.9109334, 120.7665604], [14.9109783, 120.7665567], [14.9111541, 120.7665363], [14.9116709, 120.7664912], [14.9122004, 120.7664432], [14.9124381, 120.7664265], [14.9128158, 120.7663933], [14.9129979, 120.7663768], [14.913146, 120.7663635], [14.913273, 120.766355], [14.9134979, 120.7663357], [14.9136249, 120.7663229], [14.9142472, 120.7662734], [14.9148042, 120.7662341], [14.9151258, 120.7662097], [14.9152057, 120.7661989], [14.9152323, 120.7661975], [14.9153493, 120.766184], [14.9163477, 120.7661058], [14.9181482, 120.7659191], [14.9188476, 120.7658474], [14.9206755, 120.7656728], [14.9210024, 120.7656304], [14.922301, 120.7654896], [14.9233594, 120.7653688], [14.9244934, 120.7652626], [14.9247444, 120.7652398], [14.9252085, 120.7651689], [14.9253113, 120.7651411], [14.9254682, 120.7650986], [14.9257555, 120.7649992], [14.925966, 120.7649193], [14.9272903, 120.7643798], [14.9285564, 120.7637967], [14.9287521, 120.7637059], [14.9297235, 120.7632719], [14.9314624, 120.7624285], [14.932818, 120.7613439], [14.9332443, 120.7608284], [14.9332784, 120.7606807], [14.9333856, 120.760126], [14.936763, 120.7562763], [14.9366771, 120.7562382], [14.9355525, 120.7571992], [14.9354048, 120.7570933], [14.9341122, 120.7561267], [14.9302354, 120.7532347], [14.9296975, 120.7528625], [14.9285505, 120.7519424], [14.9215115, 120.7467932], [14.9201015, 120.7456983], [14.9195682, 120.7452178], [14.9175112, 120.7432357], [14.9169369, 120.74267]],
+              {"bubblingMouseEvents": true, "color": "maroon", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "maroon", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_eebe3d26868557ca2d0fe906c6d0ee69 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_10144ac941eef46d20b629563e2cb4d7 = $(`<div id="html_10144ac941eef46d20b629563e2cb4d7" style="width: 100.0%; height: 100.0%;">Route from Longos to San Miguel Meysulao High School (11.11 km)</div>`)[0];
+                popup_eebe3d26868557ca2d0fe906c6d0ee69.setContent(html_10144ac941eef46d20b629563e2cb4d7);
+            
+        
+
+        ant_path_68e54cd0c0ccc068ecf8f5eb7a938b0a.bindPopup(popup_eebe3d26868557ca2d0fe906c6d0ee69)
+        ;
+
+        
+    
+    
+            ant_path_9d417252dfe8bae3437122c7053a09c1 = L.polyline.antPath(
+              [[14.8987823, 120.7759042], [14.8985082, 120.7753403], [14.8981763, 120.7749161], [14.8986129, 120.7745177], [14.899261, 120.7738812], [14.8997121, 120.7734415], [14.9004939, 120.7726847], [14.9005666, 120.7726143], [14.901788, 120.7714298], [14.9022334, 120.7721813], [14.9043663, 120.7735006], [14.90545, 120.7732895], [14.9073298, 120.7729501], [14.9086288, 120.7724272], [14.9101871, 120.7716831], [14.91039, 120.7715556], [14.9123515, 120.7703947], [14.913759, 120.7694769], [14.9138269, 120.7694281], [14.9143295, 120.7693276], [14.9146912, 120.7693397], [14.9159191, 120.7683865], [14.9173848, 120.7683735]],
+              {"bubblingMouseEvents": true, "color": "darkgoldenrod", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkgoldenrod", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_a3be5ea0838abe86295cb57b8b1c3c45 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ee2e7ef62182c5d85bcace34fa38a26a = $(`<div id="html_ee2e7ef62182c5d85bcace34fa38a26a" style="width: 100.0%; height: 100.0%;">Route from Palimbang to F. Mendoza Memorial Elem Sch. (2.74 km)</div>`)[0];
+                popup_a3be5ea0838abe86295cb57b8b1c3c45.setContent(html_ee2e7ef62182c5d85bcace34fa38a26a);
+            
+        
+
+        ant_path_9d417252dfe8bae3437122c7053a09c1.bindPopup(popup_a3be5ea0838abe86295cb57b8b1c3c45)
+        ;
+
+        
+    
+    
+            ant_path_e8b553f520dda98b3264c0141d7b06b4 = L.polyline.antPath(
+              [[14.8761104, 120.7379725], [14.876689, 120.7379105], [14.8769438, 120.7378357], [14.8777242, 120.7376278], [14.8780059, 120.7374897], [14.8786164, 120.7370969], [14.8791893, 120.7366132], [14.881845, 120.7329765], [14.8829537, 120.7297082], [14.884936, 120.7310789], [14.8863245, 120.7313329], [14.8874366, 120.7322771], [14.8874956, 120.7323229], [14.8881087, 120.7326748], [14.8885662, 120.7326951], [14.88861, 120.7326914], [14.8894956, 120.7324963], [14.8895494, 120.7324585], [14.8897969, 120.7322782], [14.8901506, 120.7319403], [14.8911217, 120.7311468], [14.8918794, 120.7312122], [14.8922323, 120.7313074], [14.8936617, 120.731745], [14.894716, 120.7324391], [14.8952884, 120.7330835], [14.8958174, 120.733629], [14.898195, 120.7360235], [14.8999549, 120.7378194], [14.901217, 120.7391078], [14.9013673, 120.7392612], [14.9014743, 120.7393705], [14.9016531, 120.739553], [14.9018919, 120.7397968], [14.9031484, 120.741044], [14.9036697, 120.7415686], [14.9051313, 120.7430396], [14.9074277, 120.7453201], [14.9095159, 120.7474908], [14.9101804, 120.7483396], [14.9110059, 120.7495171], [14.9115129, 120.7503956], [14.9116422, 120.7506118], [14.9117381, 120.750814], [14.9118059, 120.7509207], [14.9120742, 120.7516106], [14.9125215, 120.7529034], [14.9125477, 120.7529851], [14.9128684, 120.7538438], [14.9132898, 120.7559171], [14.9136317, 120.7558206]],
+              {"bubblingMouseEvents": true, "color": "saddlebrown", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "saddlebrown", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_5865d4ff34ba386eab7a8ff2b14a3e74 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5a87bf3e5626eacf70509c861a17e757 = $(`<div id="html_5a87bf3e5626eacf70509c861a17e757" style="width: 100.0%; height: 100.0%;">Route from Panducot to Calizon Dike (6.11 km)</div>`)[0];
+                popup_5865d4ff34ba386eab7a8ff2b14a3e74.setContent(html_5a87bf3e5626eacf70509c861a17e757);
+            
+        
+
+        ant_path_e8b553f520dda98b3264c0141d7b06b4.bindPopup(popup_5865d4ff34ba386eab7a8ff2b14a3e74)
+        ;
+
+        
+    
+    
+            ant_path_d7916d1027412a198f54794f27ee0de3 = L.polyline.antPath(
+              [[14.8882383, 120.7857717], [14.8884387, 120.7855438], [14.8878905, 120.7850243], [14.8878535, 120.7849829], [14.8877269, 120.7847927], [14.8876718, 120.7848443], [14.8875241, 120.7849817], [14.8873758, 120.7851187], [14.8870008, 120.7854687], [14.8864931, 120.7859368], [14.8861029, 120.7862966], [14.8857354, 120.7866354], [14.8851402, 120.7871843], [14.8849941, 120.7873149], [14.884952, 120.7873544], [14.8848334, 120.7874632], [14.8847207, 120.7875668], [14.8840673, 120.7881454], [14.883987, 120.78822], [14.8843674, 120.78863], [14.8849727, 120.7891218], [14.8851399, 120.7892455], [14.8859113, 120.7904811], [14.8849721, 120.7939806], [14.8862815, 120.7956295], [14.8860127, 120.7958999], [14.8863029, 120.7962718], [14.8867083, 120.796752], [14.8871895, 120.7972143], [14.8874665, 120.7975289], [14.887779, 120.7982367], [14.888011, 120.798541], [14.8895968, 120.7978347], [14.890887, 120.7974545], [14.8911629, 120.7973772], [14.891247, 120.7976624], [14.8913359, 120.7979427], [14.8914266, 120.7982242], [14.8915108, 120.7985181], [14.8922617, 120.7982792], [14.892531, 120.7981802], [14.8926274, 120.7984997]],
+              {"bubblingMouseEvents": true, "color": "dimgray", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "dimgray", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_0f603ebe32f5cdbc2d1c1647f3494912 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_79a44522ec47e64b4d69657f9fc4b811 = $(`<div id="html_79a44522ec47e64b4d69657f9fc4b811" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to GMA Kapuso E.C. (2.76 km)</div>`)[0];
+                popup_0f603ebe32f5cdbc2d1c1647f3494912.setContent(html_79a44522ec47e64b4d69657f9fc4b811);
+            
+        
+
+        ant_path_d7916d1027412a198f54794f27ee0de3.bindPopup(popup_0f603ebe32f5cdbc2d1c1647f3494912)
+        ;
+
+        
+    
+    
+            ant_path_04371efd5e609bdf5f8273001297f10f = L.polyline.antPath(
+              [[14.8785092, 120.7395194], [14.8780131, 120.7397204], [14.8774211, 120.7390157], [14.88376, 120.7325792], [14.884936, 120.7310789], [14.8863245, 120.7313329], [14.8874366, 120.7322771], [14.8874956, 120.7323229], [14.8881087, 120.7326748], [14.8885662, 120.7326951], [14.88861, 120.7326914], [14.8894956, 120.7324963], [14.8895494, 120.7324585], [14.8897969, 120.7322782], [14.8901506, 120.7319403], [14.8911217, 120.7311468], [14.8918794, 120.7312122], [14.8922323, 120.7313074], [14.8936617, 120.731745], [14.894716, 120.7324391], [14.8952884, 120.7330835], [14.8958174, 120.733629], [14.898195, 120.7360235], [14.8999549, 120.7378194], [14.901217, 120.7391078], [14.9013673, 120.7392612], [14.9014743, 120.7393705], [14.9016531, 120.739553], [14.9018919, 120.7397968], [14.9031484, 120.741044], [14.9036697, 120.7415686], [14.9051313, 120.7430396], [14.9074277, 120.7453201], [14.9095159, 120.7474908], [14.9101804, 120.7483396], [14.9110059, 120.7495171], [14.9115129, 120.7503956], [14.9116422, 120.7506118], [14.9117381, 120.750814], [14.9118059, 120.7509207], [14.9120742, 120.7516106], [14.9125215, 120.7529034], [14.9125477, 120.7529851], [14.9128684, 120.7538438], [14.9132898, 120.7559171], [14.9133024, 120.7559967], [14.9136025, 120.7576337], [14.9141367, 120.7574757], [14.9145129, 120.7589132], [14.9146478, 120.7589548], [14.9165864, 120.7615862], [14.9188476, 120.7658474], [14.9206755, 120.7656728], [14.9210024, 120.7656304], [14.922301, 120.7654896], [14.9233594, 120.7653688], [14.9244934, 120.7652626], [14.9247444, 120.7652398], [14.9252085, 120.7651689], [14.9253113, 120.7651411], [14.9254682, 120.7650986], [14.9257555, 120.7649992], [14.925966, 120.7649193], [14.9272903, 120.7643798], [14.9285564, 120.7637967], [14.9287521, 120.7637059], [14.9297235, 120.7632719], [14.9314624, 120.7624285], [14.932818, 120.7613439], [14.9332443, 120.7608284], [14.9332784, 120.7606807], [14.9333856, 120.760126], [14.936763, 120.7562763], [14.9366771, 120.7562382], [14.9355525, 120.7571992], [14.9354048, 120.7570933], [14.9341122, 120.7561267], [14.9302354, 120.7532347], [14.9296975, 120.7528625], [14.9285505, 120.7519424], [14.9215115, 120.7467932], [14.9201015, 120.7456983], [14.9195682, 120.7452178], [14.9175112, 120.7432357], [14.9169369, 120.74267]],
+              {"bubblingMouseEvents": true, "color": "teal", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "teal", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_202fbc56b6a89c9f7d132787d62f0bb8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a4c28787c5a0ec480c88c9ebe09025fc = $(`<div id="html_a4c28787c5a0ec480c88c9ebe09025fc" style="width: 100.0%; height: 100.0%;">Route from San Jose to San Miguel Meysulao High School (12.40 km)</div>`)[0];
+                popup_202fbc56b6a89c9f7d132787d62f0bb8.setContent(html_a4c28787c5a0ec480c88c9ebe09025fc);
+            
+        
+
+        ant_path_04371efd5e609bdf5f8273001297f10f.bindPopup(popup_202fbc56b6a89c9f7d132787d62f0bb8)
+        ;
+
+        
+    
+    
+            ant_path_4106f140ec0bc53ff27cc611c1a724b4 = L.polyline.antPath(
+              [[14.898195, 120.7360235], [14.8999549, 120.7378194], [14.901217, 120.7391078], [14.9013673, 120.7392612], [14.9014743, 120.7393705], [14.9016531, 120.739553], [14.9018919, 120.7397968], [14.9031484, 120.741044], [14.9036697, 120.7415686], [14.9051313, 120.7430396], [14.9074277, 120.7453201], [14.9095159, 120.7474908], [14.9101804, 120.7483396], [14.9110059, 120.7495171], [14.9115129, 120.7503956], [14.9116422, 120.7506118], [14.9117381, 120.750814], [14.9118059, 120.7509207], [14.9120742, 120.7516106], [14.9125215, 120.7529034], [14.9125477, 120.7529851], [14.9128684, 120.7538438], [14.9132898, 120.7559171], [14.9133024, 120.7559967], [14.9136025, 120.7576337], [14.9138243, 120.759], [14.9138982, 120.7593845], [14.9140104, 120.7599691], [14.9140428, 120.7601446], [14.9141424, 120.760693], [14.9141617, 120.760845], [14.9142977, 120.7617806]],
+              {"bubblingMouseEvents": true, "color": "blue", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_24beb7b6499f7653a4fa3e01a09ed3d9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1294620d3bb2be12584c7b5611cb2928 = $(`<div id="html_1294620d3bb2be12584c7b5611cb2928" style="width: 100.0%; height: 100.0%;">Route from Santa Lucia to Balungao E.C. (3.41 km)</div>`)[0];
+                popup_24beb7b6499f7653a4fa3e01a09ed3d9.setContent(html_1294620d3bb2be12584c7b5611cb2928);
+            
+        
+
+        ant_path_4106f140ec0bc53ff27cc611c1a724b4.bindPopup(popup_24beb7b6499f7653a4fa3e01a09ed3d9)
+        ;
+
+        
+    
+    
+            ant_path_d0e95be9695bfbe8cda4f91134fcaa90 = L.polyline.antPath(
+              [[14.8939904, 120.7908812], [14.8934403, 120.7905483], [14.8909026, 120.7907805], [14.889126, 120.7922571], [14.8884975, 120.7925291], [14.8878034, 120.7912097], [14.8874273, 120.7905438], [14.8872642, 120.7902748], [14.8848334, 120.7874632], [14.8847207, 120.7875668], [14.8840673, 120.7881454], [14.883987, 120.78822], [14.8843674, 120.78863], [14.8849727, 120.7891218], [14.8851399, 120.7892455], [14.8859113, 120.7904811], [14.8849721, 120.7939806], [14.8862815, 120.7956295], [14.8860127, 120.7958999], [14.8863029, 120.7962718], [14.8867083, 120.796752], [14.8871895, 120.7972143], [14.8874665, 120.7975289], [14.887779, 120.7982367], [14.888011, 120.798541], [14.8895968, 120.7978347], [14.890887, 120.7974545], [14.8911629, 120.7973772], [14.891247, 120.7976624], [14.8913359, 120.7979427], [14.8914266, 120.7982242], [14.8915108, 120.7985181], [14.8922617, 120.7982792], [14.892531, 120.7981802], [14.8926274, 120.7984997]],
+              {"bubblingMouseEvents": true, "color": "green", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+        ).addTo(feature_group_7ca8ffc6132d853ec7e98fbcb73080c3);
+        
+    
+        var popup_5ed2d35d00ecfcf2c94b9f632beb706f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f6d4659dfe3f50ce0659acad000f2bda = $(`<div id="html_f6d4659dfe3f50ce0659acad000f2bda" style="width: 100.0%; height: 100.0%;">Route from Sergio Bayan to GMA Kapuso E.C. (3.56 km)</div>`)[0];
+                popup_5ed2d35d00ecfcf2c94b9f632beb706f.setContent(html_f6d4659dfe3f50ce0659acad000f2bda);
+            
+        
+
+        ant_path_d0e95be9695bfbe8cda4f91134fcaa90.bindPopup(popup_5ed2d35d00ecfcf2c94b9f632beb706f)
+        ;
+
+        
+    
+    
+            feature_group_7ca8ffc6132d853ec7e98fbcb73080c3.addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var feature_group_1a6609c68f430cf397cccf50fce79490 = L.featureGroup(
+                {}
+            );
+        
+    
+            ant_path_41a52771788c582391c4c6a86b255c5c = L.polyline.antPath(
+              [[14.8956, 120.7855], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "darkorange", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkorange", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_536a4112e00722897893cb52c259bf0e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_87bde2cd94a92e71b84cdd23ee57690c = $(`<div id="html_87bde2cd94a92e71b84cdd23ee57690c" style="width: 100.0%; height: 100.0%;">Route from Balite to San Miguel Meysulao High School (9.44 km)</div>`)[0];
+                popup_536a4112e00722897893cb52c259bf0e.setContent(html_87bde2cd94a92e71b84cdd23ee57690c);
+            
+        
+
+        ant_path_41a52771788c582391c4c6a86b255c5c.bindPopup(popup_536a4112e00722897893cb52c259bf0e)
+        ;
+
+        
+    
+    
+            ant_path_25ae03d209c2c87101a8ffd63ea99e58 = L.polyline.antPath(
+              [[14.9143, 120.7622], [14.917701586824, 120.743048619728]],
+              {"bubblingMouseEvents": true, "color": "indigo", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "indigo", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_5fca73e244e6233912d11fe3e6c3d860 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9b1f2060be47fbc164aa7207796d9f91 = $(`<div id="html_9b1f2060be47fbc164aa7207796d9f91" style="width: 100.0%; height: 100.0%;">Route from Balungao to Doña Damiana Elem School (5.96 km)</div>`)[0];
+                popup_5fca73e244e6233912d11fe3e6c3d860.setContent(html_9b1f2060be47fbc164aa7207796d9f91);
+            
+        
+
+        ant_path_25ae03d209c2c87101a8ffd63ea99e58.bindPopup(popup_5fca73e244e6233912d11fe3e6c3d860)
+        ;
+
+        
+    
+    
+            ant_path_ed4930af1659683ad3185440732eb4ea = L.polyline.antPath(
+              [[14.8845, 120.7838], [14.9087960788938, 120.742261855893]],
+              {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_d7a366738decfb4732981fb8d410f2f3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_576352d15957427db0e4792aee56361e = $(`<div id="html_576352d15957427db0e4792aee56361e" style="width: 100.0%; height: 100.0%;">Route from Calumpang to Barangay Hall Bulusan (7.31 km)</div>`)[0];
+                popup_d7a366738decfb4732981fb8d410f2f3.setContent(html_576352d15957427db0e4792aee56361e);
+            
+        
+
+        ant_path_ed4930af1659683ad3185440732eb4ea.bindPopup(popup_d7a366738decfb4732981fb8d410f2f3)
+        ;
+
+        
+    
+    
+            ant_path_ec952a14c064383820603240a511859f = L.polyline.antPath(
+              [[14.9153, 120.7532], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "darkorange", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkorange", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_d9f2cb25c60dc331b01dfb2c1fbaf5b8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6ea49274794b37689af1be6deb553a08 = $(`<div id="html_6ea49274794b37689af1be6deb553a08" style="width: 100.0%; height: 100.0%;">Route from Frances to San Miguel Meysulao High School (5.97 km)</div>`)[0];
+                popup_d9f2cb25c60dc331b01dfb2c1fbaf5b8.setContent(html_6ea49274794b37689af1be6deb553a08);
+            
+        
+
+        ant_path_ec952a14c064383820603240a511859f.bindPopup(popup_d9f2cb25c60dc331b01dfb2c1fbaf5b8)
+        ;
+
+        
+    
+    
+            ant_path_c834d1a95c8261b6ba8c58046be789bb = L.polyline.antPath(
+              [[14.9218, 120.7685], [14.9176780529243, 120.767878787289]],
+              {"bubblingMouseEvents": true, "color": "darkred", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkred", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_2a2480c612d4f9bbf5e293f85800f857 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5a04f9ffe1ba8a6930c99f1db40d47c9 = $(`<div id="html_5a04f9ffe1ba8a6930c99f1db40d47c9" style="width: 100.0%; height: 100.0%;">Route from Gatbuca to F. Mendoza Memorial Elem Sch. (1.05 km)</div>`)[0];
+                popup_2a2480c612d4f9bbf5e293f85800f857.setContent(html_5a04f9ffe1ba8a6930c99f1db40d47c9);
+            
+        
+
+        ant_path_c834d1a95c8261b6ba8c58046be789bb.bindPopup(popup_2a2480c612d4f9bbf5e293f85800f857)
+        ;
+
+        
+    
+    
+            ant_path_63c2bfd9a9a1ccd04ba0c5d913859cf9 = L.polyline.antPath(
+              [[14.8748, 120.7866], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "darkorange", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkorange", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_b3a7f7fddb9711d64b6049a581f9382a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7eef2ca81752a2682e04015681c8f739 = $(`<div id="html_7eef2ca81752a2682e04015681c8f739" style="width: 100.0%; height: 100.0%;">Route from Longos to San Miguel Meysulao High School (11.11 km)</div>`)[0];
+                popup_b3a7f7fddb9711d64b6049a581f9382a.setContent(html_7eef2ca81752a2682e04015681c8f739);
+            
+        
+
+        ant_path_63c2bfd9a9a1ccd04ba0c5d913859cf9.bindPopup(popup_b3a7f7fddb9711d64b6049a581f9382a)
+        ;
+
+        
+    
+    
+            ant_path_f924bbcba34c362e1c5b7c3659aadd0a = L.polyline.antPath(
+              [[14.8994, 120.7756], [14.9176780529243, 120.767878787289]],
+              {"bubblingMouseEvents": true, "color": "darkred", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkred", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_36846a5b3d3a43f9455a6959adf5289f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4818afef49458f48f50f9c3896fee5c1 = $(`<div id="html_4818afef49458f48f50f9c3896fee5c1" style="width: 100.0%; height: 100.0%;">Route from Palimbang to F. Mendoza Memorial Elem Sch. (2.74 km)</div>`)[0];
+                popup_36846a5b3d3a43f9455a6959adf5289f.setContent(html_4818afef49458f48f50f9c3896fee5c1);
+            
+        
+
+        ant_path_f924bbcba34c362e1c5b7c3659aadd0a.bindPopup(popup_36846a5b3d3a43f9455a6959adf5289f)
+        ;
+
+        
+    
+    
+            ant_path_d3ccf4d1d217bbdd6f48801280b6dc15 = L.polyline.antPath(
+              [[14.8761, 120.738], [14.9136800407707, 120.755871075221]],
+              {"bubblingMouseEvents": true, "color": "darkgoldenrod", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkgoldenrod", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_de75d83b91613af54e223b29ea269755 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a622e2cf8e63beb69b9fbc3161be6bc5 = $(`<div id="html_a622e2cf8e63beb69b9fbc3161be6bc5" style="width: 100.0%; height: 100.0%;">Route from Panducot to Calizon Dike (6.11 km)</div>`)[0];
+                popup_de75d83b91613af54e223b29ea269755.setContent(html_a622e2cf8e63beb69b9fbc3161be6bc5);
+            
+        
+
+        ant_path_d3ccf4d1d217bbdd6f48801280b6dc15.bindPopup(popup_de75d83b91613af54e223b29ea269755)
+        ;
+
+        
+    
+    
+            ant_path_259b3f6d8946da3e29e2dce9146741af = L.polyline.antPath(
+              [[14.8881, 120.7855], [14.8930053477281, 120.799658008805]],
+              {"bubblingMouseEvents": true, "color": "maroon", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "maroon", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_3826bf1a4a83d4a87dd1ee28276dcd82 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0ee889e4eded51c42c806a65787187f6 = $(`<div id="html_0ee889e4eded51c42c806a65787187f6" style="width: 100.0%; height: 100.0%;">Route from Pio Cruzcosa to GMA Kapuso E.C. (2.76 km)</div>`)[0];
+                popup_3826bf1a4a83d4a87dd1ee28276dcd82.setContent(html_0ee889e4eded51c42c806a65787187f6);
+            
+        
+
+        ant_path_259b3f6d8946da3e29e2dce9146741af.bindPopup(popup_3826bf1a4a83d4a87dd1ee28276dcd82)
+        ;
+
+        
+    
+    
+            ant_path_8f37879268672087ac3fabf82385f180 = L.polyline.antPath(
+              [[14.8838, 120.7395], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "darkorange", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkorange", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_b52ba9c42b77deb5f36068f61970bd19 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_18492fe016bbad551ee0766197ef4948 = $(`<div id="html_18492fe016bbad551ee0766197ef4948" style="width: 100.0%; height: 100.0%;">Route from San Jose to San Miguel Meysulao High School (12.40 km)</div>`)[0];
+                popup_b52ba9c42b77deb5f36068f61970bd19.setContent(html_18492fe016bbad551ee0766197ef4948);
+            
+        
+
+        ant_path_8f37879268672087ac3fabf82385f180.bindPopup(popup_b52ba9c42b77deb5f36068f61970bd19)
+        ;
+
+        
+    
+    
+            ant_path_fbc4d24b6e62980f4b10a5466f7e20bc = L.polyline.antPath(
+              [[14.8982, 120.736], [14.9148551401837, 120.761492937455]],
+              {"bubblingMouseEvents": true, "color": "darkgreen", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "darkgreen", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_328b2c6b8b2cf018cfc59c02d1dcfd94 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_614bcf402d4957ed79a47cc14c0e8c6a = $(`<div id="html_614bcf402d4957ed79a47cc14c0e8c6a" style="width: 100.0%; height: 100.0%;">Route from Santa Lucia to Balungao E.C. (3.41 km)</div>`)[0];
+                popup_328b2c6b8b2cf018cfc59c02d1dcfd94.setContent(html_614bcf402d4957ed79a47cc14c0e8c6a);
+            
+        
+
+        ant_path_fbc4d24b6e62980f4b10a5466f7e20bc.bindPopup(popup_328b2c6b8b2cf018cfc59c02d1dcfd94)
+        ;
+
+        
+    
+    
+            ant_path_010bfa8ac20c205ec2f39f896a08f16a = L.polyline.antPath(
+              [[14.894, 120.7909], [14.8930053477281, 120.799658008805]],
+              {"bubblingMouseEvents": true, "color": "maroon", "dashArray": [10, 20], "dashOffset": null, "delay": 800, "fill": false, "fillColor": "maroon", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_1a6609c68f430cf397cccf50fce79490);
+        
+    
+        var popup_d7bf6024d5868e7a344f506a253efcfa = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cd6de381e8becc10f45a87982ccef08a = $(`<div id="html_cd6de381e8becc10f45a87982ccef08a" style="width: 100.0%; height: 100.0%;">Route from Sergio Bayan to GMA Kapuso E.C. (3.56 km)</div>`)[0];
+                popup_d7bf6024d5868e7a344f506a253efcfa.setContent(html_cd6de381e8becc10f45a87982ccef08a);
+            
+        
+
+        ant_path_010bfa8ac20c205ec2f39f896a08f16a.bindPopup(popup_d7bf6024d5868e7a344f506a253efcfa)
+        ;
+
+        
+    
+    
+            feature_group_1a6609c68f430cf397cccf50fce79490.addTo(map_6045983b68014801ca0c36cff757677f);
+        
+    
+            var layer_control_9f81b4eb0d1e7894c5a0cee0e44fde83_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_7fcb88e2890c2383f56d61523496d0c3,
+                },
+                overlays :  {
+                    "Route Path" : feature_group_7ca8ffc6132d853ec7e98fbcb73080c3,
+                    "Straight Path" : feature_group_1a6609c68f430cf397cccf50fce79490,
+                },
+            };
+            let layer_control_9f81b4eb0d1e7894c5a0cee0e44fde83 = L.control.layers(
+                layer_control_9f81b4eb0d1e7894c5a0cee0e44fde83_layers.base_layers,
+                layer_control_9f81b4eb0d1e7894c5a0cee0e44fde83_layers.overlays,
+                {"autoZIndex": true, "collapsed": false, "position": "topright"}
+            ).addTo(map_6045983b68014801ca0c36cff757677f);
+
+        
 </script>
 </html>

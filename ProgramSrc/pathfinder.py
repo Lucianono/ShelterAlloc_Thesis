@@ -7,7 +7,6 @@ import osmnx as ox
 import folium
 import networkx as nx
 from math import radians, cos, sin, sqrt, atan2
-from optimizedRouting import run_optimization
 
 class PathfindingWorker(QObject):
     finished = Signal()
@@ -145,8 +144,6 @@ class PathfindingWorker(QObject):
         distance_matrix.index.name = 'Shelters'
         distance_matrix.to_excel(excel_name)
         self.progress.emit(f"Distance matrix saved as {excel_name}")
-
-        run_optimization()
 
 
 

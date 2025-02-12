@@ -1,11 +1,11 @@
-Generation when solution last updated : 87
-Time run : 0 minutes and 1.52 seconds
+Generation when solution last updated : 65
+Time run : 0 minutes and 0.31 seconds
 
 === SHELTER DETAILS ===
-Number of all shelters : 22
-Number of opened shelters : 10
-Cost of all level 1 shelters : 70
-Cost of opened shelters : 70
+Number of all shelters : 8
+Number of opened shelters : 5
+Cost of all level 1 shelters : 0
+Cost of opened shelters : 0
 === GENETIC ALGORITHM PARAMETERS ===
 Number of generations : 100
 Number of population per generation : 20
@@ -14,11 +14,11 @@ Mutation rate : 0.1
 Weight of Distance : 0.5
 Weight of Cost : 0.5
 Area per Individual : 1.0
-Set number of max shelters : 10
-Set number of max level 2 shelters : 10
+Set number of max shelters : 8
+Set number of max level 2 shelters : 8
 === REPORT and USER DETAILS ===
-MAC Address : 2c:f0:5d:a5:98:9c
-PC Username : Elijah
-Local IP Address : 26.145.184.27
-Public IP Address : 120.29.69.159
-Time of report generation : 2025-02-12 01:34:14
+MAC Address : d8:43:ae:27:1c:03
+PC Username : USER
+Local IP Address : 192.168.254.191
+Public IP Address : 120.28.251.112
+Time of report generation : 2025-02-12 08:43:12

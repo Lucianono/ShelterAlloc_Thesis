@@ -303,9 +303,9 @@ class Ui_entityManagementShelter(object):
         ___qtablewidgetitem = self.shelterInfo_table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("entityManagementShelter", u"Name", None));
         ___qtablewidgetitem1 = self.shelterInfo_table.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("entityManagementShelter", u"xDegrees", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("entityManagementShelter", u"Latitude", None));
         ___qtablewidgetitem2 = self.shelterInfo_table.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("entityManagementShelter", u"yDegrees", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("entityManagementShelter", u"Longitude", None));
         ___qtablewidgetitem3 = self.shelterInfo_table.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("entityManagementShelter", u"Area1", None));
         ___qtablewidgetitem4 = self.shelterInfo_table.horizontalHeaderItem(4)

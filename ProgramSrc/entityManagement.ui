@@ -285,12 +285,12 @@ QTableWidget::item:selected {
         </column>
         <column>
          <property name="text">
-          <string>xDegrees</string>
+          <string>Latitude</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>yDegrees</string>
+          <string>Longitude</string>
          </property>
         </column>
         <column>

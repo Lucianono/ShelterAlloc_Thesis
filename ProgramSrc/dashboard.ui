@@ -132,8 +132,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>319</width>
-            <height>694</height>
+            <width>348</width>
+            <height>712</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -900,7 +900,7 @@ QStackedWidget{
             <enum>QFrame::Plain</enum>
            </property>
            <property name="currentIndex">
-            <number>0</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="page">
             <property name="sizePolicy">
@@ -1094,7 +1094,7 @@ QStackedWidget{
                      <number>10000</number>
                     </property>
                     <property name="text">
-                     <string>yDegrees</string>
+                     <string>Longitude</string>
                     </property>
                    </widget>
                   </item>
@@ -1216,7 +1216,7 @@ QStackedWidget{
                      <number>10000</number>
                     </property>
                     <property name="text">
-                     <string>xDegrees</string>
+                     <string>Latitude</string>
                     </property>
                    </widget>
                   </item>
@@ -1487,7 +1487,7 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>377</width>
+                  <width>371</width>
                   <height>750</height>
                  </rect>
                 </property>
@@ -1756,7 +1756,7 @@ QPushButton:pressed {
                          <number>10000</number>
                         </property>
                         <property name="text">
-                         <string>xDegrees</string>
+                         <string>Latitude</string>
                         </property>
                        </widget>
                       </item>
@@ -1882,7 +1882,7 @@ QPushButton:pressed {
                          <number>10000</number>
                         </property>
                         <property name="text">
-                         <string>yDegrees</string>
+                         <string>Longitude</string>
                         </property>
                        </widget>
                       </item>

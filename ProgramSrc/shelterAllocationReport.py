@@ -27,13 +27,13 @@ class ShelterAllocationReport(QDialog):
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
-        self.ui.pushButton_2.clicked.connect(lambda: self.save_report("allocation_results.xlsx"))
+        self.ui.pushButton_2.clicked.connect(self.save_report)
         self.ui.pushButton_3.clicked.connect(self.show_more_details)
 
         self.load_table_data("allocation_results.xlsx")
         self.reload_label()
 
-    def save_report(self,file_name):
+    def save_report(self):
 
 
         # Save DataFrame to an in-memory buffer
@@ -48,9 +48,14 @@ class ShelterAllocationReport(QDialog):
         ws4 = wb["Shelter Data"]
 
         # 1st sheet
-        df = pd.read_excel(file_name,header=0)
+        df = pd.read_excel("allocation_results.xlsx",header=0)
+        df2 = pd.read_excel("modelCommData.xlsx",usecols=["Name","xDegrees","yDegrees"],header=0)
+        df3 = pd.read_excel("modelShelData.xlsx",usecols=["Name","xDegrees","yDegrees"],header=0)
+        merged_df = df.merge(df2, left_on="Community Name", right_on="Name", how="inner").merge(df3, left_on="Shelter Assigned", right_on="Name", how="inner")
+        selected_df = merged_df[["Community Name", "Allocated Population" , "xDegrees_x", "yDegrees_y", "Shelter Assigned", "Shelter Level", "xDegrees_y", "yDegrees_y"]]
+
         start_row = 5
-        for row_idx, row_data in df.iterrows():
+        for row_idx, row_data in selected_df.iterrows():
             for col_idx, value in enumerate(row_data, start=1):
                 ws1.cell(row=row_idx+start_row, column=col_idx, value=value)
 

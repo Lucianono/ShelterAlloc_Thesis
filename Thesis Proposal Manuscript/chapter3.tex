@@ -329,6 +329,8 @@
 				networkx               & 3.3      & Creates and computes complex graphs such as road networks\\ \hline
 				scikit-learn               & 1.5.2      & Provides simple machine learning tools and functions\\ \hline
 				numpy               & 1.26.4     & Generates non probabilistic numbers \\ \hline
+				msoffcrypto-tool & 5.4.2     & Encrypts and decrypts excel files \\ \hline
+				XlsxWriter & 3.2.2     & Edits and writes excel contents \\ \hline
 				
 			\end{tabular}
 		}
@@ -376,15 +378,15 @@
 				\textbf{Variable} & \textbf{Source} & \textbf{Description} \\ \hline
 				\multicolumn{3}{|c|}{\textit{\textbf{Community}}}\\ \hline
 				Name & LGU interview & Identity of a community \\ \hline
-				xDegrees & Google Map \& LGU interview & Longitudinal coordinates \\ \hline
-				yDegrees & Google Map \& LGU interview & Latitudinal coordinates \\ \hline
+				Longitude & Google Map \& LGU interview & Longitudinal coordinates \\ \hline
+				Latitude & Google Map \& LGU interview & Latitudinal coordinates \\ \hline
 				Population & Philippine Atlas (2020 population) & Number of individuals living in a community \\ \hline
 				AffectedPop & LGU interview (Typhoon Karina 2024) & Number of individuals affected during a disaster \\ \hline
 				MaxDistance & Maximum distance generated in distance calculation & Distance allowed to travel by a community \\ \hline
 				\multicolumn{3}{|c|}{\textit{\textbf{Shelter}}} \\ \hline
 				Name & LGU interview & Identity of a shelter \\ \hline
-				xDegrees & Google Map \& LGU interview & Longitudinal coordinates \\ \hline
-				yDegrees & Google Map \& LGU interview & Latitudinal coordinates \\ \hline
+				Longitude & Google Map \& LGU interview & Longitudinal coordinates \\ \hline
+				Latitude & Google Map \& LGU interview & Latitudinal coordinates \\ \hline
 				Area1 & Google Map & Lot area of a shelter (level 1) \\ \hline
 				Cost1 & Assumed 0 since the shelter is already built & Cost for constructing/maintaining a shelter with Area1 \\ \hline
 				Area2 & Assumed Area1 * 2 & Lot area of a shelter (level 2) \\ \hline
@@ -444,13 +446,15 @@
 	\textit{Safety.} This will evaluate the system's ability ensures it does not expose any potential harm to the users and communities. The questionnaire will assess whether the shelter allocation outputs prioritize safe locations, avoiding disaster-prone areas such as flood zones, landslide-prone areas, or unsafe structures. This includes also evaluating the accuracy of the system's data to prevent errors that might jeopardize users.
 
 \subsection{Population and Sample}
-	The population of this study will consist of end-users and IT experts. For end-users,  MDRRMO and MSWDO of the municipality of Calumpit. Meanwhile for IT experts, CICT professors from Bulacan State University.  The diversity of perspective of these are important for the comprehensive evaluation of the system’s acceptability.
+	The population of this study will consist of end-users and IT experts. For end-users,  MDRRMO and MSWDO of the municipality of Calumpit. Meanwhile for IT experts, includes CICT professors from Bulacan State University, and someone who have experience in developing a system.  The diversity of perspective of these are important for the comprehensive evaluation of the system’s acceptability.
 	
 	\textbf{MDRRMO:} The staff consists of Municipal Disaster Risk Reduction Management Office, who are responsible for formulating and implementing the province's disaster risk reduction plan.  Their insights are vital for understanding the operational requirements considerations for implementing the shelter location allocation system, ensuring it aligns with established disaster response protocols and local needs.
 	
 	\textbf{MSWDO:} The Municipal Social Welfare and Development Office plays a key role in managing the evacuation and welfare of the communities during disasters. Their expertise is essential in ensuring that the shelter allocation system aligns with evacuees' specific needs, such as accessibility and capacity to the shelter location allocation across the province. Their input will help tailor the system to address the welfare requirements of evacuee management during emergencies.
 	
 	\textbf{CICT professors:} Coming from the College of Information and Communication Technology, professors have significant academic background and experience to technologies. This part of population will assess the system's performance and functionality with the help of their knowledge and expertise.
+	
+	\textbf{System Developers:} Experts with extensive experience in system development play an important role in project evaluation. They are commonly found in businesses that design, propose, and develop systems for their clients. Their expertise enables them to understand and address real-world client requirements, guiding the system to be acceptable to users.
 	
 	The sampling technique that will be utilized for end-users is Stratified Sampling Technique, where the population is divided into a respective groups or strata, where in this study, our stratum is the MDRRMO and MSWDO. This ensures comprehensive representation, to capture the perspectives of different stakeholder groups proportionately. The sample size of end-users will be computed using G*Power, a statistical software tool. With a confidence level of 95\% or 0.05 margin of error, the sample size would be 23. Since the sample size would be much smaller than the population size, then conducting system evaluation would be feasible.
 	

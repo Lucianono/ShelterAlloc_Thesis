@@ -1,5 +1,5 @@
 import sys
-from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QInputDialog, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QTextEdit
+from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QInputDialog, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QTextEdit,QLineEdit
 from PySide6.QtGui import QIcon, QCursor
 from PySide6.QtCore import Qt, QUrl, QThread
 from PySide6.QtWebEngineWidgets import QWebEngineView
@@ -16,7 +16,7 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill, Font
 
 class ShelterAllocationReport(QDialog):
-    def __init__(self):
+    def __init__(self,show_Save_btn = True):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_ShelterAllocationReport()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
@@ -32,6 +32,9 @@ class ShelterAllocationReport(QDialog):
 
         self.load_table_data("allocation_results.xlsx")
         self.reload_label()
+
+        if not show_Save_btn:
+            self.ui.pushButton_2.hide()
 
     def save_report(self):
 
@@ -51,8 +54,8 @@ class ShelterAllocationReport(QDialog):
         df = pd.read_excel("allocation_results.xlsx",header=0)
         df2 = pd.read_excel("modelCommData.xlsx",usecols=["Name","xDegrees","yDegrees"],header=0)
         df3 = pd.read_excel("modelShelData.xlsx",usecols=["Name","xDegrees","yDegrees"],header=0)
-        merged_df = df.merge(df2, left_on="Community Name", right_on="Name", how="inner").merge(df3, left_on="Shelter Assigned", right_on="Name", how="inner")
-        selected_df = merged_df[["Community Name", "Allocated Population" , "xDegrees_x", "yDegrees_y", "Shelter Assigned", "Shelter Level", "xDegrees_y", "yDegrees_y"]]
+        merged_df = df.merge(df2, left_on="Community", right_on="Name", how="inner").merge(df3, left_on="Shelter Assigned", right_on="Name", how="inner")
+        selected_df = merged_df[["Community", "Allocated Population" , "xDegrees_x", "yDegrees_y", "Shelter Assigned", "Level", "xDegrees_y", "yDegrees_y"]]
 
         start_row = 5
         for row_idx, row_data in selected_df.iterrows():
@@ -71,7 +74,6 @@ class ShelterAllocationReport(QDialog):
             ws2.insert_rows(start_row)
 
             if "=" in row_data:
-                row_data = row_data.replace("=", "")
                 ws2.cell(row=start_row, column=1).fill = PatternFill(start_color="548235", end_color="548235", fill_type="solid") 
                 ws2.cell(row=start_row, column=1).font = Font(color="ffffff", bold=True)
 
@@ -110,7 +112,7 @@ class ShelterAllocationReport(QDialog):
             response = QMessageBox.question(self, "Save Report", "Do you want to protect this report?", QMessageBox.Yes | QMessageBox.No)
             if response == QMessageBox.Yes:
 
-                text, ok = QInputDialog().getText(self, "Protect report","Enter password:")
+                text, ok = QInputDialog().getText(self, "Protect report","Enter password:",QLineEdit.Password)
                 if ok and text:
                     password = text
                     # Encrypt and save the file
@@ -150,7 +152,7 @@ class ShelterAllocationReport(QDialog):
                 return
 
             # Sort and group by 'Shelter Allocated' and 'Level'
-            df = df.sort_values(by=["Shelter Assigned", "Shelter Level"])
+            df = df.sort_values(by=["Shelter Assigned", "Level"])
 
             self.ui.tableWidget.setRowCount(df.shape[0])  # Set number of rows
             self.ui.tableWidget.setColumnCount(4)  # Ensure 3 columns

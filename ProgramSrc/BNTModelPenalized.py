@@ -387,10 +387,10 @@ class BNTModelSimulation:
                 
                 # Append data
                 data.append({
-                    "Community Name": community["name"],
+                    "Community": community["name"],
                     "Allocated Population": community["population"],
                     "Shelter Assigned": shelter_name,
-                    "Shelter Level": allocation["shelterlvl"][shelter_name]
+                    "Level": allocation["shelterlvl"][shelter_name]
                 })
             
             # Create a DataFrame and export to Excel
@@ -413,16 +413,11 @@ class BNTModelSimulation:
             print("No solution exists")
             exit()
 
-        infeasibility_ctr = 0
         generation_last_updated = 0
 
         for _ in range(num_solutions):
             solution = spawn()
-
-
-            fitnessVal = fitness(solution)
             solutions.append(solution)
-            infeasibility_ctr = 0
 
         # generations
         for generation in range(num_generations):
@@ -515,7 +510,7 @@ class BNTModelSimulation:
         
         # Cost rate generator
         #new-old / old
-        cost_comparison_analysis = ""
+        cost_comparison_analysis = "-"
         if cost_of_all_lvl1_shelter() > 0:
             cost_diff_rate = (cost_of_open_shelter(best_allocation) - cost_of_all_lvl1_shelter()) / cost_of_all_lvl1_shelter()
             if cost_diff_rate < 0:    
@@ -538,22 +533,22 @@ class BNTModelSimulation:
             f"Generation when solution last updated : {generation_last_updated}",
             f"Time run : {minutes} minutes and {seconds:.2f} seconds",
             cost_comparison_analysis,
-            "=== SHELTER DETAILS ===",
+            "--- SHELTER DETAILS ---",
             f"Number of all shelters : {sum(1 for shelter in Shelters)}",
             f"Number of opened shelters : {sum(1 for shelter in set(best_allocation['initial'].values()))}",
             f"Cost of all level 1 shelters : {cost_of_all_lvl1_shelter()}",
             f"Cost of opened shelters : {cost_of_open_shelter(best_allocation)}",
-            "=== GENETIC ALGORITHM PARAMETERS ===",
+            "--- GENETIC ALGORITHM PARAMETERS ---",
             f"Number of generations : {num_generations}",
             f"Number of population per generation : {num_solutions}",
             f"Mutation rate : {mutation_rate}",
-            "=== MODEL PARAMETERS ===",
+            "--- MODEL PARAMETERS ---",
             f"Weight of Distance : {weight_dist}",
             f"Weight of Cost : {weight_cost}",
             f"Area per Individual : {area_per_individual}",
             f"Set number of max shelters : {max_shelters}",
             f"Set number of max level 2 shelters : {max_lvl2_shelters}",
-            "=== REPORT and USER DETAILS ===",
+            "--- REPORT and USER DETAILS ---",
             f"MAC Address : {mac_address}",
             f"PC Username : {username}",
             f"Local IP Address : {local_ip}",

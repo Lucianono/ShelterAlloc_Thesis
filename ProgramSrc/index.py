@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QLabel, QMainWindow, QMenu, QDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
+from PySide6.QtWidgets import QLabel, QMainWindow, QMenu, QDialog, QInputDialog, QFileDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
 from PySide6.QtGui import QAction, QColor, QIcon, QCursor, QPixmap
 from PySide6.QtCore import Qt, QUrl, QTimer, QSize, QRect, QPropertyAnimation
 from PySide6.QtWebEngineWidgets import QWebEngineView
@@ -10,6 +10,9 @@ from entityManagementComm import EntityManagementComm
 from entityManagementShelter import EntityManagementShelter
 from helpDialog import helpDialog
 from folium.plugins import MousePosition
+from optimizedRouting import run_optimization
+from shelterAllocationReport import ShelterAllocationReport
+import msoffcrypto
 import pandas as pd
 import os
 import sys
@@ -49,6 +52,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.marker_comboBox.currentIndexChanged.connect(self.refresh_map)
 
         self.help_btn.clicked.connect(self.open_help_dialog_page)
+        self.reports_btn.clicked.connect(self.open_reports)
         
         # swap checkboxes to switches
         self.switch_1 = self.add_switch(self.checkBox_15)
@@ -764,3 +768,63 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to update map: {e}")
 
+    def open_reports(self):
+        try:
+
+    
+            file_path, _ = QFileDialog.getOpenFileName(self, "Select Excel File", "", "Excel Files (*.xls *.xlsx)")
+            if file_path:
+                decrypted = io.BytesIO()
+
+                # Try opening the file
+                with open(file_path, "rb") as f:
+                    office_file = msoffcrypto.OfficeFile(f)
+                    
+                    if office_file.is_encrypted():  # Check if password is required
+                        password, ok = QInputDialog.getText(self, "Password Required", "Enter password:", QLineEdit.Password)
+                        if not ok or not password:
+                            QMessageBox.warning(self, "Error", "No password entered.")
+                            return
+                        
+                        try:
+                            office_file.load_key(password=password)
+                            office_file.decrypt(decrypted)
+                            decrypted.seek(0)
+                        except Exception as e:
+                            QMessageBox.warning(self, "Error", f"Invalid password: {str(e)}")
+                            return
+                        
+                    else:
+                        decrypted = file_path
+
+
+            #allocation_results.xlsx
+            data = pd.read_excel(decrypted,sheet_name="Shelter Location-Allocation", usecols = ["Community","Allocated Population","Shelter Assigned","Level"], header=3).fillna("")
+            output_file = os.path.join(os.getcwd(), "allocation_results.xlsx")
+            data.to_excel(output_file, index=False)
+
+            #modelCommData.xlsx
+            data = pd.read_excel(decrypted,sheet_name="Community Data", header=0).fillna("")
+            output_file = os.path.join(os.getcwd(), "modelCommData.xlsx")
+            data.to_excel(output_file, index=False)
+
+            #modelShelData.xlsx
+            data = pd.read_excel(decrypted,sheet_name="Shelter Data", header=0).fillna("")
+            output_file = os.path.join(os.getcwd(), "modelShelData.xlsx")
+            data.to_excel(output_file, index=False)
+
+            #modelPerformanceResult.txt
+            data = pd.read_excel(decrypted,sheet_name="Report Analysis", header=1).fillna("")
+            output_file = os.path.join(os.getcwd(), "modelPerformanceResult.txt")
+            data.to_csv(output_file, index=False, sep='\t')
+
+            #optimized-routes-map.html
+            run_optimization()
+
+            self.report_Window = ShelterAllocationReport(False)
+            self.report_Window.show()
+
+
+
+        except Exception as e :
+            QMessageBox.critical(self, "Error", f"Failed to open file: {e}")

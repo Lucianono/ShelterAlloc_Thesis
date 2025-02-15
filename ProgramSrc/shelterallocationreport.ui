@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>700</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>1000</width>
-    <height>700</height>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
-    <height>700</height>
+    <width>1002</width>
+    <height>600</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -62,7 +62,7 @@ background-color: white;
        <property name="minimumSize">
         <size>
          <width>1000</width>
-         <height>100</height>
+         <height>75</height>
         </size>
        </property>
        <property name="maximumSize">
@@ -194,8 +194,8 @@ background-color: white;
          </property>
          <property name="minimumSize">
           <size>
-           <width>550</width>
-           <height>550</height>
+           <width>450</width>
+           <height>450</height>
           </size>
          </property>
          <layout class="QGridLayout" name="gridLayout"/>
@@ -228,6 +228,20 @@ background-color: white;
            <widget class="QLabel" name="label_4">
             <property name="text">
              <string>Generated report by Bryyyyy</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="styleSheet">
+             <string notr="true">border: none;
+background: none;
+text-decoration: underline;
+color:rgb(0, 0, 255);
+text-align: left;</string>
+            </property>
+            <property name="text">
+             <string>More Details</string>
             </property>
            </widget>
           </item>

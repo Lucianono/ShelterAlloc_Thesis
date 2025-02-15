@@ -301,9 +301,9 @@ class Ui_EntityManagementCommunities(object):
         ___qtablewidgetitem = self.communityInfo_table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("EntityManagementCommunities", u"Name", None));
         ___qtablewidgetitem1 = self.communityInfo_table.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("EntityManagementCommunities", u"xDegrees", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("EntityManagementCommunities", u"Latitude", None));
         ___qtablewidgetitem2 = self.communityInfo_table.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("EntityManagementCommunities", u"yDegrees", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("EntityManagementCommunities", u"Longitude", None));
         ___qtablewidgetitem3 = self.communityInfo_table.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("EntityManagementCommunities", u"Population", None));
         ___qtablewidgetitem4 = self.communityInfo_table.horizontalHeaderItem(4)

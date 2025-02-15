@@ -54,11 +54,10 @@ class SolvingProgress(QDialog):
         self.ui.textEdit.append("Pathfinding Complete!")
         self.ui.solvingModel_progressBar.setValue(50)
         self.worker_thread.quit()
-        # run_optimization()
         self.ui.solvingModel_progressBar.setValue(100)
-
+        run_optimization()
         self.report_Window = ShelterAllocationReport()
         self.report_Window.show()
 
-        # self.close()  
+        self.close()  
         

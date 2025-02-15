@@ -270,8 +270,8 @@ class BNTModelSimulation:
             failing_communities = []
             for community in Community:
                 if not (
-                    any(shelter["area1"] * area_per_individual >= community["population"] for shelter in Shelters) or
-                    any(shelter["area2"] * area_per_individual >= community["population"] for shelter in Shelters)
+                    any(shelter["area1"] >= community["population"] * area_per_individual for shelter in Shelters) or
+                    any(shelter["area2"] >= community["population"] * area_per_individual for shelter in Shelters)
                 ):
                     failing_communities.append(community["name"])
             
@@ -282,16 +282,9 @@ class BNTModelSimulation:
 
             # check if total population is theoretically possible to allocate on largest  shelters
             total_population = sum(community['population'] for community in Community)
+            top_area2_sum = sum(shelter['area2'] for shelter in Shelters)
 
-            Shelters_sorted = sorted(Shelters, key=lambda x: x['area2'], reverse=True)
-            top_area2_sum = sum(shelter['area2'] for shelter in Shelters[:max_lvl2_shelters])
-            Shelters_sorted = Shelters_sorted[max_lvl2_shelters:]
-
-            Shelters_sorted = sorted(Shelters, key=lambda x: x['area1'], reverse=True)
-            top_area1_sum = sum(shelter['area1'] for shelter in Shelters[:(max_shelters - max_lvl2_shelters)])
-            Shelters_sorted = Shelters_sorted[(max_shelters - max_lvl2_shelters):]
-
-            if total_population > (top_area2_sum + top_area1_sum):
+            if total_population * area_per_individual > top_area2_sum:
                 progress_dialog(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
                 print(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
                 return False
@@ -411,7 +404,7 @@ class BNTModelSimulation:
         if not feasibilityCheck():
             progress_dialog("No solution exists")
             print("No solution exists")
-            exit()
+            # exit()
 
         generation_last_updated = 0
 

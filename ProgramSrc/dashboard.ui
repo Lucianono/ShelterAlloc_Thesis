@@ -132,8 +132,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>348</width>
-            <height>712</height>
+            <width>319</width>
+            <height>694</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -676,6 +676,9 @@ color: #00B5FF;
                   <bold>true</bold>
                  </font>
                 </property>
+                <property name="toolTipDuration">
+                 <number>-1</number>
+                </property>
                 <property name="text">
                  <string>Marker Options</string>
                 </property>
@@ -900,7 +903,7 @@ QStackedWidget{
             <enum>QFrame::Plain</enum>
            </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="page">
             <property name="sizePolicy">
@@ -1088,7 +1091,7 @@ QStackedWidget{
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_20">
                     <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;YDEGREES&lt;/span&gt; latitude coordinate of a community location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LONGITUDE &lt;/span&gt;the angular distance of a place east or west of the meridian&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="toolTipDuration">
                      <number>10000</number>
@@ -1210,7 +1213,7 @@ QStackedWidget{
                      </font>
                     </property>
                     <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;XDEGREES&lt;/span&gt; longitude coordinate of a community location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LATITUDE &lt;/span&gt;geographic coordinate that measures how far north or south a location is from the equator&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="toolTipDuration">
                      <number>10000</number>
@@ -1487,7 +1490,7 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>371</width>
+                  <width>377</width>
                   <height>750</height>
                  </rect>
                 </property>
@@ -1750,7 +1753,7 @@ QPushButton:pressed {
                          </font>
                         </property>
                         <property name="toolTip">
-                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;XDEGREES&lt;/span&gt; longitude coordinate of a shelter location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LATITUDE &lt;/span&gt;geographic coordinate that measures how far north or south a location is from the equatora&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                         </property>
                         <property name="toolTipDuration">
                          <number>10000</number>
@@ -1876,7 +1879,7 @@ QPushButton:pressed {
                       <item row="2" column="0">
                        <widget class="QLabel" name="label_32">
                         <property name="toolTip">
-                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;YDEGREES&lt;/span&gt; latitude coordinate of a shelter location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LONGITUDE &lt;/span&gt;the angular distance of a place east or west of the meridian&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                         </property>
                         <property name="toolTipDuration">
                          <number>10000</number>

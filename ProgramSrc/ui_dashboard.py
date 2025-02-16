@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dashboard.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.2
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -79,7 +79,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
-        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 348, 712))
+        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 319, 694))
         self.verticalLayout_7 = QVBoxLayout(self.scrollAreaWidgetContents_9)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.widget = QWidget(self.scrollAreaWidgetContents_9)
@@ -374,6 +374,7 @@ class Ui_MainWindow(object):
         self.label_14 = QLabel(self.widget_2)
         self.label_14.setObjectName(u"label_14")
         self.label_14.setFont(font3)
+        self.label_14.setToolTipDuration(-1)
         self.label_14.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.horizontalLayout_3.addWidget(self.label_14)
@@ -791,7 +792,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 371, 750))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 377, 750))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
@@ -1235,7 +1236,7 @@ class Ui_MainWindow(object):
 
         self.communities_dropdown_2.setDefault(False)
         self.add_community_btn.setDefault(False)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1273,7 +1274,7 @@ class Ui_MainWindow(object):
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"Community Edit", None))
         self.checkBox_15.setText("")
 #if QT_CONFIG(tooltip)
-        self.label_20.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">YDEGREES</span> latitude coordinate of a community location</p></body></html>", None))
+        self.label_20.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">LONGITUDE </span>the angular distance of a place east or west of the meridian</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"Longitude", None))
 #if QT_CONFIG(tooltip)
@@ -1289,7 +1290,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_29.setText(QCoreApplication.translate("MainWindow", u"MaxDistance", None))
 #if QT_CONFIG(tooltip)
-        self.label_19.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">XDEGREES</span> longitude coordinate of a community location</p></body></html>", None))
+        self.label_19.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">LATITUDE </span>geographic coordinate that measures how far north or south a location is from the equator</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"Latitude", None))
 #if QT_CONFIG(tooltip)
@@ -1314,7 +1315,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_43.setText(QCoreApplication.translate("MainWindow", u"Typhoon", None))
 #if QT_CONFIG(tooltip)
-        self.label_36.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">XDEGREES</span> longitude coordinate of a shelter location</p></body></html>", None))
+        self.label_36.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">LATITUDE </span>geographic coordinate that measures how far north or south a location is from the equatora</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_36.setText(QCoreApplication.translate("MainWindow", u"Latitude", None))
 #if QT_CONFIG(tooltip)
@@ -1326,7 +1327,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"Level 1", None))
 #if QT_CONFIG(tooltip)
-        self.label_32.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">YDEGREES</span> latitude coordinate of a shelter location</p></body></html>", None))
+        self.label_32.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">LONGITUDE </span>the angular distance of a place east or west of the meridian</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_32.setText(QCoreApplication.translate("MainWindow", u"Longitude", None))
 #if QT_CONFIG(tooltip)

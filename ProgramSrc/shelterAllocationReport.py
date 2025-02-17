@@ -29,6 +29,7 @@ class ShelterAllocationReport(QDialog):
 
         self.ui.pushButton_2.clicked.connect(self.save_report)
         self.ui.pushButton_3.clicked.connect(self.show_more_details)
+        self.ui.pushButton.clicked.connect(self.close)
 
         self.load_table_data("allocation_results.xlsx")
         self.reload_label()

@@ -141,6 +141,7 @@ class Ui_ShelterAllocationReport(object):
 
         self.pushButton_3 = QPushButton(self.frame)
         self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.pushButton_3.setStyleSheet(u"border: none;\n"
 "background: none;\n"
 "text-decoration: underline;\n"

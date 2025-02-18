@@ -22,6 +22,7 @@ class SolveSettingsDialog(QDialog):
         self.ui = Ui_solveSettings()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.animation = None  # Initialize the animation object
+        self.setModal(True)
 
         self.ui.write_community_btn.clicked.connect(self.open_entitymanagement_dialog)
         self.ui.write_shelter_btn.clicked.connect(self.open_entitymanagement_shelter_dialog)

@@ -15,6 +15,7 @@ class EntityManagementComm(QDialog):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_EntityManagementCommunities()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
+        self.setModal(True)
 
         file_name = "commData.xlsx"
         required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'MaxDistance',  'Remarks']

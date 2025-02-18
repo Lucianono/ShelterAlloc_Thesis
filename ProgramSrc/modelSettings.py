@@ -12,6 +12,7 @@ class ModelSettings(QDialog):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_modelSettings()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
+        self.setModal(True)
 
         expected_types = {
             "Generations": int,

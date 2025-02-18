@@ -15,6 +15,7 @@ class EntityManagementShelter(QDialog):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_entityManagementShelter()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
+        self.setModal(True)
 
         file_name = "shelData.xlsx"
         required_headers = ['Name', 'xDegrees', 'yDegrees', 'Area1', 'Cost1', 'Area2', 'Cost2', 'ResToFlood', 'ResToTyphoon', 'ResToEarthquake', 'Status', 'Remarks']

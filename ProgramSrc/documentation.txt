@@ -26,3 +26,5 @@ pyside6-uic shelterallocationreport.ui > ui_shelterallocationreport.py
 pyside6-uic dashboard.ui >  ui_dashboard.py
 pyside6-uic entityManagement.ui >  ui_entityManagementComm.py
 pyside6-uic entityManagementShelter.ui >  ui_entityManagementShelter.py
+
+pyside6-uic dashboard.ui -o  ui_dashboard.py

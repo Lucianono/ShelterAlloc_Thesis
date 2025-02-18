@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dashboard.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.8.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -79,7 +79,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
-        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 319, 694))
+        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 348, 712))
         self.verticalLayout_7 = QVBoxLayout(self.scrollAreaWidgetContents_9)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.widget = QWidget(self.scrollAreaWidgetContents_9)
@@ -792,7 +792,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 377, 750))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 328, 733))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
@@ -1216,6 +1216,100 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_16.addWidget(self.webEngineView)
 
+        self.frame_7 = QFrame(self.widget_3)
+        self.frame_7.setObjectName(u"frame_7")
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.frame_7.sizePolicy().hasHeightForWidth())
+        self.frame_7.setSizePolicy(sizePolicy6)
+        self.frame_7.setMinimumSize(QSize(0, 50))
+        self.frame_7.setFrameShape(QFrame.StyledPanel)
+        self.frame_7.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_5 = QHBoxLayout(self.frame_7)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.widget_6 = QWidget(self.frame_7)
+        self.widget_6.setObjectName(u"widget_6")
+        sizePolicy5.setHeightForWidth(self.widget_6.sizePolicy().hasHeightForWidth())
+        self.widget_6.setSizePolicy(sizePolicy5)
+        self.horizontalLayout_6 = QHBoxLayout(self.widget_6)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.label_3 = QLabel(self.widget_6)
+        self.label_3.setObjectName(u"label_3")
+        sizePolicy1.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy1)
+        self.label_3.setMinimumSize(QSize(31, 31))
+        self.label_3.setMaximumSize(QSize(31, 31))
+        self.label_3.setPixmap(QPixmap(u":/ICONS/pin-5-128 (1).png"))
+        self.label_3.setScaledContents(True)
+
+        self.horizontalLayout_6.addWidget(self.label_3)
+
+        self.label_6 = QLabel(self.widget_6)
+        self.label_6.setObjectName(u"label_6")
+        font8 = QFont()
+        font8.setBold(True)
+        self.label_6.setFont(font8)
+
+        self.horizontalLayout_6.addWidget(self.label_6)
+
+
+        self.horizontalLayout_5.addWidget(self.widget_6)
+
+        self.widget_8 = QWidget(self.frame_7)
+        self.widget_8.setObjectName(u"widget_8")
+        sizePolicy5.setHeightForWidth(self.widget_8.sizePolicy().hasHeightForWidth())
+        self.widget_8.setSizePolicy(sizePolicy5)
+        self.horizontalLayout_7 = QHBoxLayout(self.widget_8)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.label_5 = QLabel(self.widget_8)
+        self.label_5.setObjectName(u"label_5")
+        sizePolicy1.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        self.label_5.setSizePolicy(sizePolicy1)
+        self.label_5.setMaximumSize(QSize(31, 31))
+        self.label_5.setPixmap(QPixmap(u":/ICONS/pin-5-128.png"))
+        self.label_5.setScaledContents(True)
+
+        self.horizontalLayout_7.addWidget(self.label_5)
+
+        self.label_7 = QLabel(self.widget_8)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setFont(font8)
+
+        self.horizontalLayout_7.addWidget(self.label_7)
+
+
+        self.horizontalLayout_5.addWidget(self.widget_8)
+
+        self.widget_7 = QWidget(self.frame_7)
+        self.widget_7.setObjectName(u"widget_7")
+        sizePolicy5.setHeightForWidth(self.widget_7.sizePolicy().hasHeightForWidth())
+        self.widget_7.setSizePolicy(sizePolicy5)
+        self.horizontalLayout_8 = QHBoxLayout(self.widget_7)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.label_4 = QLabel(self.widget_7)
+        self.label_4.setObjectName(u"label_4")
+        sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy1)
+        self.label_4.setMaximumSize(QSize(31, 31))
+        self.label_4.setPixmap(QPixmap(u"ICONS/pin-5-128 (2).png"))
+        self.label_4.setScaledContents(True)
+
+        self.horizontalLayout_8.addWidget(self.label_4)
+
+        self.label_8 = QLabel(self.widget_7)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setFont(font8)
+
+        self.horizontalLayout_8.addWidget(self.label_8)
+
+
+        self.horizontalLayout_5.addWidget(self.widget_7)
+
+
+        self.verticalLayout_16.addWidget(self.frame_7)
+
 
         self.horizontalLayout_27.addWidget(self.widget_3)
 
@@ -1376,5 +1470,11 @@ class Ui_MainWindow(object):
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"Name", None))
         self.mc_cancel_changes_btn_2.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
         self.mc_save_changes_btn_2.setText(QCoreApplication.translate("MainWindow", u"Save Changes", None))
+        self.label_3.setText("")
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Enabled Shelters", None))
+        self.label_5.setText("")
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Enabled Communities", None))
+        self.label_4.setText("")
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Disabled", None))
     # retranslateUi
 

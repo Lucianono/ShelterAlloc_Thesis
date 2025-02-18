@@ -26,6 +26,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("Dashboard")
+        
+        comm_file = os.path.join(os.getcwd(), "commData.xlsx")
+        shel_file = os.path.join(os.getcwd(), "shelData.xlsx")
+        comm_headers = ["Active", "Name", "xDegrees", "yDegrees", "Population", "AffectedPop", "MaxDistance", "Remarks"]
+        shel_headers = ["Active", "Name", "xDegrees", "yDegrees", "Area1", "Cost1", "Area2", "Cost2", "ResToFlood", "ResToTyphoon", "ResToEarthquake", "Status", "Remarks"]
+        self.ensure_excel_file_exists(comm_file, comm_headers)
+        self.ensure_excel_file_exists(shel_file, shel_headers)
 
         self.is_adding_community = False
         self.is_adding_shelter = False
@@ -66,6 +73,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
         self.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+
+    def ensure_excel_file_exists(self, filepath, columns):
+        if not os.path.exists(filepath):
+            df = pd.DataFrame(columns=columns)
+            df.to_excel(filepath, index=False)
 
     def open_help_dialog_page(self):
         self.help_dialog_window = helpDialog()

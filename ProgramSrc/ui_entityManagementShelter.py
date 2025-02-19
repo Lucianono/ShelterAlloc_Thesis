@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'entityManagementShelter.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.2
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -65,6 +65,35 @@ class Ui_entityManagementShelter(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
+        self.ms_export_btn = QPushButton(self.frame)
+        self.ms_export_btn.setObjectName(u"ms_export_btn")
+        self.ms_export_btn.setMinimumSize(QSize(191, 51))
+        self.ms_export_btn.setMaximumSize(QSize(161, 51))
+        font1 = QFont()
+        font1.setPointSize(15)
+        font1.setBold(True)
+        self.ms_export_btn.setFont(font1)
+        self.ms_export_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.ms_export_btn.setStyleSheet(u"QPushButton {\n"
+"    background-color: #136ec2;\n"
+"    color: white;\n"
+"    padding: 5px;\n"
+"    border: none;\n"
+"    border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #167bda;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #167bda;\n"
+"}\n"
+"")
+        self.ms_export_btn.setCheckable(True)
+
+        self.horizontalLayout.addWidget(self.ms_export_btn)
+
         self.ms_import_btn = QPushButton(self.frame)
         self.ms_import_btn.setObjectName(u"ms_import_btn")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
@@ -74,9 +103,6 @@ class Ui_entityManagementShelter(object):
         self.ms_import_btn.setSizePolicy(sizePolicy)
         self.ms_import_btn.setMinimumSize(QSize(191, 51))
         self.ms_import_btn.setMaximumSize(QSize(191, 51))
-        font1 = QFont()
-        font1.setPointSize(15)
-        font1.setBold(True)
         self.ms_import_btn.setFont(font1)
         self.ms_import_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.ms_import_btn.setStyleSheet(u"QPushButton {\n"
@@ -205,9 +231,9 @@ class Ui_entityManagementShelter(object):
 "")
         self.shelterInfo_table.setFrameShadow(QFrame.Raised)
         self.shelterInfo_table.horizontalHeader().setMinimumSectionSize(100)
-        self.shelterInfo_table.horizontalHeader().setProperty("showSortIndicator", False)
+        self.shelterInfo_table.horizontalHeader().setProperty(u"showSortIndicator", False)
         self.shelterInfo_table.horizontalHeader().setStretchLastSection(True)
-        self.shelterInfo_table.verticalHeader().setProperty("showSortIndicator", False)
+        self.shelterInfo_table.verticalHeader().setProperty(u"showSortIndicator", False)
 
         self.horizontalLayout_2.addWidget(self.shelterInfo_table)
 
@@ -298,6 +324,7 @@ class Ui_entityManagementShelter(object):
         entityManagementShelter.setWindowTitle(QCoreApplication.translate("entityManagementShelter", u"Dialog", None))
         self.ms_back_btn.setText("")
         self.label.setText(QCoreApplication.translate("entityManagementShelter", u"Manage Shelters", None))
+        self.ms_export_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Export XLSX", None))
         self.ms_import_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Import XLSX", None))
         self.ms_add_shelter_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Add Shelter", None))
         ___qtablewidgetitem = self.shelterInfo_table.horizontalHeaderItem(0)

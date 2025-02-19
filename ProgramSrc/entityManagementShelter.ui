@@ -85,6 +85,56 @@ background-color: white;
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="ms_export_btn">
+        <property name="minimumSize">
+         <size>
+          <width>191</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>161</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color: #136ec2;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 15px;
+}
+
+QPushButton:hover {
+    background-color: #167bda;
+}
+
+QPushButton:pressed {
+    background-color: #167bda;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Export XLSX</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="ms_import_btn">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">

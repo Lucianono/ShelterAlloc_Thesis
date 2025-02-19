@@ -496,6 +496,7 @@
 	
 	After the data collection, the rating scale will categorize the acceptability levels. Descriptive statistics will be utilized to analyze the collected data. Analysis includes calculating the minimum, maximum, mean, and standard deviation for each category. Formula \ref{mean} shows the mean that computes the average score. This use of data allows both the system functionality and its user acceptability to be comprehensively assessed. Table \ref{Verbal} shows the verbal interpretation of the computed mean corresponds to the level of agreement and acceptable based on the study by \textcite{Eladia2024}. 
 	
+	
 	\begin{equation} 
 		\label{mean}
 		\bar{x} = \frac{\sum_{i=1}^{n} x_{i}}{n}
@@ -523,7 +524,18 @@
 			\end{tabular}
 	\end{table}
 	
+	Formula \ref{stdDev} shows the standard deviation which shows the dispersion of scores relative to the mean. A standard deviation  that is closer to the value of 0 indicates the spread of data is closer to the mean.  A rule of thumb of 2:1 ratio between maximum and minimum standard deviation is observed for reliability and validity of the assessment \parencite{Yin2016}.
 	
+	\begin{equation} 
+		\label{stdDev}
+		S = \sqrt{\frac{\sum_{i=1}^{n} (x_{i} - \bar{x} )^2 }{n-1}}
+	\end{equation}
+	
+	Where:
+	\\$S$ - sample standard deviation
+	\\$\bar{x}$ - sample mean
+	\\$n$ - sample size
+	\\$x_{i}$ - data points
 	
 	
 	

@@ -74,6 +74,7 @@ class Ui_entityManagementShelter(object):
         font1.setBold(True)
         self.ms_export_btn.setFont(font1)
         self.ms_export_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.ms_export_btn.setToolTipDuration(10000)
         self.ms_export_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #136ec2;\n"
 "    color: white;\n"
@@ -112,6 +113,7 @@ class Ui_entityManagementShelter(object):
         font2.setBold(True)
         self.ms_import_btn.setFont(font2)
         self.ms_import_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.ms_import_btn.setToolTipDuration(10000)
         self.ms_import_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #14AE5C;\n"
 "    color: white;\n"
@@ -335,8 +337,14 @@ class Ui_entityManagementShelter(object):
         entityManagementShelter.setWindowTitle(QCoreApplication.translate("entityManagementShelter", u"Dialog", None))
         self.ms_back_btn.setText("")
         self.label.setText(QCoreApplication.translate("entityManagementShelter", u"Manage Shelters", None))
+#if QT_CONFIG(tooltip)
+        self.ms_export_btn.setToolTip(QCoreApplication.translate("entityManagementShelter", u"<html><head/><body><p><span style=\" font-weight:600;\">DOWNLOAD TEMPLATE </span>download an excel file containing the sample shelter data (template)</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.ms_export_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Download\n"
 "Template", None))
+#if QT_CONFIG(tooltip)
+        self.ms_import_btn.setToolTip(QCoreApplication.translate("entityManagementShelter", u"<html><head/><body><p><span style=\" font-weight:600;\">IMPORT</span> upload an excel file and display its contents in the table</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.ms_import_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Import", None))
         self.ms_add_shelter_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Add Shelter", None))
         ___qtablewidgetitem = self.shelterInfo_table.horizontalHeaderItem(0)

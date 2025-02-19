@@ -75,6 +75,7 @@ class Ui_EntityManagementCommunities(object):
         font1.setBold(True)
         self.mc_export_btn.setFont(font1)
         self.mc_export_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.mc_export_btn.setToolTipDuration(10000)
         self.mc_export_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #136ec2;\n"
 "    color: white;\n"
@@ -108,6 +109,7 @@ class Ui_EntityManagementCommunities(object):
         font2.setBold(True)
         self.mc_import_btn.setFont(font2)
         self.mc_import_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.mc_import_btn.setToolTipDuration(10000)
         self.mc_import_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #14AE5C;\n"
 "    color: white;\n"
@@ -334,8 +336,14 @@ class Ui_EntityManagementCommunities(object):
         EntityManagementCommunities.setWindowTitle(QCoreApplication.translate("EntityManagementCommunities", u"Dialog", None))
         self.mc_back_btn.setText("")
         self.label.setText(QCoreApplication.translate("EntityManagementCommunities", u"Manage Communities", None))
+#if QT_CONFIG(tooltip)
+        self.mc_export_btn.setToolTip(QCoreApplication.translate("EntityManagementCommunities", u"<html><head/><body><p><span style=\" font-weight:600;\">DOWNLOAD TEMPLATE </span>download an excel file containing the sample community data (template)</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.mc_export_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Download\n"
 "Template", None))
+#if QT_CONFIG(tooltip)
+        self.mc_import_btn.setToolTip(QCoreApplication.translate("EntityManagementCommunities", u"<html><head/><body><p><span style=\" font-weight:600;\">IMPORT</span> upload an excel file and display its contents in the table</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.mc_import_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Import", None))
         self.mc_add_community_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Add Community", None))
         ___qtablewidgetitem = self.communityInfo_table.horizontalHeaderItem(0)

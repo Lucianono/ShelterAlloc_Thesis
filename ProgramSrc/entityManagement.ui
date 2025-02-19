@@ -111,6 +111,12 @@ background-color: white;
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;DOWNLOAD TEMPLATE &lt;/span&gt;download an excel file containing the sample community data (template)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>10000</number>
+        </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
     background-color: #136ec2;
@@ -171,6 +177,12 @@ Template</string>
         </property>
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;IMPORT&lt;/span&gt; upload an excel file and display its contents in the table&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>10000</number>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {

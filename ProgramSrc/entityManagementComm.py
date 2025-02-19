@@ -40,6 +40,7 @@ class EntityManagementComm(QDialog):
         self.ui.mc_import_btn.clicked.connect(lambda: self.import_excel_data(self.ui.communityInfo_table,required_headers ,expected_types))
         self.ui.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(self.ui.communityInfo_table, file_name, self , required_headers ,expected_types))
         self.ui.mc_add_community_btn.clicked.connect(lambda: self.add_row(self.ui.communityInfo_table))
+        self.ui.mc_export_btn.clicked.connect(lambda: self.export_excel_data(dummy_data))    
 
         self.shortcut = QShortcut(QKeySequence("Ctrl+D"), self)
         self.shortcut.activated.connect(lambda: self.toggle_all_switches(self.ui.communityInfo_table))
@@ -109,6 +110,20 @@ class EntityManagementComm(QDialog):
                 return
 
             self.populate_table(table_widget, data)
+    def export_excel_data(self, dummy_data):
+        default_file_name = os.path.join(os.getcwd(), "dummy_data_community.xlsx")
+        file_path, _ = QFileDialog.getSaveFileName(self, "Save Excel File", default_file_name, "Excel Files (*.xlsx)")
+
+        if file_path:
+            try:
+                if not file_path.endswith(".xlsx"):
+                    file_path += ".xlsx"
+
+                dummy_data.to_excel(file_path, index=False)
+
+                QMessageBox.information(self, "Success", "Dummy data exported successfully.")
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to export file: {e}")
             
     def save_to_excel(self, table_widget, file_name, dialog, required_headers, expected_types):
         data = []

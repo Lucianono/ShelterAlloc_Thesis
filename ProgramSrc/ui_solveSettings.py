@@ -665,6 +665,18 @@ class Ui_solveSettings(object):
         font8.setPointSize(11)
         self.model_pick_comboBox.setFont(font8)
         self.model_pick_comboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.model_pick_comboBox.setStyleSheet(u"QComboBox {\n"
+"	border: 1px solid gray;\n"
+"	background-color: white;\n"
+"}\n"
+"\n"
+"QComboBox::dropdown {\n"
+"	border-left: 1px solid black;\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"	color: black;\n"
+"}")
 
         self.horizontalLayout.addWidget(self.model_pick_comboBox)
 

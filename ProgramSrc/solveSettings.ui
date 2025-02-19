@@ -1548,6 +1548,20 @@ text-align: right;</string>
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	border: 1px solid gray;
+	background-color: white;
+}
+
+QComboBox::dropdown {
+	border-left: 1px solid black;
+}
+
+QComboBox::down-arrow {
+	color: black;
+}</string>
+        </property>
         <item>
          <property name="text">
           <string>Bilevel No Transfer (BNT)</string>

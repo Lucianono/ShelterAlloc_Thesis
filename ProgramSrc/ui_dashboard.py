@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dashboard.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.1
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -79,7 +79,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
-        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 348, 712))
+        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 319, 694))
         self.verticalLayout_7 = QVBoxLayout(self.scrollAreaWidgetContents_9)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.widget = QWidget(self.scrollAreaWidgetContents_9)
@@ -792,7 +792,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 328, 733))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 335, 729))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
@@ -1225,7 +1225,8 @@ class Ui_MainWindow(object):
         self.frame_7.setSizePolicy(sizePolicy6)
         self.frame_7.setMinimumSize(QSize(0, 50))
         self.frame_7.setFrameShape(QFrame.StyledPanel)
-        self.frame_7.setFrameShadow(QFrame.Raised)
+        self.frame_7.setFrameShadow(QFrame.Plain)
+        self.frame_7.setLineWidth(0)
         self.horizontalLayout_5 = QHBoxLayout(self.frame_7)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)

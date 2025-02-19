@@ -132,8 +132,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>348</width>
-            <height>712</height>
+            <width>319</width>
+            <height>694</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1490,8 +1490,8 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>328</width>
-                  <height>733</height>
+                  <width>335</width>
+                  <height>729</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -2474,7 +2474,10 @@ QPushButton:pressed {
                <enum>QFrame::StyledPanel</enum>
               </property>
               <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
+               <enum>QFrame::Plain</enum>
+              </property>
+              <property name="lineWidth">
+               <number>0</number>
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_5">
                <property name="leftMargin">

@@ -11,6 +11,7 @@ from plot_routes import run_pathfinding
 from solvingProgress import SolvingProgress
 import pandas as pd
 import os
+from DataSetsModel import DataSets
 
 class SolveSettingsDialog(QDialog):
 
@@ -126,9 +127,13 @@ class SolveSettingsDialog(QDialog):
             else:
                 QMessageBox.warning(self, "Warning", "Save canceled.")
 
-            self.solvingProgress_Window = SolvingProgress()
-            self.solvingProgress_Window.show()
-            self.close()
+            if self.feasibilityCheck():
+                self.solvingProgress_Window = SolvingProgress()
+                self.solvingProgress_Window.show()
+                self.close()
+            else :
+                QMessageBox.critical(self, "Fail to solve", "No feasible solution.")
+
         
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
@@ -167,10 +172,7 @@ class SolveSettingsDialog(QDialog):
     def init_shelter_status_switches(self):
         self.shelter_status_switches = {}
         for label in ["Built", "Partially Built", "Damaged", "Empty Lot"]:
-            if label == "Built":
-                switch = self.create_switch(label, self.shelter_status_layout,True)
-            else:
-                switch = self.create_switch(label, self.shelter_status_layout,False)
+            switch = self.create_switch(label, self.shelter_status_layout,True)
             switch.clicked.connect(self.filter_shelter_data)
             self.shelter_status_switches[label] = switch
 
@@ -540,3 +542,42 @@ class SolveSettingsDialog(QDialog):
             if empty_lot_switch.isChecked() : 
                 empty_lot_switch.click()
 
+    def feasibilityCheck(self):
+        datasets = DataSets()
+        Community = datasets.get_community_data()
+        Shelters = datasets.get_shelter_data()
+        area_per_individual = pd.read_excel( os.path.join(os.getcwd(), "modelParam.xlsx"), header=0,usecols=["AreaPerIndiv"] ).iloc[0].item()
+
+        # check if there exists distance <= max distance 
+        failing_communities = []
+        for community in Community:
+            if not any(d <= community["maxdistance"] for d in community["distances"].values()):
+                failing_communities.append(community["name"])
+        
+        if failing_communities:
+            print(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
+            return False
+
+        # check if there exists population <= shelter area * areaPerIndiv
+        failing_communities = []
+        for community in Community:
+            if not (
+                any(shelter["area1"] >= community["population"] * area_per_individual for shelter in Shelters) or
+                any(shelter["area2"] >= community["population"] * area_per_individual for shelter in Shelters)
+            ):
+                failing_communities.append(community["name"])
+        
+        if failing_communities:
+            print(f"{failing_communities} has affected population that is impossible to allocate. No shelters is large enough.")
+            return False
+
+        # check if total population is theoretically possible to allocate on largest  shelters
+        total_population = sum(community['population'] for community in Community)
+        top_area2_sum = sum(shelter['area2'] for shelter in Shelters)
+
+        if total_population * area_per_individual > top_area2_sum:
+            print(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
+            return False
+        
+        # if no cases are violated return true
+        return True

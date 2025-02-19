@@ -251,101 +251,7 @@ class BNTModelSimulation:
 
             return solutions[selected_solution]
 
-        # =======================
-        # FEASIBILITY CHECK
-        # check if data input has solution
-        def feasibilityCheck():
-            # check if there exists distance <= max distance 
-            failing_communities = []
-            for community in Community:
-                if not any(d <= community["maxdistance"] for d in community["distances"].values()):
-                    failing_communities.append(community["name"])
-            
-            if failing_communities:
-                progress_dialog(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
-                print(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
-                return False
-
-            # check if there exists population <= shelter area * areaPerIndiv
-            failing_communities = []
-            for community in Community:
-                if not (
-                    any(shelter["area1"] >= community["population"] * area_per_individual for shelter in Shelters) or
-                    any(shelter["area2"] >= community["population"] * area_per_individual for shelter in Shelters)
-                ):
-                    failing_communities.append(community["name"])
-            
-            if failing_communities:
-                progress_dialog(f"{failing_communities} has affected population that is impossible to allocate. No shelters is large enough.")
-                print(f"{failing_communities} has affected population that is impossible to allocate. No shelters is large enough.")
-                return False
-
-            # check if total population is theoretically possible to allocate on largest  shelters
-            total_population = sum(community['population'] for community in Community)
-            top_area2_sum = sum(shelter['area2'] for shelter in Shelters)
-
-            if total_population * area_per_individual > top_area2_sum:
-                progress_dialog(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
-                print(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
-                return False
-            
-            # if no cases are violated return true
-            return True
-
-        # =======================
-        # LOGIC CHECK
-        # check if parameters are logical or correct
-        def logicCheck():
-            # check if max_shelters >= max_lvl2_shelters
-            if max_shelters < max_lvl2_shelters:
-                progress_dialog("max_shelters should be greater than or equal to max_lvl2_shelters")
-                print("max_shelters should be greater than or equal to max_lvl2_shelters")
-                return False
-            # check if max_shelters >= 1
-            if max_shelters < 1:
-                progress_dialog("max_shelters should have atleast 1")
-                print("max_shelters should have atleast 1")
-                return False
-            # check if area_per_individual > 0
-            if area_per_individual <= 0:
-                progress_dialog("area_per_individual should be greater than 0")
-                print("area_per_individual should be greater than 0")
-                return False
-            # check if num_generations >= 1
-            if num_generations < 1:
-                progress_dialog("num_generations should be greater than or equal to 1")
-                print("num_generations should be greater than or equal to 1")
-                return False
-            # check if num_solutions >= 1
-            if num_solutions < 1:
-                progress_dialog("num_solutions should be greater than or equal to 1")
-                print("num_solutions should be greater than or equal to 1")
-                return False
-            # check if mutation_rate not < 0
-            if mutation_rate < 0:
-                progress_dialog("mutation_rate should not be less than to 0")
-                print("mutation_rate should not be less than to 0")
-                return False
-            # check if weight_dist not < 0
-            if weight_dist < 0:
-                progress_dialog("weight_dist should not be less than to 0")
-                print("weight_dist should not be less than to 0")
-                return False
-            # check if weight_cost not < 0
-            if weight_cost < 0:
-                progress_dialog("weight_cost should not be less than to 0")
-                print("weight_cost should not be less than to 0")
-                return False
-            # check if area2 >= area1
-            for shelter in Shelters:
-                if shelter["area2"] < shelter["area1"]:
-                    progress_dialog(f"{shelter['name']}: area2 should be grated than or equal to area1.")
-                    print(f"{shelter['name']}: area2 should be grated than or equal to area1.")
-                    return False
-
-
-            # if no cases are violated return true
-            return True
+        
 
         # =======================
         # DISPLAY ALLOCATION
@@ -394,17 +300,12 @@ class BNTModelSimulation:
             progress_dialog(f"Allocation results saved to {output_file}")
             print(f"Allocation results saved to {output_file}")
 
+
+
         # =======================
         # START OF THE ALGORITHM
         # initial population
-        if not logicCheck():
-            progress_dialog("Parameters are inputted incorrectly.")
-            print("Parameters are inputted incorrectly.")
-            exit()
-        if not feasibilityCheck():
-            progress_dialog("No solution exists")
-            print("No solution exists")
-            # exit()
+        
 
         generation_last_updated = 0
 

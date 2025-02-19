@@ -19,14 +19,13 @@ class SolvingProgress(QDialog):
         self.ui.solving_prog_cancel_btn.clicked.connect(self.cancel_pathfinding)
         self.ui.solvingModel_progressBar.setRange(0, 100)
         
-
         self.worker_thread = QThread()
         self.worker = None
         self.ui.solvingModel_progressBar.setValue(0)
         self.start_pathfinding()
-        
 
     def start_pathfinding(self):
+
         self.worker = PathfindingWorker("modelCommData.xlsx", "modelShelData.xlsx")
         self.worker.moveToThread(self.worker_thread)
         self.ui.solvingModel_progressBar.setValue(25)
@@ -42,9 +41,10 @@ class SolvingProgress(QDialog):
 
     def cancel_pathfinding(self):
         self.ui.textEdit.append("Cancelling pathfinding...")
-        self.worker.cancel_signal.emit()  # Notify the worker to cancel
-        self.worker_thread.quit()         # Stop the thread gracefully
-        self.worker_thread.wait()         # Ensure the thread is terminated
+        if self.worker : 
+            self.worker.cancel_signal.emit()  # Notify the worker to cancel
+            self.worker_thread.quit()         # Stop the thread gracefully
+            self.worker_thread.wait()         # Ensure the thread is terminated
         self.close()   
 
     def update_log(self, message):
@@ -61,3 +61,5 @@ class SolvingProgress(QDialog):
 
         self.close()  
         
+
+    

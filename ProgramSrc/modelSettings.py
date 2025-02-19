@@ -37,17 +37,45 @@ class ModelSettings(QDialog):
     def update_params_from_excel(self, excel_name):
         try:
             # get data from excel
-            Model_params_data = pd.read_excel( os.path.join(os.getcwd(), excel_name), header=0).iloc[0]
+            excel_path = os.path.join(os.getcwd(), excel_name)
+
+            if os.path.exists(excel_path):
+                Model_params_data = pd.read_excel(excel_path, header=0)
+
+            shel_file = "shelData.xlsx"
+            shel_path = os.path.join(os.getcwd(), shel_file)
+            default_shelter_count = 0
+
+            if os.path.exists(shel_path):
+                try:
+                    shel_data = pd.read_excel(shel_path, header=None)
+                    first_column = shel_data.iloc[:, 0]
+                    default_shelter_count = (first_column.astype(str).str.upper() == "TRUE").sum()
+                except Exception as e:
+                    QMessageBox.warning(self, "Warning", f"Could not process {shel_file}: {e}")
+
+                updated = False
+
+            if "MaxShelters" in Model_params_data.columns:
+                Model_params_data.at[0, "MaxShelters"] = default_shelter_count
+                updated = True
+            if "MaxL2Shelters" in Model_params_data.columns:
+                Model_params_data.at[0, "MaxL2Shelters"] = default_shelter_count
+                updated = True
+
+            if updated:
+                Model_params_data.to_excel(excel_path, index=False)
+                    
              
-            self.ui.textEdit_generations.setPlainText(str(int(Model_params_data["Generations"])))
-            self.ui.textEdit_population.setPlainText(str(int(Model_params_data["Population"])))
-            self.ui.textEdit_wtCost.setPlainText(str(Model_params_data["WtCost"]))
-            self.ui.textEdit_wtDist.setPlainText(str(Model_params_data["WtDist"]))
-            self.ui.textEdit_mutation.setPlainText(str(Model_params_data["Mutation"]))
-            self.ui.textEdit_maxShelters.setPlainText(str(int(Model_params_data["MaxShelters"])))
-            self.ui.textEdit_maxL2Shelters.setPlainText(str(int(Model_params_data["MaxL2Shelters"])))
-            self.ui.textEdit_areaPerIdniv.setPlainText(str(Model_params_data["AreaPerIndiv"]))
-            self.ui.comboBox_modelType.setCurrentIndex(int(Model_params_data["Model"]))
+            self.ui.textEdit_generations.setPlainText(str(int(Model_params_data.at[0, "Generations"])))
+            self.ui.textEdit_population.setPlainText(str(int(Model_params_data.at[0, "Population"])))
+            self.ui.textEdit_wtCost.setPlainText(str(Model_params_data.at[0, "WtCost"]))
+            self.ui.textEdit_wtDist.setPlainText(str(Model_params_data.at[0, "WtDist"]))
+            self.ui.textEdit_mutation.setPlainText(str(Model_params_data.at[0, "Mutation"]))
+            self.ui.textEdit_maxShelters.setPlainText(str(int(Model_params_data.at[0, "MaxShelters"])))
+            self.ui.textEdit_maxL2Shelters.setPlainText(str(int(Model_params_data.at[0, "MaxL2Shelters"])))
+            self.ui.textEdit_areaPerIdniv.setPlainText(str(Model_params_data.at[0, "AreaPerIndiv"]))
+            self.ui.comboBox_modelType.setCurrentIndex(int(Model_params_data.at[0, "Model"]))
             
         except FileNotFoundError:
             QMessageBox.critical(self, "Error", f"File '{excel_name}' not found.")

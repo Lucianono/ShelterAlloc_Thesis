@@ -74,6 +74,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
         self.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
+    def update_first_column(file_name):
+        df = pd.read_excel(file_name, dtype=str)
+
+        if df.empty:
+            print(f"{file_name} is empty. Skipping...")
+            return
+        first_column_name = df.columns[0]
+
+        df[first_column_name] = df[first_column_name].fillna("")
+
+        mask_blank_first_column = df[first_column_name] == ""
+        mask_other_columns_filled = df.iloc[:, 1:].notna().any(axis=1)
+        rows_to_update = mask_blank_first_column & mask_other_columns_filled
+        df.loc[rows_to_update, first_column_name] = "True"
+
+        df[first_column_name] = df[first_column_name].astype(str)
+
+        df.to_excel(file_name, index=False, engine="openpyxl")
+
+    update_first_column("commData.xlsx")
+    update_first_column("shelData.xlsx")   
+
     def ensure_excel_file_exists(self, filepath, columns):
         if not os.path.exists(filepath):
             df = pd.DataFrame(columns=columns)

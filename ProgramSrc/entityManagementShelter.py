@@ -46,7 +46,7 @@ class EntityManagementShelter(QDialog):
         self.ui.ms_export_btn.clicked.connect(lambda: self.export_excel_data(dummy_data))
 
         self.shortcut = QShortcut(QKeySequence("Ctrl+D"), self)
-        self.shortcut.activated.connect(lambda: self.toggle_all_switches(self.ui.communityInfo_table))
+        self.shortcut.activated.connect(lambda: self.toggle_all_switches(self.ui.shelterInfo_table))
 
 
     def load_from_excel(self, table_widget, file_name, dummy_data):

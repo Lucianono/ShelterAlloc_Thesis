@@ -1,5 +1,6 @@
 # the official function for Bilevel No Transfer model
 
+from PySide6.QtCore import QObject, Signal
 from DataSetsModel import DataSets
 import random
 import numpy as np
@@ -13,14 +14,17 @@ import uuid
 import socket
 import requests
 
-class BNTModelSimulation:
+class BNTModelSimulation(QObject):
+
+    feasibility_warning = Signal()
     
+    def cancel(self):
+        self.cancelled = True
+
     def run(self, progress_dialog):
-        # TEMPORARY DUMMY DATA
-        # should be replaced with dynamic data from system
-        # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
         progress_dialog("Starting simulation")
         print("Starting simulation")
+        self.cancelled = False
 
         datasets = DataSets()
         Community = datasets.get_community_data()
@@ -251,7 +255,43 @@ class BNTModelSimulation:
 
             return solutions[selected_solution]
 
+        # =======================
+        # FEFASIBILITY CHECKS
+        def feasibilityCheck():
+
+            # check if there exists distance <= max distance 
+            failing_communities = []
+            for community in Community:
+                if not any(d <= community["maxdistance"] for d in community["distances"].values()):
+                    failing_communities.append(community["name"])
+            
+            if failing_communities:
+                print(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
+                return False
+
+            # check if there exists population <= shelter area * areaPerIndiv
+            failing_communities = []
+            for community in Community:
+                if not (
+                    any(shelter["area1"] >= community["population"] * area_per_individual for shelter in Shelters) or
+                    any(shelter["area2"] >= community["population"] * area_per_individual for shelter in Shelters)
+                ):
+                    failing_communities.append(community["name"])
+            
+            if failing_communities:
+                print(f"{failing_communities} has affected population that is impossible to allocate. No shelters is large enough.")
+                return False
+
+            # check if total population is theoretically possible to allocate on largest  shelters
+            total_population = sum(community['population'] for community in Community)
+            top_area2_sum = sum(shelter['area2'] for shelter in Shelters)
+
+            if total_population * area_per_individual > top_area2_sum:
+                print(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
+                return False
         
+            # if no cases are violated return true
+            return True
 
         # =======================
         # DISPLAY ALLOCATION
@@ -305,7 +345,8 @@ class BNTModelSimulation:
         # =======================
         # START OF THE ALGORITHM
         # initial population
-        
+        if not feasibilityCheck():
+            self.feasibility_warning.emit()
 
         generation_last_updated = 0
 
@@ -315,6 +356,10 @@ class BNTModelSimulation:
 
         # generations
         for generation in range(num_generations):
+            # check for cancellation
+            if self.cancelled:
+                progress_dialog("Genetic algorithm cancelled.")
+                return
 
             # sorting from best to worst solutions
             ranked_solutions = [(fitness(sol), sol) for sol in solutions]

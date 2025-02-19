@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'solvingprogress.ui'
+## Form generated from reading UI file 'solvingProgress.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -31,7 +31,7 @@ class Ui_solvingProgress(object):
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
         Dialog.setMinimumSize(QSize(600, 400))
-        Dialog.setMaximumSize(QSize(600, 400))
+        Dialog.setMaximumSize(QSize(600, 500))
         self.verticalLayout_4 = QVBoxLayout(Dialog)
         self.verticalLayout_4.setSpacing(20)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -66,7 +66,7 @@ class Ui_solvingProgress(object):
         self.verticalLayout_4.addWidget(self.frame)
 
         self.verticalLayout = QVBoxLayout()
-        self.verticalLayout.setSpacing(19)
+        self.verticalLayout.setSpacing(12)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(40, -1, 40, -1)
         self.solvingModel_progressBar = QProgressBar(Dialog)
@@ -103,17 +103,27 @@ class Ui_solvingProgress(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.scrollArea = QScrollArea(self.solvingModel_textFrame)
         self.scrollArea.setObjectName(u"scrollArea")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
+        self.scrollArea.setSizePolicy(sizePolicy2)
         self.scrollArea.setStyleSheet(u"\n"
 "background-color: white;\n"
 "border:none;")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 500, 196))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 500, 207))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.textEdit = QTextEdit(self.scrollAreaWidgetContents)
         self.textEdit.setObjectName(u"textEdit")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
+        self.textEdit.setSizePolicy(sizePolicy3)
         self.textEdit.setReadOnly(True)
 
         self.verticalLayout_3.addWidget(self.textEdit)
@@ -127,6 +137,7 @@ class Ui_solvingProgress(object):
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(-1, -1, -1, 10)
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)

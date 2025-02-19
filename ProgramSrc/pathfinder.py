@@ -11,7 +11,7 @@ from math import radians, cos, sin, sqrt, atan2
 class PathfindingWorker(QObject):
     finished = Signal()
     progress = Signal(str)
-    cancel_signal = Signal() 
+    feasibility_warning = Signal()
 
     def __init__(self, community_file, shelter_file):
         super().__init__()
@@ -21,7 +21,6 @@ class PathfindingWorker(QObject):
         self.timer = QTimer(self)
 
         self.timer.timeout.connect(self.check_for_cancel)
-        self.cancel_signal.connect(self.cancel)
 
     def run(self):
         try:
@@ -62,6 +61,8 @@ class PathfindingWorker(QObject):
 
     def cancel(self):
         self.cancelled = True
+        if self.model :
+            self.model.cancel()
 
     def check_for_cancel(self):
         if self.cancelled:
@@ -84,15 +85,16 @@ class PathfindingWorker(QObject):
             return
 
         try:
-        #     subprocess.run(["python", "BNTModelPenalized.py"], check=True)
-        # except subprocess.CalledProcessError as e:
-        #     self.progress.emit(f"Error running genetic algorithm: {e}")
 
-            model = BNTModelSimulation()
-            model.run(self.progress.emit)
+            self.model = BNTModelSimulation()
+            self.model.feasibility_warning.connect(self.feasibility_warning_msg)
+            self.model.run(self.progress.emit)
 
         except Exception as e:
             self.progress.emit(f"An unexpected error occurred: {e}")
+
+    def feasibility_warning_msg(self):
+        self.feasibility_warning.emit()
 
     def plot_route(self, communities_df, shelters_df, route_counter, map_name="all_routes_map.html", excel_name="distance_matrix.xlsx"):
         bbox_margin = 0.01

@@ -9,6 +9,7 @@ import os
 from functools import partial
 from pathfinder import PathfindingWorker
 from optimizedRouting import run_optimization
+from DataSetsModel import DataSets
 
 class SolvingProgress(QDialog):
     def __init__(self):
@@ -18,6 +19,7 @@ class SolvingProgress(QDialog):
 
         self.ui.solving_prog_cancel_btn.clicked.connect(self.cancel_pathfinding)
         self.ui.solvingModel_progressBar.setRange(0, 100)
+        self.isCancelled = False
         
         self.worker_thread = QThread()
         self.worker = None
@@ -33,6 +35,7 @@ class SolvingProgress(QDialog):
         # Connect signals
         self.worker.progress.connect(self.update_log)
         self.worker.finished.connect(self.on_finished)
+        self.worker.feasibility_warning.connect(self.feasibility_warning_prompt)
 
         # Start the worker
         self.worker_thread.started.connect(self.worker.run)
@@ -40,26 +43,32 @@ class SolvingProgress(QDialog):
         self.worker_thread.start()
 
     def cancel_pathfinding(self):
-        self.ui.textEdit.append("Cancelling pathfinding...")
+        self.ui.textEdit.append("Cancelling...")
+        self.isCancelled = True
         if self.worker : 
-            self.worker.cancel_signal.emit()  # Notify the worker to cancel
-            self.worker_thread.quit()         # Stop the thread gracefully
-            self.worker_thread.wait()         # Ensure the thread is terminated
-        self.close()   
+            self.worker.cancel()  
 
     def update_log(self, message):
         self.ui.textEdit.append(message)
 
     def on_finished(self):
-        self.ui.textEdit.append("Pathfinding Complete!")
-        self.ui.solvingModel_progressBar.setValue(50)
-        self.worker_thread.quit()
-        self.ui.solvingModel_progressBar.setValue(100)
-        run_optimization()
-        self.report_Window = ShelterAllocationReport()
-        self.report_Window.show()
+        self.ui.solving_prog_cancel_btn.setText("Close")
+        self.ui.solving_prog_cancel_btn.clicked.connect(self.close)
 
-        self.close()  
+        if not self.isCancelled:
+            self.ui.textEdit.append("Pathfinding Complete!")
+            self.ui.solvingModel_progressBar.setValue(50)
+            self.worker_thread.quit()
+            self.ui.solvingModel_progressBar.setValue(100)
+            run_optimization()
+            self.report_Window = ShelterAllocationReport()
+            self.report_Window.show()
+
+    def feasibility_warning_prompt(self) :
+        response = QMessageBox.question(self, "Warning", "No feasible solution may exist. Continue anyway?", QMessageBox.Yes | QMessageBox.No)
+        if response == QMessageBox.No:
+            self.cancel_pathfinding()
+    
         
 
     

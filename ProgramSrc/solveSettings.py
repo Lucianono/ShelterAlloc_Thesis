@@ -105,9 +105,13 @@ class SolveSettingsDialog(QDialog):
 
     def open_solving_progress_dialog(self):
         try:
-            comm_data = self.load_and_display_community_data()
-            filtered_comm_data = comm_data[comm_data["Active"] == True]
+            filtered_comm_data = self.load_and_display_community_data()
             filtered_shel_data = self.filter_shelter_data()
+
+            if filtered_comm_data.empty or filtered_shel_data.empty:
+                QMessageBox.warning(self, "Warning", "No community or shelter selected.")
+                return
+            
 
             file_path = os.path.join(os.getcwd(), "modelCommData.xlsx")
             if file_path:
@@ -146,9 +150,6 @@ class SolveSettingsDialog(QDialog):
 
             # Filter rows where 'Active' column is True
             active_data = data[data["Active"] == True]
-
-            if active_data.empty:
-                return
             
             # clear scroll area before populating
             for i in reversed(range(self.community_layout.count())):
@@ -164,7 +165,7 @@ class SolveSettingsDialog(QDialog):
 
             self.changes_saved_comm.emit()
 
-            return data
+            return active_data
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")

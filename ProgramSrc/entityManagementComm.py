@@ -93,7 +93,7 @@ class EntityManagementComm(QDialog):
             data = pd.read_excel(file_path).fillna("")
             
             if list(data.columns) != required_headers:
-                QMessageBox.critical(self, "Error", "The imported Excel file does not have the correct headers.")
+                QMessageBox.critical(self, "Error", f"The imported Excel file does not have the correct headers. {required_headers}")
                 print(list(data.columns))
                 return
             

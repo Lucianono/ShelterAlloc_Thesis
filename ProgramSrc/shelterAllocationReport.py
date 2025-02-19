@@ -74,7 +74,7 @@ class ShelterAllocationReport(QDialog):
             row_data = row_data.replace("\n", "")
             ws2.insert_rows(start_row)
 
-            if "=" in row_data:
+            if "---" in row_data:
                 ws2.cell(row=start_row, column=1).fill = PatternFill(start_color="548235", end_color="548235", fill_type="solid") 
                 ws2.cell(row=start_row, column=1).font = Font(color="ffffff", bold=True)
 

@@ -526,6 +526,7 @@ class BNTModelSimulation:
             f"Generation when solution last updated : {generation_last_updated}",
             f"Time run : {minutes} minutes and {seconds:.2f} seconds",
             cost_comparison_analysis,
+            f"Objective value : {fitness(best_allocation)}",
             "--- SHELTER DETAILS ---",
             f"Number of all shelters : {sum(1 for shelter in Shelters)}",
             f"Number of opened shelters : {sum(1 for shelter in set(best_allocation['initial'].values()))}",

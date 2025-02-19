@@ -366,7 +366,7 @@
 	
 	All collected data will first be cleaned to remove any inconsistencies, duplicates, or irrelevant information. This process is crucial for ensuring the data’s quality and reliability, particularly for a system that relies on precision in both inputs and outputs. Any insufficient data will be asked on the LGU to fill in the gaps of the datasets. 
 	
-	The table \ref{dataSource} presents all the data variables on communities and shelters used in the model, along with their respective sources. Improvement or rehabilitation cost is added for costs which are based on a report for improvement of an evacuation center from DILG, which cost approximately ₱7,700 per square meter. Meanwhile, data for Level 2 shelters are simulated, as the LGU does not have a data nor system for the hierarchy of shelters. The areas are assumed to be twice their initial size, and costs are estimated based on the contract cost of the Frances Evacuation Center, as detailed in the DILG and DPWH reports, resulting in approximately ₱60,000 per square meter.
+	The table \ref{dataSource} presents all the data variables on communities and shelters used in the model, along with their respective sources. Affected population were derived from the population of community which is based on the study of \textcite{Opdyke2024} that states 12\% of households intends to evacuate on public evacuation sites. Improvement or rehabilitation cost is added for costs, which are based on a report for improvement of an evacuation center from DILG that costs approximately ₱7,700 per square meter. Meanwhile, data for Level 2 shelters are simulated, as the LGU does not have a data nor system for the hierarchy of shelters. The areas are assumed to be twice their initial size, and costs are estimated based on the contract cost of the Frances Evacuation Center, as detailed in the DILG and DPWH reports, resulting in approximately ₱60,000 per square meter. 
 	
 	\begin{table}[h]
 		\centering
@@ -381,7 +381,7 @@
 				Longitude & Google Map \& LGU interview & Longitudinal coordinates \\ \hline
 				Latitude & Google Map \& LGU interview & Latitudinal coordinates \\ \hline
 				Population & Philippine Atlas (2020 population) & Number of individuals living in a community \\ \hline
-				AffectedPop & LGU interview (from Typhoon Karina 2024) & Number of individuals affected during a disaster \\ \hline
+				AffectedPop & Assumed 12\% of Population & Number of individuals affected during a disaster \\ \hline
 				MaxDistance & Maximum distance generated in distance calculation & Distance allowed to travel by a community \\ \hline
 				\multicolumn{3}{|c|}{\textit{\textbf{Shelter}}} \\ \hline
 				Name & LGU interview & Identity of a shelter \\ \hline

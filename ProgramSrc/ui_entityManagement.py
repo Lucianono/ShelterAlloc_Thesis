@@ -71,10 +71,11 @@ class Ui_EntityManagementCommunities(object):
         self.mc_export_btn.setMinimumSize(QSize(191, 51))
         self.mc_export_btn.setMaximumSize(QSize(161, 51))
         font1 = QFont()
-        font1.setPointSize(15)
+        font1.setPointSize(10)
         font1.setBold(True)
         self.mc_export_btn.setFont(font1)
         self.mc_export_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.mc_export_btn.setToolTipDuration(10000)
         self.mc_export_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #136ec2;\n"
 "    color: white;\n"
@@ -91,6 +92,10 @@ class Ui_EntityManagementCommunities(object):
 "    background-color: #167bda;\n"
 "}\n"
 "")
+        icon1 = QIcon()
+        icon1.addFile(u":/ICONS/icons8-xls-export-96.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.mc_export_btn.setIcon(icon1)
+        self.mc_export_btn.setIconSize(QSize(35, 35))
         self.mc_export_btn.setCheckable(True)
 
         self.horizontalLayout.addWidget(self.mc_export_btn)
@@ -99,8 +104,12 @@ class Ui_EntityManagementCommunities(object):
         self.mc_import_btn.setObjectName(u"mc_import_btn")
         self.mc_import_btn.setMinimumSize(QSize(191, 51))
         self.mc_import_btn.setMaximumSize(QSize(161, 51))
-        self.mc_import_btn.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(15)
+        font2.setBold(True)
+        self.mc_import_btn.setFont(font2)
         self.mc_import_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.mc_import_btn.setToolTipDuration(10000)
         self.mc_import_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #14AE5C;\n"
 "    color: white;\n"
@@ -117,6 +126,10 @@ class Ui_EntityManagementCommunities(object):
 "    background-color: #E63946;\n"
 "}\n"
 "")
+        icon2 = QIcon()
+        icon2.addFile(u":/ICONS/icons8-xls-import-96.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.mc_import_btn.setIcon(icon2)
+        self.mc_import_btn.setIconSize(QSize(35, 35))
         self.mc_import_btn.setCheckable(True)
 
         self.horizontalLayout.addWidget(self.mc_import_btn)
@@ -124,7 +137,7 @@ class Ui_EntityManagementCommunities(object):
         self.mc_add_community_btn = QPushButton(self.frame)
         self.mc_add_community_btn.setObjectName(u"mc_add_community_btn")
         self.mc_add_community_btn.setMinimumSize(QSize(281, 61))
-        self.mc_add_community_btn.setFont(font1)
+        self.mc_add_community_btn.setFont(font2)
         self.mc_add_community_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mc_add_community_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #1C5739;\n"
@@ -142,9 +155,9 @@ class Ui_EntityManagementCommunities(object):
 "    background-color: #1C5739;\n"
 "}\n"
 "")
-        icon1 = QIcon()
-        icon1.addFile(u":/ICONS/460625174_1063840541791504_8083137884705313080_n.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.mc_add_community_btn.setIcon(icon1)
+        icon3 = QIcon()
+        icon3.addFile(u":/ICONS/460625174_1063840541791504_8083137884705313080_n.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.mc_add_community_btn.setIcon(icon3)
         self.mc_add_community_btn.setIconSize(QSize(35, 35))
         self.mc_add_community_btn.setCheckable(True)
         self.mc_add_community_btn.setFlat(False)
@@ -184,6 +197,7 @@ class Ui_EntityManagementCommunities(object):
         __qtablewidgetitem8 = QTableWidgetItem()
         self.communityInfo_table.setVerticalHeaderItem(0, __qtablewidgetitem8)
         self.communityInfo_table.setObjectName(u"communityInfo_table")
+        self.communityInfo_table.setEnabled(True)
         self.communityInfo_table.setStyleSheet(u"QHeaderView::section {\n"
 "    font-weight: bold;\n"
 "    background-color: #F0F0F0;\n"
@@ -255,10 +269,10 @@ class Ui_EntityManagementCommunities(object):
         self.mc_cancel_changes_btn.setObjectName(u"mc_cancel_changes_btn")
         self.mc_cancel_changes_btn.setMinimumSize(QSize(161, 51))
         self.mc_cancel_changes_btn.setMaximumSize(QSize(161, 51))
-        font2 = QFont()
-        font2.setPointSize(12)
-        font2.setBold(True)
-        self.mc_cancel_changes_btn.setFont(font2)
+        font3 = QFont()
+        font3.setPointSize(12)
+        font3.setBold(True)
+        self.mc_cancel_changes_btn.setFont(font3)
         self.mc_cancel_changes_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mc_cancel_changes_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #fff;\n"
@@ -284,7 +298,7 @@ class Ui_EntityManagementCommunities(object):
         self.mc_save_changes_btn.setObjectName(u"mc_save_changes_btn")
         self.mc_save_changes_btn.setMinimumSize(QSize(161, 51))
         self.mc_save_changes_btn.setMaximumSize(QSize(161, 51))
-        self.mc_save_changes_btn.setFont(font2)
+        self.mc_save_changes_btn.setFont(font3)
         self.mc_save_changes_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mc_save_changes_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #1C5739;\n"
@@ -322,8 +336,15 @@ class Ui_EntityManagementCommunities(object):
         EntityManagementCommunities.setWindowTitle(QCoreApplication.translate("EntityManagementCommunities", u"Dialog", None))
         self.mc_back_btn.setText("")
         self.label.setText(QCoreApplication.translate("EntityManagementCommunities", u"Manage Communities", None))
-        self.mc_export_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Export XLSX", None))
-        self.mc_import_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Import XLSX", None))
+#if QT_CONFIG(tooltip)
+        self.mc_export_btn.setToolTip(QCoreApplication.translate("EntityManagementCommunities", u"<html><head/><body><p><span style=\" font-weight:600;\">DOWNLOAD TEMPLATE </span>download an excel file containing the sample community data (template)</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.mc_export_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Download\n"
+"Template", None))
+#if QT_CONFIG(tooltip)
+        self.mc_import_btn.setToolTip(QCoreApplication.translate("EntityManagementCommunities", u"<html><head/><body><p><span style=\" font-weight:600;\">IMPORT</span> upload an excel file and display its contents in the table</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.mc_import_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Import", None))
         self.mc_add_community_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Add Community", None))
         ___qtablewidgetitem = self.communityInfo_table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("EntityManagementCommunities", u"Name", None));

@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QStyledItemDelegate, QTableWidgetItem
-from PySide6.QtGui import QIcon, QCursor
+from PySide6.QtGui import QIcon, QCursor,QShortcut, QKeySequence
 from PySide6.QtCore import Signal, Qt, QUrl, QPropertyAnimation, QRect
 from ui_entityManagementShelter import Ui_entityManagementShelter
 import pandas as pd
@@ -43,6 +43,10 @@ class EntityManagementShelter(QDialog):
         self.ui.ms_import_btn.clicked.connect(lambda: self.import_excel_data(self.ui.shelterInfo_table,required_headers, expected_types))
         self.ui.ms_save_changes_btn.clicked.connect(lambda: self.save_to_excel(self.ui.shelterInfo_table, file_name, self,required_headers, expected_types))
         self.ui.ms_add_shelter_btn.clicked.connect(lambda: self.add_row(self.ui.shelterInfo_table))
+
+        self.shortcut = QShortcut(QKeySequence("Ctrl+D"), self)
+        self.shortcut.activated.connect(lambda: self.toggle_all_switches(self.ui.communityInfo_table))
+
 
     def load_from_excel(self, table_widget, file_name, dummy_data):
         if file_name and os.path.exists( os.path.join(os.getcwd(), file_name) ):
@@ -291,3 +295,10 @@ class EntityManagementShelter(QDialog):
                 delete_btn = delete_btn_widget.findChild(QPushButton)
                 delete_btn.clicked.disconnect()
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
+
+    def toggle_all_switches(self, table_widget):
+        state = table_widget.cellWidget(0, 0).findChild(QPushButton).isChecked()
+
+        for row in range(table_widget.rowCount()):
+            if state is table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked(): 
+                table_widget.cellWidget(row, 0).findChild(QPushButton).click()

@@ -1,5 +1,5 @@
 import sys
-from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout
+from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QStyledItemDelegate, QTableWidgetItem
 from PySide6.QtGui import QIcon, QCursor
 from PySide6.QtCore import Signal, Qt, QUrl, QPropertyAnimation, QRect
 from ui_entityManagementShelter import Ui_entityManagementShelter
@@ -35,7 +35,6 @@ class EntityManagementShelter(QDialog):
             'Status': str,
             'Remarks': str
         }
-
 
         self.load_from_excel(self.ui.shelterInfo_table, file_name, dummy_data)
 
@@ -168,10 +167,15 @@ class EntityManagementShelter(QDialog):
         table_widget.setRowCount(0)
 
         hadActiveColumn = True
-        headers = list(data.columns) + ['Delete']
-        if 'Active' not in headers:
-            headers = ['Active'] + headers
+        headers = [
+            "Active", "Name", "xDegrees", "yDegrees", 
+            "Cost1 (PHP)", "Area1 (sqm)", "Cost2 (PHP)", "Area2 (sqm)", 
+            "FloodProof", "TyphoonProof", "EarthquakeProof", "Status", "Remarks", "Delete"
+        ]
+
+        if "Active" not in data.columns:
             hadActiveColumn = False
+
         table_widget.setColumnCount(len(headers))
         table_widget.setHorizontalHeaderLabels(headers)
 

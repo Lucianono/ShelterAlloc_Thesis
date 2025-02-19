@@ -1,7 +1,7 @@
 import sys
-from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout
-from PySide6.QtGui import QIcon, QCursor
-from PySide6.QtCore import Qt, QUrl
+from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QPlainTextEdit
+from PySide6.QtGui import QIcon, QCursor, QKeyEvent
+from PySide6.QtCore import Qt, QUrl, QEvent, QObject
 from ui_modelSettings import Ui_modelSettings
 import pandas as pd
 import os
@@ -13,6 +13,20 @@ class ModelSettings(QDialog):
         self.ui = Ui_modelSettings()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.setModal(True)
+        
+        text_fields = [
+            self.ui.textEdit_generations,
+            self.ui.textEdit_population,
+            self.ui.textEdit_wtCost,
+            self.ui.textEdit_wtDist,
+            self.ui.textEdit_mutation,
+            self.ui.textEdit_maxShelters,
+            self.ui.textEdit_maxL2Shelters,
+            self.ui.textEdit_areaPerIdniv
+        ]
+
+        for field in text_fields:
+            field.installEventFilter(self)
 
         expected_types = {
             "Generations": int,
@@ -29,9 +43,18 @@ class ModelSettings(QDialog):
         self.ui.modelSettings_back_btn.clicked.connect(self.close)
         self.ui.modelSettings_done_btn.clicked.connect(lambda: self.save_to_excel( "modelParam.xlsx", self ,expected_types))
 
+        self.ui.modelSettings_done_btn.setAutoDefault(False)
+        self.ui.modelSettings_done_btn.setDefault(False)
+
         self.update_params_from_excel("modelParam.xlsx")
 
         print("Opened")
+
+    def eventFilter(self, obj, event):
+        if event.type() == QEvent.KeyPress and (event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter):
+            obj.clearFocus()  # Unselect the field
+            return True  # Mark event as handled (no new line added)
+        return super().eventFilter(obj, event)    
 
 
     def update_params_from_excel(self, excel_name):
@@ -140,7 +163,3 @@ class ModelSettings(QDialog):
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to save to Excel: {e}")
-
-        
-
-        

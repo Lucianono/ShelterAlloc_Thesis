@@ -103,7 +103,7 @@ background-color: white;
         </property>
         <property name="font">
          <font>
-          <pointsize>15</pointsize>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -130,7 +130,18 @@ QPushButton:pressed {
 </string>
         </property>
         <property name="text">
-         <string>Export XLSX</string>
+         <string>Download
+Template</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/ICONS/icons8-xls-export-96.png</normaloff>:/ICONS/icons8-xls-export-96.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>35</width>
+          <height>35</height>
+         </size>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -180,7 +191,17 @@ QPushButton:pressed {
 </string>
         </property>
         <property name="text">
-         <string>Import XLSX</string>
+         <string>Import</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/ICONS/icons8-xls-import-96.png</normaloff>:/ICONS/icons8-xls-import-96.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>35</width>
+          <height>35</height>
+         </size>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -261,6 +282,9 @@ QPushButton:pressed {
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QTableWidget" name="communityInfo_table">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="styleSheet">
          <string notr="true">QHeaderView::section {
     font-weight: bold;

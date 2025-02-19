@@ -97,10 +97,10 @@ class PathfindingWorker(QObject):
     def plot_route(self, communities_df, shelters_df, route_counter, map_name="all_routes_map.html", excel_name="distance_matrix.xlsx"):
         bbox_margin = 0.01
         bbox = (
-            max(communities_df['xDegrees'].max(), shelters_df['xDegrees'].max()) + bbox_margin,
-            min(communities_df['xDegrees'].min(), shelters_df['xDegrees'].min()) - bbox_margin,
-            max(communities_df['yDegrees'].max(), shelters_df['yDegrees'].max()) + bbox_margin,
-            min(communities_df['yDegrees'].min(), shelters_df['yDegrees'].min()) - bbox_margin
+            max(communities_df['Latitude'].max(), shelters_df['Latitude'].max()) + bbox_margin,
+            min(communities_df['Latitude'].min(), shelters_df['Latitude'].min()) - bbox_margin,
+            max(communities_df['Longitude'].max(), shelters_df['Longitude'].max()) + bbox_margin,
+            min(communities_df['Longitude'].min(), shelters_df['Longitude'].min()) - bbox_margin
         )
 
         roadgraph = ox.graph_from_bbox(*bbox, network_type='all')
@@ -123,8 +123,8 @@ class PathfindingWorker(QObject):
                     self.progress.emit("Pathfinding cancelled.")
                     return
                 try:
-                    start_node = ox.distance.nearest_nodes(roadgraph, community['yDegrees'], community['xDegrees'])
-                    end_node = ox.distance.nearest_nodes(roadgraph, shelter['yDegrees'], shelter['xDegrees'])
+                    start_node = ox.distance.nearest_nodes(roadgraph, community['Longitude'], community['Latitude'])
+                    end_node = ox.distance.nearest_nodes(roadgraph, shelter['Longitude'], shelter['Latitude'])
 
                     route = nx.astar_path(roadgraph, start_node, end_node, heuristic=haversine_heuristic, weight='length')
                     route_distance = sum(ox.utils_graph.get_route_edge_attributes(roadgraph, route, 'length'))

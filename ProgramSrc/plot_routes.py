@@ -22,29 +22,29 @@ def haversine_distance(lat1, lon1, lat2, lon2):
 
 def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.html", excel_name="distance_matrix.xlsx", progress_callback=None):
     # Center the map at the average location of all communities and shelters
-    avg_lat = (communities_df['xDegrees'].mean() + shelters_df['xDegrees'].mean()) / 2
-    avg_lon = (communities_df['yDegrees'].mean() + shelters_df['yDegrees'].mean()) / 2
+    avg_lat = (communities_df['Latitude'].mean() + shelters_df['Latitude'].mean()) / 2
+    avg_lon = (communities_df['Longitude'].mean() + shelters_df['Longitude'].mean()) / 2
     m = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
 
     # Add markers for communities
     for _, community in communities_df.iterrows():
-        folium.Marker([community['xDegrees'], community['yDegrees']], 
+        folium.Marker([community['Latitude'], community['Longitude']], 
                       popup=f"Community: {community['Name']}",
                       icon=folium.Icon(color='green')).add_to(m)
     
     # Add markers for shelters
     for _, shelter in shelters_df.iterrows():
-        folium.Marker([shelter['xDegrees'], shelter['yDegrees']], 
+        folium.Marker([shelter['Latitude'], shelter['Longitude']], 
                       popup=f"Shelter: {shelter['Name']}",
                       icon=folium.Icon(color='blue')).add_to(m)
 
     # Define a bounding box for the entire region
     bbox_margin = 0.02
     bbox = (
-        max(communities_df['xDegrees'].max(), shelters_df['xDegrees'].max()) + bbox_margin,
-        min(communities_df['xDegrees'].min(), shelters_df['xDegrees'].min()) - bbox_margin,
-        max(communities_df['yDegrees'].max(), shelters_df['yDegrees'].max()) + bbox_margin,
-        min(communities_df['yDegrees'].min(), shelters_df['yDegrees'].min()) - bbox_margin
+        max(communities_df['Latitude'].max(), shelters_df['Latitude'].max()) + bbox_margin,
+        min(communities_df['Latitude'].min(), shelters_df['Latitude'].min()) - bbox_margin,
+        max(communities_df['Longitude'].max(), shelters_df['Longitude'].max()) + bbox_margin,
+        min(communities_df['Longitude'].min(), shelters_df['Longitude'].min()) - bbox_margin
     )
 
     # Load the road graph for the region
@@ -67,8 +67,8 @@ def plot_routes_on_map(communities_df, shelters_df, map_name="all_routes_map.htm
         for _, shelter in shelters_df.iterrows():
             try:
                 # Get the nearest nodes
-                start_node = ox.distance.nearest_nodes(roadgraph, community['yDegrees'], community['xDegrees'])
-                end_node = ox.distance.nearest_nodes(roadgraph, shelter['yDegrees'], shelter['xDegrees'])
+                start_node = ox.distance.nearest_nodes(roadgraph, community['Longitude'], community['Latitude'])
+                end_node = ox.distance.nearest_nodes(roadgraph, shelter['Longitude'], shelter['Latitude'])
 
                 # Find the shortest path using A* algorithm
                 route = nx.astar_path(roadgraph, start_node, end_node, heuristic=haversine_heuristic, weight='length')

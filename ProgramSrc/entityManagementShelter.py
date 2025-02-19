@@ -18,13 +18,13 @@ class EntityManagementShelter(QDialog):
         self.setModal(True)
 
         file_name = "shelData.xlsx"
-        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Area1', 'Cost1', 'Area2', 'Cost2', 'ResToFlood', 'ResToTyphoon', 'ResToEarthquake', 'Status', 'Remarks']
+        required_headers = ['Name', 'Latitude', 'Longitude', 'Area1', 'Cost1', 'Area2', 'Cost2', 'ResToFlood', 'ResToTyphoon', 'ResToEarthquake', 'Status', 'Remarks']
         dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 500, 1000, 300, 1500, True, False, True, 'Built', 'Sample remarks']], columns=required_headers)
 
         expected_types = {
             'Name': str,
-            'xDegrees': float,
-            'yDegrees': float,
+            'Latitude': float,
+            'Longitude': float,
             'Area1': float,
             'Cost1': float,
             'Area2': float,
@@ -41,7 +41,7 @@ class EntityManagementShelter(QDialog):
         self.ui.ms_back_btn.clicked.connect(self.close)
         self.ui.ms_cancel_btn.clicked.connect(self.close)
         self.ui.ms_import_btn.clicked.connect(lambda: self.import_excel_data(self.ui.shelterInfo_table,required_headers, expected_types))
-        self.ui.ms_save_changes_btn.clicked.connect(lambda: self.save_to_excel(self.ui.shelterInfo_table, file_name, self, expected_types))
+        self.ui.ms_save_changes_btn.clicked.connect(lambda: self.save_to_excel(self.ui.shelterInfo_table, file_name, self,required_headers, expected_types))
         self.ui.ms_add_shelter_btn.clicked.connect(lambda: self.add_row(self.ui.shelterInfo_table))
 
     def load_from_excel(self, table_widget, file_name, dummy_data):
@@ -111,24 +111,15 @@ class EntityManagementShelter(QDialog):
 
             self.populate_table(table_widget, data)
             
-    def save_to_excel(self, table_widget, file_name, dialog, expected_types):
+    def save_to_excel(self, table_widget, file_name, dialog,required_headers, expected_types):
         data = []
 
-        hadActiveColumn = True
-        headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
-        if 'Active' not in headers:
-            headers = ['Active'] + headers
-            hadActiveColumn = False
+        headers = ['Active'] + required_headers
 
         for row in range(table_widget.rowCount()):
             active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
             row_data = [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
-            
-            if not hadActiveColumn:
-                # Get the active switch state
-                active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
-                row_data = [active_switch] + row_data
-                
+            row_data = [active_switch] + row_data
             data.append(row_data)
 
         if data:
@@ -137,7 +128,7 @@ class EntityManagementShelter(QDialog):
             try:
                 self.validate_imported_data(dataframe, expected_types)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to display file: {e}")
+                QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
                 return
             # save the table here 
             file_path = os.path.join(os.getcwd(), file_name)
@@ -168,8 +159,8 @@ class EntityManagementShelter(QDialog):
 
         hadActiveColumn = True
         headers = [
-            "Active", "Name", "xDegrees", "yDegrees", 
-            "Cost1 (PHP)", "Area1 (sqm)", "Cost2 (PHP)", "Area2 (sqm)", 
+            "Active", "Name", "Latitude", "Longitude", 
+             "Area1 (sqm)", "Cost1 (PHP)",  "Area2 (sqm)",  "Cost2 (PHP)",
             "FloodProof", "TyphoonProof", "EarthquakeProof", "Status", "Remarks", "Delete"
         ]
 

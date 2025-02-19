@@ -18,13 +18,13 @@ class EntityManagementComm(QDialog):
         self.setModal(True)
 
         file_name = "commData.xlsx"
-        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'MaxDistance',  'Remarks']
+        required_headers = ['Name', 'Latitude', 'Longitude', 'Population', 'AffectedPop', 'MaxDistance',  'Remarks']
         dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 100, 'Sample remarks']], columns=required_headers)
 
         expected_types = {
             'Name': str,
-            'xDegrees': float,
-            'yDegrees': float,
+            'Latitude': float,
+            'Longitude': float,
             'Population': int,
             'AffectedPop': int,
             'MaxDistance': float,
@@ -36,7 +36,7 @@ class EntityManagementComm(QDialog):
         self.ui.mc_back_btn.clicked.connect(self.close)
         self.ui.mc_cancel_changes_btn.clicked.connect(self.close)
         self.ui.mc_import_btn.clicked.connect(lambda: self.import_excel_data(self.ui.communityInfo_table,required_headers ,expected_types))
-        self.ui.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(self.ui.communityInfo_table, file_name, self ,expected_types))
+        self.ui.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(self.ui.communityInfo_table, file_name, self , required_headers ,expected_types))
         self.ui.mc_add_community_btn.clicked.connect(lambda: self.add_row(self.ui.communityInfo_table))
 
     def load_from_excel(self, table_widget, file_name, dummy_data):
@@ -105,22 +105,15 @@ class EntityManagementComm(QDialog):
 
             self.populate_table(table_widget, data)
             
-    def save_to_excel(self, table_widget, file_name, dialog, expected_types):
+    def save_to_excel(self, table_widget, file_name, dialog, required_headers, expected_types):
         data = []
         
-        hadActiveColumn = True
-        headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
-        if 'Active' not in headers:
-            headers = ['Active'] + headers
-            hadActiveColumn = False
+        headers = ['Active'] + required_headers
         
         for row in range(table_widget.rowCount()):
             row_data = [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
-            
-            if not hadActiveColumn:
-                # Get the active switch state
-                active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
-                row_data = [active_switch] + row_data
+            active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
+            row_data = [active_switch] + row_data
 
             data.append(row_data)
 
@@ -160,9 +153,11 @@ class EntityManagementComm(QDialog):
         table_widget.setRowCount(0)
 
         hadActiveColumn = True
-        headers = list(data.columns) + ['Delete']
-        if 'Active' not in headers:
-            headers = ['Active'] + headers
+        headers = [
+            "Active", "Name", "Latitude", "Longitude", 'Population', 'AffectedPop', 'MaxDistance (m)', "Remarks", "Delete"
+        ]
+
+        if "Active" not in data.columns:
             hadActiveColumn = False
         table_widget.setColumnCount(len(headers))
         table_widget.setHorizontalHeaderLabels(headers)

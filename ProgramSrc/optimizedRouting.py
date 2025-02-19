@@ -25,30 +25,30 @@ def plot_optimized_routes(allocation_df, comm_dict, shel_dict, map_name="optimiz
     print("Running plot_optimized_routes")
 
     # Add coordinates using lookup dictionaries
-    allocation_df['xDegrees_Comm'] = allocation_df['Community'].map(lambda x: comm_dict.get(x, {}).get('x'))
-    allocation_df['yDegrees_Comm'] = allocation_df['Community'].map(lambda x: comm_dict.get(x, {}).get('y'))
-    allocation_df['xDegrees_Shel'] = allocation_df['Shelter Assigned'].map(lambda x: shel_dict.get(x, {}).get('x'))
-    allocation_df['yDegrees_Shel'] = allocation_df['Shelter Assigned'].map(lambda x: shel_dict.get(x, {}).get('y'))
+    allocation_df['Latitude_Comm'] = allocation_df['Community'].map(lambda x: comm_dict.get(x, {}).get('x'))
+    allocation_df['Longitude_Comm'] = allocation_df['Community'].map(lambda x: comm_dict.get(x, {}).get('y'))
+    allocation_df['Latitude_Shel'] = allocation_df['Shelter Assigned'].map(lambda x: shel_dict.get(x, {}).get('x'))
+    allocation_df['Longitude_Shel'] = allocation_df['Shelter Assigned'].map(lambda x: shel_dict.get(x, {}).get('y'))
 
     # Remove any rows with missing coordinates
-    allocation_df.dropna(subset=['xDegrees_Comm', 'yDegrees_Comm', 'xDegrees_Shel', 'yDegrees_Shel'], inplace=True)
+    allocation_df.dropna(subset=['Latitude_Comm', 'Longitude_Comm', 'Latitude_Shel', 'Longitude_Shel'], inplace=True)
 
-    avg_lat = (allocation_df['xDegrees_Comm'].mean() + allocation_df['xDegrees_Shel'].mean()) / 2
-    avg_lon = (allocation_df['yDegrees_Comm'].mean() + allocation_df['yDegrees_Shel'].mean()) / 2
+    avg_lat = (allocation_df['Latitude_Comm'].mean() + allocation_df['Latitude_Shel'].mean()) / 2
+    avg_lon = (allocation_df['Longitude_Comm'].mean() + allocation_df['Longitude_Shel'].mean()) / 2
     m = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
 
     # Add markers
     for _, row in allocation_df.iterrows():
-        folium.Marker([row['xDegrees_Comm'], row['yDegrees_Comm']], popup=f"Community: {row['Community']}", icon=folium.Icon(color='green')).add_to(m)
-        folium.Marker([row['xDegrees_Shel'], row['yDegrees_Shel']], popup=f"Shelter: {row['Shelter Assigned']}", icon=folium.Icon(color='blue')).add_to(m)
+        folium.Marker([row['Latitude_Comm'], row['Longitude_Comm']], popup=f"Community: {row['Community']}", icon=folium.Icon(color='green')).add_to(m)
+        folium.Marker([row['Latitude_Shel'], row['Longitude_Shel']], popup=f"Shelter: {row['Shelter Assigned']}", icon=folium.Icon(color='blue')).add_to(m)
 
     # Define a bounding box for the region
     bbox_margin = 0.02
     bbox = (
-        max(allocation_df['xDegrees_Comm'].max(), allocation_df['xDegrees_Shel'].max()) + bbox_margin,
-        min(allocation_df['xDegrees_Comm'].min(), allocation_df['xDegrees_Shel'].min()) - bbox_margin,
-        max(allocation_df['yDegrees_Comm'].max(), allocation_df['yDegrees_Shel'].max()) + bbox_margin,
-        min(allocation_df['yDegrees_Comm'].min(), allocation_df['yDegrees_Shel'].min()) - bbox_margin
+        max(allocation_df['Latitude_Comm'].max(), allocation_df['Latitude_Shel'].max()) + bbox_margin,
+        min(allocation_df['Latitude_Comm'].min(), allocation_df['Latitude_Shel'].min()) - bbox_margin,
+        max(allocation_df['Longitude_Comm'].max(), allocation_df['Longitude_Shel'].max()) + bbox_margin,
+        min(allocation_df['Longitude_Comm'].min(), allocation_df['Longitude_Shel'].min()) - bbox_margin
     )
 
     # Load the road graph for the region
@@ -71,10 +71,10 @@ def plot_optimized_routes(allocation_df, comm_dict, shel_dict, map_name="optimiz
     # Plot routes
     for idx, row in allocation_df.iterrows():
         try:
-            start_node = ox.distance.nearest_nodes(roadgraph, row['yDegrees_Comm'], row['xDegrees_Comm'])
-            end_node = ox.distance.nearest_nodes(roadgraph, row['yDegrees_Shel'], row['xDegrees_Shel'])
-            start_location = (row['xDegrees_Comm'], row['yDegrees_Comm'])
-            end_location = (row['xDegrees_Shel'], row['yDegrees_Shel'])
+            start_node = ox.distance.nearest_nodes(roadgraph, row['Longitude_Comm'], row['Latitude_Comm'])
+            end_node = ox.distance.nearest_nodes(roadgraph, row['Longitude_Shel'], row['Latitude_Shel'])
+            start_location = (row['Latitude_Comm'], row['Longitude_Comm'])
+            end_location = (row['Latitude_Shel'], row['Longitude_Shel'])
             shelter_id = used_shelters.index(row['Shelter Assigned'])
             
 
@@ -106,13 +106,13 @@ def run_optimization(communities_file='modelCommData.xlsx', shelters_file='model
     print("Running run_optimization")
 
     # Load data
-    communities_df = pd.read_excel(communities_file, usecols=["Name", "yDegrees", "xDegrees"])
-    shelters_df = pd.read_excel(shelters_file, usecols=["Name", "yDegrees", "xDegrees"])
+    communities_df = pd.read_excel(communities_file, usecols=["Name", "Longitude", "Latitude"])
+    shelters_df = pd.read_excel(shelters_file, usecols=["Name", "Longitude", "Latitude"])
     allocation_df = pd.read_excel(allocation_file, usecols=["Community", "Shelter Assigned"])
 
     # Create lookup dictionaries
-    comm_dict = {row["Name"]: {"y": row["yDegrees"], "x": row["xDegrees"]} for _, row in communities_df.iterrows()}
-    shel_dict = {row["Name"]: {"y": row["yDegrees"], "x": row["xDegrees"]} for _, row in shelters_df.iterrows()}
+    comm_dict = {row["Name"]: {"y": row["Longitude"], "x": row["Latitude"]} for _, row in communities_df.iterrows()}
+    shel_dict = {row["Name"]: {"y": row["Longitude"], "x": row["Latitude"]} for _, row in shelters_df.iterrows()}
 
     # Plot the optimized routes
     plot_optimized_routes(allocation_df, comm_dict, shel_dict)

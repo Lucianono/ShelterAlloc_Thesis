@@ -53,10 +53,10 @@ class ShelterAllocationReport(QDialog):
 
         # 1st sheet
         df = pd.read_excel("allocation_results.xlsx",header=0)
-        df2 = pd.read_excel("modelCommData.xlsx",usecols=["Name","xDegrees","yDegrees"],header=0)
-        df3 = pd.read_excel("modelShelData.xlsx",usecols=["Name","xDegrees","yDegrees"],header=0)
+        df2 = pd.read_excel("modelCommData.xlsx",usecols=["Name","Latitude","Longitude"],header=0)
+        df3 = pd.read_excel("modelShelData.xlsx",usecols=["Name","Latitude","Longitude"],header=0)
         merged_df = df.merge(df2, left_on="Community", right_on="Name", how="inner").merge(df3, left_on="Shelter Assigned", right_on="Name", how="inner")
-        selected_df = merged_df[["Community", "Allocated Population" , "xDegrees_x", "yDegrees_y", "Shelter Assigned", "Level", "xDegrees_y", "yDegrees_y"]]
+        selected_df = merged_df[["Community", "Allocated Population" , "Latitude_x", "Longitude_y", "Shelter Assigned", "Level", "Latitude_y", "Longitude_y"]]
 
         start_row = 5
         for row_idx, row_data in selected_df.iterrows():

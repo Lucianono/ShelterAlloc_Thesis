@@ -29,8 +29,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         comm_file = os.path.join(os.getcwd(), "commData.xlsx")
         shel_file = os.path.join(os.getcwd(), "shelData.xlsx")
-        comm_headers = ["Active", "Name", "xDegrees", "yDegrees", "Population", "AffectedPop", "MaxDistance", "Remarks"]
-        shel_headers = ["Active", "Name", "xDegrees", "yDegrees", "Area1", "Cost1", "Area2", "Cost2", "ResToFlood", "ResToTyphoon", "ResToEarthquake", "Status", "Remarks"]
+        comm_headers = ["Active", "Name", "Latitude", "Longitude", "Population", "AffectedPop", "MaxDistance", "Remarks"]
+        shel_headers = ["Active", "Name", "Latitude", "Longitude", "Area1", "Cost1", "Area2", "Cost2", "ResToFlood", "ResToTyphoon", "ResToEarthquake", "Status", "Remarks"]
         self.ensure_excel_file_exists(comm_file, comm_headers)
         self.ensure_excel_file_exists(shel_file, shel_headers)
 
@@ -245,14 +245,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.plainTextEdit_15.setPlainText(str(self.data.loc[row, 'Name']))
 
-            self.plainTextEdit.setPlainText(str(self.data.loc[row, 'xDegrees']))
-            self.plainTextEdit_2.setPlainText(str(self.data.loc[row, 'yDegrees']))
+            self.plainTextEdit.setPlainText(str(self.data.loc[row, 'Latitude']))
+            self.plainTextEdit_2.setPlainText(str(self.data.loc[row, 'Longitude']))
             self.plainTextEdit_3.setPlainText(str(self.data.loc[row, 'Population']))
             self.plainTextEdit_4.setPlainText(str(self.data.loc[row, 'AffectedPop']))
             self.plainTextEdit_5.setPlainText(str(self.data.loc[row, 'MaxDistance']))
             self.plainTextEdit_6.setPlainText(str(self.data.loc[row, 'Remarks']).replace('nan', ''))
 
-            self.focus_to_marker(self.data.loc[row, 'xDegrees'],self.data.loc[row, 'yDegrees'])
+            self.focus_to_marker(self.data.loc[row, 'Latitude'],self.data.loc[row, 'Longitude'])
 
             #connect button for saving
             self.mc_cancel_changes_btn.show()
@@ -275,8 +275,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.plainTextEdit_9.setPlainText(str(self.shel_data.loc[row, 'Name']))
 
-            self.plainTextEdit_11.setPlainText(str(self.shel_data.loc[row, 'xDegrees']))
-            self.plainTextEdit_10.setPlainText(str(self.shel_data.loc[row, 'yDegrees']))
+            self.plainTextEdit_11.setPlainText(str(self.shel_data.loc[row, 'Latitude']))
+            self.plainTextEdit_10.setPlainText(str(self.shel_data.loc[row, 'Longitude']))
             self.plainTextEdit_8.setPlainText(str(self.shel_data.loc[row, 'Area1']))
             self.plainTextEdit_12.setPlainText(str(self.shel_data.loc[row, 'Cost1']))
             self.plainTextEdit_13.setPlainText(str(self.shel_data.loc[row, 'Area2']))
@@ -288,7 +288,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
             self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
 
-            self.focus_to_marker(self.shel_data.loc[row, 'xDegrees'],self.shel_data.loc[row, 'yDegrees'])
+            self.focus_to_marker(self.shel_data.loc[row, 'Latitude'],self.shel_data.loc[row, 'Longitude'])
 
             #connect button for saving
             self.mc_cancel_changes_btn_2.show()
@@ -361,25 +361,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
       
     def refresh_map(self):
         try:
-            comm_data = pd.read_excel("commData.xlsx",usecols=['Name','xDegrees','yDegrees','Active'])
-            shel_data = pd.read_excel("shelData.xlsx",usecols=['Name','xDegrees','yDegrees','Active'])
+            comm_data = pd.read_excel("commData.xlsx",usecols=['Name','Latitude','Longitude','Active'])
+            shel_data = pd.read_excel("shelData.xlsx",usecols=['Name','Latitude','Longitude','Active'])
 
             show_inactive_marker = self.marker_comboBox.currentIndex() == 0
 
             if not comm_data.empty:
-                avg_lat = comm_data['xDegrees'].mean()
-                avg_lon = comm_data['yDegrees'].mean()
+                avg_lat = comm_data['Latitude'].mean()
+                avg_lon = comm_data['Longitude'].mean()
                 self.map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
             elif not shel_data.empty:
-                avg_lat = shel_data['xDegrees'].mean()
-                avg_lon = shel_data['yDegrees'].mean()
+                avg_lat = shel_data['Latitude'].mean()
+                avg_lon = shel_data['Longitude'].mean()
                 self.map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
             else:
                 self.map = folium.Map(location=[0,0], zoom_start=2)
 
             for index, row in comm_data.iterrows():
-                latitude = row.get("xDegrees", 1)
-                longitude = row.get("yDegrees", 1)
+                latitude = row.get("Latitude", 1)
+                longitude = row.get("Longitude", 1)
                 name = row.get("Name", "Unknown")
 
                 if row.get("Active") :
@@ -401,8 +401,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 
 
             for index, row in shel_data.iterrows():
-                latitude = row.get("xDegrees", 1)
-                longitude = row.get("yDegrees", 1)
+                latitude = row.get("Latitude", 1)
+                longitude = row.get("Longitude", 1)
                 name = row.get("Name", "Unknown")
 
                 if row.get("Active") :
@@ -556,8 +556,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 
         data_active = self.switch_1.isChecked()
         data_name = self.plainTextEdit_15.toPlainText()
-        data_xDegrees = self.plainTextEdit.toPlainText()
-        data_yDegrees = self.plainTextEdit_2.toPlainText()
+        data_Latitude = self.plainTextEdit.toPlainText()
+        data_Longitude = self.plainTextEdit_2.toPlainText()
         data_population = self.plainTextEdit_3.toPlainText()
         data_affectedPop = self.plainTextEdit_4.toPlainText()
         data_maxDistance = self.plainTextEdit_5.toPlainText()
@@ -567,8 +567,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         new_row = {
             "Active": data_active,
             "Name": data_name,
-            "xDegrees": data_xDegrees,
-            "yDegrees": data_yDegrees,
+            "Latitude": data_Latitude,
+            "Longitude": data_Longitude,
             "Population": data_population,
             "AffectedPop": data_affectedPop,
             "MaxDistance": data_maxDistance,
@@ -576,8 +576,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         }
         expected_types = {
             'Name': str,
-            'xDegrees': float,
-            'yDegrees': float,
+            'Latitude': float,
+            'Longitude': float,
             'Population': int,
             'AffectedPop': int,
             'MaxDistance': float,
@@ -598,8 +598,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             row_idx = self.data.loc[self.data["Name"] == old_data_name].index[0]
             self.data.loc[row_idx, "Active"] = data_active
             self.data.loc[row_idx, "Name"] = data_name
-            self.data.loc[row_idx, "xDegrees"] = float(data_xDegrees)
-            self.data.loc[row_idx, "yDegrees"] = float(data_yDegrees)
+            self.data.loc[row_idx, "Latitude"] = float(data_Latitude)
+            self.data.loc[row_idx, "Longitude"] = float(data_Longitude)
             self.data.loc[row_idx, "Population"] = int(data_population)
             self.data.loc[row_idx, "AffectedPop"] = int(data_affectedPop)
             self.data.loc[row_idx, "MaxDistance"] = float(data_maxDistance)
@@ -615,8 +615,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def save_shelter_data_dashboard(self, old_data_name):
         data_active = self.switch_2.isChecked()
         data_name = self.plainTextEdit_9.toPlainText()
-        data_xDegrees = self.plainTextEdit_11.toPlainText()
-        data_yDegrees = self.plainTextEdit_10.toPlainText()
+        data_Latitude = self.plainTextEdit_11.toPlainText()
+        data_Longitude = self.plainTextEdit_10.toPlainText()
         data_area1 = self.plainTextEdit_8.toPlainText()
         data_cost1 = self.plainTextEdit_12.toPlainText()
         data_area2 = self.plainTextEdit_13.toPlainText()
@@ -632,8 +632,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         new_row = {
             "Active": data_active,
             "Name": data_name,
-            "xDegrees": data_xDegrees,
-            "yDegrees": data_yDegrees,
+            "Latitude": data_Latitude,
+            "Longitude": data_Longitude,
             'Area1': data_area1,
             'Cost1': data_cost1,
             'Area2': data_area2,
@@ -646,8 +646,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         }
         expected_types = {
             'Name': str,
-            'xDegrees': float,
-            'yDegrees': float,
+            'Latitude': float,
+            'Longitude': float,
             'Area1': float,
             'Cost1': float,
             'Area2': float,
@@ -672,8 +672,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             row_idx = self.shel_data.loc[self.shel_data["Name"] == old_data_name].index[0]
             self.shel_data.loc[row_idx, "Active"] = data_active
             self.shel_data.loc[row_idx, "Name"] = data_name
-            self.shel_data.loc[row_idx, "xDegrees"] = float(data_xDegrees)
-            self.shel_data.loc[row_idx, "yDegrees"] = float(data_yDegrees)
+            self.shel_data.loc[row_idx, "Latitude"] = float(data_Latitude)
+            self.shel_data.loc[row_idx, "Longitude"] = float(data_Longitude)
             self.shel_data.loc[row_idx, "Area1"] = float(data_area1)
             self.shel_data.loc[row_idx, "Cost1"] = float(data_cost1)
             self.shel_data.loc[row_idx, "Area2"] = float(data_area2)
@@ -748,16 +748,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             show_inactive_marker = self.marker_comboBox.currentIndex() == 0
 
             if not data.empty:
-                avg_lat = data['xDegrees'].mean()
-                avg_lon = data['yDegrees'].mean()
+                avg_lat = data['Latitude'].mean()
+                avg_lon = data['Longitude'].mean()
                 self.map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
             else:
                 self.map = folium.Map(location=[0,0], zoom_start=2)
 
 
             for index, row in data.iterrows():
-                latitude = row.get("xDegrees", 1)
-                longitude = row.get("yDegrees", 1)
+                latitude = row.get("Latitude", 1)
+                longitude = row.get("Longitude", 1)
                 name = row.get("Name", "Unknown")
 
                 if row.get("Active") :

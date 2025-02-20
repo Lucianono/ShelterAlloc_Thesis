@@ -69,7 +69,7 @@ class EntityManagementShelter(QDialog):
             if "Name" in data.columns:
                 duplicate_names = data["Name"][data["Name"].duplicated()]
                 if not duplicate_names.empty:
-                    raise ValueError(f"Duplicate entries found in the 'Name' column: {', '.join(duplicate_names)}")
+                    raise ValueError(f"Duplicate entries found in the 'Name' column: {', '.join(duplicate_names)}")        
 
             for idx, value in enumerate(data[column]):
                 if pd.isnull(value):
@@ -96,6 +96,10 @@ class EntityManagementShelter(QDialog):
                         if bool_value not in [0, 1, True, False]:
                             raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a boolean.")
 
+        # check if area2 >= area1
+        for shelter in data.itertuples():
+            if float(shelter.Area2) < float(shelter.Area1):
+                raise ValueError(f"{shelter.Name}: area2 should be greater than or equal to area1.")
 
     def import_excel_data(self, table_widget, required_headers, expected_types):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Excel File", "", "Excel Files (*.xls *.xlsx)")

@@ -573,6 +573,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     str(value)
             except ValueError:
                 raise ValueError(f"Invalid type for {key}. Expected {expected_type.__name__}, got {type(value).__name__}.")
+            
+        # check if area2 >= area1
+        if "Area1" in expected_types:
+            shelter = data
+            if float(shelter["Area2"]) < float(shelter["Area1"]):
+                raise ValueError(f"{shelter["Name"]}: area2 should be greater than or equal to area1.")
 
     def save_community_data_dashboard(self, old_data_name):
                 

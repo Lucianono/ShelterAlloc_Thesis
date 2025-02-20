@@ -132,8 +132,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>319</width>
-            <height>694</height>
+            <width>348</width>
+            <height>712</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -612,7 +612,7 @@ color: #00B5FF;
 }</string>
                  </property>
                  <property name="text">
-                  <string>Reports</string>
+                  <string>Report Preview</string>
                  </property>
                 </widget>
                </item>
@@ -709,12 +709,12 @@ color: #00B5FF;
                 </property>
                 <item>
                  <property name="text">
-                  <string>SHOW Inactive Markers</string>
+                  <string>SHOW Disabled Markers</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>HIDE Inactive Markers</string>
+                  <string>HIDE Disabled Markers</string>
                  </property>
                 </item>
                </widget>
@@ -1490,8 +1490,8 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>335</width>
-                  <height>729</height>
+                  <width>328</width>
+                  <height>733</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -2541,7 +2541,7 @@ QPushButton:pressed {
                      </font>
                     </property>
                     <property name="text">
-                     <string>Enabled Shelters</string>
+                     <string>Shelters</string>
                     </property>
                    </widget>
                   </item>
@@ -2591,7 +2591,7 @@ QPushButton:pressed {
                      </font>
                     </property>
                     <property name="text">
-                     <string>Enabled Communities</string>
+                     <string>Communities</string>
                     </property>
                    </widget>
                   </item>

@@ -19,7 +19,7 @@ class EntityManagementShelter(QDialog):
 
         file_name = "shelData.xlsx"
         required_headers = ['Name', 'Latitude', 'Longitude', 'Area1', 'Cost1', 'Area2', 'Cost2', 'ResToFlood', 'ResToTyphoon', 'ResToEarthquake', 'Status', 'Remarks']
-        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 500, 1000, 300, 1500, True, False, True, 'Built', 'Sample remarks']], columns=required_headers)
+        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 500, 1000, 800, 1500, True, False, True, 'Built', 'Sample remarks']], columns=required_headers)
 
         expected_types = {
             'Name': str,

@@ -13,6 +13,7 @@ class ModelSettings(QDialog):
         self.ui = Ui_modelSettings()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.setModal(True)
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
         
         text_fields = [
             self.ui.textEdit_generations,
@@ -60,13 +61,13 @@ class ModelSettings(QDialog):
     def update_params_from_excel(self, excel_name):
         try:
             # get data from excel
-            excel_path = os.path.join(os.getcwd(), excel_name)
+            excel_path = os.path.join(self.save_dir, excel_name)
 
             if os.path.exists(excel_path):
                 Model_params_data = pd.read_excel(excel_path, header=0)
 
             shel_file = "shelData.xlsx"
-            shel_path = os.path.join(os.getcwd(), shel_file)
+            shel_path = os.path.join(self.save_dir, shel_file)
             default_shelter_count = 0
 
             if os.path.exists(shel_path):
@@ -157,7 +158,7 @@ class ModelSettings(QDialog):
 
             # Save to Excel
             df = pd.DataFrame([data])
-            file_path = os.path.join(os.getcwd(), file_name)
+            file_path = os.path.join(self.save_dir, file_name)
             df.to_excel(file_path, index=False)
             dialog.close()
 

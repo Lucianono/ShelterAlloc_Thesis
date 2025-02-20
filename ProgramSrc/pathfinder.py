@@ -19,13 +19,14 @@ class PathfindingWorker(QObject):
         self.shelter_file = shelter_file
         self.cancelled = False
         self.timer = QTimer(self)
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
         self.timer.timeout.connect(self.check_for_cancel)
 
     def run(self):
         try:
-            communities_df = pd.read_excel(self.community_file)
-            shelters_df = pd.read_excel(self.shelter_file)
+            communities_df = pd.read_excel(os.path.join(self.save_dir,self.community_file))
+            shelters_df = pd.read_excel(os.path.join(self.save_dir,self.shelter_file))
 
             self.progress.emit("Starting pathfinding...")
 
@@ -76,9 +77,9 @@ class PathfindingWorker(QObject):
             self.progress.emit("Genetic algorithm skipped due to cancellation.")
             return
         
-        community_file_path = os.path.join(os.getcwd(), "commData.xlsx")
-        shelter_file_path = os.path.join(os.getcwd(), "shelData.xlsx")
-        distance_file_path = os.path.join(os.getcwd(), "distance_matrix.xlsx")
+        community_file_path = os.path.join(self.save_dir, "commData.xlsx")
+        shelter_file_path = os.path.join(self.save_dir, "shelData.xlsx")
+        distance_file_path = os.path.join(self.save_dir, "distance_matrix.xlsx")
 
         if not os.path.exists(community_file_path) or not os.path.exists(shelter_file_path) or not os.path.exists(distance_file_path):
             self.progress.emit("Error: Required input files are missing.")
@@ -144,7 +145,7 @@ class PathfindingWorker(QObject):
                     continue
 
         distance_matrix.index.name = 'Shelters'
-        distance_matrix.to_excel(excel_name)
+        distance_matrix.to_excel(os.path.join(self.save_dir,excel_name))
         self.progress.emit(f"Distance matrix saved as {excel_name}")
 
 

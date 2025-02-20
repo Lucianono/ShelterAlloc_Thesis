@@ -1,7 +1,7 @@
 import osmnx as ox
 import folium
 from folium.plugins import AntPath
-import math
+import os
 import pandas as pd
 import networkx as nx
 from math import radians, cos, sin, sqrt, atan2
@@ -9,6 +9,7 @@ from math import radians, cos, sin, sqrt, atan2
 # Define a list of colors for the routes
 ROUTE_COLORS = ['darkblue', 'darkgreen', 'darkred', 'indigo', 'darkorange', 'maroon', 
                 'darkgoldenrod', 'saddlebrown', 'dimgray', 'teal', 'blue', 'green', 'red', 'purple', 'orange', 'pink', 'yellow', 'brown', 'gray', 'cyan']
+save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
 def get_route_color(iteration_index):
     return ROUTE_COLORS[iteration_index % len(ROUTE_COLORS)]
@@ -98,7 +99,7 @@ def plot_optimized_routes(allocation_df, comm_dict, shel_dict, map_name="optimiz
     route_layer.add_to(m)
     straight_layer.add_to(m)
     folium.LayerControl(collapsed=False).add_to(m)
-    m.save(map_name)
+    m.save(os.path.join(save_dir,map_name))
     print(f"Map saved as {map_name}")
     return m
 
@@ -106,9 +107,9 @@ def run_optimization(communities_file='modelCommData.xlsx', shelters_file='model
     print("Running run_optimization")
 
     # Load data
-    communities_df = pd.read_excel(communities_file, usecols=["Name", "Longitude", "Latitude"])
-    shelters_df = pd.read_excel(shelters_file, usecols=["Name", "Longitude", "Latitude"])
-    allocation_df = pd.read_excel(allocation_file, usecols=["Community", "Shelter Assigned"])
+    communities_df = pd.read_excel(os.path.join(save_dir, communities_file), usecols=["Name", "Longitude", "Latitude"])
+    shelters_df = pd.read_excel(os.path.join(save_dir, shelters_file), usecols=["Name", "Longitude", "Latitude"])
+    allocation_df = pd.read_excel(os.path.join(save_dir, allocation_file), usecols=["Community", "Shelter Assigned"])
 
     # Create lookup dictionaries
     comm_dict = {row["Name"]: {"y": row["Longitude"], "x": row["Latitude"]} for _, row in communities_df.iterrows()}

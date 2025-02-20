@@ -16,6 +16,7 @@ class EntityManagementShelter(QDialog):
         self.ui = Ui_entityManagementShelter()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.setModal(True)
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
         file_name = "shelData.xlsx"
         required_headers = ['Name', 'Latitude', 'Longitude', 'Area1', 'Cost1', 'Area2', 'Cost2', 'ResToFlood', 'ResToTyphoon', 'ResToEarthquake', 'Status', 'Remarks']
@@ -50,9 +51,9 @@ class EntityManagementShelter(QDialog):
 
 
     def load_from_excel(self, table_widget, file_name, dummy_data):
-        if file_name and os.path.exists( os.path.join(os.getcwd(), file_name) ):
+        if file_name and os.path.exists( os.path.join(self.save_dir, file_name) ):
             try:
-                data = pd.read_excel( os.path.join(os.getcwd(), file_name) ).fillna("")
+                data = pd.read_excel( os.path.join(self.save_dir, file_name) ).fillna("")
                 self.populate_table(table_widget, data)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
@@ -120,7 +121,7 @@ class EntityManagementShelter(QDialog):
 
             self.populate_table(table_widget, data)
     def export_excel_data(self, dummy_data):
-        default_file_name = os.path.join(os.getcwd(), "dummy_data_shelters.xlsx")
+        default_file_name = os.path.join(self.save_dir, "dummy_data_shelters.xlsx")
         file_path, _ = QFileDialog.getSaveFileName(self, "Save Excel File", default_file_name, "Excel Files (*.xlsx)")
 
         if file_path:
@@ -154,7 +155,7 @@ class EntityManagementShelter(QDialog):
                 QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
                 return
             # save the table here 
-            file_path = os.path.join(os.getcwd(), file_name)
+            file_path = os.path.join(self.save_dir, file_name)
             if file_path:
                 try:
                     dataframe.to_excel(file_path, index=False)

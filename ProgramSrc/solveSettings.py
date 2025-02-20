@@ -22,6 +22,7 @@ class SolveSettingsDialog(QDialog):
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.animation = None  # Initialize the animation object
         self.setModal(True)
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
         self.ui.write_community_btn.clicked.connect(self.open_entitymanagement_dialog)
         self.ui.write_shelter_btn.clicked.connect(self.open_entitymanagement_shelter_dialog)
@@ -111,7 +112,7 @@ class SolveSettingsDialog(QDialog):
                 return
             
 
-            file_path = os.path.join(os.getcwd(), "modelCommData.xlsx")
+            file_path = os.path.join(self.save_dir, "modelCommData.xlsx")
             if file_path:
                 try:
                     filtered_comm_data.to_excel(file_path, index=False)
@@ -120,7 +121,7 @@ class SolveSettingsDialog(QDialog):
             else:
                 QMessageBox.warning(self, "Warning", "Save canceled.")
 
-            file_path = os.path.join(os.getcwd(), "modelShelData.xlsx")
+            file_path = os.path.join(self.save_dir, "modelShelData.xlsx")
             if file_path:
                 try:
                     filtered_shel_data.to_excel(file_path, index=False)
@@ -141,7 +142,7 @@ class SolveSettingsDialog(QDialog):
 
         try:
             # Load the community data
-            data = pd.read_excel("commData.xlsx")
+            data = pd.read_excel(os.path.join(self.save_dir,"commData.xlsx"))
 
             # Filter rows where 'Active' column is True
             active_data = data[data["Active"] == True]
@@ -291,7 +292,7 @@ class SolveSettingsDialog(QDialog):
         try:
             file_path="shelData.xlsx"
 
-            data = pd.read_excel(file_path)
+            data = pd.read_excel(os.path.join(self.save_dir,file_path))
 
             # Retrieve switch states
             built_switch_state = self.shelter_status_switches["Built"].isChecked()

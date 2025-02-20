@@ -20,8 +20,9 @@ class ShelterAllocationReport(QDialog):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_ShelterAllocationReport()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
-        self.map_path = os.path.join(os.getcwd(), "optimized-routes-map.html")
+        self.map_path = os.path.join(self.save_dir, "optimized-routes-map.html")
         self.ui.webEngineView.setUrl(QUrl.fromLocalFile(self.map_path))
 
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
@@ -45,16 +46,16 @@ class ShelterAllocationReport(QDialog):
 
         # Load the Excel template
         template_path = "ReportTemplate.xlsx"
-        wb = load_workbook(template_path)
+        wb = load_workbook(os.path.join(sys._MEIPASS,template_path))
         ws1 = wb["Shelter Location-Allocation"]
         ws2 = wb["Report Analysis"]
         ws3 = wb["Community Data"]
         ws4 = wb["Shelter Data"]
 
         # 1st sheet
-        df = pd.read_excel("allocation_results.xlsx",header=0)
-        df2 = pd.read_excel("modelCommData.xlsx",usecols=["Name","Latitude","Longitude"],header=0)
-        df3 = pd.read_excel("modelShelData.xlsx",usecols=["Name","Latitude","Longitude"],header=0)
+        df = pd.read_excel(os.path.join(self.save_dir,"allocation_results.xlsx"),header=0)
+        df2 = pd.read_excel(os.path.join(self.save_dir,"modelCommData.xlsx"),usecols=["Name","Latitude","Longitude"],header=0)
+        df3 = pd.read_excel(os.path.join(self.save_dir,"modelShelData.xlsx"),usecols=["Name","Latitude","Longitude"],header=0)
         merged_df = df.merge(df2, left_on="Community", right_on="Name", how="inner").merge(df3, left_on="Shelter Assigned", right_on="Name", how="inner")
         selected_df = merged_df[["Community", "Allocated Population" , "Latitude_x", "Longitude_y", "Shelter Assigned", "Level", "Latitude_y", "Longitude_y"]]
 
@@ -64,7 +65,7 @@ class ShelterAllocationReport(QDialog):
                 ws1.cell(row=row_idx+start_row, column=col_idx, value=value)
 
         # 2nd sheet
-        model_results_path = os.path.join(os.getcwd(), "modelPerformanceResult.txt")
+        model_results_path = os.path.join(self.save_dir, "modelPerformanceResult.txt")
         with open(model_results_path, "r") as file:
             content = file.readlines()
         content.reverse()
@@ -81,14 +82,14 @@ class ShelterAllocationReport(QDialog):
             ws2.cell(row=start_row, column=1, value=row_data)
 
         # 3rd sheet
-        df = pd.read_excel("modelCommData.xlsx",header=0)
+        df = pd.read_excel(os.path.join(self.save_dir,"modelCommData.xlsx"),header=0)
         start_row = 2
         for row_idx, row_data in df.iterrows():
             for col_idx, value in enumerate(row_data, start=1):
                 ws3.cell(row=row_idx+start_row, column=col_idx, value=value)
 
         # 4th sheet
-        df = pd.read_excel("modelShelData.xlsx",header=0)
+        df = pd.read_excel(os.path.join(self.save_dir,"modelShelData.xlsx"),header=0)
         start_row = 2
         for row_idx, row_data in df.iterrows():
             for col_idx, value in enumerate(row_data, start=1):
@@ -129,7 +130,7 @@ class ShelterAllocationReport(QDialog):
         return
 
     def show_more_details(self):
-        model_results_path = os.path.join(os.getcwd(), "modelPerformanceResult.txt")
+        model_results_path = os.path.join(self.save_dir, "modelPerformanceResult.txt")
         with open(model_results_path, "r") as file:
             content = file.readlines()
 
@@ -137,7 +138,7 @@ class ShelterAllocationReport(QDialog):
         QMessageBox.information(self, "Full Details", formatted_text)
 
     def reload_label(self):
-        model_results_path = os.path.join(os.getcwd(), "modelPerformanceResult.txt")
+        model_results_path = os.path.join(self.save_dir, "modelPerformanceResult.txt")
         with open(model_results_path, "r") as file:
             content = [next(file).strip() for _ in range(3)]
 
@@ -147,7 +148,7 @@ class ShelterAllocationReport(QDialog):
 
     def load_table_data(self, file_path):
         try:
-            df = pd.read_excel(file_path)  # Read the Excel file into a DataFrame
+            df = pd.read_excel(os.path.join(self.save_dir,file_path))  # Read the Excel file into a DataFrame
             if df.empty:
                 QMessageBox.warning(self, "Warning", "The file is empty.")
                 return

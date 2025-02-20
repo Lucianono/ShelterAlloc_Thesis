@@ -18,6 +18,7 @@ class EntityManagementComm(QDialog):
         self.ui = Ui_EntityManagementCommunities()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.setModal(True)
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
         file_name = "commData.xlsx"
         required_headers = ['Name', 'Latitude', 'Longitude', 'Population', 'AffectedPop', 'MaxDistance',  'Remarks']
@@ -46,9 +47,9 @@ class EntityManagementComm(QDialog):
         self.shortcut.activated.connect(lambda: self.toggle_all_switches(self.ui.communityInfo_table))
 
     def load_from_excel(self, table_widget, file_name, dummy_data):
-        if file_name and os.path.exists( os.path.join(os.getcwd(), file_name) ):
+        if file_name and os.path.exists( os.path.join(self.save_dir, file_name) ):
             try:
-                data = pd.read_excel( os.path.join(os.getcwd(), file_name) ).fillna("")
+                data = pd.read_excel( os.path.join(self.save_dir, file_name) ).fillna("")
                 self.populate_table(table_widget, data)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
@@ -111,7 +112,7 @@ class EntityManagementComm(QDialog):
 
             self.populate_table(table_widget, data)
     def export_excel_data(self, dummy_data):
-        default_file_name = os.path.join(os.getcwd(), "dummy_data_community.xlsx")
+        default_file_name = os.path.join(self.save_dir, "dummy_data_community.xlsx")
         file_path, _ = QFileDialog.getSaveFileName(self, "Save Excel File", default_file_name, "Excel Files (*.xlsx)")
 
         if file_path:
@@ -146,7 +147,7 @@ class EntityManagementComm(QDialog):
                 QMessageBox.critical(self, "Error", f"Failed to display file: {e}")
                 return
             # save the table here 
-            file_path = os.path.join(os.getcwd(), file_name)
+            file_path = os.path.join(self.save_dir, file_name)
             if file_path:
                 try:
                     dataframe.to_excel(file_path, index=False)

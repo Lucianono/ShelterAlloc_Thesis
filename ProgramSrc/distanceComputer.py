@@ -3,7 +3,10 @@ import pandas as pd
 import osmnx as ox
 import networkx as nx
 from math import radians, cos, sin, sqrt, atan2
+import sys, os
 
+
+save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
 def plot_route(communities_df, shelters_df, excel_name="distance_matrix.xlsx"):
         bbox_margin = 0.01
@@ -44,7 +47,7 @@ def plot_route(communities_df, shelters_df, excel_name="distance_matrix.xlsx"):
                     continue
 
         distance_matrix.index.name = 'Shelters'
-        distance_matrix.to_excel(excel_name)
+        distance_matrix.to_excel(os.path.join(save_dir,excel_name))
 
 @staticmethod
 def haversine_distance(lat1, lon1, lat2, lon2):
@@ -55,6 +58,8 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     a = sin(dphi / 2) ** 2 + cos(phi1) * cos(phi2) * sin(dlambda / 2) ** 2
     return 2 * R * atan2(sqrt(a), sqrt(1 - a))
 
-df1 = pd.read_excel("commData.xlsx")
-df2 = pd.read_excel("shelData.xlsx")
+
+
+df1 = pd.read_excel(os.path.join(save_dir,"commData.xlsx"))
+df2 = pd.read_excel(os.path.join(save_dir,"shelData.xlsx"))
 plot_route(df1, df2)

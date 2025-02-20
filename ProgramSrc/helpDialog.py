@@ -25,7 +25,7 @@ class helpDialog(QDialog):
         html_content1 = f"""
             <html>
                 <body>
-                    <img src="tutorial/dashboard.png" width="500">
+                    <img src="{sys._MEIPASS.replace('\\', '/')}/tutorial/dashboard.png" width="500">
                     <p>The front page of the system showcases the dashboard. Several parts include the map, the community/shelter browser, community/shelter information, and the legend.
                     You may select advanced settings for communities and shelters for more options in editing information. As well, You can create new communities and shelters from this page.
                     To continue pathfinding, you may press the generate button.</p>
@@ -39,7 +39,7 @@ class helpDialog(QDialog):
         html_content2 = f"""
             <html>
                 <body>
-                    <img src="tutorial/commadvanced.png" width="500">
+                    <img src="{sys._MEIPASS.replace('\\', '/')}/tutorial/commadvanced.png" width="500">
                     <p>The advanced settings for communities, here there are more options to create and edit your communities, you may also import an excel file of the summary of communities
                     , and also download a template to manually create a list of communities, should you prefer.</p>
                 </body>
@@ -51,7 +51,7 @@ class helpDialog(QDialog):
         html_content3 = f"""
             <html>
                 <body>
-                    <img src="tutorial/sheladvanced.png" width="500">
+                    <img src="{sys._MEIPASS.replace('\\', '/')}/tutorial/sheladvanced.png" width="500">
                     <p>The advanced settings for shelters, here there are more options to create and edit your shelters, you may also import an excel file of the summary of shelters
                     , and also download a template to manually create a list of shelters, should you prefer.</p>
                 </body>
@@ -63,7 +63,7 @@ class helpDialog(QDialog):
         html_content4 = f"""
             <html>
                 <body>
-                    <img src="tutorial/modelsettings.png" width="500">
+                    <img src="{sys._MEIPASS.replace('\\', '/')}/tutorial/modelsettings.png" width="500">
                     <p>Do note that we recommend the data in this page be set to default, take caution in manipulating this data. In this page you may edit the parameters of the model
                     used. Variables include area per individual, maximum number of level 1 and 2 shelters, the weights for distance and cost, number of generations, population, and mutation rate.
                     Most of these variables require a value higher than 0, and the weights must total to exactly 1.</p>
@@ -76,7 +76,7 @@ class helpDialog(QDialog):
         html_content5 = f"""
             <html>
                 <body>
-                    <img src="tutorial/solvesettings.png" width="500">
+                    <img src="{sys._MEIPASS.replace('\\', '/')}/tutorial/solvesettings.png" width="500">
                     <p>The next step in pathfinding, in this page you may check the summary of what will be solved, and you may sort the shelters by whether they are resistant to
                     floods, typhoons, or earthquakes, and if they are built, partially built, damaged, or empty. Press solve for the next step in pathfinding and to get your report!</p>
                 </body>

@@ -8,7 +8,7 @@ app = QApplication(sys.argv)
 
 # Force light mode palette
 light_palette = QPalette()
-light_palette.setColor(QPalette.Window, QColor(255, 255, 255))  # White background
+light_palette.setColor(QPalette.Window, QColor(240, 240, 240))  # White background
 light_palette.setColor(QPalette.WindowText, Qt.black)  # Black text
 light_palette.setColor(QPalette.Base, QColor(255, 255, 255))  # White input fields
 light_palette.setColor(QPalette.Text, Qt.black)

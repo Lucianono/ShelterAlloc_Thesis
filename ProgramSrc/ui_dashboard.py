@@ -76,6 +76,9 @@ class Ui_MainWindow(object):
 
         self.scrollArea_2 = QScrollArea(self.SideBar)
         self.scrollArea_2.setObjectName(u"scrollArea_2")
+        self.scrollArea_2.setStyleSheet(u"#scollArea_2{\n"
+"	background-color: #f0f0f0;\n"
+"}")
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
@@ -501,6 +504,19 @@ class Ui_MainWindow(object):
 "}\n"
 "QStackedWidget{\n"
 "	border: 1px solid rgb(209, 209, 209);\n"
+"	background: transparent;\n"
+"\n"
+"}\n"
+"QScrollArea{\n"
+"	border:none;\n"
+"	background:transparent;\n"
+"	background-color: #ff8dd2;\n"
+"}\n"
+"#scrollAreaWidgetContents{\n"
+"	background-color: #f0f0f0;\n"
+"}\n"
+"#page{\n"
+"	background-color: #f0f0f0;\n"
 "}")
         self.stackedWidget.setFrameShape(QFrame.NoFrame)
         self.stackedWidget.setFrameShadow(QFrame.Plain)
@@ -518,6 +534,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.widget_4 = QWidget(self.page)
         self.widget_4.setObjectName(u"widget_4")
+        self.widget_4.setStyleSheet(u"")
         self.verticalLayout_14 = QVBoxLayout(self.widget_4)
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
         self.horizontalLayout_28 = QHBoxLayout()
@@ -776,6 +793,7 @@ class Ui_MainWindow(object):
         sizePolicy3.setHeightForWidth(self.page_2.sizePolicy().hasHeightForWidth())
         self.page_2.setSizePolicy(sizePolicy3)
         self.page_2.setMinimumSize(QSize(0, 800))
+        self.page_2.setStyleSheet(u"")
         self.verticalLayout_12 = QVBoxLayout(self.page_2)
         self.verticalLayout_12.setSpacing(0)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
@@ -788,15 +806,17 @@ class Ui_MainWindow(object):
         sizePolicy4.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
         self.scrollArea.setSizePolicy(sizePolicy4)
         self.scrollArea.setMinimumSize(QSize(0, 750))
-        self.scrollArea.setStyleSheet(u"border:none;")
+        self.scrollArea.setStyleSheet(u"")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 328, 733))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 371, 750))
+        self.scrollAreaWidgetContents.setStyleSheet(u"")
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
         self.widget_5.setObjectName(u"widget_5")
+        self.widget_5.setStyleSheet(u"")
         self.verticalLayout_15 = QVBoxLayout(self.widget_5)
         self.verticalLayout_15.setSpacing(9)
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
@@ -924,7 +944,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit_11.setObjectName(u"plainTextEdit_11")
         sizePolicy3.setHeightForWidth(self.plainTextEdit_11.sizePolicy().hasHeightForWidth())
         self.plainTextEdit_11.setSizePolicy(sizePolicy3)
-        self.plainTextEdit_11.setMaximumSize(QSize(204, 29))
+        self.plainTextEdit_11.setMaximumSize(QSize(206, 31))
 
         self.gridLayout_2.addWidget(self.plainTextEdit_11, 1, 2, 1, 1, Qt.AlignHCenter)
 
@@ -1030,7 +1050,7 @@ class Ui_MainWindow(object):
         self.status_comboBox_2.addItem("")
         self.status_comboBox_2.addItem("")
         self.status_comboBox_2.setObjectName(u"status_comboBox_2")
-        self.status_comboBox_2.setMinimumSize(QSize(150, 14))
+        self.status_comboBox_2.setMinimumSize(QSize(150, 16))
         self.status_comboBox_2.setStyleSheet(u"")
 
         self.gridLayout_2.addWidget(self.status_comboBox_2, 13, 2, 1, 1)
@@ -1120,7 +1140,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit_9.setObjectName(u"plainTextEdit_9")
         sizePolicy3.setHeightForWidth(self.plainTextEdit_9.sizePolicy().hasHeightForWidth())
         self.plainTextEdit_9.setSizePolicy(sizePolicy3)
-        self.plainTextEdit_9.setMaximumSize(QSize(204, 29))
+        self.plainTextEdit_9.setMaximumSize(QSize(206, 31))
 
         self.gridLayout_2.addWidget(self.plainTextEdit_9, 0, 2, 1, 1)
 
@@ -1224,6 +1244,7 @@ class Ui_MainWindow(object):
         sizePolicy6.setHeightForWidth(self.frame_7.sizePolicy().hasHeightForWidth())
         self.frame_7.setSizePolicy(sizePolicy6)
         self.frame_7.setMinimumSize(QSize(0, 50))
+        self.frame_7.setStyleSheet(u"border:none;")
         self.frame_7.setFrameShape(QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QFrame.Plain)
         self.frame_7.setLineWidth(0)

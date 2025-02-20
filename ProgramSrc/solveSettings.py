@@ -7,7 +7,6 @@ from ui_solveSettings import Ui_solveSettings
 from entityManagementComm import EntityManagementComm
 from entityManagementShelter import EntityManagementShelter
 from modelSettings import ModelSettings
-from plot_routes import run_pathfinding
 from solvingProgress import SolvingProgress
 import pandas as pd
 import os

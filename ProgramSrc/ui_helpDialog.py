@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'helpDialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.1
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QGridLayout,
-    QLabel, QPushButton, QSizePolicy, QStackedWidget,
-    QTextBrowser, QVBoxLayout, QWidget)
+    QLabel, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTextBrowser, QVBoxLayout, QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -45,6 +45,7 @@ class Ui_Dialog(object):
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout = QVBoxLayout(self.frame)
+        self.verticalLayout.setSpacing(16)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(self.frame)
         self.label.setObjectName(u"label")
@@ -118,37 +119,9 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addWidget(self.pushButton_3)
 
-        self.pushButton_4 = QPushButton(self.frame)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        sizePolicy3.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        self.pushButton_4.setSizePolicy(sizePolicy3)
-        self.pushButton_4.setMinimumSize(QSize(150, 0))
+        self.verticalSpacer = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.verticalLayout.addWidget(self.pushButton_4)
-
-        self.pushButton_5 = QPushButton(self.frame)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        sizePolicy3.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
-        self.pushButton_5.setSizePolicy(sizePolicy3)
-        self.pushButton_5.setMinimumSize(QSize(150, 0))
-
-        self.verticalLayout.addWidget(self.pushButton_5)
-
-        self.pushButton_6 = QPushButton(self.frame)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-        sizePolicy3.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
-        self.pushButton_6.setSizePolicy(sizePolicy3)
-        self.pushButton_6.setMinimumSize(QSize(150, 0))
-
-        self.verticalLayout.addWidget(self.pushButton_6)
-
-        self.pushButton = QPushButton(self.frame)
-        self.pushButton.setObjectName(u"pushButton")
-        sizePolicy3.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy3)
-        self.pushButton.setMinimumSize(QSize(150, 0))
-
-        self.verticalLayout.addWidget(self.pushButton)
+        self.verticalLayout.addItem(self.verticalSpacer)
 
 
         self.gridLayout_2.addWidget(self.frame, 0, 0, 1, 1)
@@ -369,10 +342,6 @@ class Ui_Dialog(object):
         self.pushButton_7.setText(QCoreApplication.translate("Dialog", u"Model Settings", None))
         self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"Solve Settings", None))
         self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"About Us", None))
-        self.pushButton_4.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
-        self.pushButton_5.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
-        self.pushButton_6.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
-        self.pushButton.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"  Dashboard", None))
         self.textBrowser.setHtml(QCoreApplication.translate("Dialog", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

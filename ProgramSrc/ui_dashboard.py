@@ -1318,7 +1318,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy1)
         self.label_4.setMaximumSize(QSize(31, 31))
-        self.label_4.setPixmap(QPixmap(u"ICONS/pin-5-128 (2).png"))
+        self.label_4.setPixmap(QPixmap(u":/ICONS/pin-5-128 (2).png"))
         self.label_4.setScaledContents(True)
 
         self.horizontalLayout_8.addWidget(self.label_4)

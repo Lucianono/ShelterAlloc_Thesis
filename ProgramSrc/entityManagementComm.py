@@ -18,6 +18,7 @@ class EntityManagementComm(QDialog):
         self.ui = Ui_EntityManagementCommunities()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.setModal(True)
+        self.setWindowTitle("Entity Management Community")
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
         file_name = "commData.xlsx"

@@ -13,6 +13,7 @@ class helpDialog(QDialog):
         self.ui = Ui_Dialog()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.setModal(True)
+        self.setWindowTitle("Help")
 
         self.ui.pushButton_10.clicked.connect(self.open_Dashboardhelp)
         self.ui.pushButton_9.clicked.connect(self.open_commSettingshelp)

@@ -21,6 +21,7 @@ class SolveSettingsDialog(QDialog):
         self.ui = Ui_solveSettings()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.animation = None  # Initialize the animation object
+        self.setWindowTitle("Solve Settings")
         self.setModal(True)
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 

@@ -17,6 +17,7 @@ class SolvingProgress(QDialog):
         self.ui = Ui_solvingProgress()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.setModal(True)
+        self.setWindowTitle("Solving Progress")
 
         self.ui.solving_prog_cancel_btn.clicked.connect(self.cancel_pathfinding)
         self.ui.solvingModel_progressBar.setRange(0, 100)

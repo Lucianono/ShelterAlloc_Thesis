@@ -63,8 +63,10 @@ class EntityManagementComm(QDialog):
                 raise ValueError(f"Missing expected column: {column}")
 
             for idx, value in enumerate(data[column]):
-                if pd.isnull(value):
-                    continue  # Skip NaN values
+
+                value = value.strip()
+                if (pd.isnull(value) or value == '') and column != "Remarks":
+                    raise ValueError(f"No data found in column '{column}' at row {idx + 1}. Expected a value.")
                 
                 # Check if the value is of the expected type
                 if expected_type == str:
@@ -83,10 +85,13 @@ class EntityManagementComm(QDialog):
                 elif expected_type == bool:
                     if not isinstance(value, bool):
                         # Optionally, you could also allow values like 0/1 to be cast to bool:
-                        bool_value = bool(int(value)) if value in [0, 1] else bool(value)
-                        if bool_value not in [0, 1, True, False]:
+                        if value.lower() in {"true", "false"}:
+                            value = value.lower() == "true"
+                        elif str(value) in {"0", "1"}:
+                            value = bool(int(value))
+                        else:
                             raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a boolean.")
-                        
+        
         # Check for duplicate values in the "Name" column
         if "Name" in data.columns:
             duplicate_names = data["Name"][data["Name"].duplicated()]
@@ -132,7 +137,7 @@ class EntityManagementComm(QDialog):
         headers = ['Active'] + required_headers
         
         for row in range(table_widget.rowCount()):
-            row_data = [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
+            row_data = [table_widget.item(row, col).text().strip() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
             active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
             row_data = [active_switch] + row_data
 

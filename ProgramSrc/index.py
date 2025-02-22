@@ -340,9 +340,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_12.setPlainText(str(self.shel_data.loc[row, 'Cost1']))
             self.plainTextEdit_13.setPlainText(str(self.shel_data.loc[row, 'Area2']))
             self.plainTextEdit_14.setPlainText(str(self.shel_data.loc[row, 'Cost2']))
-            self.checkBox_17.setChecked(self.shel_data.loc[row, 'ResToFlood'])
-            self.checkBox_19.setChecked(self.shel_data.loc[row, 'ResToTyphoon'])
-            self.checkBox_18.setChecked(self.shel_data.loc[row, 'ResToEarthquake'])
+            self.checkBox_17.setChecked(bool(self.shel_data.loc[row, 'ResToFlood']))
+            self.checkBox_19.setChecked(bool(self.shel_data.loc[row, 'ResToTyphoon']))
+            self.checkBox_18.setChecked(bool(self.shel_data.loc[row, 'ResToEarthquake']))
             status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 3}
             self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
             self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
@@ -593,6 +593,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         for key, expected_type in expected_types.items():
             value = data.get(key)
+            value = value.strip()
             if value is None:
                 raise ValueError(f"Missing value for {key}.")
             
@@ -619,13 +620,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def save_community_data_dashboard(self, old_data_name):
                 
         data_active = self.switch_1.isChecked()
-        data_name = self.plainTextEdit_15.toPlainText()
-        data_Latitude = self.plainTextEdit.toPlainText()
-        data_Longitude = self.plainTextEdit_2.toPlainText()
-        data_population = self.plainTextEdit_3.toPlainText()
-        data_affectedPop = self.plainTextEdit_4.toPlainText()
-        data_maxDistance = self.plainTextEdit_5.toPlainText()
-        data_remarks = self.plainTextEdit_6.toPlainText()
+        data_name = self.plainTextEdit_15.toPlainText().strip()
+        data_Latitude = self.plainTextEdit.toPlainText().strip()
+        data_Longitude = self.plainTextEdit_2.toPlainText().strip()
+        data_population = self.plainTextEdit_3.toPlainText().strip()
+        data_affectedPop = self.plainTextEdit_4.toPlainText().strip()
+        data_maxDistance = self.plainTextEdit_5.toPlainText().strip()
+        data_remarks = self.plainTextEdit_6.toPlainText().strip()
 
         # Validate the input
         new_row = {
@@ -678,19 +679,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def save_shelter_data_dashboard(self, old_data_name):
         data_active = self.switch_2.isChecked()
-        data_name = self.plainTextEdit_9.toPlainText()
-        data_Latitude = self.plainTextEdit_11.toPlainText()
-        data_Longitude = self.plainTextEdit_10.toPlainText()
-        data_area1 = self.plainTextEdit_8.toPlainText()
-        data_cost1 = self.plainTextEdit_12.toPlainText()
-        data_area2 = self.plainTextEdit_13.toPlainText()
-        data_cost2 = self.plainTextEdit_14.toPlainText()
+        data_name = self.plainTextEdit_9.toPlainText().strip()
+        data_Latitude = self.plainTextEdit_11.toPlainText().strip()
+        data_Longitude = self.plainTextEdit_10.toPlainText().strip()
+        data_area1 = self.plainTextEdit_8.toPlainText().strip()
+        data_cost1 = self.plainTextEdit_12.toPlainText().strip()
+        data_area2 = self.plainTextEdit_13.toPlainText().strip()
+        data_cost2 = self.plainTextEdit_14.toPlainText().strip()
         data_resFlood = self.checkBox_17.isChecked()
         data_resTyphoon = self.checkBox_19.isChecked()
         data_resEarthquake = self.checkBox_18.isChecked()
         status_mapping = ["Built", "Partially Built", "Damaged", "Empty Lot"]
         data_status = status_mapping[self.status_comboBox_2.currentIndex()]
-        data_remarks = self.plainTextEdit_17.toPlainText()
+        data_remarks = self.plainTextEdit_17.toPlainText().strip()
 
         # Validate the input
         new_row = {

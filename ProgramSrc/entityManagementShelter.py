@@ -61,7 +61,7 @@ class EntityManagementShelter(QDialog):
             self.populate_table(table_widget, dummy_data)
 
     def validate_imported_data(self, data, expected_types):
-        
+
         for column, expected_type in expected_types.items():
             if column not in data.columns:
                 raise ValueError(f"Missing expected column: {column}")
@@ -70,11 +70,17 @@ class EntityManagementShelter(QDialog):
             if "Name" in data.columns:
                 duplicate_names = data["Name"][data["Name"].duplicated()]
                 if not duplicate_names.empty:
-                    raise ValueError(f"Duplicate entries found in the 'Name' column: {', '.join(duplicate_names)}")        
+                    raise ValueError(f"Duplicate entries found in the 'Name' column: {', '.join(duplicate_names)}")     
+
+                # Restrict "Status" to predefined values
+                if column == "Status" and value not in {"Built", "Partially Built", "Damaged", "Empty Lot"}:
+                    raise ValueError(f"Invalid value in column 'Status' at row {idx + 1}. Expected one of: Built, Partially Built, Damaged, Empty Lot.")   
 
             for idx, value in enumerate(data[column]):
-                if pd.isnull(value):
-                    continue  # Skip NaN values
+                
+                value = value.strip()
+                if (pd.isnull(value) or value == '') and column != "Remarks":
+                    raise ValueError(f"No data found in column '{column}' at row {idx + 1}. Expected a value.")
                 
                 # Check if the value is of the expected type
                 if expected_type == str:
@@ -93,8 +99,11 @@ class EntityManagementShelter(QDialog):
                 elif expected_type == bool:
                     if not isinstance(value, bool):
                         # Optionally, you could also allow values like 0/1 to be cast to bool:
-                        bool_value = bool(int(value)) if value in [0, 1] else bool(value)
-                        if bool_value not in [0, 1, True, False]:
+                        if value.lower() in {"true", "false"}:
+                            value = value.lower() == "true"
+                        elif str(value) in {"0", "1"}:
+                            value = bool(int(value))
+                        else:
                             raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a boolean.")
 
         # check if area2 >= area1
@@ -142,7 +151,7 @@ class EntityManagementShelter(QDialog):
 
         for row in range(table_widget.rowCount()):
             active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
-            row_data = [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
+            row_data = [table_widget.item(row, col).text().strip() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
             row_data = [active_switch] + row_data
             data.append(row_data)
 

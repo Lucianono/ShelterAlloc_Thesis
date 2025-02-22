@@ -593,7 +593,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         for key, expected_type in expected_types.items():
             value = data.get(key)
-            value = value.strip()
             if value is None:
                 raise ValueError(f"Missing value for {key}.")
             

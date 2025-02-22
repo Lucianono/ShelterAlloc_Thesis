@@ -284,7 +284,7 @@ class EntityManagementComm(QDialog):
         layout = QHBoxLayout(delete_btn_widget)
         layout.setAlignment(Qt.AlignCenter)
         delete_btn = QPushButton()
-        delete_btn.setIcon(QIcon("ICONS/9022869_duotone_trash.png"))
+        delete_btn.setIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS/9022869_duotone_trash.png")))
         delete_btn.setFixedSize(20, 20)
         delete_btn.clicked.connect(partial(self.delete_row, table_widget, row_position))
         layout.addWidget(delete_btn)

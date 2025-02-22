@@ -20,6 +20,7 @@ class ShelterAllocationReport(QDialog):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_ShelterAllocationReport()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
+        self.setModal(True)
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
         self.map_path = os.path.join(self.save_dir, "optimized-routes-map.html")

@@ -14,6 +14,7 @@ class helpDialog(QDialog):
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.setModal(True)
         self.setWindowTitle("Help")
+        self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
 
         self.ui.pushButton_10.clicked.connect(self.open_Dashboardhelp)
         self.ui.pushButton_9.clicked.connect(self.open_commSettingshelp)

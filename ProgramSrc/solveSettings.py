@@ -1,7 +1,7 @@
 import sys
 from PySide6.QtWidgets import QDialog, QLabel, QMessageBox, QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QSizePolicy, QCheckBox, QToolTip, QApplication
 from PySide6.QtCore import Signal, Qt, QPropertyAnimation, QRect, QEasingCurve
-from PySide6.QtGui import QPalette, QColor
+from PySide6.QtGui import QPalette, QColor, QIcon
 from PySide6.QtGui import QFont
 from ui_solveSettings import Ui_solveSettings
 from entityManagementComm import EntityManagementComm
@@ -24,6 +24,7 @@ class SolveSettingsDialog(QDialog):
         self.setWindowTitle("Solve Settings")
         self.setModal(True)
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
+        self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
 
         self.ui.write_community_btn.clicked.connect(self.open_entitymanagement_dialog)
         self.ui.write_shelter_btn.clicked.connect(self.open_entitymanagement_shelter_dialog)

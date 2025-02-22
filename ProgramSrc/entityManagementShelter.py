@@ -18,6 +18,7 @@ class EntityManagementShelter(QDialog):
         self.setModal(True)
         self.setWindowTitle("Entity Management Shelter")
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
+        self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
 
         file_name = "shelData.xlsx"
         required_headers = ['Name', 'Latitude', 'Longitude', 'Area1', 'Cost1', 'Area2', 'Cost2', 'ResToFlood', 'ResToTyphoon', 'ResToEarthquake', 'Status', 'Remarks']

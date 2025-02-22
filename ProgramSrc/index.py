@@ -332,7 +332,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def handle_add_community(self):
         self.open_add_community_page()
 
-
     def handle_add_shelter(self):
         self.open_add_shelter_page()
 

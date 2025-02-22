@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QApplication
-from PySide6.QtGui import QPalette, QColor
+from PySide6.QtGui import QPalette, QColor, QIcon
 from PySide6.QtCore import Qt
 from index import MainWindow
 import sys
@@ -45,5 +45,7 @@ app.setPalette(light_palette)
 
 window = MainWindow()
 window.show() 
+window.setWindowTitle('Shelter Allocation')
+window.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
 
 app.exec()

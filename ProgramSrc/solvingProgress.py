@@ -48,6 +48,7 @@ class SolvingProgress(QDialog):
         self.isCancelled = True
         if self.worker : 
             self.worker.cancel()  
+        self.close()
 
     def update_log(self, message):
         self.ui.textEdit.append(message)

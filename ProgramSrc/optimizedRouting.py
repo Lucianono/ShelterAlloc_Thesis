@@ -103,12 +103,31 @@ def plot_optimized_routes(allocation_df, comm_dict, shel_dict, map_name="optimiz
     print(f"Map saved as {map_name}")
     return m
 
+def load_data(file_path, expected_cols, alt_cols):
+    df = pd.read_excel(file_path)
+    for exp, alt in zip(expected_cols, alt_cols):
+        if exp not in df.columns and alt in df.columns:
+            df = df.rename(columns={alt: exp})
+        return df
+
 def run_optimization(communities_file='modelCommData.xlsx', shelters_file='modelShelData.xlsx', allocation_file='allocation_results.xlsx'):
     print("Running run_optimization")
 
+    communities_path = os.path.join(save_dir, communities_file)
+    shelters_path = os.path.join(save_dir, shelters_file)
+    allocation_path = os.path.join(save_dir, allocation_file)
+
     # Load data
-    communities_df = pd.read_excel(os.path.join(save_dir, communities_file), usecols=["Name", "Longitude", "Latitude"])
-    shelters_df = pd.read_excel(os.path.join(save_dir, shelters_file), usecols=["Name", "Longitude", "Latitude"])
+    communities_df = load_data(communities_path, 
+                               expected_cols=["Name", "Longitude", "Latitude"], 
+                               alt_cols=["Commmunity Longitude", "Commmunity Latitude"])
+    communities_df = communities_df[["Name", "Longitude", "Latitude"]]
+    
+    shelters_df = load_data(shelters_path, 
+                            expected_cols=["Name", "Longitude", "Latitude"], 
+                            alt_cols=["Shelter Longitude", "Shelter Latitude"])
+    shelters_df = shelters_df[["Name", "Longitude", "Latitude"]]
+
     allocation_df = pd.read_excel(os.path.join(save_dir, allocation_file), usecols=["Community", "Shelter Assigned"])
 
     # Create lookup dictionaries

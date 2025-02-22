@@ -1,6 +1,6 @@
-from PySide6.QtWidgets import QLabel, QMainWindow, QMenu, QDialog, QInputDialog, QFileDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
+from PySide6.QtWidgets import QLabel, QMainWindow, QMenu, QDialog, QInputDialog, QFileDialog, QTableWidgetItem, QPlainTextEdit, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
 from PySide6.QtGui import QAction, QColor, QIcon, QCursor, QPixmap
-from PySide6.QtCore import Qt, QUrl, QTimer, QSize, QRect, QPropertyAnimation
+from PySide6.QtCore import Qt, QUrl, QTimer, QSize, QRect, QPropertyAnimation, QEvent
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEngineSettings
 from functools import partial
@@ -29,7 +29,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("Dashboard")
 
-        
+        self.installEventFilter(self)
+
+        self.add_filter_to_existing_text_fields()
+
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
         
         comm_file = os.path.join(self.save_dir, "commData.xlsx")
@@ -82,6 +85,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             
         self.update_first_column(os.path.join(self.save_dir,"commData.xlsx"))
         self.update_first_column(os.path.join(self.save_dir,"shelData.xlsx")) 
+
+
+
+    def eventFilter(self, obj, event):
+        if event.type() == QEvent.KeyPress and (event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter):
+            obj.clearFocus()  # Unselect the field
+            return True  # Mark event as handled (no new line added)
+        return super().eventFilter(obj, event)    
+
 
     def update_first_column(self, file_name):
         df = pd.read_excel(file_name, dtype=str)
@@ -194,6 +206,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load data: {e}")
 
+    def add_filter_to_existing_text_fields(self):
+        for child in self.findChildren(QPlainTextEdit):
+            child.installEventFilter(self)
+    
+    def childEvent(self, event):
+        if event.type() == QEvent.ChildAdded:
+            child = event.child()
+            if isinstance(child, QPlainTextEdit):
+                child.installEventFilter(self)
+        return super().childEvent(event)
+    
     def load_shel_data(self):
 
         layout = self.verticalLayout_19.layout()
@@ -257,6 +280,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load data: {e}")
 
+
+    def eventFilter(self, obj, event):
+        if isinstance(obj, QPlainTextEdit) and event.type() == QEvent.KeyPress:
+            if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+                obj.clearFocus()  # Unselect the field
+                return True  # Event handled
+        return super().eventFilter(obj, event)
 
     def handle_button_click(self, button_name):
         value = button_name.split("_")[1]

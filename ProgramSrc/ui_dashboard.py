@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dashboard.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.2
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -82,7 +82,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
-        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 348, 712))
+        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 319, 694))
         self.verticalLayout_7 = QVBoxLayout(self.scrollAreaWidgetContents_9)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.widget = QWidget(self.scrollAreaWidgetContents_9)
@@ -810,7 +810,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 371, 750))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 379, 750))
         self.scrollAreaWidgetContents.setStyleSheet(u"")
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
@@ -1018,6 +1018,7 @@ class Ui_MainWindow(object):
         self.checkBox_18.setSizePolicy(sizePolicy3)
         self.checkBox_18.setMinimumSize(QSize(0, 0))
         self.checkBox_18.setMaximumSize(QSize(40, 30))
+        self.checkBox_18.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.checkBox_18.setStyleSheet(u"QCheckBox::indicator {\n"
 "     width: 40px;\n"
 "     height: 40px;\n"
@@ -1066,6 +1067,7 @@ class Ui_MainWindow(object):
         self.checkBox_19.setSizePolicy(sizePolicy3)
         self.checkBox_19.setMinimumSize(QSize(0, 0))
         self.checkBox_19.setMaximumSize(QSize(40, 30))
+        self.checkBox_19.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.checkBox_19.setStyleSheet(u"QCheckBox::indicator {\n"
 "     width: 40px;\n"
 "     height: 40px;\n"
@@ -1094,6 +1096,7 @@ class Ui_MainWindow(object):
         self.checkBox_17.setSizePolicy(sizePolicy3)
         self.checkBox_17.setMinimumSize(QSize(0, 0))
         self.checkBox_17.setMaximumSize(QSize(40, 30))
+        self.checkBox_17.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.checkBox_17.setStyleSheet(u"QCheckBox::indicator {\n"
 "     width: 40px;\n"
 "     height: 40px;\n"

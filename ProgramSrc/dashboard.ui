@@ -137,8 +137,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>348</width>
-            <height>712</height>
+            <width>319</width>
+            <height>694</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1514,7 +1514,7 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>371</width>
+                  <width>379</width>
                   <height>750</height>
                  </rect>
                 </property>
@@ -2036,6 +2036,9 @@ QPushButton:pressed {
                           <height>30</height>
                          </size>
                         </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">QCheckBox::indicator {
      width: 40px;
@@ -2147,6 +2150,9 @@ QPushButton:pressed {
                           <height>30</height>
                          </size>
                         </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">QCheckBox::indicator {
      width: 40px;
@@ -2208,6 +2214,9 @@ QPushButton:pressed {
                           <width>40</width>
                           <height>30</height>
                          </size>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">QCheckBox::indicator {

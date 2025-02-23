@@ -12,6 +12,17 @@ pip install networkx
 pip install scikit-learn
 pip install msoffcrypto-tools
 pip install xlsxwriter
+pip install pyinstaller
+    on console
+        pyinstaller --onefile main.py or pyinstaller --onefile --noconsole main.py
+    on main.spec change the following
+        datas=[("commData.xlsx","."), ("shelData.xlsx","."),("map.html","."),("ICONS","ICONS"),
+        ("tutorial","tutorial"),("allocation_results.xlsx","."),("modelCommData.xlsx","."),("modelShelData.xlsx","."),
+        ("modelPerformanceResult.txt","."),("distance_matrix.xlsx","."),("modelParam.xlsx","."),("ReportTemplate.xlsx",".") ],
+    on console
+        pyinstaller main.spec
+    on dist go to main
+        double click or run main.exe
 
 Install Qt Designer with this link: https://build-system.fman.io/qt-designer-download
 

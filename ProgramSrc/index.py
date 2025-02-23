@@ -1,6 +1,6 @@
-from PySide6.QtWidgets import QLabel, QMainWindow, QMenu, QDialog, QInputDialog, QFileDialog, QTableWidgetItem, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
+from PySide6.QtWidgets import QLabel, QMainWindow, QMenu, QDialog, QInputDialog, QFileDialog, QTableWidgetItem, QPlainTextEdit, QFileDialog, QCheckBox, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QMessageBox, QApplication, QLineEdit
 from PySide6.QtGui import QAction, QColor, QIcon, QCursor, QPixmap
-from PySide6.QtCore import Qt, QUrl, QTimer, QSize, QRect, QPropertyAnimation
+from PySide6.QtCore import Qt, QUrl, QTimer, QSize, QRect, QPropertyAnimation, QEvent
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEngineSettings
 from functools import partial
@@ -22,13 +22,21 @@ import networkx as nx
 import osmnx as ox
 
 class MainWindow(QMainWindow, Ui_MainWindow):
+    
+
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("Dashboard")
+
+        self.installEventFilter(self)
+
+        self.add_filter_to_existing_text_fields()
+
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
         
-        comm_file = os.path.join(os.getcwd(), "commData.xlsx")
-        shel_file = os.path.join(os.getcwd(), "shelData.xlsx")
+        comm_file = os.path.join(self.save_dir, "commData.xlsx")
+        shel_file = os.path.join(self.save_dir, "shelData.xlsx")
         comm_headers = ["Active", "Name", "Latitude", "Longitude", "Population", "AffectedPop", "MaxDistance", "Remarks"]
         shel_headers = ["Active", "Name", "Latitude", "Longitude", "Area1", "Cost1", "Area2", "Cost2", "ResToFlood", "ResToTyphoon", "ResToEarthquake", "Status", "Remarks"]
         self.ensure_excel_file_exists(comm_file, comm_headers)
@@ -49,7 +57,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.load_comm_data()
         self.load_shel_data()
 
-        self.initial_map_file_path = os.path.join(os.getcwd(), "map.html")
+        self.initial_map_file_path = os.path.join(self.save_dir, "map.html")
         self.webEngineView.setUrl(QUrl.fromLocalFile(self.initial_map_file_path))
 
         self.file_path = None
@@ -74,7 +82,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.webEngineView.settings().setAttribute(QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
         self.webEngineView.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
-    def update_first_column(file_name):
+            
+        self.update_first_column(os.path.join(self.save_dir,"commData.xlsx"))
+        self.update_first_column(os.path.join(self.save_dir,"shelData.xlsx")) 
+
+
+
+    def eventFilter(self, obj, event):
+        if event.type() == QEvent.KeyPress and (event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter):
+            obj.clearFocus()  # Unselect the field
+            return True  # Mark event as handled (no new line added)
+        return super().eventFilter(obj, event)    
+
+
+    def update_first_column(self, file_name):
         df = pd.read_excel(file_name, dtype=str)
 
         if df.empty:
@@ -93,8 +114,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         df.to_excel(file_name, index=False, engine="openpyxl")
 
-    update_first_column("commData.xlsx")
-    update_first_column("shelData.xlsx")   
 
     def ensure_excel_file_exists(self, filepath, columns):
         if not os.path.exists(filepath):
@@ -133,11 +152,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if widget is not None:
                 widget.deleteLater()  # Properly delete the widget
 
-        self.data = pd.read_excel(os.path.join(os.getcwd(), "commData.xlsx"), header=0)
+        self.data = pd.read_excel(os.path.join(self.save_dir, "commData.xlsx"), header=0)
         self.refresh_map()
         
         try:
-            file_path = os.path.join(os.getcwd(), "commData.xlsx")
+            file_path = os.path.join(self.save_dir, "commData.xlsx")
             self.data_Names = pd.read_excel(file_path, usecols=['Name','Active'])
 
             for row in self.data_Names.itertuples(index=False):
@@ -145,9 +164,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 picture_label = QLabel()
                 if row.Active :
-                    icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128.png")
+                    icon_path = os.path.join(sys._MEIPASS, "ICONS", "pin-5-128.png")
                 else : 
-                    icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (2).png")
+                    icon_path = os.path.join(sys._MEIPASS, "ICONS", "pin-5-128 (2).png")
                 pixmap = QPixmap(icon_path)
 
                 pixmap = pixmap.scaled(24, 24)
@@ -158,7 +177,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 name_label = QLabel(str(row.Name))
                 name_label.setMaximumSize(QSize(170, 16777215))
 
-                button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
+                button_icon_path = os.path.join(sys._MEIPASS, "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
                 button = QPushButton()
 
                 button_icon = QPixmap(button_icon_path)
@@ -187,6 +206,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load data: {e}")
 
+    def add_filter_to_existing_text_fields(self):
+        for child in self.findChildren(QPlainTextEdit):
+            child.installEventFilter(self)
+    
+    def childEvent(self, event):
+        if event.type() == QEvent.ChildAdded:
+            child = event.child()
+            if isinstance(child, QPlainTextEdit):
+                child.installEventFilter(self)
+        return super().childEvent(event)
+    
     def load_shel_data(self):
 
         layout = self.verticalLayout_19.layout()
@@ -197,11 +227,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if widget is not None:
                 widget.deleteLater()  # Properly delete the widget
 
-        self.shel_data = pd.read_excel(os.path.join(os.getcwd(), "shelData.xlsx"), header=0)
+        self.shel_data = pd.read_excel(os.path.join(self.save_dir, "shelData.xlsx"), header=0)
         self.refresh_map()
 
         try:
-            file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+            file_path = os.path.join(self.save_dir, "shelData.xlsx")
             self.data_Names = pd.read_excel(file_path, usecols=['Name','Active'])
 
             for row in self.data_Names.itertuples(index=False):
@@ -209,9 +239,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 picture_label = QLabel()
                 if row.Active :
-                    icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (1).png")
+                    icon_path = os.path.join(sys._MEIPASS, "ICONS", "pin-5-128 (1).png")
                 else : 
-                    icon_path = os.path.join(os.getcwd(), "ICONS", "pin-5-128 (2).png")
+                    icon_path = os.path.join(sys._MEIPASS, "ICONS", "pin-5-128 (2).png")
                 pixmap = QPixmap(icon_path)
 
                 pixmap = pixmap.scaled(24, 24)
@@ -222,7 +252,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 name_label = QLabel(str(row.Name))
                 name_label.setMaximumSize(QSize(170, 16777215))
 
-                button_icon_path = os.path.join(os.getcwd(), "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
+                button_icon_path = os.path.join(sys._MEIPASS, "ICONS", "462544067_1241440546885630_5886192978905579196_n.png")
                 button = QPushButton()
 
                 button_icon = QPixmap(button_icon_path)
@@ -250,6 +280,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load data: {e}")
 
+
+    def eventFilter(self, obj, event):
+        if isinstance(obj, QPlainTextEdit) and event.type() == QEvent.KeyPress:
+            if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+                obj.clearFocus()  # Unselect the field
+                return True  # Event handled
+        return super().eventFilter(obj, event)
 
     def handle_button_click(self, button_name):
         value = button_name.split("_")[1]
@@ -303,9 +340,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_12.setPlainText(str(self.shel_data.loc[row, 'Cost1']))
             self.plainTextEdit_13.setPlainText(str(self.shel_data.loc[row, 'Area2']))
             self.plainTextEdit_14.setPlainText(str(self.shel_data.loc[row, 'Cost2']))
-            self.checkBox_17.setChecked(self.shel_data.loc[row, 'ResToFlood'])
-            self.checkBox_19.setChecked(self.shel_data.loc[row, 'ResToTyphoon'])
-            self.checkBox_18.setChecked(self.shel_data.loc[row, 'ResToEarthquake'])
+            self.checkBox_17.setChecked(bool(self.shel_data.loc[row, 'ResToFlood'])) if pd.notna(self.shel_data.loc[row, 'ResToFlood']) else self.checkBox_17.setChecked(False)
+            self.checkBox_19.setChecked(bool(self.shel_data.loc[row, 'ResToTyphoon'])) if pd.notna(self.shel_data.loc[row, 'ResToTyphoon']) else self.checkBox_19.setChecked(False)
+            self.checkBox_18.setChecked(bool(self.shel_data.loc[row, 'ResToEarthquake'])) if pd.notna(self.shel_data.loc[row, 'ResToEarthquake']) else self.checkBox_18.setChecked(False)
             status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 3}
             self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
             self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))
@@ -324,7 +361,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def handle_add_community(self):
         self.open_add_community_page()
-
 
     def handle_add_shelter(self):
         self.open_add_shelter_page()
@@ -383,8 +419,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
       
     def refresh_map(self):
         try:
-            comm_data = pd.read_excel("commData.xlsx",usecols=['Name','Latitude','Longitude','Active'])
-            shel_data = pd.read_excel("shelData.xlsx",usecols=['Name','Latitude','Longitude','Active'])
+            comm_data = pd.read_excel( os.path.join(self.save_dir,"commData.xlsx"),usecols=['Name','Latitude','Longitude','Active'])
+            shel_data = pd.read_excel( os.path.join(self.save_dir,"shelData.xlsx"),usecols=['Name','Latitude','Longitude','Active'])
 
             show_inactive_marker = self.marker_comboBox.currentIndex() == 0
 
@@ -443,7 +479,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         icon=folium.Icon(color=color)
                     ).add_to(self.map)
 
-            map_file_path = os.path.join(os.getcwd(), "map.html")
+            map_file_path = os.path.join(self.save_dir, "map.html")
             self.map.save(map_file_path)
 
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
@@ -460,7 +496,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 focused_map.add_child(child)
 
             self.map = focused_map
-            map_file_path = os.path.join(os.getcwd(), "map.html")
+            map_file_path = os.path.join(self.save_dir, "map.html")
             self.map.save(map_file_path)
 
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
@@ -583,13 +619,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def save_community_data_dashboard(self, old_data_name):
                 
         data_active = self.switch_1.isChecked()
-        data_name = self.plainTextEdit_15.toPlainText()
-        data_Latitude = self.plainTextEdit.toPlainText()
-        data_Longitude = self.plainTextEdit_2.toPlainText()
-        data_population = self.plainTextEdit_3.toPlainText()
-        data_affectedPop = self.plainTextEdit_4.toPlainText()
-        data_maxDistance = self.plainTextEdit_5.toPlainText()
-        data_remarks = self.plainTextEdit_6.toPlainText()
+        data_name = self.plainTextEdit_15.toPlainText().strip()
+        data_Latitude = self.plainTextEdit.toPlainText().strip()
+        data_Longitude = self.plainTextEdit_2.toPlainText().strip()
+        data_population = self.plainTextEdit_3.toPlainText().strip()
+        data_affectedPop = self.plainTextEdit_4.toPlainText().strip()
+        data_maxDistance = self.plainTextEdit_5.toPlainText().strip()
+        data_remarks = self.plainTextEdit_6.toPlainText().strip()
 
         # Validate the input
         new_row = {
@@ -634,7 +670,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.data.loc[row_idx, "Remarks"] = data_remarks
 
         # Save the updated DataFrame back to the Excel file
-        file_path = os.path.join(os.getcwd(), "commData.xlsx")
+        file_path = os.path.join(self.save_dir, "commData.xlsx")
         with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
             self.data.to_excel(writer, index=False)
 
@@ -642,19 +678,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def save_shelter_data_dashboard(self, old_data_name):
         data_active = self.switch_2.isChecked()
-        data_name = self.plainTextEdit_9.toPlainText()
-        data_Latitude = self.plainTextEdit_11.toPlainText()
-        data_Longitude = self.plainTextEdit_10.toPlainText()
-        data_area1 = self.plainTextEdit_8.toPlainText()
-        data_cost1 = self.plainTextEdit_12.toPlainText()
-        data_area2 = self.plainTextEdit_13.toPlainText()
-        data_cost2 = self.plainTextEdit_14.toPlainText()
+        data_name = self.plainTextEdit_9.toPlainText().strip()
+        data_Latitude = self.plainTextEdit_11.toPlainText().strip()
+        data_Longitude = self.plainTextEdit_10.toPlainText().strip()
+        data_area1 = self.plainTextEdit_8.toPlainText().strip()
+        data_cost1 = self.plainTextEdit_12.toPlainText().strip()
+        data_area2 = self.plainTextEdit_13.toPlainText().strip()
+        data_cost2 = self.plainTextEdit_14.toPlainText().strip()
         data_resFlood = self.checkBox_17.isChecked()
         data_resTyphoon = self.checkBox_19.isChecked()
         data_resEarthquake = self.checkBox_18.isChecked()
         status_mapping = ["Built", "Partially Built", "Damaged", "Empty Lot"]
         data_status = status_mapping[self.status_comboBox_2.currentIndex()]
-        data_remarks = self.plainTextEdit_17.toPlainText()
+        data_remarks = self.plainTextEdit_17.toPlainText().strip()
 
         # Validate the input
         new_row = {
@@ -713,7 +749,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.shel_data.loc[row_idx, "Remarks"] = data_remarks
 
         # Save the updated DataFrame back to the Excel file
-        file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+        file_path = os.path.join(self.save_dir, "shelData.xlsx")
         with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
             self.shel_data.to_excel(writer, index=False)
 
@@ -727,7 +763,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.data = self.data.drop(index = row_idx)
             
             # Save the updated DataFrame back to the Excel file
-            file_path = os.path.join(os.getcwd(), "commData.xlsx")
+            file_path = os.path.join(self.save_dir, "commData.xlsx")
             with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
                 self.data.to_excel(writer, index=False)
 
@@ -743,7 +779,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.shel_data = self.shel_data.drop(index = row_idx)
             
             # Save the updated DataFrame back to the Excel file
-            file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+            file_path = os.path.join(self.save_dir, "shelData.xlsx")
             with pd.ExcelWriter(file_path, engine="openpyxl", mode="w") as writer:
                 self.shel_data.to_excel(writer, index=False)
 
@@ -751,7 +787,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.load_shel_data()
 
     def filter_shelter_map(self, index):
-            file_path="shelData.xlsx"
+            file_path= os.path.join(self.save_dir,"shelData.xlsx")
 
             data = pd.read_excel(file_path)
             if index == 0:
@@ -805,7 +841,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         icon=folium.Icon(color=color)
                     ).add_to(self.map)
 
-            map_file_path = os.path.join(os.getcwd(), "map.html")
+            map_file_path = os.path.join(self.save_dir, "map.html")
             self.map.save(map_file_path)
 
             self.webEngineView.setUrl(QUrl.fromLocalFile(map_file_path))
@@ -845,22 +881,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             #allocation_results.xlsx
             data = pd.read_excel(decrypted,sheet_name="Shelter Location-Allocation", usecols = ["Community","Allocated Population","Shelter Assigned","Level"], header=3).fillna("")
-            output_file = os.path.join(os.getcwd(), "allocation_results.xlsx")
+            output_file = os.path.join(self.save_dir, "allocation_results.xlsx")
             data.to_excel(output_file, index=False)
 
             #modelCommData.xlsx
             data = pd.read_excel(decrypted,sheet_name="Community Data", header=0).fillna("")
-            output_file = os.path.join(os.getcwd(), "modelCommData.xlsx")
+            output_file = os.path.join(self.save_dir, "modelCommData.xlsx")
             data.to_excel(output_file, index=False)
 
             #modelShelData.xlsx
             data = pd.read_excel(decrypted,sheet_name="Shelter Data", header=0).fillna("")
-            output_file = os.path.join(os.getcwd(), "modelShelData.xlsx")
+            output_file = os.path.join(self.save_dir, "modelShelData.xlsx")
             data.to_excel(output_file, index=False)
 
             #modelPerformanceResult.txt
             data = pd.read_excel(decrypted,sheet_name="Report Analysis", header=1).fillna("")
-            output_file = os.path.join(os.getcwd(), "modelPerformanceResult.txt")
+            output_file = os.path.join(self.save_dir, "modelPerformanceResult.txt")
             data.to_csv(output_file, index=False, sep='\t')
 
             #optimized-routes-map.html

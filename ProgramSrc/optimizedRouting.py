@@ -1,7 +1,7 @@
 import osmnx as ox
 import folium
 from folium.plugins import AntPath
-import math
+import os
 import pandas as pd
 import networkx as nx
 from math import radians, cos, sin, sqrt, atan2
@@ -9,6 +9,7 @@ from math import radians, cos, sin, sqrt, atan2
 # Define a list of colors for the routes
 ROUTE_COLORS = ['darkblue', 'darkgreen', 'darkred', 'indigo', 'darkorange', 'maroon', 
                 'darkgoldenrod', 'saddlebrown', 'dimgray', 'teal', 'blue', 'green', 'red', 'purple', 'orange', 'pink', 'yellow', 'brown', 'gray', 'cyan']
+save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
 def get_route_color(iteration_index):
     return ROUTE_COLORS[iteration_index % len(ROUTE_COLORS)]
@@ -98,17 +99,36 @@ def plot_optimized_routes(allocation_df, comm_dict, shel_dict, map_name="optimiz
     route_layer.add_to(m)
     straight_layer.add_to(m)
     folium.LayerControl(collapsed=False).add_to(m)
-    m.save(map_name)
+    m.save(os.path.join(save_dir,map_name))
     print(f"Map saved as {map_name}")
     return m
+
+def load_data(file_path, expected_cols, alt_cols):
+    df = pd.read_excel(file_path)
+    for exp, alt in zip(expected_cols, alt_cols):
+        if exp not in df.columns and alt in df.columns:
+            df = df.rename(columns={alt: exp})
+        return df
 
 def run_optimization(communities_file='modelCommData.xlsx', shelters_file='modelShelData.xlsx', allocation_file='allocation_results.xlsx'):
     print("Running run_optimization")
 
+    communities_path = os.path.join(save_dir, communities_file)
+    shelters_path = os.path.join(save_dir, shelters_file)
+    allocation_path = os.path.join(save_dir, allocation_file)
+
     # Load data
-    communities_df = pd.read_excel(communities_file, usecols=["Name", "Longitude", "Latitude"])
-    shelters_df = pd.read_excel(shelters_file, usecols=["Name", "Longitude", "Latitude"])
-    allocation_df = pd.read_excel(allocation_file, usecols=["Community", "Shelter Assigned"])
+    communities_df = load_data(communities_path, 
+                               expected_cols=["Name", "Longitude", "Latitude"], 
+                               alt_cols=["Commmunity Longitude", "Commmunity Latitude"])
+    communities_df = communities_df[["Name", "Longitude", "Latitude"]]
+    
+    shelters_df = load_data(shelters_path, 
+                            expected_cols=["Name", "Longitude", "Latitude"], 
+                            alt_cols=["Shelter Longitude", "Shelter Latitude"])
+    shelters_df = shelters_df[["Name", "Longitude", "Latitude"]]
+
+    allocation_df = pd.read_excel(os.path.join(save_dir, allocation_file), usecols=["Community", "Shelter Assigned"])
 
     # Create lookup dictionaries
     comm_dict = {row["Name"]: {"y": row["Longitude"], "x": row["Latitude"]} for _, row in communities_df.iterrows()}

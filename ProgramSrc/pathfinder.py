@@ -19,13 +19,14 @@ class PathfindingWorker(QObject):
         self.shelter_file = shelter_file
         self.cancelled = False
         self.timer = QTimer(self)
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
         self.timer.timeout.connect(self.check_for_cancel)
 
     def run(self):
         try:
-            communities_df = pd.read_excel(self.community_file)
-            shelters_df = pd.read_excel(self.shelter_file)
+            communities_df = pd.read_excel(os.path.join(self.save_dir,self.community_file))
+            shelters_df = pd.read_excel(os.path.join(self.save_dir,self.shelter_file))
 
             self.progress.emit("Starting pathfinding...")
 
@@ -129,7 +130,7 @@ class PathfindingWorker(QObject):
                     continue
 
         distance_matrix.index.name = 'Shelters'
-        distance_matrix.to_excel(excel_name)
+        distance_matrix.to_excel(os.path.join(self.save_dir,excel_name))
         self.progress.emit(f"Distance matrix saved as {excel_name}")
 
 

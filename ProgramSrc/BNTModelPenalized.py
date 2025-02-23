@@ -13,6 +13,7 @@ import os
 import uuid
 import socket
 import requests
+import sys
 
 class BNTModelSimulation(QObject):
 
@@ -36,12 +37,13 @@ class BNTModelSimulation(QObject):
         self.progress_dialog("Starting simulation")
         print("Starting simulation")
         self.cancelled = False
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
         datasets = DataSets()
         Community = datasets.get_community_data()
         Shelters = datasets.get_shelter_data()
 
-        Model_parameters = pd.read_excel( os.path.join(os.getcwd(), "modelParam.xlsx"), header=0 ).iloc[0]
+        Model_parameters = pd.read_excel( os.path.join(self.save_dir, "modelParam.xlsx"), header=0 ).iloc[0]
         area_per_individual = Model_parameters['AreaPerIndiv']
         max_lvl2_shelters = int(min(Model_parameters['MaxL2Shelters'], len(Shelters)))
         max_shelters = int(min(Model_parameters['MaxShelters'], len(Shelters)))
@@ -308,7 +310,7 @@ class BNTModelSimulation(QObject):
             
             # Create a DataFrame and export to Excel
             df = pd.DataFrame(data)
-            output_file = os.path.join(os.getcwd(), "allocation_results.xlsx")
+            output_file = os.path.join(self.save_dir, "allocation_results.xlsx")
             df.to_excel(output_file, index=False)
 
             self.progress_dialog(f"Allocation results saved to {output_file}")
@@ -468,7 +470,7 @@ class BNTModelSimulation(QObject):
             f"Time of report generation : {date_now}",
         ]
 
-        with open("modelPerformanceResult.txt", "w") as file:
+        with open( os.path.join(self.save_dir, "modelPerformanceResult.txt"), "w") as file:
             # Write each line to the file
             for line in data:
                 file.write(line + "\n")  # Add a newline character after each line

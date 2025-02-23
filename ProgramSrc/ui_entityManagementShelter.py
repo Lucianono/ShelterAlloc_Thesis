@@ -127,7 +127,7 @@ class Ui_entityManagementShelter(object):
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: #E63946;\n"
+"    background-color: #12c753;\n"
 "}\n"
 "")
         icon2 = QIcon()

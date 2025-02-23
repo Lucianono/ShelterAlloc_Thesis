@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QTextEdit
-from PySide6.QtGui import QIcon, QCursor
+from PySide6.QtGui import QIcon, QCursor, QKeyEvent
 from PySide6.QtCore import Qt, QUrl, QThread
 from ui_solvingprogress import Ui_solvingProgress
 from shelterAllocationReport import ShelterAllocationReport
@@ -17,6 +17,9 @@ class SolvingProgress(QDialog):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_solvingProgress()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
+        self.setModal(True)
+        self.setWindowTitle("Solving Progress")
+        self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
 
         self.ui.solving_prog_cancel_btn.clicked.connect(self.cancel_pathfinding)
         self.ui.solvingModel_progressBar.setRange(0, 100)
@@ -64,11 +67,17 @@ class SolvingProgress(QDialog):
         else :
             self.on_finished()
 
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+            event.ignore()  # Prevent the dialog from closing
+        else:
+            super().keyPressEvent(event)
+
     def update_log(self, message):
         self.ui.textEdit.append(message)
 
     def on_finished(self):
-        self.ui.solving_prog_cancel_btn.setText("Close")
+        self.ui.solving_prog_cancel_btn.setText("CLOSE")
         self.ui.solving_prog_cancel_btn.clicked.connect(self.close)
         self.ui.solvingModel_progressBar.setValue(100)
 

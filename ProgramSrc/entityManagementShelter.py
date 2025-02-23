@@ -74,15 +74,14 @@ class EntityManagementShelter(QDialog):
                 if not duplicate_names.empty:
                     raise ValueError(f"Duplicate entries found in the 'Name' column: {', '.join(duplicate_names)}")     
 
-                # Restrict "Status" to predefined values
-                if column == "Status" and value not in {"Built", "Partially Built", "Damaged", "Empty Lot"}:
-                    raise ValueError(f"Invalid value in column 'Status' at row {idx + 1}. Expected one of: Built, Partially Built, Damaged, Empty Lot.")   
-
             for idx, value in enumerate(data[column]):
                 
                 value = value.strip()
                 if (pd.isnull(value) or value == '') and column != "Remarks":
                     raise ValueError(f"No data found in column '{column}' at row {idx + 1}. Expected a value.")
+                
+                if column == "Status" and value not in {"Built", "Partially Built", "Damaged", "Empty Lot"}:
+                    raise ValueError(f"Invalid value in column 'Status' at row {idx + 1}. Expected one of: Built, Partially Built, Damaged, Empty Lot.")
                 
                 # Check if the value is of the expected type
                 if expected_type == str:

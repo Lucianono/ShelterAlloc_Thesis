@@ -340,9 +340,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.plainTextEdit_12.setPlainText(str(self.shel_data.loc[row, 'Cost1']))
             self.plainTextEdit_13.setPlainText(str(self.shel_data.loc[row, 'Area2']))
             self.plainTextEdit_14.setPlainText(str(self.shel_data.loc[row, 'Cost2']))
-            self.checkBox_17.setChecked(bool(self.shel_data.loc[row, 'ResToFlood']))
-            self.checkBox_19.setChecked(bool(self.shel_data.loc[row, 'ResToTyphoon']))
-            self.checkBox_18.setChecked(bool(self.shel_data.loc[row, 'ResToEarthquake']))
+            self.checkBox_17.setChecked(bool(self.shel_data.loc[row, 'ResToFlood'])) if pd.notna(self.shel_data.loc[row, 'ResToFlood']) else self.checkBox_17.setChecked(False)
+            self.checkBox_19.setChecked(bool(self.shel_data.loc[row, 'ResToTyphoon'])) if pd.notna(self.shel_data.loc[row, 'ResToTyphoon']) else self.checkBox_19.setChecked(False)
+            self.checkBox_18.setChecked(bool(self.shel_data.loc[row, 'ResToEarthquake'])) if pd.notna(self.shel_data.loc[row, 'ResToEarthquake']) else self.checkBox_18.setChecked(False)
             status_mapping = {"Built": 0, "Partially Built": 1, "Damaged": 2, "Empty Lot": 3}
             self.status_comboBox_2.setCurrentIndex(status_mapping.get(str(self.shel_data.loc[row, 'Status']), -1))
             self.plainTextEdit_17.setPlainText(str(self.shel_data.loc[row, 'Remarks']).replace('nan', ''))

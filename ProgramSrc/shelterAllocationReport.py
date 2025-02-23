@@ -21,6 +21,7 @@ class ShelterAllocationReport(QDialog):
         self.ui = Ui_ShelterAllocationReport()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.setModal(True)
+        self.setWindowTitle("Shelter Allocation Report")
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
         self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
 

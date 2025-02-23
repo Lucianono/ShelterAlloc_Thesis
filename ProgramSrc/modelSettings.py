@@ -58,6 +58,12 @@ class ModelSettings(QDialog):
             obj.clearFocus()  # Unselect the field
             return True  # Mark event as handled (no new line added)
         return super().eventFilter(obj, event)    
+    
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+            event.ignore()  # Prevent the dialog from closing
+        else:
+            super().keyPressEvent(event)
 
 
     def update_params_from_excel(self, excel_name):

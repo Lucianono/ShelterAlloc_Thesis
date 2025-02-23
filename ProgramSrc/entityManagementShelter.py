@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QStyledItemDelegate, QTableWidgetItem
-from PySide6.QtGui import QIcon, QCursor,QShortcut, QKeySequence
+from PySide6.QtGui import QIcon, QCursor,QShortcut, QKeySequence, QKeyEvent
 from PySide6.QtCore import Signal, Qt, QUrl, QPropertyAnimation, QRect
 from ui_entityManagementShelter import Ui_entityManagementShelter
 import pandas as pd
@@ -51,6 +51,12 @@ class EntityManagementShelter(QDialog):
         self.shortcut = QShortcut(QKeySequence("Ctrl+D"), self)
         self.shortcut.activated.connect(lambda: self.toggle_all_switches(self.ui.shelterInfo_table))
 
+
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+            event.ignore()  # Prevent the dialog from closing
+        else:
+            super().keyPressEvent(event)
 
     def load_from_excel(self, table_widget, file_name, dummy_data):
         if file_name and os.path.exists( os.path.join(self.save_dir, file_name) ):

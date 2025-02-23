@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout
-from PySide6.QtGui import QIcon, QCursor,QShortcut, QKeySequence
+from PySide6.QtGui import QIcon, QCursor,QShortcut, QKeySequence, QKeyEvent
 from PySide6.QtCore import Signal, Qt, QUrl, QPropertyAnimation, QRect, QObject
 from ui_entityManagement import Ui_EntityManagementCommunities
 import pandas as pd
@@ -57,6 +57,12 @@ class EntityManagementComm(QDialog):
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
         else:
             self.populate_table(table_widget, dummy_data)
+
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+            event.ignore()  # Prevent the dialog from closing
+        else:
+            super().keyPressEvent(event)
 
     def validate_imported_data(self, data, expected_types):
         

@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QTextEdit
-from PySide6.QtGui import QIcon, QCursor
+from PySide6.QtGui import QIcon, QCursor, QKeyEvent
 from PySide6.QtCore import Qt, QUrl, QThread
 from ui_solvingprogress import Ui_solvingProgress
 from shelterAllocationReport import ShelterAllocationReport
@@ -50,6 +50,12 @@ class SolvingProgress(QDialog):
         self.isCancelled = True
         if self.worker : 
             self.worker.cancel()  
+
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+            event.ignore()  # Prevent the dialog from closing
+        else:
+            super().keyPressEvent(event)
 
     def update_log(self, message):
         self.ui.textEdit.append(message)

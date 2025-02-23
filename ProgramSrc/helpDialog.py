@@ -77,6 +77,13 @@ class helpDialog(QDialog):
 
         html_content5 = f"""
             <html>
+                <head>
+                    <style>
+                    body {{
+                        text-align: center;
+                    }}
+                    </style>
+                </head>
                 <body>
                     <img src="{sys._MEIPASS.replace('\\', '/')}/tutorial/solvesettings.png" width="500">
                     <p>The next step in pathfinding, in this page you may check the summary of what will be solved, and you may sort the shelters by whether they are resistant to
@@ -89,14 +96,31 @@ class helpDialog(QDialog):
 
         html_content6 = f"""
             <html>
+                <head>
+                    <style>
+                        body {{
+                            text-align: center;
+                        }}
+                    </style>
+                </head>
                 <body>
-                    
-                    <p>This project was created to fulfill our requirements for our Thesis, we would like to thank the following people for their help and support!
-                    <br> Sir Harris Dela Cruz - our Thesis professor
-                    <br> Ma'am Valentine Blez Lampayan - our Thesis adviser
-                    <br> We would also like to thank the local government of Calumpit for cooperating with our project and providing us with the necessary data!
-                    <br> <br> We are MatTresist, and thank you for using our system.
-                    <br> Bryan Jett T. Calulo, Lovely Angeline OL. Cunanan, and Elijah Inigo C. Fabian.</p>
+                    <p>
+                        This project was developed as part of our thesis requirements.  
+                        We would like to express our sincere gratitude to the following individuals for their guidance and support:
+                    </p>
+                    <p>
+                        <strong>Sir Harris Dela Cruz</strong> – Thesis Professor <br>
+                        <strong>Ma’am Valentine Blez Lampayan</strong> – Thesis Adviser
+                    </p>
+                    <p>
+                        We also extend our appreciation to the local government of Calumpit for their cooperation and for providing the necessary data for our research.
+                    </p>
+                    <p>
+                        We are <strong>MatTresist</strong>. Thank you for using our system!
+                    </p>
+                    <p>
+                        <strong>Bryan Jett T. Calulo, Lovely Angeline OL. Cunanan, and Elijah Inigo C. Fabian</strong>
+                    </p>
                 </body>
             </html>
         """

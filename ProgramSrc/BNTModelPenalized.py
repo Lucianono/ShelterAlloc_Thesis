@@ -105,7 +105,6 @@ class BNTModelSimulation(QObject):
                 elif (allocation["shelterlvl"][shelter_name] == 2):
                     total_cost += shelter["cost2"] 
                 else:
-                    self.progress_dialog("Shelter exceeded 2 levels. Something is wrong")
                     print("Shelter exceeded 2 levels. Something is wrong")
                 
             # the actual model
@@ -131,7 +130,6 @@ class BNTModelSimulation(QObject):
                 max_distance_community = community["maxdistance"]
                 # check if distance is greater than max dist
                 if (distance > max_distance_community):
-                    self.progress_dialog("maximum distance constraint failed")
                     print("maximum distance constraint failed")
                     penalty += distance - max_distance_community
                 
@@ -152,7 +150,6 @@ class BNTModelSimulation(QObject):
                     used_area[shelter_name] += required_area
 
                     if used_area[shelter_name] > shelter_areas[shelter_name]:
-                        self.progress_dialog("initial capacity constraint failed")
                         print("initial capacity constraint failed")
 
             for shelter in Shelters:
@@ -173,7 +170,6 @@ class BNTModelSimulation(QObject):
 
             # If the number of unique shelters exceeds the max allowed
             if len(used_shelters) > max_shelters:
-                self.progress_dialog("max shelters constraint failed")
                 print("max shelters constraint failed")
                 penalty += len(used_shelters) - max_shelters
                     
@@ -186,7 +182,6 @@ class BNTModelSimulation(QObject):
             penalty = 0
 
             if lvl2_shelters_ctr > max_lvl2_shelters:
-                self.progress_dialog("max lvl2 shelters constraint failed")
                 print("max lvl2 shelters constraint failed")
                 penalty += lvl2_shelters_ctr - max_lvl2_shelters 
         
@@ -359,10 +354,11 @@ class BNTModelSimulation(QObject):
             best_solutions = mutated_population + ranked_solutions
             best_solutions = sorted(best_solutions, key=lambda x: x[0])[:num_solutions] 
 
-            self.progress_dialog(f"=== Gen {generation+1} best solution ===")
-            print(f"=== Gen {generation+1} best solution ===")
-            self.progress_dialog(str(best_solutions[0]))
-            print(best_solutions[0])
+            if (generation+1) % 100 == 0 :
+                self.progress_dialog(str(best_solutions[0]))
+                print(best_solutions[0])
+                self.progress_dialog(f"=== Gen {generation+1} best solution ===")
+                print(f"=== Gen {generation+1} best solution ===")
 
             prev_best_solution = fitness(solutions[0])
 
@@ -375,7 +371,11 @@ class BNTModelSimulation(QObject):
             if(prev_best_solution != new_best_solution):
                 generation_last_updated = generation+1
 
-
+        
+        self.progress_dialog(str(best_solutions[0]))
+        print(best_solutions[0])
+        self.progress_dialog(f"=== Gen {generation+1} best solution ===")
+        print(f"=== Gen {generation+1} best solution ===")
         best_allocation = solutions[0]
         show_allocation_details_grouped(best_allocation)
         self.progress_dialog(f"Generation when solution last updated : {generation_last_updated}")

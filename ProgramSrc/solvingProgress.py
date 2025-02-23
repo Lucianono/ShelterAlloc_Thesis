@@ -50,13 +50,12 @@ class SolvingProgress(QDialog):
         self.isCancelled = True
         if self.worker : 
             self.worker.cancel()  
-        self.close()
 
     def update_log(self, message):
         self.ui.textEdit.append(message)
 
     def on_finished(self):
-        self.ui.solving_prog_cancel_btn.setText("Close")
+        self.ui.solving_prog_cancel_btn.setText("CLOSE")
         self.ui.solving_prog_cancel_btn.clicked.connect(self.close)
 
         if not self.isCancelled:

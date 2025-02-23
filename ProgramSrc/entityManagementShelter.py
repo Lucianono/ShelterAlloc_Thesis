@@ -76,7 +76,10 @@ class EntityManagementShelter(QDialog):
 
             for idx, value in enumerate(data[column]):
                 
-                value = value.strip()
+                # Ensure value is a string before calling .strip()
+                if isinstance(value, str):
+                    value = value.strip()
+
                 if (pd.isnull(value) or value == '') and column != "Remarks":
                     raise ValueError(f"No data found in column '{column}' at row {idx + 1}. Expected a value.")
                 

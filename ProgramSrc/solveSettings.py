@@ -25,6 +25,7 @@ class SolveSettingsDialog(QDialog):
         self.setModal(True)
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
         self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
+        self.setAttribute(Qt.WA_DeleteOnClose)
 
         self.ui.write_community_btn.clicked.connect(self.open_entitymanagement_dialog)
         self.ui.write_shelter_btn.clicked.connect(self.open_entitymanagement_shelter_dialog)

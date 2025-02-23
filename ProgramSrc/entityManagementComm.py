@@ -21,6 +21,8 @@ class EntityManagementComm(QDialog):
         self.setWindowTitle("Entity Management Community")
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
         self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
+        self.setAttribute(Qt.WA_DeleteOnClose)
+
 
         file_name = "commData.xlsx"
         required_headers = ['Name', 'Latitude', 'Longitude', 'Population', 'AffectedPop', 'MaxDistance',  'Remarks']

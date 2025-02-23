@@ -20,6 +20,7 @@ class SolvingProgress(QDialog):
         self.setModal(True)
         self.setWindowTitle("Solving Progress")
         self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
+        self.setAttribute(Qt.WA_DeleteOnClose)
 
         self.ui.solving_prog_cancel_btn.clicked.connect(self.cancel_pathfinding)
         self.ui.solvingModel_progressBar.setRange(0, 100)
@@ -52,17 +53,20 @@ class SolvingProgress(QDialog):
         self.isCancelled = True
         if self.worker : 
             self.worker.cancel()  
+            self.worker_thread.quit()
+            self.worker_thread.wait()
         if self.model : 
             self.model.cancel()  
+            self.model_thread.quit()
+            self.model_thread.wait()
+        self.on_finished()
 
     def on_finished_pathfinding(self):
-        self.ui.textEdit.append("Pathfinding Complete!")
         self.ui.solvingModel_progressBar.setValue(50)
         
-        if not self.feasibilityCheck():
-            self.feasibility_warning_prompt()
-
         if not self.isCancelled:
+            if not self.feasibilityCheck():
+                self.feasibility_warning_prompt()
             self.run_genetic_algorithm()
         else :
             self.on_finished()
@@ -99,9 +103,9 @@ class SolvingProgress(QDialog):
 
     def run_genetic_algorithm(self):
         
-        community_file_path = os.path.join(os.getcwd(), "commData.xlsx")
-        shelter_file_path = os.path.join(os.getcwd(), "shelData.xlsx")
-        distance_file_path = os.path.join(os.getcwd(), "distance_matrix.xlsx")
+        community_file_path = os.path.join(sys._MEIPASS, "commData.xlsx")
+        shelter_file_path = os.path.join(sys._MEIPASS, "shelData.xlsx")
+        distance_file_path = os.path.join(sys._MEIPASS, "distance_matrix.xlsx")
 
         if not os.path.exists(community_file_path) or not os.path.exists(shelter_file_path) or not os.path.exists(distance_file_path):
             self.update_log("Error: Required input files are missing.")
@@ -120,7 +124,6 @@ class SolvingProgress(QDialog):
 
             # Corrected: Use a lambda to avoid running the function in the main thread
             self.model_thread.started.connect(self.model.run)
-
             self.model_thread.finished.connect(self.model.deleteLater)
             self.model_thread.start()
 
@@ -137,7 +140,7 @@ class SolvingProgress(QDialog):
         Community = datasets.get_community_data()
         Shelters = datasets.get_shelter_data()
 
-        Model_parameters = pd.read_excel( os.path.join(os.getcwd(), "modelParam.xlsx"), header=0 ).iloc[0]
+        Model_parameters = pd.read_excel( os.path.join(sys._MEIPASS, "modelParam.xlsx"), header=0 ).iloc[0]
         area_per_individual = Model_parameters['AreaPerIndiv']
 
         # check if there exists distance <= max distance 

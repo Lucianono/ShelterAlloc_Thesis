@@ -22,6 +22,7 @@ class helpDialog(QDialog):
         self.ui.pushButton_7.clicked.connect(self.open_modelSettingshelp)
         self.ui.pushButton_2.clicked.connect(self.open_solveSettingshelp)
         self.ui.pushButton_3.clicked.connect(self.open_AboutUshelp)
+        self.setAttribute(Qt.WA_DeleteOnClose)
 
         # Create the HTML content
         html_content1 = f"""

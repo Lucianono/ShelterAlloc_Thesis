@@ -16,6 +16,7 @@ class ModelSettings(QDialog):
         self.setWindowTitle("Model Settings")
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
         self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
+        self.setAttribute(Qt.WA_DeleteOnClose)
         
         text_fields = [
             self.ui.textEdit_generations,

@@ -24,6 +24,7 @@ class ShelterAllocationReport(QDialog):
         self.setWindowTitle("Shelter Allocation Report")
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
         self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
+        self.setAttribute(Qt.WA_DeleteOnClose)
 
         self.map_path = os.path.join(self.save_dir, "optimized-routes-map.html")
         self.ui.webEngineView.setUrl(QUrl.fromLocalFile(self.map_path))

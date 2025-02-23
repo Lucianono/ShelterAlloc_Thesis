@@ -28,6 +28,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("Dashboard")
+        self.setAttribute(Qt.WA_DeleteOnClose)
 
         self.installEventFilter(self)
 

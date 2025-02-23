@@ -1,5 +1,4 @@
 from PySide6.QtCore import QObject, Signal, QTimer
-from BNTModelPenalized import BNTModelSimulation
 import pandas as pd
 import subprocess
 import os
@@ -7,6 +6,7 @@ import osmnx as ox
 import folium
 import networkx as nx
 from math import radians, cos, sin, sqrt, atan2
+from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
 class PathfindingWorker(QObject):
     finished = Signal()
@@ -46,7 +46,6 @@ class PathfindingWorker(QObject):
                         route_counter += 1
                         if not self.cancelled:
                             self.progress.emit("Pathfinding complete. Files saved.")
-                            self.run_genetic_algorithm()
                         return
                     except Exception as e:
                         self.progress.emit(f"Error processing route from {community['Name']} to {shelter['Name']}: {e}")
@@ -61,8 +60,6 @@ class PathfindingWorker(QObject):
 
     def cancel(self):
         self.cancelled = True
-        if self.model :
-            self.model.cancel()
 
     def check_for_cancel(self):
         if self.cancelled:
@@ -71,30 +68,8 @@ class PathfindingWorker(QObject):
             self.finished.emit()
             return
         
-    def run_genetic_algorithm(self):
-        if self.cancelled:
-            self.progress.emit("Genetic algorithm skipped due to cancellation.")
-            return
-        
-        community_file_path = os.path.join(os.getcwd(), "commData.xlsx")
-        shelter_file_path = os.path.join(os.getcwd(), "shelData.xlsx")
-        distance_file_path = os.path.join(os.getcwd(), "distance_matrix.xlsx")
+    
 
-        if not os.path.exists(community_file_path) or not os.path.exists(shelter_file_path) or not os.path.exists(distance_file_path):
-            self.progress.emit("Error: Required input files are missing.")
-            return
-
-        try:
-
-            self.model = BNTModelSimulation()
-            self.model.feasibility_warning.connect(self.feasibility_warning_msg)
-            self.model.run(self.progress.emit)
-
-        except Exception as e:
-            self.progress.emit(f"An unexpected error occurred: {e}")
-
-    def feasibility_warning_msg(self):
-        self.feasibility_warning.emit()
 
     def plot_route(self, communities_df, shelters_df, route_counter, map_name="all_routes_map.html", excel_name="distance_matrix.xlsx"):
         bbox_margin = 0.01
@@ -105,8 +80,18 @@ class PathfindingWorker(QObject):
             min(communities_df['Longitude'].min(), shelters_df['Longitude'].min()) - bbox_margin
         )
 
-        roadgraph = ox.graph_from_bbox(*bbox, network_type='all')
-        node_coords = {node: (data['y'], data['x']) for node, data in roadgraph.nodes(data=True)}
+
+        with ThreadPoolExecutor() as executor:
+            future = executor.submit(ox.graph_from_bbox, *bbox, network_type='all')
+            try:
+                roadgraph = future.result(timeout=30)  # Wait for completion or timeout
+            except TimeoutError:
+                print("Fetching road graph took too long! Stopping...")
+                self.cancelled = True
+                roadgraph = None
+
+        if roadgraph:
+            node_coords = {node: (data['y'], data['x']) for node, data in roadgraph.nodes(data=True)}
 
         def haversine_heuristic(u, v):
             lat1, lon1 = node_coords[u]

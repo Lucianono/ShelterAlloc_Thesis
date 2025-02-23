@@ -4,6 +4,7 @@ from PySide6.QtGui import QIcon, QCursor
 from PySide6.QtCore import Qt, QUrl, QThread
 from ui_solvingprogress import Ui_solvingProgress
 from shelterAllocationReport import ShelterAllocationReport
+from BNTModelPenalized import BNTModelSimulation
 import pandas as pd
 import os
 from functools import partial
@@ -23,6 +24,7 @@ class SolvingProgress(QDialog):
         
         self.worker_thread = QThread()
         self.worker = None
+        self.model = None
         self.ui.solvingModel_progressBar.setValue(0)
         self.start_pathfinding()
 
@@ -34,7 +36,7 @@ class SolvingProgress(QDialog):
 
         # Connect signals
         self.worker.progress.connect(self.update_log)
-        self.worker.finished.connect(self.on_finished)
+        self.worker.finished.connect(self.on_finished_pathfinding)
         self.worker.feasibility_warning.connect(self.feasibility_warning_prompt)
 
         # Start the worker
@@ -47,6 +49,20 @@ class SolvingProgress(QDialog):
         self.isCancelled = True
         if self.worker : 
             self.worker.cancel()  
+        if self.model : 
+            self.model.cancel()  
+
+    def on_finished_pathfinding(self):
+        self.ui.textEdit.append("Pathfinding Complete!")
+        self.ui.solvingModel_progressBar.setValue(50)
+        
+        if not self.feasibilityCheck():
+            self.feasibility_warning_prompt()
+
+        if not self.isCancelled:
+            self.run_genetic_algorithm()
+        else :
+            self.on_finished()
 
     def update_log(self, message):
         self.ui.textEdit.append(message)
@@ -54,12 +70,11 @@ class SolvingProgress(QDialog):
     def on_finished(self):
         self.ui.solving_prog_cancel_btn.setText("Close")
         self.ui.solving_prog_cancel_btn.clicked.connect(self.close)
+        self.ui.solvingModel_progressBar.setValue(100)
 
         if not self.isCancelled:
-            self.ui.textEdit.append("Pathfinding Complete!")
-            self.ui.solvingModel_progressBar.setValue(50)
+            self.ui.textEdit.append("Algorithm Complete!")
             self.worker_thread.quit()
-            self.ui.solvingModel_progressBar.setValue(100)
             run_optimization()
             self.report_Window = ShelterAllocationReport()
             self.report_Window.show()
@@ -70,5 +85,84 @@ class SolvingProgress(QDialog):
             self.cancel_pathfinding()
     
         
+
+    
+
+    def run_genetic_algorithm(self):
+        
+        community_file_path = os.path.join(os.getcwd(), "commData.xlsx")
+        shelter_file_path = os.path.join(os.getcwd(), "shelData.xlsx")
+        distance_file_path = os.path.join(os.getcwd(), "distance_matrix.xlsx")
+
+        if not os.path.exists(community_file_path) or not os.path.exists(shelter_file_path) or not os.path.exists(distance_file_path):
+            self.update_log("Error: Required input files are missing.")
+            return
+
+        try:
+
+            self.model = BNTModelSimulation()
+            self.model_thread = QThread()
+
+            self.model.moveToThread(self.model_thread)  # Move model to separate thread
+
+            # Connect signals
+            self.model.progress_msg.connect(self.update_log)
+            self.model.finished.connect(self.on_finished)
+
+            # Corrected: Use a lambda to avoid running the function in the main thread
+            self.model_thread.started.connect(self.model.run)
+
+            self.model_thread.finished.connect(self.model.deleteLater)
+            self.model_thread.start()
+
+
+        except Exception as e:
+            self.update_log(f"An unexpected error occurred: {e}")
+
+
+    # =======================
+    # FEFASIBILITY CHECKS
+    def feasibilityCheck(self):
+
+        datasets = DataSets()
+        Community = datasets.get_community_data()
+        Shelters = datasets.get_shelter_data()
+
+        Model_parameters = pd.read_excel( os.path.join(os.getcwd(), "modelParam.xlsx"), header=0 ).iloc[0]
+        area_per_individual = Model_parameters['AreaPerIndiv']
+
+        # check if there exists distance <= max distance 
+        failing_communities = []
+        for community in Community:
+            if not any(d <= community["maxdistance"] for d in community["distances"].values()):
+                failing_communities.append(community["name"])
+        
+        if failing_communities:
+            print(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
+            return False
+
+        # check if there exists population <= shelter area * areaPerIndiv
+        failing_communities = []
+        for community in Community:
+            if not (
+                any(shelter["area1"] >= community["population"] * area_per_individual for shelter in Shelters) or
+                any(shelter["area2"] >= community["population"] * area_per_individual for shelter in Shelters)
+            ):
+                failing_communities.append(community["name"])
+        
+        if failing_communities:
+            print(f"{failing_communities} has affected population that is impossible to allocate. No shelters is large enough.")
+            return False
+
+        # check if total population is theoretically possible to allocate on largest  shelters
+        total_population = sum(community['population'] for community in Community)
+        top_area2_sum = sum(shelter['area2'] for shelter in Shelters)
+
+        if total_population * area_per_individual > top_area2_sum:
+            print(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
+            return False
+    
+        # if no cases are violated return true
+        return True
 
     

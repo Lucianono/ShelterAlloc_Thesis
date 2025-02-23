@@ -16,13 +16,24 @@ import requests
 
 class BNTModelSimulation(QObject):
 
-    feasibility_warning = Signal()
+    finished = Signal()
+    progress_msg = Signal(str)
     
     def cancel(self):
         self.cancelled = True
 
-    def run(self, progress_dialog):
-        progress_dialog("Starting simulation")
+    def progress_dialog(self,msg):
+        self.progress_msg.emit(msg)
+    
+    def run(self):
+        try :
+            self.run_algo()
+        finally :
+            self.finished.emit()
+
+    def run_algo(self):
+
+        self.progress_dialog("Starting simulation")
         print("Starting simulation")
         self.cancelled = False
 
@@ -92,7 +103,7 @@ class BNTModelSimulation(QObject):
                 elif (allocation["shelterlvl"][shelter_name] == 2):
                     total_cost += shelter["cost2"] 
                 else:
-                    progress_dialog("Shelter exceeded 2 levels. Something is wrong")
+                    self.progress_dialog("Shelter exceeded 2 levels. Something is wrong")
                     print("Shelter exceeded 2 levels. Something is wrong")
                 
             # the actual model
@@ -118,7 +129,7 @@ class BNTModelSimulation(QObject):
                 max_distance_community = community["maxdistance"]
                 # check if distance is greater than max dist
                 if (distance > max_distance_community):
-                    progress_dialog("maximum distance constraint failed")
+                    self.progress_dialog("maximum distance constraint failed")
                     print("maximum distance constraint failed")
                     penalty += distance - max_distance_community
                 
@@ -139,7 +150,7 @@ class BNTModelSimulation(QObject):
                     used_area[shelter_name] += required_area
 
                     if used_area[shelter_name] > shelter_areas[shelter_name]:
-                        progress_dialog("initial capacity constraint failed")
+                        self.progress_dialog("initial capacity constraint failed")
                         print("initial capacity constraint failed")
 
             for shelter in Shelters:
@@ -160,7 +171,7 @@ class BNTModelSimulation(QObject):
 
             # If the number of unique shelters exceeds the max allowed
             if len(used_shelters) > max_shelters:
-                progress_dialog("max shelters constraint failed")
+                self.progress_dialog("max shelters constraint failed")
                 print("max shelters constraint failed")
                 penalty += len(used_shelters) - max_shelters
                     
@@ -173,7 +184,7 @@ class BNTModelSimulation(QObject):
             penalty = 0
 
             if lvl2_shelters_ctr > max_lvl2_shelters:
-                progress_dialog("max lvl2 shelters constraint failed")
+                self.progress_dialog("max lvl2 shelters constraint failed")
                 print("max lvl2 shelters constraint failed")
                 penalty += lvl2_shelters_ctr - max_lvl2_shelters 
         
@@ -255,44 +266,7 @@ class BNTModelSimulation(QObject):
 
             return solutions[selected_solution]
 
-        # =======================
-        # FEFASIBILITY CHECKS
-        def feasibilityCheck():
-
-            # check if there exists distance <= max distance 
-            failing_communities = []
-            for community in Community:
-                if not any(d <= community["maxdistance"] for d in community["distances"].values()):
-                    failing_communities.append(community["name"])
-            
-            if failing_communities:
-                print(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
-                return False
-
-            # check if there exists population <= shelter area * areaPerIndiv
-            failing_communities = []
-            for community in Community:
-                if not (
-                    any(shelter["area1"] >= community["population"] * area_per_individual for shelter in Shelters) or
-                    any(shelter["area2"] >= community["population"] * area_per_individual for shelter in Shelters)
-                ):
-                    failing_communities.append(community["name"])
-            
-            if failing_communities:
-                print(f"{failing_communities} has affected population that is impossible to allocate. No shelters is large enough.")
-                return False
-
-            # check if total population is theoretically possible to allocate on largest  shelters
-            total_population = sum(community['population'] for community in Community)
-            top_area2_sum = sum(shelter['area2'] for shelter in Shelters)
-
-            if total_population * area_per_individual > top_area2_sum:
-                print(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
-                return False
         
-            # if no cases are violated return true
-            return True
-
         # =======================
         # DISPLAY ALLOCATION
         def show_allocation_details_grouped(allocation):
@@ -308,12 +282,12 @@ class BNTModelSimulation(QObject):
 
             # Print the grouped data
             for shelter, details in grouped_by_shelter.items():
-                progress_dialog(f"Shelter: {shelter} (Level {details['level']})")
+                self.progress_dialog(f"Shelter: {shelter} (Level {details['level']})")
                 print(f"Shelter: {shelter} (Level {details['level']})")
-                progress_dialog(f"  Initial:")
+                self.progress_dialog(f"  Initial:")
                 print(f"  Initial:")
                 for community in details['initial']:
-                    progress_dialog(f"    - {community}")
+                    self.progress_dialog(f"    - {community}")
                     print(f"    - {community}")
                 print()
 
@@ -337,7 +311,7 @@ class BNTModelSimulation(QObject):
             output_file = os.path.join(os.getcwd(), "allocation_results.xlsx")
             df.to_excel(output_file, index=False)
 
-            progress_dialog(f"Allocation results saved to {output_file}")
+            self.progress_dialog(f"Allocation results saved to {output_file}")
             print(f"Allocation results saved to {output_file}")
 
 
@@ -345,8 +319,6 @@ class BNTModelSimulation(QObject):
         # =======================
         # START OF THE ALGORITHM
         # initial population
-        if not feasibilityCheck():
-            self.feasibility_warning.emit()
 
         generation_last_updated = 0
 
@@ -358,7 +330,7 @@ class BNTModelSimulation(QObject):
         for generation in range(num_generations):
             # check for cancellation
             if self.cancelled:
-                progress_dialog("Genetic algorithm cancelled.")
+                self.progress_dialog("Genetic algorithm cancelled.")
                 return
 
             # sorting from best to worst solutions
@@ -385,9 +357,9 @@ class BNTModelSimulation(QObject):
             best_solutions = mutated_population + ranked_solutions
             best_solutions = sorted(best_solutions, key=lambda x: x[0])[:num_solutions] 
 
-            progress_dialog(f"=== Gen {generation+1} best solution ===")
+            self.progress_dialog(f"=== Gen {generation+1} best solution ===")
             print(f"=== Gen {generation+1} best solution ===")
-            progress_dialog(str(best_solutions[0]))
+            self.progress_dialog(str(best_solutions[0]))
             print(best_solutions[0])
 
             prev_best_solution = fitness(solutions[0])
@@ -404,7 +376,7 @@ class BNTModelSimulation(QObject):
 
         best_allocation = solutions[0]
         show_allocation_details_grouped(best_allocation)
-        progress_dialog(f"Generation when solution last updated : {generation_last_updated}")
+        self.progress_dialog(f"Generation when solution last updated : {generation_last_updated}")
         print(f"Generation when solution last updated : {generation_last_updated}")
 
         export_to_excel(best_allocation)
@@ -416,7 +388,7 @@ class BNTModelSimulation(QObject):
         minutes = int(elapsed_time // 60)
         seconds = elapsed_time % 60
 
-        progress_dialog(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
+        self.progress_dialog(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
         print(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
 
         # =======================
@@ -436,7 +408,7 @@ class BNTModelSimulation(QObject):
                 elif (allocation["shelterlvl"][shelter_name] == 2):
                     total_cost += shelter["cost2"] 
                 else:
-                    progress_dialog("Shelter exceeded 2 levels. Something is wrong")
+                    self.progress_dialog("Shelter exceeded 2 levels. Something is wrong")
                     print("Shelter exceeded 2 levels. Something is wrong")
 
             return int(total_cost)

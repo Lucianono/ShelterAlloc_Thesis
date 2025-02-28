@@ -13,6 +13,12 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="toolTip">
+   <string extracomment="fdfd"/>
+  </property>
+  <property name="toolTipDuration">
+   <number>-2</number>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QFrame" name="frame">
@@ -155,6 +161,15 @@ padding:0;</string>
                    <underline>false</underline>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SELECTED COMMUNITIES&lt;/span&gt; shows the list of communities that will be used in the model&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>10000</number>
+                 </property>
+                 <property name="whatsThis">
+                  <string/>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">margin-right:;</string>
                  </property>
@@ -238,8 +253,8 @@ border-radius: 20px;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>370</width>
-                 <height>188</height>
+                 <width>364</width>
+                 <height>239</height>
                 </rect>
                </property>
                <property name="font">
@@ -598,6 +613,21 @@ padding:0;</string>
                    <underline>false</underline>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SHELTER DATA&lt;/span&gt; shows the list of shelters that will be used in the model&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>10000</number>
+                 </property>
+                 <property name="whatsThis">
+                  <string/>
+                 </property>
+                 <property name="accessibleName">
+                  <string/>
+                 </property>
+                 <property name="accessibleDescription">
+                  <string/>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">margin-right:;</string>
                  </property>
@@ -691,7 +721,7 @@ border-radius: 20px;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>386</width>
+                 <width>384</width>
                  <height>148</height>
                 </rect>
                </property>
@@ -826,6 +856,12 @@ color:rgb(43, 43, 43);</string>
                 <height>40</height>
                </size>
               </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Shelter Resistance&lt;/span&gt; represent the ability of a shelter to withstand specific environmental disaster/s. Select the types of disasters that the shelter can withstand.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="toolTipDuration">
+               <number>10000</number>
+              </property>
               <property name="styleSheet">
                <string notr="true">margin:0;
 padding:0;</string>
@@ -867,6 +903,16 @@ padding:0;</string>
                    <bold>true</bold>
                    <underline>true</underline>
                   </font>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SHELTER RESISTANCE&lt;/span&gt; represent the ability of a shelter to withstand specific environmental disaster/s. Select the types of disasters that the shelter can withstand.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>10000</number>
                  </property>
                  <property name="whatsThis">
                   <string>hello</string>
@@ -925,8 +971,8 @@ border-radius: 20px;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>387</width>
-                 <height>129</height>
+                 <width>385</width>
+                 <height>114</height>
                 </rect>
                </property>
                <property name="font">
@@ -955,6 +1001,12 @@ color:rgb(43, 43, 43);</string>
                     <bold>true</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;FLOOD&lt;/span&gt; a shelter can resist or withstand flooding events&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>10000</number>
+                  </property>
                   <property name="text">
                    <string>Flood</string>
                   </property>
@@ -975,6 +1027,12 @@ color:rgb(43, 43, 43);</string>
                     <bold>true</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;TYPHOON&lt;/span&gt; shelter’s structural integrity against strong winds and heavy rains caused by typhoons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>10000</number>
+                  </property>
                   <property name="text">
                    <string>Typhoon</string>
                   </property>
@@ -994,6 +1052,12 @@ color:rgb(43, 43, 43);</string>
                     <weight>75</weight>
                     <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;EARTHQUAKE&lt;/span&gt; shelter’s capability to endure seismic activity and ground shaking&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>10000</number>
                   </property>
                   <property name="text">
                    <string>Earthquake</string>
@@ -1093,6 +1157,12 @@ color:rgb(43, 43, 43);</string>
                 <height>40</height>
                </size>
               </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Shelter Status&lt;/span&gt; indicates the current condition of the shelter. Select the condition type for the evacuees to stay in.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="toolTipDuration">
+               <number>10000</number>
+              </property>
               <property name="styleSheet">
                <string notr="true">margin:0;
 padding:0;</string>
@@ -1134,6 +1204,9 @@ padding:0;</string>
                    <bold>true</bold>
                    <underline>true</underline>
                   </font>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SHELTER STATUS&lt;/span&gt; indicates the current condition of the shelter. Select the condition type for the evacuees to stay in.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">margin-right:;</string>
@@ -1189,8 +1262,8 @@ border-radius: 20px;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>386</width>
-                 <height>124</height>
+                 <width>363</width>
+                 <height>131</height>
                 </rect>
                </property>
                <property name="font">
@@ -1219,6 +1292,12 @@ color:rgb(43, 43, 43);</string>
                     <bold>true</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;BUILT&lt;/span&gt; The shelter is fully constructed and ready for use.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>10000</number>
+                  </property>
                   <property name="text">
                    <string>Built</string>
                   </property>
@@ -1238,6 +1317,12 @@ color:rgb(43, 43, 43);</string>
                     <weight>75</weight>
                     <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;PARTIALLY BUILT&lt;/span&gt; the shelter is incomplete but may offer some protection.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>10000</number>
                   </property>
                   <property name="text">
                    <string>Partially Built</string>
@@ -1259,6 +1344,12 @@ color:rgb(43, 43, 43);</string>
                     <bold>true</bold>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;DAMAGED&lt;/span&gt; the shelter is in need of repairs but is still usable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>10000</number>
+                  </property>
                   <property name="text">
                    <string>Damaged</string>
                   </property>
@@ -1278,6 +1369,12 @@ color:rgb(43, 43, 43);</string>
                     <weight>75</weight>
                     <bold>true</bold>
                    </font>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;EMPTY LOT&lt;/span&gt; no shelter has been built on this site yet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>10000</number>
                   </property>
                   <property name="text">
                    <string>Empty Lot</string>
@@ -1384,6 +1481,12 @@ color:rgb(43, 43, 43);</string>
             <bold>true</bold>
            </font>
           </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;MODEL&lt;/span&gt; select to use which model is appropriate&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>10000</number>
+          </property>
           <property name="styleSheet">
            <string notr="true">qproperty-alignment: AlignRight;</string>
           </property>
@@ -1427,7 +1530,7 @@ text-align: right;</string>
         </property>
         <property name="minimumSize">
          <size>
-          <width>0</width>
+          <width>400</width>
           <height>0</height>
          </size>
         </property>
@@ -1445,11 +1548,20 @@ text-align: right;</string>
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
-        <item>
-         <property name="text">
-          <string>Single-level with Workplace Distance Inclusion (WORK)</string>
-         </property>
-        </item>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	border: 1px solid gray;
+	background-color: white;
+}
+
+QComboBox::dropdown {
+	border-left: 1px solid black;
+}
+
+QComboBox::down-arrow {
+	color: black;
+}</string>
+        </property>
         <item>
          <property name="text">
           <string>Bilevel No Transfer (BNT)</string>

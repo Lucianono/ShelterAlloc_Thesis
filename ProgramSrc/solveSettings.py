@@ -1,13 +1,12 @@
 import sys
 from PySide6.QtWidgets import QDialog, QLabel, QMessageBox, QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QSizePolicy, QCheckBox, QToolTip, QApplication
 from PySide6.QtCore import Signal, Qt, QPropertyAnimation, QRect, QEasingCurve
-from PySide6.QtGui import QPalette, QColor
+from PySide6.QtGui import QPalette, QColor, QIcon
 from PySide6.QtGui import QFont
 from ui_solveSettings import Ui_solveSettings
 from entityManagementComm import EntityManagementComm
 from entityManagementShelter import EntityManagementShelter
 from modelSettings import ModelSettings
-from plot_routes import run_pathfinding
 from solvingProgress import SolvingProgress
 import pandas as pd
 import os
@@ -22,6 +21,11 @@ class SolveSettingsDialog(QDialog):
         self.ui = Ui_solveSettings()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
         self.animation = None  # Initialize the animation object
+        self.setWindowTitle("Solve Settings")
+        self.setModal(True)
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
+        self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
+        self.setAttribute(Qt.WA_DeleteOnClose)
 
         self.ui.write_community_btn.clicked.connect(self.open_entitymanagement_dialog)
         self.ui.write_shelter_btn.clicked.connect(self.open_entitymanagement_shelter_dialog)
@@ -103,11 +107,15 @@ class SolveSettingsDialog(QDialog):
 
     def open_solving_progress_dialog(self):
         try:
-            comm_data = self.load_and_display_community_data()
-            filtered_comm_data = comm_data[comm_data["Active"] == True]
+            filtered_comm_data = self.load_and_display_community_data()
             filtered_shel_data = self.filter_shelter_data()
 
-            file_path = os.path.join(os.getcwd(), "modelCommData.xlsx")
+            if filtered_comm_data.empty or filtered_shel_data.empty:
+                QMessageBox.warning(self, "Warning", "No community or shelter selected.")
+                return
+            
+
+            file_path = os.path.join(self.save_dir, "modelCommData.xlsx")
             if file_path:
                 try:
                     filtered_comm_data.to_excel(file_path, index=False)
@@ -116,7 +124,7 @@ class SolveSettingsDialog(QDialog):
             else:
                 QMessageBox.warning(self, "Warning", "Save canceled.")
 
-            file_path = os.path.join(os.getcwd(), "modelShelData.xlsx")
+            file_path = os.path.join(self.save_dir, "modelShelData.xlsx")
             if file_path:
                 try:
                     filtered_shel_data.to_excel(file_path, index=False)
@@ -128,6 +136,7 @@ class SolveSettingsDialog(QDialog):
             self.solvingProgress_Window = SolvingProgress()
             self.solvingProgress_Window.show()
             self.close()
+
         
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
@@ -136,13 +145,10 @@ class SolveSettingsDialog(QDialog):
 
         try:
             # Load the community data
-            data = pd.read_excel("commData.xlsx")
+            data = pd.read_excel(os.path.join(self.save_dir,"commData.xlsx"))
 
             # Filter rows where 'Active' column is True
             active_data = data[data["Active"] == True]
-
-            if active_data.empty:
-                return
             
             # clear scroll area before populating
             for i in reversed(range(self.community_layout.count())):
@@ -158,7 +164,7 @@ class SolveSettingsDialog(QDialog):
 
             self.changes_saved_comm.emit()
 
-            return data
+            return active_data
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
@@ -166,10 +172,7 @@ class SolveSettingsDialog(QDialog):
     def init_shelter_status_switches(self):
         self.shelter_status_switches = {}
         for label in ["Built", "Partially Built", "Damaged", "Empty Lot"]:
-            if label == "Built":
-                switch = self.create_switch(label, self.shelter_status_layout,True)
-            else:
-                switch = self.create_switch(label, self.shelter_status_layout,False)
+            switch = self.create_switch(label, self.shelter_status_layout,True)
             switch.clicked.connect(self.filter_shelter_data)
             self.shelter_status_switches[label] = switch
 
@@ -292,7 +295,7 @@ class SolveSettingsDialog(QDialog):
         try:
             file_path="shelData.xlsx"
 
-            data = pd.read_excel(file_path)
+            data = pd.read_excel(os.path.join(self.save_dir,file_path))
 
             # Retrieve switch states
             built_switch_state = self.shelter_status_switches["Built"].isChecked()
@@ -539,3 +542,4 @@ class SolveSettingsDialog(QDialog):
             if empty_lot_switch.isChecked() : 
                 empty_lot_switch.click()
 
+    

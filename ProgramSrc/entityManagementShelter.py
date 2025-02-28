@@ -1,6 +1,6 @@
 import sys
-from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout
-from PySide6.QtGui import QIcon, QCursor
+from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout, QStyledItemDelegate, QTableWidgetItem
+from PySide6.QtGui import QIcon, QCursor,QShortcut, QKeySequence, QKeyEvent
 from PySide6.QtCore import Signal, Qt, QUrl, QPropertyAnimation, QRect
 from ui_entityManagementShelter import Ui_entityManagementShelter
 import pandas as pd
@@ -15,15 +15,21 @@ class EntityManagementShelter(QDialog):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_entityManagementShelter()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
+        self.setModal(True)
+        self.setWindowTitle("Entity Management Shelter")
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
+        self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
+        self.setAttribute(Qt.WA_DeleteOnClose)
+
 
         file_name = "shelData.xlsx"
-        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Area1', 'Cost1', 'Area2', 'Cost2', 'ResToFlood', 'ResToTyphoon', 'ResToEarthquake', 'Status', 'Remarks']
-        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 500, 1000, 300, 1500, True, False, True, 'Built', 'Sample remarks']], columns=required_headers)
+        required_headers = ['Name', 'Latitude', 'Longitude', 'Area1', 'Cost1', 'Area2', 'Cost2', 'ResToFlood', 'ResToTyphoon', 'ResToEarthquake', 'Status', 'Remarks']
+        dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 500, 1000, 800, 1500, True, False, True, 'Built', 'Sample remarks']], columns=required_headers)
 
         expected_types = {
             'Name': str,
-            'xDegrees': float,
-            'yDegrees': float,
+            'Latitude': float,
+            'Longitude': float,
             'Area1': float,
             'Cost1': float,
             'Area2': float,
@@ -35,19 +41,29 @@ class EntityManagementShelter(QDialog):
             'Remarks': str
         }
 
-
         self.load_from_excel(self.ui.shelterInfo_table, file_name, dummy_data)
 
         self.ui.ms_back_btn.clicked.connect(self.close)
         self.ui.ms_cancel_btn.clicked.connect(self.close)
         self.ui.ms_import_btn.clicked.connect(lambda: self.import_excel_data(self.ui.shelterInfo_table,required_headers, expected_types))
-        self.ui.ms_save_changes_btn.clicked.connect(lambda: self.save_to_excel(self.ui.shelterInfo_table, file_name, self, expected_types))
+        self.ui.ms_save_changes_btn.clicked.connect(lambda: self.save_to_excel(self.ui.shelterInfo_table, file_name, self,required_headers, expected_types))
         self.ui.ms_add_shelter_btn.clicked.connect(lambda: self.add_row(self.ui.shelterInfo_table))
+        self.ui.ms_export_btn.clicked.connect(lambda: self.export_excel_data(dummy_data))
+
+        self.shortcut = QShortcut(QKeySequence("Ctrl+D"), self)
+        self.shortcut.activated.connect(lambda: self.toggle_all_switches(self.ui.shelterInfo_table))
+
+
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+            event.ignore()  # Prevent the dialog from closing
+        else:
+            super().keyPressEvent(event)
 
     def load_from_excel(self, table_widget, file_name, dummy_data):
-        if file_name and os.path.exists( os.path.join(os.getcwd(), file_name) ):
+        if file_name and os.path.exists( os.path.join(self.save_dir, file_name) ):
             try:
-                data = pd.read_excel( os.path.join(os.getcwd(), file_name) ).fillna("")
+                data = pd.read_excel( os.path.join(self.save_dir, file_name) ).fillna("")
                 self.populate_table(table_widget, data)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
@@ -55,7 +71,7 @@ class EntityManagementShelter(QDialog):
             self.populate_table(table_widget, dummy_data)
 
     def validate_imported_data(self, data, expected_types):
-        
+
         for column, expected_type in expected_types.items():
             if column not in data.columns:
                 raise ValueError(f"Missing expected column: {column}")
@@ -64,11 +80,19 @@ class EntityManagementShelter(QDialog):
             if "Name" in data.columns:
                 duplicate_names = data["Name"][data["Name"].duplicated()]
                 if not duplicate_names.empty:
-                    raise ValueError(f"Duplicate entries found in the 'Name' column: {', '.join(duplicate_names)}")
+                    raise ValueError(f"Duplicate entries found in the 'Name' column: {', '.join(duplicate_names)}")     
 
             for idx, value in enumerate(data[column]):
-                if pd.isnull(value):
-                    continue  # Skip NaN values
+                
+                # Ensure value is a string before calling .strip()
+                if isinstance(value, str):
+                    value = value.strip()
+
+                if (pd.isnull(value) or value == '') and column != "Remarks":
+                    raise ValueError(f"No data found in column '{column}' at row {idx + 1}. Expected a value.")
+                
+                if column == "Status" and value not in {"Built", "Partially Built", "Damaged", "Empty Lot"}:
+                    raise ValueError(f"Invalid value in column 'Status' at row {idx + 1}. Expected one of: Built, Partially Built, Damaged, Empty Lot.")
                 
                 # Check if the value is of the expected type
                 if expected_type == str:
@@ -87,10 +111,17 @@ class EntityManagementShelter(QDialog):
                 elif expected_type == bool:
                     if not isinstance(value, bool):
                         # Optionally, you could also allow values like 0/1 to be cast to bool:
-                        bool_value = bool(int(value)) if value in [0, 1] else bool(value)
-                        if bool_value not in [0, 1, True, False]:
+                        if value.lower() in {"true", "false"}:
+                            value = value.lower() == "true"
+                        elif str(value) in {"0", "1"}:
+                            value = bool(int(value))
+                        else:
                             raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a boolean.")
 
+        # check if area2 >= area1
+        for shelter in data.itertuples():
+            if float(shelter.Area2) < float(shelter.Area1):
+                raise ValueError(f"{shelter.Name}: area2 should be greater than or equal to area1.")
 
     def import_excel_data(self, table_widget, required_headers, expected_types):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Excel File", "", "Excel Files (*.xls *.xlsx)")
@@ -98,7 +129,7 @@ class EntityManagementShelter(QDialog):
             data = pd.read_excel(file_path).fillna("")
             
             if list(data.columns) != required_headers:
-                QMessageBox.critical(self, "Error", "The imported Excel file does not have the correct headers.")
+                QMessageBox.critical(self, "Error", f"The imported Excel file does not have the correct headers. {required_headers}")
                 return
             
             print(list(data.columns) )
@@ -110,25 +141,30 @@ class EntityManagementShelter(QDialog):
                 return
 
             self.populate_table(table_widget, data)
+    def export_excel_data(self, dummy_data):
+        default_file_name = os.path.join(self.save_dir, "dummy_data_shelters.xlsx")
+        file_path, _ = QFileDialog.getSaveFileName(self, "Save Excel File", default_file_name, "Excel Files (*.xlsx)")
+
+        if file_path:
+            try:
+                if not file_path.endswith(".xlsx"):
+                    file_path += ".xlsx"
+
+                dummy_data.to_excel(file_path, index=False)
+
+                QMessageBox.information(self, "Success", "Dummy data exported successfully.")
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to export file: {e}")
             
-    def save_to_excel(self, table_widget, file_name, dialog, expected_types):
+    def save_to_excel(self, table_widget, file_name, dialog,required_headers, expected_types):
         data = []
 
-        hadActiveColumn = True
-        headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
-        if 'Active' not in headers:
-            headers = ['Active'] + headers
-            hadActiveColumn = False
+        headers = ['Active'] + required_headers
 
         for row in range(table_widget.rowCount()):
             active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
-            row_data = [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
-            
-            if not hadActiveColumn:
-                # Get the active switch state
-                active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
-                row_data = [active_switch] + row_data
-                
+            row_data = [table_widget.item(row, col).text().strip() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
+            row_data = [active_switch] + row_data
             data.append(row_data)
 
         if data:
@@ -137,10 +173,10 @@ class EntityManagementShelter(QDialog):
             try:
                 self.validate_imported_data(dataframe, expected_types)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"Failed to display file: {e}")
+                QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
                 return
             # save the table here 
-            file_path = os.path.join(os.getcwd(), file_name)
+            file_path = os.path.join(self.save_dir, file_name)
             if file_path:
                 try:
                     dataframe.to_excel(file_path, index=False)
@@ -167,10 +203,15 @@ class EntityManagementShelter(QDialog):
         table_widget.setRowCount(0)
 
         hadActiveColumn = True
-        headers = list(data.columns) + ['Delete']
-        if 'Active' not in headers:
-            headers = ['Active'] + headers
+        headers = [
+            "Active", "Name", "Latitude", "Longitude", 
+             "Area1 (sqm)", "Cost1 (PHP)",  "Area2 (sqm)",  "Cost2 (PHP)",
+            "FloodProof", "TyphoonProof", "EarthquakeProof", "Status", "Remarks", "Delete"
+        ]
+
+        if "Active" not in data.columns:
             hadActiveColumn = False
+
         table_widget.setColumnCount(len(headers))
         table_widget.setHorizontalHeaderLabels(headers)
 
@@ -274,7 +315,7 @@ class EntityManagementShelter(QDialog):
         layout = QHBoxLayout(delete_btn_widget)
         layout.setAlignment(Qt.AlignCenter)
         delete_btn = QPushButton()
-        delete_btn.setIcon(QIcon("ICONS/9022869_duotone_trash.png"))
+        delete_btn.setIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS/9022869_duotone_trash.png")))
         delete_btn.setFixedSize(20, 20)
         delete_btn.clicked.connect(partial(self.delete_row, table_widget, row_position))
         layout.addWidget(delete_btn)
@@ -295,3 +336,10 @@ class EntityManagementShelter(QDialog):
                 delete_btn = delete_btn_widget.findChild(QPushButton)
                 delete_btn.clicked.disconnect()
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
+
+    def toggle_all_switches(self, table_widget):
+        state = table_widget.cellWidget(0, 0).findChild(QPushButton).isChecked()
+
+        for row in range(table_widget.rowCount()):
+            if state is table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked(): 
+                table_widget.cellWidget(row, 0).findChild(QPushButton).click()

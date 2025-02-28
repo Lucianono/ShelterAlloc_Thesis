@@ -1,11 +1,13 @@
 import sys
 from PySide6.QtWidgets import QPushButton, QCheckBox, QDialog, QLabel, QMessageBox, QFileDialog, QTableWidgetItem, QWidget, QHBoxLayout
-from PySide6.QtGui import QIcon, QCursor
-from PySide6.QtCore import Signal, Qt, QUrl, QPropertyAnimation, QRect
+from PySide6.QtGui import QIcon, QCursor,QShortcut, QKeySequence, QKeyEvent
+from PySide6.QtCore import Signal, Qt, QUrl, QPropertyAnimation, QRect, QObject
 from ui_entityManagement import Ui_EntityManagementCommunities
 import pandas as pd
 import os
 from functools import partial
+
+
 
 class EntityManagementComm(QDialog):
     
@@ -15,15 +17,21 @@ class EntityManagementComm(QDialog):
         super().__init__()  # Initialize the QDialog (or QWidget)
         self.ui = Ui_EntityManagementCommunities()  # Create an instance of the UI class
         self.ui.setupUi(self)  # Set up the UI on the current widget (QDialog)
+        self.setModal(True)
+        self.setWindowTitle("Entity Management Community")
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
+        self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
+        self.setAttribute(Qt.WA_DeleteOnClose)
+
 
         file_name = "commData.xlsx"
-        required_headers = ['Name', 'xDegrees', 'yDegrees', 'Population', 'AffectedPop', 'MaxDistance',  'Remarks']
+        required_headers = ['Name', 'Latitude', 'Longitude', 'Population', 'AffectedPop', 'MaxDistance',  'Remarks']
         dummy_data = pd.DataFrame([['DummyName', 0.0, 0.0, 1000, 200, 100, 'Sample remarks']], columns=required_headers)
 
         expected_types = {
             'Name': str,
-            'xDegrees': float,
-            'yDegrees': float,
+            'Latitude': float,
+            'Longitude': float,
             'Population': int,
             'AffectedPop': int,
             'MaxDistance': float,
@@ -35,18 +43,28 @@ class EntityManagementComm(QDialog):
         self.ui.mc_back_btn.clicked.connect(self.close)
         self.ui.mc_cancel_changes_btn.clicked.connect(self.close)
         self.ui.mc_import_btn.clicked.connect(lambda: self.import_excel_data(self.ui.communityInfo_table,required_headers ,expected_types))
-        self.ui.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(self.ui.communityInfo_table, file_name, self ,expected_types))
+        self.ui.mc_save_changes_btn.clicked.connect(lambda: self.save_to_excel(self.ui.communityInfo_table, file_name, self , required_headers ,expected_types))
         self.ui.mc_add_community_btn.clicked.connect(lambda: self.add_row(self.ui.communityInfo_table))
+        self.ui.mc_export_btn.clicked.connect(lambda: self.export_excel_data(dummy_data))    
+
+        self.shortcut = QShortcut(QKeySequence("Ctrl+D"), self)
+        self.shortcut.activated.connect(lambda: self.toggle_all_switches(self.ui.communityInfo_table))
 
     def load_from_excel(self, table_widget, file_name, dummy_data):
-        if file_name and os.path.exists( os.path.join(os.getcwd(), file_name) ):
+        if file_name and os.path.exists( os.path.join(self.save_dir, file_name) ):
             try:
-                data = pd.read_excel( os.path.join(os.getcwd(), file_name) ).fillna("")
+                data = pd.read_excel( os.path.join(self.save_dir, file_name) ).fillna("")
                 self.populate_table(table_widget, data)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
         else:
             self.populate_table(table_widget, dummy_data)
+
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+            event.ignore()  # Prevent the dialog from closing
+        else:
+            super().keyPressEvent(event)
 
     def validate_imported_data(self, data, expected_types):
         
@@ -55,8 +73,13 @@ class EntityManagementComm(QDialog):
                 raise ValueError(f"Missing expected column: {column}")
 
             for idx, value in enumerate(data[column]):
-                if pd.isnull(value):
-                    continue  # Skip NaN values
+
+                # Ensure value is a string before calling .strip()
+                if isinstance(value, str):
+                    value = value.strip()
+
+                if (pd.isnull(value) or value == '') and column != "Remarks":
+                    raise ValueError(f"No data found in column '{column}' at row {idx + 1}. Expected a value.")
                 
                 # Check if the value is of the expected type
                 if expected_type == str:
@@ -75,10 +98,13 @@ class EntityManagementComm(QDialog):
                 elif expected_type == bool:
                     if not isinstance(value, bool):
                         # Optionally, you could also allow values like 0/1 to be cast to bool:
-                        bool_value = bool(int(value)) if value in [0, 1] else bool(value)
-                        if bool_value not in [0, 1, True, False]:
+                        if value.lower() in {"true", "false"}:
+                            value = value.lower() == "true"
+                        elif str(value) in {"0", "1"}:
+                            value = bool(int(value))
+                        else:
                             raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a boolean.")
-                        
+        
         # Check for duplicate values in the "Name" column
         if "Name" in data.columns:
             duplicate_names = data["Name"][data["Name"].duplicated()]
@@ -92,7 +118,7 @@ class EntityManagementComm(QDialog):
             data = pd.read_excel(file_path).fillna("")
             
             if list(data.columns) != required_headers:
-                QMessageBox.critical(self, "Error", "The imported Excel file does not have the correct headers.")
+                QMessageBox.critical(self, "Error", f"The imported Excel file does not have the correct headers. {required_headers}")
                 print(list(data.columns))
                 return
             
@@ -103,23 +129,30 @@ class EntityManagementComm(QDialog):
                 return
 
             self.populate_table(table_widget, data)
+    def export_excel_data(self, dummy_data):
+        default_file_name = os.path.join(self.save_dir, "dummy_data_community.xlsx")
+        file_path, _ = QFileDialog.getSaveFileName(self, "Save Excel File", default_file_name, "Excel Files (*.xlsx)")
+
+        if file_path:
+            try:
+                if not file_path.endswith(".xlsx"):
+                    file_path += ".xlsx"
+
+                dummy_data.to_excel(file_path, index=False)
+
+                QMessageBox.information(self, "Success", "Dummy data exported successfully.")
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to export file: {e}")
             
-    def save_to_excel(self, table_widget, file_name, dialog, expected_types):
+    def save_to_excel(self, table_widget, file_name, dialog, required_headers, expected_types):
         data = []
         
-        hadActiveColumn = True
-        headers = [table_widget.horizontalHeaderItem(col).text() for col in range(1, table_widget.columnCount() - 1)]
-        if 'Active' not in headers:
-            headers = ['Active'] + headers
-            hadActiveColumn = False
+        headers = ['Active'] + required_headers
         
         for row in range(table_widget.rowCount()):
-            row_data = [table_widget.item(row, col).text() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
-            
-            if not hadActiveColumn:
-                # Get the active switch state
-                active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
-                row_data = [active_switch] + row_data
+            row_data = [table_widget.item(row, col).text().strip() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
+            active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
+            row_data = [active_switch] + row_data
 
             data.append(row_data)
 
@@ -132,7 +165,7 @@ class EntityManagementComm(QDialog):
                 QMessageBox.critical(self, "Error", f"Failed to display file: {e}")
                 return
             # save the table here 
-            file_path = os.path.join(os.getcwd(), file_name)
+            file_path = os.path.join(self.save_dir, file_name)
             if file_path:
                 try:
                     dataframe.to_excel(file_path, index=False)
@@ -159,9 +192,11 @@ class EntityManagementComm(QDialog):
         table_widget.setRowCount(0)
 
         hadActiveColumn = True
-        headers = list(data.columns) + ['Delete']
-        if 'Active' not in headers:
-            headers = ['Active'] + headers
+        headers = [
+            "Active", "Name", "Latitude", "Longitude", 'Population', 'AffectedPop', 'MaxDistance (m)', "Remarks", "Delete"
+        ]
+
+        if "Active" not in data.columns:
             hadActiveColumn = False
         table_widget.setColumnCount(len(headers))
         table_widget.setHorizontalHeaderLabels(headers)
@@ -267,7 +302,7 @@ class EntityManagementComm(QDialog):
         layout = QHBoxLayout(delete_btn_widget)
         layout.setAlignment(Qt.AlignCenter)
         delete_btn = QPushButton()
-        delete_btn.setIcon(QIcon("ICONS/9022869_duotone_trash.png"))
+        delete_btn.setIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS/9022869_duotone_trash.png")))
         delete_btn.setFixedSize(20, 20)
         delete_btn.clicked.connect(partial(self.delete_row, table_widget, row_position))
         layout.addWidget(delete_btn)
@@ -288,4 +323,11 @@ class EntityManagementComm(QDialog):
                 delete_btn = delete_btn_widget.findChild(QPushButton)
                 delete_btn.clicked.disconnect()
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
+
+    def toggle_all_switches(self, table_widget):
+        state = table_widget.cellWidget(0, 0).findChild(QPushButton).isChecked()
+
+        for row in range(table_widget.rowCount()):
+            if state is table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked(): 
+                table_widget.cellWidget(row, 0).findChild(QPushButton).click()
 

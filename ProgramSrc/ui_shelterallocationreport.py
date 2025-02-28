@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'shelterallocationreport.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.3
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -26,14 +26,14 @@ class Ui_ShelterAllocationReport(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(1000, 700)
+        Dialog.resize(1000, 600)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
-        Dialog.setMinimumSize(QSize(1000, 700))
-        Dialog.setMaximumSize(QSize(1000, 700))
+        Dialog.setMinimumSize(QSize(1000, 600))
+        Dialog.setMaximumSize(QSize(1002, 600))
         Dialog.setStyleSheet(u"#Dialog {\n"
 "background-color: white;\n"
 "}")
@@ -46,7 +46,7 @@ class Ui_ShelterAllocationReport(object):
         self.headerFrame.setObjectName(u"headerFrame")
         sizePolicy.setHeightForWidth(self.headerFrame.sizePolicy().hasHeightForWidth())
         self.headerFrame.setSizePolicy(sizePolicy)
-        self.headerFrame.setMinimumSize(QSize(1000, 100))
+        self.headerFrame.setMinimumSize(QSize(1000, 75))
         self.headerFrame.setMaximumSize(QSize(16777215, 16777215))
         self.headerFrame.setAutoFillBackground(False)
         self.headerFrame.setStyleSheet(u"#headerFrame {\n"
@@ -62,6 +62,7 @@ class Ui_ShelterAllocationReport(object):
         self.pushButton.setObjectName(u"pushButton")
         sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
         self.pushButton.setSizePolicy(sizePolicy)
+        self.pushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.pushButton.setStyleSheet(u"QPushButton{\n"
 "	background-color: none;\n"
 "	border: none;\n"
@@ -88,7 +89,9 @@ class Ui_ShelterAllocationReport(object):
         self.pushButton_2.setSizePolicy(sizePolicy)
         self.pushButton_2.setMinimumSize(QSize(200, 0))
         font1 = QFont()
+        font1.setBold(True)
         self.pushButton_2.setFont(font1)
+        self.pushButton_2.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.pushButton_2.setStyleSheet(u"QPushButton {\n"
 "   background-color: #1C5739;        \n"
 "    color: white;                        \n"
@@ -110,7 +113,7 @@ class Ui_ShelterAllocationReport(object):
         self.webEngineView.setObjectName(u"webEngineView")
         sizePolicy.setHeightForWidth(self.webEngineView.sizePolicy().hasHeightForWidth())
         self.webEngineView.setSizePolicy(sizePolicy)
-        self.webEngineView.setMinimumSize(QSize(550, 550))
+        self.webEngineView.setMinimumSize(QSize(450, 450))
         self.gridLayout = QGridLayout(self.webEngineView)
         self.gridLayout.setObjectName(u"gridLayout")
 
@@ -136,21 +139,30 @@ class Ui_ShelterAllocationReport(object):
 
         self.verticalLayout_3.addWidget(self.label_4)
 
+        self.pushButton_3 = QPushButton(self.frame)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.pushButton_3.setStyleSheet(u"border: none;\n"
+"background: none;\n"
+"text-decoration: underline;\n"
+"color:rgb(0, 0, 255);\n"
+"text-align: left;")
+
+        self.verticalLayout_3.addWidget(self.pushButton_3)
+
         self.tableWidget = QTableWidget(self.frame)
         if (self.tableWidget.columnCount() < 3):
             self.tableWidget.setColumnCount(3)
-        font3 = QFont()
-        font3.setBold(True)
         __qtablewidgetitem = QTableWidgetItem()
-        __qtablewidgetitem.setFont(font3);
+        __qtablewidgetitem.setFont(font1);
         __qtablewidgetitem.setBackground(QColor(0, 0, 0, 50));
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        __qtablewidgetitem1.setFont(font3);
+        __qtablewidgetitem1.setFont(font1);
         __qtablewidgetitem1.setBackground(QColor(0, 0, 0, 50));
         self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
-        __qtablewidgetitem2.setFont(font3);
+        __qtablewidgetitem2.setFont(font1);
         __qtablewidgetitem2.setBackground(QColor(0, 0, 0, 50));
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         if (self.tableWidget.rowCount() < 2):
@@ -249,6 +261,7 @@ class Ui_ShelterAllocationReport(object):
         self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"SAVE REPORT", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Bilevel No Transfer (BNT) Model", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Generated report by Bryyyyy", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"More Details", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Dialog", u"Selected Shelters", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)

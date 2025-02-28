@@ -76,6 +76,9 @@ class Ui_MainWindow(object):
 
         self.scrollArea_2 = QScrollArea(self.SideBar)
         self.scrollArea_2.setObjectName(u"scrollArea_2")
+        self.scrollArea_2.setStyleSheet(u"#scollArea_2{\n"
+"	background-color: #f0f0f0;\n"
+"}")
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
@@ -374,6 +377,7 @@ class Ui_MainWindow(object):
         self.label_14 = QLabel(self.widget_2)
         self.label_14.setObjectName(u"label_14")
         self.label_14.setFont(font3)
+        self.label_14.setToolTipDuration(-1)
         self.label_14.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.horizontalLayout_3.addWidget(self.label_14)
@@ -500,6 +504,19 @@ class Ui_MainWindow(object):
 "}\n"
 "QStackedWidget{\n"
 "	border: 1px solid rgb(209, 209, 209);\n"
+"	background: transparent;\n"
+"\n"
+"}\n"
+"QScrollArea{\n"
+"	border:none;\n"
+"	background:transparent;\n"
+"	background-color: #ff8dd2;\n"
+"}\n"
+"#scrollAreaWidgetContents{\n"
+"	background-color: #f0f0f0;\n"
+"}\n"
+"#page{\n"
+"	background-color: #f0f0f0;\n"
 "}")
         self.stackedWidget.setFrameShape(QFrame.NoFrame)
         self.stackedWidget.setFrameShadow(QFrame.Plain)
@@ -517,6 +534,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.widget_4 = QWidget(self.page)
         self.widget_4.setObjectName(u"widget_4")
+        self.widget_4.setStyleSheet(u"")
         self.verticalLayout_14 = QVBoxLayout(self.widget_4)
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
         self.horizontalLayout_28 = QHBoxLayout()
@@ -775,6 +793,7 @@ class Ui_MainWindow(object):
         sizePolicy3.setHeightForWidth(self.page_2.sizePolicy().hasHeightForWidth())
         self.page_2.setSizePolicy(sizePolicy3)
         self.page_2.setMinimumSize(QSize(0, 800))
+        self.page_2.setStyleSheet(u"")
         self.verticalLayout_12 = QVBoxLayout(self.page_2)
         self.verticalLayout_12.setSpacing(0)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
@@ -787,15 +806,17 @@ class Ui_MainWindow(object):
         sizePolicy4.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
         self.scrollArea.setSizePolicy(sizePolicy4)
         self.scrollArea.setMinimumSize(QSize(0, 750))
-        self.scrollArea.setStyleSheet(u"border:none;")
+        self.scrollArea.setStyleSheet(u"")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 377, 750))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 379, 750))
+        self.scrollAreaWidgetContents.setStyleSheet(u"")
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
         self.widget_5.setObjectName(u"widget_5")
+        self.widget_5.setStyleSheet(u"")
         self.verticalLayout_15 = QVBoxLayout(self.widget_5)
         self.verticalLayout_15.setSpacing(9)
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
@@ -923,7 +944,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit_11.setObjectName(u"plainTextEdit_11")
         sizePolicy3.setHeightForWidth(self.plainTextEdit_11.sizePolicy().hasHeightForWidth())
         self.plainTextEdit_11.setSizePolicy(sizePolicy3)
-        self.plainTextEdit_11.setMaximumSize(QSize(204, 29))
+        self.plainTextEdit_11.setMaximumSize(QSize(206, 31))
 
         self.gridLayout_2.addWidget(self.plainTextEdit_11, 1, 2, 1, 1, Qt.AlignHCenter)
 
@@ -997,6 +1018,7 @@ class Ui_MainWindow(object):
         self.checkBox_18.setSizePolicy(sizePolicy3)
         self.checkBox_18.setMinimumSize(QSize(0, 0))
         self.checkBox_18.setMaximumSize(QSize(40, 30))
+        self.checkBox_18.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.checkBox_18.setStyleSheet(u"QCheckBox::indicator {\n"
 "     width: 40px;\n"
 "     height: 40px;\n"
@@ -1029,7 +1051,7 @@ class Ui_MainWindow(object):
         self.status_comboBox_2.addItem("")
         self.status_comboBox_2.addItem("")
         self.status_comboBox_2.setObjectName(u"status_comboBox_2")
-        self.status_comboBox_2.setMinimumSize(QSize(150, 14))
+        self.status_comboBox_2.setMinimumSize(QSize(150, 16))
         self.status_comboBox_2.setStyleSheet(u"")
 
         self.gridLayout_2.addWidget(self.status_comboBox_2, 13, 2, 1, 1)
@@ -1045,6 +1067,7 @@ class Ui_MainWindow(object):
         self.checkBox_19.setSizePolicy(sizePolicy3)
         self.checkBox_19.setMinimumSize(QSize(0, 0))
         self.checkBox_19.setMaximumSize(QSize(40, 30))
+        self.checkBox_19.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.checkBox_19.setStyleSheet(u"QCheckBox::indicator {\n"
 "     width: 40px;\n"
 "     height: 40px;\n"
@@ -1073,6 +1096,7 @@ class Ui_MainWindow(object):
         self.checkBox_17.setSizePolicy(sizePolicy3)
         self.checkBox_17.setMinimumSize(QSize(0, 0))
         self.checkBox_17.setMaximumSize(QSize(40, 30))
+        self.checkBox_17.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.checkBox_17.setStyleSheet(u"QCheckBox::indicator {\n"
 "     width: 40px;\n"
 "     height: 40px;\n"
@@ -1119,7 +1143,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit_9.setObjectName(u"plainTextEdit_9")
         sizePolicy3.setHeightForWidth(self.plainTextEdit_9.sizePolicy().hasHeightForWidth())
         self.plainTextEdit_9.setSizePolicy(sizePolicy3)
-        self.plainTextEdit_9.setMaximumSize(QSize(204, 29))
+        self.plainTextEdit_9.setMaximumSize(QSize(206, 31))
 
         self.gridLayout_2.addWidget(self.plainTextEdit_9, 0, 2, 1, 1)
 
@@ -1215,6 +1239,102 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_16.addWidget(self.webEngineView)
 
+        self.frame_7 = QFrame(self.widget_3)
+        self.frame_7.setObjectName(u"frame_7")
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.frame_7.sizePolicy().hasHeightForWidth())
+        self.frame_7.setSizePolicy(sizePolicy6)
+        self.frame_7.setMinimumSize(QSize(0, 50))
+        self.frame_7.setStyleSheet(u"border:none;")
+        self.frame_7.setFrameShape(QFrame.StyledPanel)
+        self.frame_7.setFrameShadow(QFrame.Plain)
+        self.frame_7.setLineWidth(0)
+        self.horizontalLayout_5 = QHBoxLayout(self.frame_7)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.widget_6 = QWidget(self.frame_7)
+        self.widget_6.setObjectName(u"widget_6")
+        sizePolicy5.setHeightForWidth(self.widget_6.sizePolicy().hasHeightForWidth())
+        self.widget_6.setSizePolicy(sizePolicy5)
+        self.horizontalLayout_6 = QHBoxLayout(self.widget_6)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.label_3 = QLabel(self.widget_6)
+        self.label_3.setObjectName(u"label_3")
+        sizePolicy1.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy1)
+        self.label_3.setMinimumSize(QSize(31, 31))
+        self.label_3.setMaximumSize(QSize(31, 31))
+        self.label_3.setPixmap(QPixmap(u":/ICONS/pin-5-128 (1).png"))
+        self.label_3.setScaledContents(True)
+
+        self.horizontalLayout_6.addWidget(self.label_3)
+
+        self.label_6 = QLabel(self.widget_6)
+        self.label_6.setObjectName(u"label_6")
+        font8 = QFont()
+        font8.setBold(True)
+        self.label_6.setFont(font8)
+
+        self.horizontalLayout_6.addWidget(self.label_6)
+
+
+        self.horizontalLayout_5.addWidget(self.widget_6)
+
+        self.widget_8 = QWidget(self.frame_7)
+        self.widget_8.setObjectName(u"widget_8")
+        sizePolicy5.setHeightForWidth(self.widget_8.sizePolicy().hasHeightForWidth())
+        self.widget_8.setSizePolicy(sizePolicy5)
+        self.horizontalLayout_7 = QHBoxLayout(self.widget_8)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.label_5 = QLabel(self.widget_8)
+        self.label_5.setObjectName(u"label_5")
+        sizePolicy1.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        self.label_5.setSizePolicy(sizePolicy1)
+        self.label_5.setMaximumSize(QSize(31, 31))
+        self.label_5.setPixmap(QPixmap(u":/ICONS/pin-5-128.png"))
+        self.label_5.setScaledContents(True)
+
+        self.horizontalLayout_7.addWidget(self.label_5)
+
+        self.label_7 = QLabel(self.widget_8)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setFont(font8)
+
+        self.horizontalLayout_7.addWidget(self.label_7)
+
+
+        self.horizontalLayout_5.addWidget(self.widget_8)
+
+        self.widget_7 = QWidget(self.frame_7)
+        self.widget_7.setObjectName(u"widget_7")
+        sizePolicy5.setHeightForWidth(self.widget_7.sizePolicy().hasHeightForWidth())
+        self.widget_7.setSizePolicy(sizePolicy5)
+        self.horizontalLayout_8 = QHBoxLayout(self.widget_7)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.label_4 = QLabel(self.widget_7)
+        self.label_4.setObjectName(u"label_4")
+        sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy1)
+        self.label_4.setMaximumSize(QSize(31, 31))
+        self.label_4.setPixmap(QPixmap(u":/ICONS/pin-5-128 (2).png"))
+        self.label_4.setScaledContents(True)
+
+        self.horizontalLayout_8.addWidget(self.label_4)
+
+        self.label_8 = QLabel(self.widget_7)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setFont(font8)
+
+        self.horizontalLayout_8.addWidget(self.label_8)
+
+
+        self.horizontalLayout_5.addWidget(self.widget_7)
+
+
+        self.verticalLayout_16.addWidget(self.frame_7)
+
 
         self.horizontalLayout_27.addWidget(self.widget_3)
 
@@ -1251,11 +1371,11 @@ class Ui_MainWindow(object):
         self.add_shelter_btn.setText(QCoreApplication.translate("MainWindow", u"Add Shelter", None))
         self.advanced_settings_shel.setText(QCoreApplication.translate("MainWindow", u"Advanced Settings", None))
         self.label_2.setText("")
-        self.reports_btn.setText(QCoreApplication.translate("MainWindow", u"Reports", None))
+        self.reports_btn.setText(QCoreApplication.translate("MainWindow", u"Report Preview", None))
         self.help_btn.setText(QCoreApplication.translate("MainWindow", u"Help", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"Marker Options", None))
-        self.marker_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"SHOW Inactive Markers", None))
-        self.marker_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"HIDE Inactive Markers", None))
+        self.marker_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"SHOW Disabled Markers", None))
+        self.marker_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"HIDE Disabled Markers", None))
 
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"Shelter Preview", None))
         self.shelterprev_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"---", None))
@@ -1273,9 +1393,9 @@ class Ui_MainWindow(object):
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"Community Edit", None))
         self.checkBox_15.setText("")
 #if QT_CONFIG(tooltip)
-        self.label_20.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">YDEGREES</span> latitude coordinate of a community location</p></body></html>", None))
+        self.label_20.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">LONGITUDE </span>the angular distance of a place east or west of the meridian</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_20.setText(QCoreApplication.translate("MainWindow", u"yDegrees", None))
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Longitude", None))
 #if QT_CONFIG(tooltip)
         self.label_27.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">POPULATION</span> number of people residing in the specified area</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
@@ -1289,9 +1409,9 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_29.setText(QCoreApplication.translate("MainWindow", u"MaxDistance", None))
 #if QT_CONFIG(tooltip)
-        self.label_19.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">XDEGREES</span> longitude coordinate of a community location</p></body></html>", None))
+        self.label_19.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">LATITUDE </span>geographic coordinate that measures how far north or south a location is from the equator</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_19.setText(QCoreApplication.translate("MainWindow", u"xDegrees", None))
+        self.label_19.setText(QCoreApplication.translate("MainWindow", u"Latitude", None))
 #if QT_CONFIG(tooltip)
         self.label_30.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">REMARKS </span>additional notes or observations regarding the shelter location or allocation process.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
@@ -1314,9 +1434,9 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_43.setText(QCoreApplication.translate("MainWindow", u"Typhoon", None))
 #if QT_CONFIG(tooltip)
-        self.label_36.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">XDEGREES</span> longitude coordinate of a shelter location</p></body></html>", None))
+        self.label_36.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">LATITUDE </span>geographic coordinate that measures how far north or south a location is from the equatora</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"xDegrees", None))
+        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Latitude", None))
 #if QT_CONFIG(tooltip)
         self.label_37.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">COST</span> financial requirement for constructing, maintaining, or upgrading a shelter</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
@@ -1326,9 +1446,9 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"Level 1", None))
 #if QT_CONFIG(tooltip)
-        self.label_32.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">YDEGREES</span> latitude coordinate of a shelter location</p></body></html>", None))
+        self.label_32.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">LONGITUDE </span>the angular distance of a place east or west of the meridian</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_32.setText(QCoreApplication.translate("MainWindow", u"yDegrees", None))
+        self.label_32.setText(QCoreApplication.translate("MainWindow", u"Longitude", None))
 #if QT_CONFIG(tooltip)
         self.label_47.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:600;\">STATUS</span> current condition, availability, or operational state of a shelter</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
@@ -1375,5 +1495,11 @@ class Ui_MainWindow(object):
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"Name", None))
         self.mc_cancel_changes_btn_2.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
         self.mc_save_changes_btn_2.setText(QCoreApplication.translate("MainWindow", u"Save Changes", None))
+        self.label_3.setText("")
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Shelters", None))
+        self.label_5.setText("")
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Communities", None))
+        self.label_4.setText("")
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Disabled", None))
     # retranslateUi
 

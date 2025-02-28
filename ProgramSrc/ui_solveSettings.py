@@ -430,6 +430,7 @@ class Ui_solveSettings(object):
         font5.setPointSize(11)
         font5.setBold(True)
         self.label_22.setFont(font5)
+        self.label_22.setToolTipDuration(10000)
 
         self.gridLayout_3.addWidget(self.label_22, 0, 0, 1, 1)
 
@@ -437,6 +438,7 @@ class Ui_solveSettings(object):
         self.label_23.setObjectName(u"label_23")
         self.label_23.setMaximumSize(QSize(16777215, 100))
         self.label_23.setFont(font5)
+        self.label_23.setToolTipDuration(10000)
 
         self.gridLayout_3.addWidget(self.label_23, 1, 0, 1, 1)
 
@@ -444,6 +446,7 @@ class Ui_solveSettings(object):
         self.label_24.setObjectName(u"label_24")
         self.label_24.setMaximumSize(QSize(16777215, 100))
         self.label_24.setFont(font5)
+        self.label_24.setToolTipDuration(10000)
 
         self.gridLayout_3.addWidget(self.label_24, 2, 0, 1, 1)
 
@@ -541,6 +544,7 @@ class Ui_solveSettings(object):
         self.label_26.setObjectName(u"label_26")
         self.label_26.setMaximumSize(QSize(16777215, 100))
         self.label_26.setFont(font5)
+        self.label_26.setToolTipDuration(10000)
 
         self.gridLayout_4.addWidget(self.label_26, 0, 0, 1, 1)
 
@@ -548,6 +552,7 @@ class Ui_solveSettings(object):
         self.label_27.setObjectName(u"label_27")
         self.label_27.setMaximumSize(QSize(16777215, 100))
         self.label_27.setFont(font5)
+        self.label_27.setToolTipDuration(10000)
 
         self.gridLayout_4.addWidget(self.label_27, 1, 0, 1, 1)
 
@@ -555,6 +560,7 @@ class Ui_solveSettings(object):
         self.label_28.setObjectName(u"label_28")
         self.label_28.setMaximumSize(QSize(16777215, 100))
         self.label_28.setFont(font5)
+        self.label_28.setToolTipDuration(10000)
 
         self.gridLayout_4.addWidget(self.label_28, 2, 0, 1, 1)
 
@@ -562,6 +568,7 @@ class Ui_solveSettings(object):
         self.label_29.setObjectName(u"label_29")
         self.label_29.setMaximumSize(QSize(16777215, 100))
         self.label_29.setFont(font5)
+        self.label_29.setToolTipDuration(10000)
 
         self.gridLayout_4.addWidget(self.label_29, 3, 0, 1, 1)
 
@@ -658,6 +665,18 @@ class Ui_solveSettings(object):
         font8.setPointSize(11)
         self.model_pick_comboBox.setFont(font8)
         self.model_pick_comboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.model_pick_comboBox.setStyleSheet(u"QComboBox {\n"
+"	border: 1px solid gray;\n"
+"	background-color: white;\n"
+"}\n"
+"\n"
+"QComboBox::dropdown {\n"
+"	border-left: 1px solid black;\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"	color: black;\n"
+"}")
 
         self.horizontalLayout.addWidget(self.model_pick_comboBox)
 
@@ -741,8 +760,17 @@ class Ui_solveSettings(object):
 #endif // QT_CONFIG(whatsthis)
         self.label_20.setText(QCoreApplication.translate("Dialog", u"Shelter Resistance", None))
         self.shelter_res_checkbox.setText("")
+#if QT_CONFIG(tooltip)
+        self.label_22.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">FLOOD</span> a shelter can resist or withstand flooding events</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_22.setText(QCoreApplication.translate("Dialog", u"Flood", None))
+#if QT_CONFIG(tooltip)
+        self.label_23.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">TYPHOON</span> shelter\u2019s structural integrity against strong winds and heavy rains caused by typhoons</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_23.setText(QCoreApplication.translate("Dialog", u"Typhoon", None))
+#if QT_CONFIG(tooltip)
+        self.label_24.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">EARTHQUAKE</span> shelter\u2019s capability to endure seismic activity and ground shaking</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_24.setText(QCoreApplication.translate("Dialog", u"Earthquake", None))
         self.shelter_res_flood_checkbox.setText("")
         self.shelter_res_earthquake_checkbox.setText("")
@@ -755,9 +783,21 @@ class Ui_solveSettings(object):
 #endif // QT_CONFIG(tooltip)
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Shelter Status", None))
         self.shelter_stat_checkbox.setText("")
+#if QT_CONFIG(tooltip)
+        self.label_26.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">BUILT</span> The shelter is fully constructed and ready for use.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_26.setText(QCoreApplication.translate("Dialog", u"Built", None))
+#if QT_CONFIG(tooltip)
+        self.label_27.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">PARTIALLY BUILT</span> the shelter is incomplete but may offer some protection.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_27.setText(QCoreApplication.translate("Dialog", u"Partially Built", None))
+#if QT_CONFIG(tooltip)
+        self.label_28.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">DAMAGED</span> the shelter is in need of repairs but is still usable.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_28.setText(QCoreApplication.translate("Dialog", u"Damaged", None))
+#if QT_CONFIG(tooltip)
+        self.label_29.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">EMPTY LOT</span> no shelter has been built on this site yet.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_29.setText(QCoreApplication.translate("Dialog", u"Empty Lot", None))
         self.shelter_stat_built_checkbox.setText("")
         self.shelter_stat_pbuilt_checkbox.setText("")

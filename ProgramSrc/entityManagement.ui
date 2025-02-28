@@ -88,6 +88,73 @@ background-color: white;
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="mc_export_btn">
+        <property name="minimumSize">
+         <size>
+          <width>191</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>161</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;DOWNLOAD TEMPLATE &lt;/span&gt;download an excel file containing the sample community data (template)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>10000</number>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color: #136ec2;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 15px;
+}
+
+QPushButton:hover {
+    background-color: #167bda;
+}
+
+QPushButton:pressed {
+    background-color: #167bda;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Download
+Template</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/ICONS/icons8-xls-export-96.png</normaloff>:/ICONS/icons8-xls-export-96.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>35</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="mc_import_btn">
         <property name="minimumSize">
          <size>
@@ -111,6 +178,12 @@ background-color: white;
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;IMPORT&lt;/span&gt; upload an excel file and display its contents in the table&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>10000</number>
+        </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
     background-color: #14AE5C;
@@ -125,12 +198,22 @@ QPushButton:hover {
 }
 
 QPushButton:pressed {
-    background-color: #E63946;
+    background-color: #12c753;
 }
 </string>
         </property>
         <property name="text">
-         <string>Import XLSX</string>
+         <string>Import</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/ICONS/icons8-xls-import-96.png</normaloff>:/ICONS/icons8-xls-import-96.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>35</width>
+          <height>35</height>
+         </size>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -211,6 +294,9 @@ QPushButton:pressed {
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QTableWidget" name="communityInfo_table">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="styleSheet">
          <string notr="true">QHeaderView::section {
     font-weight: bold;
@@ -285,12 +371,12 @@ QTableWidget::item:selected {
         </column>
         <column>
          <property name="text">
-          <string>xDegrees</string>
+          <string>Latitude</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>yDegrees</string>
+          <string>Longitude</string>
          </property>
         </column>
         <column>

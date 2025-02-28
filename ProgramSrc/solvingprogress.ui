@@ -25,7 +25,7 @@
   <property name="maximumSize">
    <size>
     <width>600</width>
-    <height>400</height>
+    <height>500</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -95,7 +95,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,4,1">
      <property name="spacing">
-      <number>19</number>
+      <number>12</number>
      </property>
      <property name="leftMargin">
       <number>40</number>
@@ -149,6 +149,12 @@ border: 1px solid lightgray;
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QScrollArea" name="scrollArea">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">
 background-color: white;
@@ -163,12 +169,18 @@ border:none;</string>
              <x>0</x>
              <y>0</y>
              <width>500</width>
-             <height>196</height>
+             <height>207</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
              <widget class="QTextEdit" name="textEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
@@ -183,6 +195,9 @@ border:none;</string>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">

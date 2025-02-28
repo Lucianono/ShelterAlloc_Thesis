@@ -124,6 +124,11 @@
        </item>
        <item>
         <widget class="QScrollArea" name="scrollArea_2">
+         <property name="styleSheet">
+          <string notr="true">#scollArea_2{
+	background-color: #f0f0f0;
+}</string>
+         </property>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
@@ -612,7 +617,7 @@ color: #00B5FF;
 }</string>
                  </property>
                  <property name="text">
-                  <string>Reports</string>
+                  <string>Report Preview</string>
                  </property>
                 </widget>
                </item>
@@ -676,6 +681,9 @@ color: #00B5FF;
                   <bold>true</bold>
                  </font>
                 </property>
+                <property name="toolTipDuration">
+                 <number>-1</number>
+                </property>
                 <property name="text">
                  <string>Marker Options</string>
                 </property>
@@ -706,12 +714,12 @@ color: #00B5FF;
                 </property>
                 <item>
                  <property name="text">
-                  <string>SHOW Inactive Markers</string>
+                  <string>SHOW Disabled Markers</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>HIDE Inactive Markers</string>
+                  <string>HIDE Disabled Markers</string>
                  </property>
                 </item>
                </widget>
@@ -891,6 +899,19 @@ QLabel {
 }
 QStackedWidget{
 	border: 1px solid rgb(209, 209, 209);
+	background: transparent;
+
+}
+QScrollArea{
+	border:none;
+	background:transparent;
+	background-color: #ff8dd2;
+}
+#scrollAreaWidgetContents{
+	background-color: #f0f0f0;
+}
+#page{
+	background-color: #f0f0f0;
 }</string>
            </property>
            <property name="frameShape">
@@ -933,6 +954,9 @@ QStackedWidget{
              </property>
              <item alignment="Qt::AlignTop">
               <widget class="QWidget" name="widget_4" native="true">
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
                <layout class="QVBoxLayout" name="verticalLayout_14">
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_28">
@@ -1088,13 +1112,13 @@ QStackedWidget{
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_20">
                     <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;YDEGREES&lt;/span&gt; latitude coordinate of a community location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LONGITUDE &lt;/span&gt;the angular distance of a place east or west of the meridian&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="toolTipDuration">
                      <number>10000</number>
                     </property>
                     <property name="text">
-                     <string>yDegrees</string>
+                     <string>Longitude</string>
                     </property>
                    </widget>
                   </item>
@@ -1210,13 +1234,13 @@ QStackedWidget{
                      </font>
                     </property>
                     <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;XDEGREES&lt;/span&gt; longitude coordinate of a community location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LATITUDE &lt;/span&gt;geographic coordinate that measures how far north or south a location is from the equator&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="toolTipDuration">
                      <number>10000</number>
                     </property>
                     <property name="text">
-                     <string>xDegrees</string>
+                     <string>Latitude</string>
                     </property>
                    </widget>
                   </item>
@@ -1446,6 +1470,9 @@ QPushButton:pressed {
               <height>800</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">
              <property name="spacing">
               <number>0</number>
@@ -1477,7 +1504,7 @@ QPushButton:pressed {
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">border:none;</string>
+                <string notr="true"/>
                </property>
                <property name="widgetResizable">
                 <bool>true</bool>
@@ -1487,13 +1514,19 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>377</width>
+                  <width>379</width>
                   <height>750</height>
                  </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_11">
                  <item alignment="Qt::AlignTop">
                   <widget class="QWidget" name="widget_5" native="true">
+                   <property name="styleSheet">
+                    <string notr="true"/>
+                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_15">
                     <property name="spacing">
                      <number>9</number>
@@ -1750,13 +1783,13 @@ QPushButton:pressed {
                          </font>
                         </property>
                         <property name="toolTip">
-                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;XDEGREES&lt;/span&gt; longitude coordinate of a shelter location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LATITUDE &lt;/span&gt;geographic coordinate that measures how far north or south a location is from the equatora&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                         </property>
                         <property name="toolTipDuration">
                          <number>10000</number>
                         </property>
                         <property name="text">
-                         <string>xDegrees</string>
+                         <string>Latitude</string>
                         </property>
                        </widget>
                       </item>
@@ -1828,8 +1861,8 @@ QPushButton:pressed {
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>204</width>
-                          <height>29</height>
+                          <width>206</width>
+                          <height>31</height>
                          </size>
                         </property>
                        </widget>
@@ -1876,13 +1909,13 @@ QPushButton:pressed {
                       <item row="2" column="0">
                        <widget class="QLabel" name="label_32">
                         <property name="toolTip">
-                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;YDEGREES&lt;/span&gt; latitude coordinate of a shelter location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LONGITUDE &lt;/span&gt;the angular distance of a place east or west of the meridian&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                         </property>
                         <property name="toolTipDuration">
                          <number>10000</number>
                         </property>
                         <property name="text">
-                         <string>yDegrees</string>
+                         <string>Longitude</string>
                         </property>
                        </widget>
                       </item>
@@ -2003,6 +2036,9 @@ QPushButton:pressed {
                           <height>30</height>
                          </size>
                         </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
                         <property name="styleSheet">
                          <string notr="true">QCheckBox::indicator {
      width: 40px;
@@ -2063,7 +2099,7 @@ QPushButton:pressed {
                         <property name="minimumSize">
                          <size>
                           <width>150</width>
-                          <height>14</height>
+                          <height>16</height>
                          </size>
                         </property>
                         <property name="styleSheet">
@@ -2113,6 +2149,9 @@ QPushButton:pressed {
                           <width>40</width>
                           <height>30</height>
                          </size>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">QCheckBox::indicator {
@@ -2175,6 +2214,9 @@ QPushButton:pressed {
                           <width>40</width>
                           <height>30</height>
                          </size>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">QCheckBox::indicator {
@@ -2292,8 +2334,8 @@ QPushButton:pressed {
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>204</width>
-                          <height>29</height>
+                          <width>206</width>
+                          <height>31</height>
                          </size>
                         </property>
                        </widget>
@@ -2451,6 +2493,204 @@ QPushButton:pressed {
                </sizepolicy>
               </property>
               <layout class="QGridLayout" name="gridLayout_3"/>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_7">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border:none;</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Plain</enum>
+              </property>
+              <property name="lineWidth">
+               <number>0</number>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QWidget" name="widget_6" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <item>
+                   <widget class="QLabel" name="label_3">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>31</width>
+                      <height>31</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>31</width>
+                      <height>31</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="pixmap">
+                     <pixmap resource="resources.qrc">:/ICONS/pin-5-128 (1).png</pixmap>
+                    </property>
+                    <property name="scaledContents">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_6">
+                    <property name="font">
+                     <font>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Shelters</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_8" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_7">
+                  <item>
+                   <widget class="QLabel" name="label_5">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>31</width>
+                      <height>31</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="pixmap">
+                     <pixmap resource="resources.qrc">:/ICONS/pin-5-128.png</pixmap>
+                    </property>
+                    <property name="scaledContents">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_7">
+                    <property name="font">
+                     <font>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Communities</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_7" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+                  <item>
+                   <widget class="QLabel" name="label_4">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>31</width>
+                      <height>31</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="pixmap">
+                     <pixmap resource="resources.qrc">:/ICONS/pin-5-128 (2).png</pixmap>
+                    </property>
+                    <property name="scaledContents">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_8">
+                    <property name="font">
+                     <font>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Disabled</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>

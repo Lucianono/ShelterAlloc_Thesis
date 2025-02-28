@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import sys
 
 class DataSets :
     # =======================
@@ -8,8 +9,9 @@ class DataSets :
 
     def get_community_data(self) :
         # sample data of communities with barangay names along with population and distances from each shelter
-        Community_data = pd.read_excel( os.path.join(os.getcwd(), "modelCommData.xlsx") ).fillna("")
-        Distances_data = pd.read_excel( os.path.join(os.getcwd(), "distance_matrix.xlsx") ).fillna("")
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
+        Community_data = pd.read_excel( os.path.join(self.save_dir, "modelCommData.xlsx") ).fillna("")
+        Distances_data = pd.read_excel( os.path.join(self.save_dir, "distance_matrix.xlsx") ).fillna("")
 
         Community = []
         for row in Community_data.itertuples(index=False):
@@ -34,7 +36,8 @@ class DataSets :
 
     def get_shelter_data(self) :
          # list of shelters with area1 and cost1 (area and cost as level 1 shelter), area 2 and cost2 (area and cost as level 2 shelter) 
-        Shelter_data = pd.read_excel( os.path.join(os.getcwd(), "modelShelData.xlsx") ).fillna("")
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
+        Shelter_data = pd.read_excel( os.path.join(self.save_dir, "modelShelData.xlsx") ).fillna("")
         
         Shelters = []
         for row in Shelter_data.itertuples(index=False):

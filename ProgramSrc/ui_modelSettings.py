@@ -206,6 +206,7 @@ class Ui_modelSettings(object):
 
         self.label_27 = QLabel(self.widget_4)
         self.label_27.setObjectName(u"label_27")
+        self.label_27.setToolTipDuration(10000)
 
         self.gridLayout.addWidget(self.label_27, 7, 0, 1, 1)
 
@@ -323,7 +324,7 @@ class Ui_modelSettings(object):
 #endif // QT_CONFIG(tooltip)
         self.label_33.setText(QCoreApplication.translate("Dialog", u"MaxShelters", None))
 #if QT_CONFIG(tooltip)
-        self.label_27.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">POPULATION</span> the number of people living in the community</p></body></html>", None))
+        self.label_27.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-weight:600;\">POPULATION</span> a set of potential solutions that evolves over multiple iterations/generations</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_27.setText(QCoreApplication.translate("Dialog", u"Population", None))
 #if QT_CONFIG(tooltip)

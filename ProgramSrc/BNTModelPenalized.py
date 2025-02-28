@@ -1,27 +1,49 @@
 # the official function for Bilevel No Transfer model
 
+from PySide6.QtCore import QObject, Signal
 from DataSetsModel import DataSets
 import random
 import numpy as np
 import copy
 import time
+from datetime import datetime
 import pandas as pd
 import os
 
-class BNTModelSimulation:
+import uuid
+import socket
+import requests
+import sys
+
+class BNTModelSimulation(QObject):
+
+    finished = Signal()
+    progress_msg = Signal(str)
     
-    def run(self, progress_dialog):
-        # TEMPORARY DUMMY DATA
-        # should be replaced with dynamic data from system
-        # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
-        progress_dialog("Starting simulation")
+    def cancel(self):
+        self.cancelled = True
+
+    def progress_dialog(self,msg):
+        self.progress_msg.emit(msg)
+    
+    def run(self):
+        try :
+            self.run_algo()
+        finally :
+            self.finished.emit()
+
+    def run_algo(self):
+
+        self.progress_dialog("Starting simulation")
         print("Starting simulation")
+        self.cancelled = False
+        self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
 
         datasets = DataSets()
         Community = datasets.get_community_data()
         Shelters = datasets.get_shelter_data()
 
-        Model_parameters = pd.read_excel( os.path.join(os.getcwd(), "modelParam.xlsx"), header=0 ).iloc[0]
+        Model_parameters = pd.read_excel( os.path.join(self.save_dir, "modelParam.xlsx"), header=0 ).iloc[0]
         area_per_individual = Model_parameters['AreaPerIndiv']
         max_lvl2_shelters = int(min(Model_parameters['MaxL2Shelters'], len(Shelters)))
         max_shelters = int(min(Model_parameters['MaxShelters'], len(Shelters)))
@@ -83,7 +105,6 @@ class BNTModelSimulation:
                 elif (allocation["shelterlvl"][shelter_name] == 2):
                     total_cost += shelter["cost2"] 
                 else:
-                    progress_dialog("Shelter exceeded 2 levels. Something is wrong")
                     print("Shelter exceeded 2 levels. Something is wrong")
                 
             # the actual model
@@ -109,7 +130,6 @@ class BNTModelSimulation:
                 max_distance_community = community["maxdistance"]
                 # check if distance is greater than max dist
                 if (distance > max_distance_community):
-                    progress_dialog("maximum distance constraint failed")
                     print("maximum distance constraint failed")
                     penalty += distance - max_distance_community
                 
@@ -130,7 +150,6 @@ class BNTModelSimulation:
                     used_area[shelter_name] += required_area
 
                     if used_area[shelter_name] > shelter_areas[shelter_name]:
-                        progress_dialog("initial capacity constraint failed")
                         print("initial capacity constraint failed")
 
             for shelter in Shelters:
@@ -151,7 +170,6 @@ class BNTModelSimulation:
 
             # If the number of unique shelters exceeds the max allowed
             if len(used_shelters) > max_shelters:
-                progress_dialog("max shelters constraint failed")
                 print("max shelters constraint failed")
                 penalty += len(used_shelters) - max_shelters
                     
@@ -164,7 +182,6 @@ class BNTModelSimulation:
             penalty = 0
 
             if lvl2_shelters_ctr > max_lvl2_shelters:
-                progress_dialog("max lvl2 shelters constraint failed")
                 print("max lvl2 shelters constraint failed")
                 penalty += lvl2_shelters_ctr - max_lvl2_shelters 
         
@@ -246,109 +263,7 @@ class BNTModelSimulation:
 
             return solutions[selected_solution]
 
-        # =======================
-        # FEASIBILITY CHECK
-        # check if data input has solution
-        def feasibilityCheck():
-            # check if there exists distance <= max distance 
-            failing_communities = []
-            for community in Community:
-                if not any(d <= community["maxdistance"] for d in community["distances"].values()):
-                    failing_communities.append(community["name"])
-            
-            if failing_communities:
-                progress_dialog(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
-                print(f"{failing_communities} has maximum distance that is impossible to allocate. No shelters is close enough.")
-                return False
-
-            # check if there exists population <= shelter area * areaPerIndiv
-            failing_communities = []
-            for community in Community:
-                if not (
-                    any(shelter["area1"] * area_per_individual >= community["population"] for shelter in Shelters) or
-                    any(shelter["area2"] * area_per_individual >= community["population"] for shelter in Shelters)
-                ):
-                    failing_communities.append(community["name"])
-            
-            if failing_communities:
-                progress_dialog(f"{failing_communities} has affected population that is impossible to allocate. No shelters is large enough.")
-                print(f"{failing_communities} has affected population that is impossible to allocate. No shelters is large enough.")
-                return False
-
-            # check if total population is theoretically possible to allocate on largest  shelters
-            total_population = sum(community['population'] for community in Community)
-
-            Shelters_sorted = sorted(Shelters, key=lambda x: x['area2'], reverse=True)
-            top_area2_sum = sum(shelter['area2'] for shelter in Shelters[:max_lvl2_shelters])
-            Shelters_sorted = Shelters_sorted[max_lvl2_shelters:]
-
-            Shelters_sorted = sorted(Shelters, key=lambda x: x['area1'], reverse=True)
-            top_area1_sum = sum(shelter['area1'] for shelter in Shelters[:(max_shelters - max_lvl2_shelters)])
-            Shelters_sorted = Shelters_sorted[(max_shelters - max_lvl2_shelters):]
-
-            if total_population > (top_area2_sum + top_area1_sum):
-                progress_dialog(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
-                print(f"Total capacity of shelters available are less than the total affected population. Shelters has lower than expected capacity")
-                return False
-            
-            # if no cases are violated return true
-            return True
-
-        # =======================
-        # LOGIC CHECK
-        # check if parameters are logical or correct
-        def logicCheck():
-            # check if max_shelters >= max_lvl2_shelters
-            if max_shelters < max_lvl2_shelters:
-                progress_dialog("max_shelters should be greater than or equal to max_lvl2_shelters")
-                print("max_shelters should be greater than or equal to max_lvl2_shelters")
-                return False
-            # check if max_shelters >= 1
-            if max_shelters < 1:
-                progress_dialog("max_shelters should have atleast 1")
-                print("max_shelters should have atleast 1")
-                return False
-            # check if area_per_individual > 0
-            if area_per_individual <= 0:
-                progress_dialog("area_per_individual should be greater than 0")
-                print("area_per_individual should be greater than 0")
-                return False
-            # check if num_generations >= 1
-            if num_generations < 1:
-                progress_dialog("num_generations should be greater than or equal to 1")
-                print("num_generations should be greater than or equal to 1")
-                return False
-            # check if num_solutions >= 1
-            if num_solutions < 1:
-                progress_dialog("num_solutions should be greater than or equal to 1")
-                print("num_solutions should be greater than or equal to 1")
-                return False
-            # check if mutation_rate not < 0
-            if mutation_rate < 0:
-                progress_dialog("mutation_rate should not be less than to 0")
-                print("mutation_rate should not be less than to 0")
-                return False
-            # check if weight_dist not < 0
-            if weight_dist < 0:
-                progress_dialog("weight_dist should not be less than to 0")
-                print("weight_dist should not be less than to 0")
-                return False
-            # check if weight_cost not < 0
-            if weight_cost < 0:
-                progress_dialog("weight_cost should not be less than to 0")
-                print("weight_cost should not be less than to 0")
-                return False
-            # check if area2 >= area1
-            for shelter in Shelters:
-                if shelter["area2"] < shelter["area1"]:
-                    progress_dialog(f"{shelter['name']}: area2 should be grated than or equal to area1.")
-                    print(f"{shelter['name']}: area2 should be grated than or equal to area1.")
-                    return False
-
-
-            # if no cases are violated return true
-            return True
-
+        
         # =======================
         # DISPLAY ALLOCATION
         def show_allocation_details_grouped(allocation):
@@ -364,12 +279,12 @@ class BNTModelSimulation:
 
             # Print the grouped data
             for shelter, details in grouped_by_shelter.items():
-                progress_dialog(f"Shelter: {shelter} (Level {details['level']})")
+                self.progress_dialog(f"Shelter: {shelter} (Level {details['level']})")
                 print(f"Shelter: {shelter} (Level {details['level']})")
-                progress_dialog(f"  Initial:")
+                self.progress_dialog(f"  Initial:")
                 print(f"  Initial:")
                 for community in details['initial']:
-                    progress_dialog(f"    - {community}")
+                    self.progress_dialog(f"    - {community}")
                     print(f"    - {community}")
                 print()
 
@@ -382,44 +297,38 @@ class BNTModelSimulation:
                 
                 # Append data
                 data.append({
-                    "Community Name": community["name"],
+                    "Community": community["name"],
+                    "Allocated Population": community["population"],
                     "Shelter Assigned": shelter_name,
-                    "Shelter Level": allocation["shelterlvl"][shelter_name]
+                    "Level": allocation["shelterlvl"][shelter_name]
                 })
             
             # Create a DataFrame and export to Excel
             df = pd.DataFrame(data)
-            output_file = os.path.join(os.getcwd(), "allocation_results.xlsx")
+            output_file = os.path.join(self.save_dir, "allocation_results.xlsx")
             df.to_excel(output_file, index=False)
 
-            progress_dialog(f"Allocation results saved to {output_file}")
+            self.progress_dialog(f"Allocation results saved to {output_file}")
             print(f"Allocation results saved to {output_file}")
+
+
 
         # =======================
         # START OF THE ALGORITHM
         # initial population
-        if not logicCheck():
-            progress_dialog("Parameters are inputted incorrectly.")
-            print("Parameters are inputted incorrectly.")
-            exit()
-        if not feasibilityCheck():
-            progress_dialog("No solution exists")
-            print("No solution exists")
-            exit()
 
-        infeasibility_ctr = 0
         generation_last_updated = 0
 
         for _ in range(num_solutions):
             solution = spawn()
-
-
-            fitnessVal = fitness(solution)
             solutions.append(solution)
-            infeasibility_ctr = 0
 
         # generations
         for generation in range(num_generations):
+            # check for cancellation
+            if self.cancelled:
+                self.progress_dialog("Genetic algorithm cancelled.")
+                return
 
             # sorting from best to worst solutions
             ranked_solutions = [(fitness(sol), sol) for sol in solutions]
@@ -445,10 +354,11 @@ class BNTModelSimulation:
             best_solutions = mutated_population + ranked_solutions
             best_solutions = sorted(best_solutions, key=lambda x: x[0])[:num_solutions] 
 
-            progress_dialog(f"=== Gen {generation+1} best solution ===")
-            print(f"=== Gen {generation+1} best solution ===")
-            progress_dialog(str(best_solutions[0]))
-            print(best_solutions[0])
+            if (generation+1) % 100 == 0 :
+                self.progress_dialog(str(best_solutions[0]))
+                print(best_solutions[0])
+                self.progress_dialog(f"=== Gen {generation+1} best solution ===")
+                print(f"=== Gen {generation+1} best solution ===")
 
             prev_best_solution = fitness(solutions[0])
 
@@ -461,10 +371,14 @@ class BNTModelSimulation:
             if(prev_best_solution != new_best_solution):
                 generation_last_updated = generation+1
 
-
+        
+        self.progress_dialog(str(best_solutions[0]))
+        print(best_solutions[0])
+        self.progress_dialog(f"=== Gen {generation+1} best solution ===")
+        print(f"=== Gen {generation+1} best solution ===")
         best_allocation = solutions[0]
         show_allocation_details_grouped(best_allocation)
-        progress_dialog(f"Generation when solution last updated : {generation_last_updated}")
+        self.progress_dialog(f"Generation when solution last updated : {generation_last_updated}")
         print(f"Generation when solution last updated : {generation_last_updated}")
 
         export_to_excel(best_allocation)
@@ -476,16 +390,87 @@ class BNTModelSimulation:
         minutes = int(elapsed_time // 60)
         seconds = elapsed_time % 60
 
-        progress_dialog(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
+        self.progress_dialog(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
         print(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
 
+        # =======================
+        # DETAILS RECORDING
+        def cost_of_open_shelter(allocation):
+
+            initial_shelters = set(allocation['initial'].values())
+            Shelters_dict = {shelter["name"]: shelter for shelter in Shelters}
+
+            total_cost = 0
+
+            for shelter_name in initial_shelters:
+                # add cost based on shelter level
+                shelter = Shelters_dict.get(shelter_name)
+                if (allocation["shelterlvl"][shelter_name] == 1):
+                    total_cost += shelter["cost1"] 
+                elif (allocation["shelterlvl"][shelter_name] == 2):
+                    total_cost += shelter["cost2"] 
+                else:
+                    self.progress_dialog("Shelter exceeded 2 levels. Something is wrong")
+                    print("Shelter exceeded 2 levels. Something is wrong")
+
+            return int(total_cost)
+        
+        def cost_of_all_lvl1_shelter():
+
+            total_cost = sum(shelter["cost1"] for shelter in Shelters)
+
+            return int(total_cost)
+        
+        # Cost rate generator
+        #new-old / old
+        cost_comparison_analysis = "-"
+        if cost_of_all_lvl1_shelter() > 0:
+            cost_diff_rate = (cost_of_open_shelter(best_allocation) - cost_of_all_lvl1_shelter()) / cost_of_all_lvl1_shelter()
+            if cost_diff_rate < 0:    
+                cost_comparison_analysis = f"Cost saved by {abs(cost_diff_rate):.2%}"
+            elif cost_diff_rate > 0:  
+                cost_comparison_analysis = f"Cost increased by {cost_diff_rate:.2%}"
+
+        # pc details
+        mac_address = ':'.join(format(b, '02x') for b in uuid.getnode().to_bytes(6, 'big'))
+        username = os.getlogin()
+        local_ip = socket.gethostbyname(socket.gethostname())
+        try:
+            public_ip = requests.get("https://api64.ipify.org").text
+        except requests.RequestException:
+            public_ip = "Unavailable"
+        date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        # Save to a txt file
         data = [
             f"Generation when solution last updated : {generation_last_updated}",
-            f"Time run : {minutes} minutes and {seconds:.2f} seconds"
+            f"Time run : {minutes} minutes and {seconds:.2f} seconds",
+            cost_comparison_analysis,
+            f"Objective value : {fitness(best_allocation)}",
+            "--- SHELTER DETAILS ---",
+            f"Number of all shelters : {sum(1 for shelter in Shelters)}",
+            f"Number of opened shelters : {sum(1 for shelter in set(best_allocation['initial'].values()))}",
+            f"Cost of all level 1 shelters : {cost_of_all_lvl1_shelter()}",
+            f"Cost of opened shelters : {cost_of_open_shelter(best_allocation)}",
+            "--- GENETIC ALGORITHM PARAMETERS ---",
+            f"Number of generations : {num_generations}",
+            f"Number of population per generation : {num_solutions}",
+            f"Mutation rate : {mutation_rate}",
+            "--- MODEL PARAMETERS ---",
+            f"Weight of Distance : {weight_dist}",
+            f"Weight of Cost : {weight_cost}",
+            f"Area per Individual : {area_per_individual}",
+            f"Set number of max shelters : {max_shelters}",
+            f"Set number of max level 2 shelters : {max_lvl2_shelters}",
+            "--- REPORT and USER DETAILS ---",
+            f"MAC Address : {mac_address}",
+            f"PC Username : {username}",
+            f"Local IP Address : {local_ip}",
+            f"Public IP Address : {public_ip}",
+            f"Time of report generation : {date_now}",
         ]
 
-        # Open a file in write mode ('w')
-        with open("modelPerformanceResult.txt", "w") as file:
+        with open( os.path.join(self.save_dir, "modelPerformanceResult.txt"), "w") as file:
             # Write each line to the file
             for line in data:
                 file.write(line + "\n")  # Add a newline character after each line

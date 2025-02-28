@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'entityManagementShelter.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.2
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -65,6 +65,40 @@ class Ui_entityManagementShelter(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
+        self.ms_export_btn = QPushButton(self.frame)
+        self.ms_export_btn.setObjectName(u"ms_export_btn")
+        self.ms_export_btn.setMinimumSize(QSize(191, 51))
+        self.ms_export_btn.setMaximumSize(QSize(161, 51))
+        font1 = QFont()
+        font1.setPointSize(10)
+        font1.setBold(True)
+        self.ms_export_btn.setFont(font1)
+        self.ms_export_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.ms_export_btn.setToolTipDuration(10000)
+        self.ms_export_btn.setStyleSheet(u"QPushButton {\n"
+"    background-color: #136ec2;\n"
+"    color: white;\n"
+"    padding: 5px;\n"
+"    border: none;\n"
+"    border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #167bda;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #167bda;\n"
+"}\n"
+"")
+        icon1 = QIcon()
+        icon1.addFile(u":/ICONS/icons8-xls-export-96.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ms_export_btn.setIcon(icon1)
+        self.ms_export_btn.setIconSize(QSize(35, 35))
+        self.ms_export_btn.setCheckable(True)
+
+        self.horizontalLayout.addWidget(self.ms_export_btn)
+
         self.ms_import_btn = QPushButton(self.frame)
         self.ms_import_btn.setObjectName(u"ms_import_btn")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
@@ -74,11 +108,12 @@ class Ui_entityManagementShelter(object):
         self.ms_import_btn.setSizePolicy(sizePolicy)
         self.ms_import_btn.setMinimumSize(QSize(191, 51))
         self.ms_import_btn.setMaximumSize(QSize(191, 51))
-        font1 = QFont()
-        font1.setPointSize(15)
-        font1.setBold(True)
-        self.ms_import_btn.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(15)
+        font2.setBold(True)
+        self.ms_import_btn.setFont(font2)
         self.ms_import_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.ms_import_btn.setToolTipDuration(10000)
         self.ms_import_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #14AE5C;\n"
 "    color: white;\n"
@@ -92,16 +127,20 @@ class Ui_entityManagementShelter(object):
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: #E63946;\n"
+"    background-color: #12c753;\n"
 "}\n"
 "")
+        icon2 = QIcon()
+        icon2.addFile(u":/ICONS/icons8-xls-import-96.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ms_import_btn.setIcon(icon2)
+        self.ms_import_btn.setIconSize(QSize(35, 35))
 
         self.horizontalLayout.addWidget(self.ms_import_btn)
 
         self.ms_add_shelter_btn = QPushButton(self.frame)
         self.ms_add_shelter_btn.setObjectName(u"ms_add_shelter_btn")
         self.ms_add_shelter_btn.setMinimumSize(QSize(281, 61))
-        self.ms_add_shelter_btn.setFont(font1)
+        self.ms_add_shelter_btn.setFont(font2)
         self.ms_add_shelter_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.ms_add_shelter_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #1C5739;\n"
@@ -119,9 +158,9 @@ class Ui_entityManagementShelter(object):
 "    background-color: #1C5739;\n"
 "}\n"
 "")
-        icon1 = QIcon()
-        icon1.addFile(u":/ICONS/460625174_1063840541791504_8083137884705313080_n.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ms_add_shelter_btn.setIcon(icon1)
+        icon3 = QIcon()
+        icon3.addFile(u":/ICONS/460625174_1063840541791504_8083137884705313080_n.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ms_add_shelter_btn.setIcon(icon3)
         self.ms_add_shelter_btn.setIconSize(QSize(35, 35))
         self.ms_add_shelter_btn.setCheckable(True)
         self.ms_add_shelter_btn.setFlat(False)
@@ -205,9 +244,9 @@ class Ui_entityManagementShelter(object):
 "")
         self.shelterInfo_table.setFrameShadow(QFrame.Raised)
         self.shelterInfo_table.horizontalHeader().setMinimumSectionSize(100)
-        self.shelterInfo_table.horizontalHeader().setProperty("showSortIndicator", False)
+        self.shelterInfo_table.horizontalHeader().setProperty(u"showSortIndicator", False)
         self.shelterInfo_table.horizontalHeader().setStretchLastSection(True)
-        self.shelterInfo_table.verticalHeader().setProperty("showSortIndicator", False)
+        self.shelterInfo_table.verticalHeader().setProperty(u"showSortIndicator", False)
 
         self.horizontalLayout_2.addWidget(self.shelterInfo_table)
 
@@ -233,10 +272,10 @@ class Ui_entityManagementShelter(object):
         self.ms_cancel_btn.setObjectName(u"ms_cancel_btn")
         self.ms_cancel_btn.setMinimumSize(QSize(161, 51))
         self.ms_cancel_btn.setMaximumSize(QSize(161, 51))
-        font2 = QFont()
-        font2.setPointSize(12)
-        font2.setBold(True)
-        self.ms_cancel_btn.setFont(font2)
+        font3 = QFont()
+        font3.setPointSize(12)
+        font3.setBold(True)
+        self.ms_cancel_btn.setFont(font3)
         self.ms_cancel_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.ms_cancel_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #fff;\n"
@@ -261,7 +300,7 @@ class Ui_entityManagementShelter(object):
         self.ms_save_changes_btn.setObjectName(u"ms_save_changes_btn")
         self.ms_save_changes_btn.setMinimumSize(QSize(161, 51))
         self.ms_save_changes_btn.setMaximumSize(QSize(161, 51))
-        self.ms_save_changes_btn.setFont(font2)
+        self.ms_save_changes_btn.setFont(font3)
         self.ms_save_changes_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.ms_save_changes_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #1C5739;\n"
@@ -298,14 +337,22 @@ class Ui_entityManagementShelter(object):
         entityManagementShelter.setWindowTitle(QCoreApplication.translate("entityManagementShelter", u"Dialog", None))
         self.ms_back_btn.setText("")
         self.label.setText(QCoreApplication.translate("entityManagementShelter", u"Manage Shelters", None))
-        self.ms_import_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Import XLSX", None))
+#if QT_CONFIG(tooltip)
+        self.ms_export_btn.setToolTip(QCoreApplication.translate("entityManagementShelter", u"<html><head/><body><p><span style=\" font-weight:600;\">DOWNLOAD TEMPLATE </span>download an excel file containing the sample shelter data (template)</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.ms_export_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Download\n"
+"Template", None))
+#if QT_CONFIG(tooltip)
+        self.ms_import_btn.setToolTip(QCoreApplication.translate("entityManagementShelter", u"<html><head/><body><p><span style=\" font-weight:600;\">IMPORT</span> upload an excel file and display its contents in the table</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.ms_import_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Import", None))
         self.ms_add_shelter_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Add Shelter", None))
         ___qtablewidgetitem = self.shelterInfo_table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("entityManagementShelter", u"Name", None));
         ___qtablewidgetitem1 = self.shelterInfo_table.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("entityManagementShelter", u"xDegrees", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("entityManagementShelter", u"Latitude", None));
         ___qtablewidgetitem2 = self.shelterInfo_table.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("entityManagementShelter", u"yDegrees", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("entityManagementShelter", u"Longitude", None));
         ___qtablewidgetitem3 = self.shelterInfo_table.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("entityManagementShelter", u"Area1", None));
         ___qtablewidgetitem4 = self.shelterInfo_table.horizontalHeaderItem(4)

@@ -1,20 +1,170 @@
 \chapter{Presentation, Analysis and Interpretation of Data}
 \chaptermark{Presentation, Analysis and Interpretation}
-
-Provide a short introduction for the chapter about the developed system and the evaluation of the system.
+	This chapter details the functionalities of the developed system, including its user interface design. Moreover, the system answers the optimal shelter location-allocation for Calumpit. It also presents the evaluation results gathered from the LGU and IT experts, assessing the system’s acceptability and alignment with local needs.
 
 \section{The Developed System}
+	The researchers and developers of this thesis developed a decision support system to optimize shelter location allocation since there was a lack of system development. Identifying the most optimal shelter facility for a community is the system's main function. Specifically, it has five key features that let users completely modify the input parameters, and output processing. 
 
-Provide a description of the system, it's purpose, its significance, and the objective the system aims to achieve. Parallel your discussion with the thesis S.O.P.'s, then discuss it in detail in the following subsections. 
 
-\subsection{[Title for Topic 1]}
+\subsection{Data Modification}
+	The process of creating, updating, or deleting data within the system to maintain accuracy and relevance. This ensures that all records are up-to-date and properly managed so they can effectively be used for shelter allocation.
+	
+	\begin{figure}[h!]
+		\caption{Dashboard}
+		\centering
+		\includegraphics[width=3.5in]{Nrs-10}
+		\label{db}
+	\end{figure}
+	The dashboard provides an overview of a list of shelters and communities as shown in figure \ref{db}. It also displays a map where shelters and communities are pinned. Users can see whether a shelter is active or inactive. Additionally, the user can manipulate the map to filter and display only active shelter as well as shelters that are built, partially built, damaged, empty lot, and resistance to flood, typhoon, and earthquake
+	
+	\begin{figure}[h!]
+		\caption{Community Management}
+		\centering
+		\includegraphics[width=3.5in]{Nrs-10}
+		\label{commMan}
+	\end{figure}
+	Community management module manages the recorded details of barangays as shown in figure \ref{commMan}. It displays whether a barangay is active or inactive, along with its latitude, longitude, population, affected population, maximum distance, remarks, and a delete button. Users can also add new communities, download a template to ensure correct formatting when importing data, and manage barangay-related information efficiently.
+	
+	\begin{figure}[h!]
+		\caption{Shelter Management}
+		\centering
+		\includegraphics[width=3.5in]{Nrs-10}
+		\label{shelMan}
+	\end{figure}
+	The shelter management module, as shown in figure \ref{shelMan}, is similar to community management but includes different data fields. It contains information such as the shelter’s name, latitude, longitude, and classification as a Level 1 or Level 2 shelter. The module also tracks the cost of construction and maintenance for each level. Additionally, it indicates whether the shelter is resistant to floods, typhoons, and earthquakes. Users can also view the shelter’s status – whether it is built, partially built, damaged, or an empty lot.
+	
+\subsection{Model Modification}
+	This concerns the parameters to be used in the model that may be modified for a more ideal setup depending on the preferences of the user. The parameters that may be changed here include the area per individual based on meters squared, the max number of level 2 shelters and shelters in general, the weights for both distance and cost, the number of generations, the number of populations in a generation, and the mutation rate. Measures are put in place to prevent entering of wrong values in these parameters such as letters or negative numbers. 
+	
+	\begin{figure}[h!]
+		\caption{Model Parameter Settings}
+		\centering
+		\includegraphics[width=3.5in]{Nrs-10}
+		\label{modelSet}
+	\end{figure}
+	These factors impact the time taken to simulate data as well as the efficiency of the simulation, it is recommended to keep the parameters at default values unless the user is knowledgeable about the model or the system. These parameters are modified in the Model Settings module as shown in figure \ref{modelSet}, which may be accessed from the Solve Settings module by clicking Advanced Settings below Model.
+	
+	
+\subsection{Data Simulation}
+	This pertains to solving the model by running the Genetic Algorithm, which determines the most optimal shelter location allocation. As the core functionality of the system, it processes input data of communities and shelters, applies defined model parameters, then generates and displays the best allocation of the municipality.
+	
+	\begin{figure}[h!]
+		\caption{Progress Dialog}
+		\centering
+		\includegraphics[width=3.5in]{Nrs-10}
+		\label{solveProg}
+	\end{figure}
+	Progress dialog as shown in figure \ref{solveProg} provides real-time logs and tracks the progress of the simulation. The process starts by computing the distances between each community and each shelter using a Python library, OSMnx. Once the distances are calculated, the system proceeds with the Genetic Algorithm to optimize the allocation. Users also have the option to cancel the process at any time.
+	
+	\begin{figure}[h!]
+		\caption{Report Dialog}
+		\centering
+		\includegraphics[width=3.5in]{Nrs-10}
+		\label{shelAllocRep}
+	\end{figure}
+	After the solving process is completed, report dialog appears displaying the final allocation results as shown in figure \ref{shelAllocRep}. It shows which communities are assigned to shelters, and displays the paths they can take on a map. This helps users analyze the feasibility and efficiency of the allocation.
+	
+	The Genetic Algorithm is implemented from scratch using Python, ensuring full control over its functionality and optimization process. The main functions in the code include fitness calculation, constraint enforcement, and the implementation of selection, mutation, and crossover.
+	
+	Appendix \_ details the fitness calculation, which represents the model's objective value. The first loop calculates the total distance, while the second loop determines the cost based on the level of the opened shelters.
+	
+	Appendices \_, \_, \_, and \_ implement the constraint functions, adding penalties to the objective value when violated. These constraints include maximum distance constraint, initial capacity constraint, maximum number of level 2 shelters that can be constructed/allocated, maximum number of shelters that can be constructed/allocated. Since the implemented Genetic Algorithm operates on integers, the constraints ensuring that each community is assigned only one shelter and one level are already satisfied.
+	
+\subsection{Shelter Tagging}
+	This concerns the classification of shelters based on both structural resilience and current condition, ensuring shelters are appropriately assigned to communities based on availability, cost, and risk levels. Shelters are categorized in both resistance capabilities and status; resistance capabilities include flood-resistant, typhoon-resistant, and earthquake-resistant, and are not mutually exclusive to one another, for example, a shelter can be both flood and typhoon resistant. In terms of status, shelters can be built, partially built, damaged, and empty lots, each with varying costs depending on maintenance and construction.
+	
+	\begin{figure}[h!]
+		\caption{Solve Settings}
+		\centering
+		\includegraphics[width=3.5in]{Nrs-10}
+		\label{solveSet}
+	\end{figure}
+	Selecting shelters with specific resistances and statuses in mind is done in the Solve Settings module as shown in figure \ref{solveSet}, where selecting or deselecting a specific resistance will remove shelters that do not meet the criteria from the data simulation. This ensures users will not assign communities to shelters that are not suited to the situation. Users may also check the status and resistances of a specific shelter in either the dashboard module by selecting a shelter, or in the shelter advanced settings, displaying all shelters’ statuses.
+	
 
-Discuss topic 1
-
-\subsection{[Title for Topic n]}
-Discuss as many topics as necessary
-
-You may discuss in each subsections system architecture, the main components of your system and their interactions, the technologies/tools/platforms used in developing the sytem, core features of the system and how they work, user interface design (including screenshots), and user experience ocnsiderations.
+\subsection{Report Protection}
+	To maintain confidentiality and prevent the unauthorized modification of reports, a security mechanism has been implemented in the system. This module includes password authentication, report encryption and identification of the creator of a report based on device-specific attributes.
+	
+	\begin{figure}[h!]
+		\caption{Input Password Popup}
+		\centering
+		\includegraphics[width=3.5in]{Nrs-10}
+		\label{passPop}
+	\end{figure}
+	Upon finishing data simulation, the generated report may be saved in an excel format, and gives users the option to add password protection to the file through a popup as shown in figure \ref{passPop}. This ensures only intended users may access the report, the generated excel file itself is also read-only, without the ability to modify the data without authorization. The protected file was encrypted using a Python library, MSoffcrypto.
+	
+	The excel file also contains identification of the creator of the report, containing three device-specific identifiers, the IP address or the location of the user’s device, the MAC address or the identifier of the user’s network interface, as well as the name of the device the report was generated in. This information is logged in the password protected excel file, enhancing security and ensuring unauthorized users are logged and tracked. 
+	
+\section{Generated Shelter Location-Allocation Report}
+	This section discusses the process of generating reports for shelter location allocation. The report helps in optimizing shelter assignments for communities based on various parameters and ensuring efficient disaster response. The data used considers only 12\% of the population in each barangay as affected. Additionally, the shelters have a maintenance cost, which are factored into the optimization process.
+	
+	The higher the number of generations, the more accurate the results in allocating communities to shelters. Running 200,000 generations improves optimization, ensuring better placement of communities in suitable shelters.
+	
+	\begin{table}[h]
+		\centering
+		\caption{Model Parameters}
+		\label{modelParams}
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Parameter} & \textbf{Value} \\ \hline
+			Area Per Individual & 1 \\ 
+			Maximum Level 2 Shelters  & 33 \\ 
+			Maximum Shelters & 33 \\ 
+			Weight Distance & 0.5 \\ 
+			Weight Cost & 0.5 \\ 
+			Generations & 200000 \\ 
+			Population & 100 \\ 
+			Mutation Rate & 0.1 \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	\begin{table}[h]
+		\centering
+		\caption{Generated Shelter Location-Allocation for Calumpit}
+		\label{calReport}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\textbf{Community} & \textbf{Individuals} & \textbf{Shelter Assigned} & \textbf{Level} \\ \hline
+			Gugo & 236 & Barangay Hall Bulusan & Level 2 \\ \hline
+			Meysulao & 514 & Barangay Hall Bulusan & Level 2 \\ \hline
+			Meyto & 351 & Barangay Hall Bulusan & Level 2 \\ \hline
+			Santa Lucia & 296 & Barangay Hall Bulusan & Level 2 \\ \hline
+			
+			Balungao & 687  & F. Mendoza Memorial Elem Sch. & Level 1 \\ \hline
+			Panducot & 211 & F. Mendoza Memorial Elem Sch. & Level 1 \\ \hline
+			Poblacion & 215 & F. Mendoza Memorial Elem Sch. & Level 1 \\ \hline
+			Sapang Bayan & 377 & F. Mendoza Memorial Elem Sch. & Level 1 \\ \hline
+			Sucol & 128  & F. Mendoza Memorial Elem Sch. & Level 1 \\ \hline
+			
+			Bulusan & 313 & Gugo Empty Lot & Level 2 \\ \hline
+			Corazon & 261 & Gugo Empty Lot & Level 2 \\ \hline
+			Santo Nino & 306 & Gugo Empty Lot & Level 2 \\ \hline
+			
+			Calizon & 267  & NV9 Multi-Purpose & Level 1 \\ \hline
+			Frances & 736 & NV9 Multi-Purpose & Level 1 \\ \hline
+			Gatbuca & 767 & NV9 Multi-Purpose & Level 1 \\ \hline
+			San Miguel & 721 & NV9 Multi-Purpose & Level 1 \\ \hline
+			
+			Baguion & 461  & Pio Cruzcosa Empty Lot & Level 1 \\ \hline
+			Calumpang & 423 & Pio Cruzcosa Empty Lot & Level 1 \\ \hline
+			Longos & 512 & Pio Cruzcosa Empty Lot & Level 1 \\ \hline
+			Pio Cruzcosa & 560 & Pio Cruzcosa Empty Lot & Level 1 \\ \hline
+			Sergio Bayan & 208  & Pio Cruzcosa Empty Lot & Level 1 \\ \hline
+			
+			Balite & 602 & San Marcos National H.S. & Level 1 \\ \hline
+			Caniogan & 542 & San Marcos National H.S. & Level 1 \\ \hline
+			Iba Este & 500 & San Marcos National H.S. & Level 1 \\ \hline
+			Iba O'Este & 1691  & San Marcos National H.S. & Level 1 \\ \hline
+			Palimbang & 203 & San Marcos National H.S. & Level 1 \\ \hline
+			Pungo & 1144 & San Marcos National H.S. & Level 1 \\ \hline
+			San Jose & 680 & San Marcos National H.S. & Level 1 \\ \hline
+			San Marcos & 321  & San Marcos National H.S. & Level 1 \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	The generated report can be downloaded as an Excel file. In the Report Module, a map displays where communities are allocated to their designated shelters. Additionally, a table provides detailed information, including communities, number of affected individuals which is 12\% of the population, assigned shelters, and shelter level. Other important details include the last updated generation, runtime, and cost savings.
+	
+	
 
 \section{System Evaluation}
 

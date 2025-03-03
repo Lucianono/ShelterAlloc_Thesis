@@ -122,70 +122,84 @@
 		\centering
 		\caption{Generated Shelter Location-Allocation for Calumpit}
 		\label{calReport}
-		\begin{tabular}{|c|c|c|c|}
+		\begin{tabular}{|c|c|c|}
 			\hline
-			\textbf{Community} & \textbf{Individuals} & \textbf{Shelter Assigned} & \textbf{Level} \\ \hline
-			Gugo & 236 & Barangay Hall Bulusan & Level 2 \\ \hline
-			Meysulao & 514 & Barangay Hall Bulusan & Level 2 \\ \hline
-			Meyto & 351 & Barangay Hall Bulusan & Level 2 \\ \hline
-			Santa Lucia & 296 & Barangay Hall Bulusan & Level 2 \\ \hline
+			\textbf{Community} & \textbf{Shelter Assigned} & \textbf{Level} \\ \hline
+			Calizon & \multirow{5}{*}{Dona Damiana Elem School} & \multirow{5}{*}{Level 1} \\ \cline {1-1} 
+			Frances & & \\ \cline {1-1} 
+			Gatbuca & & \\ \cline {1-1} 
+			Meysulao & & \\ \cline {1-1} 
+			San Miguel  & & \\ \hline
 			
-			Balungao & 687  & F. Mendoza Memorial Elem Sch. & Level 1 \\ \hline
-			Panducot & 211 & F. Mendoza Memorial Elem Sch. & Level 1 \\ \hline
-			Poblacion & 215 & F. Mendoza Memorial Elem Sch. & Level 1 \\ \hline
-			Sapang Bayan & 377 & F. Mendoza Memorial Elem Sch. & Level 1 \\ \hline
-			Sucol & 128  & F. Mendoza Memorial Elem Sch. & Level 1 \\ \hline
+			Bulusan & \multirow{6}{*}{Mun. Covered Court} & \multirow{6}{*}{Level 2} \\ \cline {1-1} 
+			Corazon & & \\ \cline {1-1} 
+			Panducot & & \\ \cline {1-1} 
+			Poblacion & & \\ \cline {1-1} 
+			Santa Lucia & & \\ \cline {1-1} 
+			Sucol & & \\ \hline
 			
-			Bulusan & 313 & Gugo Empty Lot & Level 2 \\ \hline
-			Corazon & 261 & Gugo Empty Lot & Level 2 \\ \hline
-			Santo Nino & 306 & Gugo Empty Lot & Level 2 \\ \hline
+			Balungao & \multirow{5}{*}{NV9 Multi-Purpose} & \multirow{5}{*}{Level 1} \\ \cline {1-1} 
+			Meyto & & \\ \cline {1-1} 
+			San Jose & & \\ \cline {1-1} 
+			Santo Niño & & \\ \cline {1-1} 
+			Sapang Bayan & & \\ \hline
 			
-			Calizon & 267  & NV9 Multi-Purpose & Level 1 \\ \hline
-			Frances & 736 & NV9 Multi-Purpose & Level 1 \\ \hline
-			Gatbuca & 767 & NV9 Multi-Purpose & Level 1 \\ \hline
-			San Miguel & 721 & NV9 Multi-Purpose & Level 1 \\ \hline
+			Caniogan & \multirow{3}{*}{San Marcos Elem. Sch.} & \multirow{3}{*}{Level 1} \\ \cline {1-1} 
+			Palimbang & & \\ \cline {1-1} 
+			San Marcos & & \\ \hline
 			
-			Baguion & 461  & Pio Cruzcosa Empty Lot & Level 1 \\ \hline
-			Calumpang & 423 & Pio Cruzcosa Empty Lot & Level 1 \\ \hline
-			Longos & 512 & Pio Cruzcosa Empty Lot & Level 1 \\ \hline
-			Pio Cruzcosa & 560 & Pio Cruzcosa Empty Lot & Level 1 \\ \hline
-			Sergio Bayan & 208  & Pio Cruzcosa Empty Lot & Level 1 \\ \hline
-			
-			Balite & 602 & San Marcos National H.S. & Level 1 \\ \hline
-			Caniogan & 542 & San Marcos National H.S. & Level 1 \\ \hline
-			Iba Este & 500 & San Marcos National H.S. & Level 1 \\ \hline
-			Iba O'Este & 1691  & San Marcos National H.S. & Level 1 \\ \hline
-			Palimbang & 203 & San Marcos National H.S. & Level 1 \\ \hline
-			Pungo & 1144 & San Marcos National H.S. & Level 1 \\ \hline
-			San Jose & 680 & San Marcos National H.S. & Level 1 \\ \hline
-			San Marcos & 321  & San Marcos National H.S. & Level 1 \\ \hline
+			Balite & \multirow{10}{*}{San Marcos National H.S.} & \multirow{10}{*}{Level 1} \\ \cline {1-1} 
+			Baguion & & \\ \cline {1-1} 
+			Calumpang & & \\ \cline {1-1} 
+			Gugo & & \\ \cline {1-1} 
+			Iba Este & & \\ \cline {1-1} 
+			Iba O'Este & & \\ \cline {1-1} 
+			Longos & & \\ \cline {1-1} 
+			Pio Cruzcosa & & \\ \cline {1-1} 
+			Pungo & & \\ \cline {1-1} 
+			Sergio Bayan & & \\ \hline
 		\end{tabular}
+		
 	\end{table}
 	
-	The generated report can be downloaded as an Excel file. In the Report Module, a map displays where communities are allocated to their designated shelters. Additionally, a table provides detailed information, including communities, number of affected individuals which is 12\% of the population, assigned shelters, and shelter level. Other important details include the last updated generation, runtime, and cost savings.
+	\begin{figure}[h!]
+		\caption{Community to Shelter Straight Path}
+		\centering
+		\includegraphics[width=3.5in]{Nrs-10}
+		\label{straightpath}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\caption{Community to Shelter Route Path}
+		\centering
+		\includegraphics[width=3.5in]{Nrs-10}
+		\label{routepath}
+	\end{figure}
+	
+	The generated report can be downloaded as an Excel file. In the Report Module, a map displays where communities are allocated to their designated shelters. Table \ref{calReport} provides detailed information, including communities, number of affected individuals which is 12\% of the population, assigned shelters, and shelter level. Figure \ref{straightpath} and \ref{routepath} shows the generated map which visualizes the allocation result.
 	
 	
 
-\section{System Evaluation}
-
-Present a summary of the evaluation of your system by the IT Experts and the End-users, then discuss the analysis and interpretation of the result. Summarize the feedback received from users and describe any improvements made to the system based on user feedback. You may divide the discussions in subsections for a clearer structure.
-
-\begin{table}[ht]
-	\centering
-	\caption{Example of a Table in APA Format}
-	\label{tab:apaformat}
-	\begin{tabularx}{\linewidth}{X*{4}{>{\centering\arraybackslash}X}}
-		\toprule
-		\multirow{2}{*}{\textbf{Column 1}} & \multicolumn{2}{c}{\textbf{Merge Column 2 \& 3}} & \multicolumn{2}{c}{\textbf{Merge Column 4 \& 5}}\\
-		\cmidrule(lr){2-3} \cmidrule(lr){4-5}
-		& Decription 1 & Description 2 & Variant 1 & Variant 2\\
-		\midrule
-		Variable 1 & xxx.xx & xx.xx & xxxx.xx & x.xx\\
-		Variable 2 &  xx.xx & xxxx.xx& x.xx & xxx.xx\\
-		Variable 3 & xxxx.xx & x.xx & xxx.xx & xx.xx\\
-		Variable 4 &  x.x & xxx.xx & xx.xx & xxxx.xx\\
-		\midrule
-		TOTAL & \textbf{xxxxx.xx} & \textbf{xxxx.xx} & \textbf{xxxx.xx} & \textbf{xxxx.xx}\\
-		\bottomrule
-	\end{tabularx}
-\end{table}
+%\section{System Evaluation}
+%
+%Present a summary of the evaluation of your system by the IT Experts and the End-users, then discuss the analysis and interpretation of the result. Summarize the feedback received from users and describe any improvements made to the system based on user feedback. You may divide the discussions in subsections for a clearer structure.
+%
+%\begin{table}[ht]
+%	\centering
+%	\caption{Example of a Table in APA Format}
+%	\label{tab:apaformat}
+%	\begin{tabularx}{\linewidth}{X*{4}{>{\centering\arraybackslash}X}}
+%		\toprule
+%		\multirow{2}{*}{\textbf{Column 1}} & \multicolumn{2}{c}{\textbf{Merge Column 2 \& 3}} & \multicolumn{2}{c}{\textbf{Merge Column 4 \& 5}}\\
+%		\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+%		& Decription 1 & Description 2 & Variant 1 & Variant 2\\
+%		\midrule
+%		Variable 1 & xxx.xx & xx.xx & xxxx.xx & x.xx\\
+%		Variable 2 &  xx.xx & xxxx.xx& x.xx & xxx.xx\\
+%		Variable 3 & xxxx.xx & x.xx & xxx.xx & xx.xx\\
+%		Variable 4 &  x.x & xxx.xx & xx.xx & xxxx.xx\\
+%		\midrule
+%		TOTAL & \textbf{xxxxx.xx} & \textbf{xxxx.xx} & \textbf{xxxx.xx} & \textbf{xxxx.xx}\\
+%		\bottomrule
+%	\end{tabularx}
+%\end{table}

@@ -12,13 +12,13 @@
 	This applied research approach aims to deliver a functional and reliable shelter location-allocation system that local government units (LGUs) and disaster response agencies can easily deploy and adapt. By emphasizing incremental progress and user-centered development, this ensures that the research outputs are directly applicable and beneficial to communities in disaster-prone areas.
 
 \subsection{Quantitative Research}
-	The quantitative research component of this study aims to measure and analyze the acceptability of the proposing system using TAM determinants and ISO/IEC 25010 standard. The approach will provide objective and measurable evidence to evaluate the system's usability, reliability, and overall quality performance. The quantitative methods will seek to quantify the use of genetic algorithms in the shelter location allocation system, providing valuable insights into the system's effectiveness for emergency management.
+	The quantitative research component of this study aims to measure and analyze the acceptability of the proposed system using TAM determinants and ISO/IEC 25010 standard. The approach will provide objective and measurable evidence to evaluate the system's usability, reliability, and overall quality performance. The quantitative methods will seek to quantify the use of genetic algorithms in the shelter location allocation system, providing valuable insights into the system's effectiveness for emergency management.
 	Methods will include collecting user feedback and performance metrics through structured surveys and system testing to assess these attributes. The survey will gauge user satisfaction with system usability and functionality using a 10-point rating scale, providing quantifiable insights into the system's ease of use and accessibility. 
 	Incorporating quantitative research in this study is justified as it can provide empirical evidence supporting the shelter allocation system's acceptability. 
 
 \subsection{Qualitative Research}
 	The researchers will use qualitative research to understand the current issues of shelter location allocation from the stakeholders' perspectives. This approach requires engaging with the LGU offices to identify the additional requirements for the system. This ensures that the development of the shelter location-allocation system will address real-world challenges and support those involved in evacuating communities during natural disasters and be of acceptable quality.
-	The researchers will conduct an interview to achieve this. The interview will be based on Decision Thinking Framework which is a common framework for developing a product. This was chosen to provide a structured way to gather detailed feedback from the stakeholders about their experiences, challenges, information about the shelters, and expectations regarding shelter location-allocation and this study. This method allows the researchers to collect various opinions and insights, which is important for understanding the complex issues involved in disaster management and shelter allocation.
+	The researchers will conduct an interview to achieve this. The interview was based on Decision Thinking Framework which is a common framework for developing a product. This was chosen to provide a structured way to gather detailed feedback from the stakeholders about their experiences, challenges, information about the shelters, and expectations regarding shelter location-allocation and this study. This method allows the researchers to collect various opinions and insights, which is important for understanding the complex issues involved in disaster management and shelter allocation.
 	This insight is important for ensuring the system's effectiveness, as it helps identify the challenges to ensure the proper functioning of the shelter location allocation system and meet the needs of the affected communities. By capturing these detailed perspectives, the system will be more practical, user-friendly, and responsive to the real-world needs of disaster management.
 
 \section{Model Adoption}
@@ -31,15 +31,21 @@
 		wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{k=1}^{2}\sum_{j=1}^{N}C_{j}^{(k)}y_{j}^{(k)} 
 	\end{equation}
 	
+	The constraints of BNT model include the distance, capacity, assignment, and binary constraints, each of which plays a crucial role in ensuring the model functions effectively under the disaster response scenario:
+	
 	Subject to
 	\begin{equation} 	
 		\label{c1}
 		d_{ij}x_{ij} \le D_{i}, \forall i = 1,..., M,  \forall j = 1,..., N 
 	\end{equation}
+	\textit{Distance Constraint.} Equation \ref{c1} ensures that each community is allocated to a shelter within a defined maximum distance. 
+	
 	\begin{equation} 
 		\label{c2}
 		\sum_{i=1}^{M}LP_{i}x_{ij} \le \sum_{k} Area_{j}^{(k)} y_{j}^{(k)}, \forall j = 1,..., N , k=1,2
 	\end{equation}
+	\textit{Capacity Constraint.} Equation \ref{c2} guarantees that the total number of evacuees assigned to a shelter does not exceed its maximum capacity. 
+	
 	\begin{equation} 
 		\label{c3}
 		\sum_{k=1}^{2} \sum_j={1}^{N}y_{j}^{(k)} \le MaxSh
@@ -56,10 +62,13 @@
 		\label{c6}
 		\sum_{k=1}^{N}y_{j}^{(k)} \le 1, \forall j=1,...,N
 	\end{equation}
+	\textit{Assignment Constraints.} Equations \ref{c3} and \ref{c4} ensures that the total assigned shelters and level 2 shelter does not exceeds over the user defined parameters respectively.  Equation \ref{c5} ensures that every community is assigned to exactly one shelter. Equation \ref{c6} ensures that the assigned shelter does not duplicate like being opened as level 1 and level 2 at the same time. This prevents problems in shelter allocation and ensures that each community has a designated place.
+	
 	\begin{equation}
 		\label{c7}
 	 	x_{ij}, y_{j}^{(1)},y_{j}^{(2)} \in \{0,1\}, \forall i=1,...,M,  \forall j=1,...,N
 	\end{equation}
+	\textit{Binary Constraint.} This constraint ensures that the model only takes binary variable, where can either be true (1) or false (0).
 	
 	Where:
 	\\$wt_{dist}$ – weight given to the distance cost.
@@ -78,15 +87,6 @@
 	\\$MaxSh$ - maximum number of shelters to be opened.
 	\\
 	
-	The constraints of BNT model include the distance, capacity, assignment, and binary constraints, each of which plays a crucial role in ensuring the model functions effectively under the disaster response scenario:
-	
-	\textit{Distance Constraint.} Equation \ref{c1} ensures that each community is allocated to a shelter within a defined maximum distance. 
-	
-	\textit{Capacity Constraint.} Equation \ref{c2} guarantees that the total number of evacuees assigned to a shelter does not exceed its maximum capacity. 
-	
-	\textit{Assignment Constraints.} Equations \ref{c3} and \ref{c4} ensures that the total assigned shelters and level 2 shelter does not exceeds over the user defined parameters respectively.  Equation \ref{c5} ensures that every community is assigned to exactly one shelter. Equation \ref{c6} ensures that the assigned shelter does not duplicate like being opened as level 1 and level 2 at the same time. This prevents problems in shelter allocation and ensures that each community has a designated place.
-	
-	\textit{Binary Constraint.} This constraint ensures that the model only takes binary variable, where can either be true (1) or false (0).
 	
 \subsection{Feasibility Conditions}
 
@@ -132,7 +132,7 @@
 	Incorporating these feasibility conditions ensures that the model will produce atleast one feasible solution, and the system proceeds only with valid input configurations. By verifying these conditions, users receive instant feedback on whether their inputs are valid, allowing the model to proceed with solving. These conditions represent key feasibility checks but are not exhaustive, and infeasible solutions may still persist. An additional feature would employ a penalty function that would transform the model to an unconstrained model.	
 	
 \subsection{Penalty Function}
-	The penalty function will be used to handle the problem constraints. Instead of discarding infeasible solutions or chromosomes, they will be assigned a very large objective value making them not fit to be a solution. The type of penalty to be used is the Courant-Beltrami penalty function method, as shown in equation \ref{p1}.
+	The penalty function was used to handle the problem constraints. Instead of discarding infeasible solutions or chromosomes, they will be assigned a very large objective value making them not fit to be a solution. The type of penalty to be used is the Courant-Beltrami penalty function method, as shown in equation \ref{p1}.
 	
 	\begin{equation} 
 		\label{p1}
@@ -164,7 +164,7 @@
 	
 	We start by defining the some terms of genetic algorithm that will be used in the context of shelter location-allocation model.
 	
-	\textit{Chromosome.}  An array or dictionary which represents the  solution in a problem. A chromosome is composed of two parts, community allocation and shelter level. Community allocation refers to assigning shelter index to communities, and shelter level refers to assigning a value of 1 or 2 to represent as level to shelters. Figure \ref{Chromosome} shows a solution where community 0 was allocated to shelter 0, and community 1 and 2 was allocated to shelter 1. Additionaly, shelter 0 was assigned as level 1, and shelter 1 was assigned as level 2.
+	\textit{Chromosome.}  An array or dictionary which represents the  solution in a problem. A chromosome is composed of two parts, community allocation and shelter level. Community allocation refers to assigning shelter index to communities, and shelter level refers to assigning a value of 1 or 2 to represent as level to shelters. Figure \ref{Chromosome} shows a solution where community 0 was allocated to shelter 0, and community 1 and 2 was allocated to shelter 1. Additionally, shelter 0 was assigned as level 1, and shelter 1 was assigned as level 2.
 	
 	\begin{figure}[h!]
 		\caption{A chromosome with 3 communities and 2 shelters}
@@ -214,8 +214,8 @@
 	
 	
 \section{Process of Developing the System}
-	This study employs a structured system development methodology following the Agile approach. Agile was chosen for its flexibility and iterative nature, which allows for continuous refinement and adaptation of the system based on feedback and testing results. Each development phase—planning, design, implementation, testing, and deployment—will include regular reviews and adjustments to ensure the system evolves effectively to meet technical and user needs.
-	The system development process is divided into several distinct phases, each of which is designed to build upon the previous stage, ensuring a comprehensive and systematic approach. As shown in figure \ref{Agile} illustrated by \textcite{Jayathilaka2020}
+	This study employed a structured system development methodology following the Agile approach. Agile was chosen for its flexibility and iterative nature, which allows for continuous refinement and adaptation of the system based on feedback and testing results. Each development phase—planning, design, implementation, testing, and deployment—will include regular reviews and adjustments to ensure the system evolves effectively to meet technical and user needs.
+	The system development process was divided into several distinct phases, each of which is designed to build upon the previous stage, ensuring a comprehensive and systematic approach. As shown in figure \ref{Agile} illustrated by \textcite{Jayathilaka2020}
 
 	\begin{figure}[h!]
 		\caption{A representation of an Agile approach}
@@ -251,9 +251,9 @@
 	\textbf{System Assessment:} The final phase, along with Thesis Two Output, is evaluating the system's acceptability and user satisfaction. Activities include preparing and distributing surveys, gathering user feedback, encoding and analyzing this data to assess system acceptability.
 
 \subsection{Requirement Analysis}
-	During the requirement analysis phase, researchers gather comprehensive information about the system requirements by reviewing relevant literature that pertains to the thesis. Moreover, an interview with the client is conducted to know more about the current issues LGUs are facing regarding to evacuation. This phase ensures that all necessary features are identified and prioritized based on their importance.
+	During the requirement analysis phase, researchers gathered comprehensive information about the system requirements by reviewing relevant literature that pertains to the thesis. Moreover, an interview with the client was conducted to know more about the current issues LGUs are facing regarding to evacuation. This phase ensures that all necessary features are identified and prioritized based on their importance.
 	
-	The system's primary features and requirements encompass an overview of data and model modification, data simulation, shelter tagging, and report encryption. Data modification includes an access to user for managing and modifying community and shelter data. Model modification allows users to change parameters on data simulation.Data simulation utilizes the community and shelter data as inputs for the genetic algorithm applied in the shelter location allocation system, optimizing the placement of evacuees in shelters. Furthermore, shelter tagging enables the categorization of shelters based on criteria such as location, capacity, and suitability for various disaster scenarios, thereby facilitating efficient resource allocation. Lastly, report encryption allows user to encrypt their generated report to prevent leaks in a computer system.
+	The system's primary features and requirements encompass an overview of data and model modification, data simulation, shelter tagging, and report protection. Data modification includes an access to user for managing and modifying community and shelter data. Model modification allows users to change parameters on data simulation.Data simulation utilizes the community and shelter data as inputs for the genetic algorithm applied in the shelter location allocation system, optimizing the placement of evacuees in shelters. Furthermore, shelter tagging enables the categorization of shelters based on criteria such as location, capacity, and suitability for various disaster scenarios, thereby facilitating efficient resource allocation. Lastly, report protection allows user to protect their generated report to prevent leaks in a computer system.
 	
 \subsection{Design}
 	During the design phase, the researchers created a detailed outline for the shelter location-allocation system's architecture and key components. The design process includes creating a mockup of the system's user interface and constructing flowcharts, an entity-relationship diagram (ERD), and a data flow diagram(DFD) to map out system processes and data relationships. The researchers designed mockups to visualize the user interface, ensuring it met the user's needs for accessibility and usability. The flowcharts provided a step-by-step breakdown of system processes, while the ERD defined the data structures and relationships. These elements formed a cohesive blueprint to guide the system's development and ensure alignment with the requirements. Figure \ref{SystemArch} shows the system architecture which combines DFD and the interaction of users.
@@ -286,9 +286,9 @@
 	As can be seen in Figure \ref{Mockup}, The system mock-up shows the prototype of the system by designing the User Interface (UI) using a prototyping tool, Figma. This shows the UI for different modules of the system: Dashboard, Entity Management, Shelter Allocation Report, Settings, and the Progress.
 
 \subsection{Development}
-	The development phase will include coding and implementing the genetic algorithm for the shelter location allocation system. Utilizing the Agile system development life cycle, which includes weekly meetings and development reviews, the team can ensure that development remains on track and that any issues are promptly addressed. By following the Agile SDLC, the researchers can adapt quickly to any changes in requirements, maintain clear communication, and address any issues promptly.
+	The development phase includes coding and implementing the genetic algorithm for the shelter location allocation system. Utilizing the Agile system development life cycle, which includes weekly meetings and development reviews, the team can ensure that development remains on track and that any issues are promptly addressed. By following the Agile SDLC, the researchers can adapt quickly to any changes in requirements, maintain clear communication, and address any issues promptly.
 	
-	Table \ref{TechUsed} shows the list needed to start the development process. The system will be developed using Python programming language, and Qt framework to efficiently implement the graphical user interface(GUI) of the system. Visual Studio Code will be utilized as the integrated development environment (IDE), and QtDesigner as an extension for creating frontend designs by Qt framework.
+	Table \ref{TechUsed} shows the list needed to start the development process. The system was developed using Python programming language, and Qt framework to efficiently implement the graphical user interface(GUI) of the system. Visual Studio Code will be utilized as the integrated development environment (IDE), and QtDesigner as an extension for creating frontend designs by Qt framework.
 	
 	\begin{table}[h]
 		\centering
@@ -331,6 +331,7 @@
 				numpy               & 1.26.4     & Generates non probabilistic numbers \\ \hline
 				msoffcrypto-tool & 5.4.2     & Encrypts and decrypts excel files \\ \hline
 				XlsxWriter & 3.2.2     & Edits and writes excel contents \\ \hline
+				pyinstaller & 6.12.0     & Compiles project file into an executable file \\ \hline
 				
 			\end{tabular}
 		}
@@ -339,30 +340,29 @@
 	
 	
 \subsection{Testing and Debugging}
-	The system will undergo functionality, performance, and reliability testing during the testing phase. The researchers will employ manual testing techniques to identify and resolve any bugs or issues that arise. Found any errors and anomalies within the system, it will be then fixed and debugged. Through this thorough testing and debugging approach, the researchers aim to ensure that the shelter location allocation system meets high quality, performance, and user satisfaction standards, making it ready for deployment.
+	The system underwent functionality, performance, and reliability testing during the testing phase. The researchers employed manual testing techniques to identify and resolve any bugs or issues that arise. Found any errors and anomalies within the system, it will be then fixed and debugged. Through this thorough testing and debugging approach, the researchers aim to ensure that the shelter location allocation system meets high quality, performance, and user satisfaction standards, making it ready for deployment.
 	
 \subsection{Deployment}
-	During the deployment phase, the shelter location-allocation system will undergo pilot testing in collaboration with local government units (LGUs). This process will involve configuring the system, establishing the necessary data inputs, and training users to utilize the platform effectively. Additionally, the deployment phase will continuously monitor the system's performance to ensure it operates efficiently and meets the objective of optimizing shelter locations. 
+	During the deployment phase, the shelter location-allocation system underwent pilot testing in collaboration with local government units (LGUs). This process involves configuring the system, establishing the necessary data inputs, and training users to utilize the platform effectively. Additionally, the deployment phase will continuously monitor the system's performance to ensure it operates efficiently and meets the objective of optimizing shelter locations. 
 
-	\textbf{Sustainability Plan}
-	The presentation of the application to the potential users, specifically the Local Government Unit (LGU) of Calumpit will include a walkthrough tutorial covering all essential features. The users will be provided with the information necessary to operate the app effectively, including an overview of its purpose, functionalities, and how to input relevant data. Specifically, this includes entering shelter locations, population data, and accessibility metrics into the system to ensure accurate allocation results. Since a detailed explanation was provided during the system evaluation, this presentation will focus on summarizing key points and addressing questions and feedback from the users.
-
-	Feedback gathered from the potential users will be important in identifying the areas for improvement. This feedback will be collected through structured surveys and interviews to provide a comprehensive understanding of user needs and challenges. The updates and adjustments to the application from the feedback to better align the users’ needs, the new version of the application will be emailed to the Local Government Unit (LGU) of Calumpit for operational use. This will ensure that they have access to the latest features and improvements. It is important to note that this application is copyrighted by Bulacan State University to protect its intellectual property and ensure proper recognition to the researchers, developers, and thesis adviser. This copyright also prevents unauthorized commercial use and distribution, ensuring that the application remains a free resource for its intended purpose. It is not for sale.
+	Presentation of the application to the potential users, specifically the LGU of Calumpit will include a walk-through tutorial covering all essential features. The users was provided with the information necessary to operate the app effectively, including an overview of its purpose, functionalities, and how to input relevant data. Specifically, this includes entering shelter locations, population data, and accessibility metrics into the system to ensure accurate allocation results. Since a detailed explanation was provided during the system evaluation, this presentation focused on summarizing key points and addressing questions and feedback from the users.
 	
 \subsection{Evaluation}
 	Evaluation of system includes preparing ang distributing survey questionnaires based on TAM and ISO/IEC 25010 to our target sample. This phase will ensure that the developed system has feedback from potential users as well as from experts in software engineering and development.
+	
+	Feedback gathered from the potential users will be important in identifying the areas for improvement. This feedback was collected through structured surveys and interviews to provide a comprehensive understanding of user needs and challenges. After the updates and adjustments to the application based on feedback to better align with users’ needs, the new version of the application will be emailed to the LGU of Calumpit for operational use. This will ensure that they have access to the latest features and improvements. It is important to note that this application is copyrighted by Bulacan State University to protect its intellectual property and ensure proper recognition to the researchers, developers, and thesis adviser. This copyright also prevents unauthorized commercial use and distribution, ensuring that the application remains a free resource for its intended purpose. It will be not for sale.
 
 \section{System Preliminaries}
-	Developing a system requires careful planning and analysis before implementing it. A communication between the potential users or clients and the researchers is essential to ensure all system requirements are met and improved. This phase aims to establish a foundational understanding of current disaster-response processes, along with gathering essential data for the system. Interviews will be conducted with representatives from local government units (LGUs) specifically from the target population to understand their existing shelter allocation process, challenges, and expectations for a decision support system. 
+	Developing a system requires careful planning and analysis before implementing it. A communication between the potential users or clients and the researchers is essential to ensure all system requirements are met and improved. This phase aims to establish a foundational understanding of current disaster-response processes, along with gathering essential data for the system. Interviews was conducted with representatives from local government units (LGUs) specifically from the target population to understand their existing shelter allocation process, challenges, and expectations for a decision support system. 
 	
 \subsection{Client Interview}
 	Conducting an interview with the client is essential to get to know with the potential users and the problems their facing. Questions formulated are derived from Design Thinking Framework which is according to \textcite{Julio2018} has resulted a greater approximation of end users and the development team who uses an Agile SDLC. This improves the quality and usability of the software.
 	
 \subsection{Data Gathering}
-	The model needed data to perform, specifically community and shelter data. Additionally, to ensure that the system produces outputs, data on shelters, disaster events, and typhoons will be collected. This includes accessing records on past typhoon impacts, available shelter locations, and their respective capacities. Community or barangay data will be sourced from publicly available databases, such as PhilAtlas, which provides detailed geographical and demographic information essential for accurate system modeling.
+	The model needed data to perform, specifically community and shelter data. Additionally, to ensure that the system produces outputs, data on shelters, disaster events, and typhoons will be collected. This includes accessing records on past typhoon impacts, available shelter locations, and their respective capacities. Community or barangay data was sourced from publicly available databases, such as PhilAtlas, which provides detailed geographical and demographic information essential for accurate system modeling.
 	
 \subsection{Data Preprocessing}
-	Once data collection is complete, the gathered information will undergo several stages: cleaning, processing, analysis, and interpretation. This ensures it meets the needs of the system and allows for an accurate assessment of its effectiveness.
+	The gathered information will undergo several stages. This ensures it meets the needs of the system and allows for an accurate assessment of its effectiveness.
 	
 	All collected data will first be cleaned to remove any inconsistencies, duplicates, or irrelevant information. This process is crucial for ensuring the data’s quality and reliability, particularly for a system that relies on precision in both inputs and outputs. Any insufficient data will be asked on the LGU to fill in the gaps of the datasets. 
 	
@@ -427,12 +427,12 @@
 	
 	
 \section{System Evaluation}
-	System evaluation will focus on assessing acceptability of the shelter location allocation system using the TAM determinants and ISO/IEC 25010 standard. These standards provides a framework for evaluating the software's quality and acceptability. The system evaluation will include the evaluation instrument, determining the population and sample, outlining data collection procedures, and discussing the data analysis techniques used.
+	System evaluation focuses on assessing acceptability of the shelter location allocation system using the TAM determinants and ISO/IEC 25010 standard. These standards provides a framework for evaluating the software's quality and acceptability. The system evaluation includes the evaluation instrument, determining the population and sample, outlining data collection procedures, and discussing the data analysis techniques used.
 
 \subsection{Evaluation Instrument}
-	The evaluation instrument is a structured questionnaire designed to assess the acceptability of the shelter location allocation system based on the determinants of Technology Acceptance Model(TAM) and key quality attributes outlined in the International Organization for Standardization and International Electoral Commission (ISO/IEC) 25010 standard. Questionnaires based on TAM will be distributed to the potential end-users of the system. On the other hand, questionnaires based on ISO/IEC 25010 will be distributed to the experts in software development.
+	The evaluation instrument is a structured questionnaire designed to assess the acceptability of the shelter location allocation system based on the determinants of Technology Acceptance Model(TAM) and key quality attributes outlined in the International Organization for Standardization and International Electoral Commission (ISO/IEC) 25010 standard. Questionnaires based on TAM was distributed to the potential end-users of the system. On the other hand, questionnaires based on ISO/IEC 25010 was distributed to the experts in software development.
 	
-	TAM questionnaire will evaluate the system's acceptability by the user of the system. This model answers why users accept or reject information systems, and examines a system's acceptance based on their attitudes, preferences, and behaviors.\parencite{Davis1987}
+	TAM questionnaire evaluates the system's acceptability by the user of the system. This model answers why users accept or reject information systems, and examines a system's acceptance based on their attitudes, preferences, and behaviors.\parencite{Davis1987}
 	\\The following criteria are based upon the four determinants defined in TAM:
 	
 	\textit{Perceived Usefulness.} This answers on how much a user believes using the system will improve their performance such as job tasks. It evaluates whether the users thinks the proposed system will be genuinely beneficial to LGUs or if it can assist other LGUs effectively.
@@ -443,7 +443,7 @@
 	
 	\textit{Behavioral Intention to Use.} This answers on willingness to use the system in the future. It determines whether users find the system valuable enough to incorporate into their long-term plans.
 	
-	Additionally, ISO/IEC 25010 questionnaire will evaluate various aspects of the system, including usability, reliability, performance efficiency, and overall user satisfaction. Through this instrument, the study aims to gather objective data that will help determine how well the system meets user needs and expectations. \parencite{ISOIEC2023}
+	Additionally, ISO/IEC 25010 questionnaire evaluates various aspects of the system, including usability, reliability, performance efficiency, and overall user satisfaction. Through this instrument, the study aims to gather objective data that will help determine how well the system meets user needs and expectations. \parencite{ISOIEC2023}
 	\\The following criteria are based upon the nine quality characteristics for product quality model defined in ISO/IEC 25010:
 	
 	\textit{Functional Suitability.} This evaluates how well the system meets user needs and performs its intended functions. The questions will focus on the system's ability to allocate shelters effectively, manage community and shelter information, and provide accurate data.
@@ -464,7 +464,7 @@
 	
 
 \subsection{Population and Sample}
-	The population of this study will consist of end-users and IT experts. For end-users,  MDRRMO and MSWDO of the municipality of Calumpit. Meanwhile for IT experts, includes CICT professors from Bulacan State University, and someone who have experience in developing a system.  The diversity of perspective of these are important for the comprehensive evaluation of the system’s acceptability.
+	The population of this study consists of end-users and IT experts. For end-users,  MDRRMO and MSWDO of the municipality of Calumpit. Meanwhile for IT experts, includes CICT professors from Bulacan State University, and someone who have experience in developing a system.  The diversity of perspective of these are important for the comprehensive evaluation of the system’s acceptability.
 	
 	\textbf{MDRRMO:} The staff consists of Municipal Disaster Risk Reduction Management Office, who are responsible for formulating and implementing the province's disaster risk reduction plan.  Their insights are vital for understanding the operational requirements considerations for implementing the shelter location allocation system, ensuring it aligns with established disaster response protocols and local needs.
 	
@@ -474,17 +474,17 @@
 	
 	\textbf{System Developers:} Experts with extensive experience in system development play an important role in project evaluation. They are commonly found in businesses that design, propose, and develop systems for their clients. Their expertise enables them to understand and address real-world client requirements, guiding the system to be acceptable to users.
 	
-	The sampling technique that will be utilized for end-users is Stratified Sampling Technique, where the population is divided into a respective groups or strata, where in this study, our stratum is the MDRRMO and MSWDO. This ensures comprehensive representation, to capture the perspectives of different stakeholder groups proportionately. The sample size of end-users will be computed using G*Power, a statistical software tool. With a confidence level of 95\% or 0.05 margin of error, the sample size would be 23. Since the sample size would be much smaller than the population size, then conducting system evaluation would be feasible.
+	The sampling technique that was utilized for end-users is Stratified Sampling Technique, where the population is divided into a respective groups or strata, where in this study, our stratum is the MDRRMO and MSWDO. This ensures comprehensive representation, to capture the perspectives of different stakeholder groups proportionately. The sample size of end-users will be computed using G*Power, a statistical software tool. With a confidence level of 95\% or 0.05 margin of error, the sample size would be 23. Since the sample size would be much smaller than the population size, then conducting system evaluation would be feasible.
 	
-	Meanwhile, for IT experts, Purposive Sampling Technique will be employed. Researchers will purposively select 10 IT experts from CICT who have experience in system development or have worked in a government agency related to disaster risk management. These experts will be chosen based on their qualifications and relevant experience to provide insights into the system's design, functionality, and performance. This technique ensures that the selected experts evaluating the system will provide comprehensible and accurate feedback while also ensuring its feasibility.
+	Meanwhile, for IT experts, Purposive Sampling Technique will be employed. Researchers will purposively select 5 IT experts. These experts was chosen based on their qualifications and relevant experience to provide insights into the system's design, functionality, and performance. This technique ensures that the selected experts evaluating the system will provide comprehensible and accurate feedback while also ensuring its feasibility.
 	
 \subsection{Data Collection Procedures}
-	Evaluation phase will gauge the system’s acceptability and user satisfaction. To do this, a questionnaire will be developed based on TAM and ISO/IEC 25010, which will employ a 10-point rating scale, allowing participants to provide precise feedback on each quality criterion. The system will be demonstrated to a selected sample population in a face-to-face presentation, where they will have the chance to interact with the system firsthand. This will be followed by the completion of the questionnaire, enabling participants to provide feedback based on their experience using the system.
+	Evaluation phase gauges the system’s acceptability and user satisfaction. To do this, a questionnaire was developed based on TAM and ISO/IEC 25010, which employs a 10-point rating scale, allowing participants to provide precise feedback on each quality criterion. The system was demonstrated to a selected sample population in a face-to-face presentation, where they will have the chance to interact with the system firsthand. This was followed by the completion of the questionnaire, enabling participants to provide feedback based on their experience using the system.
 	
 	Following the research instruments ensures that the system meets its intended objectives and offers insights into potential areas for improvement, which will be critical for broader implementation in disaster-response operations. Through the data collection process, the researchers will ensure that all ethical considerations are thoroughly addressed to uphold the integrity and privacy of the participants
 
 \subsection{Data Processing and Analysis}
-	This study's data processing will involve structured analysis to interpret findings from the acceptability survey, aligning with the ISO/IEC 25010 standard and TAM determinants. This standard evaluates key quality attributes, and each attribute will be assessed using a 10-point numerical rating scale. 1 = completely disagree, and 10 = completely agree, as shown in figure \ref{Nrs}
+	This study's data processing involves structured analysis to interpret findings from the acceptability survey, aligning with the ISO/IEC 25010 standard and TAM determinants. This standard evaluates key quality attributes, and each attribute was assessed using a 10-point numerical rating scale. 1 = completely disagree, and 10 = completely agree, as shown in figure \ref{Nrs}
 	
 	\begin{figure}[h!]
 		\caption{10-point numerical rating scale}
@@ -493,7 +493,7 @@
 		\label{Nrs}
 	\end{figure}
 	
-	After the data collection, the rating scale will categorize the acceptability levels. Descriptive statistics will be utilized to analyze the collected data. Analysis includes calculating the minimum, maximum, mean, and standard deviation for each category. Formula \ref{mean} shows the mean that computes the average score. This use of data allows both the system functionality and its user acceptability to be comprehensively assessed. Table \ref{Verbal} shows the verbal interpretation of the computed mean corresponds to the level of agreement and acceptable based on the study by \textcite{Eladia2024}. 
+	After the data collection, the rating scale categorizes the acceptability levels. Descriptive statistics was utilized to analyze the collected data. Analysis includes calculating the minimum, maximum, mean, and standard deviation for each category. Formula \ref{mean} shows the mean that computes the average score. This use of data allows both the system functionality and its user acceptability to be comprehensively assessed. Table \ref{Verbal} shows the verbal interpretation of the computed mean corresponds to the level of agreement and acceptable based on the study by \textcite{Eladia2024}. 
 	
 	
 	\begin{equation} 
@@ -536,12 +536,9 @@
 	\\$n$ - sample size
 	\\$x_{i}$ - data points
 	
-	
-	
-	
 
 \section{Ethical Considerations}
-	Data gathered contained sensitive data so that ethical considerations should be practiced throughout the research.  Informed consent will be obtained from each participant, providing them with a clear understanding of the research purpose, procedures, and their rights to withdraw at any time. To protect the participants’ privacy, all responses will be anonymized and handled with strict confidentiality. Additionally, data usage will be restricted to research purposes only, ensuring that participants' information remains safeguarded throughout the research process and beyond. 
+	Data gathered contained sensitive data so that ethical considerations should be practiced throughout the research.  Informed consent obtained from each participant, providing them with a clear understanding of the research purpose, procedures, and their rights to withdraw at any time. To protect the participants’ privacy, all responses will be anonymized and handled with strict confidentiality. Additionally, data usage was restricted to research purposes only, ensuring that participants' information remains safeguarded throughout the research process and beyond. 
 	
 	\textbf{Informed Consent:} All respondents are informed about the purpose, procedures, and potential impacts of the study before they agree to participate. The respondents will be given a detailed explanation of the study, including the nature of their involvement, the voluntary nature of participation, and their right to withdraw at any time.
 	

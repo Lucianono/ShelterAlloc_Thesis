@@ -12,7 +12,7 @@
 	\begin{figure}[h!]
 		\caption{Dashboard}
 		\centering
-		\includegraphics[width=3.5in]{Nrs-10}
+		\includegraphics[width=3.5in]{Chapter 4/dashboard}
 		\label{db}
 	\end{figure}
 	The dashboard provides an overview of a list of shelters and communities as shown in figure \ref{db}. It also displays a map where shelters and communities are pinned. Users can see whether a shelter is active or inactive. Additionally, the user can manipulate the map to filter and display only active shelter as well as shelters that are built, partially built, damaged, empty lot, and resistance to flood, typhoon, and earthquake
@@ -20,7 +20,7 @@
 	\begin{figure}[h!]
 		\caption{Community Management}
 		\centering
-		\includegraphics[width=3.5in]{Nrs-10}
+		\includegraphics[width=3.5in]{Chapter 4/commadvanced}
 		\label{commMan}
 	\end{figure}
 	Community management module manages the recorded details of barangays as shown in figure \ref{commMan}. It displays whether a barangay is active or inactive, along with its latitude, longitude, population, affected population, maximum distance, remarks, and a delete button. Users can also add new communities, download a template to ensure correct formatting when importing data, and manage barangay-related information efficiently.
@@ -28,7 +28,7 @@
 	\begin{figure}[h!]
 		\caption{Shelter Management}
 		\centering
-		\includegraphics[width=3.5in]{Nrs-10}
+		\includegraphics[width=3.5in]{Chapter 4/sheladvanced}
 		\label{shelMan}
 	\end{figure}
 	The shelter management module, as shown in figure \ref{shelMan}, is similar to community management but includes different data fields. It contains information such as the shelter’s name, latitude, longitude, and classification as a Level 1 or Level 2 shelter. The module also tracks the cost of construction and maintenance for each level. Additionally, it indicates whether the shelter is resistant to floods, typhoons, and earthquakes. Users can also view the shelter’s status – whether it is built, partially built, damaged, or an empty lot.
@@ -39,7 +39,7 @@
 	\begin{figure}[h!]
 		\caption{Model Parameter Settings}
 		\centering
-		\includegraphics[width=3.5in]{Nrs-10}
+		\includegraphics[width=3.5in]{Chapter 4/modelsettings}
 		\label{modelSet}
 	\end{figure}
 	These factors impact the time taken to simulate data as well as the efficiency of the simulation, it is recommended to keep the parameters at default values unless the user is knowledgeable about the model or the system. These parameters are modified in the Model Settings module as shown in figure \ref{modelSet}, which may be accessed from the Solve Settings module by clicking Advanced Settings below Model.
@@ -51,7 +51,7 @@
 	\begin{figure}[h!]
 		\caption{Progress Dialog}
 		\centering
-		\includegraphics[width=3.5in]{Nrs-10}
+		\includegraphics[width=3.5in]{Chapter 4/progress}
 		\label{solveProg}
 	\end{figure}
 	Progress dialog as shown in figure \ref{solveProg} provides real-time logs and tracks the progress of the simulation. The process starts by computing the distances between each community and each shelter using a Python library, OSMnx. Once the distances are calculated, the system proceeds with the Genetic Algorithm to optimize the allocation. Users also have the option to cancel the process at any time.
@@ -59,7 +59,7 @@
 	\begin{figure}[h!]
 		\caption{Report Dialog}
 		\centering
-		\includegraphics[width=3.5in]{Nrs-10}
+		\includegraphics[width=3.5in]{Chapter 4/alloc report}
 		\label{shelAllocRep}
 	\end{figure}
 	After the solving process is completed, report dialog appears displaying the final allocation results as shown in figure \ref{shelAllocRep}. It shows which communities are assigned to shelters, and displays the paths they can take on a map. This helps users analyze the feasibility and efficiency of the allocation.
@@ -76,7 +76,7 @@
 	\begin{figure}[h!]
 		\caption{Solve Settings}
 		\centering
-		\includegraphics[width=3.5in]{Nrs-10}
+		\includegraphics[width=3.5in]{Chapter 4/solvesettings}
 		\label{solveSet}
 	\end{figure}
 	Selecting shelters with specific resistances and statuses in mind is done in the Solve Settings module as shown in figure \ref{solveSet}, where selecting or deselecting a specific resistance will remove shelters that do not meet the criteria from the data simulation. This ensures users will not assign communities to shelters that are not suited to the situation. Users may also check the status and resistances of a specific shelter in either the dashboard module by selecting a shelter, or in the shelter advanced settings, displaying all shelters’ statuses.
@@ -88,7 +88,7 @@
 	\begin{figure}[h!]
 		\caption{Input Password Popup}
 		\centering
-		\includegraphics[width=3.5in]{Nrs-10}
+		\includegraphics[width=3.5in]{Chapter 4/alloc report pass}
 		\label{passPop}
 	\end{figure}
 	Upon finishing data simulation, the generated report may be saved in an excel format, and gives users the option to add password protection to the file through a popup as shown in figure \ref{passPop}. This ensures only intended users may access the report, the generated excel file itself is also read-only, without the ability to modify the data without authorization. The protected file was encrypted using a Python library, MSoffcrypto.
@@ -165,14 +165,14 @@
 	\begin{figure}[h!]
 		\caption{Community to Shelter Straight Path}
 		\centering
-		\includegraphics[width=3.5in]{Nrs-10}
+		\includegraphics[width=3.5in]{Chapter 4/straight path}
 		\label{straightpath}
 	\end{figure}
 	
 	\begin{figure}[h!]
 		\caption{Community to Shelter Route Path}
 		\centering
-		\includegraphics[width=3.5in]{Nrs-10}
+		\includegraphics[width=3.5in]{Chapter 4/route path}
 		\label{routepath}
 	\end{figure}
 	

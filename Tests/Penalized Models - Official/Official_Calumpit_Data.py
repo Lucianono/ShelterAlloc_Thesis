@@ -1,6 +1,6 @@
 # sample data of communities with barangay names along with population and distances from each shelter
 Community = [
-    {"name": "Balite", "population": 5016, "maxdistance": 12, 
+    {"name": "Balite", "population": 602, "maxdistance": 12, 
      "distances": {
         "BMLTC Multi-Purpose Bldg and EC": 4.38, 
         "F. Mendoza Memorial Elem Sch.": 4.20, 

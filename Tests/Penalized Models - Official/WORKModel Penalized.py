@@ -87,7 +87,7 @@ def check_max_distance(allocation):
         max_distance_community = community["maxdistance"]
         # check if distance is greater than max dist
         if (distance > max_distance_community):
-            print("maximum distance constraint failed")
+            # print("maximum distance constraint failed")
             penalty += distance - max_distance_community
         
     return penalty
@@ -106,8 +106,8 @@ def check_initial_capacity(allocation):
             required_area = community["population"] * area_per_individual
             used_area[shelter_name] += required_area
 
-            if used_area[shelter_name] > shelter_areas[shelter_name]:
-                print("initial capacity constraint failed")
+            #if used_area[shelter_name] > shelter_areas[shelter_name]:
+                #print("initial capacity constraint failed")
 
     for shelter in Shelters:
         shelter_name = shelter["name"]
@@ -127,7 +127,7 @@ def check_max_shelters(allocation):
 
     # If the number of unique shelters exceeds the max allowed
     if len(used_shelters) > max_shelters:
-        print("max shelters constraint failed")
+        # print("max shelters constraint failed")
         penalty += len(used_shelters) - max_shelters
             
     return penalty
@@ -356,8 +356,9 @@ for generation in range(num_generations):
     best_solutions = mutated_population + ranked_solutions
     best_solutions = sorted(best_solutions, key=lambda x: x[0])[:num_solutions] 
 
-    print(f"=== Gen {generation+1} best solution ===")
-    print(best_solutions[0])
+    if (generation+1) % 100 == 0 :
+        print(best_solutions[0])
+        print(f"=== Gen {generation+1} best solution ===")
 
     prev_best_solution = fitness(solutions[0])
 

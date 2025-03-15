@@ -326,7 +326,14 @@ class EntityManagementComm(QDialog):
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
 
     def toggle_all_switches(self, table_widget):
+        if table_widget.rowCount() == 0:
+            return
+        
         state = table_widget.cellWidget(0, 0).findChild(QPushButton).isChecked()
+        if state:
+            state = state.isChecked()
+        else:
+            return
 
         for row in range(table_widget.rowCount()):
             if state is table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked(): 

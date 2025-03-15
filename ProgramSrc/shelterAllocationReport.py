@@ -115,6 +115,9 @@ class ShelterAllocationReport(QDialog):
             "Save File", "", "All Files(*);;Excel Files(*.xlsx)", options = options)
         
         if fileName :
+            if not fileName.endswith(".xlsx"):
+                fileName += ".xlsx"
+                
             response = QMessageBox.question(self, "Save Report", "Do you want to protect this report?", QMessageBox.Yes | QMessageBox.No)
             if response == QMessageBox.Yes:
 

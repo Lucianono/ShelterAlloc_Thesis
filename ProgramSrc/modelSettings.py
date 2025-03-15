@@ -69,6 +69,8 @@ class ModelSettings(QDialog):
 
     def update_params_from_excel(self, excel_name):
         try:
+            updated = False
+            
             # get data from excel
             excel_path = os.path.join(self.save_dir, excel_name)
 
@@ -86,8 +88,6 @@ class ModelSettings(QDialog):
                     default_shelter_count = (first_column.astype(str).str.upper() == "TRUE").sum()
                 except Exception as e:
                     QMessageBox.warning(self, "Warning", f"Could not process {shel_file}: {e}")
-
-                updated = False
 
             if "MaxShelters" in Model_params_data.columns:
                 Model_params_data.at[0, "MaxShelters"] = default_shelter_count

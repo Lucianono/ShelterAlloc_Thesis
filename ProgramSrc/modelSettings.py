@@ -26,7 +26,7 @@ class ModelSettings(QDialog):
             self.ui.textEdit_mutation,
             self.ui.textEdit_maxShelters,
             self.ui.textEdit_maxL2Shelters,
-            self.ui.textEdit_areaPerIdniv
+            self.ui.textEdit_areaPerIndiv
         ]
 
         for field in text_fields:
@@ -55,7 +55,7 @@ class ModelSettings(QDialog):
         print("Opened")
 
     def eventFilter(self, obj, event):
-        if event.type() == QEvent.KeyPress and (event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter):
+        if event.type() == QEvent.KeyPress and event.key() in {Qt.Key_Return, Qt.Key_Enter}:
             obj.clearFocus()  # Unselect the field
             return True  # Mark event as handled (no new line added)
         return super().eventFilter(obj, event)    
@@ -70,7 +70,7 @@ class ModelSettings(QDialog):
     def update_params_from_excel(self, excel_name):
         try:
             updated = False
-            
+
             # get data from excel
             excel_path = os.path.join(self.save_dir, excel_name)
 
@@ -107,7 +107,7 @@ class ModelSettings(QDialog):
             self.ui.textEdit_mutation.setPlainText(str(Model_params_data.at[0, "Mutation"]))
             self.ui.textEdit_maxShelters.setPlainText(str(int(Model_params_data.at[0, "MaxShelters"])))
             self.ui.textEdit_maxL2Shelters.setPlainText(str(int(Model_params_data.at[0, "MaxL2Shelters"])))
-            self.ui.textEdit_areaPerIdniv.setPlainText(str(Model_params_data.at[0, "AreaPerIndiv"]))
+            self.ui.textEdit_areaPerIndiv.setPlainText(str(Model_params_data.at[0, "AreaPerIndiv"]))
             self.ui.comboBox_modelType.setCurrentIndex(int(Model_params_data.at[0, "Model"]))
             
         except FileNotFoundError:
@@ -131,7 +131,7 @@ class ModelSettings(QDialog):
                 "Mutation": self.ui.textEdit_mutation.toPlainText(),
                 "MaxShelters": self.ui.textEdit_maxShelters.toPlainText(),
                 "MaxL2Shelters": self.ui.textEdit_maxL2Shelters.toPlainText(),
-                "AreaPerIndiv": self.ui.textEdit_areaPerIdniv.toPlainText(),
+                "AreaPerIndiv": self.ui.textEdit_areaPerIndiv.toPlainText(),
                 "Model": self.ui.comboBox_modelType.currentIndex()
             }
 

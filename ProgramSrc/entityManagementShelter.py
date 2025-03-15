@@ -61,9 +61,10 @@ class EntityManagementShelter(QDialog):
             super().keyPressEvent(event)
 
     def load_from_excel(self, table_widget, file_name, dummy_data):
-        if file_name and os.path.exists( os.path.join(self.save_dir, file_name) ):
+        file_path = os.path.join(self.save_dir, file_name)
+        if os.path.exists(file_path):
             try:
-                data = pd.read_excel( os.path.join(self.save_dir, file_name) ).fillna("")
+                data = pd.read_excel(self.save_dir, file_name).fillna("")
                 self.populate_table(table_widget, data)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")

@@ -167,9 +167,14 @@ class EntityManagementShelter(QDialog):
         headers = ['Active'] + required_headers
 
         for row in range(table_widget.rowCount()):
-            active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
+            switch_button = table_widget.cellWidget(row, 0)
+            if switch_button:
+                active_switch = switch_button.findChild(QPushButton)
+                is_active = active_switch.isChecked() if active_switch else False
+            else:
+                is_active = False
             row_data = [table_widget.item(row, col).text().strip() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
-            row_data = [active_switch] + row_data
+            row_data = [is_active] + row_data
             data.append(row_data)
 
         if data:

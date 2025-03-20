@@ -18,7 +18,11 @@ class EntityManagementShelter(QDialog):
         self.setModal(True)
         self.setWindowTitle("Entity Management Shelter")
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
-        self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
+        try:
+            icon_path = os.path.join(sys._MEIPASS, "ICONS", "logo.png")
+        except AttributeError:
+            icon_path = os.path.join(os.path.dirname(__file__), "ICONS", "logo.png")
+        self.setWindowIcon(QIcon(icon_path))
         self.setAttribute(Qt.WA_DeleteOnClose)
 
 

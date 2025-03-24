@@ -155,7 +155,7 @@
 		f_(new)(x)=f(x)+\gamma\sum_{i=1}^{n}(max\{g_i(x),0\})^2
 	\end{equation}
 	
-	where $g_1(x),g_2(x),...g_n(x)$ are the constraints of the model of the form $g_i(x)\le0$, and $\gamma\in\mathbb{R}^+$ is sufficiently large. The penalty would add up to the objective value for each constraints it violated, otherwise it would not affect the objective value.	
+	where $g_1(x),g_2(x),...g_n(x)$ are the constraints of the model of the form $g_i(x)\le0$, and $\gamma\in\mathbb{R}^+$ is sufficiently large, where for this thesis is set to $10^{20}$. The penalty would add up to the objective value for each constraints it violated, otherwise it would not affect the objective value.	
 	
 \subsection{Optimization Technique}
 	In a study created by \textcite{Mathew2012}, Genetic Algorithms are based on the concept of natural selection and evolves possible solutions through operators such as selection, crossover, and mutation. This algorithm will iteratively evolve a population of potential solutions, utilizing operations to explore the population space and gradually converge toward an optimal solution.
@@ -366,12 +366,12 @@
 	
 	All collected data will first be cleaned to remove any inconsistencies, duplicates, or irrelevant information. This process is crucial for ensuring the data’s quality and reliability, particularly for a system that relies on precision in both inputs and outputs. Any insufficient data will be asked on the LGU to fill in the gaps of the datasets. 
 	
-	The table \ref{dataSource} presents all the data variables on communities and shelters used in the model, along with their respective sources. Affected population were derived from the population of community which is based on the study of \textcite{Opdyke2024} that states 12\% of households intends to evacuate on public evacuation sites. Improvement or rehabilitation cost is added for costs, which are based on a report for improvement of an evacuation center from DILG that costs approximately ₱7,700 per square meter. Meanwhile, data for Level 2 shelters are simulated, as the LGU does not have a data nor system for the hierarchy of shelters. The areas are assumed to be twice their initial size, and costs are estimated based on the contract cost of the Frances Evacuation Center, as detailed in the DILG and DPWH reports, resulting in approximately ₱60,000 per square meter. 
+	Table \ref{dataSource} presents all the data variables on communities and shelters used in the model, along with their respective sources. Affected population were derived from the population of community which is based on the study of \textcite{Opdyke2024} that states 12\% of households intends to evacuate on public evacuation sites. Improvement or rehabilitation cost is added for costs, which are based on a report for improvement of an evacuation center from DILG that costs approximately ₱7,700 per square meter. Meanwhile, data for Level 2 shelters are simulated, as the LGU does not have a data nor system for the hierarchy of shelters. The areas are assumed to be twice their initial size, and costs are estimated based on the contract cost of the Frances Evacuation Center, as detailed in the DILG and DPWH reports, resulting in approximately ₱60,000 per square meter. 
 	
 	\begin{table}[h]
 		\centering
 		\caption{Variables, Descriptions, and Sources for Community and Shelter Data}
-		\label{varDescriptionSource}
+		\label{dataSource}
 		\resizebox{\textwidth}{!}{
 			\begin{tabular}{|c|c|p{8cm}|}
 				\hline

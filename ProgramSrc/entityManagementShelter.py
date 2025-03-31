@@ -94,7 +94,7 @@ class EntityManagementShelter(QDialog):
                     value = value.strip()
 
                 if (pd.isnull(value) or value == '') and column != "Remarks":
-                    raise ValueError(f"No data found in column '{column}' at row {idx + 1}. Expected a value.")
+                    raise ValueError(f"No data found in column '{column}' at row {idx + 1}. Please provide a value.")
                 
                 if column == "Status" and value not in {"Built", "Partially Built", "Damaged", "Empty Lot"}:
                     raise ValueError(f"Invalid value in column 'Status' at row {idx + 1}. Expected one of: Built, Partially Built, Damaged, Empty Lot.")
@@ -102,17 +102,17 @@ class EntityManagementShelter(QDialog):
                 # Check if the value is of the expected type
                 if expected_type == str:
                     if not isinstance(value, str):
-                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a string.")
+                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. This should be text.")
                 elif expected_type == float:
                     try:
                         float(value)  # Try converting to float
                     except ValueError:
-                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a float.")
+                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. This should be a number with decimals.")
                 elif expected_type == int:
                     try:
                         int(value)  # Try converting to int
                     except ValueError:
-                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected an integer.")
+                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. This should be a number.")
                 elif expected_type == bool:
                     if not isinstance(value, bool):
                         # Optionally, you could also allow values like 0/1 to be cast to bool:
@@ -121,7 +121,7 @@ class EntityManagementShelter(QDialog):
                         elif str(value) in {"0", "1"}:
                             value = bool(int(value))
                         else:
-                            raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a boolean.")
+                            raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. This should be true or false.")
 
         # check if area2 >= area1
         for shelter in data.itertuples():

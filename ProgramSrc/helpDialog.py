@@ -122,6 +122,10 @@ class helpDialog(QDialog):
                     <p>
                         <strong>Bryan Jett T. Calulo, Lovely Angeline OL. Cunanan, and Elijah Inigo C. Fabian</strong>
                     </p>
+                    <p>
+                        View our project on Github:
+                        <a href="https://github.com/Lucianono/ShelterAlloc_Thesis" style="color: blue; text-decoration: underline;">GitHub</a>
+                    </p>
                 </body>
             </html>
         """

@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>1200</width>
-    <height>800</height>
+    <height>856</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +21,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1200</width>
-    <height>800</height>
+    <width>800</width>
+    <height>300</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1200</width>
-    <height>800</height>
+    <width>5000</width>
+    <height>5000</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -55,6 +58,12 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>350</width>
+        <height>0</height>
+       </size>
       </property>
       <property name="maximumSize">
        <size>
@@ -137,8 +146,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>319</width>
-            <height>694</height>
+            <width>348</width>
+            <height>768</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -867,7 +876,7 @@ QPushButton:hover {
           <widget class="QStackedWidget" name="stackedWidget">
            <property name="minimumSize">
             <size>
-             <width>0</width>
+             <width>350</width>
              <height>800</height>
             </size>
            </property>
@@ -1514,8 +1523,8 @@ QPushButton:pressed {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>379</width>
-                  <height>750</height>
+                  <width>328</width>
+                  <height>733</height>
                  </rect>
                 </property>
                 <property name="styleSheet">

@@ -58,7 +58,7 @@ class EntityManagementComm(QDialog):
         file_path = os.path.join(self.save_dir, file_name)
         if os.path.exists(file_path):
             try:
-                data = pd.read_excel(self.save_dir, file_name).fillna("")
+                data = pd.read_excel(os.path.join(self.save_dir, file_name)).fillna("")
                 self.populate_table(table_widget, data)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
@@ -338,10 +338,6 @@ class EntityManagementComm(QDialog):
             return
         
         state = table_widget.cellWidget(0, 0).findChild(QPushButton).isChecked()
-        if state:
-            state = state.isChecked()
-        else:
-            return
 
         for row in range(table_widget.rowCount()):
             if state is table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked(): 

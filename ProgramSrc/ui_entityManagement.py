@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'entityManagement.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -261,6 +261,25 @@ class Ui_EntityManagementCommunities(object):
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_3)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.label_2 = QLabel(self.frame_3)
+        self.label_2.setObjectName(u"label_2")
+        font3 = QFont()
+        font3.setBold(True)
+        font3.setItalic(True)
+        font3.setKerning(True)
+        self.label_2.setFont(font3)
+
+        self.verticalLayout_2.addWidget(self.label_2)
+
+        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer)
+
+
+        self.horizontalLayout_3.addLayout(self.verticalLayout_2)
+
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_2)
@@ -269,10 +288,10 @@ class Ui_EntityManagementCommunities(object):
         self.mc_cancel_changes_btn.setObjectName(u"mc_cancel_changes_btn")
         self.mc_cancel_changes_btn.setMinimumSize(QSize(161, 51))
         self.mc_cancel_changes_btn.setMaximumSize(QSize(161, 51))
-        font3 = QFont()
-        font3.setPointSize(12)
-        font3.setBold(True)
-        self.mc_cancel_changes_btn.setFont(font3)
+        font4 = QFont()
+        font4.setPointSize(12)
+        font4.setBold(True)
+        self.mc_cancel_changes_btn.setFont(font4)
         self.mc_cancel_changes_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mc_cancel_changes_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #fff;\n"
@@ -298,7 +317,7 @@ class Ui_EntityManagementCommunities(object):
         self.mc_save_changes_btn.setObjectName(u"mc_save_changes_btn")
         self.mc_save_changes_btn.setMinimumSize(QSize(161, 51))
         self.mc_save_changes_btn.setMaximumSize(QSize(161, 51))
-        self.mc_save_changes_btn.setFont(font3)
+        self.mc_save_changes_btn.setFont(font4)
         self.mc_save_changes_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mc_save_changes_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #1C5739;\n"
@@ -364,6 +383,7 @@ class Ui_EntityManagementCommunities(object):
         ___qtablewidgetitem7.setText(QCoreApplication.translate("EntityManagementCommunities", u"Remarks", None));
         ___qtablewidgetitem8 = self.communityInfo_table.verticalHeaderItem(0)
         ___qtablewidgetitem8.setText(QCoreApplication.translate("EntityManagementCommunities", u"1", None));
+        self.label_2.setText(QCoreApplication.translate("EntityManagementCommunities", u"Ctrl+D : Enable/Disable All", None))
         self.mc_cancel_changes_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Cancel", None))
         self.mc_save_changes_btn.setText(QCoreApplication.translate("EntityManagementCommunities", u"Save Changes", None))
     # retranslateUi

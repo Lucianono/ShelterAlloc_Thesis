@@ -31,20 +31,23 @@
 		wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{k=1}^{2}\sum_{j=1}^{N}C_{j}^{(k)}y_{j}^{(k)} 
 	\end{equation}
 	
-	The constraints of BNT model include the distance, capacity, assignment, and binary constraints, each of which plays a crucial role in ensuring the model functions effectively under the disaster response scenario:
+	The constraints of BNT model include the distance, capacity, assignment, and binary constraints, each of which plays a crucial role in ensuring the model functions effectively under the disaster response scenario. These constraints subject to the following: 
 	
-	Subject to
+	\textit{Distance Constraint.} Equation \ref{c1} ensures that each community is allocated to a shelter within a defined maximum distance. 
+	
 	\begin{equation} 	
 		\label{c1}
 		d_{ij}x_{ij} \le D_{i}, \forall i = 1,..., M,  \forall j = 1,..., N 
 	\end{equation}
-	\textit{Distance Constraint.} Equation \ref{c1} ensures that each community is allocated to a shelter within a defined maximum distance. 
+	
+	\textit{Capacity Constraint.} Equation \ref{c2} guarantees that the total number of evacuees assigned to a shelter does not exceed its maximum capacity. 
 	
 	\begin{equation} 
 		\label{c2}
 		\sum_{i=1}^{M}LP_{i}x_{ij} \le \sum_{k} Area_{j}^{(k)} y_{j}^{(k)}, \forall j = 1,..., N , k=1,2
 	\end{equation}
-	\textit{Capacity Constraint.} Equation \ref{c2} guarantees that the total number of evacuees assigned to a shelter does not exceed its maximum capacity. 
+	
+	\textit{Assignment Constraints.} Equations \ref{c3} and \ref{c4} ensures that the total assigned shelters and level 2 shelter does not exceeds over the user defined parameters respectively.  Equation \ref{c5} ensures that every community is assigned to exactly one shelter. Equation \ref{c6} ensures that the assigned shelter does not duplicate like being opened as level 1 and level 2 at the same time. This prevents problems in shelter allocation and ensures that each community has a designated place.
 	
 	\begin{equation} 
 		\label{c3}
@@ -62,15 +65,15 @@
 		\label{c6}
 		\sum_{k=1}^{N}y_{j}^{(k)} \le 1, \forall j=1,...,N
 	\end{equation}
-	\textit{Assignment Constraints.} Equations \ref{c3} and \ref{c4} ensures that the total assigned shelters and level 2 shelter does not exceeds over the user defined parameters respectively.  Equation \ref{c5} ensures that every community is assigned to exactly one shelter. Equation \ref{c6} ensures that the assigned shelter does not duplicate like being opened as level 1 and level 2 at the same time. This prevents problems in shelter allocation and ensures that each community has a designated place.
+	
+	\textit{Binary Constraint.} This constraint ensures that the model only takes binary variable, where can either be true (1) or false (0).
 	
 	\begin{equation}
 		\label{c7}
 	 	x_{ij}, y_{j}^{(1)},y_{j}^{(2)} \in \{0,1\}, \forall i=1,...,M,  \forall j=1,...,N
 	\end{equation}
-	\textit{Binary Constraint.} This constraint ensures that the model only takes binary variable, where can either be true (1) or false (0).
 	
-	Where:
+	\noindent Where:
 	\\$wt_{dist}$ – weight given to the distance cost.
 	\\$wt_{cost}$ – weight given to the fixed shelter cost.
 	\\$M$ – total number of communities.
@@ -152,7 +155,7 @@
 	
 	\begin{equation} 
 		\label{p3}
-		f_(new)(x)=f(x)+\gamma\sum_{i=1}^{n}(max\{g_i(x),0\})^2
+		f_{new}(x)=f(x)+\gamma\sum_{i=1}^{n}(max\{g_i(x),0\})^2
 	\end{equation}
 	
 	where $g_1(x),g_2(x),...g_n(x)$ are the constraints of the model of the form $g_i(x)\le0$, and $\gamma\in\mathbb{R}^+$ is sufficiently large, where for this thesis is set to $10^{20}$. The penalty would add up to the objective value for each constraints it violated, otherwise it would not affect the objective value.	
@@ -366,7 +369,7 @@
 	
 	All collected data will first be cleaned to remove any inconsistencies, duplicates, or irrelevant information. This process is crucial for ensuring the data’s quality and reliability, particularly for a system that relies on precision in both inputs and outputs. Any insufficient data will be asked on the LGU to fill in the gaps of the datasets. 
 	
-	Table \ref{dataSource} presents all the data variables on communities and shelters used in the model, along with their respective sources. Affected population were derived from the population of community which is based on the study of \textcite{Opdyke2024} that states 12\% of households intends to evacuate on public evacuation sites. Improvement or rehabilitation cost is added for costs, which are based on a report for improvement of an evacuation center from DILG that costs approximately ₱7,700 per square meter. Meanwhile, data for Level 2 shelters are simulated, as the LGU does not have a data nor system for the hierarchy of shelters. The areas are assumed to be twice their initial size, and costs are estimated based on the contract cost of the Frances Evacuation Center, as detailed in the DILG and DPWH reports, resulting in approximately ₱60,000 per square meter. 
+	Table \ref{dataSource} presents all the data variables on communities and shelters used in the model, along with their respective sources. Affected population were derived from the population of community which is based on the study of \textcite{Opdyke2024} that states 12\% of households intends to evacuate on public evacuation sites. Improvement or rehabilitation cost is added for costs, which are based on a report for improvement of an evacuation center from \textcite{DilgL1area2022} and \textcite{DilgL1cost2022} that costs approximately ₱7,700 per square meter. Meanwhile, data for Level 2 shelters are simulated, as the LGU does not have a data nor system for the hierarchy of shelters. The areas are assumed to be twice their initial size, and costs are estimated based on the contract cost of the Frances Evacuation Center, as detailed in the \textcite{DilgL22022} and \textcite{Dpwh2022} reports, resulting in approximately ₱60,000 per square meter. 
 	
 	\begin{table}[h]
 		\centering
@@ -391,10 +394,10 @@
 				Cost1 & Assumed 7,700 * Area1 & Cost for constructing/maintaining a shelter with Area1 \\ \hline
 				Area2 & Assumed Area1 * 2 & Lot area of a shelter (level 2) \\ \hline
 				Cost2 & Assumed 60,000 * Area1 & Cost for constructing/maintaining a shelter with Area2 \\ \hline
-				ResToFlood & LGU interview & Is the shelter resistant to flood? \\ \hline
-				ResToTyphoon & LGU interview & Is the shelter resistant to typhoon? \\ \hline
-				ResToEarthquake & LGU interview & Is the shelter resistant to earthquake? \\ \hline
-				Status & LGU interview & State of the physical structure of a shelter \\ \hline
+				ResToFlood & LGU interview & Resistance to flood indicator \\ \hline
+				ResToTyphoon & LGU interview & Resistance to typhoon indicator \\ \hline
+				ResToEarthquake & LGU interview & Resistance to earthquake indicator \\ \hline
+				Status & LGU interview & State of the physical structure of a shelter indicator \\ \hline
 				\multicolumn{3}{|c|}{\textit{\textbf{Distance between Community and Shelter}}} \\ \hline
 				distance & OpenStreetMap API & distance needed to travel by a community to a shelter  \\ \hline
 			\end{tabular}
@@ -501,7 +504,7 @@
 		\bar{x} = \frac{\sum_{i=1}^{n} x_{i}}{n}
 	\end{equation}
 	
-	Where:
+	\noindent Where:
 	\\$\bar{x}$ - sample mean
 	\\$n$ - sample size
 	\\$x_{i}$ - data points
@@ -530,7 +533,7 @@
 		S = \sqrt{\frac{\sum_{i=1}^{n} (x_{i} - \bar{x} )^2 }{n-1}}
 	\end{equation}
 	
-	Where:
+	\noindent Where:
 	\\$S$ - sample standard deviation
 	\\$\bar{x}$ - sample mean
 	\\$n$ - sample size

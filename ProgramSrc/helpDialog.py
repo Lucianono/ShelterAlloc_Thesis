@@ -197,7 +197,7 @@ class helpDialog(QDialog):
             <p><strong>That’s it!</strong> You're all set to use the Shelter Location Allocation System.</p>
         """
 
-        self.ui.textBrowser_8.setHtml(html_content6)
+        self.ui.textBrowser_8.setHtml(html_content8)
 
 
 

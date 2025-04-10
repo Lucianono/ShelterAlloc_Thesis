@@ -135,6 +135,7 @@ class helpDialog(QDialog):
 
         html_content8 = f"""
             <h1>Welcome to the Shelter Location Allocation System Tutorial!</h1>
+            <p><a href="https://youtu.be/BUyhHiJbwH4?si=16bq5MQWpAKgOIRr" style="color: blue; text-decoration: underline;">Youtube Tutorial</a></p>
             <p>Here’s a quick guide to get you started:</p>
 
             <h2>Launch the System</h2>
@@ -158,7 +159,7 @@ class helpDialog(QDialog):
             <h2>Import Communities</h2>
             <ul>
                 <li>Click on <strong>Advanced Settings</strong>.</li>
-                <li>Select <strong>Import Data</strong>.</li>
+                <li>Select <strong>Import</strong>.</li>
                 <li>Choose your Excel file containing community data.</li>
                 <li>Click <strong>Save Changes</strong> once done.</li>
             </ul>

@@ -289,6 +289,7 @@ class Ui_Dialog(object):
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.textBrowser = QTextBrowser(self.widget)
         self.textBrowser.setObjectName(u"textBrowser")
+        self.textBrowser.setOpenExternalLinks(True)
 
         self.verticalLayout_7.addWidget(self.textBrowser)
 
@@ -319,6 +320,7 @@ class Ui_Dialog(object):
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.textBrowser_2 = QTextBrowser(self.widget_2)
         self.textBrowser_2.setObjectName(u"textBrowser_2")
+        self.textBrowser_2.setOpenExternalLinks(True)
 
         self.verticalLayout_8.addWidget(self.textBrowser_2)
 
@@ -349,6 +351,7 @@ class Ui_Dialog(object):
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.textBrowser_3 = QTextBrowser(self.widget_3)
         self.textBrowser_3.setObjectName(u"textBrowser_3")
+        self.textBrowser_3.setOpenExternalLinks(True)
 
         self.verticalLayout_9.addWidget(self.textBrowser_3)
 
@@ -379,6 +382,7 @@ class Ui_Dialog(object):
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.textBrowser_4 = QTextBrowser(self.widget_4)
         self.textBrowser_4.setObjectName(u"textBrowser_4")
+        self.textBrowser_4.setOpenExternalLinks(True)
 
         self.verticalLayout_10.addWidget(self.textBrowser_4)
 
@@ -409,6 +413,7 @@ class Ui_Dialog(object):
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.textBrowser_5 = QTextBrowser(self.widget_5)
         self.textBrowser_5.setObjectName(u"textBrowser_5")
+        self.textBrowser_5.setOpenExternalLinks(True)
 
         self.verticalLayout_12.addWidget(self.textBrowser_5)
 
@@ -440,6 +445,7 @@ class Ui_Dialog(object):
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
         self.textBrowser_6 = QTextBrowser(self.widget_6)
         self.textBrowser_6.setObjectName(u"textBrowser_6")
+        self.textBrowser_6.setOpenExternalLinks(True)
 
         self.verticalLayout_14.addWidget(self.textBrowser_6)
 
@@ -471,6 +477,7 @@ class Ui_Dialog(object):
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
         self.textBrowser_8 = QTextBrowser(self.widget_7)
         self.textBrowser_8.setObjectName(u"textBrowser_8")
+        self.textBrowser_8.setOpenExternalLinks(True)
 
         self.verticalLayout_15.addWidget(self.textBrowser_8)
 
@@ -563,7 +570,7 @@ class Ui_Dialog(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
                         "font-family:'Open Sans,Arial,sans-serif'; font-size:8pt; color:#000000; background-color:#ffffff;\">&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&quot;</span></p></body></html>", None))
-        self.label_8.setText(QCoreApplication.translate("Dialog", u"Quick Start", None))
+        self.label_8.setText(QCoreApplication.translate("Dialog", u" Quick Start", None))
         self.textBrowser_8.setHtml(QCoreApplication.translate("Dialog", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

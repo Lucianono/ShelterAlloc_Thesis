@@ -1,0 +1,143 @@
+%%%%%%%%%%%%%%%%%%%-D O  N O T  D E L E T E-%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                            %%
+%%  BulSU BS Math Thesis Manuscript                           %%
+%%  LateX Template                                            %%
+%%  Version 4 (15 January 2025)                               %%
+%%                                                            %%
+%%  Load documentclass{bulsuthesis}                           %%
+%%  This template is for the use of BS Math students of       %%
+%%  the Collge of Sicence, Bulacan State University           %%
+%%  in typsetting their undergraduate thesis.                 %%
+%%                                                            %%
+%%  Original Author:                                          %%
+%%  Harris R. Dela Cruz                                       %%
+%%  Bulacan State University                                  %%
+%%  e-mail: harris.delacruz@bulsu.edu.ph                      %%
+%%                                                            %%
+%%  Permission: Any student of the University is hereby given %%
+%%  permission to use this template and the accompanying      %%
+%%  bulsuthesis.cls and thesis-structure.tex files provided   %%
+%%  the original author is given due acknwledgement.          %%
+%%                                                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%-D O  N O T  D E L E T E-%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[hidelinks,a4paper,12pt]{bulsuthesis}
+\input{thesis-structure}
+\graphicspath{{Figures/}}	%change graphic path folder
+\addbibresource{reference.bib} %filename of your .bib database
+%\geometry{showframe}
+
+%--------------------------------------------------------------%
+% THESIS BASIC INFORMATION
+%--------------------------------------------------------------%
+\title{Design and Implementation of a Shelter Location-Allocation System in Calumpit, Bulacan} %Type your thesis title here without any line break
+
+\fronttitle{%
+	Design and Implementation of a Shelter Location- 
+	\protect\\Allocation System in Calumpit, Bulacan
+} 
+%Type your thesis title as how it will appear [inverted triangle] in the title page
+%Use \protect\\ to force a new line in the title if the default is not an inverted triangle
+
+\author{%Name of the research proponents, in alphabetical order
+	Bryan Jett T. Calulo
+	
+	Lovely Angeline OL. Cunanan
+	
+	Elijah Iñigo C. Fabian
+}
+\authorone{Bryan Jett T. Calulo}  %<-Re-type individual names here
+\authortwo{Lovely Angeline OL. Cunanan}  %<-Re-type individual names here
+\authorthree{Elijah Iñigo C. Fabian}%<-Re-type individual names here
+
+\papertype{Thesis}  %papertype can be thesis proposal, thesis or dissertation
+\adviser{Dr. Valentine Blez L. Lampayan}	%<-full name of thesis adviser
+\advisersuffix{, PhD}		%if your adviser is a PhD, RN, etc. comment out if no suffix applicable
+\panelchair{Dr. Jayson Victoriano}	%<-full name of thesis panel-chair
+\paneltwo{Aarhus M. Dela Cruz}		%<-full name of thesis panel-member
+\panelthree{Arcel F. Galvez}		%<-full name of thesis panel-member
+\degree{Bachelor of Science in Mathematics} %<-student's course
+\specialization{Computer Science} %<-student's specialization
+\college{College of Science}	%<-student's college
+\csdean{THELMA V. PAGTALUNAN, PhD}%<-dean of the college
+\ddate{May 2025}			%<-Month Year of defense date
+
+
+\begin{document}
+	\emergencystretch 3em
+	\renewcommand{\contentsname}{TABLE OF CONTENTS}
+	\renewcommand{\listtablename}{LIST OF TABLES}
+	\renewcommand{\listfigurename}{LIST OF FIGURES}
+	\setlength{\cftbeforechapskip}{3pt}
+	
+	%--------------------------------------------------------------%
+	% FRONTMATTER
+	%--------------------------------------------------------------%
+	\doublespacing
+	\begin{preliminary}
+		\maketitle
+		\approvalsheet			%<-print the approval sheet
+		
+		 \input{acknowledgment} 	%<-print the acknowledgement page 
+		 \input{dedication}		%<-print the dedication page
+		 \input{abstract}			%<-print the abstract page
+		
+		\tableofcontents 		%<-print the ToC
+		\clearpage
+		
+		\listoftables			%<-print the list of tables page
+		\addcontentsline{toc}{chapter}{LIST OF TABLES}
+		\addtocontents{lot}{\noindent\makebox[0.75in][l]{\textbf{Table}}\makebox[\linewidth-0.75in]{\textbf{Title}\hfill\textbf{Page}}\par}
+		\newpage
+		
+		\listoffigures			%<-print the list of figures page
+		\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+		\addtocontents{lof}{\noindent\makebox[0.75in][l]{\textbf{Figure}}\makebox[\linewidth-0.75in]{\textbf{Title}\hfill\textbf{Page}}\par}
+		\newpage
+		
+		\setlength{\cftchapindent}{5ex}
+		\setlength{\cftchapnumwidth}{0.75in-2ex}
+		\setlength{\cftsecindent}{0.75in}
+		\renewcommand*{\cftchapfont}{\normalfont}
+		\renewcommand*{\cftchappagefont}{\normalfont}
+		\setlength{\cftbeforechapskip}{0pt}
+		
+		\listofappendix		%<-print the list of appendices page
+		\addcontentsline{toc}{chapter}{LIST OF APPENDICES}
+		\addtocontents{apc}{\noindent \textbf{Appendix}\hspace{1ex} \textbf{Title }\hfill\textbf{Page}\par}
+		\newpage
+	\end{preliminary}
+	
+	\addtocontents{toc}{\let\protect\contentsline\protect\nopagecontentsline}
+	\addcontentsline{toc}{chapter}{CHAPTER}
+	\addtocontents{toc}{\let\protect\contentsline\protect\oldcontentsline}
+	
+	
+	%--------------------------------------------------------------%
+	% MAINMATTER
+	%--------------------------------------------------------------%
+	%Compose the body of your thesis in separate .tex file
+	%Input them separately using the command \input{filename}
+	\input{chapter1}
+	\input{chapter2}
+	\input{chapter3}
+	\input{chapter4}
+	\input{chapter5}
+	
+	%--------------------------------------------------------------
+	% ENDMATTER of the Thesis
+	%--------------------------------------------------------------
+	%============%
+	% REFERENCES %
+	%============%
+	
+	\printbibliography[heading=bibintoc,title={REFERENCES}] %<-start the bibliography
+	\clearpage
+	
+	\input{appendix}
+	
+	\input{curriculumvitae}
+	
+\end{document}

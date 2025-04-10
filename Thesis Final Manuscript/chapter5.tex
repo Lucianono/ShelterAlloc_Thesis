@@ -1,0 +1,54 @@
+\chapter{Summary, Conclusion and Recommendations}
+	As the system was fully developed and the evaluation process was completed, this chapter presents a summary of the key findings obtained in the study. The conclusions were drawn based on the results of the system evaluation, and generated shelter location allocation. Furthermore, this chapter provides recommendations for future researchers and developers.
+
+\section{Summary of Findings}
+	As the Philippines ranks at the top of the World Risk Index as of 2024, and with Calumpit, Bulacan identified as highly vulnerable to typhoons and floods, researchers developed a system to assist LGUs in disaster response planning. The Shelter Location-Allocation System was created to find the optimal assignment of communities to shelters. It adopts the Bilevel No Transfer Model, which considers distance, cost, capacity, and the hierarchy of evacuation centers. Additionally, the model was solved using a genetic algorithm, which is also integrated into the system.
+	
+	With the help of the LGU of Calumpit, the necessary data for simulation was gathered and processed using the system. The following features are highlighted in the developed Shelter Location-Allocation System:
+	
+	\begin{enumerate}
+		\item Data Modification: Allows users to create, read, update, and delete input community and shelter data.
+		\item Model Modification: Allows users to update or edit model parameters for both the Bilevel No Transfer (BNT) model and genetic algorithm.
+		\item Data Simulation: Solves and generates optimal shelter location-allocation results based on given data and model parameters using genetic algorithm.
+		\item Shelter Tagging: Filters shelters based on their resistance and status data.
+		\item Report Protection: Secures and protects generated reports with password protection.
+	\end{enumerate}
+	
+	The system generated an optimal shelter location-allocation for the municipality of Calumpit after 200,000 generations with a time run of 73 minutes. Five shelters were opened to be used as an evacuation center: 
+	
+	\begin{enumerate}
+		\item Doña Damiana Elem School opened as level 1 accommodates barangay Calizon, Frances, Gatbuca, Meysulao, and San Miguel.
+		\item Mun. Covered Court opened as level 2 accommodates barangay Bulusan, Corazon, Panducot, Poblacion, Santa Lucia, and Sucol
+		\item NV9 Multi-Purpose opened as level 1 accommodates barangay Balungao, Meyto, San Jose, Santo Niño, and Sapang Bayan
+		\item San Marcos Elem. Sch. opened as level 1 accommodates barangay Caniogan, Palimbang, and San Marcos
+		\item San Marcos National H.S. opened as level 1 accommodates barangay Balite, Baguiomn, Calumpang, Gugo, Iba Este, Iba O`Este, Longos, Pio Cruzcosa, Pungo, and Sergio Bayan.
+	\end{enumerate}
+
+	The system was evaluated by 23 respondents from the MSWDO and MDRRMO of Calumpit, representing the intended end-users of the system to assess the acceptability of the system towards their job. Additionally, 5 IT experts were surveyed to assess the system’s functionality, usability, and overall quality. Based on their responses, the following findings were gathered:
+	
+	\begin{enumerate}
+		\item The end-user respondents overall strongly agreed that the system demonstrates a high level of acceptability based on the Technology Acceptance Model (TAM). The evaluation resulted in the following scores: perceived usefulness – 9.4, perceived ease of use – 9.47, attitude towards using – 9.48, and behavioral intention – 9.41. All criteria were interpreted as “Strongly Agree”, with low variability in responses.
+		\item IT Experts overall strongly agrees as well that the system demonstrates a high level of acceptability based on the ISO/IEC 25010. The evaluation resulted in the following scores: functional suitability – 9.8, performance efficiency – 9.67, compatibility – 9, interaction capability – 9.33, reliability – 9.6, security – 9.32, maintainability – 9.24, and flexibility – 9.5. All criteria were interpreted as “Strongly Agree”, with low variability in responses.
+		\item According to the comments and suggestions from the evaluation forms, IT experts praise the system's functionality, reliability, and interface, while suggesting improvements such as mobile app development, more elaborate data processing, model configurability and better data protection. Meanwhile, feedback from LGUs suggest the need for better lot identification and better accessibility and usability features.
+	\end{enumerate}
+
+\section{Conclusion}
+	Based on the aforementioned summaries, the following conclusions can be derived:
+
+	\begin{enumerate}
+		\item The Shelter Location-Allocation System was designed and implemented for the Municipality of Calumpit, Bulacan, to assist decision-makers in optimally assigning and selecting shelters as evacuation centers for communities. The system was developed as a desktop app using Python programming language with the Qt framework, integrating the BNT model and genetic algorithm for optimization computations. It features comprehensive functionalities such as Data Modification, Model Modification, Data Simulation, Shelter Tagging, and Report Protection, all contributing to an effective and quality decision support system for disaster response planning.
+		\item The generated shelter location-allocation for Calumpit opens only five shelters, with one required to be a level 2 shelter. This suggests that upgrading an existing shelter is more optimal than opening an additional one. It also indicates that other built shelters may remain closed to minimize maintenance costs. Additionally, no empty lots were selected, which may imply that constructing a new shelter is not yet necessary. However, it is important to note that actual affected population and cost considerations may differ based on the decision maker's assessments. The system allows users to adjust data and model parameters as needed.
+		\item The system got high scores in system evaluation from end-users ranging from 9.4 to 9.48, which is interpreted as “Highly Acceptable”. This suggests that they are likely to adopt and use the system to support their work in disaster response planning.
+		\item The system got high scores in system evaluation from end-users ranging from 9 to 9.8, which is interpreted as “Highly Acceptable”. This suggests that the system developed met the international standards for a software product.
+	\end{enumerate}
+
+\section{Recommendations}
+	Several areas for improvement have been identified to further enhance and expand this study, providing valuable insights for future researchers and developers. Implementing the following recommendations can refine the study’s methodology, improve the system’s effectiveness, and ensure its adaptability to evolving disaster response needs:
+	
+	\begin{enumerate}
+		\item To improve the efficiency of shelter planning, the addition of other shelter location-allocation models may also be explored. Alongside with the BNT model, the Single-level with Workplace Distance Inclusion Model (WORK) can help optimize shelter placement by considering the proximity of workplaces. Additionally, using the Bilevel Non-Sequential Transfer Model (BNST) and Bilevel Sequential Transfer Model (BST) can show other insight and allow for comparisons between different shelter location models.
+		\item Enhancing data accuracy is important for an effective and efficient disaster response and shelter allocation. The addition of an integrated real-time data collection, geographic information system (GIS), and census based projections to improve the accuracy of population estimates. Additionally, incorporating historical disaster data and demographic trends can improve the shelter and resource allocation.
+		\item The system’s effectiveness may be tested in different provinces and municipalities to evaluate its effectiveness in varying geographic and demographic conditions. Conducting pilot studies in other high risk disaster areas can provide valuable insights into necessary adjustments. Furthermore the integration of local government disaster plans and policies can help enhance the future systems.
+		\item An optimized way to function seamlessly across different devices such as desktops, tablets, and mobile phones as well as expanding support to other operating systems like macOS and Linux would enhance accessibility.
+	\end{enumerate}
+	

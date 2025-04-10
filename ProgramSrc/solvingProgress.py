@@ -59,6 +59,7 @@ class SolvingProgress(QDialog):
             self.model.cancel()  
             self.model_thread.quit()
             self.model_thread.wait()
+            self.model_thread.deleteLater()
         self.on_finished()
 
     def on_finished_pathfinding(self):

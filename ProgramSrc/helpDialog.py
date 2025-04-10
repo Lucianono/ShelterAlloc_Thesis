@@ -16,6 +16,7 @@ class helpDialog(QDialog):
         self.setWindowTitle("Help")
         self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
 
+        self.ui.pushButton_11.clicked.connect(self.open_QuickStart)
         self.ui.pushButton_10.clicked.connect(self.open_Dashboardhelp)
         self.ui.pushButton_9.clicked.connect(self.open_commSettingshelp)
         self.ui.pushButton_8.clicked.connect(self.open_shelSettingshelp)
@@ -122,11 +123,82 @@ class helpDialog(QDialog):
                     <p>
                         <strong>Bryan Jett T. Calulo, Lovely Angeline OL. Cunanan, and Elijah Inigo C. Fabian</strong>
                     </p>
+                    <p>
+                        View our project on Github:
+                        <a href="https://github.com/Lucianono/ShelterAlloc_Thesis" style="color: blue; text-decoration: underline;">GitHub</a>
+                    </p>
                 </body>
             </html>
         """
 
         self.ui.textBrowser_6.setHtml(html_content6)
+
+        html_content8 = f"""
+            <h1>Welcome to the Shelter Location Allocation System Tutorial!</h1>
+            <p><a href="https://youtu.be/BUyhHiJbwH4?si=16bq5MQWpAKgOIRr" style="color: blue; text-decoration: underline;">Youtube Tutorial</a></p>
+            <p>Here’s a quick guide to get you started:</p>
+
+            <h2>Launch the System</h2>
+            <ul>
+                <li>Once the app is downloaded, launch it by double-clicking it.</li>
+                <li>Ensure your internet connection is active.</li>
+            </ul>
+
+            <h2>Disable Antivirus (if needed)</h2>
+            <ul>
+                <li>If your computer detects the system as a virus, temporarily disable your antivirus to avoid any interruptions.</li>
+            </ul>
+
+            <h2>Dashboard Overview</h2>
+            <ul>
+                <li>Upon opening the system, you'll be greeted with the dashboard of the app.</li>
+                <li>On the left side, you'll see options for your communities and shelters.</li>
+                <li>Since there are no data yet, we will import them.</li>
+            </ul>
+
+            <h2>Import Communities</h2>
+            <ul>
+                <li>Click on <strong>Advanced Settings</strong>.</li>
+                <li>Select <strong>Import</strong>.</li>
+                <li>Choose your Excel file containing community data.</li>
+                <li>Click <strong>Save Changes</strong> once done.</li>
+            </ul>
+
+            <h2>Import Shelters</h2>
+            <ul>
+                <li>Follow the same steps to import your shelter data by going to <strong>Shelter Settings</strong>.</li>
+                <li>You may also directly add communities and shelters by clicking the <strong>Add</strong> buttons.</li>
+            </ul>
+
+            <h2>Generate Optimal Shelter Location Allocation</h2>
+            <ul>
+                <li>Click on <strong>Generate</strong>.</li>
+                <li>Select which shelters to use for the allocation process.</li>
+                <li>Adjust the model settings as needed.</li>
+            </ul>
+
+            <h2>Configure Parameters</h2>
+            <ul>
+                <li>After configuring the settings to your preferences, click <strong>Solve</strong> to initiate the simulation.</li>
+            </ul>
+
+            <h2>Wait for the Simulation to Finish</h2>
+            <ul>
+                <li>The system will calculate the optimal shelter allocation.</li>
+                <li>Once finished, a report dialog will pop up.</li>
+            </ul>
+
+            <h2>View and Save the Report</h2>
+            <ul>
+                <li>You can save the report for later use.</li>
+                <li>You can also set a password to protect it.</li>
+                <li><strong>Optional:</strong> If you think your communities need more resources (e.g. capacity and distance), modify the settings and retry.</li>
+            </ul>
+
+            <p><strong>That’s it!</strong> You're all set to use the Shelter Location Allocation System.</p>
+        """
+
+        self.ui.textBrowser_8.setHtml(html_content8)
 
 
 
@@ -153,5 +225,9 @@ class helpDialog(QDialog):
     def open_AboutUshelp(self):
         self.ui.stackedWidget.show()
         self.ui.stackedWidget.setCurrentIndex(5)
+
+    def open_QuickStart(self):
+        self.ui.stackedWidget.show()
+        self.ui.stackedWidget.setCurrentIndex(6)
 
         

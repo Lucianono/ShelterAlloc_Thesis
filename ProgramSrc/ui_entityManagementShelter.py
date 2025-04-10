@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'entityManagementShelter.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -244,9 +244,9 @@ class Ui_entityManagementShelter(object):
 "")
         self.shelterInfo_table.setFrameShadow(QFrame.Raised)
         self.shelterInfo_table.horizontalHeader().setMinimumSectionSize(100)
-        self.shelterInfo_table.horizontalHeader().setProperty(u"showSortIndicator", False)
+        self.shelterInfo_table.horizontalHeader().setProperty("showSortIndicator", False)
         self.shelterInfo_table.horizontalHeader().setStretchLastSection(True)
-        self.shelterInfo_table.verticalHeader().setProperty(u"showSortIndicator", False)
+        self.shelterInfo_table.verticalHeader().setProperty("showSortIndicator", False)
 
         self.horizontalLayout_2.addWidget(self.shelterInfo_table)
 
@@ -264,6 +264,25 @@ class Ui_entityManagementShelter(object):
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_3)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.label_2 = QLabel(self.frame_3)
+        self.label_2.setObjectName(u"label_2")
+        font3 = QFont()
+        font3.setBold(True)
+        font3.setItalic(True)
+        font3.setKerning(True)
+        self.label_2.setFont(font3)
+
+        self.verticalLayout_2.addWidget(self.label_2)
+
+        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer)
+
+
+        self.horizontalLayout_3.addLayout(self.verticalLayout_2)
+
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_2)
@@ -272,10 +291,10 @@ class Ui_entityManagementShelter(object):
         self.ms_cancel_btn.setObjectName(u"ms_cancel_btn")
         self.ms_cancel_btn.setMinimumSize(QSize(161, 51))
         self.ms_cancel_btn.setMaximumSize(QSize(161, 51))
-        font3 = QFont()
-        font3.setPointSize(12)
-        font3.setBold(True)
-        self.ms_cancel_btn.setFont(font3)
+        font4 = QFont()
+        font4.setPointSize(12)
+        font4.setBold(True)
+        self.ms_cancel_btn.setFont(font4)
         self.ms_cancel_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.ms_cancel_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #fff;\n"
@@ -300,7 +319,7 @@ class Ui_entityManagementShelter(object):
         self.ms_save_changes_btn.setObjectName(u"ms_save_changes_btn")
         self.ms_save_changes_btn.setMinimumSize(QSize(161, 51))
         self.ms_save_changes_btn.setMaximumSize(QSize(161, 51))
-        self.ms_save_changes_btn.setFont(font3)
+        self.ms_save_changes_btn.setFont(font4)
         self.ms_save_changes_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.ms_save_changes_btn.setStyleSheet(u"QPushButton {\n"
 "    background-color: #1C5739;\n"
@@ -373,6 +392,7 @@ class Ui_entityManagementShelter(object):
         ___qtablewidgetitem11.setText(QCoreApplication.translate("entityManagementShelter", u"Actions", None));
         ___qtablewidgetitem12 = self.shelterInfo_table.verticalHeaderItem(0)
         ___qtablewidgetitem12.setText(QCoreApplication.translate("entityManagementShelter", u"1", None));
+        self.label_2.setText(QCoreApplication.translate("entityManagementShelter", u"Ctrl+D : Enable/Disable All", None))
         self.ms_cancel_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Cancel", None))
         self.ms_save_changes_btn.setText(QCoreApplication.translate("entityManagementShelter", u"Save Changes", None))
     # retranslateUi

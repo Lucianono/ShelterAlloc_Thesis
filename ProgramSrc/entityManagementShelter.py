@@ -18,7 +18,11 @@ class EntityManagementShelter(QDialog):
         self.setModal(True)
         self.setWindowTitle("Entity Management Shelter")
         self.save_dir = os.path.join(os.path.expanduser("~"), "Documents", "SLASystem")
-        self.setWindowIcon(QIcon(os.path.join(sys._MEIPASS, "ICONS", "logo.png")))
+        try:
+            icon_path = os.path.join(sys._MEIPASS, "ICONS", "logo.png")
+        except AttributeError:
+            icon_path = os.path.join(os.path.dirname(__file__), "ICONS", "logo.png")
+        self.setWindowIcon(QIcon(icon_path))
         self.setAttribute(Qt.WA_DeleteOnClose)
 
 
@@ -61,9 +65,10 @@ class EntityManagementShelter(QDialog):
             super().keyPressEvent(event)
 
     def load_from_excel(self, table_widget, file_name, dummy_data):
-        if file_name and os.path.exists( os.path.join(self.save_dir, file_name) ):
+        file_path = os.path.join(self.save_dir, file_name)
+        if os.path.exists(file_path):
             try:
-                data = pd.read_excel( os.path.join(self.save_dir, file_name) ).fillna("")
+                data = pd.read_excel(os.path.join(self.save_dir, file_name)).fillna("")
                 self.populate_table(table_widget, data)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to load file: {e}")
@@ -89,7 +94,7 @@ class EntityManagementShelter(QDialog):
                     value = value.strip()
 
                 if (pd.isnull(value) or value == '') and column != "Remarks":
-                    raise ValueError(f"No data found in column '{column}' at row {idx + 1}. Expected a value.")
+                    raise ValueError(f"No data found in column '{column}' at row {idx + 1}. Please provide a value.")
                 
                 if column == "Status" and value not in {"Built", "Partially Built", "Damaged", "Empty Lot"}:
                     raise ValueError(f"Invalid value in column 'Status' at row {idx + 1}. Expected one of: Built, Partially Built, Damaged, Empty Lot.")
@@ -97,17 +102,17 @@ class EntityManagementShelter(QDialog):
                 # Check if the value is of the expected type
                 if expected_type == str:
                     if not isinstance(value, str):
-                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a string.")
+                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. This should be text.")
                 elif expected_type == float:
                     try:
                         float(value)  # Try converting to float
                     except ValueError:
-                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a float.")
+                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. This should be a number with decimals.")
                 elif expected_type == int:
                     try:
                         int(value)  # Try converting to int
                     except ValueError:
-                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected an integer.")
+                        raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. This should be a number.")
                 elif expected_type == bool:
                     if not isinstance(value, bool):
                         # Optionally, you could also allow values like 0/1 to be cast to bool:
@@ -116,7 +121,7 @@ class EntityManagementShelter(QDialog):
                         elif str(value) in {"0", "1"}:
                             value = bool(int(value))
                         else:
-                            raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. Expected a boolean.")
+                            raise ValueError(f"Invalid data type in column '{column}' at row {idx + 1}. This should be true or false.")
 
         # check if area2 >= area1
         for shelter in data.itertuples():
@@ -162,9 +167,14 @@ class EntityManagementShelter(QDialog):
         headers = ['Active'] + required_headers
 
         for row in range(table_widget.rowCount()):
-            active_switch = table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked()
+            switch_button = table_widget.cellWidget(row, 0)
+            if switch_button:
+                active_switch = switch_button.findChild(QPushButton)
+                is_active = active_switch.isChecked() if active_switch else False
+            else:
+                is_active = False
             row_data = [table_widget.item(row, col).text().strip() if table_widget.item(row, col) else "" for col in range(1, table_widget.columnCount() - 1)]
-            row_data = [active_switch] + row_data
+            row_data = [is_active] + row_data
             data.append(row_data)
 
         if data:
@@ -338,8 +348,11 @@ class EntityManagementShelter(QDialog):
                 delete_btn.clicked.connect(partial(self.delete_row, table_widget, row))
 
     def toggle_all_switches(self, table_widget):
+        if table_widget.rowCount() == 0:
+            return
+        
         state = table_widget.cellWidget(0, 0).findChild(QPushButton).isChecked()
-
+        
         for row in range(table_widget.rowCount()):
             if state is table_widget.cellWidget(row, 0).findChild(QPushButton).isChecked(): 
                 table_widget.cellWidget(row, 0).findChild(QPushButton).click()

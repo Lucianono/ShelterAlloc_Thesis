@@ -433,7 +433,7 @@ QStackedWidget{
          <widget class="QPlainTextEdit" name="textEdit_maxL2Shelters"/>
         </item>
         <item row="1" column="2">
-         <widget class="QPlainTextEdit" name="textEdit_areaPerIdniv"/>
+         <widget class="QPlainTextEdit" name="textEdit_areaPerIndiv"/>
         </item>
        </layout>
       </item>

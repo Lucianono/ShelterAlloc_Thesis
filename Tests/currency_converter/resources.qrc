@@ -1,0 +1,12 @@
+<RCC>
+  <qresource>
+    <file>Flags/US-Flag.png</file>
+    <file>Flags/CA-Flag.png</file>
+    <file>Flags/PH-Flag.png</file>
+    <file>Flags/UK-Flag.png</file>
+  </qresource>
+  <qresource>
+    <file>Arrows/arrow.png</file>
+    <file>Arrows/arrows.png</file>
+  </qresource>
+</RCC>

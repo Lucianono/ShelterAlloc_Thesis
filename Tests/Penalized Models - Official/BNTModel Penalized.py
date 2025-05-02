@@ -1,6 +1,6 @@
 # the official function for Bilevel No Transfer model
 
-from Official_Calumpit_Data import Community,Shelters
+from Calumpit_Data import Community,Shelters
 import random
 import numpy as np
 import copy

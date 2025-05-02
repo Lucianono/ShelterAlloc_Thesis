@@ -1,6 +1,6 @@
 # the official function for Bilevel Sequential Transfer model
 
-from Talisay_Data import Community,Shelters
+from Calumpit_Data import Community,Shelters
 import random
 import copy
 import numpy as np

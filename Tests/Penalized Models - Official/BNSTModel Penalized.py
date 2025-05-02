@@ -6,8 +6,8 @@ import copy
 import numpy as np
 import time
 
-# TEMPORARY DUMMY DATA
-# should be replaced with dynamic data from system
+# =======================
+# MODEL PARAMETERS
 # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
 area_per_individual = 1
 max_lvl2_shelters = 10

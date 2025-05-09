@@ -1,0 +1,386 @@
+\documentclass[12pt,a4paper,]{article}
+
+\title{Design and Implementation of a Shelter Location-Allocation System in Calumpit, Bulacan}
+\author{Calulo, Bryan Jett T., Cunanan, Lovely Angeline OL., Fabian, Elijah Inigo C.,}
+\def\adviser{Lampayan, Valentine Blez L.}
+\def\journalname{Undergraduate Research Journal for Mathematics}
+
+
+\input{imrad-setup}
+\addbibresource{reference.bib} %filename of your .bib database
+\graphicspath{{Figures/}}	%change graphic path folder
+\usepackage{lipsum} %for dummy text
+
+\begin{document}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+	\maketitle
+	\begin{abstract}
+		The Philippines, being highly vulnerable to disasters such as typhoons and floods, ranks first in the World Risk Index. Among the municipalities of Bulacan, Calumpit is particularly prone to severe flooding. Furthermore, the current evacuation system faces challenges such as overcrowding and inefficient resource use. While mathematical models can optimize shelter allocation, they are often inaccessible to decision-makers without mathematical expertise. To address this, a data-driven decision support system was developed. Shelter Location-Allocation System identifies suitable shelters and assigns communities in an optimal manner. The system integrates the Bilevel No Transfer (BNT) model, considering distance, cost, capacity, and shelter hierarchy, and applies a genetic algorithm to determine the best allocation strategy. All parameters and data are fully customizable, allowing decision-makers to tailor the system to their needs. The system was evaluated by end-users and IT experts, receiving high acceptability scores, with mean ratings greater than 9.0 across all criteria. These results indicate the system’s quality in supporting data-driven disaster response planning, offering a scalable solution for improving evacuation strategies in flood-prone areas.
+		
+		\vspace{11pt}
+		\noindent Key Words: \normalfont Shelter Optimization, Disaster Planning, Location Allocation
+	\end{abstract}
+	\vspace{22pt}
+\end{@twocolumnfalse}
+]
+
+\section{Introduction}
+	The Philippines experiences typhoons, earthquakes, and volcanic eruptions each year, leaving people vulnerable and displaced as the country is situated within the Pacific Ring of Fire and directly in the path of the typhoon belt in the Pacific Ocean. For instance, typhoon Haiyan, better known as Super Typhoon Yolanda devastated the nation in 2013 and displaced over 4 million people, exposing severe shortcomings in the Philippine shelter allocation systems \parencite{Iuchi2019}, highlighting the urgent need for efficient and responsive disaster management strategies. Despite ongoing efforts, the country continues to face significant challenges in shelter allocation, such as overcrowding, resource distribution inefficiency, and poor accessibility.
+	Overcrowding remains a persistent issue, with many shelters operating beyond intended capacity. Accessibility problems further worsen the situation, as shelters are often located at distances difficult for affected individuals, particularly those in rural or remote areas, to reach due to poor infrastructure. Compounding these issues such as disaster preparedness teams not using data-driven decision-making increases the likelihood of making incorrect decisions, highlighting the data and planning gaps that hinder effective decision making and timely shelter assignments. This emphasizes the need to develop innovative approaches to improve shelter allocation in disaster preparedness.
+	The concept of shelter allocation has been a critical aspect of disaster management throughout history, when communities would seek refuge in caves or fortified structures during emergencies. After World War II, air raid shelters established in urban areas evolved in response to natural disasters, and humanitarian efforts developed temporary shelters for displaced populations.
+	Shelter allocation refers to the process of assigning displaced communities to available shelters during disasters \parencite{Yin2023}. While shelter location-allocation focuses on determining locations where shelters would be constructed, to then be used for the displaced population \parencite{Xiujuan2019}. These processes are crucial to disaster prevention and mitigation, ensuring the safety and well-being of affected populations by providing secure accessible, and adequate temporary shelters. Effective shelter allocation involves considerations such as shelter capacity, proximity to disaster sites, and the specific needs of vulnerable communities.
+	This study proposes a data-driven solution ensuring an effective and feasible implementation of shelter allocation. This would be by developing a decision support system using a genetic algorithm (GA), to address the inefficiencies in shelter allocation. GA optimizes solutions by mimicking the process of evolution such as selection, crossover, and mutation, to identify an optimal outcome. In shelter allocation, GA can optimize the assignment process by simultaneously considering factors such as shelter capacity, location, and accessibility. This approach aims to minimize overcrowding, improve resource distribution, and enhance overall efficiency in managing shelters during disasters.
+	Given the Philippines’ frequent exposure to natural disasters, implementation of a shelter allocation system is essential. Calumpit, Bulacan was chosen for its high vulnerability to flooding since it has been a catch basin for neighboring areas. Despite the multitude of studies formulating models to address the shelter location-allocation problem, there remains a clear lack of system integration. This gap makes it difficult for decision-makers, particularly those unfamiliar with the mathematical models proposed in several studies, to apply them effectively in their decisions. This study is dedicated to the development of a programmed system that uses genetic algorithm to address the challenges experienced in the Philippines, focusing on Calumpit, Bulacan. The proposed shelter location-allocation system has the potential to significantly improve disaster response efficiency and enhance safety for displaced individuals. The insights from this study may be applied to other municipalities facing similar challenges, contributing to the national effort to strengthen disaster resilience.
+	This thesis’s objective is to create a shelter allocation system using Genetic Algorithm and the Bilevel No Transfer model to create an optimal strategy for evacuation in Calumpit. Data was gathered from Calumpit’s LGU to create an accurate representation of the municipality.
+
+\section{Methodology}
+	The research design for this study is mixed method applied research, this approach combines both quantitative and qualitative methods to provide a structured framework for development and evaluation of the shelter location allocation system
+	The applied research aspect of the study aims to deliver a functional and reliable shelter location-allocation system that disaster response agencies can easily deploy and adapt. The quantitative research of this study aims to measure and analyze the acceptability of the proposed system using TAM determinants and the ISO/IEC 25010 standard. The qualitative research of this study is to understand the current issues of shelter location-allocation from the stakeholders’ perspectives.
+	The study adopted a model called the Bilevel No-Transfer (BNT) model, which solves the shelter location-allocation problem under disaster scenarios. Discussed in a published paper by Manongas (n.d), the model is effective when assigning communities to shelters without allowing transfers between different shelter levels during recovery. Once assigned to a shelter in the BNT model, evacuees remain in that shelter until the disaster subsides, eliminating the need for transfers between shelters. The objective function for the BNT model can be expressed as follows:
+	MUCH MODEL WOW AMAZING
+	The constraints of the model include the distance, capacity, assignment, and binary constraints, each playing a role in ensuring the model functions effectively under the disaster response scenario. 
+	In a study created by \textcite{Mathew2012}, Genetic Algorithms are based on the concept of natural selection and evolves possible solutions through selection, crossover, and mutation. The algorithm iteratively evolved a population of potential solutions, gradually converging toward an optimal solution.
+	The BNT model was solved using Integer-based Genetic Algorithm implemented in Python. This decision satisfies the assignment constraint of the model, and with Python being a well suited programming language for both data simulation and system development.
+	The study employed a structured system development methodology following the Agile approach, chosen for its flexibility and iterative nature, allowing for continuous refinement and adaptation of the system based on feedback and results. Development includes regular reviews and adjustments to ensure the system evolves effectively to meet technical and user needs.
+	The researchers followed the Agile approach in several phases. Firstly, during the requirement analysis phase, researchers gathered comprehensive information about the system requirements by reviewing relevant literature that pertains to the thesis. Moreover, an interview with the client was conducted to find out more about the current issues LGUs are facing regarding evacuation. This phase ensures that all necessary features are identifed and prioritized based on their importance.
+	The system's primary features and requirements encompass an overview of data and model modification, data simulation, shelter tagging, and report protection. Data modification includes access to users for managing and modifying community and shelter data. Model modification allows users to change parameters on data simulation. Data simulation utilizes the community and shelter data as inputs for the genetic algorithm applied in the shelter location allocation system, optimizing the placement of evacuees in shelters. Furthermore, shelter tagging enables the categorization of shelters based on criteria such as location, capacity, and suitability for various disaster scenarios, thereby facilitating efficient resource allocation. Lastly, report protection allows users to protect their generated report to prevent leaks in the computer system. During the design phase, the researchers created a detailed outline for the system’s architecture and key components, including creating a mockup of the system’s user interface and constructing flowcharts and diagrams to map out system processes and data relationships.
+	The system architecture involves the interaction of two actors, the user of the system and disaster management team. The community and shelter data will be fed into a system which features data manipulation and shelter tagging. With the cleaned and finished data, data simulations may begin together with the model parameters specified by the users. Lastly, a report will be generated and can be password-protected. The report will be used by the disaster management team as guidance for decision making in allocation of residents to the correct shelter.
+	The system contains 4 entities, Community, Shelter, Distance, and ModelParameters. Distances are derived from the locations of Shelter and Community, then saved accordingly to be used in performing the system’s model. ModelParameters saves the current settings for the model and algorithm.
+	The User Interface (UI) was designed using the prototyping tool, Figma.
+	The development phase includes the coding and implementing of the genetic algorithm for the shelter location allocation system. Utilizing the Agile system development life cycle, which included weekly meetings and development reviews, ensuring the team’s development remains on track and that any issues were promptly addressed. By following the Agile SDLC, the researchers have adapted quickly to any changes in requirements, maintained clear communication, and addressed any issues promptly.
+	The system was developed using the Python programming language, and Qt framework to efficiently implement the graphical user interface (GUI) of the system. Visual Studio Code was utilized as the integrated development environment (IDE), and QtDesigner as an extension for creating frontend designs through the Qt framework.
+	Developing the system using Python allows the use of Python libraries. These include PySide6 which is responsible for the GUI that uses the Qt framework, Pandas and openpyxl for handling data, Folium, OSMnx, network, and scikit-learn for displaying and calculating the map shown in the system. Lastly, numpy is used for executing the genetic algorithm itself.
+	The system underwent functionality, performance, and reliability testing during the testing phase. The researchers employed manual testing techniques to identify and resolve any bugs or issues that arose. Through this testing and debugging approach, the researchers ensured that the shelter location allocation system meets high quality, performance, and user satisfaction standards, readying it for deployment.
+	The shelter location-allocation system underwent pilot testing in collaboration with local government units. This process involved configuring the system, establishing the necessary data inputs, and training users to utilize the platform effectively. Additionally, the deployment phase is to continuously monitor the system’s performance to ensure it operates efficiently and meets the objective of optimizing shelter locations. Presentation of the application to potential users include a walk-through tutorial covering all essential features. The users were provided with the information necessary to operate the program effectively.
+	The system was evaluated by preparing and distributing survey questions based on the TAM and ISO/IEC 25010 to target samples. This ensured that the developed system acquires feedback from potential users as well as from experts in software engineering and development.
+	After the updates and adjustments to the application based on feedback to better align with users’ needs, the new version of the application has been emailed to the LGU of Calumpit for operational use. This ensured that they have access to the latest features and improvements.
+	Developing the system required careful planning and analysis before implementing it. The system preliminaries phase aimed to establish a foundational understanding of current disaster-response processes, along with gathering essential data for the system. Interviews were conducted with representatives from local government units specifically from the target population (Calumpit) to understand their existing shelter allocation process, challenges, and expectations for a decision support system.
+	The target population of this study consists of end-users and IT experts. For end-users, the MDRRMO and MSWDO of the municipality of Calumpit, meanwhile for IT experts include CICT professors from Bulacan State University, as well as those in careers related to developing a system. The diversity of perspective of these are important for the evaluation of the system’s acceptability.
+	
+\section{Results}
+	This chapter details the functions of the developed system, including its user interface design. Moreover, the system answers the optimal shelter location-allocation for Calumpit. It also presents the evaluation results gathered from the LGU and IT experts, assessing the system’s acceptability and alignment with local needs.
+	The Developed System
+	The researchers and developers of this thesis developed a decision support system to optimize shelter location allocation since there was a lack of system development. Identifying the most optimal shelter facility for a community is the system's main function. Specifically, it has five key features that let users completely modify the input parameters, and output processing.
+	Data Modification
+	The process of creating, updating, or deleting data within the system to maintain accuracy and relevance. This ensures that all records are up-to-date and properly managed so they can effectively be used for shelter allocation.
+	The dashboard provides an overview of a list of shelters and communities as shown in figure \ref{db}. It also displays a map where shelters and communities are pinned. Users can see whether a shelter is active or inactive. Additionally, the user can manipulate the map to filter and display only active shelter as well as shelters that are built, partially built, damaged, empty lot, and resistance to flood, typhoon, and earthquakes.
+	The Community management module manages the recorded details of barangays as shown in figure \ref{commMan}. It displays whether a barangay is active or inactive, along with its latitude, longitude, population, affected population, maximum distance, remarks, and a delete button. Users can also add new communities, download a template to ensure correct formatting when importing data, and manage barangay-related information efficiently.
+	The shelter management module, as shown in figure \ref{shelMan}, is similar to community management but includes different data fields. It contains information such as the shelter’s name, latitude, longitude, and classification as a Level 1 or Level 2 shelter. The module also tracks the cost of construction and maintenance for each level. Additionally, it indicates whether the shelter is resistant to floods, typhoons, and earthquakes. Users can also view the shelter’s status – whether it is built, partially built, damaged, or an empty lot.
+	\subsection{Model Modification}
+	This concerns the parameters to be used in the model that may be modified for a more ideal setup depending on the preferences of the user. The parameters that may be changed here include the area per individual based on meters squared, the max number of level 2 shelters and shelters in general, the weights for both distance and cost, the number of generations, the number of populations in a generation, and the mutation rate. Measures are put in place to prevent entering of wrong values in these parameters such as letters or negative numbers.
+	Data Simulation
+	This pertains to solving the model by running the Genetic Algorithm, which determines the most optimal shelter location allocation. As the core functionality of the system, it processes input data of communities and shelters, applies defined model parameters, then generates and displays the best allocation of the municipality.
+	These factors impact the time taken to simulate data as well as the efficiency of the simulation, it is recommended to keep the parameters at default values unless the user is knowledgeable about the model or the system. These parameters are modified in the Model Parameter Settings module as shown in figure \ref{modelSet}, which may be accessed from the Solve Settings module by clicking Advanced Settings below Model.
+	After the solving process is completed, report dialog appears displaying the final allocation results as shown in figure \ref{shelAllocRep}. It shows which communities are assigned to shelters, and displays the paths they can take on a map. This helps users analyze the feasibility and efficiency of the allocation.
+	The Genetic Algorithm is implemented from scratch using Python, ensuring full control over its functionality and optimization process. The main functions in the code include fitness calculation, constraint enforcement, and the implementation of selection, mutation, and crossover.
+	Appendix \ref{objValCode} details the fitness calculation, which represents the model's objective value. The first loop calculates the total distance, while the second loop determines the cost based on the level of the opened shelters.
+	Appendices \ref{maxdistCode}, \ref{capCode}, \ref{maxshelCode}, and \ref{maxl2shelCode} implement the constraint functions, adding penalties to the objective value when violated. These constraints include maximum distance constraint, initial capacity constraint, maximum number of level 2 shelters that can be constructed/allocated, maximum number of shelters that can be constructed/allocated. Since the implemented Genetic Algorithm operates on integers, the constraints ensuring that each community is assigned only one shelter and one level are already satisfied.
+	\subsection{Shelter Tagging}
+	This concerns the classification of shelters based on both structural resilience and current condition, ensuring shelters are appropriately assigned to communities based on availability, cost, and risk levels. Shelters are categorized in both resistance capabilities and status; resistance capabilities include flood-resistant, typhoon-resistant, and earthquake-resistant, and are not mutually exclusive to one another, for example, a shelter can be both flood and typhoon resistant. In terms of status, shelters can be built, partially built, damaged, and empty lots, each with varying costs depending on maintenance and construction.
+	Selecting shelters with specific resistances and statuses in mind is done in the Solve Settings module as shown in figure \ref{solveSet}, where selecting or deselecting a specific resistance will remove shelters that do not meet the criteria from the data simulation. This ensures users will not assign communities to shelters that are not suited to the situation. Users may also check the status and resistances of a specific shelter in either the dashboard module by selecting a shelter, or in the shelter advanced settings, displaying all shelters’ statuses.
+	\subsection{Report Protection}
+	To maintain confidentiality and prevent the unauthorized modification of reports, a security mechanism has been implemented in the system. This module includes password authentication, report encryption and identification of the creator of a report based on device-specific attributes.
+	Upon finishing data simulation, the generated report may be saved in an excel format, and gives users the option to add password protection to the file through a popup as shown in figure \ref{passPop}. This ensures only intended users may access the report, the generated excel file itself is also read-only, without the ability to modify the data without authorization. The protected file was encrypted using a Python library, MSoffcrypto.
+	
+	The excel file also contains identification of the creator of the report, containing three device-specific identifiers, the IP address or the location of the user’s device, the MAC address or the identifier of the user’s network interface, as well as the name of the device the report was generated in. This information is logged in the password protected excel file, enhancing security and ensuring unauthorized users are logged and tracked. 
+	\section{Generated Shelter Location-Allocation Report}
+	This section discusses the process of generating reports for shelter location allocation. The report helps in optimizing shelter assignments for communities based on various parameters and ensuring efficient disaster response. The data used considers only 12\% of the population in each barangay as affected. Additionally, the shelters have a maintenance cost, which are factored into the optimization process.
+	Table \ref{modelParams} shows the parameters used for the BNT model and the genetic algorithm. Table \ref{calReport} presents the optimized shelter location-allocation results generated by the system. Five shelters were opened and assigned to respective communities. All shelters were opened as Level 1, except for Mun. Covered Court, which was upgraded to Level 2. This suggests that upgrading this shelter is better than opening an additional one.
+	\section{System Evaluation}
+	The developed system underwent an assessment through survey questionnaires to evaluate its acceptability. The respondents included the target users, specifically the MSWDO and MDRRMO of Calumpit. In addition, IT experts with experience in system development participated in the evaluation to provide technical insights and ensure that the system met quality standards.
+	
+	\subsection{End-Users}
+	The researchers conducted a survey to 23 respondents from the MSWDO and MDRRMO of Calumpit. The survey instrument was based on TAM which consists of four criteria: perceived usefulness, perceived ease of use, attitude towards using, and behavioral intention to use. The gathered data was analyzed to determine the users’ acceptance of the system. 
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Perceived Usefulness Evaluation}
+		\label{percuse}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			Using the system improves my performance in completing tasks such as planning shelter locations for disaster response.
+			& 9.35 & Strongly Agree & 0.71 \\ \hline
+			The system helps me accomplish choosing shelter locations and assigning communities more quickly.
+			& 9.22 & Strongly Agree & 0.80 \\ \hline
+			The system increases my productivity.
+			& 9.22 & Strongly Agree & 0.60 \\ \hline
+			The system enhances my effectiveness in completing tasks such as in disaster strategic planning.
+			& 9.43 & Strongly Agree & 0.59 \\ \hline
+			Overall, I find the system useful in my job.
+			& 9.74 & Strongly Agree & 0.54 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.40} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{percuse} shows the users’ perceived usefulness of the system. The result shows a total mean score of 9.4, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of perceived usefulness. The standard deviations range from 0.54 to 0.8, implying low variation in the respondents’ answers.
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Perceived Ease of Use Evaluation}
+		\label{percease}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			Learning to operate the system is easy for me.
+			& 9.39 & Strongly Agree & 0.58 \\ \hline
+			The system is easy to use.
+			& 9.39 & Strongly Agree & 0.58 \\ \hline
+			My interaction with the system is clear and understandable.
+			& 9.43 & Strongly Agree & 0.66 \\ \hline
+			I find it easy to become skillful at using the system.
+			& 9.61 & Strongly Agree & 0.58 \\ \hline
+			I find the system easy to operate.
+			& 9.52 & Strongly Agree & 0.59 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.47} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{percease} shows the users’ perceived ease of use of the system. The result shows a total mean score of 9.47, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of perceived ease of use. The standard deviations range from 0.58 to 0.66, implying low variation in the respondents’ answers.
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Attitude Towards Using Evaluation}
+		\label{attuse}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			I have a positive attitude towards using the system.
+			& 9.52 & Strongly Agree & 0.59 \\ \hline
+			I enjoy using the system.
+			& 9.39 & Strongly Agree & 0.58 \\ \hline
+			I am satisfied with using the system.
+			& 9.52 & Strongly Agree & 0.59 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.48} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{attuse} shows the users’ attitude towards using the system. The result shows a total mean score of 9.48, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of attitude. The standard deviations range on 0.59, implying low variation in the respondents’ answers.
+	
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Behavioral Intention to Use Evaluation}
+		\label{behint}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			I intend to use the system regularly.
+			& 9.30 & Strongly Agree & 0.70 \\ \hline
+			I will continue to use the system in the future.
+			& 9.30 & Strongly Agree & 0.70 \\ \hline
+			I would recommend the system to others.
+			& 9.61 & Strongly Agree & 0.58 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.41} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{behint} shows the users’ behavioral intention to the system. The result shows a total mean score of 9.41, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of behavioral intention. The standard deviations range from 0.58 to 0.7, implying low variation in the respondents’ answers.
+	
+	The results from the four criteria showed high ratings, with total mean scores ranging from 9.4 to 9.48, indicating the system is “Highly Acceptable” to the target users. This suggests that they are likely to adopt and use the system to support their work in strategic planning.
+	\subsection{IT Experts}
+	To evaluate the system’s technical quality, the researchers surveyed five IT experts, from the faculty of the College of Information and Communications Technology (CICT) at Bulacan State University, and developers from a technology company. The survey instrument was based on the ISO/IEC 25010 software quality model, which includes eight criteria: Functional Suitability, Performance Efficiency, Compatibility, Interaction Capability, Reliability, Security, Maintainability, and Flexibility. The data gathered from this assessment provided valuable insights into the technical aspects and overall quality of the system.
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Functional Suitability Evaluation}
+		\label{funcsus}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			The system provides all the required functions without any missing functionalities.
+			& 9.80 & Strongly Agree & 0.45 \\ \hline
+			The functions are implemented correctly without any errors.
+			& 10.00 & Strongly Agree & 0 \\ \hline
+			The functions are appropriate for the tasks and meet user needs effectively.
+			& 9.60 & Strongly Agree & 0.55 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.80} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	
+	Table \ref{funcsus} shows the score for Functional Sustainability of the system. The result shows a total mean score of 9.8, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of functional sustainability. The standard deviations are close to 0, implying little to no variation in the respondents’ answers.
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Performance Efficiency Evaluation}
+		\label{perfeff}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			The system responds within acceptable time limits and maintains consistent response time under different conditions.
+			& 9.60 & Strongly Agree & 0.55 \\ \hline
+			The resource usage is within acceptable limits and the system efficiently uses available resources.
+			& 9.60 & Strongly Agree & 0.55 \\ \hline
+			The system can handle the expected load and is scalable to accommodate future growth.
+			& 9.80 & Strongly Agree & 0.45 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.67} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{perfeff} shows the score for Performance Efficiency of the system. The result shows a total mean score of 9.67, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of performance efficiency . The standard deviations range from 0.44 to 0.55, implying low variation in the respondents’ answers.
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Compatibility Evaluation}
+		\label{comptbl}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			The system can coexist with other systems without conflict and has no compatibility issues.
+			& 8.88 & Strongly Agree & 1.30 \\ \hline
+			The system can interact with other systems as required and data exchange between systems is seamless.
+			& 9.20 & Strongly Agree & 0.84 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.00} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{comptbl} shows the score for Compatibility of the system. The result shows a total mean score of 9, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of compatibility. The standard deviations range from 0.84 to 1.3, implying low variation in the respondents’ answers.
+	
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Interaction Capability Evaluation}
+		\label{intcap}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			The purpose of the system is easily recognizable and the functions are easy to understand.
+			& 9.20 & Strongly Agree & 0.84 \\ \hline
+			The system is easy to learn for new users and there are adequate training materials available.
+			& 9.60 & Strongly Agree & 0.55 \\ \hline
+			The system is easy to operate with intuitive and user-friendly controls.
+			& 9.60 & Strongly Agree & 0.55 \\ \hline
+			The system protects users from making errors and provides clear and helpful error messages.
+			& 9.20 & Strongly Agree & 0.45 \\ \hline
+			The user interface is aesthetically pleasing with a consistent and professional design.
+			& 9.80 & Strongly Agree & 0.45 \\ \hline
+			The system is accessible to users with disabilities and includes features to support accessibility.
+			& 8.60 & Strongly Agree & 0.55 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.33} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{intcap} shows the score for Interaction Capability of the system. The result shows a total mean score of 9.33, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of interaction capability. The standard deviations range from 0.45 to 0.84, implying low variation in the respondents’ answers.
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Reliability Evaluation}
+		\label{relblty}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			The system is mature and stable with no frequent crashes or failures.
+			& 9.80 & Strongly Agree & 0.45 \\ \hline
+			The system is available when needed with no downtime issues.
+			& 9.00 & Strongly Agree & 0.71 \\ \hline
+			The system can tolerate faults and continue operating with mechanisms for fault detection and recovery.
+			& 9.80 & Strongly Agree & 0.45 \\ \hline
+			The system can recover from failures quickly with backup and recovery procedures in place.
+			& 9.80 & Strongly Agree & 0.45\\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.60} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{relblty} shows the score for Reliability of the system. The result shows a total mean score of 9.6, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of reliability. The standard deviations range from 0.45 to 0.71, implying low variation in the respondents’ answers.
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Security Evaluation}
+		\label{secrty}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			The system ensures the confidentiality of data with measures to protect sensitive information.
+			& 9.60 & Strongly Agree & 0.55 \\ \hline
+			The system ensures the integrity of data with mechanisms to prevent data corruption.
+			& 9.80 & Strongly Agree & 0.45 \\ \hline
+			The system can verify the identity of users and actions are traceable to specific users.
+			& 9.20 & Strongly Agree & 0.84 \\ \hline
+			The system provides accountability for actions with maintained logs and audit trails.
+			& 9.20 & Strongly Agree & 0.84 \\ \hline
+			The system verifies the authenticity of data and users with measures to prevent unauthorized access.
+			& 8.80 & Strongly Agree & 1.30 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.32} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{secrty} shows the score for Security of the system. The result shows a total mean score of 9.67, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of security. The standard deviations range from 0.45 to 1.3, implying low variation in the respondents’ answers.
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Maintainability Evaluation}
+		\label{mntnblty}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			The system is modular and easy to modify with well-defined and independent components.
+			& 8.60 & Strongly Agree & 1.14 \\ \hline
+			The system components can be reused in other contexts with reusable libraries or modules.
+			& 9.60 & Strongly Agree & 0.55 \\ \hline
+			The system is easy to analyze for defects with tools to support analysis.
+			& 9.20 & Strongly Agree & 0.84 \\ \hline
+			The system is easy to modify and update with documented and manageable changes.
+			& 9.00 & Strongly Agree & 1.00 \\ \hline
+			The system is easy to test with automated testing tools available.
+			& 9.80 & Strongly Agree & 0.45 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.24} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{mntnblty} shows the score for Maintainability of the system. The result shows a total mean score of 9.24, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of maintainability. The standard deviations range from 0.45 to 1.14, implying low variation in the respondents’ answers.
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Flexibility Evaluation}
+		\label{flxblty}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabularx}{\linewidth}{|X|c|c|c|}
+			\hline
+			\textbf{Statement} & \textbf{Mean} & \textbf{VI} & \textbf{SD} \\ \hline
+			The system can be adapted to different environments with configuration options available.
+			& 8.80 & Strongly Agree & 1.10 \\ \hline
+			The system can scale to meet increased demand with mechanisms to support scalability.
+			& 9.40 & Strongly Agree & 0.55 \\ \hline
+			The system is easy to install with clear and straightforward installation procedures.
+			& 10.00 & Strongly Agree & 0.00 \\ \hline
+			The system can be easily replaced with another system with procedures for system replacement in place.
+			& 9.80 & Strongly Agree & 0.45 \\ \hline
+			\textbf{TOTAL MEAN} & \textbf{9.50} & \textbf{Strongly Agree} & \\ \hline
+		\end{tabularx}
+	\end{table}
+	
+	Table \ref{flxblty} shows the score for Flexibility of the system. The result shows a total mean score of 9.5, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of flexibility . The standard deviations are close to 0, implying little to no variation in the respondents’ answers.
+	
+	The results from the eight criteria showed high ratings, with total mean scores ranging from 9 to 9.8, indicating the system is “Highly Acceptable” based on the IT Experts. This suggests that the system developed met the international standards for a software product.
+	
+
+\section{Discussion}
+	\subsection{Comments and Suggestions}
+	Based on feedback from IT experts, the system's key strengths include its comprehensive functionality, effectively performing all required functions for its purpose. The implementation leverages Python and relevant libraries to optimize performance. It accurately identifies optimal shelter locations, demonstrating reliability and efficiency in processing data. Additionally, the user interface is simple and easy to navigate, minimizing complexity.
+	
+	Several areas for improvement were identified by IT experts. The system needs to support new model configurations without requiring large code changes, and additional information should be displayed upon user interaction. The map interface could be cleaner and more visually organized, and enhancements are needed to ensure the protection of sensitive data.
+	
+	To address these areas, IT experts provided several suggestions. Developing a mobile application would facilitate citizen connectivity with the platform. Including travel time estimates to shelters and implementing real-time data processing and display would further improve functionality. Allowing the configuration of new models through the UI would reduce the need for code alterations, and simplifying error messages would ensure clarity for non-IT users.
+	
+	In addition to the feedback from IT experts, members of the Local Government Unit (LGU) of Calumpit provided valuable insights. Specifically the importance of ensuring the exact identification of lots for shelter placement. Continuing to refine the system would enhance its usability and performance, and adding more intuitive features would improve accessibility and understanding for non-technical users.
+	
+	This feedback from the surveyed IT experts and LGU employees provide a clear guide for future improvements in the system, providing understandability, adaptability, usability, and effectiveness.
+	
+
+\section{Conclusion}
+\printbibliography[heading=bibintoc,title={REFERENCES}] %<-start the bibliography
+\end{document}

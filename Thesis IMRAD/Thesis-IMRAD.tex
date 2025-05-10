@@ -170,8 +170,8 @@
 	
 	where $g_1(x),g_2(x),...g_n(x)$ are the constraints of the model of the form $g_i(x)\le0$, and $\gamma\in\mathbb{R}^+$ is sufficiently large, where for this thesis is set to $10^{20}$. The penalty would add up to the objective value for each constraints it violated, otherwise it would not affect the objective value.	
 	
-	In a study created by \textcite{Mathew2012}, Genetic Algorithms are based on the concept of natural selection and evolves possible solutions through selection, crossover, and mutation. The algorithm iteratively evolved a population of potential solutions, gradually converging toward an optimal solution.
-	The BNT model was solved using Integer-based Genetic Algorithm implemented in Python. This decision satisfies the assignment constraint of the model, and with Python being a well suited programming language for both data simulation and system development.
+	In a study created by \textcite{Mathew2012}, Genetic Algorithms are based on the concept of natural selection and evolves possible solutions through selection, crossover, and mutation. The algorithm iteratively evolved a population of potential solutions, gradually converging toward an optimal solution. The BNT model was solved using Integer-based Genetic Algorithm implemented in Python. This decision satisfies the assignment constraint of the model, and with Python being a well suited programming language for both data simulation and system development. For this study, the selection, crossover, and mutation used are roulette wheel, uniform, and random reset respectively.
+	
 	The study employed a structured system development methodology following the Agile approach, chosen for its flexibility and iterative nature, allowing for continuous refinement and adaptation of the system based on feedback and results. Development includes regular reviews and adjustments to ensure the system evolves effectively to meet technical and user needs. 
 	
 	\begin{figure}[h!]
@@ -194,7 +194,7 @@
 	\begin{figure}[h!]
 		\caption{The ERD Schema}
 		\centering
-		\includegraphics[width=\columnwidth]{ERD}
+		\includegraphics[width=\columnwidth]{ERD compress}
 		\label{ERD}
 	\end{figure}
 	Figure \ref{ERD} shows the entity relationship (ERD) which contains 4 entities, Community, Shelter, Distance, and ModelParameters. Distances are derived from the locations of Shelter and Community, then saved accordingly to be used in performing the system’s model. ModelParameters saves the current settings for the model and algorithm.
@@ -209,12 +209,12 @@
 	Interviews was conducted with representatives from local government units (LGUs) specifically from the target population to understand their existing shelter allocation process, challenges, and expectations for a decision support system. The gathered information has undergone several stages. This ensures it meets the needs of the system and allows for an accurate assessment of its effectiveness.
 	
 	Table \ref{dataSource} presents all the data variables on communities and shelters used in the model, along with their respective sources.
-	\begin{table}[h]
+	\begin{table}[h!]
 		\centering
 		\caption{Variables, Descriptions, and Sources for Community and Shelter Data}
 		\label{dataSource}
 		\resizebox{\columnwidth}{!}{
-			\begin{tabular}{|c|c|c|}
+			\begin{tabular}{|c|p{80px}|p{120px}|}
 				\hline
 				\textbf{Variable} & \textbf{Source} & \textbf{Description} \\ \hline
 				\multicolumn{3}{|c|}{\textit{\textbf{Community}}}\\ \hline
@@ -265,72 +265,71 @@
 	\end{table}
 	
 \section{Results}
-	The researchers and developers developed a decision support system to optimize shelter location allocation since there was a lack of system development. Identifying the most optimal shelter facility for a community is the system's main function. Specifically, it has five key features: Data Modification, Model Modification, Data Simulation, Shelter Tagging, and Report Protection.
+	The researchers and developers developed a decision support system to optimize shelter location allocation since there was a lack of system development. Identifying the most optimal shelter facility for a community is the system's main function. Specifically, it has five key features.
 	
-	Data Modification is the process of creating, updating, or deleting data within the system to maintain accuracy and relevance. This ensures that all records are up-to-date and properly managed so they can effectively be used for shelter allocation. Figures \ref{db}, \ref{commMan}, and \ref{shelMan} show parts on system with this feature.
+	Data Modification is the process of creating, updating, or deleting data within the system to maintain accuracy and relevance. Figures \ref{db}, \ref{commMan}, and \ref{shelMan} show parts on system with this feature.
 	
 	\begin{figure}[h!]
 		\caption{Dashboard}
 		\centering
-		\includegraphics[width=\columnwidth]{Chapter 4/dashboard}
+		\includegraphics[width=200px]{Chapter 4/dashboard}
 		\label{db}
 	\end{figure}
 	
 	\begin{figure}[h!]
 		\caption{Community Management}
 		\centering
-		\includegraphics[width=\columnwidth]{Chapter 4/commadvanced}
+		\includegraphics[width=200px]{Chapter 4/commadvanced}
 		\label{commMan}
 	\end{figure}
 	
 	\begin{figure}[h!]
 		\caption{Shelter Management}
 		\centering
-		\includegraphics[width=\columnwidth]{Chapter 4/sheladvanced}
+		\includegraphics[width=200px]{Chapter 4/sheladvanced}
 		\label{shelMan}
 	\end{figure}
 	
-	Model Modification concerns the parameters to be used in the model that may be modified for a more ideal setup depending on the preferences of the user. Measures are put in place to prevent entering of wrong values in these parameters such as letters or negative numbers.  Figure \ref{modelSet} shows part on system with this feature.
+	Model Modification concerns the parameters to be used in the model that may be modified for a more ideal setup depending on the preferences of the user.   Figure \ref{modelSet} shows part on system with this feature.
 	
 	\begin{figure}[h!]
 		\caption{Model Parameter Settings}
 		\centering
-		\includegraphics[width=150px]{Chapter 4/modelsettings}
+		\includegraphics[width=120px]{Chapter 4/modelsettings}
 		\label{modelSet}
 	\end{figure}
 	
-	Data Simulation pertains to solving the model by running the Genetic Algorithm, which determines the most optimal shelter location allocation. As the core functionality of the system, it processes input data of communities and shelters, applies defined model parameters, then generates and displays the best allocation of the municipality. Figures \ref{solveProg}, and \ref{shelAllocRep} show parts on system with this feature.
+	Data Simulation pertains to solving the model by running the Genetic Algorithm, which then generates and displays the best allocation of the municipality. Figures \ref{solveProg}, and \ref{shelAllocRep} show parts on system with this feature.
 	
 	\begin{figure}[h!]
 		\caption{Progress Dialog}
 		\centering
-		\includegraphics[width=\columnwidth]{Chapter 4/progress}
+		\includegraphics[width=200px]{Chapter 4/progress}
 		\label{solveProg}
 	\end{figure}
 	
 	\begin{figure}[h!]
 		\caption{Report Dialog}
 		\centering
-		\includegraphics[width=\columnwidth]{Chapter 4/alloc report}
+		\includegraphics[width=200px]{Chapter 4/alloc report}
 		\label{shelAllocRep}
 	\end{figure}
 	
-	\subsection{Shelter Tagging}
-	Shelter Tagging concerns the classification of shelters based on both structural resilience and current condition, ensuring shelters are appropriately assigned to communities based on availability, cost, and risk levels. Shelters are categorized in both resistance capabilities and status; resistance capabilities include flood-resistant, typhoon-resistant, and earthquake-resistant, and are not mutually exclusive to one another, for example, a shelter can be both flood and typhoon resistant. In terms of status, shelters can be built, partially built, damaged, and empty lots, each with varying costs depending on maintenance and construction. Figure \ref{solveSet} shows part on system with this feature.
+	Shelter Tagging concerns the classification of shelters based on both structural resilience and current condition, ensuring shelters are appropriately assigned to communities based on availability, cost, and risk levels. Figure \ref{solveSet} shows part on system with this feature.
 	
 	\begin{figure}[h!]
 		\caption{Solve Settings}
 		\centering
-		\includegraphics[width=\columnwidth]{Chapter 4/solvesettings}
+		\includegraphics[width=200px]{Chapter 4/solvesettings}
 		\label{solveSet}
 	\end{figure}
 	
-	To maintain confidentiality and prevent the unauthorized modification of reports, a Report Protection has been implemented in the system. This module includes password authentication, report encryption and identification of the creator of a report based on device-specific attributes. Figure \ref{passPop} shows part on system with this feature.
+	To maintain confidentiality and prevent the unauthorized modification of reports, a Report Protection has been implemented in the system. Figure \ref{passPop} shows part on system with this feature.
 	
 	\begin{figure}[h!]
 		\caption{Input Password Popup}
 		\centering
-		\includegraphics[width=\columnwidth]{Chapter 4/alloc report pass}
+		\includegraphics[width=200px]{Chapter 4/alloc report pass}
 		\label{passPop}
 	\end{figure}
 	
@@ -406,7 +405,8 @@
 		\centering
 		\caption{Result Details}
 		\label{resdetails}
-		\begin{tabular}{|p{0.45\columnwidth}|p{0.45\columnwidth}|}
+		\resizebox{\columnwidth}{!}{
+		\begin{tabular}{|p{7cm}|p{3cm}|}
 			\hline
 			\textbf{Item} & \textbf{Value} \\ \hline
 			Objective Value & 72034087 \\ 
@@ -414,19 +414,20 @@
 			Cost of Opened Shelters & 144019600 \\ 
 			Generation when solution last updated & 136256 \\ \hline
 		\end{tabular}
+	}
 	\end{table}
 	
 	\begin{figure}[h!]
 		\caption{Community to Shelter Straight Path}
 		\centering
-		\includegraphics[width=\columnwidth]{Chapter 4/straight path}
+		\includegraphics[width=200px]{Chapter 4/straight path}
 		\label{straightpath}
 	\end{figure}
 	
 	\begin{figure}[h!]
 		\caption{Community to Shelter Route Path}
 		\centering
-		\includegraphics[width=\columnwidth]{Chapter 4/route path}
+		\includegraphics[width=200px]{Chapter 4/route path}
 		\label{routepath}
 	\end{figure}
 	
@@ -436,296 +437,63 @@
 	
 	\begin{table}[h!]
 		\centering
-		\caption{Perceived Usefulness Evaluation}
-		\label{percuse}
-		\renewcommand{\arraystretch}{1.2}
-		\resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
+		\caption{\textit{End User Evaluation}}
+		\label{enduseeval}
+		\renewcommand{\arraystretch}{1.3}
+		 \resizebox{\columnwidth}{!}{
+		\begin{tabular}{p{5cm}ccc}
 			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			Using the system improves my performance in completing tasks such as planning shelter locations for disaster response.
-			& 9.35 & 0.71 & Strongly Agree \\ \hline
-			The system helps me accomplish choosing shelter locations and assigning communities more quickly.
-			& 9.22 & 0.80 & Strongly Agree \\ \hline
-			The system increases my productivity.
-			& 9.22 & 0.60 & Strongly Agree \\ \hline
-			The system enhances my effectiveness in completing tasks such as in disaster strategic planning.
-			& 9.43 & 0.59 & Strongly Agree \\ \hline
-			Overall, I find the system useful in my job.
-			& 9.74 & 0.54 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.40} & & \textbf{Strongly Agree}\\ \hline
+			\textbf{Criteria} & \textbf{Mean} & \textbf{SD Range} & \textbf{VI} \\
+			\hline
+			Perceived Usefulness 
+			& 9.40 & 0.54-0.80 & Strongly Agree \\
+			Perceived Ease of Use
+			& 9.47& 0.58-0.66 & Strongly Agree \\
+			Attitude Towards Using
+			& 9.48 & 0.58-0.59 & Strongly Agree \\
+			Behavioral Intention to Use
+			& 9.41 & 0.58-0.70 & Strongly Agree \\
+			\hline
 		\end{tabular}
 	}
 	\end{table}
 	
-	Table \ref{percuse} shows the users’ perceived usefulness of the system. The result shows a total mean score of 9.4, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of perceived usefulness. The standard deviations range from 0.54 to 0.8, implying low variation in the respondents’ answers.
-	
-	\begin{table}[h!]
-		\centering
-		\caption{Perceived Ease of Use Evaluation}
-		\label{percease}
-		\renewcommand{\arraystretch}{1.2}
-        \resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			Learning to operate the system is easy for me.
-			& 9.39 & 0.58 & Strongly Agree \\ \hline
-			The system is easy to use.
-			& 9.39 & 0.58 & Strongly Agree \\ \hline
-			My interaction with the system is clear and understandable.
-			& 9.43 & 0.66 & Strongly Agree \\ \hline
-			I find it easy to become skillful at using the system.
-			& 9.61 & 0.58 & Strongly Agree \\ \hline
-			I find the system easy to operate.
-			& 9.52 & 0.59 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.47} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
-	\end{table}
-	
-	Table \ref{percease} shows the users’ perceived ease of use of the system. The result shows a total mean score of 9.47, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of perceived ease of use. The standard deviations range from 0.58 to 0.66, implying low variation in the respondents’ answers.
-	
-	\begin{table}[h!]
-		\centering
-		\caption{Attitude Towards Using Evaluation}
-		\label{attuse}
-		\renewcommand{\arraystretch}{1.2}
-        \resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			I have a positive attitude towards using the system.
-			& 9.52 & 0.59 & Strongly Agree \\ \hline
-			I enjoy using the system.
-			& 9.39 & 0.58 & Strongly Agree \\ \hline
-			I am satisfied with using the system.
-			& 9.52 & 0.59 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.48} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
-	\end{table}
-	
-	Table \ref{attuse} shows the users’ attitude towards using the system. The result shows a total mean score of 9.48, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of attitude. The standard deviations range on 0.59, implying low variation in the respondents’ answers.
-	
-	
-	\begin{table}[h!]
-		\centering
-		\caption{Behavioral Intention to Use Evaluation}
-		\label{behint}
-		\renewcommand{\arraystretch}{1.2}
-        \resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			I intend to use the system regularly.
-			& 9.30 & 0.70 & Strongly Agree \\ \hline
-			I will continue to use the system in the future.
-			& 9.30 & 0.70 & Strongly Agree \\ \hline
-			I would recommend the system to others.
-			& 9.61 & 0.58 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.41} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
-	\end{table}
-	
-	Table \ref{behint} shows the users’ behavioral intention to the system. The result shows a total mean score of 9.41, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of behavioral intention. The standard deviations range from 0.58 to 0.7, implying low variation in the respondents’ answers.
+	Table \ref{enduseeval} presents the end-users' evaluation across the four determinants of TAM. The mean scores for all determinants range from 9.4 to 9.41, all interpreted as “Strongly Agree”. The standard deviations range from 0.54 to 0.8, indicating low variability in responses.
 	
 	To evaluate the system’s technical quality, the researchers surveyed five IT experts, from the faculty of the College of Information and Communications Technology (CICT) at Bulacan State University, and developers from a technology company. 
 	
 	\begin{table}[h!]
 		\centering
-		\caption{Functional Suitability Evaluation}
-		\label{funcsus}
-		\renewcommand{\arraystretch}{1.2}\
-        \resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			The system provides all the required functions without any missing functionalities.
-			& 9.80 & 0.45 & Strongly Agree \\ \hline
-			The functions are implemented correctly without any errors.
-			& 10.00 & 0 & Strongly Agree \\ \hline
-			The functions are appropriate for the tasks and meet user needs effectively.
-			& 9.60 & 0.55 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.80} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
-	\end{table}
-	
-	
-	Table \ref{funcsus} shows the score for Functional Sustainability of the system. The result shows a total mean score of 9.8, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of functional sustainability. The standard deviations are close to 0, implying little to no variation in the respondents’ answers.
-	
-	\begin{table}[h!]
-		\centering
-		\caption{Performance Efficiency Evaluation}
-		\label{perfeff}
-		\renewcommand{\arraystretch}{1.2}
-        \resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			The system responds within acceptable time limits and maintains consistent response time under different conditions.
-			& 9.60 & 0.55 & Strongly Agree \\ \hline
-			The resource usage is within acceptable limits and the system efficiently uses available resources.
-			& 9.60 & 0.55 & Strongly Agree \\ \hline
-			The system can handle the expected load and is scalable to accommodate future growth.
-			& 9.80 & 0.45 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.67} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
-	\end{table}
-	
-	Table \ref{perfeff} shows the score for Performance Efficiency of the system. The result shows a total mean score of 9.67, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of performance efficiency . The standard deviations range from 0.44 to 0.55, implying low variation in the respondents’ answers.
-	
-	\begin{table}[h!]
-		\centering
-		\caption{Compatibility Evaluation}
-		\label{comptbl}
-		\renewcommand{\arraystretch}{1.2}
-        \resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			The system can coexist with other systems without conflict and has no compatibility issues.
-			& 8.88 & 1.30 & Strongly Agree \\ \hline
-			The system can interact with other systems as required and data exchange between systems is seamless.
-			& 9.20 & 0.84 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.00} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
-	\end{table}
-	
-	Table \ref{comptbl} shows the score for Compatibility of the system. The result shows a total mean score of 9, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of compatibility. The standard deviations range from 0.84 to 1.3, implying low variation in the respondents’ answers.
-	
-	
-	\begin{table}[h!]
-		\centering
-		\caption{Interaction Capability Evaluation}
-		\label{intcap}
-		\renewcommand{\arraystretch}{1.2}
-        \resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			The purpose of the system is easily recognizable and the functions are easy to understand.
-			& 9.20 & 0.84 & Strongly Agree \\ \hline
-			The system is easy to learn for new users and there are adequate training materials available.
-			& 9.60 & 0.55 & Strongly Agree \\ \hline
-			The system is easy to operate with intuitive and user-friendly controls.
-			& 9.60 & 0.55 & Strongly Agree \\ \hline
-			The system protects users from making errors and provides clear and helpful error messages.
-			& 9.20 & 0.45 & Strongly Agree \\ \hline
-			The user interface is aesthetically pleasing with a consistent and professional design.
-			& 9.80 & 0.45 & Strongly Agree \\ \hline
-			The system is accessible to users with disabilities and includes features to support accessibility.
-			& 8.60 & 0.55 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.33} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
-	\end{table}
-	
-	Table \ref{intcap} shows the score for Interaction Capability of the system. The result shows a total mean score of 9.33, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of interaction capability. The standard deviations range from 0.45 to 0.84, implying low variation in the respondents’ answers.
-	
-	\begin{table}[h!]
-		\centering
-		\caption{Reliability Evaluation}
-		\label{relblty}
-		\renewcommand{\arraystretch}{1.2}
-        \resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			The system is mature and stable with no frequent crashes or failures.
-			& 9.80 & 0.45 & Strongly Agree \\ \hline
-			The system is available when needed with no downtime issues.
-			& 9.00 & 0.71 & Strongly Agree \\ \hline
-			The system can tolerate faults and continue operating with mechanisms for fault detection and recovery.
-			& 9.80 & 0.45 & Strongly Agree \\ \hline
-			The system can recover from failures quickly with backup and recovery procedures in place.
-			& 9.80 & Strongly Agree & 0.45\\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.60} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
-	\end{table}
-	
-	Table \ref{relblty} shows the score for Reliability of the system. The result shows a total mean score of 9.6, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of reliability. The standard deviations range from 0.45 to 0.71, implying low variation in the respondents’ answers.
-	
-	\begin{table}[h!]
-		\centering
-		\caption{Security Evaluation}
-		\label{secrty}
-		\renewcommand{\arraystretch}{1.2}
+		\caption{\textit{IT Experts Evaluation}}
+		\label{itexpeval}
+		\renewcommand{\arraystretch}{1.3}
 		\resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			The system ensures the confidentiality of data with measures to protect sensitive information.
-			& 9.60 & 0.55 & Strongly Agree \\ \hline
-			The system ensures the integrity of data with mechanisms to prevent data corruption.
-			& 9.80 & 0.45 & Strongly Agree \\ \hline
-			The system can verify the identity of users and actions are traceable to specific users.
-			& 9.20 & 0.84 & Strongly Agree \\ \hline
-			The system provides accountability for actions with maintained logs and audit trails.
-			& 9.20 & 0.84 & Strongly Agree \\ \hline
-			The system verifies the authenticity of data and users with measures to prevent unauthorized access.
-			& 8.80 & 1.30 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.32} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
+			\begin{tabular}{p{5cm}ccc}
+				\hline
+				\textbf{Criteria} & \textbf{Mean} & \textbf{SD Range} & \textbf{VI} \\
+				\hline
+				Functional Suitability 
+				& 9.80 & 0.00-0.55 & Strongly Agree \\
+				Performance Efficiency
+				& 9.67 & 0.45-0.55 & Strongly Agree \\
+				Compatibility
+				& 9.00 & 0.84-1.30 & Strongly Agree \\
+				Interaction Capability
+				& 9.33 & 0.45-0.84 & Strongly Agree \\
+				Reliability
+				& 9.60 & 0.45-0.71 & Strongly Agree \\
+				Security
+				& 9.67 & 0.45-1.30 & Strongly Agree \\
+				Maintainability
+				& 9.24 & 0.45-1.14 & Strongly Agree \\
+				Flexibility
+				& 9.50 & 0.00-1.10 & Strongly Agree \\
+				\hline
+			\end{tabular}
+		}
 	\end{table}
 	
-	Table \ref{secrty} shows the score for Security of the system. The result shows a total mean score of 9.67, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of security. The standard deviations range from 0.45 to 1.3, implying low variation in the respondents’ answers.
-	
-	\begin{table}[h!]
-		\centering
-		\caption{Maintainability Evaluation}
-		\label{mntnblty}
-		\renewcommand{\arraystretch}{1.2}
-        \resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			The system is modular and easy to modify with well-defined and independent components.
-			& 8.60 & 1.14 & Strongly Agree \\ \hline
-			The system components can be reused in other contexts with reusable libraries or modules.
-			& 9.60 & 0.55 & Strongly Agree \\ \hline
-			The system is easy to analyze for defects with tools to support analysis.
-			& 9.20 & 0.84 & Strongly Agree \\ \hline
-			The system is easy to modify and update with documented and manageable changes.
-			& 9.00 & 1.00 & Strongly Agree \\ \hline
-			The system is easy to test with automated testing tools available.
-			& 9.80 & 0.45 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.24} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
-	\end{table}
-	
-	Table \ref{mntnblty} shows the score for Maintainability of the system. The result shows a total mean score of 9.24, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of maintainability. The standard deviations range from 0.45 to 1.14, implying low variation in the respondents’ answers.
-	
-	\begin{table}[h!]
-		\centering
-		\caption{Flexibility Evaluation}
-		\label{flxblty}
-		\renewcommand{\arraystretch}{1.2}
-        \resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{5cm}|c|c|c|}
-			\hline
-			\textbf{Statement} & \textbf{Mean} & \textbf{SD} & \textbf{VI} \\ \hline
-			The system can be adapted to different environments with configuration options available.
-			& 8.80 & 1.10 & Strongly Agree \\ \hline
-			The system can scale to meet increased demand with mechanisms to support scalability.
-			& 9.40 & 0.55 & Strongly Agree \\ \hline
-			The system is easy to install with clear and straightforward installation procedures.
-			& 10.00 & 0.00 & Strongly Agree \\ \hline
-			The system can be easily replaced with another system with procedures for system replacement in place.
-			& 9.80 & 0.45 & Strongly Agree \\ \hline
-			\textbf{TOTAL MEAN} & \textbf{9.50} & & \textbf{Strongly Agree}\\ \hline
-		\end{tabular}
-        }
-	\end{table}
-	
-	Table \ref{flxblty} shows the score for Flexibility of the system. The result shows a total mean score of 9.5, which corresponds to "Strongly Agree," indicating “Highly Acceptable” in terms of flexibility . The standard deviations are close to 0, implying little to no variation in the respondents’ answers.
+	Table \ref{enduseeval} presents the IT experts' evaluation across the eight criteria from ISO/IEC 25010. The mean scores for all determinants range from 9 to 9.8, all interpreted as “Strongly Agree”. The standard deviations range below 1.3, indicating low variability in responses.
 	
 	
 

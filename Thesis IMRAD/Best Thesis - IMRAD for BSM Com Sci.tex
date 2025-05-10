@@ -1,32 +1,113 @@
-\documentclass[12pt,a4paper,]{article}
+\documentclass[11pt,letterpaper,]{article}
 
 \title{Design and Implementation of a Shelter Location-Allocation System in Calumpit, Bulacan}
 \author{Calulo, Bryan Jett T., Cunanan, Lovely Angeline OL., Fabian, Elijah Inigo C.,}
-\def\adviser{Lampayan, Valentine Blez L.}
-\def\journalname{Undergraduate Research Journal for Mathematics}
+
+\usepackage[T1]{fontenc}
+\usepackage{uarial}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{graphicx}
+\usepackage{geometry}
+	\geometry{margin=1in}
+\usepackage{indentfirst}
 
 
-\input{imrad-setup}
+\usepackage{titlesec}
+\titleformat{\section}%
+{\normalfont\normalsize\bfseries}%
+{\thesection}%
+{1em}%
+{\MakeUppercase}
+\titleformat{\subsection}%
+{\normalfont\normalsize\bfseries}%
+{\thesubsection}%
+{1em}%
+{}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.0pt}
+
+\usepackage{booktabs,longtable,threeparttable,siunitx,tabularx}
+\usepackage{array,multicol,multirow,color,calc}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+\usepackage{caption}
+\DeclareCaptionLabelSeparator*{spaced}{\\[1ex]}
+\renewcommand{\thetable}{\arabic{table}}
+\captionsetup[table]{
+	%		font=sf,
+	labelfont=bf,
+	textfont=it, 
+	format=plain,
+	justification=justified,
+	singlelinecheck=false,
+	labelsep=spaced,skip=12pt
+}
+\captionsetup[figure]{
+	%		font=sf,
+	labelfont=bf,
+	textfont=it, 
+	format=plain,
+	justification=justified,
+	singlelinecheck=false,
+	labelsep=spaced,skip=12pt
+}
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[style=apa,defernumbers=true]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+
+\usepackage{etoolbox}
+
+\AtBeginEnvironment{tabular}{\small\sffamily}
+\AtBeginEnvironment{tabularx}{\small\sffamily}
+\AtBeginEnvironment{abstract}{\bfseries}
+
+\setlength{\headheight}{14.5pt}
+\setlength{\headsep}{14pt}
+
+\usepackage[shortcuts]{extdash}
+\pretolerance=5000
+\tolerance=9000 
+\emergencystretch=10pt
 \addbibresource{reference.bib} %filename of your .bib database
 \graphicspath{{Figures/}}	%change graphic path folder
 \usepackage{lipsum} %for dummy text
-\usepackage{amsmath, amssymb}
 
+\usepackage{setspace}
+\usepackage{amsmath, amssymb}
 
 \begin{document}
 
-\twocolumn[
-\begin{@twocolumnfalse}
-	\maketitle
-	\begin{abstract}
-		The Philippines, being highly vulnerable to disasters such as typhoons and floods, ranks first in the World Risk Index. Among the municipalities of Bulacan, Calumpit is particularly prone to severe flooding. Furthermore, the current evacuation system faces challenges such as overcrowding and inefficient resource use. While mathematical models can optimize shelter allocation, they are often inaccessible to decision-makers without mathematical expertise. To address this, a data-driven decision support system was developed. Shelter Location-Allocation System identifies suitable shelters and assigns communities in an optimal manner. The system integrates the Bilevel No Transfer (BNT) model, considering distance, cost, capacity, and shelter hierarchy, and applies a genetic algorithm to determine the best allocation strategy. All parameters and data are fully customizable, allowing decision-makers to tailor the system to their needs. The system was evaluated by end-users and IT experts, receiving high acceptability scores, with mean ratings greater than 9.0 across all criteria. These results indicate the system’s quality in supporting data-driven disaster response planning, offering a scalable solution for improving evacuation strategies in flood-prone areas.
-		
-		\vspace{11pt}
-		\noindent Key Words: \normalfont Shelter Optimization, Disaster Planning, Location Allocation
-	\end{abstract}
-	\vspace{22pt}
-\end{@twocolumnfalse}
-]
+{\centering{\large\bfseries
+	\MakeUppercase{Design and Implementation of a Shelter Location- 
+		\protect\\Allocation System in Calumpit, Bulacan}
+	}
+	
+	\vspace{6pt}
+	
+	Bryan Jett T. Calulo, Lovely Angeline OL. Cunanan, and Elijah Iñigo C. Fabian
+	
+	\vspace{6pt}
+	
+	Department of Mathematics, College of Science, Bulacan State Unviersity
+	
+\par}
+
+
+\begin{abstract}
+	The Philippines, being highly vulnerable to disasters such as typhoons and floods, ranks first in the World Risk Index. Among the municipalities of Bulacan, Calumpit is particularly prone to severe flooding. Furthermore, the current evacuation system faces challenges such as overcrowding and inefficient resource use. While mathematical models can optimize shelter allocation, they are often inaccessible to decision-makers without mathematical expertise. To address this, a data-driven decision support system was developed. Shelter Location-Allocation System identifies suitable shelters and assigns communities in an optimal manner. The system integrates the Bilevel No Transfer (BNT) model, considering distance, cost, capacity, and shelter hierarchy, and applies a genetic algorithm to determine the best allocation strategy. All parameters and data are fully customizable, allowing decision-makers to tailor the system to their needs. The system was evaluated by end-users and IT experts, receiving high acceptability scores, with mean ratings greater than 9.0 across all criteria. These results indicate the system’s quality in supporting data-driven disaster response planning, offering a scalable solution for improving evacuation strategies in flood-prone areas.
+	
+	\vspace{6pt}
+	\noindent Key Words: \normalfont Shelter Optimization, Disaster Planning, Location Allocation
+\end{abstract}
+
+\onehalfspacing
 
 \section{Introduction}
 	The Philippines experiences typhoons, earthquakes, and volcanic eruptions each year, leaving people vulnerable and displaced as the country is situated within the Pacific Ring of Fire and directly in the path of the typhoon belt in the Pacific Ocean. For instance, typhoon Haiyan, better known as Super Typhoon Yolanda devastated the nation in 2013 and displaced over 4 million people, exposing severe shortcomings in the Philippine shelter allocation systems \parencite{Iuchi2019}, highlighting the urgent need for efficient and responsive disaster management strategies. Despite ongoing efforts, the country continues to face significant challenges in shelter allocation, such as overcrowding, resource distribution inefficiency, and poor accessibility.
@@ -36,20 +117,27 @@
 	This study proposes a data-driven solution ensuring an effective and feasible implementation of shelter allocation. This would be by developing a decision support system using a genetic algorithm (GA), to address the inefficiencies in shelter allocation. GA optimizes solutions by mimicking the process of evolution such as selection, crossover, and mutation, to identify an optimal outcome. In shelter allocation, GA can optimize the assignment process by simultaneously considering factors such as shelter capacity, location, and accessibility. This approach aims to minimize overcrowding, improve resource distribution, and enhance overall efficiency in managing shelters during disasters.
 	Given the Philippines’ frequent exposure to natural disasters, implementation of a shelter allocation system is essential. Calumpit, Bulacan was chosen for its high vulnerability to flooding since it has been a catch basin for neighboring areas. Despite the multitude of studies formulating models to address the shelter location-allocation problem, there remains a clear lack of system integration. This gap makes it difficult for decision-makers, particularly those unfamiliar with the mathematical models proposed in several studies, to apply them effectively in their decisions. This study is dedicated to the development of a programmed system that uses genetic algorithm to address the challenges experienced in the Philippines, focusing on Calumpit, Bulacan. The proposed shelter location-allocation system has the potential to significantly improve disaster response efficiency and enhance safety for displaced individuals. The insights from this study may be applied to other municipalities facing similar challenges, contributing to the national effort to strengthen disaster resilience.
 	This thesis’s objective is to create a shelter allocation system using Genetic Algorithm and the Bilevel No Transfer model to create an optimal strategy for evacuation in Calumpit. Data was gathered from Calumpit’s LGU to create an accurate representation of the municipality.
+	
 
-\section{Methodology}
+\section{Methods}
+	
+	\subsection{Research Design}
+	
 	The research design for this study is mixed method applied research, this approach combines both quantitative and qualitative methods to provide a structured framework for development and evaluation of the shelter location allocation system
 	The applied research aspect of the study aims to deliver a functional and reliable shelter location-allocation system that disaster response agencies can easily deploy and adapt. The quantitative research of this study aims to measure and analyze the acceptability of the proposed system using TAM determinants and the ISO/IEC 25010 standard. The qualitative research of this study is to understand the current issues of shelter location-allocation from the stakeholders’ perspectives.
+	
+	\subsection{Model Adoption}
+	
 	The study adopted a model called the Bilevel No-Transfer (BNT) model, which solves the shelter location-allocation problem under disaster scenarios. Discussed in a published paper by \textcite{LeahUP}, the model is effective when assigning communities to shelters without allowing transfers between different shelter levels during recovery. Once assigned to a shelter in the BNT model, evacuees remain in that shelter until the disaster subsides, eliminating the need for transfers between shelters. The objective function for the BNT model can be expressed as follows:
 	
 	Minimize 
 	\begin{equation}
-	wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{k=1}^{2}\sum_{j=1}^{N}C_{j}^{(k)}y_{j}^{(k)} 
+		wt_{dist}\sum_{j=1}^{N}\sum_{i=1}^{M}d_{ij}P_{i}x_{ij}+wt_{cost}\sum_{k=1}^{2}\sum_{j=1}^{N}C_{j}^{(k)}y_{j}^{(k)} 
 	\end{equation}
 	
 	The constraints of the model include the distance, capacity, assignment, and binary constraints, each playing a role in ensuring the model functions effectively under the disaster response scenario. Equations for these constraints are shown below:
 	
-		\textit{Distance Constraint.} Equation \ref{c1} ensures that each community is allocated to a shelter within a defined maximum distance. 
+	\textit{Distance Constraint.} Equation \ref{c1} ensures that each community is allocated to a shelter within a defined maximum distance. 
 	
 	\begin{equation} 	
 		\label{c1}
@@ -172,12 +260,14 @@
 	
 	In a study created by \textcite{Mathew2012}, Genetic Algorithms are based on the concept of natural selection and evolves possible solutions through selection, crossover, and mutation. The algorithm iteratively evolved a population of potential solutions, gradually converging toward an optimal solution. The BNT model was solved using Integer-based Genetic Algorithm implemented in Python. This decision satisfies the assignment constraint of the model, and with Python being a well suited programming language for both data simulation and system development. For this study, the selection, crossover, and mutation used are roulette wheel, uniform, and random reset respectively.
 	
+	\subsection{Process of Developing the System}
+	
 	The study employed a structured system development methodology following the Agile approach, chosen for its flexibility and iterative nature, allowing for continuous refinement and adaptation of the system based on feedback and results. Development includes regular reviews and adjustments to ensure the system evolves effectively to meet technical and user needs. 
 	
 	\begin{figure}[h!]
 		\caption{A representation of an Agile approach}
 		\centering
-		\includegraphics[width=\columnwidth]{AGILE}
+		\includegraphics[width=0.9\columnwidth]{AGILE}
 		\label{Agile}
 	\end{figure}
 	
@@ -186,7 +276,7 @@
 	\begin{figure}[h!]
 		\caption{System Architecture}
 		\centering
-		\includegraphics[width=\columnwidth]{Context Diagram}
+		\includegraphics[width=0.9\columnwidth]{Context Diagram}
 		\label{SystemArch}
 	\end{figure}
 	Figure \ref{SystemArch} the interaction of two actors, the user of the system and disaster management team. The community and shelter data will be fed into a system which features data manipulation and shelter tagging. With the cleaned and finished data, data simulations may begin together with the model parameters specified by the users. Lastly, a report will be generated and can be password-protected. The report will be used by the disaster management team as guidance for decision making in allocation of residents to the correct shelter.
@@ -194,7 +284,7 @@
 	\begin{figure}[h!]
 		\caption{The ERD Schema}
 		\centering
-		\includegraphics[width=\columnwidth]{ERD compress}
+		\includegraphics[width=0.9\columnwidth]{ERD}
 		\label{ERD}
 	\end{figure}
 	Figure \ref{ERD} shows the entity relationship (ERD) which contains 4 entities, Community, Shelter, Distance, and ModelParameters. Distances are derived from the locations of Shelter and Community, then saved accordingly to be used in performing the system’s model. ModelParameters saves the current settings for the model and algorithm.
@@ -202,9 +292,14 @@
 	The system was developed using the Python programming language, and Qt framework to efficiently implement the graphical user interface (GUI) of the system. Visual Studio Code was utilized as the integrated development environment (IDE), and QtDesigner as an extension for creating frontend designs through the Qt framework.
 	Developing the system using Python allows the use of Python libraries. These include PySide6 which is responsible for the GUI that uses the Qt framework, Pandas and openpyxl for handling data, Folium, OSMnx, network, and scikit-learn for displaying and calculating the map shown in the system. Numpy is used for executing genetic algorithm. Additionally, msoffcrypto-tool and XlsxWriter are used for report protect and lastly, pyinstaller for building the system.
 	
+	
+	\subsection{System Evaluation}
+	
 	The target population of this study consists of 23 end-users and 5 IT experts. For end-users, the MDRRMO and MSWDO of the municipality of Calumpit, meanwhile for IT experts include CICT professors from Bulacan State University, as well as those in careers related to developing a system. The diversity of perspective of these are important for the evaluation of the system’s acceptability.
 	
 	The system was evaluated by preparing and distributing survey questions based on the TAM and ISO/IEC 25010 to target samples respectively. The questionnaires are a 10-point numerical scale survey and verbally interpreted based from \textcite{Eladia2024} This ensured that the developed system acquires feedback from potential users as well as from experts in software engineering and development.
+	
+	\subsection{System Preliminaries}
 	
 	Interviews was conducted with representatives from local government units (LGUs) specifically from the target population to understand their existing shelter allocation process, challenges, and expectations for a decision support system. The gathered information has undergone several stages. This ensures it meets the needs of the system and allows for an accurate assessment of its effectiveness.
 	
@@ -214,7 +309,7 @@
 		\caption{Variables, Descriptions, and Sources for Community and Shelter Data}
 		\label{dataSource}
 		\resizebox{\columnwidth}{!}{
-			\begin{tabular}{|c|p{80px}|p{120px}|}
+			\begin{tabular}{|c|p{0.2\columnwidth}|p{0.4\columnwidth}|}
 				\hline
 				\textbf{Variable} & \textbf{Source} & \textbf{Description} \\ \hline
 				\multicolumn{3}{|c|}{\textit{\textbf{Community}}}\\ \hline
@@ -249,22 +344,25 @@
 		\caption{Sources of Appended Shelter Data}
 		\label{AppendData}
 		\resizebox{\columnwidth}{!}{
-		\begin{tabular}{|c|c|}
-			\hline
-			\multicolumn{1}{|c|}{\textbf{Variable}} & 
-			\multicolumn{1}{c|}{\textbf{Source}} \\ \hline
-			Cost1     & Assumed Area1 * (60,000 + 12,500) \\ \hline
-			Cost2     & Assumed (Area2 * 60,000) + (Area1 * 12,500) \\ \hline
-			ResToFlood     & Assumed TRUE \\ \hline
-			ResToTyphoon    & Assumed TRUE \\ \hline
-			ResToEarthquake     & Assumed TRUE \\ \hline
-			Status     & Already an Empty Lot \\ \hline
-			
-		\end{tabular}
-	}
+			\begin{tabular}{|c|c|}
+				\hline
+				\multicolumn{1}{|c|}{\textbf{Variable}} & 
+				\multicolumn{1}{c|}{\textbf{Source}} \\ \hline
+				Cost1     & Assumed Area1 * (60,000 + 12,500) \\ \hline
+				Cost2     & Assumed (Area2 * 60,000) + (Area1 * 12,500) \\ \hline
+				ResToFlood     & Assumed TRUE \\ \hline
+				ResToTyphoon    & Assumed TRUE \\ \hline
+				ResToEarthquake     & Assumed TRUE \\ \hline
+				Status     & Already an Empty Lot \\ \hline
+				
+			\end{tabular}
+		}
 	\end{table}
-	
-\section{Results}
+
+
+\section{Results and Discussion}
+
+	\subsection{The Developed System}
 	The researchers and developers developed a decision support system to optimize shelter location allocation since there was a lack of system development. Identifying the most optimal shelter facility for a community is the system's main function. Specifically, it has five key features.
 	
 	Data Modification is the process of creating, updating, or deleting data within the system to maintain accuracy and relevance. Figures \ref{db}, \ref{commMan}, and \ref{shelMan} show parts on system with this feature.
@@ -272,21 +370,21 @@
 	\begin{figure}[h!]
 		\caption{Dashboard}
 		\centering
-		\includegraphics[width=200px]{Chapter 4/dashboard}
+		\includegraphics[width=0.7\columnwidth]{Chapter 4/dashboard}
 		\label{db}
 	\end{figure}
 	
 	\begin{figure}[h!]
 		\caption{Community Management}
 		\centering
-		\includegraphics[width=200px]{Chapter 4/commadvanced}
+		\includegraphics[width=0.7\columnwidth]{Chapter 4/commadvanced}
 		\label{commMan}
 	\end{figure}
 	
 	\begin{figure}[h!]
 		\caption{Shelter Management}
 		\centering
-		\includegraphics[width=200px]{Chapter 4/sheladvanced}
+		\includegraphics[width=0.7\columnwidth]{Chapter 4/sheladvanced}
 		\label{shelMan}
 	\end{figure}
 	
@@ -295,7 +393,7 @@
 	\begin{figure}[h!]
 		\caption{Model Parameter Settings}
 		\centering
-		\includegraphics[width=120px]{Chapter 4/modelsettings}
+		\includegraphics[width=0.4\columnwidth]{Chapter 4/modelsettings}
 		\label{modelSet}
 	\end{figure}
 	
@@ -304,14 +402,14 @@
 	\begin{figure}[h!]
 		\caption{Progress Dialog}
 		\centering
-		\includegraphics[width=200px]{Chapter 4/progress}
+		\includegraphics[width=0.7\columnwidth]{Chapter 4/progress}
 		\label{solveProg}
 	\end{figure}
 	
 	\begin{figure}[h!]
 		\caption{Report Dialog}
 		\centering
-		\includegraphics[width=200px]{Chapter 4/alloc report}
+		\includegraphics[width=0.7\columnwidth]{Chapter 4/alloc report}
 		\label{shelAllocRep}
 	\end{figure}
 	
@@ -320,7 +418,7 @@
 	\begin{figure}[h!]
 		\caption{Solve Settings}
 		\centering
-		\includegraphics[width=200px]{Chapter 4/solvesettings}
+		\includegraphics[width=0.7\columnwidth]{Chapter 4/solvesettings}
 		\label{solveSet}
 	\end{figure}
 	
@@ -329,11 +427,12 @@
 	\begin{figure}[h!]
 		\caption{Input Password Popup}
 		\centering
-		\includegraphics[width=200px]{Chapter 4/alloc report pass}
+		\includegraphics[width=0.7\columnwidth]{Chapter 4/alloc report pass}
 		\label{passPop}
 	\end{figure}
 	
 	
+	\subsection{Generated Shelter Location-Allocation Report}
 	Table \ref{modelParams} shows the parameters used for the BNT model and the genetic algorithm. Table \ref{calReport} presents the optimized shelter location-allocation results generated by the system. Five shelters were opened and assigned to respective communities. All shelters were opened as Level 1, except for Mun. Covered Court, which was upgraded to Level 2. The data used considers only 12\% of the population in each barangay as affected based from \textcite{Opdyke2024}. Additionally, the shelters have a maintenance cost, which are factored into the optimization process.
 	
 	\begin{table}[h]
@@ -354,50 +453,50 @@
 		\end{tabular}
 	\end{table}
 	
-	\begin{table}[h]
+	\begin{table}[h!]
 		\centering
 		\caption{Generated Shelter Location-Allocation for Calumpit}
 		\label{calReport}
 		\renewcommand{\arraystretch}{1.2} 
-		\resizebox{\columnwidth}{!}{
-		\begin{tabular}{|c|c|c|}
-			\hline
-			\textbf{Community} & \textbf{Shelter Assigned} & \textbf{Level} \\ \hline
-			Calizon & \multirow{5}{*}{Doña Damiana Elem School} & \multirow{5}{*}{Level 1} \\ \cline {1-1} 
-			Frances & & \\ \cline {1-1} 
-			Gatbuca & & \\ \cline {1-1} 
-			Meysulao & & \\ \cline {1-1} 
-			San Miguel  & & \\ \hline
-			
-			Bulusan & \multirow{6}{*}{Mun. Covered Court} & \multirow{6}{*}{Level 2} \\ \cline {1-1} 
-			Corazon & & \\ \cline {1-1} 
-			Panducot & & \\ \cline {1-1} 
-			Poblacion & & \\ \cline {1-1} 
-			Santa Lucia & & \\ \cline {1-1} 
-			Sucol & & \\ \hline
-			
-			Balungao & \multirow{5}{*}{NV9 Multi-Purpose} & \multirow{5}{*}{Level 1} \\ \cline {1-1} 
-			Meyto & & \\ \cline {1-1} 
-			San Jose & & \\ \cline {1-1} 
-			Santo Niño & & \\ \cline {1-1} 
-			Sapang Bayan & & \\ \hline
-			
-			Caniogan & \multirow{3}{*}{San Marcos Elem. Sch.} & \multirow{3}{*}{Level 1} \\ \cline {1-1} 
-			Palimbang & & \\ \cline {1-1} 
-			San Marcos & & \\ \hline
-			
-			Balite & \multirow{10}{*}{San Marcos National H.S.} & \multirow{10}{*}{Level 1} \\ \cline {1-1} 
-			Baguion & & \\ \cline {1-1} 
-			Calumpang & & \\ \cline {1-1} 
-			Gugo & & \\ \cline {1-1} 
-			Iba Este & & \\ \cline {1-1} 
-			Iba O'Este & & \\ \cline {1-1} 
-			Longos & & \\ \cline {1-1} 
-			Pio Cruzcosa & & \\ \cline {1-1} 
-			Pungo & & \\ \cline {1-1} 
-			Sergio Bayan & & \\ \hline
-		\end{tabular}
-	}
+		\resizebox{0.65\columnwidth}{!}{
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\textbf{Community} & \textbf{Shelter Assigned} & \textbf{Level} \\ \hline
+				Calizon & \multirow{5}{*}{Doña Damiana Elem School} & \multirow{5}{*}{Level 1} \\ \cline {1-1} 
+				Frances & & \\ \cline {1-1} 
+				Gatbuca & & \\ \cline {1-1} 
+				Meysulao & & \\ \cline {1-1} 
+				San Miguel  & & \\ \hline
+				
+				Bulusan & \multirow{6}{*}{Mun. Covered Court} & \multirow{6}{*}{Level 2} \\ \cline {1-1} 
+				Corazon & & \\ \cline {1-1} 
+				Panducot & & \\ \cline {1-1} 
+				Poblacion & & \\ \cline {1-1} 
+				Santa Lucia & & \\ \cline {1-1} 
+				Sucol & & \\ \hline
+				
+				Balungao & \multirow{5}{*}{NV9 Multi-Purpose} & \multirow{5}{*}{Level 1} \\ \cline {1-1} 
+				Meyto & & \\ \cline {1-1} 
+				San Jose & & \\ \cline {1-1} 
+				Santo Niño & & \\ \cline {1-1} 
+				Sapang Bayan & & \\ \hline
+				
+				Caniogan & \multirow{3}{*}{San Marcos Elem. Sch.} & \multirow{3}{*}{Level 1} \\ \cline {1-1} 
+				Palimbang & & \\ \cline {1-1} 
+				San Marcos & & \\ \hline
+				
+				Balite & \multirow{10}{*}{San Marcos National H.S.} & \multirow{10}{*}{Level 1} \\ \cline {1-1} 
+				Baguion & & \\ \cline {1-1} 
+				Calumpang & & \\ \cline {1-1} 
+				Gugo & & \\ \cline {1-1} 
+				Iba Este & & \\ \cline {1-1} 
+				Iba O'Este & & \\ \cline {1-1} 
+				Longos & & \\ \cline {1-1} 
+				Pio Cruzcosa & & \\ \cline {1-1} 
+				Pungo & & \\ \cline {1-1} 
+				Sergio Bayan & & \\ \hline
+			\end{tabular}
+		}
 		
 	\end{table}
 	
@@ -405,34 +504,36 @@
 		\centering
 		\caption{Result Details}
 		\label{resdetails}
-		\resizebox{\columnwidth}{!}{
-		\begin{tabular}{|p{7cm}|p{3cm}|}
-			\hline
-			\textbf{Item} & \textbf{Value} \\ \hline
-			Objective Value & 72034087 \\ 
-			Time Run  & 73 minutes and 30.96 seconds \\ 
-			Cost of Opened Shelters & 144019600 \\ 
-			Generation when solution last updated & 136256 \\ \hline
-		\end{tabular}
-	}
+		\resizebox{0.8\columnwidth}{!}{
+			\begin{tabular}{|p{7cm}|p{3cm}|}
+				\hline
+				\textbf{Item} & \textbf{Value} \\ \hline
+				Objective Value & 72034087 \\ 
+				Time Run  & 73 minutes and 30.96 seconds \\ 
+				Cost of Opened Shelters & 144019600 \\ 
+				Generation when solution last updated & 136256 \\ \hline
+			\end{tabular}
+		}
 	\end{table}
 	
 	\begin{figure}[h!]
 		\caption{Community to Shelter Straight Path}
 		\centering
-		\includegraphics[width=200px]{Chapter 4/straight path}
+		\includegraphics[width=0.5\columnwidth]{Chapter 4/straight path}
 		\label{straightpath}
 	\end{figure}
 	
 	\begin{figure}[h!]
 		\caption{Community to Shelter Route Path}
 		\centering
-		\includegraphics[width=200px]{Chapter 4/route path}
+		\includegraphics[width=0.5\columnwidth]{Chapter 4/route path}
 		\label{routepath}
 	\end{figure}
 	
 	Table \ref{resdetails} shows the details of the result. Note that this report is generated by the system running on Huawei Matebook D15 with processor of Ryzen 7 5700U. The generated report can be downloaded as an Excel file. In the Report Module, a map displays where communities are allocated to their designated shelters. Figure \ref{straightpath} and \ref{routepath} shows the generated map which visualizes the allocation result.
 	
+	
+	\subsection{System Evaluation}
 	The researchers conducted a survey to 23 respondents from the MSWDO and MDRRMO of Calumpit. The survey instrument was based on TAM which consists of four criteria: perceived usefulness, perceived ease of use, attitude towards using, and behavioral intention to use. The gathered data was analyzed to determine the users’ acceptance of the system. 
 	
 	\begin{table}[h!]
@@ -440,22 +541,22 @@
 		\caption{\textit{End User Evaluation}}
 		\label{enduseeval}
 		\renewcommand{\arraystretch}{1.3}
-		 \resizebox{\columnwidth}{!}{
-		\begin{tabular}{p{5cm}ccc}
-			\hline
-			\textbf{Criteria} & \textbf{Mean} & \textbf{SD Range} & \textbf{VI} \\
-			\hline
-			Perceived Usefulness 
-			& 9.40 & 0.54-0.80 & Strongly Agree \\
-			Perceived Ease of Use
-			& 9.47& 0.58-0.66 & Strongly Agree \\
-			Attitude Towards Using
-			& 9.48 & 0.58-0.59 & Strongly Agree \\
-			Behavioral Intention to Use
-			& 9.41 & 0.58-0.70 & Strongly Agree \\
-			\hline
-		\end{tabular}
-	}
+		\resizebox{0.8\columnwidth}{!}{
+			\begin{tabular}{p{5cm}ccc}
+				\hline
+				\textbf{Criteria} & \textbf{Mean} & \textbf{SD Range} & \textbf{VI} \\
+				\hline
+				Perceived Usefulness 
+				& 9.40 & 0.54-0.80 & Strongly Agree \\
+				Perceived Ease of Use
+				& 9.47& 0.58-0.66 & Strongly Agree \\
+				Attitude Towards Using
+				& 9.48 & 0.58-0.59 & Strongly Agree \\
+				Behavioral Intention to Use
+				& 9.41 & 0.58-0.70 & Strongly Agree \\
+				\hline
+			\end{tabular}
+		}
 	\end{table}
 	
 	Table \ref{enduseeval} presents the end-users' evaluation across the four determinants of TAM. The mean scores for all determinants range from 9.4 to 9.41, all interpreted as “Strongly Agree”. The standard deviations range from 0.54 to 0.8, indicating low variability in responses.
@@ -467,7 +568,7 @@
 		\caption{\textit{IT Experts Evaluation}}
 		\label{itexpeval}
 		\renewcommand{\arraystretch}{1.3}
-		\resizebox{\columnwidth}{!}{
+		\resizebox{0.8\columnwidth}{!}{
 			\begin{tabular}{p{5cm}ccc}
 				\hline
 				\textbf{Criteria} & \textbf{Mean} & \textbf{SD Range} & \textbf{VI} \\
@@ -495,21 +596,21 @@
 	
 	Table \ref{enduseeval} presents the IT experts' evaluation across the eight criteria from ISO/IEC 25010. The mean scores for all determinants range from 9 to 9.8, all interpreted as “Strongly Agree”. The standard deviations range below 1.3, indicating low variability in responses.
 	
-	
-
-\section{Discussion}
 	Feedback from IT experts recognized the system’s comprehensive functionality, reliable performance, and simple, user-friendly interface, effectively identifying optimal shelter locations and processing data efficiently. They recommended improvements such as supporting new model configurations without major code changes, enhancing the map layout, displaying additional details on user interaction, and strengthening data protection. Suggestions included developing a mobile app, adding travel time estimates, enabling real-time data updates, configuring models through the UI, and simplifying error messages for non-technical users. Meanwhile, LGU Calumpit officials stressed the importance of accurately identifying shelter lot locations. Overall, the feedback provides a clear guide for refining the system’s usability, adaptability, and effectiveness.
 	
 
-\section{Conclusion}
-
+\section{Conclusion and Recommendations}
+	
+	\subsection{Conclusion}
 	The Shelter Location-Allocation System was developed for Calumpit, Bulacan to support disaster response planning by optimizing the assignment of communities to evacuation shelters. Using the Bilevel No Transfer Model integrated with a genetic algorithm, the system considers factors like distance, capacity, cost, and shelter levels. Key features include data and model modification, data simulation, shelter tagging, and report protection all contributing to an effective and quality decision support system for disaster response planning. 
 	
 	After running 200,000 generations in 73 minutes, the system identified five optimal shelters, with one required to be a level 2 shelter. This suggests that upgrading an existing shelter is more optimal than opening an additional one. It also indicates that other built shelters may remain closed to minimize maintenance costs. Additionally, no empty lots were selected, which may imply that constructing a new shelter is not yet necessary. However, it is important to note that actual affected population and cost considerations may differ based on the decision maker's assessments. The system allows users to adjust data and model parameters as needed. 
 	
 	Evaluation by LGU staff and IT experts rated the system highly in acceptability, functionality, and reliability, with both groups strongly agreeing on its usefulness. This suggests that they are likely to adopt and use the system to support their work in disaster response planning, while also confirming that it meets international standards for a software product.
 	
+	\subsection{Recommendations}
 	Recommendations for future work include exploring additional shelter location models, integrating GIS and real-time data, testing in other municipalities, and improving cross-platform compatibility. Feedback also suggested enhancing data protection, model configurability, and adding mobile accessibility to better support evolving disaster response needs.
+	
 	
 \printbibliography[heading=bibintoc,title={REFERENCES}] %<-start the bibliography
 \end{document}

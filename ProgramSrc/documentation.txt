@@ -13,6 +13,7 @@ pip install scikit-learn
 pip install msoffcrypto-tools
 pip install xlsxwriter
 pip install pyinstaller
+pip install pillow
     on console
         pyinstaller --onefile main.py or pyinstaller --onefile --noconsole main.py
         pyinstaller main.py --onefile --strip --upx-dir E:\upx-5.0.1-win64

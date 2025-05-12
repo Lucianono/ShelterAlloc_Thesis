@@ -248,10 +248,10 @@ class Ui_modelSettings(object):
 
         self.gridLayout.addWidget(self.textEdit_maxL2Shelters, 2, 2, 1, 1)
 
-        self.textEdit_areaPerIdniv = QPlainTextEdit(self.widget_4)
-        self.textEdit_areaPerIdniv.setObjectName(u"textEdit_areaPerIdniv")
+        self.textEdit_areaPerIndiv = QPlainTextEdit(self.widget_4)
+        self.textEdit_areaPerIndiv.setObjectName(u"textEdit_areaPerIndiv")
 
-        self.gridLayout.addWidget(self.textEdit_areaPerIdniv, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.textEdit_areaPerIndiv, 1, 2, 1, 1)
 
 
         self.verticalLayout_2.addLayout(self.gridLayout)

@@ -436,6 +436,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             else:
                 self.map = folium.Map(location=[0,0], zoom_start=2)
 
+            MousePosition(
+                position='bottomright',
+                separator=' | ',
+                prefix="Coordinates: ",
+                empty_string='Unavailable',
+                num_digits=6
+            ).add_to(self.map)
+
             for index, row in comm_data.iterrows():
                 latitude = row.get("Latitude", 1)
                 longitude = row.get("Longitude", 1)

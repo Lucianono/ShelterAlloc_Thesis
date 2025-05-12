@@ -13,8 +13,10 @@ pip install scikit-learn
 pip install msoffcrypto-tools
 pip install xlsxwriter
 pip install pyinstaller
+pip install pillow
     on console
         pyinstaller --onefile main.py or pyinstaller --onefile --noconsole main.py
+        pyinstaller main.py --onefile --strip --upx-dir E:\upx-5.0.1-win64
     on main.spec copy paste this
         a = Analysis(
             ['main.py'],
@@ -40,7 +42,7 @@ pip install pyinstaller
             name='Shelter Allocation',
             debug=False,
             bootloader_ignore_signals=False,
-            strip=False,
+            strip=True,
             upx=True,
             upx_exclude=[],
             runtime_tmpdir=None,

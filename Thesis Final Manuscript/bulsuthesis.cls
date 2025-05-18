@@ -296,12 +296,12 @@
 	\addcontentsline{toc}{chapter}{APPROVAL SHEET}
 	\thispagestyle{empty}
 	
-	In partial fulfillment of the requirements for the degree {\@degree} with specialization in {\@specialization}, this thesis entitled {\bfseries\MakeUppercase``\@title''} has been prepared and submitted by \@authorone, \@authortwo, \@authorthree, \@authorfour\ and \@authorfive\ who are hereby recommended for oral examination.
+	In partial fulfillment of the requirements for the degree {\@degree} with specialization in {\@specialization}, this thesis entitled {\bfseries\MakeUppercase``\@title''} has been prepared and submitted by \@authorone, \@authortwo, and \@authorthree\ who are hereby recommended for oral examination.
 	
 	\vspace{1em}
 	
 	{\singlespacing 
-		\hfill \pbox{5in}{\relax\ifvmode\centering\fi \textbf{\MakeUppercase{\@adviser}} \\ Adviser}
+		\hfill \pbox{5in}{\relax\ifvmode\centering\fi \textbf{\MakeUppercase{\@adviser}\@advisersuffix} \\ Adviser}
 	}
 	
 	\vspace{\stretch{1}}
@@ -312,17 +312,17 @@
 	
 	{\singlespacing \centering
 		\pbox{5in}{\relax\ifvmode\centering\fi%
-			\textbf{\MakeUppercase{\@panelchair}} \\ Chairperson
+			\textbf{{\@panelchair}} \\ Chairperson
 		}
 		
 		\vspace{2em}
 		
 		\pbox{2.5in}{\relax\ifvmode\centering\fi%
-			\textbf{\MakeUppercase{\@paneltwo}} \\ Member
+			\textbf{{\@paneltwo}} \\ Member
 		}
 		\hfill 
 		\pbox{2.5in}{\relax\ifvmode\centering\fi%
-			\textbf{\MakeUppercase{\@panelthree}} \\ Member
+			\textbf{{\@panelthree}} \\ Member
 		}
 	}
 	

@@ -7,9 +7,18 @@ A decision support system designed to help **Local Government Units** (LGUs) and
 
 
 
+## Badges
+
+[![Static Badge](https://img.shields.io/badge/🏆%20Best_Thesis_Champion-Award-green)](https://www.facebook.com/story.php?story_fbid=1283428107120107&id=100063587900748&rdid=mbEvWQHZewRtdGQX#)
+[![Static Badge](https://img.shields.io/badge/🏆%20Best_Poster-Award-green)](https://www.facebook.com/100063587900748/posts/1285058570290394/?rdid=ctmYGYPcrKlF56k5#)
+[![Static Badge](https://img.shields.io/badge/🏆%20Best_Presenter-Award-green)](https://www.facebook.com/100063587900748/posts/1285058570290394/?rdid=ctmYGYPcrKlF56k5#)
+[![Static Badge](https://img.shields.io/badge/🎯%20Best_Programmed_Systems-Qualified-blue)](https://www.facebook.com/share/p/1AbpA53FQ7/)
+
+
+
 ## Tech Stack
 
-Python - QT Designer - PySide6
+Python - QT Designer - PySide6 - TeX - HTML
 
 
 ## Features

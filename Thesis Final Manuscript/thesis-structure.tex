@@ -1,5 +1,7 @@
 \usepackage{lipsum}			%garbage words
-\usepackage[none]{hyphenat} 	%no hypenation
+\pretolerance=10000
+\tolerance=2000
+\emergencystretch=3em	%no hypenation
 %----------------------------------------------------------------
 % SECTIONING FORMAT
 %----------------------------------------------------------------
@@ -54,7 +56,7 @@
 %----------------------------------------------------------------
 % TABLE/FIGURES/EQUATION
 %----------------------------------------------------------------
-\usepackage{booktabs,longtable,threeparttable,siunitx,tabularx,rotating,pdflscape,float}
+\usepackage{booktabs,longtable,threeparttable,siunitx,tabularx,rotating,pdflscape,float,listings,xcolor}
 \usepackage{array,multicol,multirow,color,calc,subcaption,float}
 	\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 	\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
@@ -85,6 +87,26 @@
 	
 	\counterwithout{table}{chapter}
 	\counterwithout{figure}{chapter}
+	
+	\lstset{
+	  basicstyle=\ttfamily\footnotesize,
+	  lineskip=-2pt,
+	  frame=single,
+	  backgroundcolor=\color{white},
+	  keywordstyle=\color{blue}\bfseries,
+	  commentstyle=\color{gray}\itshape,
+	  stringstyle=\color{orange},
+	  numbers=left,
+	  numberstyle=\tiny,
+	  numbersep=5pt,
+	  showstringspaces=false,
+	  tabsize=2,
+	  keepspaces=true, % preserves tabs and spaces
+	  breaklines=true, % enables line breaking
+	  breakatwhitespace=false, % allow breaking anywhere if no whitespace
+	  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	}
+	
 
 
 %----------------------------------------------------------------

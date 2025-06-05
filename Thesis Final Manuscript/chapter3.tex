@@ -97,34 +97,34 @@
 	The following conditions should satisfy else no solution exists:
 	\begin{equation*} 
 		\label{f1}
-		Area_{j}^{(2)} \ge Area_{j}^{(1)}, \forall j = 1, ..., N.
+		Area_{j}^{(2)} \ge Area_{j}^{(1)}, \forall j = 1, ..., N
 	\end{equation*}
-	This condition checks if shelter j area for level 2 is greater than or equal to their area for level 1. 
+	checks if shelter j area for level 2 is greater than or equal to their area for level 1. 
 	\begin{equation*} 
 		\label{f2}
-		MaxL2 \le MaxSh.
+		MaxL2 \le MaxSh
 	\end{equation*}
-	This condition checks if the user defined number of maximum level 2 shelters is less than to number of maximum shelters.
+	checks if the user defined number of maximum level 2 shelters is less than to number of maximum shelters.
 	\begin{equation*} 
 		\label{f3}
-		\exists j \in d_{ij} \le D_{i}, \forall i = 1, ..., M.
+		\exists j \in d_{ij} \le D_{i}, \forall i = 1, ..., M
 	\end{equation*}
-	This condition checks if there exists a distance from community i to all shelters that is less than or equal to its max distance.
+	checks if there exists a distance from community i to all shelters that is less than or equal to its max distance.
 	\begin{equation*} 
 		\label{f4}
-		\exists i \in LP_{i} \le Area_{j}^{(2)}, \forall j = 1, ..., N.
+		\exists i \in LP_{i} \le Area_{j}^{(2)}, \forall j = 1, ..., N
 	\end{equation*}
-	This condition checks if there exists a level 2 shelter that could accommodate a community i by their population multiplied by the area allotted per individual. 
+	checks if there exists a level 2 shelter that could accommodate a community i by their population multiplied by the area allotted per individual. 
 	\begin{equation*} 
 		\label{f5}
-		\sum_{i=1}^{M}P_{i} \le L\sum_{j=1}^{N}Area_{j}, \forall i=1,...,M,  \forall j=1,...,N.
+		\sum_{i=1}^{M}P_{i} \le L\sum_{j=1}^{N}Area_{j}, \forall i=1,...,M,  \forall j=1,...,N
 	\end{equation*}
-	This condition checks if the total population is less than or equal to the total area of shelters multiplied to area allotted per individual. If this fails, then it is theoretically impossible to allocate all individuals given with their shorted capacity of shelters.
+	checks if the total population is less than or equal to the total area of shelters multiplied to area allotted per individual. If this fails, then it is theoretically impossible to allocate all individuals given with their shorted capacity of shelters.
 	
 	Incorporating these feasibility conditions ensures that the model produced at least one feasible solution, and the system proceeds only with valid input configurations. By verifying these conditions, users receive instant feedback on whether their inputs are valid, allowing the model to proceed with solving. These conditions represent key feasibility checks but are not exhaustive, and infeasible solutions may still persist. An additional feature would employ a penalty function that would transform the model to an unconstrained model.	
 	
 \subsection{Penalty Function}
-	The penalty function was used to handle the problem constraints. Instead of discarding infeasible solutions or chromosomes, they are assigned a very large objective value making them not fit to be a solution. The type of penalty to be used is the Courant-Beltrami penalty function method, as shown in equation below.
+	The penalty function was used to handle the problem constraints. Instead of discarding infeasible solutions or chromosomes, they are assigned a very large objective value making them not fit to be a solution. The type of penalty to be used is the Courant-Beltrami penalty function method, as shown in equation
 	\begin{equation*} 
 		\label{p1}
 		h(x)=(g^+(x))^2
@@ -392,18 +392,16 @@
 		\caption{Sources of Appended Shelter Data}
 		\label{AppendData}
 		\renewcommand{\arraystretch}{1.3}
-			\begin{tabular}{ll}
-				\hline
-				\multicolumn{1}{l}{\textbf{Variable}} & 
-				\multicolumn{1}{l}{\textbf{Source}} \\ \hline
-				Cost1     & Assumed Area1 * (60,000 + 12,500) \\ 
-				Cost2     & Assumed (Area2 * 60,000) + (Area1 * 12,500) \\ 
-				ResToFlood     & Assumed TRUE \\ 
-				ResToTyphoon    & Assumed TRUE \\ 
-				ResToEarthquake     & Assumed TRUE \\ 
-				Status     & Already an Empty Lot \\ \hline
-				
-			\end{tabular}
+		\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4cm} X}
+			\hline
+			\textbf{Variable} & \textbf{Source} \\ \hline
+			Cost1            & Assumed Area1 * (60,000 + 12,500) \\ 
+			Cost2            & Assumed (Area2 * 60,000) + (Area1 * 12,500) \\ 
+			ResToFlood       & Assumed TRUE \\ 
+			ResToTyphoon     & Assumed TRUE \\ 
+			ResToEarthquake  & Assumed TRUE \\ 
+			Status           & Already an Empty Lot \\ \hline
+		\end{tabularx}
 	\end{table}
 	
 	For justification of the target area’s vulnerability, typhoon data spanning from 2006 to 2022 were examined. This dataset includes the number of affected and evacuated individuals across various municipalities in Bulacan. The data was grouped by municipality, summing the affected and evacuated residents over the specified period. This analysis helps justify the focus on the municipality and supports the rationale for the shelter allocation model’s implementation in the municipality.
@@ -482,8 +480,7 @@
 		\label{Nrs}
 	\end{figure}
 	
-	After the data collection, the rating scale categorizes the acceptability levels. Descriptive statistics was utilized to analyze the collected data. Analysis includes calculating the minimum, maximum, mean, and standard deviation for each category. Formula below shows the mean that computes the average score. This use of data allows both the system functionality and its user acceptability to be comprehensively assessed. Table \ref{Verbal} shows the verbal interpretation of the computed mean corresponds to the level of acceptability based on the study by \textcite{Eladia2024}. 
-	
+	After the data collection, the rating scale categorizes the acceptability levels. Descriptive statistics was utilized to analyze the collected data. Analysis includes calculating the minimum, maximum, mean, and standard deviation for each category.
 	
 	\begin{equation*} 
 		\label{mean}
@@ -497,24 +494,24 @@
 	$x_{i}$ & data points \\
 	\end{tabular}
 	
+	\noindent shows the mean that computes the average score. This use of data allows both the system functionality and its user acceptability to be comprehensively assessed. The following shows the verbal interpretation of the computed mean corresponds to the level of acceptability based on the study by \textcite{Eladia2024}:
+	
+	
 	\begin{table}[h]
 		\centering
-		\caption{Mean Score Interval and its Verbal Interpretation}
 		\renewcommand{\arraystretch}{1.3}
 		\label{Verbal}
 			\begin{tabular}{ll}
-				\hline
 				\multicolumn{1}{l}{\textbf{Mean Score Interval}} & 
 				\multicolumn{1}{l}{\textbf{Level of Acceptance}} \\ \hline
 				1.00 - 2.80     & Poorly Acceptable            \\ 
 				2.81 - 4.60     & Fairly Acceptable  \\ 
 				4.61 - 6.40     & Acceptable \\ 
 				6.41 - 8.20     & Moderately Acceptable      \\ 
-				8.21 - 10.00    & Highly Acceptable\\ \hline
+				8.21 - 10.00    & Highly Acceptable\\ 
 			\end{tabular}
 	\end{table}
 	
-	Formula below shows the standard deviation calculation which shows the dispersion of scores relative to the mean. A standard deviation  that is closer to the value of 0 indicates the spread of data is closer to the mean.
 	
 	\begin{equation*} 
 		\label{stdDev}
@@ -528,7 +525,9 @@
 	$n$ & sample size \\
 	$x_{i}$ & data points \\
 	\end{tabular}
-	
+		
+	\noindent shows the standard deviation calculation which shows the dispersion of scores relative to the mean. A standard deviation  that is closer to the value of 0 indicates the spread of data is closer to the mean.
+
 
 \section{Ethical Considerations}
 	Data gathered contained sensitive data so that ethical considerations should be practiced throughout the research.  Informed consent obtained from each participant, providing them with a clear understanding of the research purpose, procedures, and their rights to withdraw at any time. To protect the participants’ privacy, all responses are anonymized and handled with strict confidentiality. Additionally, data usage was restricted to research purposes only, ensuring that participants' information remains safeguarded throughout the research process and beyond. 

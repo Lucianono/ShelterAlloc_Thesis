@@ -164,65 +164,72 @@
 		
 		\begin{figure}[h]
 			\centering
-			\caption{Genetic Algorithm}
-			\label{genalgoFlow}
-			\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{appendix/Genetic Algorithm Flowchart}
-		\end{figure}
-		
-		\begin{figure}[h]
-			\centering
-			\caption{Genetic Algorithm - Selection}
-			\label{selectFlow}
-			\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{appendix/select f}
-		\end{figure}
-		
-		\begin{figure}[h]
-			\centering
-			\caption{Genetic Algorithm - Crossover}
-			\label{crossFlow}
-			\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{appendix/crossover f}
-		\end{figure}
-		
-		\begin{figure}[h]
-			\centering
-			\caption{Genetic Algorithm - Mutation}
-			\label{mutateFlow}
-			\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{appendix/mutate f}
+			\caption{Main Menu}
+			\label{systemFlow}
+			\includegraphics[scale=0.7]{appendix/system f}
 		\end{figure}
 		
 		\begin{figure}[h]
 			\centering
 			\caption{Data Modification Feature}
 			\label{dataModifFlow}
-			\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{appendix/data modif f}
+			\includegraphics[scale=0.6]{appendix/data modif f}
 		\end{figure}
 		
 		\begin{figure}[h]
 			\centering
 			\caption{Model Modification Feature}
 			\label{modelFLow}
-			\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{appendix/modelset f}
+			\includegraphics[scale=0.7]{appendix/modelset f}
 		\end{figure}
 		
 		\begin{figure}[h]
 			\centering
 			\caption{Data Simulation Feature}
 			\label{simFlow}
-			\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{appendix/datasim f}
+			\includegraphics[scale=0.7]{appendix/datasim f}
 		\end{figure}
 		
 		\begin{figure}[h]
 			\centering
 			\caption{Shelter Tagging Feature}
 			\label{shelTagFlow}
-			\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{appendix/sheltertag f}
+			\includegraphics[scale=0.65]{appendix/sheltertag f}
 		\end{figure}
 		
 		\begin{figure}[h]
 			\centering
 			\caption{Report Protection Feature}
 			\label{protectFlow}
-			\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{appendix/protect f}
+			\includegraphics[scale=0.7]{appendix/protect f}
+		\end{figure}
+				
+		\begin{figure}[h]
+			\centering
+			\caption{Genetic Algorithm}
+			\label{genalgoFlow}
+			\includegraphics[scale=0.7]{appendix/Genetic Algorithm Flowchart}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\centering
+			\caption{Genetic Algorithm - Selection}
+			\label{selectFlow}
+			\includegraphics[scale=0.7]{appendix/select f}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\centering
+			\caption{Genetic Algorithm - Crossover}
+			\label{crossFlow}
+			\includegraphics[scale=0.7]{appendix/crossover f}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\centering
+			\caption{Genetic Algorithm - Mutation}
+			\label{mutateFlow}
+			\includegraphics[scale=0.7]{appendix/mutate f}
 		\end{figure}
 		
 		
@@ -252,7 +259,7 @@
 
      # sorting from best to worst solutions
      ranked_solutions = [(fitness(sol), sol) for sol in solutions]
-     ranked_solutions.sort(key=lambda x: x[0]) aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+     ranked_solutions.sort(key=lambda x: x[0])
 
      # initiate selection and crossover
      new_population = []
@@ -476,9 +483,9 @@ def check_max_lvl2_shelters(allocation):
 		\chapter{Letters}
 		\pagebreak
 		
-		\includepdf[pages=1,pagecommand={}]{appendix/Letter-of-Intent-Research-Collab-MDRRMO-Participants}
-		\includepdf[pages=1,pagecommand={}]{appendix/Letter-of-Intent-Research-Collab-MSWDO-Participants}
-		\includepdf[pages=-,pagecommand={}]{appendix/Thesis-Endorsement}
+		\includepdf[pages=1,pagecommand={},scale=1.3,offset=10 -100]{appendix/Letter-of-Intent-Research-Collab-MDRRMO-Participants}
+		\includepdf[pages=1,pagecommand={},scale=1.3,offset=10 -100]{appendix/Letter-of-Intent-Research-Collab-MSWDO-Participants}
+		\includepdf[pages=-,pagecommand={},scale=0.9, offset=1cm 0cm]{appendix/Thesis-Endorsement}
 		
 		
 	\end{centerappendixtitle}
@@ -490,8 +497,8 @@ def check_max_lvl2_shelters(allocation):
 		\pagebreak
 		
 		
-		\includepdf[pages=-,pagecommand={}]{appendix/[ISOQuestionnaire]_Thesis}
-		\includepdf[pages=-,pagecommand={}]{appendix/[TAMQuestionnaire]_Thesis}
+		\includepdf[pages=-,pagecommand={},scale=0.9, offset=1cm 0cm]{appendix/[ISOQuestionnaire]_Thesis}
+		\includepdf[pages=-,pagecommand={},scale=0.9, offset=1cm 0cm]{appendix/[TAMQuestionnaire]_Thesis}
 	\end{centerappendixtitle}
 	
 	

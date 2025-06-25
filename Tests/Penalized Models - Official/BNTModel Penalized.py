@@ -1,27 +1,27 @@
 # the official function for Bilevel No Transfer model
 
 from Calumpit_Data import Community,Shelters
-import random
-import numpy as np
-import copy
-import time
+import random #generate random numbers
+import numpy as np  # generate nonprobabalistic numbers
+import copy # copy arrays
+import time #to compute time for the simulation
 
 # =======================
 # MODEL PARAMETERS
 # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
 area_per_individual = 1
 max_lvl2_shelters = 10
-max_shelters = 10
+max_shelters = 10 #total number of shelter level 1 and 2 i-oopen
 
 solutions = []
-num_generations = 10000
-num_solutions = 100
+num_generations = 10000 # number of iterations for GA
+num_solutions = 100 #chromosome community+shelter 
 mutation_rate = 0.2
-mutation_iteration = 2
+mutation_iteration = 2 #number of times to mutate per iteration
 
 weight_dist = 0.5
 weight_cost = 0.5
-penalty_constant = 10**20
+penalty_constant = 10**20 #10^20
 
 start_time = time.time()
 

@@ -1,0 +1,101 @@
+\usepackage[T1]{fontenc}
+\usepackage{uarial}
+%\renewcommand{\familydefault}{\sfdefault}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{top=0.75in, bottom=0.5in, left=0.5in,right=0.5in}
+
+\makeatletter         
+\renewcommand\maketitle{
+	{\raggedright % Note the extra {
+			\thispagestyle{empty}
+			\begin{tabularx}{\linewidth}{@{}X@{}C{0.75in}@{}C{0.75in}@{}}
+				& \multirow{5}{*}{\includegraphics[width=\linewidth]{bulsu_logo}} & \multirow{5}{*}{\includegraphics[width=\linewidth]{cs_logo}}\\
+				{\normalsize\textbf{\journalname}} &&\\
+				{\normalsize Bulacan State University} & & \\
+				{\normalsize College of Science} &&\\
+				&&\\
+				\hline
+			\end{tabularx}
+			
+			\vspace{8ex}
+			
+			{\centering\Huge \bfseries\sffamily \@title \par} 
+			
+			\vspace{4ex}
+			
+			{\centering\large \sffamily  \@author \par}
+			
+			\vspace{1ex}
+			
+			{\centering\large\sffamily Faculty Adviser: \adviser \par}
+			
+			\vspace{2ex}
+		}
+	} % Note the extra }
+\makeatother
+
+\usepackage{titlesec}
+\titleformat{\section}%
+	{\normalfont\normalsize\bfseries}%
+	{\thesection}%
+	{1em}%
+	{\MakeUppercase}
+\titleformat{\subsection}%
+	{\normalfont\normalsize\bfseries}%
+	{\thesubsection}%
+	{1em}%
+	{}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\itshape\sffamily \journalname}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.0pt}
+
+\usepackage{booktabs,longtable,threeparttable,siunitx,tabularx}
+\usepackage{array,multicol,multirow,color,calc}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+\usepackage{caption}
+\DeclareCaptionLabelSeparator*{spaced}{\\[1ex]}
+\renewcommand{\thetable}{\arabic{table}}
+\captionsetup[table]{
+	%		font=sf,
+	labelfont=bf,
+	textfont=it, 
+	format=plain,
+	justification=justified,
+	singlelinecheck=false,
+	labelsep=spaced,skip=12pt
+}
+\captionsetup[figure]{
+	%		font=sf,
+	labelfont=bf,
+	textfont=it, 
+	format=plain,
+	justification=justified,
+	singlelinecheck=false,
+	labelsep=spaced,skip=12pt
+}
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[style=apa,defernumbers=true]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+
+\usepackage{etoolbox}
+
+\AtBeginEnvironment{tabular}{\small\sffamily}
+\AtBeginEnvironment{tabularx}{\small\sffamily}
+\AtBeginEnvironment{abstract}{\bfseries}
+
+\setlength{\headheight}{14.5pt}
+\setlength{\headsep}{14pt}
+
+\usepackage[shortcuts]{extdash}
+\pretolerance=5000
+\tolerance=9000 
+\emergencystretch=10pt

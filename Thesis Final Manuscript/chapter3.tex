@@ -34,21 +34,18 @@
 	The constraints of BNT model include the distance, capacity, assignment, and binary constraints, each of which plays a crucial role in ensuring the model functions effectively under the disaster response scenario. These constraints subject to the following: 
 	
 	\textit{Distance Constraint.} Equation \ref{c1} ensures that each community is allocated to a shelter within a defined maximum distance. 
-	
 	\begin{equation} 	
 		\label{c1}
 		d_{ij}x_{ij} \le D_{i}, \forall i = 1,..., M,  \forall j = 1,..., N 
 	\end{equation}
 	
 	\textit{Capacity Constraint.} Equation \ref{c2} guarantees that the total number of evacuees assigned to a shelter does not exceed its maximum capacity. 
-	
 	\begin{equation} 
 		\label{c2}
 		\sum_{i=1}^{M}LP_{i}x_{ij} \le \sum_{k} Area_{j}^{(k)} y_{j}^{(k)}, \forall j = 1,..., N , k=1,2
 	\end{equation}
 	
 	\textit{Assignment Constraints.} Equations \ref{c3} and \ref{c4} ensures that the total assigned shelters and level 2 shelter does not exceeds over the user defined parameters respectively.  Equation \ref{c5} ensures that every community is assigned to exactly one shelter. Equation \ref{c6} ensures that the assigned shelter does not duplicate like being opened as level 1 and level 2 at the same time. This prevents problems in shelter allocation and ensures that each community has a designated place.
-	
 	\begin{equation} 
 		\label{c3}
 		\sum_{k=1}^{2} \sum_j={1}^{N}y_{j}^{(k)} \le MaxSh
@@ -64,31 +61,33 @@
 	\begin{equation}
 		\label{c6}
 		\sum_{k=1}^{N}y_{j}^{(k)} \le 1, \forall j=1,...,N
-	\end{equation}
+	\end{equation}\\
 	
-	\textit{Binary Constraint.} This constraint ensures that the model only takes binary variable, where can either be true (1) or false (0).
 	
+	\textit{Binary Constraint.} Equation \ref{c7} ensures that the model only takes binary variable, where can either be true (1) or false (0)
 	\begin{equation}
 		\label{c7}
 	 	x_{ij}, y_{j}^{(1)},y_{j}^{(2)} \in \{0,1\}, \forall i=1,...,M,  \forall j=1,...,N
 	\end{equation}
 	
-	\noindent Where:
-	\\$wt_{dist}$ – weight given to the distance cost.
-	\\$wt_{cost}$ – weight given to the fixed shelter cost.
-	\\$M$ – total number of communities.
-	\\$N$ – total number of potential shelter locations.
-	\\$d_{ij}$ – distance between shelter i and community j.
-	\\$P_{i}$ – population of the community i.
-	\\$C_{j}^{(k)}$ – fixed cost for establishing shelter j of level k.
-	\\$x_{ij}$ – binary decision variable indicating if community j is assigned to shelter i.
-	\\$y_{j}^{(k)}$ – binary decision variable indicating if shelter j of level k is opened.
-	\\$L$ - area allotted per individual
-	\\$D_{i}$ – maximum distance that community i can be traveled.
-	\\$Area_{j}^{(k)}$ - area of shelter j of level k.
-	\\$MaxL2$ - maximum number of level 2 shelters to be opened.
-	\\$MaxSh$ - maximum number of shelters to be opened.
-	\\
+	\noindent where: \\
+	\begin{tabular}{@{}ll}
+	$wt_{dist}$ & weight given to the distance cost. \\
+	$wt_{cost}$ & weight given to the fixed shelter cost. \\
+	$M$ & total number of communities. \\
+	$N$ & total number of potential shelter locations. \\
+	$d_{ij}$ & distance between shelter $i$ and community $j$. \\
+	$P_{i}$ & population of community $i$. \\
+	$C_{j}^{(k)}$ & fixed cost for establishing shelter $j$ of level $k$. \\
+	$x_{ij}$ & binary decision variable indicating if community $j$ is assigned to shelter $i$. \\
+	$y_{j}^{(k)}$ & binary decision variable indicating if shelter $j$ of level $k$ is opened. \\
+	$L$ & area allotted per individual. \\
+	$D_{i}$ & maximum distance that community $i$ can be traveled. \\
+	$Area_{j}^{(k)}$ & area of shelter $j$ of level $k$. \\
+	$MaxL2$ & maximum number of level 2 shelters to be opened. \\
+	$MaxSh$ & maximum number of shelters to be opened. \\
+	\end{tabular}
+	
 	
 	
 \subsection{Feasibility Conditions}
@@ -96,67 +95,53 @@
 	Checking if a solution exists based on the user defined parameters is a must in developing the system thus conducting feasibility checks before executing the algorithm. This adds a feature that allows users to view if their inputs are incorrect having an additional functionality and capability of the system.
 	
 	The following conditions should satisfy else no solution exists:
-	
-	\begin{equation} 
+	\begin{equation*} 
 		\label{f1}
 		Area_{j}^{(2)} \ge Area_{j}^{(1)}, \forall j = 1, ..., N
-	\end{equation}
-	
-	Condition \ref{f1} checks if shelter j area for level 2 is greater than or equal to their area for level 1. 
-	
-	\begin{equation} 
+	\end{equation*}
+	checks if shelter j area for level 2 is greater than or equal to their area for level 1. 
+	\begin{equation*} 
 		\label{f2}
 		MaxL2 \le MaxSh
-	\end{equation}
-	
-	Condition \ref{f2} checks if the user defined number of maximum level 2 shelters is less than to number of maximum shelters.
-	
-	\begin{equation} 
+	\end{equation*}
+	checks if the user defined number of maximum level 2 shelters is less than to number of maximum shelters.
+	\begin{equation*} 
 		\label{f3}
 		\exists j \in d_{ij} \le D_{i}, \forall i = 1, ..., M
-	\end{equation}
-	
-	Condition \ref{f3} checks if there exists a distance from community i to all shelters that is less than or equal to its max distance.
-	
-	\begin{equation} 
+	\end{equation*}
+	checks if there exists a distance from community i to all shelters that is less than or equal to its max distance.
+	\begin{equation*} 
 		\label{f4}
 		\exists i \in LP_{i} \le Area_{j}^{(2)}, \forall j = 1, ..., N
-	\end{equation}
-	
-	Condition \ref{f4} checks if there exists a level 2 shelter that could accommodate a community i by their population multiplied by the area allotted per individual. 
-	
-	\begin{equation} 
+	\end{equation*}
+	checks if there exists a level 2 shelter that could accommodate a community i by their population multiplied by the area allotted per individual. 
+	\begin{equation*} 
 		\label{f5}
 		\sum_{i=1}^{M}P_{i} \le L\sum_{j=1}^{N}Area_{j}, \forall i=1,...,M,  \forall j=1,...,N
-	\end{equation}
-	
-	Condition \ref{f5} checks if the total population is less than or equal to the total area of shelters multiplied to area allotted per individual. If this fails, then it is theoretically impossible to allocate all individuals given with their shorted capacity of shelters.
+	\end{equation*}
+	checks if the total population is less than or equal to the total area of shelters multiplied to area allotted per individual. If this fails, then it is theoretically impossible to allocate all individuals given with their shorted capacity of shelters.
 	
 	Incorporating these feasibility conditions ensures that the model produced at least one feasible solution, and the system proceeds only with valid input configurations. By verifying these conditions, users receive instant feedback on whether their inputs are valid, allowing the model to proceed with solving. These conditions represent key feasibility checks but are not exhaustive, and infeasible solutions may still persist. An additional feature would employ a penalty function that would transform the model to an unconstrained model.	
 	
 \subsection{Penalty Function}
-	The penalty function was used to handle the problem constraints. Instead of discarding infeasible solutions or chromosomes, they are assigned a very large objective value making them not fit to be a solution. The type of penalty to be used is the Courant-Beltrami penalty function method, as shown in equation \ref{p1}.
-	
-	\begin{equation} 
+	The penalty function was used to handle the problem constraints. Instead of discarding infeasible solutions or chromosomes, they are assigned a very large objective value making them not fit to be a solution. The type of penalty to be used is the Courant-Beltrami penalty function method, as shown in equation
+	\begin{equation*} 
 		\label{p1}
 		h(x)=(g^+(x))^2
-	\end{equation}
-	
+	\end{equation*}
 	where
-	
-	\begin{equation} 
+	\begin{equation*} 
 		\label{p2}
 		g^+(x)=max\{g(x),0\}
-	\end{equation}
-	
+	\end{equation*}
 	where $g(x)$ is a constraint function of the form $g(x)\le0$. 
 	\\
-	The new objective function would be adding the initial objective value $f(x)$ to the penalty multiplied by some constant $\gamma$ as shown in equation \ref{p3}.
 	
-	\begin{equation} 
+	The new objective function would be adding the initial objective value $f(x)$ to the penalty multiplied by some constant $\gamma$.
+	\begin{equation*} 
 		\label{p3}
 		f_{new}(x)=f(x)+\gamma\sum_{i=1}^{n}(max\{g_i(x),0\})^2
-	\end{equation}
+	\end{equation*}
 	
 	where $g_1(x),g_2(x),...g_n(x)$ are the constraints of the model of the form $g_i(x)\le0$, and $\gamma\in\mathbb{R}^+$ is sufficiently large, where for this thesis is set to $10^{20}$. The penalty would add up to the objective value for each constraints it violated, otherwise it would not affect the objective value.	
 	
@@ -218,12 +203,12 @@
 	
 \section{Process of Developing the System}
 	This study employed a structured system development methodology following the Agile approach. Agile was chosen for its flexibility and iterative nature, which allows for continuous refinement and adaptation of the system based on feedback and testing results. Each development phase—planning, design, implementation, testing, and deployment—includes regular reviews and adjustments to ensure the system evolves effectively to meet technical and user needs.
-	The system development process was divided into several distinct phases, each of which is designed to build upon the previous stage, ensuring a comprehensive and systematic approach. As shown in figure \ref{Agile} illustrated by \textcite{Jayathilaka2020}
+	The system development process was divided into several distinct phases, each of which is designed to build upon the previous stage, ensuring a comprehensive and systematic approach. As shown in Figure \ref{Agile} originally illustrated by \textcite{Jayathilaka2020}
 
 	\begin{figure}[h!]
 		\caption{A representation of an Agile approach}
 		\centering
-		\includegraphics[width=\textwidth]{AGILE}
+		\includegraphics[width=0.6\textwidth]{AGILE}
 		\label{Agile}
 	\end{figure}
 
@@ -232,16 +217,16 @@
 	In the initial phase, the researchers outlined the shelter location allocation system's scope, objectives, and requirements. This process identifies the key features and functionalities essential for the system. Additionally, this phase includes the thesis project plan, which details the project timeline.
 	The Gantt chart outlines the phases of the thesis project, including thesis one output, thesis two output, data collection and preparation, paper miscellaneous, system design, system development, and system assessment. Each phase addresses specific objectives that contribute to completing the shelter location-allocation system. The Gantt chart is shown in Figure \ref{Gantt}.
 	
+	\textbf{Thesis One Output:} This phase involves drafting the initial sections of the thesis, such as the overview, rationale, scope, and significance, along with Chapters one through three (Introduction, Review of Related Literature, and Methodology). Additionally, this phase includes preparing the proposal manuscript, slides, and script for the mock defense and proposal defense. Parallel to this is the Paper Miscellaneous, which includes the creation of the literature review matrix to organize and support the contents of Chapter 2. This approach maintains a well-structured reference base for literature review.
+	
 	\begin{landscape}
-		\begin{figure}[h!]
-			\caption{The Gantt Chart}
+		\begin{figure}[h]
+			\caption{Gantt Chart}
 			\centering
 			\includegraphics[width=600px]{Gantt}
 			\label{Gantt}
 		\end{figure}
 	\end{landscape}
-	
-	\textbf{Thesis One Output:} This phase involves drafting the initial sections of the thesis, such as the overview, rationale, scope, and significance, along with Chapters one through three (Introduction, Review of Related Literature, and Methodology). Additionally, this phase includes preparing the proposal manuscript, slides, and script for the mock defense and proposal defense. Parallel to this is the Paper Miscellaneous, which includes the creation of the literature review matrix to organize and support the contents of Chapter 2. This approach maintains a well-structured reference base for literature review.
 	
 	\textbf{Thesis Two Output:} Following the foundational work in the first thesis phase, this continues the development of this thesis document, focusing on Chapters 4 and 5 (Results and Conclusions) and preparing for the mock defense and final thesis defense. This phase signifies the completion of the thesis writing process.
 	
@@ -279,14 +264,7 @@
 	
 	Figure \ref{ERD} shows the entity relationship (ERD) which has 4 entities: Community, Shelter, Distance, and ModelParameters. Distances are derived from the location of Shelter and Community, then will be saved accordingly to be used in performing the system model. ModelParameters shows no relationship since it only saves the current settings for the model and algorithm.
 	
-	\begin{figure}[h!]
-		\caption{Overview of System Mock-up}
-		\centering
-		\includegraphics[width=\textwidth]{SYSTEM MOCKUP}
-		\label{Mockup}
-	\end{figure}
-	
-	As can be seen in Figure \ref{Mockup}, The system mock-up shows the prototype of the system by designing the User Interface (UI) using a prototyping tool, Figma. This shows the UI for different modules of the system: Dashboard, Entity Management, Shelter Allocation Report, Settings, and the Progress.
+	A system mock-up was made showing the prototype of the system by designing the User Interface (UI) using a prototyping tool, Figma. The mock-up shows the UI for different modules of the system.
 
 \subsection{Development}
 	The development phase includes coding and implementing the genetic algorithm for the shelter location allocation system. Utilizing the Agile system development life cycle, which includes weekly meetings and development reviews, the team can ensure that development remains on track and that any issues are promptly addressed. By following the Agile SDLC, the researchers can adapt quickly to any changes in requirements, maintain clear communication, and address any issues promptly.
@@ -297,43 +275,45 @@
 		\centering
 		\caption{List of tools and technologies used in the development process}
 		\label{TechUsed}
+		\renewcommand{\arraystretch}{1.3}
 		\resizebox{\textwidth}{!}{
-			\begin{tabular}{|c|c|p{8cm}|}
+			\begin{tabular}{llp{8cm}}
 				\hline
-				\multicolumn{1}{|c|}{\textbf{Name}} & 
-				\multicolumn{1}{c|}{\textbf{Version}} & 
-				\multicolumn{1}{c|}{\textbf{Description}} \\ \hline
-				Visual Studio Code   & 1.96.3   & IDE for the whole coding and debugging process            \\ \hline
-				Python               & 3.12.5   & Programming language known for extensive computation libraries  \\ \hline
-				QtDesigner           & 5.11.1   & GUI design tool which has drag and drop feature \\ \hline
-				GitKraken            & 10.6.1   & Git client that is user friendly for executing Git commands      \\ \hline
+				\multicolumn{1}{l}{\textbf{Name}} & 
+				\multicolumn{1}{l}{\textbf{Version}} & 
+				\multicolumn{1}{l}{\textbf{Description}} \\ \hline
+				Visual Studio Code   & 1.96.3   & IDE for the whole coding and debugging process            \\ 
+				Python               & 3.12.5   & Programming language known for extensive computation libraries  \\ 
+				QtDesigner           & 5.11.1   & GUI design tool which has drag and drop feature \\ 
+				GitKraken            & 10.6.1   & Git client that is user friendly for executing Git commands      \\ 
 				GitHub               & Web      & Repository host which used for collaboration and backup of the project\\ \hline
 			\end{tabular}
 		}
 	\end{table}
 	
-	Developing the proposed system using Python allows us to use Python libraries. As shown in Table \ref{PythonUsed}, displays all the libraries used to develop the system. PySide6 is responsible for the GUI that uses the Qt framework. Pandas and openpyxl are used for handling data. Folium, OSMnx, networkx, and scikit-learn are for displaying and calculating the map shown in the system. Lastly, numpy is used for executing genetic algorithm.
+	Developing the proposed system using Python allows us to use Python libraries. As shown in Table \ref{PythonUsed}, displays all the libraries used to develop the system. PySide6 is responsible for the GUI that uses the Qt framework. Pandas and openpyxl are used for handling data. Folium, OSMnx, networkx, and scikit-learn are for displaying and calculating the map shown in the system. Numpy is used for executing genetic algorithm. Additionally, msoffcrypto-tool and XlsxWriter are used for report protect and lastly, pyinstaller for building the system.
 	
 	\begin{table}[h]
 		\centering
 		\caption{List of libraries installed in Python}
 		\label{PythonUsed}
+		\renewcommand{\arraystretch}{1.3}
 		\resizebox{\textwidth}{!}{
-			\begin{tabular}{|c|c|p{8cm}|}
+			\begin{tabular}{llp{8cm}}
 				\hline
-				\multicolumn{1}{|c|}{\textbf{Name}} & 
-				\multicolumn{1}{c|}{\textbf{Version}} & 
-				\multicolumn{1}{c|}{\textbf{Description}} \\ \hline
-				PySide6   & 6.7.2   & Uses Qt framework for frontend development \\ \hline
-				pandas               & 2.2.3   & Reads and handles datasets  \\ \hline
-				openpyxl            & 3.1.5   & Opens and reads excel files \\ \hline
-				folium            & 0.17.0   & Provides visualization and interactivity on a geographical map  \\ \hline
-				osmnx               & 1.9.4      & Retrieves OpenStreetMap(OSM) data and could calculate road paths\\ \hline
-				networkx               & 3.3      & Creates and computes complex graphs such as road networks\\ \hline
-				scikit-learn               & 1.5.2      & Provides simple machine learning tools and functions\\ \hline
-				numpy               & 1.26.4     & Generates non probabilistic numbers \\ \hline
-				msoffcrypto-tool & 5.4.2     & Encrypts and decrypts excel files \\ \hline
-				XlsxWriter & 3.2.2     & Edits and writes excel contents \\ \hline
+				\multicolumn{1}{l}{\textbf{Name}} & 
+				\multicolumn{1}{l}{\textbf{Version}} & 
+				\multicolumn{1}{l}{\textbf{Description}} \\ \hline
+				PySide6   & 6.7.2   & Uses Qt framework for frontend development \\ 
+				pandas               & 2.2.3   & Reads and handles datasets  \\ 
+				openpyxl            & 3.1.5   & Opens and reads excel files \\ 
+				folium            & 0.17.0   & Provides visualization and interactivity on a geographical map  \\ 
+				osmnx               & 1.9.4      & Retrieves OpenStreetMap(OSM) data and could calculate road paths\\ 
+				networkx               & 3.3      & Creates and computes complex graphs such as road networks\\ 
+				scikit-learn               & 1.5.2      & Provides simple machine learning tools and functions\\ 
+				numpy               & 1.26.4     & Generates non probabilistic numbers \\ 
+				msoffcrypto-tool & 5.4.2     & Encrypts and decrypts excel files \\ 
+				XlsxWriter & 3.2.2     & Edits and writes excel contents \\ 
 				pyinstaller & 6.12.0     & Compiles project file into an executable file \\ \hline
 				
 			\end{tabular}
@@ -369,36 +349,37 @@
 	
 	All collected data were first cleaned to remove any inconsistencies, duplicates, or irrelevant information. This process is crucial for ensuring the data’s quality and reliability, particularly for a system that relies on precision in both inputs and outputs. Any insufficient data was asked to the LGU to fill in the gaps of the datasets. 
 	
-	Table \ref{dataSource} presents all the data variables on communities and shelters used in the model, along with their respective sources. Affected population were derived from the population of community which is based on the study of \textcite{Opdyke2024} that states 12\% of households intends to evacuate on public evacuation sites. Improvement or rehabilitation cost is added for costs, which are based on a report for improvement of an evacuation center from \textcite{DilgL1area2022} and \textcite{DilgL1cost2022} that costs approximately ₱7,700 per square meter. Meanwhile, data for Level 2 shelters are simulated, as the LGU does not have a data nor system for the hierarchy of shelters. The areas are assumed to be twice their initial size, and costs are estimated based on the contract cost of the Frances Evacuation Center, as detailed in the \textcite{DilgL22022} and \textcite{Dpwh2022} reports, resulting in approximately ₱60,000 per square meter. 
+	Table \ref{dataSource} presents all the data variables on communities and shelters used in the model, along with their respective sources. Affected population were derived from the population of community which is based on the study of \textcite{Opdyke2024} that states 12\% of households intends to evacuate on public evacuation sites. Improvement or rehabilitation cost is added for costs, which are based on a report for improvement of an evacuation center from \textcite{DilgL1area2022,DilgL1cost2022} that costs approximately ₱7,700 per square meter. Meanwhile, data for Level 2 shelters are simulated, as the LGU does not have a data nor system for the hierarchy of shelters. The areas are assumed to be twice their initial size, and costs are estimated based on the contract cost of the Frances Evacuation Center, as detailed in the \textcite{DilgL22022,Dpwh2022} reports, resulting in approximately ₱60,000 per square meter. 
 	
 	\begin{table}[h]
 		\centering
 		\caption{Variables, Descriptions, and Sources for Community and Shelter Data}
 		\label{dataSource}
-		\resizebox{\textwidth}{!}{
-			\begin{tabular}{|c|c|p{8cm}|}
+		\renewcommand{\arraystretch}{1.3}
+		\resizebox{\columnwidth}{!}{
+			\begin{tabular}{lp{6cm}p{9cm}}
 				\hline
 				\textbf{Variable} & \textbf{Source} & \textbf{Description} \\ \hline
-				\multicolumn{3}{|c|}{\textit{\textbf{Community}}}\\ \hline
-				Name & LGU interview & Identity of a community \\ \hline
-				Longitude & Google Map \& LGU interview & Longitudinal coordinates \\ \hline
-				Latitude & Google Map \& LGU interview & Latitudinal coordinates \\ \hline
-				Population & Philippine Atlas (2020 population) & Number of individuals living in a community \\ \hline
-				AffectedPop & Assumed 12\% of Population & Number of individuals affected during a disaster \\ \hline
-				MaxDistance & Maximum distance generated in distance calculation & Distance allowed to travel by a community \\ \hline
-				\multicolumn{3}{|c|}{\textit{\textbf{Shelter}}} \\ \hline
-				Name & LGU interview & Identity of a shelter \\ \hline
-				Longitude & Google Map \& LGU interview & Longitudinal coordinates \\ \hline
-				Latitude & Google Map \& LGU interview & Latitudinal coordinates \\ \hline
-				Area1 & Google Map & Lot area of a shelter (level 1) \\ \hline
-				Cost1 & Assumed 7,700 * Area1 & Cost for constructing/maintaining a shelter with Area1 \\ \hline
-				Area2 & Assumed Area1 * 2 & Lot area of a shelter (level 2) \\ \hline
-				Cost2 & Assumed 60,000 * Area1 & Cost for constructing/maintaining a shelter with Area2 \\ \hline
-				ResToFlood & LGU interview & Resistance to flood indicator \\ \hline
-				ResToTyphoon & LGU interview & Resistance to typhoon indicator \\ \hline
-				ResToEarthquake & LGU interview & Resistance to earthquake indicator \\ \hline
-				Status & LGU interview & State of the physical structure of a shelter indicator \\ \hline
-				\multicolumn{3}{|c|}{\textit{\textbf{Distance between Community and Shelter}}} \\ \hline
+				\multicolumn{3}{l}{\textit{Community}}\\ 
+				Name & LGU interview & Identity of a community \\ 
+				Longitude & Google Map \& LGU interview & Longitudinal coordinates \\ 
+				Latitude & Google Map \& LGU interview & Latitudinal coordinates \\ 
+				Population & Philippine Atlas (2020 population) & Number of individuals living in a community \\ 
+				AffectedPop & Assumed 12\% of Population & Number of individuals affected during a disaster \\ 
+				MaxDistance & Maximum distance generated in distance calculation & Distance allowed to travel by a community \\ 
+				\multicolumn{3}{l}{\textit{Shelter}} \\ 
+				Name & LGU interview & Identity of a shelter \\ 
+				Longitude & Google Map \& LGU interview & Longitudinal coordinates \\ 
+				Latitude & Google Map \& LGU interview & Latitudinal coordinates \\ 
+				Area1 & Google Map & Lot area of a shelter (level 1) \\ 
+				Cost1 & Assumed 7,700 * Area1 & Cost for constructing/maintaining a shelter with Area1 \\ 
+				Area2 & Assumed Area1 * 2 & Lot area of a shelter (level 2) \\ 
+				Cost2 & Assumed 60,000 * Area1 & Cost for constructing/maintaining a shelter with Area2 \\ 
+				ResToFlood & LGU interview & Resistance to flood indicator \\ 
+				ResToTyphoon & LGU interview & Resistance to typhoon indicator \\ 
+				ResToEarthquake & LGU interview & Resistance to earthquake indicator \\ 
+				Status & LGU interview & State of the physical structure of a shelter indicator \\ 
+				\multicolumn{3}{l}{\textit{Distance between Community and Shelter}} \\ 
 				distance & OpenStreetMap API & distance needed to travel by a community to a shelter  \\ \hline
 			\end{tabular}
 			}
@@ -410,18 +391,17 @@
 		\centering
 		\caption{Sources of Appended Shelter Data}
 		\label{AppendData}
-			\begin{tabular}{|c|c|}
-				\hline
-				\multicolumn{1}{|c|}{\textbf{Variable}} & 
-				\multicolumn{1}{c|}{\textbf{Source}} \\ \hline
-				Cost1     & Assumed Area1 * (60,000 + 12,500) \\ \hline
-				Cost2     & Assumed (Area2 * 60,000) + (Area1 * 12,500) \\ \hline
-				ResToFlood     & Assumed TRUE \\ \hline
-				ResToTyphoon    & Assumed TRUE \\ \hline
-				ResToEarthquake     & Assumed TRUE \\ \hline
-				Status     & Already an Empty Lot \\ \hline
-				
-			\end{tabular}
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4cm} X}
+			\hline
+			\textbf{Variable} & \textbf{Source} \\ \hline
+			Cost1            & Assumed Area1 * (60,000 + 12,500) \\ 
+			Cost2            & Assumed (Area2 * 60,000) + (Area1 * 12,500) \\ 
+			ResToFlood       & Assumed TRUE \\ 
+			ResToTyphoon     & Assumed TRUE \\ 
+			ResToEarthquake  & Assumed TRUE \\ 
+			Status           & Already an Empty Lot \\ \hline
+		\end{tabularx}
 	\end{table}
 	
 	For justification of the target area’s vulnerability, typhoon data spanning from 2006 to 2022 were examined. This dataset includes the number of affected and evacuated individuals across various municipalities in Bulacan. The data was grouped by municipality, summing the affected and evacuated residents over the specified period. This analysis helps justify the focus on the municipality and supports the rationale for the shelter allocation model’s implementation in the municipality.
@@ -437,43 +417,47 @@
 	
 	TAM questionnaire evaluates the system's acceptability by the user of the system. This model answers why users accept or reject information systems, and examines a system's acceptance based on their attitudes, preferences, and behaviors.\parencite{Davis1987}
 	\\The following criteria are based upon the four determinants defined in TAM:
+	\begin{enumerate}
+		\item \textit{Perceived Usefulness.} This answers on how much a user believes using the system will improve their performance such as job tasks. It evaluates whether the users thinks the proposed system will be genuinely beneficial to LGUs or if it can assist other LGUs effectively.
+		
+		\item \textit{Perceived Ease of Use.} This answers on how much a user believes using the system will be efficient and user-friendly. It considers whether the proposed system can be used smoothly with minimal errors and without performance issues.
+		
+		\item \textit{Attitude Towards Using.} This answers on what user feels when using the system based on their enjoyment and satisfaction. A positive attitude towards the system often leads to accepting the technology.
+		
+		\item \textit{Behavioral Intention to Use.} This answers on willingness to use the system in the future. It determines whether users find the system valuable enough to incorporate into their long-term plans.
+	\end{enumerate}
 	
-	\textit{Perceived Usefulness.} This answers on how much a user believes using the system will improve their performance such as job tasks. It evaluates whether the users thinks the proposed system will be genuinely beneficial to LGUs or if it can assist other LGUs effectively.
-	
-	\textit{Perceived Ease of Use.} This answers on how much a user believes using the system will be efficient and user-friendly. It considers whether the proposed system can be used smoothly with minimal errors and without performance issues.
-	
-	\textit{Attitude Towards Using.} This answers on what user feels when using the system based on their enjoyment and satisfaction. A positive attitude towards the system often leads to accepting the technology.
-	
-	\textit{Behavioral Intention to Use.} This answers on willingness to use the system in the future. It determines whether users find the system valuable enough to incorporate into their long-term plans.
 	
 	Additionally, ISO/IEC 25010 questionnaire evaluates various aspects of the system, including usability, reliability, performance efficiency, and overall user satisfaction. Through this instrument, the study aims to gather objective data that will help determine how well the system meets user needs and expectations. \parencite{ISOIEC2023}
 	\\The following criteria are based upon the nine quality characteristics for product quality model defined in ISO/IEC 25010:
 	
-	\textit{Functional Suitability.} This evaluates how well the system meets user needs and performs its intended functions. The questions will focus on the system's ability to allocate shelters effectively, manage community and shelter information, and provide accurate data.
-	
-	\textit{Performance Efficiency.} This attribute will evaluate the system's response time and processing capacity. The questionnaire will include items assessing the system's speed in performing functions, efficient use of resources such as memory and processing power, and ability to handle maximum load requirements. By examining performance efficiency, the study aims to determine whether the system can perform reliably under diverse operational conditions.
-	
-	\textit{Compatibility.} This will assess the system’s ability to exchange and use information with other systems. The questionnaire will ask how well the system integrates with external databases, applications, or computer systems. 
-	
-	\textit{Interaction Capability.} This will prioritize the system's usability, learnability, and overall user satisfaction. The questionnaire will gather detailed user feedback regarding their experiences with the system. The questionnaire will address aspects such as ease of navigation, effectiveness in completing tasks, and general user engagement.
-	
-	\textit{Reliability.} This attribute will assess the system's interaction capability, focusing on its ease of use, appropriateness for users, and ability to guide users in completing tasks effectively. The evaluation will include questions on how easily users can recognize if the system meets their needs, learn its functions, and operate it with minimal errors. Additional focus will be on user engagement, inclusivity, and the availability of assistance to support a diverse range of users. 
-	
-	\textit{Security.} The system ensures that all collected data will remain confidential and solely for this research. No data will be uploaded online, and all information will be stored offline. Access to data will be limited to the researchers and users.
-	
-	\textit{Maintainability.} This will evaluate the system's ease of adaptability to meet new requirements, correct errors, and improve performance. The questionnaire will assess the system's reusability, analyzing how parts of the system can be leveraged in future developments or other systems, and its testability, ensuring that any necessary changes can be efficiently implemented and quickly identified so that testing can be done efficiently. 
-	
-	\textit{Flexibility.} This will assess the system’s ability to adapt to changing user needs and requirements. The questionnaire will evaluate the system's ability to support new features, incorporate updates, and seamlessly integrate with additional tools or systems as necessary. It will also examine how well the system accommodates changes in shelter allocation criteria, such as shifts in population density and shelter resistance.
+	\begin{enumerate}
+		\item \textit{Functional Suitability.} This evaluates how well the system meets user needs and performs its intended functions. The questions will focus on the system's ability to allocate shelters effectively, manage community and shelter information, and provide accurate data.
+		
+		\item \textit{Performance Efficiency.} This attribute will evaluate the system's response time and processing capacity. The questionnaire will include items assessing the system's speed in performing functions, efficient use of resources such as memory and processing power, and ability to handle maximum load requirements. By examining performance efficiency, the study aims to determine whether the system can perform reliably under diverse operational conditions.
+		
+		\item \textit{Compatibility.} This will assess the system’s ability to exchange and use information with other systems. The questionnaire will ask how well the system integrates with external databases, applications, or computer systems. 
+		
+		\item \textit{Interaction Capability.} This will prioritize the system's usability, learnability, and overall user satisfaction. The questionnaire will gather detailed user feedback regarding their experiences with the system. The questionnaire will address aspects such as ease of navigation, effectiveness in completing tasks, and general user engagement.
+		
+		\item \textit{Reliability.} This attribute will assess the system's interaction capability, focusing on its ease of use, appropriateness for users, and ability to guide users in completing tasks effectively. The evaluation will include questions on how easily users can recognize if the system meets their needs, learn its functions, and operate it with minimal errors. Additional focus will be on user engagement, inclusivity, and the availability of assistance to support a diverse range of users. 
+		
+		\item \textit{Security.} The system ensures that all collected data will remain confidential and solely for this research. No data will be uploaded online, and all information will be stored offline. Access to data will be limited to the researchers and users.
+		
+		\item \textit{Maintainability.} This will evaluate the system's ease of adaptability to meet new requirements, correct errors, and improve performance. The questionnaire will assess the system's reusability, analyzing how parts of the system can be leveraged in future developments or other systems, and its testability, ensuring that any necessary changes can be efficiently implemented and quickly identified so that testing can be done efficiently. 
+		
+		\item \textit{Flexibility.} This will assess the system’s ability to adapt to changing user needs and requirements. The questionnaire will evaluate the system's ability to support new features, incorporate updates, and seamlessly integrate with additional tools or systems as necessary. It will also examine how well the system accommodates changes in shelter allocation criteria, such as shifts in population density and shelter resistance.
+	\end{enumerate}
 	
 
 \subsection{Population and Sample}
 	The population of this study consists of end-users and IT experts. For end-users,  MDRRMO and MSWDO of the municipality of Calumpit. Meanwhile for IT experts, includes CICT professors from Bulacan State University, and someone who have experience in developing a system.  The diversity of perspective of these are important for the comprehensive evaluation of the system’s acceptability.
 	
-	\textbf{MDRRMO:} The staff consists of Municipal Disaster Risk Reduction Management Office, who are responsible for formulating and implementing the province's disaster risk reduction plan.  Their insights are vital for understanding the operational requirements considerations for implementing the shelter location allocation system, ensuring it aligns with established disaster response protocols and local needs.
+	\textbf{MDRRMO:} The staff consists of Municipal Disaster Risk Reduction Management Office (MDRRMO), who are responsible for formulating and implementing the province's disaster risk reduction plan.  Their insights are vital for understanding the operational requirements considerations for implementing the shelter location allocation system, ensuring it aligns with established disaster response protocols and local needs.
 	
-	\textbf{MSWDO:} The Municipal Social Welfare and Development Office plays a key role in managing the evacuation and welfare of the communities during disasters. Their expertise is essential in ensuring that the shelter allocation system aligns with evacuees' specific needs, such as accessibility and capacity to the shelter location allocation across the province. Their input assisted tailoring the system to address the welfare requirements of evacuee management during emergencies.
+	\textbf{MSWDO:} The Municipal Social Welfare and Development Office (MSWDO) plays a key role in managing the evacuation and welfare of the communities during disasters. Their expertise is essential in ensuring that the shelter allocation system aligns with evacuees' specific needs, such as accessibility and capacity to the shelter location allocation across the province. Their input assisted tailoring the system to address the welfare requirements of evacuee management during emergencies.
 	
-	\textbf{CICT professors:} Coming from the College of Information and Communication Technology, professors have significant academic background and experience to technologies. This part of population assessed the system's performance and functionality with the help of their knowledge and expertise.
+	\textbf{CICT professors:} Coming from the College of Information and Communication Technology (CICT) of Bulacan State University, professors have significant academic background and experience to technologies. This part of population assessed the system's performance and functionality with the help of their knowledge and expertise.
 	
 	\textbf{System Developers:} Experts with extensive experience in system development play an important role in project evaluation. They are commonly found in businesses that design, propose, and develop systems for their clients. Their expertise enables them to understand and address real-world client requirements, guiding the system to be acceptable to users.
 	
@@ -487,7 +471,7 @@
 	Following the research instruments ensures that the system meets its intended objectives and offers insights into potential areas for improvement, which were critical for broader implementation in disaster-response operations. Through the data collection process, the researchers ensured that all ethical considerations are thoroughly addressed to uphold the integrity and privacy of the participants
 
 \subsection{Data Processing and Analysis}
-	This study's data processing involves structured analysis to interpret findings from the acceptability survey, aligning with the ISO/IEC 25010 standard and TAM determinants. This standard evaluates key quality attributes, and each attribute was assessed using a 10-point numerical rating scale. 1 = completely disagree, and 10 = completely agree, as shown in figure \ref{Nrs}
+	This study's data processing involves structured analysis to interpret findings from the acceptability survey, aligning with the ISO/IEC 25010 standard and TAM determinants. This standard evaluates key quality attributes, and each attribute was assessed using a 10-point numerical rating scale. 1 = completely disagree, and 10 = completely agree, as shown in Figure \ref{Nrs}
 	
 	\begin{figure}[h!]
 		\caption{10-point numerical rating scale}
@@ -496,49 +480,54 @@
 		\label{Nrs}
 	\end{figure}
 	
-	After the data collection, the rating scale categorizes the acceptability levels. Descriptive statistics was utilized to analyze the collected data. Analysis includes calculating the minimum, maximum, mean, and standard deviation for each category. Formula \ref{mean} shows the mean that computes the average score. This use of data allows both the system functionality and its user acceptability to be comprehensively assessed. Table \ref{Verbal} shows the verbal interpretation of the computed mean corresponds to the level of agreement and acceptable based on the study by \textcite{Eladia2024}. 
+	After the data collection, the rating scale categorizes the acceptability levels. Descriptive statistics was utilized to analyze the collected data. Analysis includes calculating the minimum, maximum, mean, and standard deviation for each category.
 	
-	
-	\begin{equation} 
+	\begin{equation*} 
 		\label{mean}
 		\bar{x} = \frac{\sum_{i=1}^{n} x_{i}}{n}
-	\end{equation}
+	\end{equation*}
 	
-	\noindent Where:
-	\\$\bar{x}$ - sample mean
-	\\$n$ - sample size
-	\\$x_{i}$ - data points
+	\noindent where: \\
+	\begin{tabular}{@{}ll}
+	$\bar{x}$ & sample mean \\
+	$n$ & sample size \\
+	$x_{i}$ & data points \\
+	\end{tabular}
+	
+	\noindent shows the mean that computes the average score. This use of data allows both the system functionality and its user acceptability to be comprehensively assessed. The following shows the verbal interpretation of the computed mean corresponds to the level of acceptability based on the study by \textcite{Eladia2024}:
+	
 	
 	\begin{table}[h]
 		\centering
-		\caption{Mean Score Interval and its Verbal Interpretation}
+		\renewcommand{\arraystretch}{1.3}
 		\label{Verbal}
-			\begin{tabular}{|c|c|c|}
-				\hline
-				\multicolumn{1}{|c|}{\textbf{Mean Score Interval}} & 
-				\multicolumn{1}{c|}{\textbf{Level of Agreement}} & 
-				\multicolumn{1}{c|}{\textbf{Level of Acceptance}} \\ \hline
-				1.00 - 2.80   & Strongly Disagree   & Poorly Acceptable            \\ \hline
-				2.81 - 4.60               & Disagree   & Fairly Acceptable  \\ \hline
-				4.61 - 6.40           & Neutral   & Acceptable \\ \hline
-				6.41 - 8.20            & Agree   & Moderately Acceptable      \\ \hline
-				8.21 - 10.00               & Strongly Agree      & Highly Acceptable\\ \hline
+			\begin{tabular}{ll}
+				\multicolumn{1}{l}{\textbf{Mean Score Interval}} & 
+				\multicolumn{1}{l}{\textbf{Level of Acceptance}} \\ \hline
+				1.00 - 2.80     & Poorly Acceptable            \\ 
+				2.81 - 4.60     & Fairly Acceptable  \\ 
+				4.61 - 6.40     & Acceptable \\ 
+				6.41 - 8.20     & Moderately Acceptable      \\ 
+				8.21 - 10.00    & Highly Acceptable\\ 
 			\end{tabular}
 	\end{table}
 	
-	Formula \ref{stdDev} shows the standard deviation calculation which shows the dispersion of scores relative to the mean. A standard deviation  that is closer to the value of 0 indicates the spread of data is closer to the mean.
 	
-	\begin{equation} 
+	\begin{equation*} 
 		\label{stdDev}
 		S = \sqrt{\frac{\sum_{i=1}^{n} (x_{i} - \bar{x} )^2 }{n-1}}
-	\end{equation}
+	\end{equation*}
 	
-	\noindent Where:
-	\\$S$ - sample standard deviation
-	\\$\bar{x}$ - sample mean
-	\\$n$ - sample size
-	\\$x_{i}$ - data points
-	
+	\noindent where: \\
+	\begin{tabular}{@{}ll}
+	$S$ & sample standard deviation \\
+	$\bar{x}$ & sample mean \\
+	$n$ & sample size \\
+	$x_{i}$ & data points \\
+	\end{tabular}
+		
+	\noindent shows the standard deviation calculation which shows the dispersion of scores relative to the mean. A standard deviation  that is closer to the value of 0 indicates the spread of data is closer to the mean.
+
 
 \section{Ethical Considerations}
 	Data gathered contained sensitive data so that ethical considerations should be practiced throughout the research.  Informed consent obtained from each participant, providing them with a clear understanding of the research purpose, procedures, and their rights to withdraw at any time. To protect the participants’ privacy, all responses are anonymized and handled with strict confidentiality. Additionally, data usage was restricted to research purposes only, ensuring that participants' information remains safeguarded throughout the research process and beyond. 

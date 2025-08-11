@@ -5,6 +5,7 @@ import os
 import pandas as pd
 import networkx as nx
 from math import radians, cos, sin, sqrt, atan2
+from folium.plugins import MousePosition
 
 # Define a list of colors for the routes
 ROUTE_COLORS = ['darkblue', 'darkgreen', 'darkred', 'indigo', 'darkorange', 'maroon', 
@@ -37,6 +38,14 @@ def plot_optimized_routes(allocation_df, comm_dict, shel_dict, map_name="optimiz
     avg_lat = (allocation_df['Latitude_Comm'].mean() + allocation_df['Latitude_Shel'].mean()) / 2
     avg_lon = (allocation_df['Longitude_Comm'].mean() + allocation_df['Longitude_Shel'].mean()) / 2
     m = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
+
+    MousePosition(
+        position="topright",
+        separator=" | ",
+        prefix="Coordinates:",
+        lat_formatter="function(num) {return num.toFixed(6);}",
+        lng_formatter="function(num) {return num.toFixed(6);}"
+    ).add_to(m)
 
     # Add markers
     for _, row in allocation_df.iterrows():

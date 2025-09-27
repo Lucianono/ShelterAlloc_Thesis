@@ -1,0 +1,2806 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b37aeb454a19b9f15aae679ca772df25 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.1.2/dist/leaflet-ant-path.min.js"></script>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_b37aeb454a19b9f15aae679ca772df25" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_b37aeb454a19b9f15aae679ca772df25 = L.map(
+                "map_b37aeb454a19b9f15aae679ca772df25",
+                {
+                    center: [14.903275744042311, 120.7640261077176],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 13,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ab30f39c61ab90a3fc737e41c74b2944 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_ab30f39c61ab90a3fc737e41c74b2944.addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var mouse_position_ee9995548dda5e7f1ffb68660baac0c7 = new L.Control.MousePosition(
+                {"emptyString": "Unavailable", "lngFirst": false, "numDigits": 5, "position": "topright", "prefix": "Coordinates:", "separator": " | "}
+            );
+            mouse_position_ee9995548dda5e7f1ffb68660baac0c7.options["latFormatter"] =
+                function(num) {return num.toFixed(6);};
+            mouse_position_ee9995548dda5e7f1ffb68660baac0c7.options["lngFormatter"] =
+                function(num) {return num.toFixed(6);};
+            map_b37aeb454a19b9f15aae679ca772df25.addControl(mouse_position_ee9995548dda5e7f1ffb68660baac0c7);
+        
+    
+            var marker_e65ea5347669a793720806530bd1a0fd = L.marker(
+                [14.8956, 120.7855],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_ab9fa541a708f5223112b8e6e6bff134 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_e65ea5347669a793720806530bd1a0fd.setIcon(icon_ab9fa541a708f5223112b8e6e6bff134);
+        
+    
+        var popup_ad54ba9ad1b6c63aa2135d3605ade01d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ad6dfe3ba8840f4432c9b38d203d792b = $(`<div id="html_ad6dfe3ba8840f4432c9b38d203d792b" style="width: 100.0%; height: 100.0%;">Community: Balite</div>`)[0];
+                popup_ad54ba9ad1b6c63aa2135d3605ade01d.setContent(html_ad6dfe3ba8840f4432c9b38d203d792b);
+            
+        
+
+        marker_e65ea5347669a793720806530bd1a0fd.bindPopup(popup_ad54ba9ad1b6c63aa2135d3605ade01d)
+        ;
+
+        
+    
+    
+            var marker_ab37c71d39c667e056cb90466d06a02d = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_5ea3eb94afb927b593929384af3c1327 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ab37c71d39c667e056cb90466d06a02d.setIcon(icon_5ea3eb94afb927b593929384af3c1327);
+        
+    
+        var popup_3e207a05bb36767e834c75c10e39eb87 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_14293e676ed8d786ef8e644b734e3717 = $(`<div id="html_14293e676ed8d786ef8e644b734e3717" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_3e207a05bb36767e834c75c10e39eb87.setContent(html_14293e676ed8d786ef8e644b734e3717);
+            
+        
+
+        marker_ab37c71d39c667e056cb90466d06a02d.bindPopup(popup_3e207a05bb36767e834c75c10e39eb87)
+        ;
+
+        
+    
+    
+            var marker_608a7283d2d04170be36b35e0ab46d79 = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_f813c89fa448702340c25f0010247aff = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_608a7283d2d04170be36b35e0ab46d79.setIcon(icon_f813c89fa448702340c25f0010247aff);
+        
+    
+        var popup_b189220b4ab94749f102d4690d3a4ce7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b5c947a88b3e26ad05d7b85e08168888 = $(`<div id="html_b5c947a88b3e26ad05d7b85e08168888" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_b189220b4ab94749f102d4690d3a4ce7.setContent(html_b5c947a88b3e26ad05d7b85e08168888);
+            
+        
+
+        marker_608a7283d2d04170be36b35e0ab46d79.bindPopup(popup_b189220b4ab94749f102d4690d3a4ce7)
+        ;
+
+        
+    
+    
+            var marker_709ba4ceec7d83fa055fd535bc24f4fc = L.marker(
+                [14.9143, 120.7622],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_538d5a7b978b0bc69f1f47868ab1e247 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_709ba4ceec7d83fa055fd535bc24f4fc.setIcon(icon_538d5a7b978b0bc69f1f47868ab1e247);
+        
+    
+        var popup_928c73a74830da004c2f5d5952b7c92a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_173692f05c7150d0e98351a233738c03 = $(`<div id="html_173692f05c7150d0e98351a233738c03" style="width: 100.0%; height: 100.0%;">Community: Balungao</div>`)[0];
+                popup_928c73a74830da004c2f5d5952b7c92a.setContent(html_173692f05c7150d0e98351a233738c03);
+            
+        
+
+        marker_709ba4ceec7d83fa055fd535bc24f4fc.bindPopup(popup_928c73a74830da004c2f5d5952b7c92a)
+        ;
+
+        
+    
+    
+            var marker_44d3c452bf93123e48c168b8e6e2bf91 = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_58c5f2c56ec5e3809bbef10577d18014 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_44d3c452bf93123e48c168b8e6e2bf91.setIcon(icon_58c5f2c56ec5e3809bbef10577d18014);
+        
+    
+        var popup_0df23f8bd4497bc7e06777bb9c027826 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0467404bd8728bd12b33cf5a7043c493 = $(`<div id="html_0467404bd8728bd12b33cf5a7043c493" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_0df23f8bd4497bc7e06777bb9c027826.setContent(html_0467404bd8728bd12b33cf5a7043c493);
+            
+        
+
+        marker_44d3c452bf93123e48c168b8e6e2bf91.bindPopup(popup_0df23f8bd4497bc7e06777bb9c027826)
+        ;
+
+        
+    
+    
+            var marker_b83cecfa8b384d2f53899ba4fe02721e = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_47835304619e677aaf97e3838ccbe3a1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b83cecfa8b384d2f53899ba4fe02721e.setIcon(icon_47835304619e677aaf97e3838ccbe3a1);
+        
+    
+        var popup_467cc844b671c3640ad06b964037db7b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2b65d8ee5c2bed9784af698bcf6f5233 = $(`<div id="html_2b65d8ee5c2bed9784af698bcf6f5233" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_467cc844b671c3640ad06b964037db7b.setContent(html_2b65d8ee5c2bed9784af698bcf6f5233);
+            
+        
+
+        marker_b83cecfa8b384d2f53899ba4fe02721e.bindPopup(popup_467cc844b671c3640ad06b964037db7b)
+        ;
+
+        
+    
+    
+            var marker_740763273061d1f74f1d9a5d42e29e60 = L.marker(
+                [14.894, 120.7985],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_2c6adca2fff93d8f0573a863497da383 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_740763273061d1f74f1d9a5d42e29e60.setIcon(icon_2c6adca2fff93d8f0573a863497da383);
+        
+    
+        var popup_61e1def3ea5d93d6552a41ac168a7347 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_50891b913be04c90555b28a945da8ace = $(`<div id="html_50891b913be04c90555b28a945da8ace" style="width: 100.0%; height: 100.0%;">Community: Buguion</div>`)[0];
+                popup_61e1def3ea5d93d6552a41ac168a7347.setContent(html_50891b913be04c90555b28a945da8ace);
+            
+        
+
+        marker_740763273061d1f74f1d9a5d42e29e60.bindPopup(popup_61e1def3ea5d93d6552a41ac168a7347)
+        ;
+
+        
+    
+    
+            var marker_b2d6f3c8ecb87be91af4ee65daaac35a = L.marker(
+                [14.917701586824, 120.743048619728],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_53b0ca4041d88efedb50d287cdcdef82 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b2d6f3c8ecb87be91af4ee65daaac35a.setIcon(icon_53b0ca4041d88efedb50d287cdcdef82);
+        
+    
+        var popup_8d562da62a2dd9614cfb521b3b07d0c7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4b83740c6bf8941cde72c73a540c8334 = $(`<div id="html_4b83740c6bf8941cde72c73a540c8334" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
+                popup_8d562da62a2dd9614cfb521b3b07d0c7.setContent(html_4b83740c6bf8941cde72c73a540c8334);
+            
+        
+
+        marker_b2d6f3c8ecb87be91af4ee65daaac35a.bindPopup(popup_8d562da62a2dd9614cfb521b3b07d0c7)
+        ;
+
+        
+    
+    
+            var marker_2b7c3c8b9b82e1920dfe5f93771f8d1d = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_a3c143fb3ce3af5423de3df276aadeb3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2b7c3c8b9b82e1920dfe5f93771f8d1d.setIcon(icon_a3c143fb3ce3af5423de3df276aadeb3);
+        
+    
+        var popup_a47e63df9604c16c8ad485a5395fd71e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0ced17d01511c97b5318f188c8ba5f47 = $(`<div id="html_0ced17d01511c97b5318f188c8ba5f47" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_a47e63df9604c16c8ad485a5395fd71e.setContent(html_0ced17d01511c97b5318f188c8ba5f47);
+            
+        
+
+        marker_2b7c3c8b9b82e1920dfe5f93771f8d1d.bindPopup(popup_a47e63df9604c16c8ad485a5395fd71e)
+        ;
+
+        
+    
+    
+            var marker_f98764f948d15e594084d6deca2a9c9a = L.marker(
+                [14.9076, 120.7455],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_3b3a39336d4f0bd34909ed7de8f6d913 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_f98764f948d15e594084d6deca2a9c9a.setIcon(icon_3b3a39336d4f0bd34909ed7de8f6d913);
+        
+    
+        var popup_be355dcad46a801ea7ec924ddec5aeff = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a87f08de2b443272479c49c3baa0bcc0 = $(`<div id="html_a87f08de2b443272479c49c3baa0bcc0" style="width: 100.0%; height: 100.0%;">Community: Bulusan</div>`)[0];
+                popup_be355dcad46a801ea7ec924ddec5aeff.setContent(html_a87f08de2b443272479c49c3baa0bcc0);
+            
+        
+
+        marker_f98764f948d15e594084d6deca2a9c9a.bindPopup(popup_be355dcad46a801ea7ec924ddec5aeff)
+        ;
+
+        
+    
+    
+            var marker_b7cf04eeb64041cc032358a11a146912 = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_cf06340ae772a3af6459b93319432ed1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b7cf04eeb64041cc032358a11a146912.setIcon(icon_cf06340ae772a3af6459b93319432ed1);
+        
+    
+        var popup_7793ecac6c14a01ff5229a451c9878de = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0bfb5080754d5b49fe7148091f40338a = $(`<div id="html_0bfb5080754d5b49fe7148091f40338a" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_7793ecac6c14a01ff5229a451c9878de.setContent(html_0bfb5080754d5b49fe7148091f40338a);
+            
+        
+
+        marker_b7cf04eeb64041cc032358a11a146912.bindPopup(popup_7793ecac6c14a01ff5229a451c9878de)
+        ;
+
+        
+    
+    
+            var marker_b22f06f904cc6cce23e988b2b940917a = L.marker(
+                [14.91044971, 120.7667966],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_197d2bdb5477a501b49e349514bc20f7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b22f06f904cc6cce23e988b2b940917a.setIcon(icon_197d2bdb5477a501b49e349514bc20f7);
+        
+    
+        var popup_d7c64f04eef092b75aaffe0ca2bc0f66 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7bcfeb5f9731f5ea7df6441c6bf6b057 = $(`<div id="html_7bcfeb5f9731f5ea7df6441c6bf6b057" style="width: 100.0%; height: 100.0%;">Shelter: Corazon Empty Lot 2</div>`)[0];
+                popup_d7c64f04eef092b75aaffe0ca2bc0f66.setContent(html_7bcfeb5f9731f5ea7df6441c6bf6b057);
+            
+        
+
+        marker_b22f06f904cc6cce23e988b2b940917a.bindPopup(popup_d7c64f04eef092b75aaffe0ca2bc0f66)
+        ;
+
+        
+    
+    
+            var marker_b0208bc864c153f17e4d59652c4477f7 = L.marker(
+                [14.9125, 120.753],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_4069a0fc820f81d147b7a5d5fb81332b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_b0208bc864c153f17e4d59652c4477f7.setIcon(icon_4069a0fc820f81d147b7a5d5fb81332b);
+        
+    
+        var popup_7f17996dae9fd6dc5059db4b53392cdb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ab0fcf38a7743a0beff32dcd6774b899 = $(`<div id="html_ab0fcf38a7743a0beff32dcd6774b899" style="width: 100.0%; height: 100.0%;">Community: Calizon</div>`)[0];
+                popup_7f17996dae9fd6dc5059db4b53392cdb.setContent(html_ab0fcf38a7743a0beff32dcd6774b899);
+            
+        
+
+        marker_b0208bc864c153f17e4d59652c4477f7.bindPopup(popup_7f17996dae9fd6dc5059db4b53392cdb)
+        ;
+
+        
+    
+    
+            var marker_1eafc1c3d1b78b7bfaf6c8ade16edf24 = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_c6f8debb6830d4611e323a95f9033438 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_1eafc1c3d1b78b7bfaf6c8ade16edf24.setIcon(icon_c6f8debb6830d4611e323a95f9033438);
+        
+    
+        var popup_c502e2321f8307bc5aae20dcf0f029f2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ff56f4f62100c567df89071f105b6fdf = $(`<div id="html_ff56f4f62100c567df89071f105b6fdf" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_c502e2321f8307bc5aae20dcf0f029f2.setContent(html_ff56f4f62100c567df89071f105b6fdf);
+            
+        
+
+        marker_1eafc1c3d1b78b7bfaf6c8ade16edf24.bindPopup(popup_c502e2321f8307bc5aae20dcf0f029f2)
+        ;
+
+        
+    
+    
+            var marker_22118903787f3f79294925ad15ade6cf = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_f8858f71c5f3b3ced4b20d48333070fc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_22118903787f3f79294925ad15ade6cf.setIcon(icon_f8858f71c5f3b3ced4b20d48333070fc);
+        
+    
+        var popup_525b71de3f010c332c8fc94ade50a660 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fb5efa5b7cb6c60dbc13751fbc4dd9cf = $(`<div id="html_fb5efa5b7cb6c60dbc13751fbc4dd9cf" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_525b71de3f010c332c8fc94ade50a660.setContent(html_fb5efa5b7cb6c60dbc13751fbc4dd9cf);
+            
+        
+
+        marker_22118903787f3f79294925ad15ade6cf.bindPopup(popup_525b71de3f010c332c8fc94ade50a660)
+        ;
+
+        
+    
+    
+            var marker_c6a6df8f3a5a0a5281e3a60334047f06 = L.marker(
+                [14.8845, 120.7838],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_fc813ad66a9c580c48b5cb0fa6456398 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_c6a6df8f3a5a0a5281e3a60334047f06.setIcon(icon_fc813ad66a9c580c48b5cb0fa6456398);
+        
+    
+        var popup_3ab326c6a5fb5e737214e6c165b70161 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d7e5d06bfa4ec706496eee4b534399d8 = $(`<div id="html_d7e5d06bfa4ec706496eee4b534399d8" style="width: 100.0%; height: 100.0%;">Community: Calumpang</div>`)[0];
+                popup_3ab326c6a5fb5e737214e6c165b70161.setContent(html_d7e5d06bfa4ec706496eee4b534399d8);
+            
+        
+
+        marker_c6a6df8f3a5a0a5281e3a60334047f06.bindPopup(popup_3ab326c6a5fb5e737214e6c165b70161)
+        ;
+
+        
+    
+    
+            var marker_3afaab0ccac72459dced9576d944583e = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_858463f49018c9860b835f05ecd5d71f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3afaab0ccac72459dced9576d944583e.setIcon(icon_858463f49018c9860b835f05ecd5d71f);
+        
+    
+        var popup_1a0f491d107ee465f91882337ff4e32e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_692adb6a87eca63a834f9fa1737faa40 = $(`<div id="html_692adb6a87eca63a834f9fa1737faa40" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_1a0f491d107ee465f91882337ff4e32e.setContent(html_692adb6a87eca63a834f9fa1737faa40);
+            
+        
+
+        marker_3afaab0ccac72459dced9576d944583e.bindPopup(popup_1a0f491d107ee465f91882337ff4e32e)
+        ;
+
+        
+    
+    
+            var marker_ed22c766f77ed39fd10cd24da31a7f33 = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_a619b5aea92b3b4fdca9dc4cfcd57ec9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ed22c766f77ed39fd10cd24da31a7f33.setIcon(icon_a619b5aea92b3b4fdca9dc4cfcd57ec9);
+        
+    
+        var popup_7981518834f086d5632102e44d493d27 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7b6aab36d60a7a706306a6ee53a2c9cf = $(`<div id="html_7b6aab36d60a7a706306a6ee53a2c9cf" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_7981518834f086d5632102e44d493d27.setContent(html_7b6aab36d60a7a706306a6ee53a2c9cf);
+            
+        
+
+        marker_ed22c766f77ed39fd10cd24da31a7f33.bindPopup(popup_7981518834f086d5632102e44d493d27)
+        ;
+
+        
+    
+    
+            var marker_bf5760b729524cbec5b482d7ce36a521 = L.marker(
+                [14.9054, 120.7733],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_1a6910b83e00e3c6f96b0f0a87a5798d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_bf5760b729524cbec5b482d7ce36a521.setIcon(icon_1a6910b83e00e3c6f96b0f0a87a5798d);
+        
+    
+        var popup_ec44465829229695f8f6e7b94d9975d5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_98bb6bdb1fd978405f1549ac2b4ea382 = $(`<div id="html_98bb6bdb1fd978405f1549ac2b4ea382" style="width: 100.0%; height: 100.0%;">Community: Caniogan</div>`)[0];
+                popup_ec44465829229695f8f6e7b94d9975d5.setContent(html_98bb6bdb1fd978405f1549ac2b4ea382);
+            
+        
+
+        marker_bf5760b729524cbec5b482d7ce36a521.bindPopup(popup_ec44465829229695f8f6e7b94d9975d5)
+        ;
+
+        
+    
+    
+            var marker_fba6d658b633484fd3f6cc6a121a987e = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_327ecf3315c923154d227dca58960058 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fba6d658b633484fd3f6cc6a121a987e.setIcon(icon_327ecf3315c923154d227dca58960058);
+        
+    
+        var popup_f25f54110b6ddc3687a41cf170eae0f3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8fb722e6fefee7ab19a241d8ca6c3c45 = $(`<div id="html_8fb722e6fefee7ab19a241d8ca6c3c45" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_f25f54110b6ddc3687a41cf170eae0f3.setContent(html_8fb722e6fefee7ab19a241d8ca6c3c45);
+            
+        
+
+        marker_fba6d658b633484fd3f6cc6a121a987e.bindPopup(popup_f25f54110b6ddc3687a41cf170eae0f3)
+        ;
+
+        
+    
+    
+            var marker_2198aad635fff1defe744b58b48ccb38 = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_23d678bcd70b96b3bf23d97e9757799a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2198aad635fff1defe744b58b48ccb38.setIcon(icon_23d678bcd70b96b3bf23d97e9757799a);
+        
+    
+        var popup_090a3b669c6c6c98c18ed03fb45b2c46 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_03c69e4d77ba3eff6116806c4c82ec2e = $(`<div id="html_03c69e4d77ba3eff6116806c4c82ec2e" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_090a3b669c6c6c98c18ed03fb45b2c46.setContent(html_03c69e4d77ba3eff6116806c4c82ec2e);
+            
+        
+
+        marker_2198aad635fff1defe744b58b48ccb38.bindPopup(popup_090a3b669c6c6c98c18ed03fb45b2c46)
+        ;
+
+        
+    
+    
+            var marker_ffa245ce76ef48e3638efb33245edf85 = L.marker(
+                [14.9128, 120.7686],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_ff30713ccc99af7772b01276381d92c4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_ffa245ce76ef48e3638efb33245edf85.setIcon(icon_ff30713ccc99af7772b01276381d92c4);
+        
+    
+        var popup_7af8b4f26838a4fb10c728840a01fa60 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_697a8107fa33982d18c7ed04bfcb6ac5 = $(`<div id="html_697a8107fa33982d18c7ed04bfcb6ac5" style="width: 100.0%; height: 100.0%;">Community: Corazon</div>`)[0];
+                popup_7af8b4f26838a4fb10c728840a01fa60.setContent(html_697a8107fa33982d18c7ed04bfcb6ac5);
+            
+        
+
+        marker_ffa245ce76ef48e3638efb33245edf85.bindPopup(popup_7af8b4f26838a4fb10c728840a01fa60)
+        ;
+
+        
+    
+    
+            var marker_7e30dc0ff5f789290622220d50472900 = L.marker(
+                [14.917701586824, 120.743048619728],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_89e418297c98303c387e909cbc560703 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7e30dc0ff5f789290622220d50472900.setIcon(icon_89e418297c98303c387e909cbc560703);
+        
+    
+        var popup_428719bf85083036c8258067a0d86508 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_465dd19137b1e93bbea0a7088d613cd0 = $(`<div id="html_465dd19137b1e93bbea0a7088d613cd0" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
+                popup_428719bf85083036c8258067a0d86508.setContent(html_465dd19137b1e93bbea0a7088d613cd0);
+            
+        
+
+        marker_7e30dc0ff5f789290622220d50472900.bindPopup(popup_428719bf85083036c8258067a0d86508)
+        ;
+
+        
+    
+    
+            var marker_cd753780337748bd71e7c6194bc572f5 = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_88b6cac86cebfded972ff9438d573d3d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_cd753780337748bd71e7c6194bc572f5.setIcon(icon_88b6cac86cebfded972ff9438d573d3d);
+        
+    
+        var popup_9c3f0d3bc7b2bcd9dea3e3e9afe4fc87 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_97e717a7913660c194b3d86efda224b9 = $(`<div id="html_97e717a7913660c194b3d86efda224b9" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_9c3f0d3bc7b2bcd9dea3e3e9afe4fc87.setContent(html_97e717a7913660c194b3d86efda224b9);
+            
+        
+
+        marker_cd753780337748bd71e7c6194bc572f5.bindPopup(popup_9c3f0d3bc7b2bcd9dea3e3e9afe4fc87)
+        ;
+
+        
+    
+    
+            var marker_b702c7b060ca8d30933d41dae41a5316 = L.marker(
+                [14.9153, 120.7532],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_5bc665ae24bebf9b2ed323d76b5e0bfc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_b702c7b060ca8d30933d41dae41a5316.setIcon(icon_5bc665ae24bebf9b2ed323d76b5e0bfc);
+        
+    
+        var popup_5ce19953c95c6f3bf4ebd8b2104a4e0e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b07854acc85b99fe52afc8408a94689c = $(`<div id="html_b07854acc85b99fe52afc8408a94689c" style="width: 100.0%; height: 100.0%;">Community: Frances</div>`)[0];
+                popup_5ce19953c95c6f3bf4ebd8b2104a4e0e.setContent(html_b07854acc85b99fe52afc8408a94689c);
+            
+        
+
+        marker_b702c7b060ca8d30933d41dae41a5316.bindPopup(popup_5ce19953c95c6f3bf4ebd8b2104a4e0e)
+        ;
+
+        
+    
+    
+            var marker_0418c95e1ebbef6e666f637ba4508d7a = L.marker(
+                [14.917701586824, 120.743048619728],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_0fac14ed9008d582e58054b45e0e69cd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_0418c95e1ebbef6e666f637ba4508d7a.setIcon(icon_0fac14ed9008d582e58054b45e0e69cd);
+        
+    
+        var popup_c25a494317e899a6bf5ee124ec29367f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7f9b71c112f709721250de265ba69299 = $(`<div id="html_7f9b71c112f709721250de265ba69299" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
+                popup_c25a494317e899a6bf5ee124ec29367f.setContent(html_7f9b71c112f709721250de265ba69299);
+            
+        
+
+        marker_0418c95e1ebbef6e666f637ba4508d7a.bindPopup(popup_c25a494317e899a6bf5ee124ec29367f)
+        ;
+
+        
+    
+    
+            var marker_da7d82f0f048442a9b0b78c924d9e0b3 = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_1d7ea7d3e35068d3c833cf6233481a0b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_da7d82f0f048442a9b0b78c924d9e0b3.setIcon(icon_1d7ea7d3e35068d3c833cf6233481a0b);
+        
+    
+        var popup_a3a3e598677cf5f3d5290663417acaed = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1fe07302885eefec336cfb5f64b070ef = $(`<div id="html_1fe07302885eefec336cfb5f64b070ef" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_a3a3e598677cf5f3d5290663417acaed.setContent(html_1fe07302885eefec336cfb5f64b070ef);
+            
+        
+
+        marker_da7d82f0f048442a9b0b78c924d9e0b3.bindPopup(popup_a3a3e598677cf5f3d5290663417acaed)
+        ;
+
+        
+    
+    
+            var marker_fa48736a7253be7409e069c808e02280 = L.marker(
+                [14.9218, 120.7685],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_16902a7ca648e292dd00f7f7f51e0642 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_fa48736a7253be7409e069c808e02280.setIcon(icon_16902a7ca648e292dd00f7f7f51e0642);
+        
+    
+        var popup_91847c7a849df0d0951c8d6af6be7437 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cbaaf117aa9126db2a551a3bf1743ae7 = $(`<div id="html_cbaaf117aa9126db2a551a3bf1743ae7" style="width: 100.0%; height: 100.0%;">Community: Gatbuca</div>`)[0];
+                popup_91847c7a849df0d0951c8d6af6be7437.setContent(html_cbaaf117aa9126db2a551a3bf1743ae7);
+            
+        
+
+        marker_fa48736a7253be7409e069c808e02280.bindPopup(popup_91847c7a849df0d0951c8d6af6be7437)
+        ;
+
+        
+    
+    
+            var marker_8a0560a38b21b194fd1ffd3c7ee7de3c = L.marker(
+                [14.917701586824, 120.743048619728],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_8ac2aa47751d5a39c3f0f4e15bd5b100 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8a0560a38b21b194fd1ffd3c7ee7de3c.setIcon(icon_8ac2aa47751d5a39c3f0f4e15bd5b100);
+        
+    
+        var popup_ff1bb0f9a257ea287d5585f46dfb436d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d03d474749d8bc25b0813a1bfc4d1a96 = $(`<div id="html_d03d474749d8bc25b0813a1bfc4d1a96" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
+                popup_ff1bb0f9a257ea287d5585f46dfb436d.setContent(html_d03d474749d8bc25b0813a1bfc4d1a96);
+            
+        
+
+        marker_8a0560a38b21b194fd1ffd3c7ee7de3c.bindPopup(popup_ff1bb0f9a257ea287d5585f46dfb436d)
+        ;
+
+        
+    
+    
+            var marker_694a6ae40a41a757f81e28974a37bd8f = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_70b9043da8e353f27d591338dcd8da63 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_694a6ae40a41a757f81e28974a37bd8f.setIcon(icon_70b9043da8e353f27d591338dcd8da63);
+        
+    
+        var popup_dd59c76816291b4b4782c8b28fff77c4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_eabedebd6e74dc3184ef136eb861a190 = $(`<div id="html_eabedebd6e74dc3184ef136eb861a190" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_dd59c76816291b4b4782c8b28fff77c4.setContent(html_eabedebd6e74dc3184ef136eb861a190);
+            
+        
+
+        marker_694a6ae40a41a757f81e28974a37bd8f.bindPopup(popup_dd59c76816291b4b4782c8b28fff77c4)
+        ;
+
+        
+    
+    
+            var marker_4624ebaccf2bea745d9d3f6efbf2bf1f = L.marker(
+                [14.9014, 120.7548],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_2256969cb0cf0c9baee9aa89b4ed18dc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_4624ebaccf2bea745d9d3f6efbf2bf1f.setIcon(icon_2256969cb0cf0c9baee9aa89b4ed18dc);
+        
+    
+        var popup_2e2b6373bf8280e5593d699facbb33df = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ff00290f432b800971f4336a92b600d1 = $(`<div id="html_ff00290f432b800971f4336a92b600d1" style="width: 100.0%; height: 100.0%;">Community: Gugo</div>`)[0];
+                popup_2e2b6373bf8280e5593d699facbb33df.setContent(html_ff00290f432b800971f4336a92b600d1);
+            
+        
+
+        marker_4624ebaccf2bea745d9d3f6efbf2bf1f.bindPopup(popup_2e2b6373bf8280e5593d699facbb33df)
+        ;
+
+        
+    
+    
+            var marker_03ca90ce137fa071a6557ebd33e87450 = L.marker(
+                [14.8980360749457, 120.764234222054],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_993ef2e4d9920c5df8e9f15c4c0f8922 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_03ca90ce137fa071a6557ebd33e87450.setIcon(icon_993ef2e4d9920c5df8e9f15c4c0f8922);
+        
+    
+        var popup_0e0e222855a05c0ec7df85d006069ee8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_180c214b5e3e12b83695b6c8de683afb = $(`<div id="html_180c214b5e3e12b83695b6c8de683afb" style="width: 100.0%; height: 100.0%;">Shelter: NV9 Multi-Purpose</div>`)[0];
+                popup_0e0e222855a05c0ec7df85d006069ee8.setContent(html_180c214b5e3e12b83695b6c8de683afb);
+            
+        
+
+        marker_03ca90ce137fa071a6557ebd33e87450.bindPopup(popup_0e0e222855a05c0ec7df85d006069ee8)
+        ;
+
+        
+    
+    
+            var marker_7d6ab1684cfc453c0c46267c7b9220eb = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_d67ade08347413739a9bcd93a55da129 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7d6ab1684cfc453c0c46267c7b9220eb.setIcon(icon_d67ade08347413739a9bcd93a55da129);
+        
+    
+        var popup_60857753fbbc6d832a7a94d00dbaf2a3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d614d66b224e97a89b1b16fc09b131ec = $(`<div id="html_d614d66b224e97a89b1b16fc09b131ec" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_60857753fbbc6d832a7a94d00dbaf2a3.setContent(html_d614d66b224e97a89b1b16fc09b131ec);
+            
+        
+
+        marker_7d6ab1684cfc453c0c46267c7b9220eb.bindPopup(popup_60857753fbbc6d832a7a94d00dbaf2a3)
+        ;
+
+        
+    
+    
+            var marker_dd9502110244c026494674ff6f740ae3 = L.marker(
+                [14.8899, 120.7673],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_60f7bccc6ebf717fb45a8d69ededd14f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_dd9502110244c026494674ff6f740ae3.setIcon(icon_60f7bccc6ebf717fb45a8d69ededd14f);
+        
+    
+        var popup_e5bf5c3911f99215ff15b2659976c919 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_88a04c7fb5587626ac72938704df5c3d = $(`<div id="html_88a04c7fb5587626ac72938704df5c3d" style="width: 100.0%; height: 100.0%;">Community: Iba Este</div>`)[0];
+                popup_e5bf5c3911f99215ff15b2659976c919.setContent(html_88a04c7fb5587626ac72938704df5c3d);
+            
+        
+
+        marker_dd9502110244c026494674ff6f740ae3.bindPopup(popup_e5bf5c3911f99215ff15b2659976c919)
+        ;
+
+        
+    
+    
+            var marker_cb6a1d8d13fef8e591248520e4ebd985 = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_ad42826aac35a700aed2ca6cc859f23f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_cb6a1d8d13fef8e591248520e4ebd985.setIcon(icon_ad42826aac35a700aed2ca6cc859f23f);
+        
+    
+        var popup_262581fa40e759242c52472a456cf299 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_10046e5819b9b070b08fd560bd2e307c = $(`<div id="html_10046e5819b9b070b08fd560bd2e307c" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_262581fa40e759242c52472a456cf299.setContent(html_10046e5819b9b070b08fd560bd2e307c);
+            
+        
+
+        marker_cb6a1d8d13fef8e591248520e4ebd985.bindPopup(popup_262581fa40e759242c52472a456cf299)
+        ;
+
+        
+    
+    
+            var marker_6e1876a67ae1ff2d0224d822aa924f6e = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_6418fb20d28460e3552bb7ee996c61e2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6e1876a67ae1ff2d0224d822aa924f6e.setIcon(icon_6418fb20d28460e3552bb7ee996c61e2);
+        
+    
+        var popup_84db11d2b0ab351e191362093ff09a6a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_af19e9fb80bf66df4176e918d3e2210b = $(`<div id="html_af19e9fb80bf66df4176e918d3e2210b" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_84db11d2b0ab351e191362093ff09a6a.setContent(html_af19e9fb80bf66df4176e918d3e2210b);
+            
+        
+
+        marker_6e1876a67ae1ff2d0224d822aa924f6e.bindPopup(popup_84db11d2b0ab351e191362093ff09a6a)
+        ;
+
+        
+    
+    
+            var marker_12428f478779b23dbc482c9e56914333 = L.marker(
+                [14.8919, 120.7635],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_e0cbba7d3c8ad72598162dec1a698a66 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_12428f478779b23dbc482c9e56914333.setIcon(icon_e0cbba7d3c8ad72598162dec1a698a66);
+        
+    
+        var popup_35f018bc9af79e238886de26ada27ba9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4447713358c35cd44a2efbc6bdc63565 = $(`<div id="html_4447713358c35cd44a2efbc6bdc63565" style="width: 100.0%; height: 100.0%;">Community: Iba O'Este</div>`)[0];
+                popup_35f018bc9af79e238886de26ada27ba9.setContent(html_4447713358c35cd44a2efbc6bdc63565);
+            
+        
+
+        marker_12428f478779b23dbc482c9e56914333.bindPopup(popup_35f018bc9af79e238886de26ada27ba9)
+        ;
+
+        
+    
+    
+            var marker_79399c3e4642b1a3727627c3691862df = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_706373aba273468836e7f46e96e924ea = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_79399c3e4642b1a3727627c3691862df.setIcon(icon_706373aba273468836e7f46e96e924ea);
+        
+    
+        var popup_46764d9860d2d27b73b653a108716040 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3d76f6a6fa45bcb39b4012e6087e3028 = $(`<div id="html_3d76f6a6fa45bcb39b4012e6087e3028" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_46764d9860d2d27b73b653a108716040.setContent(html_3d76f6a6fa45bcb39b4012e6087e3028);
+            
+        
+
+        marker_79399c3e4642b1a3727627c3691862df.bindPopup(popup_46764d9860d2d27b73b653a108716040)
+        ;
+
+        
+    
+    
+            var marker_3b91c146214297c5cf7d6da0b56e4c78 = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_5f67d74decdcf2732b6977f1ffe799b0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3b91c146214297c5cf7d6da0b56e4c78.setIcon(icon_5f67d74decdcf2732b6977f1ffe799b0);
+        
+    
+        var popup_e2578911cbb25b78768b24f425f7656f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_55fc955c5115b4f58aa2f770e6d6417c = $(`<div id="html_55fc955c5115b4f58aa2f770e6d6417c" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_e2578911cbb25b78768b24f425f7656f.setContent(html_55fc955c5115b4f58aa2f770e6d6417c);
+            
+        
+
+        marker_3b91c146214297c5cf7d6da0b56e4c78.bindPopup(popup_e2578911cbb25b78768b24f425f7656f)
+        ;
+
+        
+    
+    
+            var marker_911cbcbbc0c6e4e38ee36d182930fd76 = L.marker(
+                [14.8748, 120.7866],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_e955480b03bf251e55cfe3eb8d440236 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_911cbcbbc0c6e4e38ee36d182930fd76.setIcon(icon_e955480b03bf251e55cfe3eb8d440236);
+        
+    
+        var popup_e5644bdf4b0415fa37a0fbc2c14eceb1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8634884ad30b4426afde3cae03fce0f0 = $(`<div id="html_8634884ad30b4426afde3cae03fce0f0" style="width: 100.0%; height: 100.0%;">Community: Longos</div>`)[0];
+                popup_e5644bdf4b0415fa37a0fbc2c14eceb1.setContent(html_8634884ad30b4426afde3cae03fce0f0);
+            
+        
+
+        marker_911cbcbbc0c6e4e38ee36d182930fd76.bindPopup(popup_e5644bdf4b0415fa37a0fbc2c14eceb1)
+        ;
+
+        
+    
+    
+            var marker_b6bf75c96045bd2b183e69eb4cbef298 = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_53145879070a4a378f1d25952fbcc3a3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b6bf75c96045bd2b183e69eb4cbef298.setIcon(icon_53145879070a4a378f1d25952fbcc3a3);
+        
+    
+        var popup_d5ec34f9d53dd7e416481385cdfde125 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6eafe6a34130170cf244a74d658db9fa = $(`<div id="html_6eafe6a34130170cf244a74d658db9fa" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_d5ec34f9d53dd7e416481385cdfde125.setContent(html_6eafe6a34130170cf244a74d658db9fa);
+            
+        
+
+        marker_b6bf75c96045bd2b183e69eb4cbef298.bindPopup(popup_d5ec34f9d53dd7e416481385cdfde125)
+        ;
+
+        
+    
+    
+            var marker_9dff0a01601bd91d1b22947d18bce14d = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_b7c440f3e476b5325ecfd2426506ca56 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9dff0a01601bd91d1b22947d18bce14d.setIcon(icon_b7c440f3e476b5325ecfd2426506ca56);
+        
+    
+        var popup_4115d94b5ea49217ca55fb7a2faa8636 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_496f2e14bad5d7a5ccfbae030d4ffd4c = $(`<div id="html_496f2e14bad5d7a5ccfbae030d4ffd4c" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_4115d94b5ea49217ca55fb7a2faa8636.setContent(html_496f2e14bad5d7a5ccfbae030d4ffd4c);
+            
+        
+
+        marker_9dff0a01601bd91d1b22947d18bce14d.bindPopup(popup_4115d94b5ea49217ca55fb7a2faa8636)
+        ;
+
+        
+    
+    
+            var marker_86afa4d5b00e0982fb4b2e6f52625a35 = L.marker(
+                [14.9078, 120.7397],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_80e7423e5c0e73cc0965d576c7b699c7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_86afa4d5b00e0982fb4b2e6f52625a35.setIcon(icon_80e7423e5c0e73cc0965d576c7b699c7);
+        
+    
+        var popup_c2b6b5245f60a070137f2d5c2027a588 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_04143074aa5205802c76948ad0cdabbd = $(`<div id="html_04143074aa5205802c76948ad0cdabbd" style="width: 100.0%; height: 100.0%;">Community: Meysulao</div>`)[0];
+                popup_c2b6b5245f60a070137f2d5c2027a588.setContent(html_04143074aa5205802c76948ad0cdabbd);
+            
+        
+
+        marker_86afa4d5b00e0982fb4b2e6f52625a35.bindPopup(popup_c2b6b5245f60a070137f2d5c2027a588)
+        ;
+
+        
+    
+    
+            var marker_4e7c7da3fa623a62bb385ac842829025 = L.marker(
+                [14.917701586824, 120.743048619728],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_3517e5e8de66eec49ab390c9044bb0eb = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4e7c7da3fa623a62bb385ac842829025.setIcon(icon_3517e5e8de66eec49ab390c9044bb0eb);
+        
+    
+        var popup_69190d1e60a7a6c17c58f3ac6254eb2b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b43ead92e378bb1c603445f9c3594070 = $(`<div id="html_b43ead92e378bb1c603445f9c3594070" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
+                popup_69190d1e60a7a6c17c58f3ac6254eb2b.setContent(html_b43ead92e378bb1c603445f9c3594070);
+            
+        
+
+        marker_4e7c7da3fa623a62bb385ac842829025.bindPopup(popup_69190d1e60a7a6c17c58f3ac6254eb2b)
+        ;
+
+        
+    
+    
+            var marker_590d1182a3dc3d3523476ac1d9d4763d = L.marker(
+                [14.91044971, 120.7667966],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_9a5554ef0869367e22b231718a17fc6b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_590d1182a3dc3d3523476ac1d9d4763d.setIcon(icon_9a5554ef0869367e22b231718a17fc6b);
+        
+    
+        var popup_3e5bac5085daab349384e9f301937559 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c50e5381d064018d88012c12e064b75a = $(`<div id="html_c50e5381d064018d88012c12e064b75a" style="width: 100.0%; height: 100.0%;">Shelter: Corazon Empty Lot 2</div>`)[0];
+                popup_3e5bac5085daab349384e9f301937559.setContent(html_c50e5381d064018d88012c12e064b75a);
+            
+        
+
+        marker_590d1182a3dc3d3523476ac1d9d4763d.bindPopup(popup_3e5bac5085daab349384e9f301937559)
+        ;
+
+        
+    
+    
+            var marker_bbe5abd8b30153e31e96a93551b48caf = L.marker(
+                [14.8831, 120.7295],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_cc7b32d335092242cdeadad7ea05b788 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_bbe5abd8b30153e31e96a93551b48caf.setIcon(icon_cc7b32d335092242cdeadad7ea05b788);
+        
+    
+        var popup_aae35635455fe7cf34156ed2768dc386 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b2dd10d0d71f3b361276870ffaabed01 = $(`<div id="html_b2dd10d0d71f3b361276870ffaabed01" style="width: 100.0%; height: 100.0%;">Community: Meyto</div>`)[0];
+                popup_aae35635455fe7cf34156ed2768dc386.setContent(html_b2dd10d0d71f3b361276870ffaabed01);
+            
+        
+
+        marker_bbe5abd8b30153e31e96a93551b48caf.bindPopup(popup_aae35635455fe7cf34156ed2768dc386)
+        ;
+
+        
+    
+    
+            var marker_6bfbc5b1329bfb2de428e6d476bdb066 = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_afc7a58de54cc38100bca027151058a1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6bfbc5b1329bfb2de428e6d476bdb066.setIcon(icon_afc7a58de54cc38100bca027151058a1);
+        
+    
+        var popup_99999337ac574b2d5cbc9449a3899af7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d3a18a03d8f809fe07710fa223fa46e0 = $(`<div id="html_d3a18a03d8f809fe07710fa223fa46e0" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_99999337ac574b2d5cbc9449a3899af7.setContent(html_d3a18a03d8f809fe07710fa223fa46e0);
+            
+        
+
+        marker_6bfbc5b1329bfb2de428e6d476bdb066.bindPopup(popup_99999337ac574b2d5cbc9449a3899af7)
+        ;
+
+        
+    
+    
+            var marker_8668f41df5ee22236ec5123e15d081c3 = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_69bf228d22d319efea4dd3935f3a30c1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8668f41df5ee22236ec5123e15d081c3.setIcon(icon_69bf228d22d319efea4dd3935f3a30c1);
+        
+    
+        var popup_30745008ddc40a3a5f98c6702ec56225 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_53fd694a1d9680134aa6f382ffc33e8f = $(`<div id="html_53fd694a1d9680134aa6f382ffc33e8f" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_30745008ddc40a3a5f98c6702ec56225.setContent(html_53fd694a1d9680134aa6f382ffc33e8f);
+            
+        
+
+        marker_8668f41df5ee22236ec5123e15d081c3.bindPopup(popup_30745008ddc40a3a5f98c6702ec56225)
+        ;
+
+        
+    
+    
+            var marker_5b109cb2a919bebd531335f5ae052cfb = L.marker(
+                [14.8994, 120.7756],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_a0d8411ca2ecf949a237905cc3955179 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_5b109cb2a919bebd531335f5ae052cfb.setIcon(icon_a0d8411ca2ecf949a237905cc3955179);
+        
+    
+        var popup_5e7b4bbd204bbb4dc5af3b32b882e343 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_91d8d6e31f7ad15747ed6bd5e1a7642f = $(`<div id="html_91d8d6e31f7ad15747ed6bd5e1a7642f" style="width: 100.0%; height: 100.0%;">Community: Palimbang</div>`)[0];
+                popup_5e7b4bbd204bbb4dc5af3b32b882e343.setContent(html_91d8d6e31f7ad15747ed6bd5e1a7642f);
+            
+        
+
+        marker_5b109cb2a919bebd531335f5ae052cfb.bindPopup(popup_5e7b4bbd204bbb4dc5af3b32b882e343)
+        ;
+
+        
+    
+    
+            var marker_7fd2e66f6252c55ba952f1daed3232f0 = L.marker(
+                [14.917701586824, 120.743048619728],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_bb635ba3a5a60ffa15b7e5c72d11f2c2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7fd2e66f6252c55ba952f1daed3232f0.setIcon(icon_bb635ba3a5a60ffa15b7e5c72d11f2c2);
+        
+    
+        var popup_0e12ab6d0f30590da18dbb385d65a7f8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ea2283e1cb8e33fafaa718232385cd7f = $(`<div id="html_ea2283e1cb8e33fafaa718232385cd7f" style="width: 100.0%; height: 100.0%;">Shelter: Doña Damiana Elem School</div>`)[0];
+                popup_0e12ab6d0f30590da18dbb385d65a7f8.setContent(html_ea2283e1cb8e33fafaa718232385cd7f);
+            
+        
+
+        marker_7fd2e66f6252c55ba952f1daed3232f0.bindPopup(popup_0e12ab6d0f30590da18dbb385d65a7f8)
+        ;
+
+        
+    
+    
+            var marker_159368240c08a2a45bc5527ed15aa0a9 = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_273707ae922ba2660017856e9e7031b4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_159368240c08a2a45bc5527ed15aa0a9.setIcon(icon_273707ae922ba2660017856e9e7031b4);
+        
+    
+        var popup_d83824ea7c0e0c6e824a23e6c98fedeb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3cb1a49a60a6d9f1bd45053e124d76ab = $(`<div id="html_3cb1a49a60a6d9f1bd45053e124d76ab" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_d83824ea7c0e0c6e824a23e6c98fedeb.setContent(html_3cb1a49a60a6d9f1bd45053e124d76ab);
+            
+        
+
+        marker_159368240c08a2a45bc5527ed15aa0a9.bindPopup(popup_d83824ea7c0e0c6e824a23e6c98fedeb)
+        ;
+
+        
+    
+    
+            var marker_8a3f91d40eb562b5f214e84b3e26a8c0 = L.marker(
+                [14.8761, 120.738],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_9e3363864b8f9a2c290a01231e91e34b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_8a3f91d40eb562b5f214e84b3e26a8c0.setIcon(icon_9e3363864b8f9a2c290a01231e91e34b);
+        
+    
+        var popup_62466d125528314c9d55ef0f616c6efe = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f1516792871ed16daee4bc930ea1b9f3 = $(`<div id="html_f1516792871ed16daee4bc930ea1b9f3" style="width: 100.0%; height: 100.0%;">Community: Panducot</div>`)[0];
+                popup_62466d125528314c9d55ef0f616c6efe.setContent(html_f1516792871ed16daee4bc930ea1b9f3);
+            
+        
+
+        marker_8a3f91d40eb562b5f214e84b3e26a8c0.bindPopup(popup_62466d125528314c9d55ef0f616c6efe)
+        ;
+
+        
+    
+    
+            var marker_a22e34c45e1a92522e9b3b68de28b968 = L.marker(
+                [14.8980360749457, 120.764234222054],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_3f4c336bb93cb79612fa7d41850a4317 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a22e34c45e1a92522e9b3b68de28b968.setIcon(icon_3f4c336bb93cb79612fa7d41850a4317);
+        
+    
+        var popup_09311a11ff974274f0001239caaa2ba9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_79862ae2784910f5de09b7d9b6c9b2cc = $(`<div id="html_79862ae2784910f5de09b7d9b6c9b2cc" style="width: 100.0%; height: 100.0%;">Shelter: NV9 Multi-Purpose</div>`)[0];
+                popup_09311a11ff974274f0001239caaa2ba9.setContent(html_79862ae2784910f5de09b7d9b6c9b2cc);
+            
+        
+
+        marker_a22e34c45e1a92522e9b3b68de28b968.bindPopup(popup_09311a11ff974274f0001239caaa2ba9)
+        ;
+
+        
+    
+    
+            var marker_aea6ae397d9c6bc68f54a132675b443e = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_9c821ad1fb71025b8d9667ea00384169 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_aea6ae397d9c6bc68f54a132675b443e.setIcon(icon_9c821ad1fb71025b8d9667ea00384169);
+        
+    
+        var popup_33dd4c9061405dd50da1a4eb99e4dd96 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_48bf6cc3548b63452826eb0dc89ca65d = $(`<div id="html_48bf6cc3548b63452826eb0dc89ca65d" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_33dd4c9061405dd50da1a4eb99e4dd96.setContent(html_48bf6cc3548b63452826eb0dc89ca65d);
+            
+        
+
+        marker_aea6ae397d9c6bc68f54a132675b443e.bindPopup(popup_33dd4c9061405dd50da1a4eb99e4dd96)
+        ;
+
+        
+    
+    
+            var marker_98237a636ab827f41bfd9aaa2bc8c003 = L.marker(
+                [14.8881, 120.7855],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_c7f644530d9c8b632c6724b118d8839f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_98237a636ab827f41bfd9aaa2bc8c003.setIcon(icon_c7f644530d9c8b632c6724b118d8839f);
+        
+    
+        var popup_cb159777399b064a1ff1d9361dbc788d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_570557d30e113bf1958554ab0837ad2d = $(`<div id="html_570557d30e113bf1958554ab0837ad2d" style="width: 100.0%; height: 100.0%;">Community: Pio Cruzcosa</div>`)[0];
+                popup_cb159777399b064a1ff1d9361dbc788d.setContent(html_570557d30e113bf1958554ab0837ad2d);
+            
+        
+
+        marker_98237a636ab827f41bfd9aaa2bc8c003.bindPopup(popup_cb159777399b064a1ff1d9361dbc788d)
+        ;
+
+        
+    
+    
+            var marker_fd59e2152fd3c6828ffc8c05ec10fc36 = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_684cdfc1b2cbab9e2fa82284b9c55124 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fd59e2152fd3c6828ffc8c05ec10fc36.setIcon(icon_684cdfc1b2cbab9e2fa82284b9c55124);
+        
+    
+        var popup_0991b493103a622ebc7bada8c9622a2f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0fb35fb0f856f1c40bf201c5a1496109 = $(`<div id="html_0fb35fb0f856f1c40bf201c5a1496109" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_0991b493103a622ebc7bada8c9622a2f.setContent(html_0fb35fb0f856f1c40bf201c5a1496109);
+            
+        
+
+        marker_fd59e2152fd3c6828ffc8c05ec10fc36.bindPopup(popup_0991b493103a622ebc7bada8c9622a2f)
+        ;
+
+        
+    
+    
+            var marker_687d0b1359b04e5f603523426bd0f6db = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_3d4a5ef3a3d4e5490c1fbe3f036ead70 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_687d0b1359b04e5f603523426bd0f6db.setIcon(icon_3d4a5ef3a3d4e5490c1fbe3f036ead70);
+        
+    
+        var popup_68526130e1d26259a89a5db9f754c7a0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_33d47049a3a7da9b1afb45d5d77126aa = $(`<div id="html_33d47049a3a7da9b1afb45d5d77126aa" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_68526130e1d26259a89a5db9f754c7a0.setContent(html_33d47049a3a7da9b1afb45d5d77126aa);
+            
+        
+
+        marker_687d0b1359b04e5f603523426bd0f6db.bindPopup(popup_68526130e1d26259a89a5db9f754c7a0)
+        ;
+
+        
+    
+    
+            var marker_09ff44417824823ce2d4311efe91b37e = L.marker(
+                [14.9157, 120.7672],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_701137b6bb1a676c0cc80feeef6f83ec = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_09ff44417824823ce2d4311efe91b37e.setIcon(icon_701137b6bb1a676c0cc80feeef6f83ec);
+        
+    
+        var popup_4cda0c56d93d6cdb716813728b9a3b55 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_416579b53152d6b732e70ba8130a623c = $(`<div id="html_416579b53152d6b732e70ba8130a623c" style="width: 100.0%; height: 100.0%;">Community: Poblacion</div>`)[0];
+                popup_4cda0c56d93d6cdb716813728b9a3b55.setContent(html_416579b53152d6b732e70ba8130a623c);
+            
+        
+
+        marker_09ff44417824823ce2d4311efe91b37e.bindPopup(popup_4cda0c56d93d6cdb716813728b9a3b55)
+        ;
+
+        
+    
+    
+            var marker_8c5da368facefc5b84add0f91a854e39 = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_4b3df5831baa4bc7e2fe253ea17a6311 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8c5da368facefc5b84add0f91a854e39.setIcon(icon_4b3df5831baa4bc7e2fe253ea17a6311);
+        
+    
+        var popup_294a37e7e40c119770090b7b66e2d04a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_28afd0c633bd753b6172cff1ed5cdaf6 = $(`<div id="html_28afd0c633bd753b6172cff1ed5cdaf6" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_294a37e7e40c119770090b7b66e2d04a.setContent(html_28afd0c633bd753b6172cff1ed5cdaf6);
+            
+        
+
+        marker_8c5da368facefc5b84add0f91a854e39.bindPopup(popup_294a37e7e40c119770090b7b66e2d04a)
+        ;
+
+        
+    
+    
+            var marker_3aebef096016356d0149a553eece94ce = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_3b12a29da7af8d6e3857d5cf6e433b5a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3aebef096016356d0149a553eece94ce.setIcon(icon_3b12a29da7af8d6e3857d5cf6e433b5a);
+        
+    
+        var popup_ff3aca6203c40137eb31c184fa1cbb31 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d5fe2d3b21d29784055381cefe243f4a = $(`<div id="html_d5fe2d3b21d29784055381cefe243f4a" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_ff3aca6203c40137eb31c184fa1cbb31.setContent(html_d5fe2d3b21d29784055381cefe243f4a);
+            
+        
+
+        marker_3aebef096016356d0149a553eece94ce.bindPopup(popup_ff3aca6203c40137eb31c184fa1cbb31)
+        ;
+
+        
+    
+    
+            var marker_62b5adae8fccef6e2daae2099f85df7f = L.marker(
+                [14.9023, 120.7914],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_369a88557e8a54d6c229079fb8bd0fd5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_62b5adae8fccef6e2daae2099f85df7f.setIcon(icon_369a88557e8a54d6c229079fb8bd0fd5);
+        
+    
+        var popup_e05fd7b6258eeb8f2de2c97b4b7111cd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ff9a5f803ff771cd48f570abaa69e77b = $(`<div id="html_ff9a5f803ff771cd48f570abaa69e77b" style="width: 100.0%; height: 100.0%;">Community: Pungo</div>`)[0];
+                popup_e05fd7b6258eeb8f2de2c97b4b7111cd.setContent(html_ff9a5f803ff771cd48f570abaa69e77b);
+            
+        
+
+        marker_62b5adae8fccef6e2daae2099f85df7f.bindPopup(popup_e05fd7b6258eeb8f2de2c97b4b7111cd)
+        ;
+
+        
+    
+    
+            var marker_ca7a098984ecd64d4b7ed7829c91a282 = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_eccd08a283057805536a9d659fbc140e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ca7a098984ecd64d4b7ed7829c91a282.setIcon(icon_eccd08a283057805536a9d659fbc140e);
+        
+    
+        var popup_7e87d78ce31994213ea24bcb8dc1ebb1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_63f4f0f50c1205487165f4df62ef8638 = $(`<div id="html_63f4f0f50c1205487165f4df62ef8638" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_7e87d78ce31994213ea24bcb8dc1ebb1.setContent(html_63f4f0f50c1205487165f4df62ef8638);
+            
+        
+
+        marker_ca7a098984ecd64d4b7ed7829c91a282.bindPopup(popup_7e87d78ce31994213ea24bcb8dc1ebb1)
+        ;
+
+        
+    
+    
+            var marker_5bda6094f2c478ba71325034ca0a63fb = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_81507498a01a4794548a14aac1a64df0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5bda6094f2c478ba71325034ca0a63fb.setIcon(icon_81507498a01a4794548a14aac1a64df0);
+        
+    
+        var popup_18269c727842611d32545a6717f04809 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_472c27b82292912e9f5f0e2cb26c8085 = $(`<div id="html_472c27b82292912e9f5f0e2cb26c8085" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_18269c727842611d32545a6717f04809.setContent(html_472c27b82292912e9f5f0e2cb26c8085);
+            
+        
+
+        marker_5bda6094f2c478ba71325034ca0a63fb.bindPopup(popup_18269c727842611d32545a6717f04809)
+        ;
+
+        
+    
+    
+            var marker_d2320b45503348b8342a4cb2a5b5a1f3 = L.marker(
+                [14.8838, 120.7395],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_82d9fef5388ca0c1b4489cf189c4764d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_d2320b45503348b8342a4cb2a5b5a1f3.setIcon(icon_82d9fef5388ca0c1b4489cf189c4764d);
+        
+    
+        var popup_f59d57d1fd6be5688d61b93709abb154 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d1151e530592a35d9a7ca41c4ea6bc3a = $(`<div id="html_d1151e530592a35d9a7ca41c4ea6bc3a" style="width: 100.0%; height: 100.0%;">Community: San Jose</div>`)[0];
+                popup_f59d57d1fd6be5688d61b93709abb154.setContent(html_d1151e530592a35d9a7ca41c4ea6bc3a);
+            
+        
+
+        marker_d2320b45503348b8342a4cb2a5b5a1f3.bindPopup(popup_f59d57d1fd6be5688d61b93709abb154)
+        ;
+
+        
+    
+    
+            var marker_3f83742add32f6398ac6e46c0f057dbb = L.marker(
+                [14.8980360749457, 120.764234222054],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_5d553cf4bfc7ee3186be8c9c25122d4c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3f83742add32f6398ac6e46c0f057dbb.setIcon(icon_5d553cf4bfc7ee3186be8c9c25122d4c);
+        
+    
+        var popup_67caa3b3c2e5e8870b06f1ce3f2869c2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4b24e6c8ee24d85e6b5744291052cfdf = $(`<div id="html_4b24e6c8ee24d85e6b5744291052cfdf" style="width: 100.0%; height: 100.0%;">Shelter: NV9 Multi-Purpose</div>`)[0];
+                popup_67caa3b3c2e5e8870b06f1ce3f2869c2.setContent(html_4b24e6c8ee24d85e6b5744291052cfdf);
+            
+        
+
+        marker_3f83742add32f6398ac6e46c0f057dbb.bindPopup(popup_67caa3b3c2e5e8870b06f1ce3f2869c2)
+        ;
+
+        
+    
+    
+            var marker_be2d3390cc5d0c957c4627b69e2a611e = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_7108dc0b9ea8cf0e7b2562b66e9d4e65 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_be2d3390cc5d0c957c4627b69e2a611e.setIcon(icon_7108dc0b9ea8cf0e7b2562b66e9d4e65);
+        
+    
+        var popup_8b36d0b687d94189457a0bcd76415cc8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_06a554bd6244f5faf414ef4609f00f0c = $(`<div id="html_06a554bd6244f5faf414ef4609f00f0c" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_8b36d0b687d94189457a0bcd76415cc8.setContent(html_06a554bd6244f5faf414ef4609f00f0c);
+            
+        
+
+        marker_be2d3390cc5d0c957c4627b69e2a611e.bindPopup(popup_8b36d0b687d94189457a0bcd76415cc8)
+        ;
+
+        
+    
+    
+            var marker_65329be833457d23bced3d735b51cbe0 = L.marker(
+                [14.8976, 120.7797],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_3822e4b48a2760071059617f287ddd0e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_65329be833457d23bced3d735b51cbe0.setIcon(icon_3822e4b48a2760071059617f287ddd0e);
+        
+    
+        var popup_1cf375ba32b3dadd4e7b0c03b404d627 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c909dd919ed09853ee6dcc2a3d304e09 = $(`<div id="html_c909dd919ed09853ee6dcc2a3d304e09" style="width: 100.0%; height: 100.0%;">Community: San Marcos</div>`)[0];
+                popup_1cf375ba32b3dadd4e7b0c03b404d627.setContent(html_c909dd919ed09853ee6dcc2a3d304e09);
+            
+        
+
+        marker_65329be833457d23bced3d735b51cbe0.bindPopup(popup_1cf375ba32b3dadd4e7b0c03b404d627)
+        ;
+
+        
+    
+    
+            var marker_2cdd2919a7955bb335f18e10459e7717 = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_dc3a156e8297c3f66e462b5ab59f5af1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2cdd2919a7955bb335f18e10459e7717.setIcon(icon_dc3a156e8297c3f66e462b5ab59f5af1);
+        
+    
+        var popup_f406c0ba7aa1a5aa049f91a15a1bf615 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_05c48a4684c35f16c11a66f3661b6467 = $(`<div id="html_05c48a4684c35f16c11a66f3661b6467" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_f406c0ba7aa1a5aa049f91a15a1bf615.setContent(html_05c48a4684c35f16c11a66f3661b6467);
+            
+        
+
+        marker_2cdd2919a7955bb335f18e10459e7717.bindPopup(popup_f406c0ba7aa1a5aa049f91a15a1bf615)
+        ;
+
+        
+    
+    
+            var marker_a82bde5bc4d9219d641b4ef5b637dfc4 = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_26b54c5bcfdf18846044632848724ba2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a82bde5bc4d9219d641b4ef5b637dfc4.setIcon(icon_26b54c5bcfdf18846044632848724ba2);
+        
+    
+        var popup_8d4152e5cf980c998b1e611741820d7c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2072f7a2d101bebc1143f9386e53107a = $(`<div id="html_2072f7a2d101bebc1143f9386e53107a" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_8d4152e5cf980c998b1e611741820d7c.setContent(html_2072f7a2d101bebc1143f9386e53107a);
+            
+        
+
+        marker_a82bde5bc4d9219d641b4ef5b637dfc4.bindPopup(popup_8d4152e5cf980c998b1e611741820d7c)
+        ;
+
+        
+    
+    
+            var marker_78c2709d360caeaada4fad3833f6705a = L.marker(
+                [14.917, 120.7427],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_ba5bf7490b77ebd0e18d9b7e30b3f75b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_78c2709d360caeaada4fad3833f6705a.setIcon(icon_ba5bf7490b77ebd0e18d9b7e30b3f75b);
+        
+    
+        var popup_b072e199459a6ce2e2122af2a536b390 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ba8761f3bdc7af142e3d1747a4c763a4 = $(`<div id="html_ba8761f3bdc7af142e3d1747a4c763a4" style="width: 100.0%; height: 100.0%;">Community: San Miguel</div>`)[0];
+                popup_b072e199459a6ce2e2122af2a536b390.setContent(html_ba8761f3bdc7af142e3d1747a4c763a4);
+            
+        
+
+        marker_78c2709d360caeaada4fad3833f6705a.bindPopup(popup_b072e199459a6ce2e2122af2a536b390)
+        ;
+
+        
+    
+    
+            var marker_62727fbe92d3603aecd87e457f5a88ae = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_8825c39490f6df217423c893a4626317 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_62727fbe92d3603aecd87e457f5a88ae.setIcon(icon_8825c39490f6df217423c893a4626317);
+        
+    
+        var popup_e6078ee3a77a3a97a755545bbd4f0c0f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_eda930d2a27a96c2d47ee077396c6970 = $(`<div id="html_eda930d2a27a96c2d47ee077396c6970" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_e6078ee3a77a3a97a755545bbd4f0c0f.setContent(html_eda930d2a27a96c2d47ee077396c6970);
+            
+        
+
+        marker_62727fbe92d3603aecd87e457f5a88ae.bindPopup(popup_e6078ee3a77a3a97a755545bbd4f0c0f)
+        ;
+
+        
+    
+    
+            var marker_aa18ff4ccfec077deab4c0f056267dd0 = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_1200653b54e1713a614a5bed10757e40 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_aa18ff4ccfec077deab4c0f056267dd0.setIcon(icon_1200653b54e1713a614a5bed10757e40);
+        
+    
+        var popup_032730e2e29caa37aadc129cd42a233f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f8a06b620e3036798ee434b6b37a4a1c = $(`<div id="html_f8a06b620e3036798ee434b6b37a4a1c" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_032730e2e29caa37aadc129cd42a233f.setContent(html_f8a06b620e3036798ee434b6b37a4a1c);
+            
+        
+
+        marker_aa18ff4ccfec077deab4c0f056267dd0.bindPopup(popup_032730e2e29caa37aadc129cd42a233f)
+        ;
+
+        
+    
+    
+            var marker_82a4fb18bd535bafdf4af2c949280b0b = L.marker(
+                [14.8982, 120.736],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_259e865482a393c55948bb4f820dc8f8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_82a4fb18bd535bafdf4af2c949280b0b.setIcon(icon_259e865482a393c55948bb4f820dc8f8);
+        
+    
+        var popup_d4d98bb6c4e3a8ba3b87bf54d032392b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_dd7d813de1f03dede76dcec68b4476d4 = $(`<div id="html_dd7d813de1f03dede76dcec68b4476d4" style="width: 100.0%; height: 100.0%;">Community: Santa Lucia</div>`)[0];
+                popup_d4d98bb6c4e3a8ba3b87bf54d032392b.setContent(html_dd7d813de1f03dede76dcec68b4476d4);
+            
+        
+
+        marker_82a4fb18bd535bafdf4af2c949280b0b.bindPopup(popup_d4d98bb6c4e3a8ba3b87bf54d032392b)
+        ;
+
+        
+    
+    
+            var marker_d8f0a945b7394df8be71aafe8f70f1a5 = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_f0866c87239b1c34d9ba84ec8c1ed74b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d8f0a945b7394df8be71aafe8f70f1a5.setIcon(icon_f0866c87239b1c34d9ba84ec8c1ed74b);
+        
+    
+        var popup_79b2059897333b6f7db7c8e793748517 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9c15ef1f8a57d6d570a5105d9f12a5d8 = $(`<div id="html_9c15ef1f8a57d6d570a5105d9f12a5d8" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_79b2059897333b6f7db7c8e793748517.setContent(html_9c15ef1f8a57d6d570a5105d9f12a5d8);
+            
+        
+
+        marker_d8f0a945b7394df8be71aafe8f70f1a5.bindPopup(popup_79b2059897333b6f7db7c8e793748517)
+        ;
+
+        
+    
+    
+            var marker_4ced545aad0784584f6cbd50a943fb96 = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_d7da284c07f59b6fb754a84f2d6cdaa5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4ced545aad0784584f6cbd50a943fb96.setIcon(icon_d7da284c07f59b6fb754a84f2d6cdaa5);
+        
+    
+        var popup_2261ad6580ff90793f2681f6c9d130ef = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b5feed8de66c1ffe80ecbf63115baf27 = $(`<div id="html_b5feed8de66c1ffe80ecbf63115baf27" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_2261ad6580ff90793f2681f6c9d130ef.setContent(html_b5feed8de66c1ffe80ecbf63115baf27);
+            
+        
+
+        marker_4ced545aad0784584f6cbd50a943fb96.bindPopup(popup_2261ad6580ff90793f2681f6c9d130ef)
+        ;
+
+        
+    
+    
+            var marker_383fd25e7ea0463e01340540c7336fcc = L.marker(
+                [14.9047, 120.7792],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_ab929010c2a199eb903eeb56f194209e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_383fd25e7ea0463e01340540c7336fcc.setIcon(icon_ab929010c2a199eb903eeb56f194209e);
+        
+    
+        var popup_4bc47cf05fdc7e1be6255e0574167c62 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b373955d38c095484bad4cd80520fb3d = $(`<div id="html_b373955d38c095484bad4cd80520fb3d" style="width: 100.0%; height: 100.0%;">Community: Santo Niño</div>`)[0];
+                popup_4bc47cf05fdc7e1be6255e0574167c62.setContent(html_b373955d38c095484bad4cd80520fb3d);
+            
+        
+
+        marker_383fd25e7ea0463e01340540c7336fcc.bindPopup(popup_4bc47cf05fdc7e1be6255e0574167c62)
+        ;
+
+        
+    
+    
+            var marker_8c4fa18f0283988d805ec81f89fa35b8 = L.marker(
+                [14.8933901983676, 120.777840587943],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_8c6f7acbdc375f176a68c2ce3feafa2f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8c4fa18f0283988d805ec81f89fa35b8.setIcon(icon_8c6f7acbdc375f176a68c2ce3feafa2f);
+        
+    
+        var popup_a60f03c2bcea5a43b1f1c27945577bdf = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_68faa73cee12d48ad3c818cfa5415099 = $(`<div id="html_68faa73cee12d48ad3c818cfa5415099" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos National H.S.</div>`)[0];
+                popup_a60f03c2bcea5a43b1f1c27945577bdf.setContent(html_68faa73cee12d48ad3c818cfa5415099);
+            
+        
+
+        marker_8c4fa18f0283988d805ec81f89fa35b8.bindPopup(popup_a60f03c2bcea5a43b1f1c27945577bdf)
+        ;
+
+        
+    
+    
+            var marker_0c6ef46a6084d90387d79600416b15df = L.marker(
+                [14.8978852342351, 120.778807101888],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_88249feb344c40284e479d5816229763 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_0c6ef46a6084d90387d79600416b15df.setIcon(icon_88249feb344c40284e479d5816229763);
+        
+    
+        var popup_6bd8e62eb6f2575bc034b06fcc5e455a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fe923cd2c4d20829fc5d1d15d0069b8e = $(`<div id="html_fe923cd2c4d20829fc5d1d15d0069b8e" style="width: 100.0%; height: 100.0%;">Shelter: San Marcos Elem. Sch.</div>`)[0];
+                popup_6bd8e62eb6f2575bc034b06fcc5e455a.setContent(html_fe923cd2c4d20829fc5d1d15d0069b8e);
+            
+        
+
+        marker_0c6ef46a6084d90387d79600416b15df.bindPopup(popup_6bd8e62eb6f2575bc034b06fcc5e455a)
+        ;
+
+        
+    
+    
+            var marker_3e7dfbf57a51a5df6ef9d25eedb5cc1f = L.marker(
+                [14.9196, 120.7739],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_95f18fa705dc802168bbcccd28b27109 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_3e7dfbf57a51a5df6ef9d25eedb5cc1f.setIcon(icon_95f18fa705dc802168bbcccd28b27109);
+        
+    
+        var popup_8fb9ec6bf97e886459d9c94b042e2841 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8c66f0eeb857c63b3056e9ccf7387335 = $(`<div id="html_8c66f0eeb857c63b3056e9ccf7387335" style="width: 100.0%; height: 100.0%;">Community: Sapang Bayan</div>`)[0];
+                popup_8fb9ec6bf97e886459d9c94b042e2841.setContent(html_8c66f0eeb857c63b3056e9ccf7387335);
+            
+        
+
+        marker_3e7dfbf57a51a5df6ef9d25eedb5cc1f.bindPopup(popup_8fb9ec6bf97e886459d9c94b042e2841)
+        ;
+
+        
+    
+    
+            var marker_00f236eea4869c023dcee7e3773dd1cf = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_5b39f118007f7cf616407472056b9749 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_00f236eea4869c023dcee7e3773dd1cf.setIcon(icon_5b39f118007f7cf616407472056b9749);
+        
+    
+        var popup_52660d14a479125dfd438a460ea86939 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_62ebbbde402b42951b87e395d4faea23 = $(`<div id="html_62ebbbde402b42951b87e395d4faea23" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_52660d14a479125dfd438a460ea86939.setContent(html_62ebbbde402b42951b87e395d4faea23);
+            
+        
+
+        marker_00f236eea4869c023dcee7e3773dd1cf.bindPopup(popup_52660d14a479125dfd438a460ea86939)
+        ;
+
+        
+    
+    
+            var marker_3a96f27cfbdd3b895bed88cf76fd388a = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_d8b2188c891b452944a2a635914f213a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3a96f27cfbdd3b895bed88cf76fd388a.setIcon(icon_d8b2188c891b452944a2a635914f213a);
+        
+    
+        var popup_a4fb97679ed872a21b3c1a0d3b7c10bd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_17a0a5383d8d7c7629687f79b6416bc3 = $(`<div id="html_17a0a5383d8d7c7629687f79b6416bc3" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_a4fb97679ed872a21b3c1a0d3b7c10bd.setContent(html_17a0a5383d8d7c7629687f79b6416bc3);
+            
+        
+
+        marker_3a96f27cfbdd3b895bed88cf76fd388a.bindPopup(popup_a4fb97679ed872a21b3c1a0d3b7c10bd)
+        ;
+
+        
+    
+    
+            var marker_adcef70346fbeddf8526ca4c456330e6 = L.marker(
+                [14.894, 120.7909],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_a9453d754547565727d70a12adaede98 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_adcef70346fbeddf8526ca4c456330e6.setIcon(icon_a9453d754547565727d70a12adaede98);
+        
+    
+        var popup_b834fec9b387bd9f25cb787cc725603d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_aae2e1af5b5e95f44735925a30666768 = $(`<div id="html_aae2e1af5b5e95f44735925a30666768" style="width: 100.0%; height: 100.0%;">Community: Sergio Bayan</div>`)[0];
+                popup_b834fec9b387bd9f25cb787cc725603d.setContent(html_aae2e1af5b5e95f44735925a30666768);
+            
+        
+
+        marker_adcef70346fbeddf8526ca4c456330e6.bindPopup(popup_b834fec9b387bd9f25cb787cc725603d)
+        ;
+
+        
+    
+    
+            var marker_adce61f12ab0712eaa35e8e590599ed1 = L.marker(
+                [14.8980360749457, 120.764234222054],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_88d7355c261cda5d395f7eceab870793 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_adce61f12ab0712eaa35e8e590599ed1.setIcon(icon_88d7355c261cda5d395f7eceab870793);
+        
+    
+        var popup_2fa321c6d5bcfa1f62e047fe2116c16f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_635ec6ae6969ed941e0beab104db78ae = $(`<div id="html_635ec6ae6969ed941e0beab104db78ae" style="width: 100.0%; height: 100.0%;">Shelter: NV9 Multi-Purpose</div>`)[0];
+                popup_2fa321c6d5bcfa1f62e047fe2116c16f.setContent(html_635ec6ae6969ed941e0beab104db78ae);
+            
+        
+
+        marker_adce61f12ab0712eaa35e8e590599ed1.bindPopup(popup_2fa321c6d5bcfa1f62e047fe2116c16f)
+        ;
+
+        
+    
+    
+            var marker_9dd6e8cbb3956ec4a6124fbdfa373b65 = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_f90750042e43d9bb63b3339033133823 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9dd6e8cbb3956ec4a6124fbdfa373b65.setIcon(icon_f90750042e43d9bb63b3339033133823);
+        
+    
+        var popup_ad862a1298698dfec97d7db3aaf058ce = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9d5e582682ea905171ff99cdfc8ad6a7 = $(`<div id="html_9d5e582682ea905171ff99cdfc8ad6a7" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_ad862a1298698dfec97d7db3aaf058ce.setContent(html_9d5e582682ea905171ff99cdfc8ad6a7);
+            
+        
+
+        marker_9dd6e8cbb3956ec4a6124fbdfa373b65.bindPopup(popup_ad862a1298698dfec97d7db3aaf058ce)
+        ;
+
+        
+    
+    
+            var marker_f0adcd8c5b8a0e2df97426b13c695ab9 = L.marker(
+                [14.9138, 120.7701],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_d2729fab06fc52f693724144bcbbdde0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_f0adcd8c5b8a0e2df97426b13c695ab9.setIcon(icon_d2729fab06fc52f693724144bcbbdde0);
+        
+    
+        var popup_9d3858da7b1925c473803e99c552fb07 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d6d1c615f50a1f8487998023597d5630 = $(`<div id="html_d6d1c615f50a1f8487998023597d5630" style="width: 100.0%; height: 100.0%;">Community: Sucol</div>`)[0];
+                popup_9d3858da7b1925c473803e99c552fb07.setContent(html_d6d1c615f50a1f8487998023597d5630);
+            
+        
+
+        marker_f0adcd8c5b8a0e2df97426b13c695ab9.bindPopup(popup_9d3858da7b1925c473803e99c552fb07)
+        ;
+
+        
+    
+    
+            var marker_6ffa8247e4f4dc4d6e19b6192cc71a51 = L.marker(
+                [14.9167991010101, 120.742941581954],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_21b77b3a104b91ac15ec70db01d7809f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6ffa8247e4f4dc4d6e19b6192cc71a51.setIcon(icon_21b77b3a104b91ac15ec70db01d7809f);
+        
+    
+        var popup_8a5f05bf675249729ac607293e8776e2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_855c72202594efd3bab38b1f57461cff = $(`<div id="html_855c72202594efd3bab38b1f57461cff" style="width: 100.0%; height: 100.0%;">Shelter: San Miguel Meysulao High School</div>`)[0];
+                popup_8a5f05bf675249729ac607293e8776e2.setContent(html_855c72202594efd3bab38b1f57461cff);
+            
+        
+
+        marker_6ffa8247e4f4dc4d6e19b6192cc71a51.bindPopup(popup_8a5f05bf675249729ac607293e8776e2)
+        ;
+
+        
+    
+    
+            var marker_19cc3714f71c5501462d31be6325f391 = L.marker(
+                [14.9185376869108, 120.766768211462],
+                {}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var icon_29979954b00da2dcb030b75cbaa0f82c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_19cc3714f71c5501462d31be6325f391.setIcon(icon_29979954b00da2dcb030b75cbaa0f82c);
+        
+    
+        var popup_563e6b405488c1573bb7b5eb4013d275 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f97f139523437f241f1ad158d51895cc = $(`<div id="html_f97f139523437f241f1ad158d51895cc" style="width: 100.0%; height: 100.0%;">Shelter: BMLTC Multi-Purpose Bldg and EC</div>`)[0];
+                popup_563e6b405488c1573bb7b5eb4013d275.setContent(html_f97f139523437f241f1ad158d51895cc);
+            
+        
+
+        marker_19cc3714f71c5501462d31be6325f391.bindPopup(popup_563e6b405488c1573bb7b5eb4013d275)
+        ;
+
+        
+    
+    
+            var feature_group_d0ca7d8ef9d8ee0e56402f528070b877 = L.featureGroup(
+                {}
+            );
+        
+    
+            ant_path_105135402ecadaa8d91ce31d7eed194e = L.polyline.antPath(
+              [[14.8956, 120.7855], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_e5603beb1d711abd0dfa171b4f18bb31 = L.polyline.antPath(
+              [[14.9167991010101, 120.742941581954], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_e11082ec73387edf4f0ca14dd61138bf = L.polyline.antPath(
+              [[14.9143, 120.7622], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_3ca7cdb433d6b00e8cab9d4f5c338c2c = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.8978852342351, 120.778807101888]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_6dc6031faf6bdc244d6db3c3bffefe84 = L.polyline.antPath(
+              [[14.894, 120.7985], [14.917701586824, 120.743048619728]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_0a6813623f96cab2c79949edbda38ca7 = L.polyline.antPath(
+              [[14.917701586824, 120.743048619728], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_5f17f46c8b2a319a1c4e740aa57377ca = L.polyline.antPath(
+              [[14.9076, 120.7455], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_0a3751609f59f634fee5bb888bd8e7c6 = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.91044971, 120.7667966]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_3365018b0bd9ed07f254d297650cb86f = L.polyline.antPath(
+              [[14.9125, 120.753], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_650c02b924e384af48ac06325679f710 = L.polyline.antPath(
+              [[14.9185376869108, 120.766768211462], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_81f5ef3306cbc7e52cc825abc7378e8d = L.polyline.antPath(
+              [[14.8845, 120.7838], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_0aac08bde06a3a555a7fd52fca7cfca9 = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.8978852342351, 120.778807101888]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_39dc172b1c774e0fd8551b5015cda296 = L.polyline.antPath(
+              [[14.9054, 120.7733], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_f7a9369437713a55c0549441551e6d94 = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_f63ff0f79c1271cffbbdf04b7db045b1 = L.polyline.antPath(
+              [[14.9128, 120.7686], [14.917701586824, 120.743048619728]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_d539ee81ce06b89141f9923d0e92e36b = L.polyline.antPath(
+              [[14.917701586824, 120.743048619728], [14.8978852342351, 120.778807101888]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_16b5bdf682a0e0aae16b7f6648518036 = L.polyline.antPath(
+              [[14.9153, 120.7532], [14.917701586824, 120.743048619728]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_aa98950b6817c3abcd76dfdc307b28f0 = L.polyline.antPath(
+              [[14.917701586824, 120.743048619728], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_2eec96a864f1b5e27ee4df82467abc37 = L.polyline.antPath(
+              [[14.9218, 120.7685], [14.917701586824, 120.743048619728]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_7da76367eec554bb4a2f5e83cba0df71 = L.polyline.antPath(
+              [[14.917701586824, 120.743048619728], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_63979df68770438fe04d0eec3eb435f8 = L.polyline.antPath(
+              [[14.9014, 120.7548], [14.8980360749457, 120.764234222054]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_3758da8970ea32eaea53fccb0e8eb1e8 = L.polyline.antPath(
+              [[14.8980360749457, 120.764234222054], [14.8978852342351, 120.778807101888]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_10509458aa83e32f881fac77854eb4f1 = L.polyline.antPath(
+              [[14.8899, 120.7673], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_88cce79188171a1d164b637d970c7cee = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_0142633f4f9a71ff8e97aac57d3f1115 = L.polyline.antPath(
+              [[14.8919, 120.7635], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_b4c1d688b792abf103eff6f8371a566c = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_21f07881fdc18045c49f406be01dde96 = L.polyline.antPath(
+              [[14.8748, 120.7866], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_d13f023415e6dcbd873b799ad0e24258 = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.8978852342351, 120.778807101888]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_7eff62487818857e08a94cfd6f629cd5 = L.polyline.antPath(
+              [[14.9078, 120.7397], [14.917701586824, 120.743048619728]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_f307de68394fa7193fcd5e104f5d964f = L.polyline.antPath(
+              [[14.917701586824, 120.743048619728], [14.91044971, 120.7667966]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_29cb66ed9f3e5c8f9eb675a6dce2361a = L.polyline.antPath(
+              [[14.8831, 120.7295], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_5efad1278a76bc1b98a9fc9d030ddaec = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_b7da55b9b0f8a698e27dd6a0f5eb3a92 = L.polyline.antPath(
+              [[14.8994, 120.7756], [14.917701586824, 120.743048619728]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_c887b81e6dc4ab915f22b441b5c1e625 = L.polyline.antPath(
+              [[14.917701586824, 120.743048619728], [14.8978852342351, 120.778807101888]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_9ad952b05bf26fcf23320ac24ae074f9 = L.polyline.antPath(
+              [[14.8761, 120.738], [14.8980360749457, 120.764234222054]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_6810c07917b4b6dd86528d0ed5ce92d6 = L.polyline.antPath(
+              [[14.8980360749457, 120.764234222054], [14.8978852342351, 120.778807101888]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_9541244b1de1e078091d681e0d9befb0 = L.polyline.antPath(
+              [[14.8881, 120.7855], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_f79668fac4d5f7fc3f8204fc18c92f05 = L.polyline.antPath(
+              [[14.9185376869108, 120.766768211462], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_cdd0c3e925c65987bec30c0b59f51381 = L.polyline.antPath(
+              [[14.9157, 120.7672], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_a81daec23d30dbe9e07eaa073e2759f1 = L.polyline.antPath(
+              [[14.9185376869108, 120.766768211462], [14.8978852342351, 120.778807101888]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_2cba215a2e108ec240df79bdc9d585b4 = L.polyline.antPath(
+              [[14.9023, 120.7914], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_a872d5a0759cf4a81107b95970c84dfd = L.polyline.antPath(
+              [[14.9167991010101, 120.742941581954], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_ea47f3e9901723e0c8e525cc13558877 = L.polyline.antPath(
+              [[14.8838, 120.7395], [14.8980360749457, 120.764234222054]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_4b4fed2caf562cc0bba804c0b39c6061 = L.polyline.antPath(
+              [[14.8980360749457, 120.764234222054], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_55ba76ac97b7d4540cc663496bdbaa6f = L.polyline.antPath(
+              [[14.8976, 120.7797], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_f0ad75601996b71a0807535f0b0fc4b9 = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.8978852342351, 120.778807101888]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_c47bdcff8405f30d5019c2cee7251a90 = L.polyline.antPath(
+              [[14.917, 120.7427], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_f976b50c0437436b1941068064c4e570 = L.polyline.antPath(
+              [[14.9167991010101, 120.742941581954], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_e65a520457bc99314906c6367ae682f2 = L.polyline.antPath(
+              [[14.8982, 120.736], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_58093254ceeae271eca063f37f72b8d3 = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_568af5a60488fe707e2113919866d586 = L.polyline.antPath(
+              [[14.9047, 120.7792], [14.8933901983676, 120.777840587943]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_a659a1cb660ac32769b703592340bb56 = L.polyline.antPath(
+              [[14.8933901983676, 120.777840587943], [14.8978852342351, 120.778807101888]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_a2c2f8a993b3fcaa4ff4279d8907614d = L.polyline.antPath(
+              [[14.9196, 120.7739], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_1a81e7cea929ad57f57b82e681f33c65 = L.polyline.antPath(
+              [[14.9185376869108, 120.766768211462], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_41e973d492ad5daa4e35b95d9f2a227e = L.polyline.antPath(
+              [[14.894, 120.7909], [14.8980360749457, 120.764234222054]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_bb5aed18305367e4a9be50d40d75d61d = L.polyline.antPath(
+              [[14.8980360749457, 120.764234222054], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_9c4cc93e3e0d53ac8a44d66c2ae5800d = L.polyline.antPath(
+              [[14.9138, 120.7701], [14.9167991010101, 120.742941581954]],
+              {"bubblingMouseEvents": true, "color": "red", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            ant_path_f0cf46c7f5b8c8111dd2e6a76530780f = L.polyline.antPath(
+              [[14.9167991010101, 120.742941581954], [14.9185376869108, 120.766768211462]],
+              {"bubblingMouseEvents": true, "color": "purple", "dashArray": [10, 20], "dashOffset": null, "delay": 1000, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "hardwareAcceleration": false, "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "paused": false, "pulseColor": "#FFFFFF", "reverse": false, "smoothFactor": 1.0, "stroke": true, "weight": 6}
+        ).addTo(feature_group_d0ca7d8ef9d8ee0e56402f528070b877);
+        
+    
+            feature_group_d0ca7d8ef9d8ee0e56402f528070b877.addTo(map_b37aeb454a19b9f15aae679ca772df25);
+        
+    
+            var layer_control_dfbe0505c86e12a383d50503d0f999d1_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_ab30f39c61ab90a3fc737e41c74b2944,
+                },
+                overlays :  {
+                    "Straight Path" : feature_group_d0ca7d8ef9d8ee0e56402f528070b877,
+                },
+            };
+            let layer_control_dfbe0505c86e12a383d50503d0f999d1 = L.control.layers(
+                layer_control_dfbe0505c86e12a383d50503d0f999d1_layers.base_layers,
+                layer_control_dfbe0505c86e12a383d50503d0f999d1_layers.overlays,
+                {"autoZIndex": true, "collapsed": false, "position": "topright"}
+            ).addTo(map_b37aeb454a19b9f15aae679ca772df25);
+
+        
+</script>
+</html>

@@ -11,11 +11,11 @@ import time
 # MODEL PARAMETERS
 # simulation of area required per individual (meters squared), maximum no. of level 2 shelters
 area_per_individual = 1
-max_lvl2_shelters = 10
-max_shelters = 10
+max_lvl2_shelters = 33
+max_shelters = 33
 
 solutions = []
-num_generations = 200000
+num_generations = 10000
 num_solutions = 100
 mutation_rate = 0.2
 mutation_iteration = 3
@@ -426,6 +426,8 @@ if not feasibilityCheck():
 
 infeasibility_ctr = 0
 generation_last_updated = 0
+generations_updated_arr = [0]
+obj_value_updated_arr = []
 
 for _ in range(num_solutions):
     solution = spawn()
@@ -472,15 +474,21 @@ for generation in range(num_generations):
     solutions = [sol[1] for sol in best_solutions]
 
     new_best_solution = fitness(solutions[0])
+    if len(obj_value_updated_arr) == 0:
+        obj_value_updated_arr.append(prev_best_solution)
 
     #update generation_last_updated
     if(prev_best_solution != new_best_solution):
         generation_last_updated = generation+1
+        generations_updated_arr.append(generation_last_updated) 
+        obj_value_updated_arr.append(new_best_solution)
 
 
 best_allocation = solutions[0]
 show_allocation_details_grouped(best_allocation)
 print(f"Generation when solution last updated : {generation_last_updated}")
+generations_updated_arr.append(num_generations) 
+obj_value_updated_arr.append(fitness(best_allocation))
 
 # Calculate elapsed time
 elapsed_time = time.time() - start_time
@@ -490,3 +498,16 @@ minutes = int(elapsed_time // 60)
 seconds = elapsed_time % 60
 
 print(f"--- {minutes} minutes and {seconds:.2f} seconds ---")
+
+#DISPLAY GRAPH
+import matplotlib.pyplot as plt
+
+plt.plot(generations_updated_arr, obj_value_updated_arr)
+
+plt.xlabel("Generation")
+plt.ylabel("Objective Value")
+plt.yscale('log')
+plt.xscale('log')
+plt.title("BST Model")
+
+plt.show()

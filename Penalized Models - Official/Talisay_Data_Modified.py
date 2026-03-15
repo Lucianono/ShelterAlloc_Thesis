@@ -1,6 +1,6 @@
 # sample data of communities with barangay names along with population and distances from each shelter
 Community = [
-    {"name": "Aya", "population": 6215, "maxdistance": 570, 
+    {"name": "Aya", "population": 746, "maxdistance": 570, 
      "distances": {
         "Brgy. Asis-3 EC": 374.90, 
         "City EC of Sto. Tomas": 197.28, 
@@ -18,7 +18,7 @@ Community = [
         }
     },
     
-    {"name": "Banga & San Guillermo", "population": 5116, "maxdistance": 570, "distances": {
+    {"name": "Banga & San Guillermo", "population": 614, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 268.72, "City EC of Sto. Tomas": 303.71, "Suplang Covered Court": 200.81,
         "Brgy. San Jose BB Court": 159.09, "Maugat Gymnasium": 170.07, "Tagaytay Unida Church": 166.00,
         "San Antonio Brgy. Hall": 339.18, "Darasa Brgy. Hall": 345.62, "Santa Clara Brgy. Hall": 467.99,
@@ -28,7 +28,7 @@ Community = [
         }
     },
     
-    {"name": "Caloocan & Leynes", "population": 3258, "maxdistance": 570, "distances": {
+    {"name": "Caloocan & Leynes", "population": 391, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 208.44, "City EC of Sto. Tomas": 369.01, "Suplang Covered Court": 264.84,
         "Brgy. San Jose BB Court": 228.38, "Maugat Gymnasium": 237.39, "Tagaytay Unida Church": 109.49,
         "San Antonio Brgy. Hall": 406.17, "Darasa Brgy. Hall": 405.44, "Santa Clara Brgy. Hall": 524.12,
@@ -38,7 +38,7 @@ Community = [
         }
     },
     
-    {"name": "Poblacion Barangay 1", "population": 1921, "maxdistance": 570, "distances": {
+    {"name": "Poblacion Barangay 1", "population": 231, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 312.82, "City EC of Sto. Tomas": 261.91, "Suplang Covered Court": 192.62,
         "Brgy. San Jose BB Court": 127.45, "Maugat Gymnasium": 131.45, "Tagaytay Unida Church": 210.74,
         "San Antonio Brgy. Hall": 299.48, "Darasa Brgy. Hall": 300.36, "Santa Clara Brgy. Hall": 421.82,
@@ -58,7 +58,7 @@ Community = [
         }
     },
     
-    {"name": "Poblacion Barangay 2,3,4,6,7,8", "population": 8073, "maxdistance": 570, "distances": {
+    {"name": "Poblacion Barangay 2,3,4,6,7,8", "population": 969, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 303.30, "City EC of Sto. Tomas": 270.07, "Suplang Covered Court": 189.35,
         "Brgy. San Jose BB Court": 131.11, "Maugat Gymnasium": 137.96, "Tagaytay Unida Church": 200.87,
         "San Antonio Brgy. Hall": 306.74, "Darasa Brgy. Hall": 310.37, "Santa Clara Brgy. Hall": 432.52,
@@ -68,7 +68,7 @@ Community = [
         }
     },
     
-    {"name": "Quiling, Miranda, & Tumaway", "population": 9050, "maxdistance": 570, "distances": {
+    {"name": "Quiling, Miranda, & Tumaway", "population": 1086, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 351.86, "City EC of Sto. Tomas": 224.54, "Suplang Covered Court": 120.74,
         "Brgy. San Jose BB Court": 69.84, "Maugat Gymnasium": 90.32, "Tagaytay Unida Church": 249.34,
         "San Antonio Brgy. Hall": 255.07, "Darasa Brgy. Hall": 277.98, "Santa Clara Brgy. Hall": 404.84,
@@ -78,7 +78,7 @@ Community = [
         }
     },
     
-    {"name": "Sampaloc", "population": 4531, "maxdistance": 570, "distances": {
+    {"name": "Sampaloc", "population": 544, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 167.19, "City EC of Sto. Tomas": 420.32, "Suplang Covered Court": 316.14,
         "Brgy. San Jose BB Court": 282.04, "Maugat Gymnasium": 290.10, "Tagaytay Unida Church": 81.61,
         "San Antonio Brgy. Hall": 458.41, "Darasa Brgy. Hall": 453.42, "Santa Clara Brgy. Hall": 569.31,
@@ -88,7 +88,7 @@ Community = [
         }
     },
     
-    {"name": "Santa Maria, Balas, & Buco", "population": 3922, "maxdistance": 570, "distances": {
+    {"name": "Santa Maria, Balas, & Buco", "population": 471, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 263.79, "City EC of Sto. Tomas": 314.29, "Suplang Covered Court": 231.04,
         "Brgy. San Jose BB Court": 178.84, "Maugat Gymnasium": 184.40, "Tagaytay Unida Church": 163.44,
         "San Antonio Brgy. Hall": 352.34, "Darasa Brgy. Hall": 349.80, "Santa Clara Brgy. Hall": 468.83,
@@ -98,7 +98,7 @@ Community = [
         }
     },
     
-    {"name": "Tranca", "population": 2950, "maxdistance": 570, "distances": {
+    {"name": "Tranca", "population": 354, "maxdistance": 570, "distances": {
         "Brgy. Asis-3 EC": 377.92, "City EC of Sto. Tomas": 214.54, "Suplang Covered Court": 76.48,
         "Brgy. San Jose BB Court": 59.50, "Maugat Gymnasium": 91.75, "Tagaytay Unida Church": 277.14,
         "San Antonio Brgy. Hall": 238.34, "Darasa Brgy. Hall": 276.74, "Santa Clara Brgy. Hall": 404.33,

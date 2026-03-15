@@ -91,14 +91,14 @@ def build_legend_html(has_transfer, show_work=False):
     </div>
     <div class="leg-row">
       <div class="leg-marker shelter-init"></div>
-      <span class="leg-label">Initial Shelter</span>
+      <span class="leg-label">Level 1 Shelter</span>
     </div>"""
 
     if has_transfer:
         rows += """
     <div class="leg-row">
       <div class="leg-marker shelter-trans"></div>
-      <span class="leg-label">Transfer Shelter</span>
+      <span class="leg-label">Level 2 Shelter</span>
     </div>"""
 
     if show_work:
@@ -238,14 +238,13 @@ def plot_routes(allocation_df, comm_dict, shel_dict, map_name=MAP_NAME, show_wor
 
         if has_transfer:
             trans_name = row.get("Shelter Transfer")
-            if pd.notna(trans_name) and pd.notna(row.get("lat_shel_trans")):
-                if trans_name not in added_shelters:
-                    folium.Marker(
-                        [row["lat_shel_trans"], row["lon_shel_trans"]],
-                        popup=f"Shelter (Transfer): {trans_name}",
-                        icon=folium.Icon(color="purple")
-                    ).add_to(fg_shel_trans)
-                    added_shelters.add(trans_name)
+            if trans_name:
+                folium.Marker(
+                    [row["lat_shel_trans"], row["lon_shel_trans"]],
+                    popup=f"Shelter (Transfer): {trans_name}",
+                    icon=folium.Icon(color="purple")
+                ).add_to(fg_shel_trans)
+                added_shelters.add(trans_name)
 
     # --- Work Location marker ---
     if show_work:

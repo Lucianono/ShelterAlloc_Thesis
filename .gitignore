@@ -20,6 +20,8 @@
 *.nav
 *.snm
 *.vrb
+__pycache__
+cache
 
 # LaTeX intermediate files
 *.dvi

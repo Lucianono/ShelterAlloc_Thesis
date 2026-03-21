@@ -1,9 +1,3 @@
-# Community data sourced from Talisay_community_data.xlsx and comm_shel_distance_matrix.xlsx
-# Population = total population; affected pop = ROUNDUP(0.12 * Population, 0)
-# MaxDistance from Talisay_community_data.xlsx (in km)
-# Distances from comm_shel_distance_matrix.xlsx (shelter -> community, in km)
-# distanceswork from shel_work_distance_matrix.xlsx (shelter -> workplace, in km)
-# portiontransfer and portionwork retained from original sample data (not in xlsx)
 
 Community = [
     {"name": "Aya", "population": 746, "maxdistance": 77,
@@ -187,11 +181,6 @@ Community = [
     }
 ]
 
-
-# Shelter data sourced from Talisay_shelter_data.xlsx and shel_shel_distance_matrix.xlsx
-# area1, cost1 (=7700*area1), area2 (=2*area1), cost2 (=60000*area2) from Talisay_shelter_data.xlsx
-# distances (shelter-to-shelter) from shel_shel_distance_matrix.xlsx (in km)
-# distanceswork (shelter-to-workplace) from shel_work_distance_matrix.xlsx (in km)
 
 Shelters = [
     {"name": "San Fernando Brgy. Hall",

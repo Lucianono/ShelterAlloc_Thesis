@@ -8,8 +8,8 @@ MAP_NAME = "optimized-routes-map.html"
 
 WORK_LOCATION = {
     "name": "Work Location",
-    "lat": 14.896103367692303,
-    "lon": 120.77693709230768,
+    "lat": 14.131650287302046,
+    "lon": 121.1323348576719,
 }
 
 LEGEND_CSS = """
@@ -238,6 +238,7 @@ def plot_routes(allocation_df, comm_dict, shel_dict, map_name=MAP_NAME, show_wor
 
         if has_transfer:
             trans_name = row.get("Shelter Transfer")
+            print(row["lat_shel_trans"])
             if trans_name:
                 folium.Marker(
                     [row["lat_shel_trans"], row["lon_shel_trans"]],
@@ -289,9 +290,9 @@ def plot_routes(allocation_df, comm_dict, shel_dict, map_name=MAP_NAME, show_wor
 
 
 def main(
-    communities_file="modelCommData.xlsx",
-    shelters_file="modelShelData.xlsx",
-    allocation_file="WORK_alloc.xlsx",
+    communities_file="Talisay community data.xlsx",
+    shelters_file="Talisay shelter data.xlsx",
+    allocation_file="BST_alloc.xlsx",
 ):
     communities_df = load_excel(os.path.join(SAVE_DIR, communities_file),
                                 usecols=["Name", "Latitude", "Longitude"])

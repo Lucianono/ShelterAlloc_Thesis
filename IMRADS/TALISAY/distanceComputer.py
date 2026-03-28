@@ -47,7 +47,7 @@ def plot_route(communities_df, shelters_df, excel_name="shel_work_distance_matri
                     continue
 
         distance_matrix.index.name = 'Shelters'
-        distance_matrix.to_excel(rf"Talisay Simulation\{excel_name}")
+        distance_matrix.to_excel(rf"IMRADS\TALISAY\{excel_name}")
 
 @staticmethod
 def haversine_distance(lat1, lon1, lat2, lon2):
@@ -60,6 +60,6 @@ def haversine_distance(lat1, lon1, lat2, lon2):
 
 
 
-df1 = pd.read_excel("Talisay Simulation\Talisay shelter data.xlsx")
-df2 = pd.read_excel("Talisay Simulation\Talisay work data.xlsx")
+df1 = pd.read_excel("IMRADS\TALISAY\Datasets\Talisay shelter data.xlsx")
+df2 = pd.read_excel("IMRADS\TALISAY\Datasets\Talisay work data.xlsx")
 plot_route(df1, df2)

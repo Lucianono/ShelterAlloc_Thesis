@@ -1,365 +1,364 @@
-
 Community = [
-    {"name": "Aya", "population": 746, "maxdistance": 77,
+    {"name": "Aya", "population": 746, "maxdistance": 34,
      "distances": {
-        "San Fernando Brgy. Hall": 26.105172,
-        "Santa Clara Brgy. Hall": 48.452020,
-        "Darasa Brgy. Hall": 16.207573,
-        "San Antonio Brgy. Hall": 45.690049,
-        "Tagaytay Unida Church": 7.663998,
-        "Maugat Gymnasium": 53.297125,
-        "Brgy. San Jose BB Court": 53.608224,
-        "Suplang Covered Court": 9.202329,
-        "City EC of Sto. Tomas": 13.128176,
-        "Brgy. Asis-3 EC": 21.672758},
+        "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 20.52,
+        "SILANG JUNCTION SOUTH": 15.26,
+        "SUPLANG": 8.71,
+        "LUYOS": 5.99,
+        "DAYAPAN ELEMENTARY SCHOOL": 5.85,
+        "SAMBAT": 12.41,
+        "TRAPICHE BASKETBALL COURT": 12.56,
+        "TINURIK": 14.14,
+        "POBLACION": 18.94,
+        "SANTA CLARA": 25.48},
      "portiontransfer": 0.5,
      "portionwork": {
-         "Sto Tomas Batangas": 0.02
+         "Workplace": 0.02
      }
     },
 
-    {"name": "Banga & San Guillermo", "population": 614, "maxdistance": 77,
+    {"name": "Banga & San Guillermo", "population": 614, "maxdistance": 34,
      "distances": {
-        "San Fernando Brgy. Hall": 24.012869,
-        "Santa Clara Brgy. Hall": 33.060373,
-        "Darasa Brgy. Hall": 20.743523,
-        "San Antonio Brgy. Hall": 30.298402,
-        "Tagaytay Unida Church": 30.690432,
-        "Maugat Gymnasium": 76.323559,
-        "Brgy. San Jose BB Court": 38.541764,
-        "Suplang Covered Court": 30.405826,
-        "City EC of Sto. Tomas": 24.631970,
-        "Brgy. Asis-3 EC": 44.699192},
+        "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 18.32,
+        "SILANG JUNCTION SOUTH": 13.06,
+        "SUPLANG": 11.62,
+        "LUYOS": 8.9,
+        "DAYAPAN ELEMENTARY SCHOOL": 8.76,
+        "SAMBAT": 15.32,
+        "TRAPICHE BASKETBALL COURT": 15.47,
+        "TINURIK": 17.05,
+        "POBLACION": 21.85,
+        "SANTA CLARA": 28.39},
      "portiontransfer": 0.5,
      "portionwork": {
-         "Sto Tomas Batangas": 0.66
+         "Workplace": 0.66
      }
     },
 
-    {"name": "Caloocan & Leynes", "population": 391, "maxdistance": 77,
+    {"name": "Caloocan & Leynes", "population": 391, "maxdistance": 34,
      "distances": {
-        "San Fernando Brgy. Hall": 33.404072,
-        "Santa Clara Brgy. Hall": 53.793221,
-        "Darasa Brgy. Hall": 23.506473,
-        "San Antonio Brgy. Hall": 38.935148,
-        "Tagaytay Unida Church": 0.787813,
-        "Maugat Gymnasium": 47.095382,
-        "Brgy. San Jose BB Court": 60.907124,
-        "Suplang Covered Court": 16.501229,
-        "City EC of Sto. Tomas": 20.427076,
-        "Brgy. Asis-3 EC": 17.254099},
+        "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 16.37,
+        "SILANG JUNCTION SOUTH": 14.9,
+        "SUPLANG": 15.33,
+        "LUYOS": 12.61,
+        "DAYAPAN ELEMENTARY SCHOOL": 12.47,
+        "SAMBAT": 19.03,
+        "TRAPICHE BASKETBALL COURT": 19.18,
+        "TINURIK": 20.76,
+        "POBLACION": 25.56,
+        "SANTA CLARA": 32.1},
      "portiontransfer": 0.5,
      "portionwork": {
-         "Sto Tomas Batangas": 0.34
+         "Workplace": 0.34
      }
     },
 
-    {"name": "Poblacion Barangay 1", "population": 231, "maxdistance": 77,
+    {"name": "Poblacion Barangay 1", "population": 231, "maxdistance": 34,
      "distances": {
-        "San Fernando Brgy. Hall": 27.730740,
-        "Santa Clara Brgy. Hall": 50.077588,
-        "Darasa Brgy. Hall": 17.833141,
-        "San Antonio Brgy. Hall": 44.557608,
-        "Tagaytay Unida Church": 5.556225,
-        "Maugat Gymnasium": 51.189352,
-        "Brgy. San Jose BB Court": 55.233792,
-        "Suplang Covered Court": 10.827897,
-        "City EC of Sto. Tomas": 14.753744,
-        "Brgy. Asis-3 EC": 19.564985},
+        "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 18.21,
+        "SILANG JUNCTION SOUTH": 12.95,
+        "SUPLANG": 10.19,
+        "LUYOS": 7.46,
+        "DAYAPAN ELEMENTARY SCHOOL": 7.33,
+        "SAMBAT": 13.89,
+        "TRAPICHE BASKETBALL COURT": 14.04,
+        "TINURIK": 15.62,
+        "POBLACION": 20.42,
+        "SANTA CLARA": 26.96},
      "portiontransfer": 0.5,
      "portionwork": {
-         "Sto Tomas Batangas": 0.34
+         "Workplace": 0.34
      }
     },
 
-    {"name": "Poblacion Barangay 5", "population": 32, "maxdistance": 77,
+    {"name": "Poblacion Barangay 5", "population": 32, "maxdistance": 34,
      "distances": {
-        "San Fernando Brgy. Hall": 12.202733,
-        "Santa Clara Brgy. Hall": 42.342352,
-        "Darasa Brgy. Hall": 1.900820,
-        "San Antonio Brgy. Hall": 40.581799,
-        "Tagaytay Unida Church": 21.124498,
-        "Maugat Gymnasium": 66.757625,
-        "Brgy. San Jose BB Court": 44.574221,
-        "Suplang Covered Court": 12.973696,
-        "City EC of Sto. Tomas": 3.625315,
-        "Brgy. Asis-3 EC": 35.133258},
+        "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 18.21,
+        "SILANG JUNCTION SOUTH": 12.95,
+        "SUPLANG": 10.59,
+        "LUYOS": 7.87,
+        "DAYAPAN ELEMENTARY SCHOOL": 7.73,
+        "SAMBAT": 14.29,
+        "TRAPICHE BASKETBALL COURT": 14.44,
+        "TINURIK": 16.02,
+        "POBLACION": 20.83,
+        "SANTA CLARA": 27.36},
      "portiontransfer": 0.5,
      "portionwork": {
-         "Sto Tomas Batangas": 0
+         "Workplace": 0
      }
     },
 
-    {"name": "Poblacion Barangay 2,3,4,6,7,8", "population": 969, "maxdistance": 77,
+    {"name": "Poblacion Barangay 2,3,4,6,7,8", "population": 969, "maxdistance": 34,
      "distances": {
-        "San Fernando Brgy. Hall": 27.730740,
-        "Santa Clara Brgy. Hall": 50.077588,
-        "Darasa Brgy. Hall": 17.833141,
-        "San Antonio Brgy. Hall": 44.557608,
-        "Tagaytay Unida Church": 5.556225,
-        "Maugat Gymnasium": 51.189352,
-        "Brgy. San Jose BB Court": 55.233792,
-        "Suplang Covered Court": 10.827897,
-        "City EC of Sto. Tomas": 14.753744,
-        "Brgy. Asis-3 EC": 19.564985},
+        "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 18.33,
+        "SILANG JUNCTION SOUTH": 13.07,
+        "SUPLANG": 10.42,
+        "LUYOS": 7.7,
+        "DAYAPAN ELEMENTARY SCHOOL": 7.56,
+        "SAMBAT": 14.12,
+        "TRAPICHE BASKETBALL COURT": 14.27,
+        "TINURIK": 15.85,
+        "POBLACION": 20.66,
+        "SANTA CLARA": 27.19},
      "portiontransfer": 0.5,
      "portionwork": {
-         "Sto Tomas Batangas": 0.64
+         "Workplace": 0.64
      }
     },
 
-    {"name": "Quiling, Miranda, & Tumaway", "population": 1086, "maxdistance": 77,
+    {"name": "Quiling, Miranda, & Tumaway", "population": 1086, "maxdistance": 34,
      "distances": {
-        "San Fernando Brgy. Hall": 27.361166,
-        "Santa Clara Brgy. Hall": 49.708014,
-        "Darasa Brgy. Hall": 17.463567,
-        "San Antonio Brgy. Hall": 45.519288,
-        "Tagaytay Unida Church": 6.517905,
-        "Maugat Gymnasium": 52.151032,
-        "Brgy. San Jose BB Court": 54.864218,
-        "Suplang Covered Court": 10.458323,
-        "City EC of Sto. Tomas": 14.384170,
-        "Brgy. Asis-3 EC": 20.526665},
+        "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 18.81,
+        "SILANG JUNCTION SOUTH": 13.55,
+        "SUPLANG": 9.57,
+        "LUYOS": 6.85,
+        "DAYAPAN ELEMENTARY SCHOOL": 6.71,
+        "SAMBAT": 13.27,
+        "TRAPICHE BASKETBALL COURT": 13.42,
+        "TINURIK": 15.0,
+        "POBLACION": 19.81,
+        "SANTA CLARA": 26.34},
      "portiontransfer": 0.5,
      "portionwork": {
-         "Sto Tomas Batangas": 0.84
+         "Workplace": 0.84
      }
     },
 
-    {"name": "Sampaloc", "population": 544, "maxdistance": 77,
+    {"name": "Sampaloc", "population": 544, "maxdistance": 34,
      "distances": {
-        "San Fernando Brgy. Hall": 33.768139,
-        "Santa Clara Brgy. Hall": 53.014234,
-        "Darasa Brgy. Hall": 23.870540,
-        "San Antonio Brgy. Hall": 38.156161,
-        "Tagaytay Unida Church": 1.151880,
-        "Maugat Gymnasium": 46.316395,
-        "Brgy. San Jose BB Court": 61.271191,
-        "Suplang Covered Court": 16.865296,
-        "City EC of Sto. Tomas": 20.791143,
-        "Brgy. Asis-3 EC": 16.475112},
+        "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 15.41,
+        "SILANG JUNCTION SOUTH": 14.45,
+        "SUPLANG": 16.37,
+        "LUYOS": 13.65,
+        "DAYAPAN ELEMENTARY SCHOOL": 13.51,
+        "SAMBAT": 20.07,
+        "TRAPICHE BASKETBALL COURT": 20.22,
+        "TINURIK": 21.8,
+        "POBLACION": 26.61,
+        "SANTA CLARA": 33.14},
      "portiontransfer": 0.5,
      "portionwork": {
-         "Sto Tomas Batangas": 0.25
+         "Workplace": 0.25
      }
     },
 
-    {"name": "Santa Maria, Balas, & Buco", "population": 471, "maxdistance": 77,
+    {"name": "Santa Maria, Balas, & Buco", "population": 471, "maxdistance": 34,
      "distances": {
-        "San Fernando Brgy. Hall": 30.901650,
-        "Santa Clara Brgy. Hall": 53.248498,
-        "Darasa Brgy. Hall": 21.004051,
-        "San Antonio Brgy. Hall": 41.366676,
-        "Tagaytay Unida Church": 2.365293,
-        "Maugat Gymnasium": 49.526910,
-        "Brgy. San Jose BB Court": 58.404702,
-        "Suplang Covered Court": 13.998807,
-        "City EC of Sto. Tomas": 17.924654,
-        "Brgy. Asis-3 EC": 19.685627},
+        "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 18.27,
+        "SILANG JUNCTION SOUTH": 15.16,
+        "SUPLANG": 13.42,
+        "LUYOS": 10.7,
+        "DAYAPAN ELEMENTARY SCHOOL": 10.57,
+        "SAMBAT": 17.13,
+        "TRAPICHE BASKETBALL COURT": 17.28,
+        "TINURIK": 18.86,
+        "POBLACION": 23.66,
+        "SANTA CLARA": 30.2},
      "portiontransfer": 0.5,
      "portionwork": {
-         "Sto Tomas Batangas": 0.07
+         "Workplace": 0.07
      }
     },
 
-    {"name": "Tranca", "population": 354, "maxdistance": 77,
+    {"name": "Tranca", "population": 354, "maxdistance": 34,
      "distances": {
-        "San Fernando Brgy. Hall": 24.038189,
-        "Santa Clara Brgy. Hall": 50.226273,
-        "Darasa Brgy. Hall": 14.140590,
-        "San Antonio Brgy. Hall": 47.464302,
-        "Tagaytay Unida Church": 10.938092,
-        "Maugat Gymnasium": 56.571219,
-        "Brgy. San Jose BB Court": 55.382477,
-        "Suplang Covered Court": 5.081982,
-        "City EC of Sto. Tomas": 11.061193,
-        "Brgy. Asis-3 EC": 24.946852},
+        "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 23.84,
+        "SILANG JUNCTION SOUTH": 18.58,
+        "SUPLANG": 4.54,
+        "LUYOS": 2.41,
+        "DAYAPAN ELEMENTARY SCHOOL": 6.27,
+        "SAMBAT": 10.3,
+        "TRAPICHE BASKETBALL COURT": 10.45,
+        "TINURIK": 12.87,
+        "POBLACION": 16.83,
+        "SANTA CLARA": 23.37},
      "portiontransfer": 0.5,
      "portionwork": {
-         "Sto Tomas Batangas": 0.42
+         "Workplace": 0.42
      }
     }
 ]
 
 
 Shelters = [
-    {"name": "San Fernando Brgy. Hall",
-     "area1": 152.37, "cost1": 1173249.0, "area2": 304.74, "cost2": 9142200.0,
+    {"name": "PEDRO ALEGRE AURE SENIORHIGH SCHOOL",
+     "area1": 1287, "cost1": 9909900, "area2": 2574, "cost2": 77220000,
      "distances": {
-         "San Fernando Brgy. Hall": 0.0,
-         "Santa Clara Brgy. Hall": 39.398438,
-         "Darasa Brgy. Hall": 10.582127,
-         "San Antonio Brgy. Hall": 37.637885,
-         "Tagaytay Unida Church": 32.922917,
-         "Maugat Gymnasium": 78.556044,
-         "Brgy. San Jose BB Court": 41.192638,
-         "Suplang Covered Court": 24.118193,
-         "City EC of Sto. Tomas": 13.007935,
-         "Brgy. Asis-3 EC": 46.931677
+         "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 0.0,
+         "SILANG JUNCTION SOUTH": 7.55,
+         "SUPLANG": 28.38,
+         "LUYOS": 25.66,
+         "DAYAPAN ELEMENTARY SCHOOL": 25.53,
+         "SAMBAT": 32.08,
+         "TRAPICHE BASKETBALL COURT": 32.24,
+         "TINURIK": 33.81,
+         "POBLACION": 38.62,
+         "SANTA CLARA": 45.16
      },
      "distanceswork": {
-         "Sto Tomas Batangas": 15.517703
+         "Workplace": 35.1
      }},
 
-    {"name": "Santa Clara Brgy. Hall",
-     "area1": 52.35, "cost1": 403095.0, "area2": 104.7, "cost2": 3141000.0,
+    {"name": "SILANG JUNCTION SOUTH",
+     "area1": 41839, "cost1": 3033327500, "area2": 83678, "cost2": 5543667500,
      "distances": {
-         "San Fernando Brgy. Hall": 39.398438,
-         "Santa Clara Brgy. Hall": 0.0,
-         "Darasa Brgy. Hall": 40.607955,
-         "San Antonio Brgy. Hall": 17.843377,
-         "Tagaytay Unida Church": 54.166114,
-         "Maugat Gymnasium": 67.358562,
-         "Brgy. San Jose BB Court": 15.536631,
-         "Suplang Covered Court": 54.985159,
-         "City EC of Sto. Tomas": 45.818102,
-         "Brgy. Asis-3 EC": 57.389824
+         "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 7.55,
+         "SILANG JUNCTION SOUTH": 0.0,
+         "SUPLANG": 23.12,
+         "LUYOS": 20.4,
+         "DAYAPAN ELEMENTARY SCHOOL": 20.27,
+         "SAMBAT": 26.82,
+         "TRAPICHE BASKETBALL COURT": 26.98,
+         "TINURIK": 28.55,
+         "POBLACION": 33.36,
+         "SANTA CLARA": 39.9
      },
      "distanceswork": {
-         "Sto Tomas Batangas": 48.832434
+         "Workplace": 29.84
      }},
 
-    {"name": "Darasa Brgy. Hall",
-     "area1": 247.08, "cost1": 1902516.0, "area2": 494.16, "cost2": 14824800.0,
+    {"name": "SUPLANG",
+     "area1": 500, "cost1": 3850000, "area2": 1000, "cost2": 30000000,
      "distances": {
-         "San Fernando Brgy. Hall": 10.582127,
-         "Santa Clara Brgy. Hall": 40.607955,
-         "Darasa Brgy. Hall": 0.0,
-         "San Antonio Brgy. Hall": 38.847402,
-         "Tagaytay Unida Church": 23.025318,
-         "Maugat Gymnasium": 68.658445,
-         "Brgy. San Jose BB Court": 42.839824,
-         "Suplang Covered Court": 14.874516,
-         "City EC of Sto. Tomas": 5.210147,
-         "Brgy. Asis-3 EC": 37.034078
+         "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 28.38,
+         "SILANG JUNCTION SOUTH": 23.12,
+         "SUPLANG": 0.0,
+         "LUYOS": 4.2,
+         "DAYAPAN ELEMENTARY SCHOOL": 8.05,
+         "SAMBAT": 11.84,
+         "TRAPICHE BASKETBALL COURT": 9.96,
+         "TINURIK": 14.41,
+         "POBLACION": 17.09,
+         "SANTA CLARA": 23.57
      },
      "distanceswork": {
-         "Sto Tomas Batangas": 8.224479
+         "Workplace": 10.6
      }},
 
-    {"name": "San Antonio Brgy. Hall",
-     "area1": 98.79, "cost1": 760683.0, "area2": 197.58, "cost2": 5927400.0,
+    {"name": "LUYOS",
+     "area1": 7532, "cost1": 546070000, "area2": 15064, "cost2": 997990000,
      "distances": {
-         "San Fernando Brgy. Hall": 37.637885,
-         "Santa Clara Brgy. Hall": 17.843377,
-         "Darasa Brgy. Hall": 38.847402,
-         "San Antonio Brgy. Hall": 0.0,
-         "Tagaytay Unida Church": 39.308041,
-         "Maugat Gymnasium": 52.500489,
-         "Brgy. San Jose BB Court": 30.474806,
-         "Suplang Covered Court": 52.223188,
-         "City EC of Sto. Tomas": 44.057549,
-         "Brgy. Asis-3 EC": 42.531751
+         "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 25.66,
+         "SILANG JUNCTION SOUTH": 20.4,
+         "SUPLANG": 4.2,
+         "LUYOS": 0.0,
+         "DAYAPAN ELEMENTARY SCHOOL": 3.85,
+         "SAMBAT": 7.88,
+         "TRAPICHE BASKETBALL COURT": 8.04,
+         "TINURIK": 10.45,
+         "POBLACION": 14.42,
+         "SANTA CLARA": 20.96
      },
      "distanceswork": {
-         "Sto Tomas Batangas": 47.071881
+         "Workplace": 9.66
      }},
 
-    {"name": "Tagaytay Unida Church",
-     "area1": 152.24, "cost1": 1172248.0, "area2": 304.48, "cost2": 9134400.0,
+    {"name": "DAYAPAN ELEMENTARY SCHOOL",
+     "area1": 213, "cost1": 1640100, "area2": 426, "cost2": 12780000,
      "distances": {
-         "San Fernando Brgy. Hall": 32.922917,
-         "Santa Clara Brgy. Hall": 54.166114,
-         "Darasa Brgy. Hall": 23.025318,
-         "San Antonio Brgy. Hall": 39.308041,
-         "Tagaytay Unida Church": 0.0,
-         "Maugat Gymnasium": 47.468275,
-         "Brgy. San Jose BB Court": 60.425969,
-         "Suplang Covered Court": 16.020074,
-         "City EC of Sto. Tomas": 19.945921,
-         "Brgy. Asis-3 EC": 17.626992
+         "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 25.53,
+         "SILANG JUNCTION SOUTH": 20.27,
+         "SUPLANG": 8.05,
+         "LUYOS": 3.85,
+         "DAYAPAN ELEMENTARY SCHOOL": 0.0,
+         "SAMBAT": 7.8,
+         "TRAPICHE BASKETBALL COURT": 7.95,
+         "TINURIK": 10.37,
+         "POBLACION": 14.33,
+         "SANTA CLARA": 20.87
      },
      "distanceswork": {
-         "Sto Tomas Batangas": 21.507159
+         "Workplace": 10.03
      }},
 
-    {"name": "Maugat Gymnasium",
-     "area1": 774.17, "cost1": 5961109.0, "area2": 1548.34, "cost2": 46450200.0,
+    {"name": "SAMBAT",
+     "area1": 11669, "cost1": 846002500, "area2": 23338, "cost2": 1546142500,
      "distances": {
-         "San Fernando Brgy. Hall": 78.556044,
-         "Santa Clara Brgy. Hall": 67.358562,
-         "Darasa Brgy. Hall": 68.658445,
-         "San Antonio Brgy. Hall": 52.500489,
-         "Tagaytay Unida Church": 47.468275,
-         "Maugat Gymnasium": 0.0,
-         "Brgy. San Jose BB Court": 79.989991,
-         "Suplang Covered Court": 55.295807,
-         "City EC of Sto. Tomas": 65.550027,
-         "Brgy. Asis-3 EC": 36.925129
+         "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 32.08,
+         "SILANG JUNCTION SOUTH": 26.82,
+         "SUPLANG": 11.84,
+         "LUYOS": 7.88,
+         "DAYAPAN ELEMENTARY SCHOOL": 7.8,
+         "SAMBAT": 0.0,
+         "TRAPICHE BASKETBALL COURT": 2.42,
+         "TINURIK": 3.51,
+         "POBLACION": 6.54,
+         "SANTA CLARA": 13.07
      },
      "distanceswork": {
-         "Sto Tomas Batangas": 64.889195
+         "Workplace": 8.83
      }},
 
-    {"name": "Brgy. San Jose BB Court",
-     "area1": 575.54, "cost1": 4431658.0, "area2": 1151.08, "cost2": 34532400.0,
+    {"name": "TRAPICHE BASKETBALL COURT",
+     "area1": 571, "cost1": 4396700, "area2": 1142, "cost2": 34260000,
      "distances": {
-         "San Fernando Brgy. Hall": 41.192638,
-         "Santa Clara Brgy. Hall": 15.536631,
-         "Darasa Brgy. Hall": 42.839824,
-         "San Antonio Brgy. Hall": 30.474806,
-         "Tagaytay Unida Church": 60.425969,
-         "Maugat Gymnasium": 79.989991,
-         "Brgy. San Jose BB Court": 0.0,
-         "Suplang Covered Court": 57.506986,
-         "City EC of Sto. Tomas": 48.049971,
-         "Brgy. Asis-3 EC": 70.021253
+         "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 32.24,
+         "SILANG JUNCTION SOUTH": 26.98,
+         "SUPLANG": 9.96,
+         "LUYOS": 8.04,
+         "DAYAPAN ELEMENTARY SCHOOL": 7.95,
+         "SAMBAT": 2.42,
+         "TRAPICHE BASKETBALL COURT": 0.0,
+         "TINURIK": 5.65,
+         "POBLACION": 7.12,
+         "SANTA CLARA": 13.61
      },
      "distanceswork": {
-         "Sto Tomas Batangas": 51.064303
+         "Workplace": 8.14
      }},
 
-    {"name": "Suplang Covered Court",
-     "area1": 144.55, "cost1": 1113035.0, "area2": 289.1, "cost2": 8673000.0,
+    {"name": "TINURIK",
+     "area1": 283, "cost1": 20517500, "area2": 566, "cost2": 37497500,
      "distances": {
-         "San Fernando Brgy. Hall": 24.118193,
-         "Santa Clara Brgy. Hall": 54.985159,
-         "Darasa Brgy. Hall": 14.874516,
-         "San Antonio Brgy. Hall": 52.223188,
-         "Tagaytay Unida Church": 16.020074,
-         "Maugat Gymnasium": 55.295807,
-         "Brgy. San Jose BB Court": 57.506986,
-         "Suplang Covered Court": 0.0,
-         "City EC of Sto. Tomas": 11.110258,
-         "Brgy. Asis-3 EC": 23.671440
+         "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 33.81,
+         "SILANG JUNCTION SOUTH": 28.55,
+         "SUPLANG": 14.41,
+         "LUYOS": 10.45,
+         "DAYAPAN ELEMENTARY SCHOOL": 10.37,
+         "SAMBAT": 3.51,
+         "TRAPICHE BASKETBALL COURT": 5.65,
+         "TINURIK": 0.0,
+         "POBLACION": 7.59,
+         "SANTA CLARA": 14.32
      },
      "distanceswork": {
-         "Sto Tomas Batangas": 10.449426
+         "Workplace": 10.8
      }},
 
-    {"name": "City EC of Sto. Tomas",
-     "area1": 616.63, "cost1": 4748051.0, "area2": 1233.26, "cost2": 36997800.0,
+    {"name": "POBLACION",
+     "area1": 688, "cost1": 49880000, "area2": 1376, "cost2": 91160000,
      "distances": {
-         "San Fernando Brgy. Hall": 13.007935,
-         "Santa Clara Brgy. Hall": 45.818102,
-         "Darasa Brgy. Hall": 5.210147,
-         "San Antonio Brgy. Hall": 44.057549,
-         "Tagaytay Unida Church": 19.945921,
-         "Maugat Gymnasium": 65.550027,
-         "Brgy. San Jose BB Court": 48.049971,
-         "Suplang Covered Court": 11.110258,
-         "City EC of Sto. Tomas": 0.0,
-         "Brgy. Asis-3 EC": 33.925660
+         "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 38.62,
+         "SILANG JUNCTION SOUTH": 33.36,
+         "SUPLANG": 17.09,
+         "LUYOS": 14.42,
+         "DAYAPAN ELEMENTARY SCHOOL": 14.33,
+         "SAMBAT": 6.54,
+         "TRAPICHE BASKETBALL COURT": 7.12,
+         "TINURIK": 7.59,
+         "POBLACION": 0.0,
+         "SANTA CLARA": 7.51
      },
      "distanceswork": {
-         "Sto Tomas Batangas": 3.669908
+         "Workplace": 12.09
      }},
 
-    {"name": "Brgy. Asis-3 EC",
-     "area1": 63.38, "cost1": 488026.0, "area2": 126.76, "cost2": 3802800.0,
+    {"name": "SANTA CLARA",
+     "area1": 1726, "cost1": 125135000, "area2": 3452, "cost2": 228695000,
      "distances": {
-         "San Fernando Brgy. Hall": 46.931677,
-         "Santa Clara Brgy. Hall": 57.389824,
-         "Darasa Brgy. Hall": 37.034078,
-         "San Antonio Brgy. Hall": 42.531751,
-         "Tagaytay Unida Church": 17.626992,
-         "Maugat Gymnasium": 36.925129,
-         "Brgy. San Jose BB Court": 70.021253,
-         "Suplang Covered Court": 23.671440,
-         "City EC of Sto. Tomas": 33.925660,
-         "Brgy. Asis-3 EC": 0.0
+         "PEDRO ALEGRE AURE SENIORHIGH SCHOOL": 45.16,
+         "SILANG JUNCTION SOUTH": 39.9,
+         "SUPLANG": 23.57,
+         "LUYOS": 20.96,
+         "DAYAPAN ELEMENTARY SCHOOL": 20.87,
+         "SAMBAT": 13.07,
+         "TRAPICHE BASKETBALL COURT": 13.61,
+         "TINURIK": 14.32,
+         "POBLACION": 7.51,
+         "SANTA CLARA": 0.0
      },
      "distanceswork": {
-         "Sto Tomas Batangas": 33.264828
+         "Workplace": 16.52
      }},
 ]

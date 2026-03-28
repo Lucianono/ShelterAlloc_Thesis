@@ -157,8 +157,8 @@ def plot_all_locations(
 
 
 def main(
-    communities_file="Calumpit community data.xlsx",
-    shelters_file="Calumpit shelter data.xlsx",
+    communities_file="Talisay community data.xlsx",
+    shelters_file="Talisay shelter data.xlsx",
 ):
     communities_df = load_excel(
         os.path.join(SAVE_DIR, communities_file),

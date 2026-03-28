@@ -8,8 +8,8 @@ MAP_NAME = "optimized-routes-map.html"
 
 WORK_LOCATION = {
     "name": "Work Location",
-    "lat": 14.131650287302046,
-    "lon": 121.1323348576719,
+    "lat": 14.1229439319374,
+    "lon": 121.1276671138910,
 }
 
 LEGEND_CSS = """
